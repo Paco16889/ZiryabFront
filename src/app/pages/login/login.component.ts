@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -12,13 +15,38 @@ export class LoginComponent {
 
  private router:Router = inject(Router);
   readonly navigateTo:string = "";
+  formLogin;
+ // error;
 
 
-  constructor(){
-    //sacar el formlogind el formbuilder 
+  constructor(private fb : FormBuilder, private auth: AuthService ){
+    //sacar el formlogind del formbuilder 
+    this.formLogin = this.fb.group({
+      'email':['', [Validators.required, Validators.email]],
+      'password': ['', [Validators.required]]
+    })
   }
 
   //metodo onsubmit()
+  /*
+async onSubmit(){
+  console.log(this.formLogin.value);
+    try{
+      this.error.set(false);
+      const response = await this.auth.login(this.formLogin.value as any);
+      this.router.navigate([this.navigateTo]);
+    }
+    catch(error){
+      this.error.set(true);
+    }
+    
+  }
+}
+*/
+
+  //metodo getError()
+
+  /*
   getError(control:string){
        
     switch(control){
@@ -41,7 +69,135 @@ export class LoginComponent {
     return "";
   }
 
+  */
 }
 
 
-}
+/* FORMULARIO CON ERRORES Y VALIDACIONES 
+<div class="min-h-screen flex justify-center items-center">
+  <div
+    class="rounded-md max-w-md w-full bg-gradient-to-br from-blue-600 via-purple-500 to-gray-600"
+  >
+    <h1 class="mt-5 text-center text-white text-2xl font-bold">
+      Iniciar sesión
+    </h1>
+    <p class="mb-5 text-gray-600 text-sm mix-blend-color-dodge text-center">
+      Accede con tus credenciales
+    </p>
+    <form class="px-5" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="block text-white" for="email">Email</label>
+        <div class="relative">
+          <span class="text-gray-400 absolute left-3 top-1/2 -translate-y-1/2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+              />
+            </svg>
+          </span>
+          <input
+            id="email"
+            name="email"
+            autocomplete="username"
+            formControlName="email"
+            placeholder="tu@email"
+            class="px-10 h-8 rounded-sm border w-full"
+            type="text"
+          />
+          
+          
+        </div>
+        @if(formLogin.controls.email.touched && formLogin.controls.email.errors){
+            <span class="text-red-500 mt-3 mix-blend-color-dodge">
+                {{getError('email')}}
+            </span>
+        }
+      </div>
+      <div class="mb-3">
+        <label class="block text-white" for="email">Contraseña</label>
+        <div class="relative">
+          <span class="text-gray-400 absolute left-3 top-1/2 -translate-y-1/2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+              />
+            </svg>
+          </span>
+
+          <input
+            id="password"
+            name="password"
+            formControlName="password"
+            autocomplete="password"
+            placeholder="tu contraseña"
+            class="px-10 h-8 w-full rounded-sm border"
+            type="password"
+          />
+          <span class="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+            </svg>
+          </span>
+        </div>
+        @if(formLogin.controls.password.touched && formLogin.controls.password.errors){
+            <span class="text-red-500 mt-3 mix-blend-color-dodge">
+                {{getError('password')}}
+            </span>
+        }
+      </div>
+      <button
+        class="rounded-sm mb-3 w-full px-4 py-2 font-medium bg-blue-500 hover:bg-blue-600 border border-blue-400 text-white"
+        type="submit"
+      >
+        Acceder
+      </button>
+      <span>
+        <p>
+          ¿No tienes cuenta?
+        </p>
+        <a [routerLink]="['/register']" [state]="{navigateTo: navigateTo}">Regístrate</a>
+      </span>
+      @if(error()){
+        <span class="text-red-500 font-medium text-sm">
+          <p>
+            Email o contraseña invalidos
+          </p>
+        </span>
+      }
+    </form>
+  </div>
+</div>*/
