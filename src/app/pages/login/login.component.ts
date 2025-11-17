@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
 
  private router:Router = inject(Router);
-  readonly navigateTo:string = "";
+  readonly navigateTo:string = "/dashboard";
   formLogin;
  // error;
 
