@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
+import { LocalStorageAuthService } from '../../core/services/localstorage-auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,23 +12,27 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
- private router:Router = inject(Router);
-  readonly navigateTo:string = "/dashboard";
+  error;
+  private router:Router = inject(Router);
+  readonly navigateTo:string = "";
   formLogin;
- // error;
+  
 
 
-  constructor(private fb : FormBuilder, private auth: AuthService ){
+  constructor(private fb : FormBuilder, 
+    private auth: LocalStorageAuthService 
+  ){
     //sacar el formlogind del formbuilder 
     this.formLogin = this.fb.group({
       'email':['', [Validators.required, Validators.email]],
       'password': ['', [Validators.required]]
-    })
+    });
+    this.error = signal(false);
+    this.navigateTo = this.router.getCurrentNavigation()?.extras.state?.['navigateTo'] || '/dashboard';
   }
 
   //metodo onsubmit()
-  /*
+  
 async onSubmit(){
   console.log(this.formLogin.value);
     try{
@@ -41,12 +45,11 @@ async onSubmit(){
     }
     
   }
-}
-*/
+
 
   //metodo getError()
 
-  /*
+  
   getError(control:string){
        
     switch(control){
@@ -69,7 +72,7 @@ async onSubmit(){
     return "";
   }
 
-  */
+  
 }
 
 

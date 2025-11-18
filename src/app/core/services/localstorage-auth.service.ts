@@ -6,7 +6,7 @@ import { Credentials, RegisterInfo } from '../models/credentials';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class LocalStorageAuthService {
 
     public user: any | null;
   constructor() { 
