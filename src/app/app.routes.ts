@@ -30,7 +30,7 @@ export const routes: Routes = [
         component:GestionComponent
     },
     {
-        path:'temario',
+        path:'temario/:claseId',
         component:TemarioComponent
     }
 ];
