@@ -1,0 +1,95 @@
+<div class="w-full min-h-screen bg-white pt-12 pb-12">
+    <div class="w-full max-w-6xl mx-auto px-4 md:px-8">
+        <!-- navegacion entre faltas y justificar-->
+        <div class="flex justify-center space-x-6 mb-10">
+            <!-- boton de faltas -->
+            <button type="button" (click)="changeView('faltas')"
+                [ngClass]="{
+                    'bg-purple-100 shadow-xl text-gray-900 font-extrabold border-2 border-purple-200': currentView === 'faltas',
+                    'bg-white text-gray-400 hover:bg-gray-50/50 border-2 border-gray-100': currentView !== 'faltas'
+                }"
+                class="flex-1 max-w-[300px] py-4 rounded-xl transition duration-300 transform cursor-pointer text-4xl font-serif tracking-tight">
+                Faltas
+            </button>
+
+            <!-- boton justificar -->
+            <button type="button" (click)="changeView('justificacion')"
+                [ngClass]="{
+                    'bg-purple-100 shadow-xl text-gray-900 font-extrabold border-2 border-purple-200': currentView === 'justificacion',
+                    'bg-white text-gray-400 hover:bg-gray-50/50 border-2 border-gray-100': currentView !== 'justificacion'
+                }"
+                class="flex-1 max-w-[300px] py-4 rounded-xl transition duration-300 transform cursor-pointer text-4xl font-serif tracking-tight">
+                Justificación
+            </button>
+        </div>
+
+        <div class="mt-8">
+            <!-- div de faltas-->
+            <div *ngIf="currentView === 'faltas'">
+                <div class="space-y-4">
+                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
+                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 20 <br>Octubre</div>
+                        <div class="w-1/6 text-lg font-bold text-gray-900">IPE</div>
+                        <div class="w-2/6 text-sm text-gray-700 leading-tight">8:15-9:45<br>Injustificada</div>
+                        <div class="w-2/6 ml-auto flex justify-end">
+                        <span class="text-xl font-bold px-4 py-2 rounded-lg text-transparent">J</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
+                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 20 <br>Octubre</div>
+                        <div class="w-1/6 text-lg font-bold text-gray-900">IPE</div>
+                        <div class="w-2/6 text-sm text-gray-700 leading-tight">9:15-10:45<br>Injustificada</div>
+                        <div class="w-2/6 ml-auto flex justify-end">
+                        <span class="text-xl font-bold px-4 py-2 rounded-lg text-transparent">J</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
+                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 21 <br>Octubre</div>
+                        <div class="w-1/6 text-lg font-bold text-gray-900">Android</div>
+                        <div class="w-2/6 text-sm text-gray-700 leading-tight">8:15-9:45<br>Injustificada</div>
+                        <div class="w-2/6 ml-auto flex justify-end">
+                        <span class="text-xl font-bold px-4 py-2 rounded-lg bg-purple-300 text-white shadow-sm">J</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
+                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 23 <br>Octubre</div>
+                        <div class="w-1/6 text-lg font-bold text-gray-900">Servidores</div>
+                        <div class="w-2/6 text-sm text-gray-700 leading-tight">8:15-9:45<br>Justificada</div>
+                        <div class="w-2/6 ml-auto flex justify-end">
+                        <span class="text-xl font-bold px-4 py-2 rounded-lg text-transparent">J</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- div de justificacion-->
+            <div *ngIf="currentView === 'justificacion'">
+                <div class="flex flex-col items-center p-10 bg-white rounded-xl shadow-lg border border-gray-100">
+                    <p class="text-3xl font-serif text-center font-extrabold mb-10 text-gray-900">Subir un documento</p>
+                    <!-- cambiar en un futuro para subir un documento, ahora solo escribir, y boton de entrega (no funcional por ahora) -->
+                    <div class="w-full max-w-md flex flex-col items-center space-y-8">
+                        <div class="w-full flex items-center border-b-2 border-gray-300 py-3 mb-6">
+                            <input type="text" placeholder="..." 
+                                class="flex-1 text-center py-2 text-gray-700 placeholder-gray-400 
+                                        bg-transparent border-none focus:outline-none focus:ring-0 text-xl font-serif">
+                            <span class="text-3xl text-gray-500 ml-4">📂</span>
+                        </div>
+                        <button class="w-full max-w-sm py-4 rounded-xl font-extrabold transition duration-200 
+                                        bg-purple-300 text-purple-900 shadow-lg hover:bg-purple-400 text-xl font-serif">
+                            Entregar justificante
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- enlace volver -> error, te lleva al login en vez de anterior -->
+        <a href="#" class="block text-blue-500 text-sm mt-10 hover:underline px-4 md:px-0">--- volver</a>
+
+    </div>
+</div>
