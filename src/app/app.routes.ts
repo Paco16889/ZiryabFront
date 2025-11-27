@@ -18,8 +18,8 @@ export const routes: Routes = [
     },
     {
         path:'dashboard',
-        component:DashboardComponent
-        //canActivate:[authGuard]
+        component:DashboardComponent,
+        canActivate:[authGuard]
     },
     {
         path:'clases',
