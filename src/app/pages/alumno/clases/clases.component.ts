@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
-import { NavigationService } from '../../core/services/navigation.service'; 
+import { NavigationService } from '../../../core/services/navigation.service'; 
 
 
 @Component({
