@@ -1,1 +1,98 @@
-<p>register works!</p>
+<form
+    class="px-5"
+    [formGroup]="formRegister"
+    (ngSubmit)="onSubmit()"
+>
+    <!-- EMAIL -->
+    <div class="mb-3">
+        <label class="block text-white" for="email">Email</label>
+        <div class="relative">
+            <span class="text-gray-400 absolute left-3 top-1/2 -translate-y-1/2">
+                <!-- Icono usuario -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 
+                             3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
+                             a7.5 7.5 0 0 1 14.998 0A17.933 17.933 
+                             0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+                </svg>
+            </span>
+
+            <input
+                id="email"
+                name="email"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="tu@email"
+                class="px-10 h-8 rounded-sm border w-full"
+                type="email"
+            />
+        </div>
+    </div>
+
+    <!-- NAME -->
+    <div class="mb-3">
+        <label class="block text-white">Nombre</label>
+        <input
+            formControlName="name"
+            placeholder="Nombre"
+            class="px-3 h-8 rounded-sm border w-full"
+            type="text"
+        />
+    </div>
+
+    <!-- SURNAME -->
+    <div class="mb-3">
+        <label class="block text-white">Primer apellido</label>
+        <input
+            formControlName="surname"
+            placeholder="Primer apellido"
+            class="px-3 h-8 rounded-sm border w-full"
+            type="text"
+        />
+    </div>
+
+    <!-- SECOND SURNAME -->
+    <div class="mb-3">
+        <label class="block text-white">Segundo apellido</label>
+        <input
+            formControlName="ndSurname"
+            placeholder="Segundo apellido"
+            class="px-3 h-8 rounded-sm border w-full"
+            type="text"
+        />
+    </div>
+
+    <!-- FECHA NACIMIENTO -->
+    <div class="mb-3">
+        <label class="block text-white">Fecha de nacimiento</label>
+        <input
+            formControlName="fechaNacimiento"
+            type="date"
+            class="px-3 h-8 rounded-sm border w-full"
+        />
+    </div>
+
+    <!-- DNI -->
+    <div class="mb-3">
+        <label class="block text-white">DNI</label>
+        <input
+            formControlName="dni"
+            placeholder="DNI"
+            class="px-3 h-8 rounded-sm border w-full"
+            type="text"
+        />
+    </div>
+
+    <!-- BOTÓN -->
+    <button
+        class="rounded-sm mb-3 w-full px-4 py-2 font-medium 
+               bg-purple-400 hover:bg-purple-600 
+               border border-purple-400 text-white"
+        type="submit"
+    >
+        Registrar
+    </button>
+</form>

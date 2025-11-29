@@ -6,6 +6,7 @@ import { ClasesComponent } from './pages/alumno/clases/clases.component';
 import { GestionComponent } from './pages/alumno/gestion/gestion.component';
 import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component'; 
+import { RegisterComponent } from './pages/admin/register/register.component';
 
 export const routes: Routes = [
     {
@@ -37,5 +38,10 @@ export const routes: Routes = [
     {
         path:'ficha-usuario', 
         component:FichaUsuarioComponent 
+    },
+    {
+        path:'register',
+        component:RegisterComponent
     }
+
 ];

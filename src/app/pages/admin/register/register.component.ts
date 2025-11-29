@@ -1,12 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
-  imports: [],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  imports:[ReactiveFormsModule, CommonModule],
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent {
-//aqui manejamos un usuario de forma que registraremos la entidad usuario
-//  en la base de datos mandando los parametros al back
+
+  formRegister: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.formRegister = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      ndSurname: [''],
+      fechaNacimiento: ['', Validators.required],
+      dni: ['', Validators.required],
+    });
+  }
+
+  onSubmit() {
+    if (this.formRegister.invalid) return;
+
+    console.log('Datos:', this.formRegister.value);
+  }
 }
