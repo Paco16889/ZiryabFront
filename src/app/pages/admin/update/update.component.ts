@@ -9,3 +9,5 @@ import { Component } from '@angular/core';
 export class UpdateComponent {
 
 }
+//ESTAMOS EN LA RAMA DE UPDATE PARA LUEGO FUSIONAR CON LA "PRINCIPAL"
+//SOLO VAMOS A TOCAR ESTE COMPONENTE DE MOMENTO
