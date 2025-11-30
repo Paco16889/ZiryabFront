@@ -7,6 +7,7 @@ import { GestionComponent } from './pages/alumno/gestion/gestion.component';
 import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component'; 
 import { RegisterComponent } from './pages/admin/register/register.component';
+import { UpdateComponent } from './pages/admin/update/update.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,10 @@ export const routes: Routes = [
     {
         path:'register',
         component:RegisterComponent
+    },
+    {
+        path:'update',
+        component:UpdateComponent
     }
 
 ];
