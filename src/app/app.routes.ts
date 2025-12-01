@@ -22,7 +22,7 @@ export const routes: Routes = [
     {
         path:'dashboard',
         component:DashboardComponent,
-        canActivate:[authGuard]
+        //canActivate:[authGuard]
     },
     {
         path:'clases',
@@ -48,5 +48,4 @@ export const routes: Routes = [
         path:'update',
         component:UpdateComponent
     }
-
 ];
