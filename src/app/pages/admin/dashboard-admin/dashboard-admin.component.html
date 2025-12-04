@@ -1,17 +1,20 @@
-<div class="flex flex-col ">
-    <!--<div class="flex gap-4 m-2">
-    <button class="px-4 py-2 bg-blue-500 text-white rounded">Registrar</button>
-    <button class="px-4 py-2 bg-green-500 text-white rounded">Actualizar</button>
-    <button class="px-4 py-2 bg-purple-500 text-white rounded">Borrar</button>
-    <button class="px-4 py-2 bg-orange-500 text-white rounded">Consultar</button>
-  </div>-->
+
+    
   <div class="flex ">
-    <app-admin-menu></app-admin-menu>
-    @if (openedMenu) {}
-    <app-desplegable-admin></app-desplegable-admin>
+    <div>
+      <app-admin-menu></app-admin-menu>
+    </div>
+    
+    <div class="flex flex-col w-full">
+      <app-filter-section></app-filter-section>
+      <app-desplegable-admin></app-desplegable-admin>
+    </div>
+    
+    
+    
   </div>
 
-</div>
+
 
  
   

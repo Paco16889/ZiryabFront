@@ -1,1 +1,19 @@
-<p>aqui la lista de alumnos o profesores o segun la categoria selecionada </p>
+
+@if(toggleservice.openedMenu()==='students'){
+    <p>estoy en alumnos oeoeoe </p>
+}
+@if(toggleservice.openedMenu()=== 'teachers'){
+    <p>teachers teachers</p>
+}
+@if(toggleservice.openedMenu() === 'subjects') {
+    <p>asignaturas </p>
+}
+@if(toggleservice.openedMenu() === 'groups'){
+    <p>grupos</p>
+}
+@if (toggleservice.openedMenu() === 'ciclos') {
+    <p>ciclos </p>
+}
+@if(toggleservice.openedMenu() === null){
+    <p>estas en open menu nulo</p>
+}

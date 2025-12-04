@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DesplegableAdminComponent } from '../desplegable-admin/desplegable-admin.component';
+import { ToggleService } from '../../../core/services/toggle.service';
 
 @Component({
   selector: 'app-admin-menu',
@@ -9,11 +10,11 @@ import { DesplegableAdminComponent } from '../desplegable-admin/desplegable-admi
 })
 export class AdminMenuComponent {
   openedMenu: string | null = null;
-  desplegable = new DesplegableAdminComponent();
+  constructor(private toggle: ToggleService){}
 
-  onClick(){
-    this.desplegable.toggle('students');
+  onClick(str: string){
+    this.toggle.toggle(str);
+    console.log(`Has pinchado en ${str}`);
   }
 
-  
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToggleService } from '../../../core/services/toggle.service';
+import { FilterSectionComponent } from '../filter-section/filter-section.component';
 
 @Component({
   selector: 'app-desplegable-admin',
@@ -8,14 +10,10 @@ import { Component } from '@angular/core';
 })
 export class DesplegableAdminComponent {
 
-  openedMenu: string | null = null;
-  
-  toggle(menu: string){
-    if (this.openedMenu === menu) {
-      this.openedMenu = null;
-    } else{
-      this.openedMenu = menu;
-    }
-    
+  constructor(public toggleservice: ToggleService){
+
   }
+  //openedMenu = this.toggleservice.openedMenu();
+  
+  
 }
