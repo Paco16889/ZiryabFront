@@ -8,6 +8,7 @@ import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component'; 
 import { RegisterComponent } from './pages/admin/register/register.component';
 import { UpdateComponent } from './pages/admin/update/update.component';
+import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,11 @@ export const routes: Routes = [
     {
         path:'update',
         component:UpdateComponent
+    },
+    {
+        path:'dashboard-admin',
+        component:DashboardAdminComponent,
+        canActivate:[authGuard]
     }
 
 ];
