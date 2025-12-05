@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { NavigationService } from '../../../core/services/navigation.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true, 
+  imports: [CommonModule], 
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

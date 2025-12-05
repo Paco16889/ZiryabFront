@@ -1,3 +1,9 @@
 <app-header></app-header>
-<router-outlet />
+<app-perfil 
+    [isOpen]="perfilService.isMenuOpen()" 
+    (close)="perfilService.closeMenu()">
+</app-perfil>
+<main class="relative z-0 min-h-screen">
+    <router-outlet></router-outlet>
+</main>
 <app-footer></app-footer>

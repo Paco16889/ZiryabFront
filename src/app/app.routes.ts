@@ -26,26 +26,38 @@ export const routes: Routes = [
     },
     {
         path:'clases',
-        component:ClasesComponent
+        component:ClasesComponent,
+        //canActivate:[authGuard]
+
     },
     {
         path:'gestion',
-        component:GestionComponent
+        component:GestionComponent,
+        //canActivate:[authGuard]
+
     },
     {
         path:'temario/:claseId',
-        component:TemarioComponent
+        component:TemarioComponent,
+        //canActivate:[authGuard]
+
     },
     {
         path:'ficha-usuario', 
-        component:FichaUsuarioComponent 
+        component:FichaUsuarioComponent,
+        //canActivate:[authGuard]
+
     },
     {
         path:'register',
-        component:RegisterComponent
+        component:RegisterComponent,
+        //canActivate:[authGuard]
+
     },
     {
         path:'update',
-        component:UpdateComponent
+        component:UpdateComponent,
+        //canActivate:[authGuard]
+
     }
 ];

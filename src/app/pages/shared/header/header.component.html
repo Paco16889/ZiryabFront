@@ -3,8 +3,11 @@
     Ziryab
   </h1>
 
-  <div class="absolute right-6 top-1/2 -translate-y-1/2 flex items-center bg-purple-50 rounded-xl p-3 shadow-inner">
-    <div class="text-right mr-10">
+  <!-- Área del Perfil (Ahora es el botón clickable) -->
+  <div (click)="toggleProfileMenu()" 
+       class="absolute right-6 top-1/2 -translate-y-1/2 flex items-center bg-purple-50 rounded-xl p-3 shadow-inner cursor-pointer hover:shadow-lg transition duration-200">
+    
+    <div class="text-right mr-3">
       <h2 class=" text-purple-700 font-semibold text-lg">Nombre</h2>
       <p class="text-purple-500 text-sm">Usuario activo</p>
     </div>
