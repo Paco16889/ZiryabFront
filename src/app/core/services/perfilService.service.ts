@@ -3,10 +3,8 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-// ⬅️ ¡AQUÍ FALTABA EL EXPORT! Sin esto, el servicio es invisible.
 export class PerfilMenuService { 
   
-  // Señal: Estado de visibilidad del menú desplegable.
   public isMenuOpen = signal<boolean>(false);
 
   constructor() { }
