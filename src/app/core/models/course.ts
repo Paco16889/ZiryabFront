@@ -1,4 +1,4 @@
-export interface Ciclo {
+export interface Course {
     id: number,
     name: string
 }
