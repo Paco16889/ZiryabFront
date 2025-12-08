@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-temario',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './temario.component.html',
-  styleUrl: './temario.component.scss'
+  styleUrls: ['./temario.component.scss']
 })
-export class TemarioComponent {
+export class TemarioComponent{
+  
 
 }

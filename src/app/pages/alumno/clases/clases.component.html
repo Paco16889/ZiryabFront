@@ -138,6 +138,12 @@
                 Acceder
             </button>
         </div>
+            @for (sub of subjects; track sub.id) {
+  <app-subject [subject]="sub"></app-subject>
+}
 
     </div>
 </div>
+
+
+
