@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Student } from '../../../../core/models/student';
 
 @Component({
@@ -8,5 +8,6 @@ import { Student } from '../../../../core/models/student';
   styleUrl: './view-detail.component.scss'
 })
 export class ViewDetailComponent {
-  student!: Student;
+  @Input() student!: Student;
+
 }

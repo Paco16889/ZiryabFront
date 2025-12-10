@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-boton-viewdetail',
@@ -7,8 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './boton-viewdetail.component.scss'
 })
 export class BotonViewdetailComponent {
+  @Input() id!: number;
+  @Output() showDetail = new EventEmitter<number>();
 
   onClick() {
-    console.log('Has apretado el boton de ver detalle');
+    console.log(`has apretado el boton de ver detalle del alumno con id ${this.id}`);
+    this.showDetail.emit(this.id); 
   }
 }

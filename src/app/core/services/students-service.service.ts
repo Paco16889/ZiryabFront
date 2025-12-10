@@ -26,7 +26,8 @@ export class StudentsServiceService {
   }
 
   getStudentbyId(id: number): Observable<Student>{
-    return this.http.get<Student>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/${id}`)
+    .pipe(map(res => res.data));
   }
 
 

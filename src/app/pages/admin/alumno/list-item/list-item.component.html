@@ -4,5 +4,12 @@
     <p>{{student.email}}</p>
     <app-boton-edit></app-boton-edit>
     <app-boton-delete></app-boton-delete>
-    <app-boton-viewdetail></app-boton-viewdetail>
+    <app-boton-viewdetail [id]="student.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
+</div>
+
+<div>
+    @if(selectedStudent){
+    
+        <app-view-detail [student]="selectedStudent"></app-view-detail>
+    }
 </div>
