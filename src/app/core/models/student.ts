@@ -4,8 +4,9 @@ export interface Student {
     name:string,
     surname:string,
     ndSurname:string,
-    fechaNacimiento:Date,
+    birthDate:Date,
     dni: string,
+    role: string;
     createdAt:Date,
 }
 //creacion interfaz usuario para el registro 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { Subject } from '../models/subject'
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,12 @@ export class SubjectServiceService {
 
   constructor(private http: HttpClient) { }
 
-    getSubjects(): Observable<Subject[]> {
-    return this.http.get<Subject[]>(this.apiUrl);
 
-  }
+getSubjects(): Observable<Subject[]> {
+  return this.http.get<any>(this.apiUrl).pipe(
+    map(res => ('data' in res ? res.data : res)),
+    catchError(() => of([]))
+  );
+}
+    
 }
