@@ -39,7 +39,7 @@ export const routes: Routes = [
     {
         path:'temario/:claseId',
         component:TemarioComponent,
-        //canActivate:[authGuard]
+        canActivate:[authGuard]
 
     },
     {
