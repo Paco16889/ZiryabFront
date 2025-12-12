@@ -4,7 +4,7 @@ import { BotonDeleteComponent } from '../../boton-delete/boton-delete.component'
 import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetail.component';
 import { Student } from '../../../../core/models/student';
 import { ViewDetailComponent } from '../view-detail/view-detail.component';
-import { StudentsServiceService } from '../../../../core/services/students-service.service';
+import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 
 @Component({
   selector: 'app-list-item',

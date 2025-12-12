@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListItemComponent } from './list-item.component';
+import { GroupViewDetailComponent } from './group-view-detail.component';
 
-describe('ListItemComponent', () => {
-  let component: ListItemComponent;
-  let fixture: ComponentFixture<ListItemComponent>;
+describe('GroupViewDetailComponent', () => {
+  let component: GroupViewDetailComponent;
+  let fixture: ComponentFixture<GroupViewDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListItemComponent]
+      imports: [GroupViewDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListItemComponent);
+    fixture = TestBed.createComponent(GroupViewDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

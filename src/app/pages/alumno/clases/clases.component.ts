@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { NavigationService } from '../../../core/services/navigation.service'; 
 import { Subject } from '../../../core/models/subject';
-import { SubjectServiceService } from '../../../core/services/subject-service.service';
+import { SubjectServiceService } from '../../../core/services/alumno/subject-service.service';
 import { SubjectComponent } from '../subject/subject.component';
 
 
