@@ -1,1 +1,3 @@
-<p>course-list works!</p>
+@for (cou of courses; track cou.id){
+    <app-course-list-item [course]="cou"></app-course-list-item>
+}

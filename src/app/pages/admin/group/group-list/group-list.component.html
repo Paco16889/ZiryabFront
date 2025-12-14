@@ -1,1 +1,3 @@
-<p>group-list works!</p>
+@for (gro of groups; track gro.id){
+    <app-group-list-item [group]="gro"></app-group-list-item>
+}

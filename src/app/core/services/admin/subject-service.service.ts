@@ -7,6 +7,7 @@ import { Subject } from '../../models/subject';
   providedIn: 'root'
 })
 export class SubjectServiceService {
+  
 
      private apiUrl = 'http://localhost:3000/api/subjects';
 
@@ -19,4 +20,11 @@ getSubjects(): Observable<Subject[]> {
     catchError(() => of([]))
   );
 }
+
+getSubjectbyId(id: number): Observable<Subject> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`)
+    .pipe(map(res => res.data));
+  }
+
+   
 }

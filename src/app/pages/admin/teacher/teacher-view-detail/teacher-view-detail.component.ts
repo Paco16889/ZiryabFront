@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Subject } from '../../../../core/models/subject';
 
 @Component({
   selector: 'app-teacher-view-detail',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './teacher-view-detail.component.scss'
 })
 export class TeacherViewDetailComponent {
-
+  @Input() subject!: Subject;
 }
