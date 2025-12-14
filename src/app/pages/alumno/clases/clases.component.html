@@ -1,143 +1,77 @@
 <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen">
     
+    <!-- Título -->
     <div class="flex justify-center">
         <h1 class="text-3xl font-bold text-gray-900 mb-8 border-b border-gray-300 pb-2 text-center max-w-sm">
             Asignaturas
         </h1>
     </div>
     
+    <!-- Mensaje de Carga -->
+    @if (loading()) {
+        <div class="flex justify-center items-center py-20">
+            <p class="text-xl text-gray-500 animate-pulse">Cargando tus clases...</p>
+        </div>
+    }
+
+    <!-- Mensaje de Error -->
+    @if (errorMessage()) {
+        <div class="flex justify-center items-center py-10">
+            <div class="bg-red-50 text-red-600 px-6 py-4 rounded-lg border border-red-200 font-semibold">
+                {{ errorMessage() }}
+            </div>
+        </div>
+    }
+
+    <!-- GRID DINÁMICO DE ASIGNATURAS -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
-            bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200 border border-blue-200">
-            
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">Interfaces</h2>
-            <hr class="mt-3 mb-4 border-t-2 border-blue-300">
-            
-            <div class="space-y-3">
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-blue-700">Grado/Curso:</span> 
-                    "nombre grado/curso"
-                </p>
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-blue-700">Profesor:</span> 
-                    "nombre profesor"
-                </p>
-            </div>
-            
-            <button (click)="goToTemario('Interfaces')" class="w-full mt-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
-                Acceder
-            </button>
-        </div>
 
-        <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
-            bg-gradient-to-br from-green-100 via-green-50 to-green-200 border border-green-200">
+        <!-- Bucle: Recorre las asignaturas obtenidas del backend -->
+        @for (item of asignaturas(); track item.subject.id; let i = $index) {
             
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">Acceso a datos</h2>
-            <hr class="mt-3 mb-4 border-t-2 border-green-300">
-            
-            <div class="space-y-3">
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-green-700">Grado/Curso:</span> 
-                    "nombre grado/curso"
-                </p>
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-green-700">Profesor:</span> 
-                    "nombre profesor"
-                </p>
-            </div>
-            
-            <button (click)="goToTemario('AccesoADatos')" class="w-full mt-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-150 shadow-md">
-                Acceder
-            </button>
-        </div>
+            <!-- Seleccionamos el tema de color basado en la posición (índice) -->
+            <!-- Usamos una variable local 'theme' para limpiar el código -->
+            @let theme = colorThemes[i % colorThemes.length];
 
-        <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
-            bg-gradient-to-br from-orange-100 via-orange-50 to-orange-200 border border-orange-200">
-            
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">Android</h2>
-            <hr class="mt-3 mb-4 border-t-2 border-orange-300">
-            
-            <div class="space-y-3">
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-orange-700">Grado/Curso:</span> 
-                    "nombre grado/curso"
-                </p>
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-orange-700">Profesor:</span> 
-                    "nombre profesor"
-                </p>
+            <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
+                        bg-gradient-to-br border {{ theme.bg }}">
+                
+                <!-- Nombre de la Asignatura -->
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">
+                    {{ item.subject.name }}
+                </h2>
+                
+                <!-- Línea separadora con color dinámico -->
+                <hr class="mt-3 mb-4 border-t-2 {{ theme.line }}">
+                
+                <div class="space-y-3">
+                    <!-- Grado/Grupo -->
+                    <p class="text-sm text-gray-900">
+                        <span class="font-semibold {{ theme.text }}">Grado/Curso:</span> 
+                        {{ item.group.name }}
+                    </p>
+                    
+                    <!-- Profesor (Estático por ahora, o dinámico si el backend lo enviara) -->
+                    <p class="text-sm text-gray-900">
+                        <span class="font-semibold {{ theme.text }}">Profesor:</span> 
+                        "nombre profesor"
+                    </p>
+                </div>
+                
+                <!-- Botón de Acceso con color dinámico -->
+                <button (click)="goToTemario(item.subject.name)" 
+                        class="w-full mt-6 py-2 text-white font-semibold rounded-lg transition duration-150 shadow-md {{ theme.btn }}">
+                    Acceder
+                </button>
             </div>
-            
-            <button (click)="goToTemario('Android')" class="w-full mt-6 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition duration-150 shadow-md">
-                Acceder
-            </button>
-        </div>
-        
-        <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
-            bg-gradient-to-br from-yellow-100 via-yellow-50 to-yellow-200 border border-yellow-200">
-            
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">IPE</h2>
-            <hr class="mt-3 mb-4 border-t-2 border-yellow-300">
-            
-            <div class="space-y-3">
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-yellow-700">Grado/Curso:</span> 
-                    "nombre grado/curso"
-                </p>
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-yellow-700">Profesor:</span> 
-                    "nombre profesor"
-                </p>
-            </div>
-            
-            <button (click)="goToTemario('IPE')" class="w-full mt-6 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition duration-150 shadow-md">
-                Acceder
-            </button>
-        </div>
-        
-        <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
-            bg-gradient-to-br from-pink-100 via-pink-50 to-pink-200 border border-pink-200">
-            
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">Ingles</h2>
-            <hr class="mt-3 mb-4 border-t-2 border-pink-300">
-            
-            <div class="space-y-3">
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-pink-700">Grado/Curso:</span> 
-                    "nombre grado/curso"
-                </p>
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-pink-700">Profesor:</span> 
-                    "nombre profesor"
-                </p>
-            </div>
-            
-            <button (click)="goToTemario('Ingles')" class="w-full mt-6 py-2 bg-pink-500 text-white font-semibold rounded-lg hover:bg-pink-600 transition duration-150 shadow-md">
-                Acceder
-            </button>
-        </div>
-        
-        <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
-            bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200 border border-zinc-200">
-            
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">Servidores</h2>
-            <hr class="mt-3 mb-4 border-t-2 border-zinc-300">
-            
-            <div class="space-y-3">
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-zinc-700">Grado/Curso:</span> 
-                    "nombre grado/curso"
-                </p>
-                <p class="text-sm text-gray-900">
-                    <span class="font-semibold text-zinc-700">Profesor:</span> 
-                    "nombre profesor"
-                </p>
-            </div>
-            
-            <button (click)="goToTemario('Servidores')" class="w-full mt-6 py-2 bg-zinc-500 text-white font-semibold rounded-lg hover:bg-zinc-600 transition duration-150 shadow-md">
-                Acceder
-            </button>
-        </div>
 
+        } @empty {
+            <!-- Estado vacío: Si termina de cargar y no hay asignaturas -->
+            @if (!loading() && !errorMessage()) {
+                <div class="col-span-full text-center py-12 bg-white rounded-xl border border-gray-200 shadow-sm">
+                    <p class="text-xl text-gray-500 font-medium">No estás matriculado en ninguna asignatura.</p>
+                </div>
+            }
+        }
     </div>
 </div>
