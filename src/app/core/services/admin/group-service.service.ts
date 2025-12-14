@@ -18,4 +18,10 @@ export class GroupServiceService {
       catchError(() => of([]))
     );
   }
+
+  getGroupById(id: number): Observable<Group>{
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      map(res => res.data ));
+    
+  }
 }

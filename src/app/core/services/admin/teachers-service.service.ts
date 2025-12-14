@@ -18,4 +18,10 @@ export class TeachersServiceService {
       catchError(() => of([]))
     );
   }
+
+  getTeacherById(id: number): Observable<Teacher>{
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      map(res => res.data)
+    );
+  }
 }

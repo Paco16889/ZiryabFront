@@ -20,4 +20,8 @@ export class CourseServiceService {
     );
   }
 
+  getCourseById(id: number): Observable<Course> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`)
+    .pipe(map(res => res.data));
+  }
 }

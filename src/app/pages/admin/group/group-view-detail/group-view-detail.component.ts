@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Group } from '../../../../core/models/group';
 
 @Component({
   selector: 'app-group-view-detail',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './group-view-detail.component.scss'
 })
 export class GroupViewDetailComponent {
-
+  @Input() group!: Group;
 }
