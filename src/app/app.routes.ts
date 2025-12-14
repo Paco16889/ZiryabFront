@@ -1,63 +1,96 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/shared/login/login.component';
+import { RegisterComponent } from './pages/admin/register/register.component';
+import { UpdateComponent } from './pages/admin/update/update.component';
 import { DashboardComponent } from './pages/alumno/dashboard/dashboard.component';
-import { authGuard } from './core/guards/auth.guard';
 import { ClasesComponent } from './pages/alumno/clases/clases.component';
 import { GestionComponent } from './pages/alumno/gestion/gestion.component';
 import { TemarioComponent } from './pages/alumno/temario/temario.component';
-import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component'; 
-import { RegisterComponent } from './pages/admin/register/register.component';
-import { UpdateComponent } from './pages/admin/update/update.component';
+import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { RoleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
-    {
-        path:'',
-        redirectTo:'login',
-        pathMatch:'full'
-    },
-    {
-        path:'login',
-        component:LoginComponent
-    },
-    {
-        path:'dashboard',
-        component:DashboardComponent,
-        //canActivate:[authGuard]
-    },
-    {
-        path:'clases',
-        component:ClasesComponent,
-        //canActivate:[authGuard]
+    // ============================================
+    // RUTAS PÚBLICAS (sin autenticación)
+    // ============================================
 
-    },
     {
-        path:'gestion',
-        component:GestionComponent,
-        //canActivate:[authGuard]
-
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
     },
-    {
-        path:'temario/:claseId',
-        component:TemarioComponent,
-        canActivate:[authGuard]
 
+    {
+        path: 'login',
+        component: LoginComponent,
     },
-    {
-        path:'ficha-usuario', 
-        component:FichaUsuarioComponent,
-        //canActivate:[authGuard]
 
+    // ============================================
+    // RUTAS PROTEGIDAS PARA TODOS (autenticados)
+    // ============================================
+
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
     },
-    {
-        path:'register',
-        component:RegisterComponent,
-        //canActivate:[authGuard]
 
+    {
+        path: 'ficha-usuario',
+        component: FichaUsuarioComponent,
+        canActivate: [AuthGuard],
     },
-    {
-        path:'update',
-        component:UpdateComponent,
-        //canActivate:[authGuard]
 
-    }
+    // ============================================
+    // RUTAS DE ESTUDIANTE (STUDENT)
+    // ============================================
+
+    {
+        path: 'clases',
+        component: ClasesComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+
+    {
+        path: 'temario/:claseId',
+        component: TemarioComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+
+    // ============================================
+    // RUTAS DE ADMINISTRADOR (ADMIN)
+    // ============================================
+
+    {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['ADMIN'] },
+    },
+
+    {
+        path: 'update',
+        component: UpdateComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['ADMIN'] },
+    },
+
+    {
+        path: 'gestion',
+        component: GestionComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['ADMIN', 'TEACHER'] },
+    },
+
+    // ============================================
+    // CATCH-ALL (rutas no encontradas)
+    // ============================================
+
+    {
+        path: '**',
+        redirectTo: 'login',
+    },
 ];
