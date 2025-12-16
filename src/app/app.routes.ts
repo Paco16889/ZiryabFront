@@ -4,6 +4,7 @@ import { RegisterComponent } from './pages/admin/register/register.component';
 import { UpdateComponent } from './pages/admin/update/update.component';
 import { DashboardComponent } from './pages/alumno/dashboard/dashboard.component';
 import { ClasesComponent } from './pages/alumno/clases/clases.component';
+import { ClasesProfesorComponent } from './pages/profesor/clases-profesor/clases-profesor.component';
 import { GestionComponent } from './pages/alumno/gestion/gestion.component';
 import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
@@ -41,6 +42,15 @@ export const routes: Routes = [
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
     },
+    // ============================================
+    // RUTAS DE Profesor (TEACHER)
+    // ============================================
+    {
+        path: 'clases-profesor',
+        component: ClasesProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
 
     // ============================================
     // RUTAS DE ESTUDIANTE (STUDENT)
@@ -57,7 +67,7 @@ export const routes: Routes = [
         path: 'temario/:claseId',
         component: TemarioComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['STUDENT'] },
+        data: { roles: ['STUDENT', 'TEACHER'] },
     },
 
     // ============================================

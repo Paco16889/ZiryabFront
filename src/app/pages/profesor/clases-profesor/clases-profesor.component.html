@@ -26,10 +26,11 @@
     <!-- GRID DINÁMICO DE ASIGNATURAS -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-        <!-- Bucle: Recorre las asignaturas del profesor -->
+        <!-- Bucle: Recorre las asignaturas obtenidas del backend -->
         @for (item of asignaturas(); track item.subject.id; let i = $index) {
             
-            <!-- Seleccionamos el tema de color igual que en el alumno -->
+            <!-- Seleccionamos el tema de color basado en la posición (índice) -->
+            <!-- Usamos una variable local 'theme' para limpiar el código -->
             @let theme = colorThemes[i % colorThemes.length];
 
             <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
@@ -44,20 +45,15 @@
                 <hr class="mt-3 mb-4 border-t-2 {{ theme.line }}">
                 
                 <div class="space-y-3">
-                    <!-- Ciclo (El profesor ve el ciclo, ej: DAM, DAW) -->
+                    <!-- Grado/Curso (Para el profesor es el Ciclo) -->
                     <p class="text-sm text-gray-900">
-                        <span class="font-semibold {{ theme.text }}">Ciclo:</span> 
+                        <span class="font-semibold {{ theme.text }}">Grado/Curso:</span> 
+                        <!-- Backend devuelve 'course' con 'name' dentro -->
                         {{ item.course?.name || 'General' }}
-                    </p>
-                    
-                    <!-- Rol (Al ser el profesor, indicamos su cargo) -->
-                    <p class="text-sm text-gray-900">
-                        <span class="font-semibold {{ theme.text }}">Rol:</span> 
-                        Profesor Titular
                     </p>
                 </div>
                 
-                <!-- Botón de Acceso -->
+                <!-- Botón de Acceso con color dinámico -->
                 <button (click)="goToTemario(item.subject.name)" 
                         class="w-full mt-6 py-2 text-white font-semibold rounded-lg transition duration-150 shadow-md {{ theme.btn }}">
                     Acceder
@@ -65,10 +61,10 @@
             </div>
 
         } @empty {
-            <!-- Estado vacío -->
+            <!-- Estado vacío: Si termina de cargar y no hay asignaturas -->
             @if (!loading() && !errorMessage()) {
                 <div class="col-span-full text-center py-12 bg-white rounded-xl border border-gray-200 shadow-sm">
-                    <p class="text-xl text-gray-500 font-medium">No tienes asignaturas asignadas para impartir.</p>
+                    <p class="text-xl text-gray-500 font-medium">No estás matriculado en ninguna asignatura.</p>
                 </div>
             }
         }
