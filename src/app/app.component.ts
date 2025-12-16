@@ -7,6 +7,7 @@ import { FooterComponent } from './pages/shared/footer/footer.component';
 import { PerfilComponent } from './pages/shared/perfil/perfil.component'; 
 // Importación del servicio
 import { PerfilMenuService } from './core/services/perfilService.service'; 
+import { BotonAtrasComponent } from './pages/shared/boton-atras/boton-atras.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { PerfilMenuService } from './core/services/perfilService.service';
     RouterOutlet, 
     HeaderComponent, 
     FooterComponent, 
-    PerfilComponent 
+    PerfilComponent,
+    BotonAtrasComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
