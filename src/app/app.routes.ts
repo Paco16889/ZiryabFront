@@ -10,6 +10,7 @@ import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
+import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 
 export const routes: Routes = [
     // ============================================
@@ -30,18 +31,7 @@ export const routes: Routes = [
     // ============================================
     // RUTAS PROTEGIDAS PARA TODOS (autenticados)
     // ============================================
-
-    {
-        path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [AuthGuard],
-    },
-
-    {
-        path: 'ficha-usuario',
-        component: FichaUsuarioComponent,
-        canActivate: [AuthGuard],
-    },
+    
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
     // ============================================
@@ -55,15 +45,30 @@ export const routes: Routes = [
     // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
     // ============================================
     {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['STUDENT', 'TEACHER'] },
+    },
+
+    {
         path: 'temario/:claseId',
         component: TemarioComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
     },
+
     {
         path: 'gestion',
         component: GestionComponent,
         canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER','STUDENT'] },
+    },
+
+    {
+        path: 'ficha-usuario',
+        component: FichaUsuarioComponent,
+        canActivate: [AuthGuard],
         data: { roles: ['TEACHER','STUDENT'] },
     },
     // ============================================
@@ -80,17 +85,9 @@ export const routes: Routes = [
     // ============================================
     // RUTAS DE ADMINISTRADOR (ADMIN)
     // ============================================
-
     {
-        path: 'register',
-        component: RegisterComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['ADMIN'] },
-    },
-
-    {
-        path: 'update',
-        component: UpdateComponent,
+        path: 'dashboard-admin',
+        component: DashboardAdminComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['ADMIN'] },
     },
