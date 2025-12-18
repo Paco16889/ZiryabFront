@@ -30,6 +30,14 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+     if (this.authService.isAuthenticated()) {
+      const role = this.authService.getUserRole(); // obtener rol
+      if (role === 'ADMIN') {
+        this.router.navigate(['/dashboard-admin']); // admin va a dashboard-admin
+      } else {
+        this.router.navigate(['/dashboard']); // otros roles van a dashboard
+      }
+    }
   }
 
   async onSubmit() {
@@ -61,11 +69,14 @@ export class LoginComponent {
           this.loading.set(false);
           
           // Redirigir a dashboard limpiando query params
-          this.router.navigate(['/dashboard'], {
-            queryParams: {}
-          }).then(() => {
-            console.log('✅ Navegado a dashboard');
-          });
+          
+             const role = response.role; // obtener rol del usuario logueado
+          if (role === 'ADMIN') {
+            this.router.navigate(['/dashboard-admin']); // admin va a dashboard-admin
+          } else {
+            this.router.navigate(['/dashboard']); // otros roles van a dashboard
+          }
+
         },
         error: (error) => {
           console.error('❌ Error en login:', error);
