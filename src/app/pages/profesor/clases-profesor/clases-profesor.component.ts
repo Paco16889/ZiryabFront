@@ -2,13 +2,12 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
-import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
+import { AuthService } from '../../../core/services/auth.service'; // ✅ CAMBIO
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 @Component({
-  selector: 'app-clases-profesor', // Selector único para el profesor
+  selector: 'app-clases-profesor',
   standalone: true,
-  // 2. Importación del componente Botón
   imports: [CommonModule, BotonAtrasComponent],
   templateUrl: './clases-profesor.component.html',
   styleUrl: './clases-profesor.component.scss'
@@ -17,7 +16,7 @@ export class ClasesProfesorComponent implements OnInit {
   
   private navegador = inject(NavigationService);
   private clasesService = inject(ClasesService);
-  private authService = inject(LocalStorageAuthService);
+  private authService = inject(AuthService); // ✅ CAMBIO
 
   public asignaturas = signal<any[]>([]);
   public loading = signal<boolean>(true);
@@ -33,11 +32,10 @@ export class ClasesProfesorComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    const user = this.authService.user();
+    const user = this.authService.getCurrentUser(); // ✅ CAMBIO
     console.log('Profesor detectado:', user);
 
     if (user && user.id) {
-      // 3. Llamada correcta para obtener asignaturas de PROFESOR
       this.clasesService.getAsignaturasProfesor(user.id).subscribe({
         next: (data) => {
           console.log('Asignaturas recibidas (Profe):', data);

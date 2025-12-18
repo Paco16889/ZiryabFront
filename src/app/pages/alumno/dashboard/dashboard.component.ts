@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { NavigationService } from '../../../core/services/navigation.service';
-// 1. Importamos el servicio de autenticación para saber el rol
-import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
+import { AuthService } from '../../../core/services/auth.service'; // CAMBIO: Usar AuthService
 
 @Component({
   selector: 'app-dashboard',
@@ -13,21 +12,21 @@ import { LocalStorageAuthService } from '../../../core/services/localstorage-aut
 })
 export class DashboardComponent {
   private navegador = inject(NavigationService);
-  private authService = inject(LocalStorageAuthService); // 2. Inyección
+  private authService = inject(AuthService); // CAMBIO: Usar AuthService
 
   goTo(str: string){
-    // 3. Interceptamos si el usuario quiere ir a 'clases'
+    // Interceptar si el usuario quiere ir a 'clases'
     if (str === 'clases') {
-        const user = this.authService.user();
+        const user = this.authService.getCurrentUser(); // CAMBIO: Método correcto
         
-        // Si es profesor, lo redirigimos a SU ruta específica
+        // Si es profesor, redirigir a su ruta específica
         if (user && user.role === 'TEACHER') {
             this.navegador.toComponent('clases-profesor');
-            return; // Salimos para no ejecutar la línea de abajo
+            return;
         }
     }
 
-    // Navegación normal para el resto de casos (o si es alumno)
+    // Navegación normal para el resto de casos
     this.navegador.toComponent(str);
   }
 }

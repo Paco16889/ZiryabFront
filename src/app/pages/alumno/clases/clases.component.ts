@@ -2,14 +2,12 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
-import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
-// 1. IMPORTAR EL COMPONENTE DEL BOTÓN
+import { AuthService } from '../../../core/services/auth.service'; // ✅ CAMBIO
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 @Component({
   selector: 'app-clases',
   standalone: true,
-  // 2. AÑADIRLO AL ARRAY IMPORTS (Esto es lo que falta y causa el error NG8001)
   imports: [CommonModule, BotonAtrasComponent],
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.scss'
@@ -18,13 +16,12 @@ export class ClasesComponent implements OnInit {
   
   private navegador = inject(NavigationService);
   private clasesService = inject(ClasesService);
-  private authService = inject(LocalStorageAuthService);
+  private authService = inject(AuthService); // ✅ CAMBIO
 
   public asignaturas = signal<any[]>([]);
   public loading = signal<boolean>(true);
   public errorMessage = signal<string>('');
 
-  // Tus temas de color (mismo código que tenías)
   public colorThemes = [
     { bg: 'from-blue-100 via-blue-50 to-blue-200 border-blue-200', line: 'border-blue-300', text: 'text-blue-700', btn: 'bg-blue-500 hover:bg-blue-600' },
     { bg: 'from-green-100 via-green-50 to-green-200 border-green-200', line: 'border-green-300', text: 'text-green-700', btn: 'bg-green-500 hover:bg-green-600' },
@@ -35,12 +32,13 @@ export class ClasesComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    const user = this.authService.user();
+    const user = this.authService.getCurrentUser(); // ✅ CAMBIO
+    console.log('Alumno detectado:', user);
     
     if (user && user.id) {
-      // Lógica de ALUMNO: getAsignaturasAlumno
       this.clasesService.getAsignaturasAlumno(user.id).subscribe({
         next: (data: any) => {
+          console.log('Asignaturas recibidas (Alumno):', data);
           if (data.length === 0) {
             this.errorMessage.set('No tienes asignaturas matriculadas.');
           }
@@ -48,11 +46,13 @@ export class ClasesComponent implements OnInit {
           this.loading.set(false);
         },
         error: (err: any) => {
+          console.error('Error al cargar asignaturas:', err);
           this.errorMessage.set('Error de conexión con el servidor.');
           this.loading.set(false);
         }
       });
     } else {
+      console.warn('No se encontró usuario logueado.');
       this.errorMessage.set('Usuario no identificado.');
       this.loading.set(false);
       this.navegador.toComponent('login');
