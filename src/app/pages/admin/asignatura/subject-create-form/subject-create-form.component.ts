@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { CoursesAllResponse } from '../../../../core/models/course';
 
 @Component({
   selector: 'app-subject-create-form',
@@ -14,7 +15,7 @@ export class SubjectCreateFormComponent {
   @Output() subjectCreated = new EventEmitter<void>();
 
   createForm: FormGroup;
-  courses: any[] = []; // Lista de ciclos para el dropdown
+  courses: CoursesAllResponse['data'] = []; // ← Tipo correcto
   isCreating = false;
   isLoadingCourses = true;
   errorMessage = '';
@@ -31,7 +32,6 @@ export class SubjectCreateFormComponent {
   }
 
   ngOnInit() {
-    // Carga los ciclos para el dropdown
     this.courseService.getAllCourses().subscribe({
       next: (response) => {
         this.courses = response.data;
@@ -47,6 +47,7 @@ export class SubjectCreateFormComponent {
 
   onSubmit() {
     if (this.createForm.valid) {
+      console.log('Datos a enviar:', this.createForm.value);
       this.isCreating = true;
       this.errorMessage = '';
 

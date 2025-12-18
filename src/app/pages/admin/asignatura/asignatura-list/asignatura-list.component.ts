@@ -42,4 +42,5 @@ export class AsignaturaListComponent {
     this.closeCreateForm();
     this.loadSubjects();
   }
+  
 }
