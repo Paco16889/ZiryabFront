@@ -10,6 +10,7 @@ import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuari
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
+import { AboutComponent } from './pages/shared/about/about.component';
 
 export const routes: Routes = [
     // ============================================
@@ -43,7 +44,16 @@ export const routes: Routes = [
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
+        
     },
+
+    {
+        path: 'about',
+        component: AboutComponent,
+        canActivate: [AuthGuard]
+        
+    },
+    
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
     // ============================================
@@ -53,19 +63,36 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
-    // ============================================
+    // ===================================================
     // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
-    // ============================================
+    // ===================================================
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['STUDENT', 'TEACHER'] }
+    },
+
+  
+
     {
         path: 'temario/:claseId',
         component: TemarioComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
     },
+
     {
         path: 'gestion',
         component: GestionComponent,
         canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER','STUDENT'] },
+    },
+
+    {
+        path: 'ficha-usuario',
+        component: FichaUsuarioComponent,
+        canActivate: [AuthGuard],
         data: { roles: ['TEACHER','STUDENT'] },
     },
     // ============================================
@@ -82,6 +109,7 @@ export const routes: Routes = [
     // ============================================
     // RUTAS DE ADMINISTRADOR (ADMIN)
     // ============================================
+  
 
     {
         path: 'dashboard-admin',
