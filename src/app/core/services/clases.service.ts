@@ -9,16 +9,23 @@ export class ClasesService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/api'; 
 
-  // CORRECCIÓN: Nombre en PLURAL 'getAsignaturasAlumno'
+  // hace get a alumno
   getAsignaturasAlumno(studentId: number): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/students/${studentId}/subjects`).pipe(
       map(res => res.data)
     );
   }
 
-  // Ya estaba en plural, la dejamos igual
+  // hace get a profesor
   getAsignaturasProfesor(teacherId: number): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/teachers/${teacherId}/subjects`).pipe(
+      map(res => res.data)
+    );
+  }
+
+  //  recogera el nombre del profesor para ponerlo en el div de asignatura
+  getNombreProfesorParaAsignatura(subjectId: number):Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/subjects/${subjectId}`).pipe(
       map(res => res.data)
     );
   }

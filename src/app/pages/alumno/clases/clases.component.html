@@ -1,20 +1,19 @@
 <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen">
     
-    <!-- Título -->
     <div class="flex justify-center">
         <h1 class="text-3xl font-bold text-gray-900 mb-8 border-b border-gray-300 pb-2 text-center max-w-sm">
             Asignaturas
         </h1>
     </div>
     
-    <!-- Mensaje de Carga -->
+    <!-- carga -->
     @if (loading()) {
         <div class="flex justify-center items-center py-20">
             <p class="text-xl text-purple-600 animate-pulse">Cargando tus clases...</p>
         </div>
     }
 
-    <!-- Mensaje de Error -->
+    <!-- error -->
     @if (errorMessage()) {
         <div class="flex justify-center items-center py-10">
             <div class="bg-red-50 text-red-600 px-6 py-4 rounded-lg border border-red-200 font-semibold">
@@ -23,41 +22,41 @@
         </div>
     }
 
-    <!-- GRID DINÁMICO DE ASIGNATURAS -->
+    <!-- muestra las asignaturas -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-        <!-- Bucle: Recorre las asignaturas del profesor -->
+        <!-- se recorren las asignaturas del alumno-->
         @for (item of asignaturas(); track item.subject.id; let i = $index) {
             
-            <!-- Seleccionamos el tema de color igual que en el alumno -->
+            <!-- se selecciona la asignatura con colorThemes -->
             @let theme = colorThemes[i % colorThemes.length];
 
             <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
                         bg-gradient-to-br border {{ theme.bg }}">
                 
-                <!-- Nombre de la Asignatura -->
+                <!-- nombre asignatura -->
                 <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">
                     {{ item.subject.name }}
                 </h2>
-                
-                <!-- Línea separadora con color dinámico -->
+
                 <hr class="mt-3 mb-4 border-t-2 {{ theme.line }}">
                 
                 <div class="space-y-3">
-                    <!-- Ciclo (El profesor ve el ciclo, ej: DAM, DAW) -->
+                    <!-- se muestra el ciclo-->
                     <p class="text-sm text-gray-900">
                         <span class="font-semibold {{ theme.text }}">Ciclo:</span> 
-                        {{ item.course?.name || 'General' }}
+                        {{ item.group?.name || 'Grupo General' }}
                     </p>
                     
-                    <!-- Rol (Al ser el profesor, indicamos su cargo) -->
+                    <!-- se muestra el nombre del profesor que imparte el ciclo -->
+                    <!-- mal-->
                     <p class="text-sm text-gray-900">
-                        <span class="font-semibold {{ theme.text }}">Rol:</span> 
-                        Profesor Titular
+                        <span class="font-semibold {{ theme.text }}">Profesor:</span> 
+                        {{ profesoresMap()[item.subject.id] }}
                     </p>
+                    
                 </div>
                 
-                <!-- Botón de Acceso -->
                 <button (click)="goToTemario(item.subject.name)" 
                         class="w-full mt-6 py-2 text-white font-semibold rounded-lg transition duration-150 shadow-md {{ theme.btn }}">
                     Acceder
@@ -65,7 +64,6 @@
             </div>
 
         } @empty {
-            <!-- Estado vacío -->
             @if (!loading() && !errorMessage()) {
                 <div class="col-span-full text-center py-12 bg-white rounded-xl border border-gray-200 shadow-sm">
                     <p class="text-xl text-gray-500 font-medium">No tienes asignaturas asignadas para impartir.</p>

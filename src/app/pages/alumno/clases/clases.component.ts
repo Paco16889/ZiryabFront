@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
 import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
-// 1. IMPORTAR EL COMPONENTE DEL BOTÓN
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 @Component({
   selector: 'app-clases',
   standalone: true,
-  // 2. AÑADIRLO AL ARRAY IMPORTS (Esto es lo que falta y causa el error NG8001)
   imports: [CommonModule, BotonAtrasComponent],
   templateUrl: './clases.component.html',
   styleUrl: './clases.component.scss'
@@ -20,11 +18,16 @@ export class ClasesComponent implements OnInit {
   private clasesService = inject(ClasesService);
   private authService = inject(LocalStorageAuthService);
 
+  // Señales principales
   public asignaturas = signal<any[]>([]);
   public loading = signal<boolean>(true);
   public errorMessage = signal<string>('');
 
-  // Tus temas de color (mismo código que tenías)
+  // 🆕 DICCIONARIO DE PROFESORES
+  // Clave: ID de la asignatura (number) -> Valor: Nombre del profesor (string)
+  // Esto permite que el HTML busque el nombre rápidamente: profesoresMap()[id]
+  public profesoresMap = signal<Record<number, string>>({});
+
   public colorThemes = [
     { bg: 'from-blue-100 via-blue-50 to-blue-200 border-blue-200', line: 'border-blue-300', text: 'text-blue-700', btn: 'bg-blue-500 hover:bg-blue-600' },
     { bg: 'from-green-100 via-green-50 to-green-200 border-green-200', line: 'border-green-300', text: 'text-green-700', btn: 'bg-green-500 hover:bg-green-600' },
@@ -38,14 +41,46 @@ export class ClasesComponent implements OnInit {
     const user = this.authService.user();
     
     if (user && user.id) {
-      // Lógica de ALUMNO: getAsignaturasAlumno
+      // 1. Pedimos las asignaturas básicas del alumno
       this.clasesService.getAsignaturasAlumno(user.id).subscribe({
         next: (data: any) => {
           if (data.length === 0) {
             this.errorMessage.set('No tienes asignaturas matriculadas.');
           }
+          
           this.asignaturas.set(data);
           this.loading.set(false);
+
+          // 2. 🚀 MAGIA: Recorremos las asignaturas y buscamos el profesor de cada una
+          data.forEach((item: any) => {
+            const subjectId = item.subject.id;
+            
+            // Llamamos al endpoint de detalle que SÍ tiene el profesor
+            this.clasesService.getNombreProfesorParaAsignatura(subjectId).subscribe({
+              next: (detail: any) => {
+                // Verificamos si la respuesta tiene profesores asignados
+                if (detail.teacher && detail.teacher.length > 0) {
+                  // Sacamos los datos del primer profesor
+                  const profeData = detail.teacher[0].teacher;
+                  const nombreCompleto = `${profeData.name} ${profeData.surname}`;
+                  
+                  // Actualizamos el diccionario con el nuevo nombre encontrado
+                  this.profesoresMap.update(mapaActual => ({
+                    ...mapaActual,
+                    [subjectId]: nombreCompleto
+                  }));
+                } else {
+                   // Si no hay profesor, guardamos "Sin asignar" para que deje de salir "Buscando..."
+                    this.profesoresMap.update(mapaActual => ({
+                    ...mapaActual,
+                    [subjectId]: 'Sin asignar'
+                  }));
+                }
+              },
+              error: (e: any) => console.warn(`No se pudo cargar info extra para asignatura ${subjectId}`)
+            });
+          });
+
         },
         error: (err: any) => {
           this.errorMessage.set('Error de conexión con el servidor.');

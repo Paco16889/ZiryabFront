@@ -6,9 +6,8 @@ import { LocalStorageAuthService } from '../../../core/services/localstorage-aut
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 @Component({
-  selector: 'app-clases-profesor', // Selector único para el profesor
+  selector: 'app-clases-profesor', 
   standalone: true,
-  // 2. Importación del componente Botón
   imports: [CommonModule, BotonAtrasComponent],
   templateUrl: './clases-profesor.component.html',
   styleUrl: './clases-profesor.component.scss'
@@ -37,7 +36,6 @@ export class ClasesProfesorComponent implements OnInit {
     console.log('Profesor detectado:', user);
 
     if (user && user.id) {
-      // 3. Llamada correcta para obtener asignaturas de PROFESOR
       this.clasesService.getAsignaturasProfesor(user.id).subscribe({
         next: (data) => {
           console.log('Asignaturas recibidas (Profe):', data);

@@ -43,7 +43,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
     },
     // ============================================
-    // RUTAS DE Profesor (TEACHER)
+    // RUTAS DE PROFESOR (TEACHER)
     // ============================================
     {
         path: 'clases-profesor',
@@ -51,7 +51,21 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
-
+    // ============================================
+    // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
+    // ============================================
+    {
+        path: 'temario/:claseId',
+        component: TemarioComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT', 'TEACHER'] },
+    },
+    {
+        path: 'gestion',
+        component: GestionComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER','STUDENT'] },
+    },
     // ============================================
     // RUTAS DE ESTUDIANTE (STUDENT)
     // ============================================
@@ -61,13 +75,6 @@ export const routes: Routes = [
         component: ClasesComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT'] },
-    },
-
-    {
-        path: 'temario/:claseId',
-        component: TemarioComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['STUDENT', 'TEACHER'] },
     },
 
     // ============================================
@@ -86,13 +93,6 @@ export const routes: Routes = [
         component: UpdateComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['ADMIN'] },
-    },
-
-    {
-        path: 'gestion',
-        component: GestionComponent,
-        canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['ADMIN', 'TEACHER'] },
     },
 
     // ============================================
