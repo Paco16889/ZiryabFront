@@ -1,12 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service'; // CAMBIO: Usar AuthService
 import { CommonModule } from '@angular/common';
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -18,74 +15,71 @@ export class LoginComponent {
   error = signal(false);
   loading = signal(false);
   private router: Router = inject(Router);
-  readonly navigateTo: string;
   formLogin;
 
   constructor(
     private fb: FormBuilder,
-    private auth: LocalStorageAuthService
+    private authService: AuthService // CAMBIO: Inyectar AuthService
   ) {
+    // Si ya está autenticado, redirigir a dashboard
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+
     this.formLogin = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
-
-    const nav = this.router.getCurrentNavigation();
-    const state = nav?.extras?.state as { navigateTo?: string } | undefined;
-    this.navigateTo = state?.navigateTo ?? '/dashboard';
   }
 
   async onSubmit() {
-  console.log('📝 Formulario:', this.formLogin.value);
+    console.log('📝 Formulario:', this.formLogin.value);
 
-  if (this.formLogin.invalid) {
-    console.log('❌ Formulario inválido');
-    return;
-  }
-
-  this.loading.set(true);
-  this.error.set(false);
-
-  try {
-    const { email, password } = this.formLogin.value;
-
-    // ✅ Validar que email y password existan
-    if (!email || !password) {
-      throw new Error('Email y contraseña son requeridos');
+    if (this.formLogin.invalid) {
+      console.log('❌ Formulario inválido');
+      return;
     }
 
-    // 1️⃣ Autenticar con Firebase
-    console.log('🔐 Autenticando con Firebase...');
-    const firebaseApp = initializeApp(environment.firebase);
-    const firebaseAuth = getAuth(firebaseApp);
+    this.loading.set(true);
+    this.error.set(false);
 
-    const userCredential = await signInWithEmailAndPassword(
-      firebaseAuth,
-      email,  // ✅ TypeScript ahora sabe que no es null/undefined
-      password
-    );
+    try {
+      const { email, password } = this.formLogin.value;
 
-    const firebaseUID = userCredential.user.uid;
-    console.log('✅ Firebase UID obtenido:', firebaseUID);
+      if (!email || !password) {
+        throw new Error('Email y contraseña son requeridos');
+      }
 
-    // 2️⃣ Obtener JWT de Node usando el UID
-    console.log('🔑 Solicitando JWT a Node...');
-    const response = await this.auth.login({
-      firebaseUID: firebaseUID
-    } as any);
+      console.log('🔐 Iniciando sesión con AuthService...');
 
-    console.log('✅ Login exitoso:', response);
-    console.log('📦 Token guardado');
+      // CAMBIO: Usar AuthService.login() que maneja todo (Firebase + Backend)
+      this.authService.login(email, password).subscribe({
+        next: (response) => {
+          console.log('✅ Login exitoso:', response);
+          console.log('📦 Token guardado en jwtToken');
+          
+          this.loading.set(false);
+          
+          // Redirigir a dashboard limpiando query params
+          this.router.navigate(['/dashboard'], {
+            queryParams: {}
+          }).then(() => {
+            console.log('✅ Navegado a dashboard');
+          });
+        },
+        error: (error) => {
+          console.error('❌ Error en login:', error);
+          this.error.set(true);
+          this.loading.set(false);
+        }
+      });
 
-    this.loading.set(false);
-    this.router.navigate([this.navigateTo]);
-
-  } catch (error: any) {
-    console.error('❌ Error:', error.message);
-    this.error.set(true);
-    this.loading.set(false);
+    } catch (error: any) {
+      console.error('❌ Error:', error.message);
+      this.error.set(true);
+      this.loading.set(false);
+    }
   }
-}
 
   getError(control: string) {
     switch (control) {

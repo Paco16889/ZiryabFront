@@ -2,7 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
-import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
+import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 @Component({
@@ -16,16 +16,13 @@ export class ClasesComponent implements OnInit {
   
   private navegador = inject(NavigationService);
   private clasesService = inject(ClasesService);
-  private authService = inject(LocalStorageAuthService);
+  private authService = inject(AuthService); 
 
   // Señales principales
   public asignaturas = signal<any[]>([]);
   public loading = signal<boolean>(true);
   public errorMessage = signal<string>('');
 
-  // 🆕 DICCIONARIO DE PROFESORES
-  // Clave: ID de la asignatura (number) -> Valor: Nombre del profesor (string)
-  // Esto permite que el HTML busque el nombre rápidamente: profesoresMap()[id]
   public profesoresMap = signal<Record<number, string>>({});
 
   public colorThemes = [
@@ -38,12 +35,13 @@ export class ClasesComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    const user = this.authService.user();
+    const user = this.authService.getCurrentUser(); 
+    console.log('Alumno detectado:', user);
     
     if (user && user.id) {
-      // 1. Pedimos las asignaturas básicas del alumno
       this.clasesService.getAsignaturasAlumno(user.id).subscribe({
         next: (data: any) => {
+          console.log('Asignaturas recibidas (Alumno):', data);
           if (data.length === 0) {
             this.errorMessage.set('No tienes asignaturas matriculadas.');
           }
@@ -51,7 +49,6 @@ export class ClasesComponent implements OnInit {
           this.asignaturas.set(data);
           this.loading.set(false);
 
-          // 2. 🚀 MAGIA: Recorremos las asignaturas y buscamos el profesor de cada una
           data.forEach((item: any) => {
             const subjectId = item.subject.id;
             
@@ -83,11 +80,13 @@ export class ClasesComponent implements OnInit {
 
         },
         error: (err: any) => {
+          console.error('Error al cargar asignaturas:', err);
           this.errorMessage.set('Error de conexión con el servidor.');
           this.loading.set(false);
         }
       });
     } else {
+      console.warn('No se encontró usuario logueado.');
       this.errorMessage.set('Usuario no identificado.');
       this.loading.set(false);
       this.navegador.toComponent('login');

@@ -98,6 +98,7 @@ export class LocalStorageAuthService {
    */
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('jwtToken');
     localStorage.removeItem('user');
     this.user.set(null);
   }

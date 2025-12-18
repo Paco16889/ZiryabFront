@@ -1,29 +1,89 @@
-import { Component, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule],  templateUrl: './perfil.component.html',
-  styleUrl: './perfil.component.scss'})
+  imports: [CommonModule],
+  templateUrl: './perfil.component.html',
+  styleUrl: './perfil.component.scss'
+})
 export class PerfilComponent {
-   // abrir la ventana flotante
   @Input() isOpen!: boolean;
-  // se cierra cuando 
   @Output() close = new EventEmitter<void>();
 
-  // cambiar
   userName: string = "Nombre";
   userRole: string = "Usuario Activo";
-  
-  constructor(private router: Router) {}
+  isLoggingOut: boolean = false;
 
-  //cerrar sesion
+  constructor(
+    private router: Router,
+    private authService: AuthService // SOLO AuthService
+  ) {
+    this.loadUserData();
+  }
+
+  /**
+   * Carga los datos del usuario actual
+   */
+  private loadUserData(): void {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) {
+      this.userName = currentUser.name;
+      this.userRole = this.getRoleLabel(currentUser.role);
+    }
+  }
+
+  /**
+   * Convierte el rol a un texto legible
+   */
+  private getRoleLabel(role: string): string {
+    const roleLabels: { [key: string]: string } = {
+      'STUDENT': 'Estudiante',
+      'TEACHER': 'Profesor',
+      'ADMIN': 'Administrador'
+    };
+    return roleLabels[role] || 'Usuario Activo';
+  }
+
+  /**
+   * Cierra sesión del usuario
+   */
   onLogout(): void {
-    console.log('Cerrando sesión de: ' + this.userName);
-     // cierra  menu flotante
-    this.close.emit();
-    this.router.navigate(['/login']); 
+    if (this.isLoggingOut) {
+      return;
+    }
+
+    this.isLoggingOut = true;
+    console.log('🚪 Cerrando sesión de:', this.userName);
+
+    // Cerrar sesión usando SOLO AuthService
+    this.authService.logout().subscribe({
+      next: () => {
+        console.log('✅ Sesión cerrada correctamente');
+        this.close.emit();
+        
+        // Redirigir a login limpiando query params
+        this.router.navigate(['/login'], { 
+          queryParams: {}
+        }).then(() => {
+          console.log('✅ Redirigido a login');
+          this.isLoggingOut = false;
+        });
+      },
+      error: (error) => {
+        console.error('❌ Error al cerrar sesión:', error);
+        
+        // Aunque falle, limpiar localmente
+        localStorage.clear();
+        this.close.emit();
+        this.router.navigate(['/login'], { 
+          queryParams: {}
+        });
+        this.isLoggingOut = false;
+      }
+    });
   }
 }

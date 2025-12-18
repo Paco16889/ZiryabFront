@@ -2,7 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
-import { LocalStorageAuthService } from '../../../core/services/localstorage-auth.service';
+import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 @Component({
@@ -16,7 +16,7 @@ export class ClasesProfesorComponent implements OnInit {
   
   private navegador = inject(NavigationService);
   private clasesService = inject(ClasesService);
-  private authService = inject(LocalStorageAuthService);
+  private authService = inject(AuthService); 
 
   public asignaturas = signal<any[]>([]);
   public loading = signal<boolean>(true);
@@ -32,7 +32,7 @@ export class ClasesProfesorComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    const user = this.authService.user();
+    const user = this.authService.getCurrentUser(); 
     console.log('Profesor detectado:', user);
 
     if (user && user.id) {
