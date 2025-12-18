@@ -34,7 +34,11 @@ export class CourseServiceService {
       catchError(() => of({ success: false, data: { id: 0, name: '', subjects: [] } }))
     );
   }
-
+  
+  
+  createCourse(data: { name: string }): Observable<any> {
+  return this.http.post(`${this.apiUrl}`, data);
+}
   // services/course.service.ts (añade este método)
   updateCourse(id: number, data: CourseUpdateRequest): Observable<CourseUpdateResponse> {
     return this.http.patch<CourseUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(

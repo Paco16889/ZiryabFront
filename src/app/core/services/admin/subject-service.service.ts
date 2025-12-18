@@ -26,5 +26,8 @@ getSubjectbyId(id: number): Observable<Subject> {
     .pipe(map(res => res.data));
   }
 
+  createSubject(data: { name: string; idCourse: number }): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, data);
+  }
    
 }

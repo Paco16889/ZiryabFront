@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
 import { Course, CourseByIdResponse } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
 
 @Component({
   selector: 'app-course-list',
-  imports: [CourseListItemComponent],
+  imports: [CourseListItemComponent, CourseCreateFormComponent],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })
@@ -15,7 +16,7 @@ export class CourseListComponent {
   selectedCourse: CourseByIdResponse['data'] | null = null;
   courseToEdit: CourseByIdResponse['data'] | null = null;
   courseToDelete: CourseByIdResponse['data'] | null = null;
-    
+  showCreateForm = false;  
       constructor(private courseService: CourseServiceService){}
     
       ngOnInit():void {
@@ -45,6 +46,19 @@ loadCourses() {
   }
 
   onCourseDeleted(deletedCourseId: number) {
+    this.loadCourses(); // Recarga la lista
+  }
+
+  openCreateForm() {
+    this.showCreateForm = true;
+  }
+
+  closeCreateForm() {
+    this.showCreateForm = false;
+  }
+
+  onCourseCreated() {
+    this.closeCreateForm();
     this.loadCourses(); // Recarga la lista
   }
 
