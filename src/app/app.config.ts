@@ -3,12 +3,10 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
 
-<<<<<<< HEAD
+
 const firebaseConfig = {
   apiKey: "AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA",
   authDomain: "ziryab-7006e.firebaseapp.com",
@@ -32,8 +30,4 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
   ],
-=======
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient()]
->>>>>>> feature/formulariosCrud
 };
