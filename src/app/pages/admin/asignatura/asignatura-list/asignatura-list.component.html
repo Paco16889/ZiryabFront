@@ -1,6 +1,4 @@
-@for (sub of subjects; track sub.id){
-    <app-asignatura-list-item [subject]="sub"></app-asignatura-list-item>
-}
+
 <!-- subject-list.component.html -->
 <div class="p-4">
   
@@ -14,12 +12,11 @@
         + Nueva Asignatura
       </button>
     </div>
-    
-    @for (subject of subjects; track subject.id){
-      <app-subject-list-item [subject]="subject">
-      </app-subject-list-item>
+  } 
+   
+    @for (sub of subjects; track sub.id){
+    <app-asignatura-list-item [subject]="sub"></app-asignatura-list-item>
     }
-  }
 
   <!-- Vista: Formulario -->
   @if(showCreateForm){
