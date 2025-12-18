@@ -1,8 +1,8 @@
 <div class="flex m-2 bg-purple-300 rounded">
     <p>{{course.name}}</p>
     
-    <app-boton-edit></app-boton-edit>
-    <app-boton-delete></app-boton-delete>
+    <app-boton-edit [id]="course.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
+    <app-boton-delete [id]="course.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
     <app-boton-viewdetail [id]="course.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
 </div>
 
@@ -10,5 +10,21 @@
     @if(selectedCourse){
     
         <app-course-view-detail [course]="selectedCourse"></app-course-view-detail>
+    
+}
+@if(courseToEdit){
+    <app-course-edit-modal 
+        [course]="courseToEdit" 
+        (closeModal)="closeEditModal()" 
+        (courseUpdated)="onCourseUpdated($event)">
+    </app-course-edit-modal>
+}
+
+@if(courseToDelete){
+    <app-course-delete-modal 
+        [course]="courseToDelete" 
+        (closeModal)="courseToDelete = null" 
+        (courseDeleted)="onCourseDeleted($event)">
+    </app-course-delete-modal>
 }
 </div>

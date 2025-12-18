@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
-import { Course } from '../../../../core/models/course';
+import { Course, CourseByIdResponse } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 
 @Component({
@@ -12,15 +12,40 @@ import { CourseServiceService } from '../../../../core/services/admin/course-ser
 export class CourseListComponent {
     courses: Course[] = []
     
+  selectedCourse: CourseByIdResponse['data'] | null = null;
+  courseToEdit: CourseByIdResponse['data'] | null = null;
+  courseToDelete: CourseByIdResponse['data'] | null = null;
+    
       constructor(private courseService: CourseServiceService){}
     
       ngOnInit():void {
-        this.courseService.getCourses().subscribe({
+
+        this.loadCourses();
+        /*this.courseService.getCourses().subscribe({
           next: (data) => {
             console.log('Asignaturas:' ,data);
             this.courses = data;
           },
            error: (err) => console.error(err)
-        });
+        });*/
       }
+     
+
+loadCourses() {
+  this.courseService.getAllCourses().subscribe({
+        next: (response) => {
+        this.courses = response.data;  // Aquí sacas el array
+        console.log('Total de cursos:', response.count);
+        console.log('Data: ', this.courses);
+        }
+        });
+}
+  onCourseUpdated(updatedCourse: { id: number, name: string }) {
+    this.loadCourses(); // Recarga la lista
+  }
+
+  onCourseDeleted(deletedCourseId: number) {
+    this.loadCourses(); // Recarga la lista
+  }
+
 }

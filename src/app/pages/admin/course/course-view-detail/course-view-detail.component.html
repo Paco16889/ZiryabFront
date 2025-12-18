@@ -1,4 +1,12 @@
 <div class="flex">
 <h2>{{ course.id}} {{ course.name }}</h2>
+<div>
+    <h3>Asignaturas</h3>
+    <ul>
+        @for(subject of course.subjects; track subject.id ){
+            <li>{{subject.name}}</li>
+        }
+    </ul>
+</div>
 
 </div>

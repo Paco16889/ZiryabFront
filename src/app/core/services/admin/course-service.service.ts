@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Course } from '../../models/course';
+import { Course, CourseByIdResponse, CourseDeleteResponse, CoursesAllResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../models/course';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,38 @@ export class CourseServiceService {
       catchError(() => of([]))
     );
   }
-
+  getAllCourses(): Observable<CoursesAllResponse> {
+  return this.http.get<CoursesAllResponse>(this.apiUrl).pipe(
+    catchError(() => of({ success: false, data: [], count: 0 }))
+  );
+  }
   getCourseById(id: number): Observable<Course> {
     return this.http.get<any>(`${this.apiUrl}/${id}`)
     .pipe(map(res => res.data));
+  }
+
+  getCourseByIdNew(id: number): Observable<CourseByIdResponse> {
+    return this.http.get<CourseByIdResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError(() => of({ success: false, data: { id: 0, name: '', subjects: [] } }))
+    );
+  }
+
+  // services/course.service.ts (añade este método)
+  updateCourse(id: number, data: CourseUpdateRequest): Observable<CourseUpdateResponse> {
+    return this.http.patch<CourseUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+      catchError((error) => {
+        console.error('Error updating course:', error);
+        throw error;
+      })
+    );
+  }
+
+  deleteCourse(id: number): Observable<CourseDeleteResponse> {
+    return this.http.delete<CourseDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting course:', error);
+        throw error;
+      })
+    );
   }
 }
