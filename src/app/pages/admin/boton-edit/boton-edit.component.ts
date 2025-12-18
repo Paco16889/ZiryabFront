@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-boton-edit',
@@ -7,8 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './boton-edit.component.scss'
 })
 export class BotonEditComponent {
+
+
+
+  @Input() id!: number;
+  @Output() showEdit = new EventEmitter<number>();
+
+  
   onClick(){
-    console.log('has hecho click en el boton');
+    this.showEdit.emit(this.id);
+    console.log('has hecho click en el boton de editar');
   }
 
   /*editField(str: string){

@@ -1,0 +1,28 @@
+
+@if(toggleservice.openedMenu()==='students'){
+    <p>estoy en alumnos oeoeoe </p>
+    <app-list></app-list>
+}
+@if(toggleservice.openedMenu()=== 'teachers'){
+    <p>teachers teachers</p>
+    <app-teacher-list></app-teacher-list>
+}
+@if(toggleservice.openedMenu() === 'subjects') {
+    <p>asignaturas </p>
+    <app-asignatura-list></app-asignatura-list>
+}
+@if(toggleservice.openedMenu() === 'groups'){
+    <p>grupos</p>
+    <app-group-list></app-group-list>
+}
+@if (toggleservice.openedMenu() === 'ciclos') {
+    <p>ciclos </p>
+    <app-course-list></app-course-list>
+}
+@if(toggleservice.openedMenu() === null){
+    <p>estas en open menu nulo</p>
+}
+
+<div class="absolute top-20 left-3/4 -translate-x-1/2 p-4 rounded shadow-lg z-50">
+    <app-float-menu></app-float-menu>
+</div>

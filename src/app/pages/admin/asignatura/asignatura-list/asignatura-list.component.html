@@ -1,0 +1,32 @@
+@for (sub of subjects; track sub.id){
+    <app-asignatura-list-item [subject]="sub"></app-asignatura-list-item>
+}
+<!-- subject-list.component.html -->
+<div class="p-4">
+  
+  <!-- Vista: Lista -->
+  @if(!showCreateForm){
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold">Asignaturas</h1>
+      <button 
+        (click)="openCreateForm()"
+        class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        + Nueva Asignatura
+      </button>
+    </div>
+    
+    @for (subject of subjects; track subject.id){
+      <app-subject-list-item [subject]="subject">
+      </app-subject-list-item>
+    }
+  }
+
+  <!-- Vista: Formulario -->
+  @if(showCreateForm){
+    <app-subject-create-form 
+      (cancelCreate)="closeCreateForm()" 
+      (subjectCreated)="onSubjectCreated()">
+    </app-subject-create-form>
+  }
+
+</div>

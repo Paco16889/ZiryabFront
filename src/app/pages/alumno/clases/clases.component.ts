@@ -1,18 +1,33 @@
+<<<<<<< HEAD
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
+=======
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
+import { NavigationService } from '../../../core/services/navigation.service'; 
+import { Subject } from '../../../core/models/subject';
+import { SubjectServiceService } from '../../../core/services/alumno/subject-service.service';
+import { SubjectComponent } from '../subject/subject.component';
+
+>>>>>>> feature/formulariosCrud
 
 @Component({
   selector: 'app-clases',
   standalone: true,
+<<<<<<< HEAD
   imports: [CommonModule, BotonAtrasComponent],
+=======
+  imports: [CommonModule, SubjectComponent], 
+>>>>>>> feature/formulariosCrud
   templateUrl: './clases.component.html',
-  styleUrl: './clases.component.scss'
+  styleUrls: ['./clases.component.scss']  // CORRECCIÓN: styleUrls en plural
 })
 export class ClasesComponent implements OnInit {
+<<<<<<< HEAD
   
   private navegador = inject(NavigationService);
   private clasesService = inject(ClasesService);
@@ -97,5 +112,26 @@ export class ClasesComponent implements OnInit {
     if (nombreAsignatura) {
       this.navegador.toComponent(`temario/${nombreAsignatura.toLowerCase()}`); 
     }  
+=======
+  subjects: Subject[] = [];
+
+  constructor(
+    private navegador: NavigationService, 
+    private subjectService: SubjectServiceService
+  ) {}
+
+  ngOnInit(): void {
+    this.subjectService.getSubjects().subscribe({
+      next: (data) => {
+        console.log('Subjects recibidos:', data);
+        this.subjects = data;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  goToTemario(clase: string){
+    this.navegador.toComponent(`temario/${clase.toLowerCase()}`); 
+>>>>>>> feature/formulariosCrud
   }
 }

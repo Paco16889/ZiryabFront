@@ -1,0 +1,16 @@
+<div class="flex m-2 bg-purple-300 rounded">
+    <p>{{subject.name}}</p>
+    
+    <app-boton-edit></app-boton-edit>
+    <app-boton-delete></app-boton-delete>
+    <app-boton-viewdetail [id]="subject.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
+</div>
+
+<div>
+    @if(selectedSubject){
+    
+        <app-asignatura-view-detail [subject]="selectedSubject"></app-asignatura-view-detail>
+    }
+
+</div>
+
