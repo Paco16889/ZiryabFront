@@ -10,6 +10,7 @@ import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
+import { AboutComponent } from './pages/shared/about/about.component';
 
 export const routes: Routes = [
     // ============================================
@@ -25,6 +26,12 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+        canActivate: [AuthGuard, RoleGuard],
+    },
+
+    {
+        path: 'about',
+        component: AboutComponent
     },
     
     // ============================================
@@ -45,18 +52,28 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         data: { roles: ['STUDENT', 'TEACHER'] }
     },
+
+    {
+        path: 'about',
+        component: AboutComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['STUDENT', 'TEACHER'] }
+    },
+
     {
         path: 'temario/:claseId',
         component: TemarioComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
     },
+
     {
         path: 'gestion',
         component: GestionComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER','STUDENT'] },
     },
+
     {
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
