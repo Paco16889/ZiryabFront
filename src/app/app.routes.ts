@@ -10,7 +10,6 @@ import { TemarioComponent } from './pages/alumno/temario/temario.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
-import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 
 export const routes: Routes = [
     // ============================================
@@ -27,10 +26,6 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
     },
-
-    // ============================================
-    // RUTAS PROTEGIDAS PARA TODOS (autenticados)
-    // ============================================
     
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
@@ -41,30 +36,27 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
-    // ============================================
+    // ===================================================
     // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
-    // ============================================
+    // ===================================================
     {
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['STUDENT', 'TEACHER'] },
+        data: { roles: ['STUDENT', 'TEACHER'] }
     },
-
     {
         path: 'temario/:claseId',
         component: TemarioComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
     },
-
     {
         path: 'gestion',
         component: GestionComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER','STUDENT'] },
     },
-
     {
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
@@ -87,7 +79,21 @@ export const routes: Routes = [
     // ============================================
     {
         path: 'dashboard-admin',
-        component: DashboardAdminComponent,
+        component: RegisterComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['ADMIN'] },
+    },
+
+    {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['ADMIN'] },
+    },
+
+    {
+        path: 'update',
+        component: UpdateComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['ADMIN'] },
     },
