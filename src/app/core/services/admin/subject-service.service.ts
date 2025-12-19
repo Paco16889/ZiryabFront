@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, catchError, of } from 'rxjs';
-import { Subject } from '../../models/subject';
+import { Subject, SubjectDeleteResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../models/subject';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,23 @@ getSubjectbyId(id: number): Observable<Subject> {
   createSubject(data: { name: string; idCourse: number }): Observable<any> {
     return this.http.post(`${this.apiUrl}`, data);
   }
+
+  deleteSubject(id: number): Observable<SubjectDeleteResponse>{
+     return this.http.delete<SubjectDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+    catchError((error) => {
+      console.error('Error deleting subject:', error);
+      throw error;
+    })
+  );
+  }
+
+ updateSubject(id: number, data: SubjectUpdateRequest): Observable<SubjectUpdateResponse> {
+  return this.http.patch<SubjectUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+    catchError((error) => {
+      console.error('Error updating subject:', error);
+      throw error;
+    })
+  );
+}
    
 }
