@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 import { Observable, catchError, map, of} from 'rxjs';
-import { Teacher } from '../../models/teacher';
+import { Teacher, TeacherCreateRequest, TeacherCreateResponse } from '../../models/teacher';
 
 
 @Injectable({
@@ -24,4 +24,13 @@ export class TeachersServiceService {
       map(res => res.data)
     );
   }
+
+  createTeacher(data: TeacherCreateRequest): Observable<TeacherCreateResponse> {
+  return this.http.post<TeacherCreateResponse>(this.apiUrl, data).pipe(
+    catchError((error) => {
+      console.error('Error creating teacher:', error);
+      throw error;
+    })
+  );
+}
 }
