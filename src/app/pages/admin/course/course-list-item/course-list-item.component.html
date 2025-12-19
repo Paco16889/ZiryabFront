@@ -1,9 +1,11 @@
-<div class="flex m-2 bg-purple-300 rounded">
+<div class="flex m-2 bg-purple-300 rounded justify-between items-center px-1">
     <p>{{course.name}}</p>
-    
-    <app-boton-edit [id]="course.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
+    <div class="flex gap-1 py-1">
+        <app-boton-edit [id]="course.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
     <app-boton-delete [id]="course.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
     <app-boton-viewdetail [id]="course.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
+    </div>
+    
 </div>
 
 <div>

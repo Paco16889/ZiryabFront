@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { PasswordServiceService } from '../../../../core/services/password-service.service';
 
 @Component({
   selector: 'app-teacher-create-form',
@@ -20,7 +21,8 @@ export class TeacherCreateFormComponent {
   constructor(
     private fb: FormBuilder,
     private teacherService: TeachersServiceService,
-    private fireBaseAuth: Auth
+    private fireBaseAuth: Auth,
+    private passwordGen: PasswordServiceService
   ) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,7 +36,9 @@ export class TeacherCreateFormComponent {
 
   createTeacher() {
   const email = this.createForm.value.email;
-  const password = this.createForm.value.password;
+  const password = this.passwordGen.generateRandomPassword();
+
+  this.isCreating = true;
 
   // 1️⃣ Crear usuario en Firebase
   createUserWithEmailAndPassword(this.fireBaseAuth, email, password)
@@ -51,15 +55,18 @@ export class TeacherCreateFormComponent {
         ndSurname: this.createForm.value.ndSurname,
         birthDate: this.createForm.value.birthDate,
         dni: this.createForm.value.dni,
-        firebaseUID   // 👈 CLAVE
+        firebaseUID   
       };
 
       this.teacherService.createTeacher(teacherData).subscribe({
-        next: () => console.log('✅ Teacher creado'),
+        
+        next: () => {console.log('✅ Teacher creado'),this.isCreating = false, this.teacherCreated.emit()},
         error: err => console.error('❌ Error BBDD', err)
       });
     })
     .catch(err => {
+         this.isCreating = false; 
+          this.errorMessage = err.error?.message || 'Error al crear el profesor';
       console.error('❌ Error Firebase', err);
     });
 }
