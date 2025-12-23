@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { catchError, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Group } from '../../models/group';
+import { Group, GroupCreateRequest, GroupCreateResponse } from '../../models/group';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,9 @@ export class GroupServiceService {
     return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
       map(res => res.data ));
     
+  }
+
+  createGroup(group: GroupCreateRequest): Observable<GroupCreateResponse>{
+    return this.http.post<GroupCreateResponse>(`${this.apiUrl}`, group);
   }
 }
