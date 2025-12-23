@@ -39,4 +39,8 @@ export class TeacherListComponent {
     this.closeCreateForm();
     this.loadTeachers();
   }
+
+  onTeacherDeleted(deletedTeacherId: number) {
+    this.loadTeachers();//revisar estee metodo
+  }
 }

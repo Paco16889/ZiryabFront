@@ -1,4 +1,4 @@
-<!-- teacher-delete-modal.component.html -->
+<!-- group-delete-modal.component.html -->
 <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
   <div class="bg-white rounded-lg p-6 w-96">
     
@@ -9,8 +9,8 @@
       <h3 class="text-xl font-bold mb-4 text-red-600">⚠️ Confirmar eliminación</h3>
       
       <p class="mb-4">
-        ¿Estás seguro de que quieres eliminar el profesor 
-        <strong class="text-red-600">{{ teacher.name }}</strong>?
+        ¿Estás seguro de que quieres eliminar el grupo 
+        <strong class="text-red-600">{{ group.name }}</strong>?
       </p>
       
       <p class="text-sm text-gray-600 mb-4">
@@ -49,7 +49,7 @@
     @if(isDeleting){
          <div  class="text-center py-4">
       <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500 mx-auto mb-4"></div>
-      <p class="text-gray-600">Eliminando profesor...</p>
+      <p class="text-gray-600">Eliminando grupo...</p>
     </div>
     }
    
@@ -58,9 +58,9 @@
      @if(showSuccess){
         <div class="text-center py-4">
       <div class="text-green-500 text-6xl mb-4">✓</div>
-      <h3 class="text-xl font-bold text-green-600 mb-2">Profesor eliminado</h3>
+      <h3 class="text-xl font-bold text-green-600 mb-2">Grupo eliminado</h3>
       <p class="text-gray-600">
-        El ciclo <strong>{{ teacher.name }}</strong> ha sido eliminado correctamente.
+        El grupo <strong>{{ group.name }}</strong> ha sido eliminado correctamente.
       </p>
     </div>
      }
@@ -68,3 +68,4 @@
 
   </div>
 </div>
+

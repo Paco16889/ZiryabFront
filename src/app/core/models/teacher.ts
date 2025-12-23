@@ -1,15 +1,27 @@
 export interface Teacher {
-    id:number,
-    email:string,
-    name:string,
-    surname:string,
-    ndSurname:string,
-    birthDate:Date,
-    dni: string,
-    role: string,
-    firebaseUID: string,
-    createdAt:Date,
-
+   id: number;
+    email: string;
+    name: string;
+    surname: string;
+    ndSurname: string;
+    birthDate: string;
+    dni: string;
+    role: string;
+    firebaseUID: string;
+    createdAt: string;
+    subject: {
+      idSubject: number;
+      idTeacher: number;
+      subject: {
+        id: number;
+        name: string;
+        idCourse: number;
+        course: {
+          id: number;
+          name: string;
+        };
+      };
+    }[];
     
 }
 

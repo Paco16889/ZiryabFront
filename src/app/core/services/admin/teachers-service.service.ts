@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import { Observable, catchError, map, of} from 'rxjs';
-import { Teacher, TeacherCreateRequest, TeacherCreateResponse } from '../../models/teacher';
+import { Observable, catchError, map, of, throwError} from 'rxjs';
+import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse } from '../../models/teacher';
 
 
 @Injectable({
@@ -32,5 +32,15 @@ export class TeachersServiceService {
       throw error;
     })
   );
+  
 }
+
+  deleteTeacher(id: number):Observable<TeacherDeleteResponse> {
+    return this.http.delete<TeacherDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting teacher', error);
+        throw error;
+      })
+    );
+  }
 }
