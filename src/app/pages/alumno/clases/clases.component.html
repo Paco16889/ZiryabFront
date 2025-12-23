@@ -1,19 +1,18 @@
-<div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen">
+<div class="p-4 sm:p-6 lg:p-8 bg-gray-50 h-full">
     
-    <div class="flex justify-center">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8 border-b border-gray-300 pb-2 text-center max-w-sm">
+    <div class="mb-8 text-center relative group">
+        <h1 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2 pb-2 drop-shadow-sm">
             Asignaturas
         </h1>
+        <div class="h-1 w-16 bg-gradient-to-r from-violet-600 to-indigo-600 mx-auto rounded-full opacity-70 group-hover:w-24 transition-all duration-300"></div>
     </div>
     
-    <!-- carga -->
     @if (loading()) {
         <div class="flex justify-center items-center py-20">
             <p class="text-xl text-purple-600 animate-pulse">Cargando tus clases...</p>
         </div>
     }
 
-    <!-- error -->
     @if (errorMessage()) {
         <div class="flex justify-center items-center py-10">
             <div class="bg-red-50 text-red-600 px-6 py-4 rounded-lg border border-red-200 font-semibold">
@@ -22,39 +21,31 @@
         </div>
     }
 
-    <!-- muestra las asignaturas -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-        <!-- se recorren las asignaturas del alumno-->
         @for (item of asignaturas(); track item.subject.id; let i = $index) {
             
-            <!-- se selecciona la asignatura con colorThemes -->
             @let theme = colorThemes[i % colorThemes.length];
 
             <div class="p-6 rounded-xl shadow-lg transition duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 cursor-pointer 
                         bg-gradient-to-br border {{ theme.bg }}">
                 
-                <!-- nombre asignatura -->
                 <h2 class="text-2xl font-extrabold text-gray-900 mb-1 text-center">
                     {{ item.subject.name }}
                 </h2>
-
+                
                 <hr class="mt-3 mb-4 border-t-2 {{ theme.line }}">
                 
                 <div class="space-y-3">
-                    <!-- se muestra el ciclo-->
                     <p class="text-sm text-gray-900">
-                        <span class="font-semibold {{ theme.text }}">Ciclo:</span> 
-                        {{ item.group?.name || 'Grupo General' }}
+                        <span class="font-semibold {{ theme.text }}">Grado/Curso:</span> 
+                        {{ item.group?.name || 'General' }}
                     </p>
                     
-                    <!-- se muestra el nombre del profesor que imparte el ciclo -->
-                    <!-- mal-->
                     <p class="text-sm text-gray-900">
                         <span class="font-semibold {{ theme.text }}">Profesor:</span> 
-                        {{ profesoresMap()[item.subject.id] }}
+                        {{ profesoresMap()[item.subject.id] || 'Consultando...' }}
                     </p>
-                    
                 </div>
                 
                 <button (click)="goToTemario(item.subject.name)" 
@@ -66,7 +57,7 @@
         } @empty {
             @if (!loading() && !errorMessage()) {
                 <div class="col-span-full text-center py-12 bg-white rounded-xl border border-gray-200 shadow-sm">
-                    <p class="text-xl text-gray-500 font-medium">No tienes asignaturas asignadas para impartir.</p>
+                    <p class="text-xl text-gray-500 font-medium">No estás matriculado en ninguna asignatura.</p>
                 </div>
             }
         }
