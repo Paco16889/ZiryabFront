@@ -11,6 +11,7 @@ import { GroupCreateFormComponent } from '../group-create-form/group-create-form
   styleUrl: './group-list.component.scss'
 })
 export class GroupListComponent {
+
   groups: Group[] = [];
   showCreateForm = false;
     
@@ -42,4 +43,11 @@ export class GroupListComponent {
     this.closeCreateForm();
     this.loadGroups(); // Recarga la lista
   }
+  onGroupDeleted(deletedCourseId: number){
+    this.loadGroups();
+  }
+
+  onGroupUpdated(updatedCourseId: number) {
+    this.loadGroups();
+}
 }

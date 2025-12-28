@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { catchError, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Group, GroupCreateRequest, GroupCreateResponse } from '../../models/group';
+import { Group, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../models/group';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,17 @@ export class GroupServiceService {
 
   createGroup(group: GroupCreateRequest): Observable<GroupCreateResponse>{
     return this.http.post<GroupCreateResponse>(`${this.apiUrl}`, group);
+  }
+
+  updateGroup(group: GroupUpdateRequest): Observable<GroupUpdateResponse>{
+    return this.http.patch<GroupUpdateResponse>(`${this.apiUrl}/${group.id}`, {name: group.name});
+  }
+  deleteGroup(id: number): Observable<GroupDeleteResponse>{
+    return this.http.delete<GroupDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error al borrar grupo', error);
+        throw error;
+      } )
+    )
   }
 }

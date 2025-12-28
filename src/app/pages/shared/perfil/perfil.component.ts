@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -25,6 +25,10 @@ export class PerfilComponent {
     this.loadUserData();
   }
 
+    /*
+    ngOnInit(){
+      this.loadUserData();
+    }*/
   /**
    * Carga los datos del usuario actual
    */

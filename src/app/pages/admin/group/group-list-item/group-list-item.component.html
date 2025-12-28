@@ -2,8 +2,8 @@
     <p>{{group.name}}</p>
     
     <div class="flex gap-1 py-1"> 
-        <app-boton-edit></app-boton-edit>
-    <app-boton-delete></app-boton-delete>
+        <app-boton-edit [id]="group.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
+    <app-boton-delete [id]="group.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
     <app-boton-viewdetail [id]="group.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
     </div>
     
@@ -14,5 +14,24 @@
     
         <app-group-view-detail [group]="selectedGroup"></app-group-view-detail>
 }
+
+    @if(groupToDelete){
+        <app-group-delete-modal
+        [group]="groupToDelete"
+        (closeModal)="groupToDelete = null"
+        (groupDeleted)="onGroupDeleted($event)">
+            
+        </app-group-delete-modal>
+    }
+
+    @if (groupToEdit) {
+        <app-group-edit-modal
+        [group]="groupToEdit"
+        (closeModal)="groupToEdit = null"
+        (groupUpdated)="onGroupUpdated($event)"></app-group-edit-modal>
+    }
 </div>
+
+
+
 
