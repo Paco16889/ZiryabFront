@@ -2,27 +2,28 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BotonEditComponent } from '../../boton-edit/boton-edit.component';
 import { BotonDeleteComponent } from '../../boton-delete/boton-delete.component';
 import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetail.component';
-import { Teacher, TeacherByIdResponse, TeachersAllResponse } from '../../../../core/models/teacher';
+import { Teacher, TeacherByIdResponse, TeachersAllResponse, TeacherUpdateResponse } from '../../../../core/models/teacher';
 import { TeacherViewDetailComponent } from '../teacher-view-detail/teacher-view-detail.component';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 import { TeacherDeleteModalComponent } from '../teacher-delete-modal/teacher-delete-modal.component';
+import { TeacherEditModalComponent } from "../teacher-edit-modal/teacher-edit-modal.component";
 
 @Component({
   selector: 'app-teacher-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, TeacherDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, TeacherDeleteModalComponent, TeacherEditModalComponent],
   templateUrl: './teacher-list-item.component.html',  
   styleUrl: './teacher-list-item.component.scss'
 })
 export class TeacherListItemComponent {
 
   @Input() teacher!: Teacher;
-    // @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
+  @Output() teacherUpdated = new EventEmitter<TeacherUpdateResponse>();
   @Output() teacherDeleted = new EventEmitter<number>();
 
   selectedTeacher: Teacher | null = null;
   
   teachers: TeachersAllResponse['data'] = [];
-
+  teacherToEdit: TeacherByIdResponse['data'] | null = null;
   teacherToDelete: TeacherByIdResponse['data'] | null = null;
 
   constructor(private teacherService: TeachersServiceService){}
@@ -68,5 +69,30 @@ export class TeacherListItemComponent {
 
   closeDeleteModal(){
     this.teacherToDelete = null;
+  }
+
+   toggleEdit(teacherId: number) {
+    this.teacherService.getTeacherById(teacherId).subscribe({
+      next: response => this.teacherToEdit = response,
+      error: err => console.error(err)
+    });
+  }
+
+  closeEditModal() {
+    this.teacherToEdit = null;
+  }
+
+  onTeacherUpdated(updatedTeacher: TeacherUpdateResponse) {
+    const index = this.teachers.findIndex(t => t.id === updatedTeacher.data.id);
+    if (index !== -1) {
+      this.teachers[index].name = updatedTeacher.data.name;
+    }
+
+    if (this.selectedTeacher?.id === updatedTeacher.data.id) {
+      this.selectedTeacher.name = updatedTeacher.data.name;
+    }
+
+    this.closeEditModal();
+    this.teacherUpdated.emit(updatedTeacher);
   }
 }

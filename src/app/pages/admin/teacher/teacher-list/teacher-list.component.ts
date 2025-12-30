@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Teacher } from '../../../../core/models/teacher';
+import { Teacher, TeacherUpdateResponse } from '../../../../core/models/teacher';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 import { TeacherListItemComponent } from '../teacher-list-item/teacher-list-item.component';
 import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-create-form.component';
@@ -42,5 +42,9 @@ export class TeacherListComponent {
 
   onTeacherDeleted(deletedTeacherId: number) {
     this.loadTeachers();//revisar estee metodo
+  }
+
+   onTeacherUpdated(updatedTeacher: TeacherUpdateResponse) {
+    this.loadTeachers();
   }
 }

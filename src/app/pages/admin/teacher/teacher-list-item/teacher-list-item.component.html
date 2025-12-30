@@ -3,7 +3,7 @@
     <p>{{teacher.name}}</p>
     <p>{{teacher.email}}</p>
     <div class="flex gap-1 py-1">
-    <app-boton-edit></app-boton-edit>
+    <app-boton-edit [id]="teacher.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
     <app-boton-delete [id]="teacher.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
     <app-boton-viewdetail [id]="teacher.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
     </div>
@@ -16,6 +16,15 @@
         <app-teacher-view-detail [teacher]="selectedTeacher"></app-teacher-view-detail>
 }
 
+
+  @if (teacherToEdit) {
+    <app-teacher-edit-modal
+      [teacher]="teacherToEdit"
+      (closeModal)="closeEditModal()"
+      (teacherUpdated)="onTeacherUpdated($event)">
+    </app-teacher-edit-modal>
+  }
+  
 @if(teacherToDelete){
     <app-teacher-delete-modal 
         [teacher]="teacherToDelete" 

@@ -37,7 +37,7 @@ export class TeacherDeleteModalComponent {
       },
       error: (err) => {
         this.isDeleting = false;
-        this.errorMessage = err.error?.message || 'Error al eliminar el curso. Puede tener asignaturas asociadas.';
+        this.errorMessage = err.error?.message || 'Error al eliminar el Profesor.';
       }
     });
   }

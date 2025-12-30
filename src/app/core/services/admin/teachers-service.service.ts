@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 import { Observable, catchError, map, of, throwError} from 'rxjs';
-import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse } from '../../models/teacher';
+import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../models/teacher';
 
 
 @Injectable({
@@ -33,6 +33,17 @@ export class TeachersServiceService {
     })
   );
   
+}
+
+// teachers-service.service.ts
+
+updateTeacher(teacher: TeacherUpdateRequest): Observable<TeacherUpdateResponse> {
+  return this.http.patch<TeacherUpdateResponse>(`${this.apiUrl}/${teacher.id}`, teacher ).pipe(
+    catchError((error) => {
+      console.error('Error updating teacher:', error);
+      throw error;
+    })
+  );
 }
 
   deleteTeacher(id: number):Observable<TeacherDeleteResponse> {

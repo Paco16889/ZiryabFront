@@ -102,12 +102,13 @@ export interface TeacherCreateResponse {
 }
 
 export interface TeacherUpdateRequest {
-  email?: string;
-  name?: string;
-  surname?: string;
+  id: number;
+  email: string;
+  name: string;
+  surname: string;
   ndSurname?: string;
-  birthDate?: string;
-  dni?: string;
+  birthDate: string;
+  dni: string;
 }
 
 export interface TeacherUpdateResponse {
