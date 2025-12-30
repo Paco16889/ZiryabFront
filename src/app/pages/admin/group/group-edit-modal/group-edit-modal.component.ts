@@ -33,8 +33,11 @@ export class GroupEditModalComponent {
     if(this.editForm.valid){
       this.groupToUpdate = {
         id : this.group.id,
-        name : this.editForm.value
+        name : this.editForm.value.name
       }
+
+          console.log('Datos a enviar:', this.groupToUpdate); // ← AÑADE ESTO
+
       this.groupService.updateGroup(this.groupToUpdate)
       .subscribe({
         next: (response) => {

@@ -71,8 +71,13 @@ export class GroupListItemComponent {
   }
 
   onGroupUpdated(groupToUpdate: GroupUpdateResponse){
+      this.closeEditModal();
       this.groupUpdated.emit(groupToUpdate); // ← Cambia a groupEdited
 
+  }
+
+  closeEditModal(){
+    this.groupToEdit = null;
   }
 }
 

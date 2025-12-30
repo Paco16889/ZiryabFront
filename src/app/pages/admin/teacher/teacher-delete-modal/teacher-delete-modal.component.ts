@@ -23,6 +23,7 @@ export class TeacherDeleteModalComponent {
    onConfirmDelete() {
     this.isDeleting = true;
     this.errorMessage = '';
+    console.log('Teacher en modal:', this.teacher.id);
 
     this.teacherService.deleteTeacher(this.teacher.id).subscribe({
       next: (response) => {
