@@ -1,6 +1,6 @@
 
-
-@if(!showCreateForm){
+<div class="p-4">
+  @if(!showCreateForm){
     <div class="flex justify-between items-center mb-4">
       <h1 class="text-2xl font-bold">Grupos</h1>
       <button 
@@ -13,15 +13,17 @@
     @for (gro of groups; track gro.id){
     <app-group-list-item [group]="gro" (groupDeleted)="onGroupDeleted($event)" (groupUpdated)="onGroupUpdated($event.data.id)"></app-group-list-item>
     }
-}
-
-
-
-
-
+  }
+  
 @if(showCreateForm){
     <app-group-create-form 
       (cancelCreate)="closeCreateForm()" 
       (groupCreated)="onGroupCreated()">
     </app-group-create-form>
-  }
+  } 
+
+
+</div>
+
+
+

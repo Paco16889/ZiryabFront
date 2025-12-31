@@ -1,0 +1,49 @@
+<!-- student-selector.component.html -->
+<div class="max-w-2xl mx-auto">
+  <!-- Input DNI -->
+  <div class="mb-4">
+    <label class="block text-gray-700 font-medium mb-2">
+      Introduce DNI del alumno
+    </label>
+    <input
+      type="text"
+      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+      placeholder="12345678A"
+      #dniInput
+    />
+    <button
+      type="button"
+      class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+      (click)="searchStudent(dniInput.value)"
+    >
+      Buscar alumno
+    </button>
+  </div>
+
+  <!-- Mensaje de error -->
+  @if(errorMessage){
+    <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Resultado de la búsqueda -->
+  @if(student){
+    <div class="border-t pt-4">
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input
+          type="radio"
+          name="selectedStudent"
+          [value]="student.id"
+          (change)="selectedStudentId = student.id"
+        />
+        {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}
+      </label>
+
+      <!-- Aquí van tus botones, suerte jeje -->
+      <div class="flex justify-end gap-3">
+        <!-- Botones que vas a reutilizar del create form -->
+      </div>
+    </div>
+  }
+</div>

@@ -2,18 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { Student } from '../../../../core/models/student';
 import { ListItemComponent } from '../list-item/list-item.component';
+import { StudentCreateFormComponent } from "../student-create-form/student-create-form.component";
+import { StudentEnrollmentComponent } from "../student-enrollment/student-enrollment.component";
 
 @Component({
   selector: 'app-list',
-  imports: [ListItemComponent],
+  imports: [ListItemComponent, StudentEnrollmentComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
   students: Student[] = [];
+
+   showCreateForm = false;
   constructor(private studentService: StudentsServiceService){}
 
   ngOnInit():void {
+    this.loadStudents();
+  }
+
+  loadStudents(){
     this.studentService.getStudents().subscribe({
       next: (data) => {
         console.log('Estudiantes recibidos', data);
@@ -21,5 +29,18 @@ export class ListComponent implements OnInit {
       },
       error: (err) => console.error(err)
     });
+  }
+
+    openCreateForm() {
+    this.showCreateForm = true;
+  }
+
+  closeCreateForm() {
+    this.showCreateForm = false;
+  }
+
+  onStudentCreated() {
+    this.closeCreateForm();
+    this.loadStudents(); // Recarga la lista
   }
 }
