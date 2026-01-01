@@ -11,34 +11,13 @@
   <div class="bg-white p-6 rounded-lg shadow">
 
     <!-- Selector tipo alumno -->
-    <div class="mb-6">
-      <label class="block text-gray-700 font-medium mb-2">
-        Tipo de matrícula
-      </label>
+     @if (mode === 'new' || mode === 'existing') {
+       <app-student-mode-selector
+      (modeSelected)="setMode($event)">
 
-      <div class="flex gap-6">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input
-            type="radio"
-            name="mode"
-            value="new"
-            checked
-            (change)="setMode('new')"
-          />
-          Alumno nuevo
-        </label>
-
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input
-            type="radio"
-            name="mode"
-            value="existing"
-            (change)="setMode('existing')"
-          />
-          Alumno existente
-        </label>
-      </div>
-    </div>
+      </app-student-mode-selector>
+     }
+  
 
     <!-- FORMULARIO: ALUMNO NUEVO -->
     @if(mode === 'new'){
@@ -65,13 +44,21 @@
         </p>
         <app-student-selector
          [students]="students"
-         (cancelSelection)="onCancel()">
+         (cancelSelection)="onCancel()"
+         (studentSelected)="onStudentSelected($event)">
 
         </app-student-selector>
         <!-- placeholder -->
         <!-- aquí luego irá el select de alumnos + curso -->
       </div>
     }
+
+    @if(mode === 'set-registration'){
+  <div class="border-t pt-6">
+    <app-set-registration></app-set-registration>
+  </div>
+}
+
 
   </div>
 </div>

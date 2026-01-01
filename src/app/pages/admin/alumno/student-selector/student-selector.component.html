@@ -2,22 +2,35 @@
 <div class="max-w-2xl mx-auto">
   <!-- Input DNI -->
   <div class="mb-4">
-    <label class="block text-gray-700 font-medium mb-2">
+    <form [formGroup]="dniForm">
+       <label class="block text-gray-700 font-medium mb-2">
       Introduce DNI del alumno
     </label>
     <input
-      type="text"
+    type="text"
+    formControlName = "dni"
       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
       placeholder="12345678A"
-      #dniInput
+    
     />
+
+    @if(dniForm.get('dni')?.invalid && dniForm.get('dni')?.touched){
+            <span 
+              class="text-red-500 text-sm mt-1 block">
+          DNI inválido (formato: 12345678A)
+        </span>
+        }
+
     <button
       type="button"
       class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-      (click)="searchStudent(dniInput.value)"
+      (click)="searchStudent()"
     >
       Buscar alumno
     </button>
+    </form>
+   
+    
   </div>
 
   <!-- Mensaje de error -->
