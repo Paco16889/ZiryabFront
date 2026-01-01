@@ -1,44 +1,45 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
-import { StudentByIdResponse } from '../../../../core/models/student';
+import { Student, StudentByIdResponse } from '../../../../core/models/student';
+import { BotonConfirmarStudentComponent } from "../boton-confirmar-student/boton-confirmar-student.component";
 
 @Component({
   selector: 'app-student-selector',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
   templateUrl: './student-selector.component.html',
   styleUrl: './student-selector.component.scss'
 })
 export class StudentSelectorComponent {
+ @Input() students: Student[] = []; // ← Recibe la lista
+ @Output() cancelSelection = new EventEmitter<void>();
   
-  student: StudentByIdResponse['data'] | null = null;
+  student: Student | null = null; // ← Cambiado de StudentByIdResponse['data']
   selectedStudentId: number | null = null;
   errorMessage: string = '';
 
-  @Output() studentSelected = new EventEmitter<StudentByIdResponse['data']>();
-
-  constructor(private studentService: StudentsServiceService) {}
+  @Output() studentSelected = new EventEmitter<Student>(); // ← Cambiado
 
   searchStudent(dni: string) {
+
+  console.log('DNI a buscar:', dni);
+  console.log('Lista de estudiantes recibida:', this.students);
+  console.log('Cantidad de estudiantes:', this.students.length);
     if (!dni) {
       this.errorMessage = 'Introduce un DNI válido';
       return;
     }
 
-    this.studentService.getStudentByDni(dni).subscribe({
-      next: (response) => {
-        console.log('response completo:', response);
-        console.log('response.data:', response.data);
-
-        this.student = response.data;
-        this.errorMessage = '';
-      },
-      error: (err) => {
-        this.student = null;
-        this.errorMessage = 'Alumno no encontrado';
-        console.error(err);
-      }
-    });
+    // Busca en la lista que recibió
+    const found = this.students.find(s => s.dni === dni);
+    
+    if (found) {
+      this.student = found;
+      this.errorMessage = '';
+    } else {
+      this.student = null;
+      this.errorMessage = 'Alumno no encontrado';
+    }
   }
 
   confirmSelection() {
@@ -46,4 +47,10 @@ export class StudentSelectorComponent {
       this.studentSelected.emit(this.student);
     }
   }
+
+  
+    onCancel() {
+    this.cancelSelection.emit();
+  }
+  
 }

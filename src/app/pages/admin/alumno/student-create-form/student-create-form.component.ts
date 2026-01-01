@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { Auth } from '@angular/fire/auth';
 import { PasswordServiceService } from '../../../../core/services/password-service.service';
+import { BotonConfirmarStudentComponent } from "../boton-confirmar-student/boton-confirmar-student.component";
 
 @Component({
   selector: 'app-student-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
   templateUrl: './student-create-form.component.html',
   styleUrl: './student-create-form.component.scss'
 })
@@ -20,6 +21,7 @@ export class StudentCreateFormComponent {
   createForm: FormGroup;
   isCreating = false;
   errorMessage = '';
+  validForm = false;
 
   constructor(
     private fb: FormBuilder,
@@ -81,7 +83,7 @@ export class StudentCreateFormComponent {
  
     */
 
-   onSubmit() {
+  onSubmit() {
     if (this.createForm.invalid) return;
     //this.createStudent();
   }

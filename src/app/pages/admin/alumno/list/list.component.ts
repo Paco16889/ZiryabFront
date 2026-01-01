@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { Student } from '../../../../core/models/student';
 import { ListItemComponent } from '../list-item/list-item.component';
@@ -13,6 +13,7 @@ import { StudentEnrollmentComponent } from "../student-enrollment/student-enroll
 })
 export class ListComponent implements OnInit {
   students: Student[] = [];
+  
 
    showCreateForm = false;
   constructor(private studentService: StudentsServiceService){}
@@ -32,6 +33,8 @@ export class ListComponent implements OnInit {
   }
 
     openCreateForm() {
+        console.log('🚀 Abriendo formulario con students:', this.students);
+  console.log('📊 Cantidad:', this.students.length);
     this.showCreateForm = true;
   }
 

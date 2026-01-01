@@ -63,7 +63,9 @@
         <p class="text-gray-600 mb-4">
           Selecciona un alumno existente para matricular
         </p>
-        <app-student-selector>
+        <app-student-selector
+         [students]="students"
+         (cancelSelection)="onCancel()">
 
         </app-student-selector>
         <!-- placeholder -->

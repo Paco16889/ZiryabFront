@@ -30,21 +30,7 @@ export class StudentsServiceService {
     .pipe(map(res => res.data));
   }
 
- getStudentByDni(dni: string): Observable<StudentByIdResponse> {
-  return this.http.get<any>(this.apiUrl).pipe(
-    map(res => {
-      console.log(res);
-      const alumno = res.data.find((e: { dni: string; }) => e.dni === dni);
-      if (!alumno) {
-        throw new Error('Alumno no encontrado');
-      }
-      return {
-        success: true,
-        data: alumno
-      };
-    })
-  );
-}
+ 
 
 
 }

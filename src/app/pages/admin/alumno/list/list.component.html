@@ -15,10 +15,14 @@
 
 
 }@else {
-      <app-student-enrollment 
+      @if(students.length > 0 ){
+        <app-student-enrollment 
       (cancelCreate)="closeCreateForm()" 
-      (studentCreated)="onStudentCreated()">
+      (studentCreated)="onStudentCreated()"
+      [students]="students">
     </app-student-enrollment>
+      }
+      
 }
 
 
