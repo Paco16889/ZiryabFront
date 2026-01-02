@@ -1,1 +1,52 @@
-<p>set-registration works!</p>
+
+<div class="mb-4">
+  <label class="block font-medium mb-2">
+    ¿Qué ciclo quieres matricular al estudiante?
+  </label>
+
+  <select 
+    [(ngModel)]="selectedCicloId"
+    (ngModelChange)="eligeCiclo()"
+    class="border rounded p-2 w-full"
+  >
+  @for(ciclo of courseService.courses(); track ciclo.id){
+     <option  [ngValue]="ciclo.id">
+      {{ ciclo.name }}
+    </option>
+  }
+   
+  </select>
+</div>
+@if(asignaturasPorCiclo?.length){
+  <div class="mb-4">
+  <label class="block font-medium mb-2">
+    Selecciona las asignaturas
+  </label>
+
+  <div class="flex flex-col gap-2">
+    <label class="flex items-center gap-2 cursor-pointer">
+        <input
+          type="checkbox"
+          [checked]="isOfertaCompletaSelected"
+          (change)="toggleOfertaCompleta($event)"
+      
+        />
+        Oferta Completa de 1º
+      </label>
+      
+    @for(subject of asignaturasPorCiclo; track subject.id) {
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input
+          type="checkbox"
+          [value]="subject.id"
+      
+          [checked]="isSubjectSelected(subject)"
+          (change)="onToggleSubject(subject, $event)"
+        />
+        {{ subject.name }}
+      </label>
+    }
+  </div>
+</div>
+}
+

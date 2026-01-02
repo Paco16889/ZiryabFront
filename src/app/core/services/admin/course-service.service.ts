@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Course, CourseByIdResponse, CourseDeleteResponse, CoursesAllResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../models/course';
 
@@ -11,7 +11,18 @@ export class CourseServiceService {
    private apiUrl = 'http://localhost:3000/api/courses';
 
   constructor(private http: HttpClient) { }
+  courses = signal<Course[]>([]); // ← aquí guardaremos los cursos
 
+  // Nuevo método para inicializar la signal
+  loadCourses() {
+    this.getAllCourses().subscribe(res => {
+      if (res.success) {
+        this.courses.set(res.data);
+      } else {
+        this.courses.set([]);
+      }
+    });
+  }
 
   getCourses(): Observable<Course[]> {
     return this.http.get<any>(this.apiUrl).pipe(
