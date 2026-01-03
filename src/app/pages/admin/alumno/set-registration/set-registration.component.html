@@ -47,6 +47,14 @@
       </label>
     }
   </div>
+  
+  <div class="mt-6 flex justify-end">
+    <app-boton-confirmar-student
+      [disabled]="selectedSubjects!.length === 0"
+      (confirm)="onConfirmRegistration()">
+    </app-boton-confirmar-student>
+  </div>
+
 </div>
 }
 

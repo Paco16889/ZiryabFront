@@ -4,10 +4,11 @@ import { CourseServiceService } from '../../../../core/services/admin/course-ser
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
 import { Subject } from '../../../../core/models/subject';
+import { BotonConfirmarStudentComponent } from "../boton-confirmar-student/boton-confirmar-student.component";
 
 @Component({
   selector: 'app-set-registration',
-  imports: [FormsModule],
+  imports: [FormsModule, BotonConfirmarStudentComponent],
   templateUrl: './set-registration.component.html',
   styleUrl: './set-registration.component.scss'
 })
@@ -75,6 +76,8 @@ onToggleSubject(subject: Subject, event: Event) {
   }
 }
 
-  
+  onConfirmRegistration(){
+    console.log('clic boton para confirmar registro de estudiante');
+  }
   
 }
