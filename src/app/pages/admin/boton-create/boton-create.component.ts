@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FloatMenuComponent } from '../float-menu/float-menu.component';
+
 import { FloatMenuService } from '../../../core/services/float-menu.service';
 
 @Component({
@@ -10,11 +10,10 @@ import { FloatMenuService } from '../../../core/services/float-menu.service';
 })
 export class BotonCreateComponent {
 
-  constructor(public floatMenu: FloatMenuService) {
+  constructor() {
 
   }
   onClick(){
-     this.floatMenu.toggleMenu();
-    console.log('clic en boton create');
+    
   }
 }

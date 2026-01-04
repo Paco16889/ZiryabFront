@@ -126,4 +126,48 @@ export class StudentCreateFormComponent {
   onCancel() {
     this.cancelCreate.emit();
   }
+
+  /**getError(control: string) {
+    switch (control) {
+      case 'email':
+        if (this.formRegister.controls.email.errors != null &&
+          Object.keys(this.formRegister.controls.email.errors).includes('required'))
+          return 'El campo email es requerido';
+        else if (this.formRegister.controls.email.errors != null &&
+          Object.keys(this.formRegister.controls.email.errors).includes('email'))
+          return 'El email no es correcto';
+        break;
+      case 'password':
+        if (this.formRegister.controls.password.errors != null &&
+          Object.keys(this.formRegister.controls.password.errors).includes('required'))
+          return 'El campo contraseña es requerido';
+        else if (this.formRegister.controls.password.errors != null &&
+          Object.keys(this.formRegister.controls.password.errors).includes('minlength'))
+          return 'La contraseña debe tener al menos 6 caracteres';
+        break;
+      case 'name':
+        if (this.formRegister.controls.name.errors != null &&
+          Object.keys(this.formRegister.controls.name.errors).includes('required'))
+          return 'El campo nombre es requerido';
+        break;
+      case 'surname':
+        if (this.formRegister.controls.surname.errors != null &&
+          Object.keys(this.formRegister.controls.surname.errors).includes('required'))
+          return 'El campo apellido es requerido';
+        break;
+      case 'birthDate':
+        if (this.formRegister.controls.birthDate.errors != null &&
+          Object.keys(this.formRegister.controls.birthDate.errors).includes('required'))
+          return 'La fecha de nacimiento es requerida';
+        break;
+      case 'dni':
+        if (this.formRegister.controls.dni.errors != null &&
+          Object.keys(this.formRegister.controls.dni.errors).includes('required'))
+          return 'El DNI es requerido';
+        break;
+      default:
+        return '';
+    }
+    return '';
+  } */
 }

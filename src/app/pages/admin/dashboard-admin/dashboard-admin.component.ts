@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DesplegableAdminComponent } from '../desplegable-admin/desplegable-admin.component';
 import { AdminMenuComponent } from '../admin-menu/admin-menu.component';
 import { FilterSectionComponent } from '../filter-section/filter-section.component';
-import { FloatMenuComponent } from '../float-menu/float-menu.component';
+
 
 @Component({
   selector: 'app-dashboard-admin',
