@@ -46,6 +46,8 @@ export class StudentCreateFormComponent {
   const email = this.createForm.value.email;
   const password = this.passwordGen.generateRandomPassword();
 
+  console.log(password);
+
   this.isCreating = true;
 
   return new Observable<Student>((observer) => {
