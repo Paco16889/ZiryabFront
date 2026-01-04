@@ -46,4 +46,8 @@ export class ListComponent implements OnInit {
     this.closeCreateForm();
     this.loadStudents(); // Recarga la lista
   }
+
+  onStudentUpdated(updatedStudent: any) { // ← Añade esto
+    this.loadStudents();
+  }
 }

@@ -4,7 +4,7 @@
     <p>{{student.email}}</p>
 
     <div class="flex gap-1 py-1">
-        <app-boton-edit></app-boton-edit>
+        <app-boton-edit [id]="student.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
     <app-boton-delete></app-boton-delete>
     <app-boton-viewdetail [id]="student.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
     </div>
@@ -16,4 +16,14 @@
     
         <app-view-detail [student]="selectedStudent"></app-view-detail>
     }
+
+     @if(studentToEdit){
+        <app-student-edit-modal 
+            [student]="studentToEdit" 
+            (closeModal)="closeEditModal()" 
+            (studentUpdated)="onStudentUpdated($event)">
+        </app-student-edit-modal>
+    }
 </div>
+
+
