@@ -51,4 +51,8 @@ export class StudentEnrollmentComponent implements OnChanges{
 
 }
 
+onStudentCreated(student: Student){
+  this.setMode('set-registration');
+}
+
 }

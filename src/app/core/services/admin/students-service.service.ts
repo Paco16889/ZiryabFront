@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Student, StudentByIdResponse } from '../../models/student';
+import { Student, StudentByIdResponse, StudentCreateRequest, StudentCreateResponse } from '../../models/student';
 
 
 @Injectable({
@@ -44,4 +44,14 @@ export class StudentsServiceService {
     );
   }
 
+  createStudent(data: StudentCreateRequest): Observable<StudentCreateResponse> {
+    return this.http.post<StudentCreateResponse>(this.apiUrl, data).pipe(
+      catchError((error) => {
+        console.error('Error creating teacher:', error);
+        throw error;
+      })
+    );
+  }
+
+  
 }

@@ -28,4 +28,32 @@ export interface StudentByIdResponse {
     firebaseUID: string;
     createdAt: string;
   };
+
+  
+}
+
+export interface StudentCreateResponse{
+  success: boolean;
+  data: {
+    id: number;
+    email: string;
+    name: string;
+    surname: string;
+    ndSurname: string;
+    birthDate: string;
+    dni: string;
+    role: string;
+    firebaseUID: string;
+    createdAt: string;
+  };
+  }
+
+export interface StudentCreateRequest{
+  email: string;
+  name: string;
+  surname: string;
+  ndSurname: string;
+  birthDate: string;
+  dni: string;
+  role?: string;
 }

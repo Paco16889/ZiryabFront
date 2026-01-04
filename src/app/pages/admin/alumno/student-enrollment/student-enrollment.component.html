@@ -27,7 +27,8 @@
           Introduce los datos del nuevo alumno
         </p>
         <app-student-create-form
-        (cancelCreate)="onCancelStudentCreate()">
+        (cancelCreate)="onCancelStudentCreate()"
+        (studentCreated)="onStudentCreated($event)">
 
         </app-student-create-form>
 
