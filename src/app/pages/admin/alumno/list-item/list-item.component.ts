@@ -53,4 +53,6 @@ export class ListItemComponent {
     this.studentUpdated.emit(updatedStudent);
   
   }
+
+  //parte del borrado
 }
