@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Student, StudentByIdResponse } from '../../models/student';
 
@@ -9,6 +9,7 @@ import { Student, StudentByIdResponse } from '../../models/student';
 })
 export class StudentsServiceService {
 
+   students = signal<Student[]>([]);
    //url de la api
     private apiUrl = 'http://localhost:3000/api/students';
 
@@ -31,6 +32,16 @@ export class StudentsServiceService {
   }
 
  
-
+   loadStudents() {
+    this.getStudents().subscribe(
+      response => {
+        if (response) {
+          this.students.set(response);
+        } else {
+          this.students.set([]);
+        }
+      }
+    );
+  }
 
 }

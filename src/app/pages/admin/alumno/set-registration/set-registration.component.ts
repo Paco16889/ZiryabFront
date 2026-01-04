@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Course } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
 import { Subject } from '../../../../core/models/subject';
 import { BotonConfirmarStudentComponent } from "../boton-confirmar-student/boton-confirmar-student.component";
+import { Student } from '../../../../core/models/student';
+import { StudentRegistrationService } from '../../../../core/services/admin/student-registration.service';
+import { SelectedStudentServiceService } from '../../../../core/services/admin/selected-student-service.service';
 
 @Component({
   selector: 'app-set-registration',
@@ -18,8 +21,13 @@ export class SetRegistrationComponent {
   asignaturasPorCiclo: Subject[] | null = null;
   isOfertaCompletaSelected = false;
   selectedSubjects: Subject[] | null = [];
+  selectedStudent: Student | null = null;
+   @Input() students: Student[] = []; 
+   
     constructor(public courseService: CourseServiceService,
-      public subjectService: SubjectServiceService
+      public subjectService: SubjectServiceService,
+      public studentRegService: StudentRegistrationService,
+      public studentSelectedService: SelectedStudentServiceService
     ){
       
     }
@@ -27,6 +35,7 @@ export class SetRegistrationComponent {
     ngOnInit():void{
       this.courseService.loadCourses();
       this.subjectService.loadSubjects();
+      this.selectedStudent = this.studentSelectedService.selectedStudent();
     }
     
     eligeCiclo(){
@@ -77,7 +86,11 @@ onToggleSubject(subject: Subject, event: Event) {
 }
 
   onConfirmRegistration(){
-    console.log('clic boton para confirmar registro de estudiante');
+    this.subjectService.setSelectedSubjects(this.selectedSubjects!);
+    this.studentRegService.preparaDatos();
+    console.log(`Aqui tenemos el id del estudiante selecionado: ${this.selectedStudent?.id}, su Dni: ${this.selectedStudent?.dni}, y su nombre: ${this.selectedStudent?.name}`);
+    console.log('aqui tenemos las asignaturas selecionadas en set-register.comonent', this.selectedSubjects);
+  
   }
   
 }

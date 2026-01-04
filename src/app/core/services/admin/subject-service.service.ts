@@ -8,6 +8,7 @@ import { Subject, SubjectDeleteResponse, SubjectUpdateRequest, SubjectUpdateResp
 })
 export class SubjectServiceService {
   subjects = signal<Subject[]>([]);
+  selectedSubjects = signal<Subject[]>([]);
 
      private apiUrl = 'http://localhost:3000/api/subjects';
 
@@ -74,5 +75,10 @@ getSubjectbyId(id: number): Observable<Subject> {
     })
   );
 }
-   
+   //par signals
+   setSelectedSubjects(subjects: Subject[]){
+    
+    this.selectedSubjects.set(subjects);
+    console.log('aqui tenemos las selected subjects del setSelectedsubjects');
+   }
 }
