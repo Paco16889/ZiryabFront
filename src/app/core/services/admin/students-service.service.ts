@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Student, StudentByIdResponse, StudentCreateRequest, StudentCreateResponse } from '../../models/student';
+import { Student, StudentByIdResponse, StudentCreateRequest, StudentCreateResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../models/student';
 
 
 @Injectable({
@@ -53,5 +53,14 @@ export class StudentsServiceService {
     );
   }
 
+  // students-service.service.ts (añade este método)
+updateStudent(student: StudentUpdateRequest): Observable<StudentUpdateResponse> {
+  return this.http.patch<StudentUpdateResponse>(`${this.apiUrl}/${student.id}`, student).pipe(
+    catchError((error) => {
+      console.error('Error updating student:', error);
+      throw error;
+    })
+  );
+}
   
 }

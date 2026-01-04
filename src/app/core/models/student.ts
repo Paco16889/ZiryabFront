@@ -57,3 +57,29 @@ export interface StudentCreateRequest{
   dni: string;
   role?: string;
 }
+
+export interface StudentUpdateRequest {
+  id: number;
+  email: string;
+  name: string;
+  surname: string;
+  ndSurname: string;
+  birthDate: string;
+  dni: string;
+}
+
+export interface StudentUpdateResponse {
+  success: boolean;
+  data: {
+    id: number;
+    email: string;
+    name: string;
+    surname: string;
+    ndSurname: string;
+    birthDate: string;
+    dni: string;
+    role: string;
+    firebaseUID: string;
+    createdAt: string;
+  };
+}
