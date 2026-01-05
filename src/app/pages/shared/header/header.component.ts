@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfilMenuService } from '../../../core/services/perfilService.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SelectorIdiomaComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

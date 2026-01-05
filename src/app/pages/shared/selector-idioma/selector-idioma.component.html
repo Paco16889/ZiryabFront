@@ -1,1 +1,10 @@
-<p>selector-idioma works!</p>
+
+<div class="flex gap-2">
+  <button (click)="cambiarIdioma('es')" aria-label="Español">
+    <img src="/assets/flags/es.png" alt="Español" class="w-6 h-6" />
+  </button>
+
+  <button (click)="cambiarIdioma('en')" aria-label="English">
+    <img class="w-6 h-6" src="/assets/flags/en.png" alt="English" />
+  </button>
+</div>

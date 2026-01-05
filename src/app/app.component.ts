@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { RouterOutlet } from '@angular/router';
 // Importaciones de tus componentes
@@ -8,6 +8,7 @@ import { PerfilComponent } from './pages/shared/perfil/perfil.component';
 // Importación del servicio
 import { PerfilMenuService } from './core/services/perfilService.service'; 
 import { BotonAtrasComponent } from './pages/shared/boton-atras/boton-atras.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,13 @@ import { BotonAtrasComponent } from './pages/shared/boton-atras/boton-atras.comp
 })
 export class AppComponent {
   title = 'loginEnAngular';
+  private translate = inject(TranslateService);
 
-  constructor(public perfilService: PerfilMenuService) {} 
+  constructor(public perfilService: PerfilMenuService) {
+    this.translate.addLangs(['es', 'en']);
+    // Idioma de fallback
+    this.translate.setFallbackLang('es');
+    // Idioma inicial
+    this.translate.use('es');
+  } 
 }

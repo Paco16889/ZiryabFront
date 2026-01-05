@@ -9,6 +9,20 @@ import { AuthService } from '../services/auth.service';
 export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const token = authService.getToken();
+  console.log(req.urlWithParams);
+  console.log(req.url);
+  console.log(req.withCredentials);
+  console.log(req.body);
+  console.log(req.headers);
+  console.log(req.method);
+
+   if (
+    req.url.startsWith('/assets/') ||
+    req.url.endsWith('.json')
+  ) {
+    console.log(next(req));
+    return next(req);
+  }
 
   // Si existe token, clonar la petición y agregar el JWT
   if (token) {
