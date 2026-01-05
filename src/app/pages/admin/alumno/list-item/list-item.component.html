@@ -5,7 +5,7 @@
 
     <div class="flex gap-1 py-1">
         <app-boton-edit [id]="student.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
-    <app-boton-delete></app-boton-delete>
+    <app-boton-delete [id]="student.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
     <app-boton-viewdetail [id]="student.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
     </div>
     
@@ -23,6 +23,17 @@
             (closeModal)="closeEditModal()" 
             (studentUpdated)="onStudentUpdated($event)">
         </app-student-edit-modal>
+    }
+
+    @if(studentToDelete){
+        <app-generic-delete-modal
+            entityType="el estudiante"
+            [entityName]="studentToDelete.name + ' ' + studentToDelete.surname"
+            [entityId]="studentToDelete.id"
+            [deleteFunction]="deleteStudentFn"
+            (closeModal)="closeDeleteModal()"
+            (entityDeleted)="onStudentDeleted($event)">
+        </app-generic-delete-modal>
     }
 </div>
 

@@ -23,12 +23,15 @@
         </app-subject-edit-modal>
     }
 
-    @if(subjectToDelete){
-        <app-subject-delete-modal 
-            [subject]="subjectToDelete" 
-            (closeModal)="subjectToDelete = null" 
-            (subjectDeleted)="onSubjectDeleted($event)">
-        </app-subject-delete-modal>
+     @if(subjectToDelete){
+        <app-generic-delete-modal
+            entityType="la asignatura"
+            [entityName]="subjectToDelete.name"
+            [entityId]="subjectToDelete.id"
+            [deleteFunction]="deleteSubjectFn"
+            (closeModal)="closeDeleteModal()"
+            (entityDeleted)="onSubjectDeleted($event)">
+        </app-generic-delete-modal>
     }
 
 </div>

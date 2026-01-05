@@ -7,11 +7,12 @@ import { SubjectServiceService } from '../../../../core/services/admin/subject-s
 
 import { AsignaturaViewDetailComponent } from '../asignatura-view-detail/asignatura-view-detail.component';
 import { SubjectEditModalComponent } from '../subject-edit-modal/subject-edit-modal.component';
-import { SubjectDeleteModalComponent } from '../subject-delete-modal/subject-delete-modal.component';
+
+import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
 
 @Component({
   selector: 'app-asignatura-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, AsignaturaViewDetailComponent, SubjectEditModalComponent, SubjectDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, AsignaturaViewDetailComponent, SubjectEditModalComponent, GenericDeleteModalComponent],
   templateUrl: './asignatura-list-item.component.html',
   styleUrl: './asignatura-list-item.component.scss'
 })
@@ -91,4 +92,6 @@ export class AsignaturaListItemComponent {
     this.closeDeleteModal();
     this.subjectDeleted.emit(deletedSubjectId);
   }
+
+    deleteSubjectFn = (id: number) => this.subjectService.deleteSubject(id);
 }

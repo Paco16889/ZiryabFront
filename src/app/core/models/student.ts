@@ -82,4 +82,10 @@ export interface StudentUpdateResponse {
     firebaseUID: string;
     createdAt: string;
   };
+
+  
 }
+
+export interface StudentDeleteResponse{
+    success: boolean;
+  }

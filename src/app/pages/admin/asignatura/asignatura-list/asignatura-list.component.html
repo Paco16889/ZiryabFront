@@ -13,7 +13,8 @@
       </button>
     </div>
     @for (sub of subjects; track sub.id){
-    <app-asignatura-list-item [subject]="sub"></app-asignatura-list-item>
+    <app-asignatura-list-item [subject]="sub" (subjectUpdated)="onSubjectUpdated($event)"
+        (subjectDeleted)="onSubjectDeleted($event)"></app-asignatura-list-item>
     }
   } 
    

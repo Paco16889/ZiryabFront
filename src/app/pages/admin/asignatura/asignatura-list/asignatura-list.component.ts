@@ -43,4 +43,12 @@ export class AsignaturaListComponent {
     this.loadSubjects();
   }
   
+
+  onSubjectUpdated(updatedSubject: any) { // ← Añade esto
+    this.loadSubjects();
+  }
+
+  onSubjectDeleted(deletedId: number) { // ← Añade esto
+    this.loadSubjects();
+  }
 }

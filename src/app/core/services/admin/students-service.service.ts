@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Student, StudentByIdResponse, StudentCreateRequest, StudentCreateResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../models/student';
+import { Student, StudentByIdResponse, StudentCreateRequest, StudentCreateResponse, StudentDeleteResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../models/student';
 
 
 @Injectable({
@@ -61,6 +61,12 @@ updateStudent(student: StudentUpdateRequest): Observable<StudentUpdateResponse> 
       throw error;
     })
   );
+}
+
+deleteStudent(id: number): Observable<StudentDeleteResponse>{
+
+ return this.http.get<StudentDeleteResponse>(`${this.apiUrl}/${id}`)
+    .pipe(map(res => res));
 }
   
 }
