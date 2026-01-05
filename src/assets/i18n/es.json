@@ -1,6 +1,9 @@
 {
   "LANG": {
-    "ES": "Spanish",
-    "EN": "English"
+    "ES": "Español",
+    "EN": "Inglés"
+  },
+  "footer": {
+    "aboutUs": "Sobre nosotros"
   }
 }
