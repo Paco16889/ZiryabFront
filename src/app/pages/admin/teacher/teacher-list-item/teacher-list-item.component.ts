@@ -5,12 +5,13 @@ import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetai
 import { Teacher, TeacherByIdResponse, TeachersAllResponse, TeacherUpdateResponse } from '../../../../core/models/teacher';
 import { TeacherViewDetailComponent } from '../teacher-view-detail/teacher-view-detail.component';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
-import { TeacherDeleteModalComponent } from '../teacher-delete-modal/teacher-delete-modal.component';
+
 import { TeacherEditModalComponent } from "../teacher-edit-modal/teacher-edit-modal.component";
+import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
 
 @Component({
   selector: 'app-teacher-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, TeacherDeleteModalComponent, TeacherEditModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, TeacherEditModalComponent, GenericDeleteModalComponent],
   templateUrl: './teacher-list-item.component.html',  
   styleUrl: './teacher-list-item.component.scss'
 })
@@ -95,4 +96,6 @@ export class TeacherListItemComponent {
     this.closeEditModal();
     this.teacherUpdated.emit(updatedTeacher);
   }
+
+   deleteTeacherFn = (id: number) => this.teacherService.deleteTeacher(id);
 }

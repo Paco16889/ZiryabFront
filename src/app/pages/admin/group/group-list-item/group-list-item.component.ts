@@ -5,12 +5,13 @@ import { BotonDeleteComponent } from '../../boton-delete/boton-delete.component'
 import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetail.component';
 import { GroupViewDetailComponent } from '../group-view-detail/group-view-detail.component';
 import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
-import { GroupDeleteModalComponent } from "../group-delete-modal/group-delete-modal.component";
+
 import { GroupEditModalComponent } from "../group-edit-modal/group-edit-modal.component";
+import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
 
 @Component({
   selector: 'app-group-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GroupDeleteModalComponent, GroupEditModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GroupEditModalComponent, GenericDeleteModalComponent],
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })
@@ -79,5 +80,7 @@ export class GroupListItemComponent {
   closeEditModal(){
     this.groupToEdit = null;
   }
+
+   deleteGroupFn = (id: number) => this.groupService.deleteGroup(id);
 }
 

@@ -25,11 +25,14 @@
     </app-teacher-edit-modal>
   }
   
-@if(teacherToDelete){
-    <app-teacher-delete-modal 
-        [teacher]="teacherToDelete" 
-        (closeModal)="teacherToDelete = null" 
-        (teacherDeleted)="onTeacherDeleted($event)">
-    </app-teacher-delete-modal>
-}
+ @if(teacherToDelete){
+        <app-generic-delete-modal
+            entityType="el profesor"
+            [entityName]="teacherToDelete.name"
+            [entityId]="teacherToDelete.id"
+            [deleteFunction]="deleteTeacherFn"
+            (closeModal)="closeDeleteModal()"
+            (entityDeleted)="onTeacherDeleted($event)">
+        </app-generic-delete-modal>
+    }
 </div>
