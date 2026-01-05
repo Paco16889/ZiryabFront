@@ -5,6 +5,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { authInterceptorFn } from './core/interceptors/auth.interceptor';
 import { routes } from './app.routes';
+import { provideTranslate } from './core/i18n/translate.provider';
 
 const firebaseConfig = {
   apiKey: "AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA",
@@ -25,5 +26,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
+    provideTranslate()
   ],
 };
