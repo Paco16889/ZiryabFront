@@ -23,10 +23,13 @@
 }
 
 @if(courseToDelete){
-    <app-course-delete-modal 
-        [course]="courseToDelete" 
-        (closeModal)="courseToDelete = null" 
-        (courseDeleted)="onCourseDeleted($event)">
-    </app-course-delete-modal>
-}
+        <app-generic-delete-modal
+            entityType="el ciclo"
+            [entityName]="courseToDelete.name"
+            [entityId]="courseToDelete.id"
+            [deleteFunction]="deleteCourseFn"
+            (closeModal)="closeDeleteModal()"
+            (entityDeleted)="onCourseDeleted($event)">
+        </app-generic-delete-modal>
+    }
 </div>

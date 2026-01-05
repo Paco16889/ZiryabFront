@@ -6,11 +6,12 @@ import { Course, CourseByIdResponse, CoursesAllResponse } from '../../../../core
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { CourseViewDetailComponent } from '../course-view-detail/course-view-detail.component';
 import { CourseEditModalComponent } from '../course-edit-modal/course-edit-modal.component';
-import { CourseDeleteModalComponent } from '../course-delete-modal/course-delete-modal.component';
+
+import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
 
 @Component({
   selector: 'app-course-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, CourseViewDetailComponent, CourseEditModalComponent, CourseDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, CourseViewDetailComponent, CourseEditModalComponent, GenericDeleteModalComponent],
   templateUrl: './course-list-item.component.html',
   styleUrl: './course-list-item.component.scss'
 })
@@ -94,6 +95,7 @@ export class CourseListItemComponent {
     this.courseDeleted.emit(deletedCourseId);
   }
 
+    deleteCourseFn = (id: number) => this.courseService.deleteCourse(id);
   
 }
 
