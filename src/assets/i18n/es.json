@@ -23,6 +23,15 @@
     "deleted": "eliminado",
     "successMessage": "ha sido eliminado correctamente."
   },
+  "editModal": {
+    "title": "Editar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "updating": "Actualizando",
+    "updated": "actualizado",
+    "successMessage": "ha sido actualizado correctamente.",
+    "fieldInvalid": "Campo inválido"
+  },
   "aboutPage": {
     "subtitle": "Innovación y simplicidad para la gestión educativa.",
     "section1": {
@@ -52,5 +61,15 @@
     "password": "Contraseña",
     "passwordPlaceholder": "tu contraseña",
     "submit": "Acceder"
+  },
+  "perfil": {
+    "logout": "Cerrar sesión",
+    "loggingOut": "Cerrando sesión..."
+  },
+  "roles": {
+    "student": "Estudiante",
+    "teacher": "Profesor",
+    "admin": "Administrador",
+    "user": "Usuario activo"
   }
 }

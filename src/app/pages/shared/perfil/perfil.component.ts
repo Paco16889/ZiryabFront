@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
@@ -43,13 +44,13 @@ export class PerfilComponent {
   /**
    * Convierte el rol a un texto legible
    */
-  private getRoleLabel(role: string): string {
+  getRoleLabel(role: string): string {
     const roleLabels: { [key: string]: string } = {
-      'STUDENT': 'Estudiante',
-      'TEACHER': 'Profesor',
-      'ADMIN': 'Administrador'
+      'STUDENT': 'roles.student',
+      'TEACHER': 'roles.teacher',
+      'ADMIN': 'roles.admin'
     };
-    return roleLabels[role] || 'Usuario Activo';
+    return roleLabels[role] || 'roles.user';
   }
 
   /**

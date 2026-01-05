@@ -23,6 +23,15 @@
     "deleted": "deleted",
     "successMessage": "has been successfully deleted."
   },
+  "editModal": {
+    "title": "Edit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "updating": "Updating",
+    "updated": "updated",
+    "successMessage": "has been successfully updated.",
+    "fieldInvalid": "Invalid field"
+  },
   "aboutPage": {
     "subtitle": "Innovation and simplicity for educational management.",
     "section1": {
@@ -52,5 +61,15 @@
     "password": "Password",
     "passwordPlaceholder": "your password",
     "submit": "Sign in"
+  },
+  "perfil": {
+    "logout": "Log out",
+    "loggingOut": "Logging out..."
+  },
+  "roles": {
+    "student": "Student",
+    "teacher": "Teacher",
+    "admin": "Administrator",
+    "user": "Active user"
   }
 }

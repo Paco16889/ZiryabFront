@@ -8,10 +8,13 @@ import { GroupServiceService } from '../../../../core/services/admin/group-servi
 
 import { GroupEditModalComponent } from "../group-edit-modal/group-edit-modal.component";
 import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
+import { GenericEditModalComponent } from "../../generic-edit-modal/generic-edit-modal.component";
+import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-group-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GroupEditModalComponent, GenericDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent],
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })
@@ -23,6 +26,17 @@ export class GroupListItemComponent {
    groupToDelete: GroupByIdResponse['data'] | null = null;
    groupToEdit: GroupByIdResponse['data'] | null = null;
    groups: GroupsAllResponse['data'] = [];
+
+  groupFields: EditFieldConfig[] = [
+    { 
+      name: 'name', 
+      label: 'Nombre del grupo', 
+      type: 'text',
+      placeholder: 'Ej: Grupo A',
+      validators: [Validators.required],
+      errorMessage: 'El nombre es requerido'
+    }
+  ];
   constructor(private groupService: GroupServiceService){}
 
 
@@ -82,5 +96,6 @@ export class GroupListItemComponent {
   }
 
    deleteGroupFn = (id: number) => this.groupService.deleteGroup(id);
+   updateGroupFn = (data: any) => this.groupService.updateGroup(data);
 }
 

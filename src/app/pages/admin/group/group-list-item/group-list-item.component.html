@@ -27,10 +27,15 @@
     }
 
     @if (groupToEdit) {
-        <app-group-edit-modal
-        [group]="groupToEdit"
-        (closeModal)="groupToEdit = null"
-        (groupUpdated)="onGroupUpdated($event)"></app-group-edit-modal>
+         <app-generic-edit-modal
+            entityType="el grupo"
+            [entityName]="groupToEdit.name"
+            [entityData]="groupToEdit"
+            [fields]="groupFields"
+            [updateFunction]="updateGroupFn"
+            (closeModal)="closeEditModal()"
+            (entityUpdated)="onGroupUpdated($event)">
+        </app-generic-edit-modal>
     }
 </div>
 

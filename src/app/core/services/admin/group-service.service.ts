@@ -29,7 +29,7 @@ export class GroupServiceService {
     return this.http.post<GroupCreateResponse>(`${this.apiUrl}`, group);
   }
 
-  updateGroup(group: GroupUpdateRequest): Observable<GroupUpdateResponse>{
+  updateGroup( group: GroupUpdateRequest): Observable<GroupUpdateResponse>{
     return this.http.patch<GroupUpdateResponse>(`${this.apiUrl}/${group.id}`, {name: group.name});
   }
   deleteGroup(id: number): Observable<GroupDeleteResponse>{
