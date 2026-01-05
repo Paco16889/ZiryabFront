@@ -5,5 +5,52 @@
   },
   "footer": {
     "aboutUs": "Sobre nosotros"
+  },
+  "adminMenu": {
+    "students": "Alumnos",
+    "teachers": "Profesores",
+    "subjects": "Asignaturas",
+    "groups": "Grupos",
+    "courses": "Ciclos"
+  },
+  "deleteModal": {
+    "title": "Confirmar eliminación",
+    "confirmMessage": "¿Estás seguro de que quieres eliminar",
+    "warningMessage": "Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "deleting": "Eliminando",
+    "deleted": "eliminado",
+    "successMessage": "ha sido eliminado correctamente."
+  },
+  "aboutPage": {
+    "subtitle": "Innovación y simplicidad para la gestión educativa.",
+    "section1": {
+      "title": "Tu centro, conectado.",
+      "description": "Olvídate del papel y la burocracia. Ziryab centraliza <strong>clases, faltas y comunicaciones</strong> en una plataforma intuitiva diseñada para que profesores y alumnos fluyan juntos.",
+      "stats": {
+        "digital": "Digital",
+        "access": "Acceso",
+        "secure": "Roles",
+        "secureLabel": "Seguro"
+      }
+    },
+    "techStack": {
+      "title": "Stack Tecnológico"
+    },
+    "team": {
+      "title": "Equipo Ziryab",
+      "role": "Full Stack"
+    },
+    "backToHome": "Volver al inicio"
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "subtitle": "Accede con tus credenciales",
+    "email": "Email",
+    "emailPlaceholder": "tu@email",
+    "password": "Contraseña",
+    "passwordPlaceholder": "tu contraseña",
+    "submit": "Acceder"
   }
 }

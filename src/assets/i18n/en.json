@@ -5,5 +5,52 @@
   },
   "footer": {
     "aboutUs": "About us"
+  },
+  "adminMenu": {
+    "students": "Students",
+    "teachers": "Teachers",
+    "subjects": "Subjects",
+    "groups": "Groups",
+    "courses": "Courses"
+  },
+  "deleteModal": {
+    "title": "Confirm deletion",
+    "confirmMessage": "Are you sure you want to delete",
+    "warningMessage": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleting": "Deleting",
+    "deleted": "deleted",
+    "successMessage": "has been successfully deleted."
+  },
+  "aboutPage": {
+    "subtitle": "Innovation and simplicity for educational management.",
+    "section1": {
+      "title": "Your center, connected.",
+      "description": "Forget about paper and bureaucracy. Ziryab centralizes <strong>classes, absences, and communications</strong> in an intuitive platform designed for teachers and students to flow together.",
+      "stats": {
+        "digital": "Digital",
+        "access": "Access",
+        "secure": "Roles",
+        "secureLabel": "Secure"
+      }
+    },
+    "techStack": {
+      "title": "Tech Stack"
+    },
+    "team": {
+      "title": "Ziryab Team",
+      "role": "Full Stack"
+    },
+    "backToHome": "Back to home"
+  },
+  "login": {
+    "title": "Sign In",
+    "subtitle": "Access with your credentials",
+    "email": "Email",
+    "emailPlaceholder": "your@email",
+    "password": "Password",
+    "passwordPlaceholder": "your password",
+    "submit": "Sign in"
   }
 }

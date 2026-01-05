@@ -1,7 +1,8 @@
 <div class="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4">
     <div class="text-center mb-10 max-w-2xl">
         <p class="text-lg text-gray-500 font-light">
-            Innovación y simplicidad para la gestión educativa.
+            {{ 'aboutPage.subtitle' | translate }}
+            
         </p>
     </div>
     <div class="w-full max-w-4xl space-y-6">
@@ -11,31 +12,31 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/3220/3220125.png" alt="Conexión" class="w-8 h-8">
                 </div>
                 <div>
-                    <h2 class="text-xl font-bold text-gray-800 mb-2">Tu centro, conectado.</h2>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">{{ 'aboutPage.section1.title' | translate }}</h2>
                     <p class="text-gray-600 leading-relaxed text-sm">
-                        Olvídate del papel y la burocracia. Ziryab centraliza <strong>clases, faltas y comunicaciones</strong> en una plataforma intuitiva diseñada para que profesores y alumnos fluyan juntos.
+                        {{ 'aboutPage.section1.description' | translate }}
                     </p>
                 </div>
             </div>
                 <div class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-50">
                 <div class="text-center">
                     <p class="text-purple-600 font-bold text-lg mb-1">100%</p>
-                    <p class="text-xs text-gray-500">Digital</p>
+                    <p class="text-xs text-gray-500">{{ 'aboutPage.section1.stats.digital' | translate }}</p>
                 </div>
                 <div class="text-center border-l border-gray-100">
                     <p class="text-purple-600 font-bold text-lg mb-1">24/7</p>
-                    <p class="text-xs text-gray-500">Acceso</p>
+                    <p class="text-xs text-gray-500">{{ 'aboutPage.section1.stats.access' | translate }}</p>
                 </div>
                 <div class="text-center border-l border-gray-100">
-                    <p class="text-purple-600 font-bold text-lg mb-1">Seguro</p>
-                    <p class="text-xs text-gray-500">Roles</p>
+                    <p class="text-purple-600 font-bold text-lg mb-1">{{ 'aboutPage.section1.stats.secureLabel' | translate }}</p>
+                    <p class="text-xs text-gray-500">{{ 'aboutPage.section1.stats.secure' | translate }}</p>
                 </div>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition duration-300">
                 <div class="flex items-center gap-2 mb-4">
-                    <h2 class="text-lg font-bold text-gray-800">Stack Tecnológico</h2>
+                    <h2 class="text-lg font-bold text-gray-800">{{ 'aboutPage.techStack.title' | translate }}</h2>
                 </div>
                 
                 <div class="space-y-3">
@@ -62,7 +63,7 @@
                 </div>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition duration-300">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">Equipo Ziryab</h2>
+                <h2 class="text-lg font-bold text-gray-800 mb-4">{{ 'aboutPage.team.title' | translate }}</h2>
                 
                 <div class="space-y-5">
                     <div class="flex items-center gap-4">
@@ -91,7 +92,7 @@
         </div>
         <div class="text-center pt-6">
             <a href="#" class="inline-flex items-center gap-2 text-gray-400 hover:text-purple-600 transition-colors font-medium text-sm">
-                <span>←</span> Volver al inicio
+                <span>←</span> {{ 'aboutPage.backToHome' | translate }}
             </a>
         </div>
     </div>

@@ -5,15 +5,16 @@
     <!-- Estado: Confirmación -->
     @if(!showSuccess && !isDeleting){
       <div>
-        <h3 class="text-xl font-bold mb-4 text-red-600">⚠️ Confirmar eliminación</h3>
+        <h3 class="text-xl font-bold mb-4 text-red-600">{{ 'deleteModal.title' | translate }} </h3>
         
         <p class="mb-4">
-          ¿Estás seguro de que quieres eliminar {{ entityType }} 
+          {{ 'deleteModal.confirmMessage' | translate }} {{ entityType }} 
           <strong class="text-red-600">{{ entityName }}</strong>?
         </p>
         
         <p class="text-sm text-gray-600 mb-4">
-          Esta acción no se puede deshacer.
+          {{ 'deleteModal.warningMessage' | translate }}
+          
         </p>
 
         <!-- Mensaje de error -->
@@ -28,13 +29,15 @@
             type="button"
             (click)="onClose()"
             class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
-            Cancelar
+            {{ 'deleteModal.cancel' | translate }}
+      
           </button>
           <button 
             type="button"
             (click)="onConfirmDelete()"
             class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-            Eliminar
+            {{ 'deleteModal.delete' | translate }}
+        
           </button>
         </div>
       </div>
@@ -44,7 +47,7 @@
     @if(isDeleting){
       <div class="text-center py-4">
         <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500 mx-auto mb-4"></div>
-        <p class="text-gray-600">Eliminando {{ entityType }}...</p>
+        <p class="text-gray-600">{{ 'deleteModal.deleting' | translate }}{{ entityType }}...</p>
       </div>
     }
 
@@ -52,9 +55,9 @@
     @if(showSuccess){
       <div class="text-center py-4">
         <div class="text-green-500 text-6xl mb-4">✓</div>
-        <h3 class="text-xl font-bold text-green-600 mb-2">{{ entityType }} eliminado</h3>
+        <h3 class="text-xl font-bold text-green-600 mb-2">{{ entityType }} {{ 'deleteModal.deleted' | translate }}</h3>
         <p class="text-gray-600">
-          {{ entityType }} <strong>{{ entityName }}</strong> ha sido eliminado correctamente.
+          {{ entityType }} <strong>{{ entityName }}</strong> {{ 'deleteModal.successMessage' | translate }}
         </p>
       </div>
     }

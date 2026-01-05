@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { DesplegableAdminComponent } from '../desplegable-admin/desplegable-admin.component';
 import { ToggleService } from '../../../core/services/toggle.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-menu',
-  imports: [],
+  imports: [ TranslateModule],
   templateUrl: './admin-menu.component.html',
   styleUrl: './admin-menu.component.scss'
 })

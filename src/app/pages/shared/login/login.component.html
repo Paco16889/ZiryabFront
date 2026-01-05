@@ -2,14 +2,14 @@
 <div class="min-h-screen flex justify-center items-center">
     <div class="rounded-md max-w-md w-full bg-gradient-to-br from-purple-200 via-purple-300 to-purple-400">
         <h1 class="mt-5 text-center text-white text-2xl font-bold">
-            Iniciar Sesión
+           {{ 'login.title' | translate }} 
         </h1>
         <p class="mb-5 text-gray-600 text-sm mix-blend-color-dodge text-center">
-            Accede con tus credenciales
+           {{ 'login.subtitle' | translate }} 
         </p>
         <form class="px-5" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-                <label class="block text-white" for="email">Email</label>
+                <label class="block text-white" for="email"> {{ 'login.email' | translate }}</label>
                 <div class="relative">
                     <span class="text-gray-400 absolute left-3 top-1/2 -translate-y-1/2">
                         <svg
@@ -31,7 +31,7 @@
                         name="email"
                         autocomplete="username"
                         formControlName="email"
-                        placeholder="tu@email"
+                        placeholder=" {{ 'login.emailPlaceholder' | translate }} "
                         class="px-10 h-8 rounded-sm border w-full"
                         type="text"
                     />
@@ -42,7 +42,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="block text-white" for="email">Contraseña</label>
+                <label class="block text-white" for="password"> {{ 'login.password' | translate }}</label>
                 <div class="relative">
                     <span class="text-gray-400 absolute left-3 top-1/2 -translate-y-1/2">
                         <svg
@@ -65,7 +65,7 @@
                         name="password"
                         formControlName="password"
                         autocomplete="password"
-                        placeholder="tu contraseña"
+                        placeholder=" {{ 'login.passwordPlaceholder' | translate }} "
                         class="px-10 h-8 w-full rounded-sm border"
                         type="password"
                     />
@@ -96,7 +96,7 @@
                 class="rounded-sm mb-3 w-full px-4 py-2 font-medium bg-purple-400 hover:bg-purple-600 border border-purple-400 text-white"
                 type="submit"
             >
-                Acceder
+                 {{ 'login.submit' | translate }} 
             </button>
         </form>
     </div>

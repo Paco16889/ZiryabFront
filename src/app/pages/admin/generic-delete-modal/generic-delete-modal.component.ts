@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-generic-delete-modal',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './generic-delete-modal.component.html',
   styleUrl: './generic-delete-modal.component.scss'
 })
