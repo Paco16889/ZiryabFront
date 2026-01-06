@@ -1,0 +1,194 @@
+{
+  "common": {
+    "buttons": {
+      "create": "생성",
+      "edit": "편집",
+      "delete": "삭제",
+      "save": "저장",
+      "cancel": "취소",
+      "confirm": "확인",
+      "back": "돌아가기",
+      "search": "검색"
+    },
+    "fields": {
+      "email": "이메일",
+      "name": "이름",
+      "surname": "첫 번째 성",
+      "ndSurname": "두 번째 성",
+      "dni": "신분증 번호",
+      "birthDate": "생년월일"
+    },
+    "placeholders": {
+      "email": "teacher@ziryab.es",
+      "name": "이름",
+      "surname": "첫 번째 성",
+      "ndSurname": "두 번째 성",
+      "dni": "12345678A",
+      "selectOption": "옵션 선택"
+    },
+    "validation": {
+      "emailInvalid": "잘못된 이메일",
+      "required": "필수 항목입니다",
+      "nameRequired": "이름은 필수입니다",
+      "surnameRequired": "첫 번째 성은 필수입니다",
+      "ndSurnameRequired": "두 번째 성은 필수입니다",
+      "birthDateRequired": "생년월일은 필수입니다",
+      "dniInvalid": "잘못된 신분증 번호 (형식: 12345678A)"
+    },
+    "messages": {
+      "loading": "로딩 중",
+      "loadingOptions": "옵션 로딩 중..."
+    }
+  },
+
+  "entities": {
+    "student": {
+      "singular": "학생",
+      "plural": "학생들",
+      "singularArticle": "학생",
+      "title": "학생"
+    },
+    "teacher": {
+      "singular": "교사",
+      "plural": "교사들",
+      "singularArticle": "교사",
+      "title": "교사"
+    },
+    "subject": {
+      "singular": "과목",
+      "plural": "과목들",
+      "singularArticle": "과목",
+      "title": "과목"
+    },
+    "course": {
+      "singular": "과정",
+      "plural": "과정들",
+      "singularArticle": "과정",
+      "title": "과정"
+    },
+    "group": {
+      "singular": "그룹",
+      "plural": "그룹들",
+      "title": "그룹"
+    }
+  },
+
+  "studentEnrollment": {
+    "title": "학생 등록",
+    "enrollButton": "학생 등록",
+    "modeSelector": {
+      "title": "등록 유형",
+      "newStudent": "신규 학생",
+      "existingStudent": "기존 학생"
+    },
+    "newStudentForm": {
+      "instructions": "신규 학생의 정보를 입력하세요"
+    },
+    "existingStudentForm": {
+      "instructions": "등록할 기존 학생을 선택하세요",
+      "dniLabel": "학생의 신분증 번호를 입력하세요",
+      "searchButton": "학생 검색"
+    },
+    "courseSelection": {
+      "label": "학생을 어느 과정에 등록하시겠습니까?"
+    },
+    "subjectSelection": {
+      "label": "과목 선택",
+      "fullOffer": "1학년 전체 과정"
+    },
+    "confirmButton": "선택 확인"
+  },
+
+  "adminMenu": {
+    "students": "학생",
+    "teachers": "교사",
+    "subjects": "과목",
+    "groups": "그룹",
+    "courses": "과정"
+  },
+
+  "deleteModal": {
+    "title": "삭제 확인",
+    "confirmMessage": "정말 삭제하시겠습니까",
+    "warningMessage": "이 작업은 취소할 수 없습니다.",
+    "cancel": "취소",
+    "delete": "삭제",
+    "deleting": "삭제 중",
+    "deleted": "삭제됨",
+    "successMessage": "성공적으로 삭제되었습니다."
+  },
+
+  "editModal": {
+    "title": "편집",
+    "cancel": "취소",
+    "save": "저장",
+    "updating": "업데이트 중",
+    "updated": "업데이트됨",
+    "successMessage": "성공적으로 업데이트되었습니다.",
+    "fieldInvalid": "잘못된 필드"
+  },
+
+  "lists": {
+    "students": {
+      "title": "학생",
+      "createButton": "학생 등록"
+    },
+    "subjects": {
+      "title": "과목",
+      "createButton": "새 과목"
+    }
+  },
+
+  "LANG": {
+    "ES": "스페인어",
+    "EN": "영어"
+  },
+
+  "footer": {
+    "aboutUs": "회사 소개"
+  },
+
+  "aboutPage": {
+    "subtitle": "교육 관리를 위한 혁신과 단순함.",
+    "section1": {
+      "title": "연결된 당신의 센터.",
+      "description": "종이와 관료주의를 잊으세요. Ziryab은 <strong>수업, 결석 및 커뮤니케이션</strong>을 교사와 학생이 함께 흐를 수 있도록 설계된 직관적인 플랫폼에 중앙 집중화합니다.",
+      "stats": {
+        "digital": "디지털",
+        "access": "액세스",
+        "secure": "역할",
+        "secureLabel": "보안"
+      }
+    },
+    "techStack": {
+      "title": "기술 스택"
+    },
+    "team": {
+      "title": "Ziryab 팀",
+      "role": "풀스택"
+    },
+    "backToHome": "홈으로 돌아가기"
+  },
+
+  "login": {
+    "title": "로그인",
+    "subtitle": "자격 증명으로 액세스",
+    "email": "이메일",
+    "emailPlaceholder": "your@email",
+    "password": "비밀번호",
+    "passwordPlaceholder": "비밀번호",
+    "submit": "액세스"
+  },
+
+  "perfil": {
+    "logout": "로그아웃",
+    "loggingOut": "로그아웃 중..."
+  },
+
+  "roles": {
+    "student": "학생",
+    "teacher": "교사",
+    "admin": "관리자",
+    "user": "활성 사용자"
+  }
+}

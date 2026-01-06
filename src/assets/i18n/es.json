@@ -1,11 +1,105 @@
 {
-  "LANG": {
-    "ES": "Español",
-    "EN": "Inglés"
+
+  "common": {
+    "buttons": {
+      "create": "Crear",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "back": "Volver",
+      "search": "Buscar"
+    },
+    "fields": {
+      "email": "Email",
+      "name": "Nombre",
+      "surname": "Primer apellido",
+      "ndSurname": "Segundo apellido",
+      "dni": "DNI",
+      "birthDate": "Fecha de nacimiento"
+    },
+    "placeholders": {
+      "email": "profesor@ziryab.es",
+      "name": "Nombre",
+      "surname": "Primer apellido",
+      "ndSurname": "Segundo apellido",
+      "dni": "12345678A",
+      "selectOption": "Selecciona una opción"
+    },
+    "validation": {
+      "emailInvalid": "Email inválido",
+      "required": "Este campo es requerido",
+      "nameRequired": "El nombre es requerido",
+      "surnameRequired": "El primer apellido es requerido",
+      "ndSurnameRequired": "El segundo apellido es requerido",
+      "birthDateRequired": "La fecha de nacimiento es requerida",
+      "dniInvalid": "DNI inválido (formato: 12345678A)"
+    },
+    "messages": {
+      "loading": "Cargando",
+      "loadingOptions": "Cargando opciones..."
+    }
   },
-  "footer": {
-    "aboutUs": "Sobre nosotros"
+
+  "entities": {
+    "student": {
+      "singular": "alumno",
+      "plural": "alumnos",
+      "singularArticle": "el estudiante",
+      "title": "Alumnos"
+    },
+    "teacher": {
+      "singular": "profesor",
+      "plural": "profesores",
+      "singularArticle": "el profesor",
+      "title": "Profesores"
+    },
+    "subject": {
+      "singular": "asignatura",
+      "plural": "asignaturas",
+      "singularArticle": "la asignatura",
+      "title": "Asignaturas"
+    },
+    "course": {
+      "singular": "ciclo",
+      "plural": "ciclos",
+      "singularArticle": "el ciclo",
+      "title": "Ciclos"
+    },
+    "group": {
+      "singular": "grupo",
+      "plural": "grupos",
+      "title": "Grupos"
+    }
   },
+
+  "studentEnrollment": {
+    "title": "Matricular Alumno",
+    "enrollButton": "Matricular Alumno",
+    "modeSelector": {
+      "title": "Tipo de matrícula",
+      "newStudent": "Alumno nuevo",
+      "existingStudent": "Alumno existente"
+    },
+    "newStudentForm": {
+      "instructions": "Introduce los datos del nuevo alumno"
+    },
+    "existingStudentForm": {
+      "instructions": "Selecciona un alumno existente para matricular",
+      "dniLabel": "Introduce DNI del alumno",
+      "searchButton": "Buscar alumno"
+    },
+    "courseSelection": {
+      "label": "¿Qué ciclo quieres matricular al alumno?"
+    },
+    "subjectSelection": {
+      "label": "Selecciona las asignaturas",
+      "fullOffer": "Oferta Completa de 1º"
+    },
+    "confirmButton": "Confirmar selección"
+  },
+
   "adminMenu": {
     "students": "Alumnos",
     "teachers": "Profesores",
@@ -13,6 +107,7 @@
     "groups": "Grupos",
     "courses": "Ciclos"
   },
+
   "deleteModal": {
     "title": "Confirmar eliminación",
     "confirmMessage": "¿Estás seguro de que quieres eliminar",
@@ -23,6 +118,7 @@
     "deleted": "eliminado",
     "successMessage": "ha sido eliminado correctamente."
   },
+
   "editModal": {
     "title": "Editar",
     "cancel": "Cancelar",
@@ -31,6 +127,24 @@
     "updated": "actualizado",
     "successMessage": "ha sido actualizado correctamente.",
     "fieldInvalid": "Campo inválido"
+  },
+
+  "lists": {
+    "students": {
+      "title": "Alumnos",
+      "createButton": "Matricular Alumno"
+    },
+    "subjects": {
+      "title": "Asignaturas",
+      "createButton": "Nueva Asignatura"
+    }
+  },
+  "LANG": {
+    "ES": "Español",
+    "EN": "Inglés"
+  },
+  "footer": {
+    "aboutUs": "Sobre nosotros"
   },
   "aboutPage": {
     "subtitle": "Innovación y simplicidad para la gestión educativa.",

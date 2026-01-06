@@ -1,0 +1,194 @@
+{
+  "common": {
+    "buttons": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen",
+      "back": "Zurück",
+      "search": "Suchen"
+    },
+    "fields": {
+      "email": "E-Mail",
+      "name": "Vorname",
+      "surname": "Nachname",
+      "ndSurname": "Zweiter Nachname",
+      "dni": "Ausweisnummer",
+      "birthDate": "Geburtsdatum"
+    },
+    "placeholders": {
+      "email": "lehrer@ziryab.es",
+      "name": "Vorname",
+      "surname": "Nachname",
+      "ndSurname": "Zweiter Nachname",
+      "dni": "12345678A",
+      "selectOption": "Option auswählen"
+    },
+    "validation": {
+      "emailInvalid": "Ungültige E-Mail",
+      "required": "Dieses Feld ist erforderlich",
+      "nameRequired": "Der Vorname ist erforderlich",
+      "surnameRequired": "Der Nachname ist erforderlich",
+      "ndSurnameRequired": "Der zweite Nachname ist erforderlich",
+      "birthDateRequired": "Das Geburtsdatum ist erforderlich",
+      "dniInvalid": "Ungültige Ausweisnummer (Format: 12345678A)"
+    },
+    "messages": {
+      "loading": "Lädt",
+      "loadingOptions": "Optionen werden geladen..."
+    }
+  },
+
+  "entities": {
+    "student": {
+      "singular": "Schüler",
+      "plural": "Schüler",
+      "singularArticle": "der Schüler",
+      "title": "Schüler"
+    },
+    "teacher": {
+      "singular": "Lehrer",
+      "plural": "Lehrer",
+      "singularArticle": "der Lehrer",
+      "title": "Lehrer"
+    },
+    "subject": {
+      "singular": "Fach",
+      "plural": "Fächer",
+      "singularArticle": "das Fach",
+      "title": "Fächer"
+    },
+    "course": {
+      "singular": "Bildungsgang",
+      "plural": "Bildungsgänge",
+      "singularArticle": "der Bildungsgang",
+      "title": "Bildungsgänge"
+    },
+    "group": {
+      "singular": "Gruppe",
+      "plural": "Gruppen",
+      "title": "Gruppen"
+    }
+  },
+
+  "studentEnrollment": {
+    "title": "Schüler einschreiben",
+    "enrollButton": "Schüler einschreiben",
+    "modeSelector": {
+      "title": "Einschreibungsart",
+      "newStudent": "Neuer Schüler",
+      "existingStudent": "Bestehender Schüler"
+    },
+    "newStudentForm": {
+      "instructions": "Geben Sie die Daten des neuen Schülers ein"
+    },
+    "existingStudentForm": {
+      "instructions": "Wählen Sie einen bestehenden Schüler zur Einschreibung aus",
+      "dniLabel": "Ausweisnummer des Schülers eingeben",
+      "searchButton": "Schüler suchen"
+    },
+    "courseSelection": {
+      "label": "Für welchen Bildungsgang möchten Sie den Schüler einschreiben?"
+    },
+    "subjectSelection": {
+      "label": "Fächer auswählen",
+      "fullOffer": "Vollständiges Angebot des 1. Jahres"
+    },
+    "confirmButton": "Auswahl bestätigen"
+  },
+
+  "adminMenu": {
+    "students": "Schüler",
+    "teachers": "Lehrer",
+    "subjects": "Fächer",
+    "groups": "Gruppen",
+    "courses": "Bildungsgänge"
+  },
+
+  "deleteModal": {
+    "title": "Löschen bestätigen",
+    "confirmMessage": "Sind Sie sicher, dass Sie löschen möchten",
+    "warningMessage": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "deleting": "Wird gelöscht",
+    "deleted": "gelöscht",
+    "successMessage": "wurde erfolgreich gelöscht."
+  },
+
+  "editModal": {
+    "title": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "updating": "Wird aktualisiert",
+    "updated": "aktualisiert",
+    "successMessage": "wurde erfolgreich aktualisiert.",
+    "fieldInvalid": "Ungültiges Feld"
+  },
+
+  "lists": {
+    "students": {
+      "title": "Schüler",
+      "createButton": "Schüler einschreiben"
+    },
+    "subjects": {
+      "title": "Fächer",
+      "createButton": "Neues Fach"
+    }
+  },
+
+  "LANG": {
+    "ES": "Spanisch",
+    "EN": "Englisch"
+  },
+
+  "footer": {
+    "aboutUs": "Über uns"
+  },
+
+  "aboutPage": {
+    "subtitle": "Innovation und Einfachheit für das Bildungsmanagement.",
+    "section1": {
+      "title": "Ihre Schule, vernetzt.",
+      "description": "Vergessen Sie Papier und Bürokratie. Ziryab zentralisiert <strong>Unterricht, Fehlzeiten und Kommunikation</strong> auf einer intuitiven Plattform, die Lehrer und Schüler verbindet.",
+      "stats": {
+        "digital": "Digital",
+        "access": "Zugang",
+        "secure": "Rollen",
+        "secureLabel": "Sicher"
+      }
+    },
+    "techStack": {
+      "title": "Technologie-Stack"
+    },
+    "team": {
+      "title": "Ziryab-Team",
+      "role": "Full Stack"
+    },
+    "backToHome": "Zurück zur Startseite"
+  },
+
+  "login": {
+    "title": "Anmelden",
+    "subtitle": "Melden Sie sich mit Ihren Zugangsdaten an",
+    "email": "E-Mail",
+    "emailPlaceholder": "deine@email",
+    "password": "Passwort",
+    "passwordPlaceholder": "dein Passwort",
+    "submit": "Anmelden"
+  },
+
+  "perfil": {
+    "logout": "Abmelden",
+    "loggingOut": "Abmeldung läuft..."
+  },
+
+  "roles": {
+    "student": "Student",
+    "teacher": "Lehrer",
+    "admin": "Administrator",
+    "user": "Aktiver Benutzer"
+  }
+}

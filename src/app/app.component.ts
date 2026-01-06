@@ -29,7 +29,7 @@ export class AppComponent {
   private translate = inject(TranslateService);
 
   constructor(public perfilService: PerfilMenuService) {
-    this.translate.addLangs(['es', 'en']);
+    this.translate.addLangs(['es', 'en', 'de']);
     // Idioma de fallback
     this.translate.setFallbackLang('es');
     // Idioma inicial

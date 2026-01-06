@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class SelectorIdiomaComponent {
   constructor(private translate: TranslateService) {}
 
-  cambiarIdioma(lang: 'es' | 'en') {
+  cambiarIdioma(lang: 'es' | 'en' | 'de') {
     this.translate.use(lang);
     localStorage.setItem('lang', lang);
   }

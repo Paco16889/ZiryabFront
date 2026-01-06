@@ -1,11 +1,104 @@
 {
-  "LANG": {
-    "ES": "Spanish",
-    "EN": "English"
+  "common": {
+    "buttons": {
+      "create": "Create",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "back": "Back",
+      "search": "Search"
+    },
+    "fields": {
+      "email": "Email",
+      "name": "Name",
+      "surname": "First surname",
+      "ndSurname": "Second surname",
+      "dni": "ID Number",
+      "birthDate": "Date of birth"
+    },
+    "placeholders": {
+      "email": "teacher@ziryab.es",
+      "name": "Name",
+      "surname": "First surname",
+      "ndSurname": "Second surname",
+      "dni": "12345678A",
+      "selectOption": "Select an option"
+    },
+    "validation": {
+      "emailInvalid": "Invalid email",
+      "required": "This field is required",
+      "nameRequired": "Name is required",
+      "surnameRequired": "First surname is required",
+      "ndSurnameRequired": "Second surname is required",
+      "birthDateRequired": "Date of birth is required",
+      "dniInvalid": "Invalid ID (format: 12345678A)"
+    },
+    "messages": {
+      "loading": "Loading",
+      "loadingOptions": "Loading options..."
+    }
   },
-  "footer": {
-    "aboutUs": "About us"
+
+  "entities": {
+    "student": {
+      "singular": "student",
+      "plural": "students",
+      "singularArticle": "the student",
+      "title": "Students"
+    },
+    "teacher": {
+      "singular": "teacher",
+      "plural": "teachers",
+      "singularArticle": "the teacher",
+      "title": "Teachers"
+    },
+    "subject": {
+      "singular": "subject",
+      "plural": "subjects",
+      "singularArticle": "the subject",
+      "title": "Subjects"
+    },
+    "course": {
+      "singular": "course",
+      "plural": "courses",
+      "singularArticle": "the course",
+      "title": "Courses"
+    },
+    "group": {
+      "singular": "group",
+      "plural": "groups",
+      "title": "Groups"
+    }
   },
+
+  "studentEnrollment": {
+    "title": "Enroll Student",
+    "enrollButton": "Enroll Student",
+    "modeSelector": {
+      "title": "Enrollment type",
+      "newStudent": "New student",
+      "existingStudent": "Existing student"
+    },
+    "newStudentForm": {
+      "instructions": "Enter the new student's information"
+    },
+    "existingStudentForm": {
+      "instructions": "Select an existing student to enroll",
+      "dniLabel": "Enter student's ID number",
+      "searchButton": "Search student"
+    },
+    "courseSelection": {
+      "label": "Which course do you want to enroll the student in?"
+    },
+    "subjectSelection": {
+      "label": "Select subjects",
+      "fullOffer": "Full 1st Year Offer"
+    },
+    "confirmButton": "Confirm selection"
+  },
+
   "adminMenu": {
     "students": "Students",
     "teachers": "Teachers",
@@ -13,6 +106,7 @@
     "groups": "Groups",
     "courses": "Courses"
   },
+
   "deleteModal": {
     "title": "Confirm deletion",
     "confirmMessage": "Are you sure you want to delete",
@@ -23,6 +117,7 @@
     "deleted": "deleted",
     "successMessage": "has been successfully deleted."
   },
+
   "editModal": {
     "title": "Edit",
     "cancel": "Cancel",
@@ -32,11 +127,32 @@
     "successMessage": "has been successfully updated.",
     "fieldInvalid": "Invalid field"
   },
+
+  "lists": {
+    "students": {
+      "title": "Students",
+      "createButton": "Enroll Student"
+    },
+    "subjects": {
+      "title": "Subjects",
+      "createButton": "New Subject"
+    }
+  },
+
+  "LANG": {
+    "ES": "Spanish",
+    "EN": "English"
+  },
+
+  "footer": {
+    "aboutUs": "About us"
+  },
+
   "aboutPage": {
     "subtitle": "Innovation and simplicity for educational management.",
     "section1": {
       "title": "Your center, connected.",
-      "description": "Forget about paper and bureaucracy. Ziryab centralizes <strong>classes, absences, and communications</strong> in an intuitive platform designed for teachers and students to flow together.",
+      "description": "Forget about paper and bureaucracy. Ziryab centralizes <strong>classes, absences and communications</strong> in an intuitive platform designed for teachers and students to flow together.",
       "stats": {
         "digital": "Digital",
         "access": "Access",
@@ -53,19 +169,22 @@
     },
     "backToHome": "Back to home"
   },
+
   "login": {
-    "title": "Sign In",
+    "title": "Log In",
     "subtitle": "Access with your credentials",
     "email": "Email",
     "emailPlaceholder": "your@email",
     "password": "Password",
     "passwordPlaceholder": "your password",
-    "submit": "Sign in"
+    "submit": "Access"
   },
+
   "perfil": {
     "logout": "Log out",
     "loggingOut": "Logging out..."
   },
+
   "roles": {
     "student": "Student",
     "teacher": "Teacher",
