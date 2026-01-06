@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BotonCreateComponent } from '../boton-create/boton-create.component';
+import { BotonCreateComponent } from '../botones/boton-create/boton-create.component';
 
 
 @Component({

@@ -1,18 +1,23 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject, SubjectByIdResponse, SubjectsAllResponse } from '../../../../core/models/subject';
-import { BotonEditComponent } from '../../boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetail.component';
+import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
+import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
+import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
 import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
 
 import { AsignaturaViewDetailComponent } from '../asignatura-view-detail/asignatura-view-detail.component';
-import { SubjectEditModalComponent } from '../subject-edit-modal/subject-edit-modal.component';
 
-import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
+
+import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
+import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { Validators } from '@angular/forms';
+import { map } from 'rxjs';
+import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
 
 @Component({
   selector: 'app-asignatura-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, AsignaturaViewDetailComponent, SubjectEditModalComponent, GenericDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, AsignaturaViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent],
   templateUrl: './asignatura-list-item.component.html',
   styleUrl: './asignatura-list-item.component.scss'
 })
@@ -27,7 +32,9 @@ export class AsignaturaListItemComponent {
     selectedSubjectResponse: SubjectByIdResponse['data'] | null = null;
     subjectToEdit: SubjectByIdResponse['data'] | null = null;
     subjectToDelete: SubjectByIdResponse['data'] | null = null;
-    constructor(private subjectService: SubjectServiceService){}
+
+    editFields: EditFieldConfig[] = [];
+    constructor(private subjectService: SubjectServiceService, private courseService: CourseServiceService){}
 
   toggleDetail(subjectId: number) {
      console.log('toggleDetail llamado con id:', subjectId);
@@ -44,9 +51,37 @@ export class AsignaturaListItemComponent {
     }
   }
 
+
   toggleEdit(subjectId: number) {
     this.subjectService.getSubjectbyId(subjectId).subscribe({
-      next: response => this.subjectToEdit = response,
+      next: response => {
+        this.subjectToEdit = response;
+        
+        // Configura los campos para el modal genérico
+        this.editFields = [
+          {
+            name: 'name',
+            label: 'Nombre de la asignatura',
+            type: 'text',
+            placeholder: 'Nombre de la asignatura',
+            validators: [Validators.required],
+            errorMessage: 'El nombre es requerido'
+          },
+          {
+            name: 'idCourse',
+            label: 'Ciclo',
+            fieldType: 'select',
+            placeholder: 'Selecciona un ciclo',
+            validators: [Validators.required],
+            errorMessage: 'Debes seleccionar un ciclo',
+            optionsObservable: this.courseService.getAllCourses().pipe(
+              map(res => res.data)
+            ),
+            optionValueKey: 'id',
+            optionLabelKey: 'name'
+          }
+        ];
+      },
       error: err => console.error(err)
     });
   }
@@ -94,4 +129,5 @@ export class AsignaturaListItemComponent {
   }
 
     deleteSubjectFn = (id: number) => this.subjectService.deleteSubject(id);
+    updateSubjectFn = (data: any) => this.subjectService.updateSubject(data.id, data);
 }

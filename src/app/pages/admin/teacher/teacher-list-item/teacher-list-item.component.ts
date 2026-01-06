@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BotonEditComponent } from '../../boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetail.component';
+import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
+import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
+import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
 import { Teacher, TeacherByIdResponse, TeachersAllResponse, TeacherUpdateResponse } from '../../../../core/models/teacher';
 import { TeacherViewDetailComponent } from '../teacher-view-detail/teacher-view-detail.component';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 
 import { TeacherEditModalComponent } from "../teacher-edit-modal/teacher-edit-modal.component";
-import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
+import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
 
 @Component({
   selector: 'app-teacher-list-item',

@@ -1,4 +1,5 @@
 import { ValidatorFn } from "@angular/forms";
+import { Observable } from "rxjs";
 
 export interface EditFieldConfig {
   name: string;
@@ -8,4 +9,10 @@ export interface EditFieldConfig {
   validators?: ValidatorFn[];
   errorMessage?: string;
   maxlength?: number;
+
+  fieldType?: 'input' | 'select';  // Tipo de campo
+  options?: { value: any; label: string }[];  // Opciones del dropdown
+  optionsObservable?: Observable<any[]>;  // Para cargar opciones async
+  optionValueKey?: string;  // Ej: 'id'
+  optionLabelKey?: string;  // Ej: 'name'
 }

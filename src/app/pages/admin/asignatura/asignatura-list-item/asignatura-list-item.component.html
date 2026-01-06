@@ -16,11 +16,15 @@
     }
 
         @if(subjectToEdit){
-        <app-subject-edit-modal 
-            [subject]="subjectToEdit" 
-            (closeModal)="closeEditModal()" 
-            (subjectUpdated)="onSubjectUpdated($event)">
-        </app-subject-edit-modal>
+        <app-generic-edit-modal
+    entityType="asignatura"
+    [entityName]="subjectToEdit.name"
+    [entityData]="subjectToEdit"
+    [fields]="editFields"
+    [updateFunction]="updateSubjectFn"
+    (closeModal)="closeEditModal()"
+    (entityUpdated)="onSubjectUpdated($event)"
+  />
     }
 
      @if(subjectToDelete){

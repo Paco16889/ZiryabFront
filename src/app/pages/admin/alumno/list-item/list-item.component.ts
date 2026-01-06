@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BotonEditComponent } from '../../boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetail.component';
+import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
+import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
+import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
 import { Student } from '../../../../core/models/student';
 import { ViewDetailComponent } from '../view-detail/view-detail.component';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { StudentEditModalComponent } from "../student-edit-modal/student-edit-modal.component";
-import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
-import { GenericEditModalComponent } from "../../generic-edit-modal/generic-edit-modal.component";
+import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
+import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
 import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
 import { Validators } from '@angular/forms';
 
