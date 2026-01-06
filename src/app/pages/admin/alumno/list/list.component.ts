@@ -4,10 +4,11 @@ import { Student } from '../../../../core/models/student';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { StudentCreateFormComponent } from "../student-create-form/student-create-form.component";
 import { StudentEnrollmentComponent } from "../student-enrollment/student-enrollment.component";
+import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 
 @Component({
   selector: 'app-list',
-  imports: [ListItemComponent, StudentEnrollmentComponent],
+  imports: [ListItemComponent, StudentEnrollmentComponent, BotonCreateComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })

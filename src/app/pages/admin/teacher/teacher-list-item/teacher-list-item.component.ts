@@ -6,19 +6,22 @@ import { Teacher, TeacherByIdResponse, TeachersAllResponse, TeacherUpdateRespons
 import { TeacherViewDetailComponent } from '../teacher-view-detail/teacher-view-detail.component';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 
-import { TeacherEditModalComponent } from "../teacher-edit-modal/teacher-edit-modal.component";
+
 import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
+import { Validators } from '@angular/forms';
+import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
 
 @Component({
   selector: 'app-teacher-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, TeacherEditModalComponent, GenericDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent],
   templateUrl: './teacher-list-item.component.html',  
   styleUrl: './teacher-list-item.component.scss'
 })
 export class TeacherListItemComponent {
 
   @Input() teacher!: Teacher;
-  @Output() teacherUpdated = new EventEmitter<TeacherUpdateResponse>();
+  @Output() teacherUpdated = new EventEmitter<any>();
   @Output() teacherDeleted = new EventEmitter<number>();
 
   selectedTeacher: Teacher | null = null;
@@ -26,6 +29,52 @@ export class TeacherListItemComponent {
   teachers: TeachersAllResponse['data'] = [];
   teacherToEdit: TeacherByIdResponse['data'] | null = null;
   teacherToDelete: TeacherByIdResponse['data'] | null = null;
+
+   teacherFields: EditFieldConfig[] = [
+    { 
+      name: 'email', 
+      label: 'Email', 
+      type: 'email', 
+      validators: [Validators.required, Validators.email],
+      errorMessage: 'Email inválido o requerido'
+    },
+    { 
+      name: 'name', 
+      label: 'Nombre', 
+      type: 'text',
+      validators: [Validators.required],
+      errorMessage: 'El nombre es requerido'
+    },
+    { 
+      name: 'surname', 
+      label: 'Primer apellido', 
+      type: 'text',
+      validators: [Validators.required],
+      errorMessage: 'El primer apellido es requerido'
+    },
+    { 
+      name: 'ndSurname', 
+      label: 'Segundo apellido', 
+      type: 'text',
+      validators: [Validators.required],
+      errorMessage: 'El segundo apellido es requerido'
+    },
+    { 
+      name: 'dni', 
+      label: 'DNI', 
+      type: 'text',
+      maxlength: 9,
+      validators: [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)],
+      errorMessage: 'DNI inválido (formato: 12345678A)'
+    },
+    { 
+      name: 'birthDate', 
+      label: 'Fecha de nacimiento', 
+      type: 'date',
+      validators: [Validators.required],
+      errorMessage: 'La fecha de nacimiento es requerida'
+    }
+  ];
 
   constructor(private teacherService: TeachersServiceService){}
   
@@ -83,14 +132,18 @@ export class TeacherListItemComponent {
     this.teacherToEdit = null;
   }
 
-  onTeacherUpdated(updatedTeacher: TeacherUpdateResponse) {
-    const index = this.teachers.findIndex(t => t.id === updatedTeacher.data.id);
+  onTeacherUpdated(updatedTeacher: any) {
+     console.log('🔍 ESTRUCTURA COMPLETA:', updatedTeacher);
+  console.log('🔍 ¿Tiene .data?', updatedTeacher.data);
+  console.log('🔍 teacherToEdit ANTES:', this.teacherToEdit);
+    const index = this.teachers.findIndex(t => t.id === updatedTeacher.id);
+   
     if (index !== -1) {
-      this.teachers[index].name = updatedTeacher.data.name;
+      this.teachers[index].name = updatedTeacher.name;
     }
 
-    if (this.selectedTeacher?.id === updatedTeacher.data.id) {
-      this.selectedTeacher.name = updatedTeacher.data.name;
+    if (this.selectedTeacher?.id === updatedTeacher.id) {
+      this.selectedTeacher!.name = updatedTeacher.name;
     }
 
     this.closeEditModal();
@@ -98,4 +151,5 @@ export class TeacherListItemComponent {
   }
 
    deleteTeacherFn = (id: number) => this.teacherService.deleteTeacher(id);
+   updateTeacherFn = (data: any) => this.teacherService.updateTeacher(data);
 }

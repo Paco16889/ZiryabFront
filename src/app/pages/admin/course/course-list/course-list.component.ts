@@ -3,10 +3,11 @@ import { CourseListItemComponent } from '../course-list-item/course-list-item.co
 import { Course, CourseByIdResponse } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
+import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 
 @Component({
   selector: 'app-course-list',
-  imports: [CourseListItemComponent, CourseCreateFormComponent],
+  imports: [CourseListItemComponent, CourseCreateFormComponent, BotonCreateComponent],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })

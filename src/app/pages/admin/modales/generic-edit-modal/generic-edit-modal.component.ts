@@ -87,7 +87,7 @@ export class GenericEditModalComponent {
           this.isUpdating = false;
           
           setTimeout(() => {
-            this.entityUpdated.emit(response.data);
+            this.entityUpdated.emit(response.data || response);
           }, 2000);
         },
         error: (err) => {

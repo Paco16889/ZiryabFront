@@ -3,10 +3,11 @@ import { Teacher, TeacherUpdateResponse } from '../../../../core/models/teacher'
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 import { TeacherListItemComponent } from '../teacher-list-item/teacher-list-item.component';
 import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-create-form.component';
+import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 
 @Component({
   selector: 'app-teacher-list',
-  imports: [TeacherListItemComponent, TeacherCreateFormComponent],
+  imports: [TeacherListItemComponent, TeacherCreateFormComponent, BotonCreateComponent],
   templateUrl: './teacher-list.component.html',
   styleUrl: './teacher-list.component.scss'
 })

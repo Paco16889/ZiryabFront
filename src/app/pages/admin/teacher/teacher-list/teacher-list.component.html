@@ -3,11 +3,10 @@
 @if(!showCreateForm){
     <div class="flex justify-between items-center mb-4">
       <h1 class="text-2xl font-bold">Profesores</h1>
-      <button 
-        (click)="openCreateForm()"
-        class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-        + Nuevo Profesor
-      </button>
+      <app-boton-create 
+      label="Nuevo Profesor"
+      (clickAction)="openCreateForm()"> 
+      </app-boton-create>
     </div>
 
     @for (tea of teachers; track tea.id){

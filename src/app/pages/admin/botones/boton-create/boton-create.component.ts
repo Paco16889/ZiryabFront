@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 
@@ -9,11 +9,15 @@ import { Component } from '@angular/core';
   styleUrl: './boton-create.component.scss'
 })
 export class BotonCreateComponent {
+  
+  @Input() label: string = 'Crear';
 
-  constructor() {
+  // generic-create-button.component.ts
+@Output() clickAction = new EventEmitter<void>();
 
-  }
-  onClick(){
-    
-  }
+
+
+handleClick() {
+  this.clickAction.emit();
+}
 }

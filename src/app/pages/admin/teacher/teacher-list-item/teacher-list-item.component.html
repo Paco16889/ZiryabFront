@@ -18,11 +18,15 @@
 
 
   @if (teacherToEdit) {
-    <app-teacher-edit-modal
-      [teacher]="teacherToEdit"
-      (closeModal)="closeEditModal()"
-      (teacherUpdated)="onTeacherUpdated($event)">
-    </app-teacher-edit-modal>
+    <app-generic-edit-modal
+    entityType="el profesor"
+    [entityName]="teacherToEdit.name"
+    [entityData]="teacherToEdit"
+    [fields]="teacherFields"
+    [updateFunction]="updateTeacherFn"
+    (closeModal)="closeEditModal()"
+    (entityUpdated)="onTeacherUpdated($event)">
+  </app-generic-edit-modal>
   }
   
  @if(teacherToDelete){

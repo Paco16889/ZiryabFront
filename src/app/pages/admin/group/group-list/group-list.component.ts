@@ -3,10 +3,11 @@ import { GroupListItemComponent } from '../group-list-item/group-list-item.compo
 import { Group } from '../../../../core/models/group';
 import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
 import { GroupCreateFormComponent } from '../group-create-form/group-create-form.component';
+import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 
 @Component({
   selector: 'app-group-list',
-  imports: [GroupListItemComponent, GroupCreateFormComponent ],
+  imports: [GroupListItemComponent, GroupCreateFormComponent, BotonCreateComponent],
   templateUrl: './group-list.component.html',
   styleUrl: './group-list.component.scss'
 })

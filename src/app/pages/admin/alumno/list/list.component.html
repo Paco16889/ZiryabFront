@@ -2,11 +2,10 @@
   @if(!showCreateForm){
     <div class="flex justify-between items-center mb-4">
       <h1 class="text-2xl font-bold">Alumnos</h1>
-      <button 
-        (click)="openCreateForm()"
-        class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-        Matricular Alumno
-      </button>
+      <app-boton-create 
+      label="Matricular Alumno"
+      (clickAction)="openCreateForm()"> 
+      </app-boton-create>
     </div>
    @for (stu of students; track stu.id){
     

@@ -82,6 +82,7 @@ export interface StudentUpdateResponse {
     firebaseUID: string;
     createdAt: string;
   };
+  
 
   
 }
