@@ -7,10 +7,13 @@ import { ViewDetailComponent } from '../view-detail/view-detail.component';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { StudentEditModalComponent } from "../student-edit-modal/student-edit-modal.component";
 import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
+import { GenericEditModalComponent } from "../../generic-edit-modal/generic-edit-modal.component";
+import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, ViewDetailComponent, StudentEditModalComponent, GenericDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, ViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent],
   templateUrl: './list-item.component.html',
   styleUrl: './list-item.component.scss'
 })
@@ -25,7 +28,15 @@ export class ListItemComponent {
   studentToEdit: Student | null = null;
   //borrado
   studentToDelete: Student | null = null; 
-   
+  studentFields: EditFieldConfig[] = [
+  { name: 'email', label: 'Email', type: 'email', validators: [Validators.required, Validators.email] },
+  { name: 'name', label: 'Nombre', validators: [Validators.required] },
+  { name: 'surname', label: 'Primer apellido', validators: [Validators.required] },
+  { name: 'ndSurname', label: 'Segundo apellido', validators: [Validators.required] },
+  
+  { name: 'dni', label: 'DNI', maxlength: 9 }
+];
+  
   constructor(private studentService: StudentsServiceService){}
 
     toggleDetail(studentId: number) {
@@ -79,5 +90,5 @@ export class ListItemComponent {
   }
 
   deleteStudentFn = (id: number) => this.studentService.deleteStudent(id);
-  
+  updateStudentFn = (data: any) => this.studentService.updateStudent(data);
 }

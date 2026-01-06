@@ -18,11 +18,15 @@
     }
 
      @if(studentToEdit){
-        <app-student-edit-modal 
-            [student]="studentToEdit" 
-            (closeModal)="closeEditModal()" 
-            (studentUpdated)="onStudentUpdated($event)">
-        </app-student-edit-modal>
+        <app-generic-edit-modal
+  entityType="el estudiante"
+  [entityName]="studentToEdit.name"
+  [entityData]="studentToEdit"
+  [fields]="studentFields"
+  [updateFunction]="updateStudentFn"
+  (closeModal)="closeEditModal()"
+  (entityUpdated)="onStudentUpdated($event)">
+</app-generic-edit-modal>
     }
 
     @if(studentToDelete){

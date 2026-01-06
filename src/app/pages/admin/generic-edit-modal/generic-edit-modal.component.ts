@@ -40,7 +40,10 @@ export class GenericEditModalComponent {
       this.isUpdating = true;
       this.errorMessage = '';
 
-      const updatedData = { ...this.entityData, ...this.editForm.value };
+      const updatedData = { 
+      id: this.entityData.id,  // Mantienes el id
+      ...this.editForm.value   // Solo lo que está en el formulario
+    };
 
       this.updateFunction(updatedData).subscribe({
         next: (response) => {
@@ -48,7 +51,7 @@ export class GenericEditModalComponent {
           this.isUpdating = false;
           
           setTimeout(() => {
-            this.entityUpdated.emit(response);
+            this.entityUpdated.emit(response.data);
           }, 2000);
         },
         error: (err) => {

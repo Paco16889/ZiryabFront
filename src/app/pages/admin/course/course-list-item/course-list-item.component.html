@@ -15,12 +15,16 @@
     
 }
 @if(courseToEdit){
-    <app-course-edit-modal 
-        [course]="courseToEdit" 
-        (closeModal)="closeEditModal()" 
-        (courseUpdated)="onCourseUpdated($event)">
-    </app-course-edit-modal>
-}
+    <app-generic-edit-modal
+            entityType="el ciclo"
+            [entityName]="courseToEdit.name"
+            [entityData]="courseToEdit"
+            [fields]="courseFields"
+            [updateFunction]="updateCourseFn"
+            (closeModal)="closeEditModal()"
+            (entityUpdated)="onCourseUpdated($event)">
+        </app-generic-edit-modal>
+    }
 
 @if(courseToDelete){
         <app-generic-delete-modal

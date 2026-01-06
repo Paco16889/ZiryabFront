@@ -51,14 +51,17 @@ export class CourseServiceService {
   return this.http.post(`${this.apiUrl}`, data);
 }
   // services/course.service.ts (añade este método)
-  updateCourse(id: number, data: CourseUpdateRequest): Observable<CourseUpdateResponse> {
-    return this.http.patch<CourseUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
-      catchError((error) => {
-        console.error('Error updating course:', error);
-        throw error;
-      })
-    );
-  }
+  updateCourse(data: CourseUpdateRequest): Observable<CourseUpdateResponse> {
+     console.log('ID:', data.id);
+  console.log('URL completa:', `${this.apiUrl}/${data.id}`);
+  console.log('Data a enviar:', data);
+  return this.http.patch<CourseUpdateResponse>(`${this.apiUrl}/${data.id}`, data).pipe(
+    catchError((error) => {
+      console.error('Error updating course:', error);
+      throw error;
+    })
+  );
+}
 
   deleteCourse(id: number): Observable<CourseDeleteResponse> {
     return this.http.delete<CourseDeleteResponse>(`${this.apiUrl}/${id}`).pipe(

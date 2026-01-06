@@ -6,7 +6,7 @@ import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetai
 import { GroupViewDetailComponent } from '../group-view-detail/group-view-detail.component';
 import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
 
-import { GroupEditModalComponent } from "../group-edit-modal/group-edit-modal.component";
+
 import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
 import { GenericEditModalComponent } from "../../generic-edit-modal/generic-edit-modal.component";
 import { EditFieldConfig } from '../../../../core/models/edit-modal-config';

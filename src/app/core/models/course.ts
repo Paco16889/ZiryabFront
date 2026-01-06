@@ -38,6 +38,7 @@ export interface CoursesAllResponse {
 
 // models/course.model.ts (añade estas)
 export interface CourseUpdateRequest {
+   id: number;
   name: string;
 }
 

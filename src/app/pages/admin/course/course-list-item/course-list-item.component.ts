@@ -5,13 +5,16 @@ import { BotonViewdetailComponent } from '../../boton-viewdetail/boton-viewdetai
 import { Course, CourseByIdResponse, CoursesAllResponse } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { CourseViewDetailComponent } from '../course-view-detail/course-view-detail.component';
-import { CourseEditModalComponent } from '../course-edit-modal/course-edit-modal.component';
+
 
 import { GenericDeleteModalComponent } from "../../generic-delete-modal/generic-delete-modal.component";
+import { GenericEditModalComponent } from "../../generic-edit-modal/generic-edit-modal.component";
+import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-course-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, CourseViewDetailComponent, CourseEditModalComponent, GenericDeleteModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, CourseViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent],
   templateUrl: './course-list-item.component.html',
   styleUrl: './course-list-item.component.scss'
 })
@@ -26,6 +29,17 @@ export class CourseListItemComponent {
     selectedCourseResponse: CourseByIdResponse['data'] | null = null;
     courseToEdit: CourseByIdResponse['data'] | null = null;
     courseToDelete: CourseByIdResponse['data'] | null = null;
+
+    courseFields: EditFieldConfig[] = [
+    { 
+      name: 'name', 
+      label: 'Nombre del grupo', 
+      type: 'text',
+      placeholder: 'Ej: Grupo A',
+      validators: [Validators.required],
+      errorMessage: 'El nombre es requerido'
+    }
+  ];
       
      constructor(private courseService: CourseServiceService){}
 
@@ -96,7 +110,7 @@ export class CourseListItemComponent {
   }
 
     deleteCourseFn = (id: number) => this.courseService.deleteCourse(id);
-  
+    updateCourseFn = (data: any) => this.courseService.updateCourse(data);
 }
 
 
