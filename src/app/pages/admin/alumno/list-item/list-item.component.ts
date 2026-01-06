@@ -5,7 +5,7 @@ import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-v
 import { Student } from '../../../../core/models/student';
 import { ViewDetailComponent } from '../view-detail/view-detail.component';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
-import { StudentEditModalComponent } from "../student-edit-modal/student-edit-modal.component";
+
 import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
 import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
 import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
@@ -29,12 +29,49 @@ export class ListItemComponent {
   //borrado
   studentToDelete: Student | null = null; 
   studentFields: EditFieldConfig[] = [
-  { name: 'email', label: 'Email', type: 'email', validators: [Validators.required, Validators.email] },
-  { name: 'name', label: 'Nombre', validators: [Validators.required] },
-  { name: 'surname', label: 'Primer apellido', validators: [Validators.required] },
-  { name: 'ndSurname', label: 'Segundo apellido', validators: [Validators.required] },
-  
-  { name: 'dni', label: 'DNI', maxlength: 9 }
+  { 
+    name: 'email', 
+    label: 'Email', 
+    type: 'email', 
+    validators: [Validators.required, Validators.email],
+    errorMessage: 'Email inválido o requerido'
+  },
+  { 
+    name: 'name', 
+    label: 'Nombre', 
+    type: 'text',
+    validators: [Validators.required],
+    errorMessage: 'El nombre es requerido'
+  },
+  { 
+    name: 'surname', 
+    label: 'Primer apellido', 
+    type: 'text',
+    validators: [Validators.required],
+    errorMessage: 'El primer apellido es requerido'
+  },
+  { 
+    name: 'ndSurname', 
+    label: 'Segundo apellido', 
+    type: 'text',
+    validators: [Validators.required],
+    errorMessage: 'El segundo apellido es requerido'
+  },
+  { 
+    name: 'dni', 
+    label: 'DNI', 
+    type: 'text',
+    maxlength: 9,
+    validators: [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)],
+    errorMessage: 'DNI inválido (formato: 12345678A)'
+  },
+  { 
+    name: 'birthDate', 
+    label: 'Fecha de nacimiento', 
+    type: 'date',  // 🆕 Esto ya muestra el calendario en el navegador
+    validators: [Validators.required],
+    errorMessage: 'La fecha de nacimiento es requerida'
+  }
 ];
   
   constructor(private studentService: StudentsServiceService){}
@@ -54,13 +91,22 @@ export class ListItemComponent {
     }
   } 
 
-    toggleEdit(studentId: number) {
-    this.studentService.getStudentbyId(studentId).subscribe({
-      next: response => this.studentToEdit = response,
-      error: err => console.error(err)
-    });
-  }
+  private formatDateForInput(isoDate: string): string {
+  if (!isoDate) return '';
+  return new Date(isoDate).toISOString().split('T')[0];
+}
 
+toggleEdit(studentId: number) {
+  this.studentService.getStudentbyId(studentId).subscribe({
+    next: response => {
+      this.studentToEdit = {
+        ...response,
+        birthDate: this.formatDateForInput(response.birthDate)
+      };
+    },
+    error: err => console.error(err)
+  });
+}
   closeEditModal() {
     this.studentToEdit = null;
   }
