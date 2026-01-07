@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DesplegableAdminComponent } from '../desplegable-admin/desplegable-admin.component';
 import { ToggleService } from '../../../core/services/toggle.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,11 +11,14 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class AdminMenuComponent {
   openedMenu: string | null = null;
+
+  @Output() optionClicked = new EventEmitter<void>();
   constructor(private toggle: ToggleService){}
 
   onClick(str: string){
     this.toggle.toggle(str);
     console.log(`Has pinchado en ${str}`);
+    this.optionClicked.emit();
   }
 
 }
