@@ -16,6 +16,7 @@ import { StudentModeSelectorComponent } from "../student-mode-selector/student-m
 export class StudentEnrollmentComponent implements OnChanges{
       @Input() students: Student[] = [];
        @Output() cancelCreate = new EventEmitter<void>();
+       @Output() studentCreated = new EventEmitter<void>();
 
 
        constructor(private selectedStudentService: SelectedStudentServiceService) {}
@@ -54,5 +55,11 @@ export class StudentEnrollmentComponent implements OnChanges{
 onStudentCreated(student: Student){
   this.setMode('set-registration');
 }
+onRegistrationFinished() {
+  // 1️⃣ avisamos al ListComponent
+  this.studentCreated.emit();
 
+
+ 
+}
 }

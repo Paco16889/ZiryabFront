@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +23,8 @@ export class SetRegistrationComponent {
   selectedSubjects: Subject[] | null = [];
   selectedStudent: Student | null = null;
    @Input() students: Student[] = []; 
+
+   @Output() closeForm = new EventEmitter<void>();
    
     constructor(public courseService: CourseServiceService,
       public subjectService: SubjectServiceService,
@@ -90,6 +92,8 @@ onToggleSubject(subject: Subject, event: Event) {
     this.studentRegService.preparaDatos();
     console.log(`Aqui tenemos el id del estudiante selecionado: ${this.selectedStudent?.id}, su Dni: ${this.selectedStudent?.dni}, y su nombre: ${this.selectedStudent?.name}`);
     console.log('aqui tenemos las asignaturas selecionadas en set-register.comonent', this.selectedSubjects);
+
+      this.closeForm.emit();
   
   }
   

@@ -36,7 +36,7 @@ export class StudentRegistrationService {
       idStudent: student.id,
       idGroup: idGroup,
       idSubject: subject.id,
-      schoolYear: '25/26'
+      schoolYear: '26/27'
     }));
 
     const request: StudentRegistrationRequest = {
@@ -54,7 +54,7 @@ export class StudentRegistrationService {
     
     console.log('hola soy subjectsForRegister ', subjectsForRegister, this.idStudent);
 
-     this.registerStudent(1)!
+    this.registerStudent(1)!
     .subscribe({
       next: (res) => {
         console.log('✅ Registro enviado correctamente:', res);
