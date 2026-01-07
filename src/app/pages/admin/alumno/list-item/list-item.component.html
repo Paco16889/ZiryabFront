@@ -1,14 +1,53 @@
-<div class="flex m-2 bg-purple-300 rounded justify-between items-center px-1">
-    <p>{{student.surname}}, {{student.ndSurname}}</p>
-    <p>{{student.name}}</p>
-    <p>{{student.email}}</p>
+<div
+  class="
+    flex flex-col
+    md:flex-row
+    md:justify-between
+    md:items-center
 
-    <div class="flex gap-1 py-1">
-        <app-boton-edit [id]="student.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
-    <app-boton-delete [id]="student.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
-    <app-boton-viewdetail [id]="student.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
-    </div>
-    
+    m-2 bg-purple-300 rounded
+    px-2 py-2
+    gap-2
+  "
+>
+  <!-- Info del alumno -->
+  <div class="flex flex-col md:flex-row md:gap-4">
+    <p class="font-medium">
+      {{ student.surname }}, {{ student.ndSurname }}
+    </p>
+    <p>{{ student.name }}</p>
+    <p class="text-sm text-gray-700">
+      {{ student.email }}
+    </p>
+  </div>
+
+  <!-- Botones -->
+  <div
+  class="
+    grid grid-cols-3 gap-2
+    w-full
+    md:flex md:w-auto md:gap-1
+  "
+>
+  <app-boton-edit
+    class="w-full"
+    [id]="student.id"
+    (showEdit)="toggleEdit($event)"
+  ></app-boton-edit>
+
+  <app-boton-delete
+    class="w-full"
+    [id]="student.id"
+    (showDelete)="toggleDelete($event)"
+  ></app-boton-delete>
+
+  <app-boton-viewdetail
+    class="w-full"
+    [id]="student.id"
+    (showDetail)="toggleDetail($event)"
+  ></app-boton-viewdetail>
+</div>
+
 </div>
 
 <div>
