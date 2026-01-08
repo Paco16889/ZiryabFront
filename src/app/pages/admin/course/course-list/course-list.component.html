@@ -3,9 +3,9 @@
 <div class="p-4">
   @if(!showCreateForm){
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">Ciclos</h1>
+      <h1 class="text-2xl font-bold">{{'entities.course.title' | translate }}</h1>
       <app-boton-create 
-      label="Nuevo Ciclo"
+      label="{{'lists.courses.createButton' | translate}}"
       (clickAction)="openCreateForm()"> 
       </app-boton-create>
     </div>

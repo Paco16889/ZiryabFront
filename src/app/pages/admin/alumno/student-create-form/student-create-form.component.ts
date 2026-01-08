@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { PasswordServiceService } from '../../../../core/services/password-service.service';
-import { BotonConfirmarStudentComponent } from "../boton-confirmar-student/boton-confirmar-student.component";
+import { BotonConfirmarStudentComponent } from "../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { SelectedStudentServiceService } from '../../../../core/services/admin/selected-student-service.service';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class StudentCreateFormComponent {
 
   @Output() studentCreated = new EventEmitter<Student>();
   @Output() cancelCreate = new EventEmitter<void>();
+  contrasenatruquillo = '';
 
   
   createForm: FormGroup;
@@ -47,6 +48,7 @@ export class StudentCreateFormComponent {
   const password = this.passwordGen.generateRandomPassword();
 
   console.log(password);
+  this.contrasenatruquillo = password;
 
   this.isCreating = true;
 
@@ -103,7 +105,8 @@ export class StudentCreateFormComponent {
   } 
    this.createStudent().subscribe({
     next: (createdStudent) => {
-      console.log('✅ Estudiante creado:', createdStudent);
+      console.log('✅ Estudiante creado: ', createdStudent);
+      console.log('Contraseña: ' , this.contrasenatruquillo);
 
       // 3️⃣ guardar en signal global
       this.selectedStudentService.setSelectedStudent(createdStudent);

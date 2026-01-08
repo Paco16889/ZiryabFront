@@ -36,7 +36,7 @@ export class StudentRegistrationService {
       idStudent: student.id,
       idGroup: idGroup,
       idSubject: subject.id,
-      schoolYear: '26/27'
+      schoolYear: '27/28'
     }));
 
     const request: StudentRegistrationRequest = {

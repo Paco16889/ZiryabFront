@@ -137,6 +137,18 @@
     "subjects": {
       "title": "Asignaturas",
       "createButton": "Nueva Asignatura"
+    },
+    "teachers": {
+      "title": "Profesores",
+      "createButton": "Registrar Profesor"
+    },
+    "courses": {
+      "title": "Ciclos",
+      "createButton": "Nuevo Ciclo"
+    },
+    "groups": {
+      "title": "Grupos",
+      "createButton": "Nuevo Grupo"
     }
   },
   "LANG": {
@@ -150,7 +162,7 @@
     "subtitle": "Innovación y simplicidad para la gestión educativa.",
     "section1": {
       "title": "Tu centro, conectado.",
-      "description": "Olvídate del papel y la burocracia. Ziryab centraliza <strong>clases, faltas y comunicaciones</strong> en una plataforma intuitiva diseñada para que profesores y alumnos fluyan juntos.",
+      "description": "Olvídate del papel y la burocracia. Ziryab centraliza clases, faltas y comunicaciones en una plataforma intuitiva diseñada para que profesores y alumnos fluyan juntos.",
       "stats": {
         "digital": "Digital",
         "access": "Acceso",

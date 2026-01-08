@@ -2,13 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { Student } from '../../../../core/models/student';
 import { ListItemComponent } from '../list-item/list-item.component';
-import { StudentCreateFormComponent } from "../student-create-form/student-create-form.component";
+
 import { StudentEnrollmentComponent } from "../student-enrollment/student-enrollment.component";
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { CreateFormStateServiceService } from '../../../../core/services/UI/create-form-state-service.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list',
-  imports: [ListItemComponent, StudentEnrollmentComponent, BotonCreateComponent],
+  imports: [ListItemComponent, StudentEnrollmentComponent, BotonCreateComponent, TranslateModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -17,7 +19,8 @@ export class ListComponent implements OnInit {
   
 
    showCreateForm = false;
-  constructor(private studentService: StudentsServiceService){}
+   readonly UI_KEY = 'students';
+  constructor(private studentService: StudentsServiceService, public createFormState: CreateFormStateServiceService){}
 
   ngOnInit():void {
     this.loadStudents();
@@ -33,15 +36,14 @@ export class ListComponent implements OnInit {
     });
   }
 
-    openCreateForm() {
-        console.log('🚀 Abriendo formulario con students:', this.students);
-  console.log('📊 Cantidad:', this.students.length);
-    this.showCreateForm = true;
-  }
+    
+openCreateForm() {
+  this.createFormState.open(this.UI_KEY);
+}
 
-  closeCreateForm() {
-    this.showCreateForm = false;
-  }
+closeCreateForm() {
+  this.createFormState.close(this.UI_KEY);
+}
 
   onStudentCreated() {
     this.closeCreateForm();

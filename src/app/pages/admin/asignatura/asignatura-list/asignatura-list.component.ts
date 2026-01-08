@@ -4,10 +4,11 @@ import { Subject } from '../../../../core/models/subject';
 import { AsignaturaListItemComponent } from '../asignatura-list-item/asignatura-list-item.component';
 import { SubjectCreateFormComponent } from '../subject-create-form/subject-create-form.component';
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-asignatura-list',
-  imports: [AsignaturaListItemComponent, SubjectCreateFormComponent, BotonCreateComponent],
+  imports: [AsignaturaListItemComponent, SubjectCreateFormComponent, BotonCreateComponent, TranslateModule],
   templateUrl: './asignatura-list.component.html',
   styleUrl: './asignatura-list.component.scss'
 })

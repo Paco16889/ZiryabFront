@@ -4,10 +4,11 @@ import { TeachersServiceService } from '../../../../core/services/admin/teachers
 import { TeacherListItemComponent } from '../teacher-list-item/teacher-list-item.component';
 import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-create-form.component';
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-teacher-list',
-  imports: [TeacherListItemComponent, TeacherCreateFormComponent, BotonCreateComponent],
+  imports: [TeacherListItemComponent, TeacherCreateFormComponent, BotonCreateComponent, TranslateModule],
   templateUrl: './teacher-list.component.html',
   styleUrl: './teacher-list.component.scss'
 })

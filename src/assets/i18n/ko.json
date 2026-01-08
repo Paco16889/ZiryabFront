@@ -136,7 +136,19 @@
     "subjects": {
       "title": "과목",
       "createButton": "새 과목"
-    }
+    },
+    "teachers": {
+    "title": "교사",
+    "createButton": "교사 등록"
+  },
+  "courses": {
+    "title": "과정",
+    "createButton": "새 과정"
+  },
+  "groups": {
+    "title": "그룹",
+    "createButton": "새 그룹"
+  }
   },
 
   "LANG": {
@@ -152,7 +164,7 @@
     "subtitle": "교육 관리를 위한 혁신과 단순함.",
     "section1": {
       "title": "연결된 당신의 센터.",
-      "description": "종이와 관료주의를 잊으세요. Ziryab은 <strong>수업, 결석 및 커뮤니케이션</strong>을 교사와 학생이 함께 흐를 수 있도록 설계된 직관적인 플랫폼에 중앙 집중화합니다.",
+      "description": "종이와 관료주의를 잊으세요. Ziryab은 수업, 결석 및 커뮤니케이션을 교사와 학생이 함께 흐를 수 있도록 설계된 직관적인 플랫폼에 중앙 집중화합니다.",
       "stats": {
         "digital": "디지털",
         "access": "액세스",

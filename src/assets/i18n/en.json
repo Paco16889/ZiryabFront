@@ -136,7 +136,19 @@
     "subjects": {
       "title": "Subjects",
       "createButton": "New Subject"
-    }
+    },
+    "teachers": {
+    "title": "Teachers",
+    "createButton": "Register Teacher"
+  },
+  "courses": {
+    "title": "Cycles",
+    "createButton": "New Cycle"
+  },
+  "groups": {
+    "title": "Groups",
+    "createButton": "New Group"
+  }
   },
 
   "LANG": {
@@ -152,7 +164,7 @@
     "subtitle": "Innovation and simplicity for educational management.",
     "section1": {
       "title": "Your center, connected.",
-      "description": "Forget about paper and bureaucracy. Ziryab centralizes <strong>classes, absences and communications</strong> in an intuitive platform designed for teachers and students to flow together.",
+      "description": "Forget about paper and bureaucracy. Ziryab centralizes classes, absences and communications in an intuitive platform designed for teachers and students to flow together.",
       "stats": {
         "digital": "Digital",
         "access": "Access",

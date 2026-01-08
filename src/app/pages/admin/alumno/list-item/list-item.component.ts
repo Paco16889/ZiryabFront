@@ -98,6 +98,7 @@ export class ListItemComponent {
         validators: [Validators.required],
         errorMessage: 'La fecha de nacimiento es requerida'
       }
+      
     ],
     entityType: 'el estudiante',
     entityNameFormat: (student: Student) => `${student.name} ${student.surname}`,

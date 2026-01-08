@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 import { Student, StudentByIdResponse } from '../../../../core/models/student';
-import { BotonConfirmarStudentComponent } from "../boton-confirmar-student/boton-confirmar-student.component";
+import { BotonConfirmarStudentComponent } from "../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { SelectedStudentServiceService } from '../../../../core/services/admin/selected-student-service.service';
 
 @Component({

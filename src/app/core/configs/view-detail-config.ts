@@ -28,3 +28,4 @@ export interface ViewDetailConfig<T> {
     itemFormat?: (item: any) => string; // Formato personalizado
   }[];
 }
+//MEY8HyQiP5 contra seña para email estudiante5@ziryab.es

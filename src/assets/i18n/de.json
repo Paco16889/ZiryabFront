@@ -136,7 +136,19 @@
     "subjects": {
       "title": "Fächer",
       "createButton": "Neues Fach"
-    }
+    },
+    "teachers": {
+    "title": "Lehrer",
+    "createButton": "Lehrer registrieren"
+  },
+  "courses": {
+    "title": "Zyklen",
+    "createButton": "Neuer Bildungsgang"
+  },
+  "groups": {
+    "title": "Gruppen",
+    "createButton": "Neue Gruppe"
+  }
   },
 
   "LANG": {
@@ -152,7 +164,7 @@
     "subtitle": "Innovation und Einfachheit für das Bildungsmanagement.",
     "section1": {
       "title": "Ihre Schule, vernetzt.",
-      "description": "Vergessen Sie Papier und Bürokratie. Ziryab zentralisiert <strong>Unterricht, Fehlzeiten und Kommunikation</strong> auf einer intuitiven Plattform, die Lehrer und Schüler verbindet.",
+      "description": "Vergessen Sie Papier und Bürokratie. Ziryab zentralisiert Unterricht, Fehlzeiten und Kommunikation auf einer intuitiven Plattform, die Lehrer und Schüler verbindet.",
       "stats": {
         "digital": "Digital",
         "access": "Zugang",

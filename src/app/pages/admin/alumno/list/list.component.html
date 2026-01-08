@@ -1,9 +1,9 @@
 <div class="p-4">
-  @if(!showCreateForm){
+  @if(!createFormState.isOpen(this.UI_KEY)){
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">Alumnos</h1>
+      <h1 class="text-2xl font-bold">{{'entities.student.title' | translate }}</h1>
       <app-boton-create 
-      label="Matricular Alumno"
+      label= "{{'lists.students.createButton' | translate}}"
       (clickAction)="openCreateForm()"> 
       </app-boton-create>
     </div>

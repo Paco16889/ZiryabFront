@@ -4,10 +4,11 @@ import { Course, CourseByIdResponse } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-course-list',
-  imports: [CourseListItemComponent, CourseCreateFormComponent, BotonCreateComponent],
+  imports: [CourseListItemComponent, CourseCreateFormComponent, BotonCreateComponent, TranslateModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })

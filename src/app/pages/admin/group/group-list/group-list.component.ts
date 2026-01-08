@@ -4,10 +4,11 @@ import { Group } from '../../../../core/models/group';
 import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
 import { GroupCreateFormComponent } from '../group-create-form/group-create-form.component';
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-group-list',
-  imports: [GroupListItemComponent, GroupCreateFormComponent, BotonCreateComponent],
+  imports: [GroupListItemComponent, GroupCreateFormComponent, BotonCreateComponent, TranslateModule],
   templateUrl: './group-list.component.html',
   styleUrl: './group-list.component.scss'
 })
