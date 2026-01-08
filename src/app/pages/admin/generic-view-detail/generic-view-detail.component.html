@@ -1,0 +1,39 @@
+<div [class]="containerClass">
+  <!-- Campos normales -->
+  @for (field of config.fields; track field.key) {
+    @if (field.type === 'title') {
+      <h2 [class]="field.className || titleClass">
+        {{ getFormattedValue(item, field) }}
+      </h2>
+    } @else {
+      <p [class]="field.className || fieldClass">
+        @if (field.label) {
+          <span class="font-medium">{{ field.label }} </span>
+        }
+        {{ getFormattedValue(item, field) }}
+      </p>
+    }
+  }
+
+  <!-- Listas anidadas (ej: asignaturas de un curso) -->
+  @if (config.nestedLists) {
+    @for (list of config.nestedLists; track list.key) {
+      <div class="mt-4">
+        @if (list.title) {
+          <h3 class="font-semibold mb-2">{{ list.title }}</h3>
+        }
+        <ul class="list-disc list-inside">
+          @for (nestedItem of getNestedArray(item, list.key); track nestedItem) {
+            <li>
+              @if (list.itemFormat) {
+                {{ list.itemFormat(nestedItem) }}
+              } @else {
+                {{ getFieldValue(nestedItem, list.itemKey) }}
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  }
+</div>

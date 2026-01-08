@@ -1,22 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Group, GroupByIdResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../../../core/models/group';
-import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
-import { GroupViewDetailComponent } from '../group-view-detail/group-view-detail.component';
+import { Group } from '../../../../core/models/group';
+
 import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
 
 
-import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
-import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
-import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+
 import { Validators } from '@angular/forms';
-import { ListItemConfig } from '../../../../core/models/list-item-config';
+import { ListItemConfig } from '../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
+import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
+import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
 
 @Component({
   selector: 'app-group-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent, GenericListItemComponent],
+  imports: [GenericListItemComponent, GenericViewDetailComponent],
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })
@@ -58,6 +55,18 @@ export class GroupListItemComponent {
     updateFn: (data: any) => this.groupService.updateGroup(data),
     deleteFn: (id: number) => this.groupService.deleteGroup(id)
   };
+
+   groupDetailConfig: ViewDetailConfig<Group> = {
+      fields: [
+        {
+          key: 'name',
+          type: 'text',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold',
+          label:'Nombre del Grupo: '
+        }
+    ]
+    };
 
   constructor(private groupService: GroupServiceService) {}
 

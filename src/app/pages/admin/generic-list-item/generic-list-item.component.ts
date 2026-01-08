@@ -4,7 +4,7 @@ import { GenericDeleteModalComponent } from "../modales/generic-delete-modal/gen
 import { BotonEditComponent } from "../botones/boton-edit/boton-edit.component";
 import { BotonDeleteComponent } from "../botones/boton-delete/boton-delete.component";
 import { BotonViewdetailComponent } from "../botones/boton-viewdetail/boton-viewdetail.component";
-import { ListItemConfig, ListItemFieldConfig } from '../../../core/models/list-item-config';
+import { ListItemConfig, ListItemFieldConfig } from '../../../core/configs/list-item-config';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({

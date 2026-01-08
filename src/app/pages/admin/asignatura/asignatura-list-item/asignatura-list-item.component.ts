@@ -1,25 +1,24 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject, SubjectByIdResponse, SubjectsAllResponse } from '../../../../core/models/subject';
-import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
+
 import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
 
-import { AsignaturaViewDetailComponent } from '../asignatura-view-detail/asignatura-view-detail.component';
 
 
-import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
-import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+
+
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
-import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
+
 import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ListItemConfig } from '../../../../core/models/list-item-config';
+import { ListItemConfig } from '../../../../core/configs/list-item-config';
+import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
+import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
 
 @Component({
   selector: 'app-asignatura-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, AsignaturaViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent, GenericListItemComponent],
+  imports: [GenericListItemComponent, GenericViewDetailComponent],
   templateUrl: './asignatura-list-item.component.html',
   styleUrl: './asignatura-list-item.component.scss'
 })
@@ -81,6 +80,18 @@ export class AsignaturaListItemComponent {
     };
   }
 
+  subjectDetailConfig: ViewDetailConfig<Subject> = {
+        fields: [
+          {
+            key: 'name',
+            type: 'text',
+            format: (value) => `${value}`,
+            className: 'text-xl font-bold',
+            label: 'Nombre de la Asignatura:'
+          }
+      ]
+      };
+      
   onSubjectUpdated(updatedSubject: any) {
     this.subjectUpdated.emit(updatedSubject);
   }

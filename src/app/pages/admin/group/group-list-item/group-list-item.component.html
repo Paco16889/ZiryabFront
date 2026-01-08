@@ -8,5 +8,8 @@
 
 <!-- Template para el detalle -->
 <ng-template #detailTemplate let-group>
-  <app-group-view-detail [group]="group"></app-group-view-detail>
+  <app-generic-view-detail 
+    [item]="group" 
+    [config]="groupDetailConfig">
+  </app-generic-view-detail>
 </ng-template>

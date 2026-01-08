@@ -8,5 +8,8 @@
 
 <!-- Template para el detalle -->
 <ng-template #detailTemplate let-subject>
-  <app-asignatura-view-detail [subject]="subject"></app-asignatura-view-detail>
+   <app-generic-view-detail 
+    [item]="subject" 
+    [config]="subjectDetailConfig">
+  </app-generic-view-detail>
 </ng-template>

@@ -8,5 +8,8 @@
 
 <!-- Template para el detalle -->
 <ng-template #detailTemplate let-course>
-  <app-course-view-detail [course]="course"></app-course-view-detail>
+  <app-generic-view-detail 
+    [item]="course" 
+    [config]="courseDetailConfig">
+  </app-generic-view-detail>
 </ng-template>

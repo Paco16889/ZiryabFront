@@ -1,21 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
+
 import { Student } from '../../../../core/models/student';
-import { ViewDetailComponent } from '../view-detail/view-detail.component';
+
 import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
 
-import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
-import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
-import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+
 import { Validators } from '@angular/forms';
 import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ListItemConfig } from '../../../../core/models/list-item-config';
+import { ListItemConfig } from '../../../../core/configs/list-item-config';
+import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
+import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
 
 @Component({
   selector: 'app-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, ViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent, GenericListItemComponent],
+  imports: [ GenericListItemComponent, GenericViewDetailComponent],
   templateUrl: './list-item.component.html',
   styleUrl: './list-item.component.scss'
 })
@@ -106,6 +104,49 @@ export class ListItemComponent {
     getByIdFn: (id: number) => this.studentService.getStudentbyId(id),
     updateFn: (data: any) => this.studentService.updateStudent(data),
     deleteFn: (id: number) => this.studentService.deleteStudent(id)
+  };
+
+   studentDetailConfig: ViewDetailConfig<Student> = {
+    fields: [
+      {
+        key: 'surname',
+        type: 'title',
+        format: (value) => `${value}`,
+        className: 'text-xl font-bold'
+      },
+      {
+        key: 'ndSurname',
+        type: 'title',
+        format: (value) => ` ${value},`,
+        className: 'text-xl font-bold'
+      },
+      {
+        key: 'name',
+        type: 'title',
+        format: (value) => ` ${value}`,
+        className: 'text-xl font-bold'
+      },
+      {
+        key: 'dni',
+        label: 'DNI:',
+        type: 'text'
+      },
+      {
+        key: 'email',
+        label: 'Email:',
+        type: 'text'
+      },
+      {
+        key: 'birthDate',
+        label: 'Fecha nacimiento:',
+        type: 'text'
+      },
+      {
+        key: 'role',
+        label: 'Role:',
+        type: 'text'
+      }
+    ]
   };
 
   constructor(private studentService: StudentsServiceService) {}

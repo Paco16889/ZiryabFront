@@ -1,22 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
-import { Teacher, TeacherByIdResponse, TeachersAllResponse, TeacherUpdateResponse } from '../../../../core/models/teacher';
-import { TeacherViewDetailComponent } from '../teacher-view-detail/teacher-view-detail.component';
+
+import { Teacher } from '../../../../core/models/teacher';
+
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 
 
-import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
+
 import { Validators } from '@angular/forms';
-import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
-import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
+
 import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ListItemConfig } from '../../../../core/models/list-item-config';
+import { ListItemConfig } from '../../../../core/configs/list-item-config';
+import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
+import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
 
 @Component({
   selector: 'app-teacher-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, TeacherViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent, GenericListItemComponent],
+  imports: [ GenericListItemComponent, GenericViewDetailComponent],
   templateUrl: './teacher-list-item.component.html',  
   styleUrl: './teacher-list-item.component.scss'
 })
@@ -110,6 +109,49 @@ export class TeacherListItemComponent {
     deleteFn: (id: number) => this.teacherService.deleteTeacher(id)
   };
 
+  teacherDetailConfig: ViewDetailConfig<Teacher> = {
+      fields: [
+        {
+          key: 'surname',
+          type: 'title',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold'
+        },
+        {
+          key: 'ndSurname',
+          type: 'title',
+          format: (value) => ` ${value},`,
+          className: 'text-xl font-bold'
+        },
+        {
+          key: 'name',
+          type: 'title',
+          format: (value) => ` ${value}`,
+          className: 'text-xl font-bold'
+        },
+        {
+          key: 'dni',
+          label: 'DNI:',
+          type: 'text'
+        },
+        {
+          key: 'email',
+          label: 'Email:',
+          type: 'text'
+        },
+        {
+          key: 'birthDate',
+          label: 'Fecha nacimiento:',
+          type: 'text'
+        },
+        {
+          key: 'role',
+          label: 'Role:',
+          type: 'text'
+        }
+      ]
+    };
+    
   constructor(private teacherService: TeachersServiceService) {}
 
   onTeacherUpdated(updatedTeacher: any) {

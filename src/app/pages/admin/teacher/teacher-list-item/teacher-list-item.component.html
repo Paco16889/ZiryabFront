@@ -8,5 +8,9 @@
 
 <!-- Template para el detalle -->
 <ng-template #detailTemplate let-teacher>
-  <app-teacher-view-detail [teacher]="teacher"></app-teacher-view-detail>
+  <app-generic-view-detail
+  [item]="teacher"
+  [config]="teacherDetailConfig">
+
+  </app-generic-view-detail>
 </ng-template>

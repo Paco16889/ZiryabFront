@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
 import { Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 

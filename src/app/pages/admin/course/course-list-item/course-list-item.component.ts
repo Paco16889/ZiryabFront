@@ -1,22 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BotonEditComponent } from '../../botones/boton-edit/boton-edit.component';
-import { BotonDeleteComponent } from '../../botones/boton-delete/boton-delete.component';
-import { BotonViewdetailComponent } from '../../botones/boton-viewdetail/boton-viewdetail.component';
-import { Course, CourseByIdResponse, CoursesAllResponse } from '../../../../core/models/course';
+
+import { Course } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
-import { CourseViewDetailComponent } from '../course-view-detail/course-view-detail.component';
 
 
-import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/generic-delete-modal.component";
-import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
-import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
+
+
 import { Validators } from '@angular/forms';
-import { ListItemConfig } from '../../../../core/models/list-item-config';
+import { ListItemConfig } from '../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
+import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
+import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
+
 
 @Component({
   selector: 'app-course-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, CourseViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent, GenericListItemComponent],
+  imports: [ GenericListItemComponent, GenericViewDetailComponent],
   templateUrl: './course-list-item.component.html',
   styleUrl: './course-list-item.component.scss'
 })
@@ -57,6 +56,25 @@ export class CourseListItemComponent {
     getByIdFn: (id: number) => this.courseService.getCourseById(id),
     updateFn: (data: any) => this.courseService.updateCourse(data),
     deleteFn: (id: number) => this.courseService.deleteCourse(id)
+  };
+
+  courseDetailConfig: ViewDetailConfig<Course> = {
+    fields: [
+      {
+        key: 'name',
+        type: 'text',
+        format: (value) => `${value}`,
+        className: 'text-xl font-bold',
+        label: 'Nombre del Ciclo: '
+      }
+    ],
+    nestedLists: [{
+      key: 'subjects',
+      itemKey: 'name',
+      title: 'Asignaturas'
+    }
+    
+  ]
   };
 
   constructor(private courseService: CourseServiceService) {}
