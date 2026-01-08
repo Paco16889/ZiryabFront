@@ -30,6 +30,7 @@ export class AsignaturaListComponent {
          error: (err) => console.error(err)
       });
     }
+    
 
       openCreateForm() {
     this.showCreateForm = true;

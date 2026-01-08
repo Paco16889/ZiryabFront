@@ -51,4 +51,8 @@ export class ListComponent implements OnInit {
   onStudentUpdated(updatedStudent: any) { // ← Añade esto
     this.loadStudents();
   }
+
+  onStudentDeleted(deletedId: number) { // ← Añade esto
+    this.loadStudents();
+  }
 }

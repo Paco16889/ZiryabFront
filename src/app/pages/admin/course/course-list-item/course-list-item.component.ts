@@ -83,8 +83,8 @@ export class CourseListItemComponent {
     this.courseUpdated.emit(updatedCourse);
   }
 
-  onCourseDeleted(deletedId: number) {
-    this.courseDeleted.emit(deletedId);
+  onCourseDeleted(deletedCourse: any) {
+    this.courseDeleted.emit(deletedCourse);
   }
 }
 
