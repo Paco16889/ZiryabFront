@@ -43,7 +43,7 @@ export class ListItemComponent {
       },
       { 
         key: 'email',
-        className: 'text-sm text-gray-700',
+        className: 'text-gray-700',
         hideOnMobile: true,
         order: 4
       }
@@ -54,7 +54,7 @@ export class ListItemComponent {
       detail: true
     },
     layout: {
-      responsive: true
+      responsive: false
     },
     editFields: [
       { 

@@ -1,39 +1,12 @@
-<div class="flex m-2 bg-purple-300 rounded justify-between items-center px-1">
-    <p>{{course.name}}</p>
-    <div class="flex gap-1 py-1">
-        <app-boton-edit [id]="course.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
-    <app-boton-delete [id]="course.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
-    <app-boton-viewdetail [id]="course.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
-    </div>
-    
-</div>
+<app-generic-list-item
+  [item]="course"
+  [config]="courseConfig"
+  [detailTemplate]="detailTemplate"
+  (itemUpdated)="onCourseUpdated($event)"
+  (itemDeleted)="onCourseDeleted($event)">
+</app-generic-list-item>
 
-<div>
-    @if(selectedCourse){
-    
-        <app-course-view-detail [course]="selectedCourse"></app-course-view-detail>
-    
-}
-@if(courseToEdit){
-    <app-generic-edit-modal
-            entityType="el ciclo"
-            [entityName]="courseToEdit.name"
-            [entityData]="courseToEdit"
-            [fields]="courseFields"
-            [updateFunction]="updateCourseFn"
-            (closeModal)="closeEditModal()"
-            (entityUpdated)="onCourseUpdated($event)">
-        </app-generic-edit-modal>
-    }
-
-@if(courseToDelete){
-        <app-generic-delete-modal
-            entityType="el ciclo"
-            [entityName]="courseToDelete.name"
-            [entityId]="courseToDelete.id"
-            [deleteFunction]="deleteCourseFn"
-            (closeModal)="closeDeleteModal()"
-            (entityDeleted)="onCourseDeleted($event)">
-        </app-generic-delete-modal>
-    }
-</div>
+<!-- Template para el detalle -->
+<ng-template #detailTemplate let-course>
+  <app-course-view-detail [course]="course"></app-course-view-detail>
+</ng-template>

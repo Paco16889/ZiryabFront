@@ -1,42 +1,12 @@
-<div class="flex m-2 bg-purple-300 rounded justify-between items-center px-1">
-    <p>{{subject.name}}</p>
-    
-    <div class="flex gap-1 py-1">
-        <app-boton-edit [id]="subject.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
-    <app-boton-delete [id]="subject.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
-    <app-boton-viewdetail [id]="subject.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
-    </div>
-    
-</div>
+<app-generic-list-item
+  [item]="subject"
+  [config]="subjectConfig"
+  [detailTemplate]="detailTemplate"
+  (itemUpdated)="onSubjectUpdated($event)"
+  (itemDeleted)="onSubjectDeleted($event)">
+</app-generic-list-item>
 
-<div>
-    @if(selectedSubject){
-    
-        <app-asignatura-view-detail [subject]="selectedSubject"></app-asignatura-view-detail>
-    }
-
-        @if(subjectToEdit){
-        <app-generic-edit-modal
-    entityType="asignatura"
-    [entityName]="subjectToEdit.name"
-    [entityData]="subjectToEdit"
-    [fields]="editFields"
-    [updateFunction]="updateSubjectFn"
-    (closeModal)="closeEditModal()"
-    (entityUpdated)="onSubjectUpdated($event)"
-  />
-    }
-
-     @if(subjectToDelete){
-        <app-generic-delete-modal
-            entityType="la asignatura"
-            [entityName]="subjectToDelete.name"
-            [entityId]="subjectToDelete.id"
-            [deleteFunction]="deleteSubjectFn"
-            (closeModal)="closeDeleteModal()"
-            (entityDeleted)="onSubjectDeleted($event)">
-        </app-generic-delete-modal>
-    }
-
-</div>
-
+<!-- Template para el detalle -->
+<ng-template #detailTemplate let-subject>
+  <app-asignatura-view-detail [subject]="subject"></app-asignatura-view-detail>
+</ng-template>

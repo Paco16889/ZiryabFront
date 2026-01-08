@@ -1,44 +1,12 @@
-<div class="flex m-2 bg-purple-300 rounded justify-between items-center px-1">
-    <p>{{group.name}}</p>
-    
-    <div class="flex gap-1 py-1"> 
-        <app-boton-edit [id]="group.id" (showEdit)="toggleEdit($event)"></app-boton-edit>
-    <app-boton-delete [id]="group.id" (showDelete)="toggleDelete($event)"></app-boton-delete>
-    <app-boton-viewdetail [id]="group.id" (showDetail)="toggleDetail($event)"></app-boton-viewdetail>
-    </div>
-    
-</div>
+<app-generic-list-item
+  [item]="group"
+  [config]="groupConfig"
+  [detailTemplate]="detailTemplate"
+  (itemUpdated)="onGroupUpdated($event)"
+  (itemDeleted)="onGroupDeleted($event)">
+</app-generic-list-item>
 
-<div>
-    @if(selectedGroup){
-    
-        <app-group-view-detail [group]="selectedGroup"></app-group-view-detail>
-}
-
-    @if(groupToDelete){
-        <app-generic-delete-modal
-            entityType="el grupo"
-            [entityName]="groupToDelete.name"
-            [entityId]="groupToDelete.id"
-            [deleteFunction]="deleteGroupFn"
-            (closeModal)="closeDeleteModal()"
-            (entityDeleted)="onGroupDeleted($event)">
-        </app-generic-delete-modal>
-    }
-
-    @if (groupToEdit) {
-         <app-generic-edit-modal
-            entityType="el grupo"
-            [entityName]="groupToEdit.name"
-            [entityData]="groupToEdit"
-            [fields]="groupFields"
-            [updateFunction]="updateGroupFn"
-            (closeModal)="closeEditModal()"
-            (entityUpdated)="onGroupUpdated($event)">
-        </app-generic-edit-modal>
-    }
-</div>
-
-
-
-
+<!-- Template para el detalle -->
+<ng-template #detailTemplate let-group>
+  <app-group-view-detail [group]="group"></app-group-view-detail>
+</ng-template>

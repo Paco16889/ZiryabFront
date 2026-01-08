@@ -11,91 +11,62 @@ import { GenericDeleteModalComponent } from "../../modales/generic-delete-modal/
 import { GenericEditModalComponent } from "../../modales/generic-edit-modal/generic-edit-modal.component";
 import { EditFieldConfig } from '../../../../core/models/edit-modal-config';
 import { Validators } from '@angular/forms';
+import { ListItemConfig } from '../../../../core/models/list-item-config';
+import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
 
 @Component({
   selector: 'app-group-list-item',
-  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent],
+  imports: [BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GroupViewDetailComponent, GenericDeleteModalComponent, GenericEditModalComponent, GenericListItemComponent],
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })
 export class GroupListItemComponent {
-   @Input() group!:Group;
-   @Output() groupDeleted = new EventEmitter<number>();
-  @Output() groupUpdated = new EventEmitter<GroupUpdateResponse>();
-   selectedGroup: Group | null = null;
-   groupToDelete: GroupByIdResponse['data'] | null = null;
-   groupToEdit: GroupByIdResponse['data'] | null = null;
-   groups: GroupsAllResponse['data'] = [];
+  @Input() group!: Group;
+  @Output() groupUpdated = new EventEmitter<{id: number, name: string}>();
+  @Output() groupDeleted = new EventEmitter<number>();
 
-  groupFields: EditFieldConfig[] = [
-    { 
-      name: 'name', 
-      label: 'Nombre del grupo', 
-      type: 'text',
-      placeholder: 'Ej: Grupo A',
-      validators: [Validators.required],
-      errorMessage: 'El nombre es requerido'
-    }
-  ];
-  constructor(private groupService: GroupServiceService){}
+  // Configuración del list-item para groups
+  groupConfig: ListItemConfig<Group> = {
+    fields: [
+      { 
+        key: 'name',
+        className: 'font-medium',
+        order: 1
+      }
+    ],
+    actions: {
+      edit: true,
+      delete: true,
+      detail: true
+    },
+    layout: {
+      responsive: false
+    },
+    editFields: [
+      { 
+        name: 'name', 
+        label: 'Nombre del grupo', 
+        type: 'text',
+        placeholder: 'Ej: Grupo A',
+        validators: [Validators.required],
+        errorMessage: 'El nombre es requerido'
+      }
+    ],
+    entityType: 'el grupo',
+    entityNameFormat: (group: Group) => group.name,
+    getByIdFn: (id: number) => this.groupService.getGroupById(id),
+    updateFn: (data: any) => this.groupService.updateGroup(data),
+    deleteFn: (id: number) => this.groupService.deleteGroup(id)
+  };
 
+  constructor(private groupService: GroupServiceService) {}
 
-  toggleDetail(groupId: number) {
-      console.log('toggleDetail llamado con id:', groupId);
-    if (this.selectedGroup?.id === groupId) {
-      this.selectedGroup = null; // cerrar detalle si ya estaba abierto
-    } else {
-      // Llamada al servicio para obtener el estudiante por id
-      this.groupService.getGroupById(groupId).subscribe({
-        
-        next: data => this.selectedGroup = data,
-        error: err => console.error(err)
-      });
-      console.log('estoy dentro de toggleDetail en el else', this.selectedGroup?.id);
-    }
+  onGroupUpdated(updatedGroup: any) {
+    this.groupUpdated.emit(updatedGroup);
   }
 
-  toggleDelete(groupId: number){
-    this.groupService.getGroupById(groupId).subscribe({
-      next: response => this.groupToDelete = response,
-      error: err => console.error(err)
-    });
+  onGroupDeleted(deletedId: number) {
+    this.groupDeleted.emit(deletedId);
   }
-
-  toggleEdit(groupId: number) {
-    this.groupService.getGroupById(groupId).subscribe({
-      next: response => this.groupToEdit = response,
-      error: err => console.error(err)
-    });
-  }
-  onGroupDeleted(deletedGroupId: number){
-    this.groups = this.groups.filter(g => g.id !== deletedGroupId);
-
-    if (this.selectedGroup?.id === deletedGroupId) {
-      this.selectedGroup = null;
-    }
-
-    this.closeDeleteModal();
-
-    this.groupDeleted.emit(deletedGroupId);
-
-  }
-
-  closeDeleteModal(){
-    this.groupToDelete = null;
-  }
-
-  onGroupUpdated(groupToUpdate: GroupUpdateResponse){
-      this.closeEditModal();
-      this.groupUpdated.emit(groupToUpdate); // ← Cambia a groupEdited
-
-  }
-
-  closeEditModal(){
-    this.groupToEdit = null;
-  }
-
-   deleteGroupFn = (id: number) => this.groupService.deleteGroup(id);
-   updateGroupFn = (data: any) => this.groupService.updateGroup(data);
 }
 

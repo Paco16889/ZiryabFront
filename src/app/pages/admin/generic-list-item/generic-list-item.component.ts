@@ -15,20 +15,20 @@ import { NgTemplateOutlet } from '@angular/common';
 })
 export class GenericListItemComponent {
 
-  @Input() item!: any;  // ✅ Cambiar a 'any'
-  @Input() config!: ListItemConfig<any>;  // ✅ Usar ListItemConfig<any>
+  @Input() item!: any;  
+  @Input() config!: ListItemConfig<any>;  
   @Input() detailTemplate?: TemplateRef<any>;
   
-  @Output() itemUpdated = new EventEmitter<any>();  // ✅ Cambiar a 'any'
+  @Output() itemUpdated = new EventEmitter<any>();  
   @Output() itemDeleted = new EventEmitter<number>();
 
   // Estado interno
-  selectedItem: any | null = null;  // ✅ Cambiar a 'any'
-  itemToEdit: any | null = null;  // ✅ Cambiar a 'any'
-  itemToDelete: any | null = null;  // ✅ Cambiar a 'any'
+  selectedItem: any | null = null;  
+  itemToEdit: any | null = null;  
+  itemToDelete: any | null = null;  
 
-  // Obtener valor de un campo usando la key (soporta nested properties)
-  getFieldValue(item: any, key: string): any {  // ✅ item: any
+  // Obtener valor de un campo usando la clave (soporta propiedades anidadas)
+  getFieldValue(item: any, key: string): any { 
     const keys = key.split('.');
     let value: any = item;
     
@@ -162,9 +162,19 @@ export class GenericListItemComponent {
   }
 
   get actionsContainerClass(): string {
-    return this.config.layout?.actionsContainerClass || 
-           'grid grid-cols-3 gap-2 w-full md:flex md:w-auto md:gap-1';
+  // Si hay una clase personalizada, úsala
+  if (this.config.layout?.actionsContainerClass) {
+    return this.config.layout.actionsContainerClass;
   }
+  
+  // Si responsive es TRUE, usa grid en móvil
+  if (this.config.layout?.responsive === true) {
+    return 'grid grid-cols-3 gap-2 w-full md:flex md:w-auto md:gap-1';
+  }
+  
+  // Si responsive es FALSE (o undefined), usa flex siempre
+  return 'flex gap-1 py-1';
+}
 
   // En generic-list-item.component.ts
 
