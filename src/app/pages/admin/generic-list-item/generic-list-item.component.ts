@@ -1,0 +1,181 @@
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { GenericEditModalComponent } from "../modales/generic-edit-modal/generic-edit-modal.component";
+import { GenericDeleteModalComponent } from "../modales/generic-delete-modal/generic-delete-modal.component";
+import { BotonEditComponent } from "../botones/boton-edit/boton-edit.component";
+import { BotonDeleteComponent } from "../botones/boton-delete/boton-delete.component";
+import { BotonViewdetailComponent } from "../botones/boton-viewdetail/boton-viewdetail.component";
+import { ListItemConfig, ListItemFieldConfig } from '../../../core/models/list-item-config';
+import { NgTemplateOutlet } from '@angular/common';
+
+@Component({
+  selector: 'app-generic-list-item',
+  imports: [GenericEditModalComponent, GenericDeleteModalComponent, BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, NgTemplateOutlet],
+  templateUrl: './generic-list-item.component.html',
+  styleUrl: './generic-list-item.component.scss'
+})
+export class GenericListItemComponent {
+
+  @Input() item!: any;  // ✅ Cambiar a 'any'
+  @Input() config!: ListItemConfig<any>;  // ✅ Usar ListItemConfig<any>
+  @Input() detailTemplate?: TemplateRef<any>;
+  
+  @Output() itemUpdated = new EventEmitter<any>();  // ✅ Cambiar a 'any'
+  @Output() itemDeleted = new EventEmitter<number>();
+
+  // Estado interno
+  selectedItem: any | null = null;  // ✅ Cambiar a 'any'
+  itemToEdit: any | null = null;  // ✅ Cambiar a 'any'
+  itemToDelete: any | null = null;  // ✅ Cambiar a 'any'
+
+  // Obtener valor de un campo usando la key (soporta nested properties)
+  getFieldValue(item: any, key: string): any {  // ✅ item: any
+    const keys = key.split('.');
+    let value: any = item;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return '';
+      }
+    }
+    
+    return value;
+  }
+
+  // Formatear un campo según su configuración
+  getFormattedValue(item: any, fieldConfig: any): string {  // ✅ item: any
+    const value = this.getFieldValue(item, fieldConfig.key);
+    
+    if (fieldConfig.format) {
+      return fieldConfig.format(value);
+    }
+    
+    return value?.toString() || '';
+  }
+
+  // Obtener el nombre de la entidad para mostrar en modales
+  getEntityName(item: any): string {  // ✅ item: any
+    if (this.config.entityNameFormat) {
+      return this.config.entityNameFormat(item);
+    }
+    
+    // Por defecto, intenta usar 'name'
+    return this.getFieldValue(item, 'name');
+  }
+
+  // ==================== DETAIL ====================
+  toggleDetail(itemId: number) {
+    if (this.selectedItem && this.getFieldValue(this.selectedItem, 'id') === itemId) {
+      this.selectedItem = null;
+      return;
+    }
+
+    if (this.config.getByIdFn) {
+      this.config.getByIdFn(itemId).subscribe({
+        next: (data: any) => this.selectedItem = data,  // ✅ data: any
+        error: (err: any) => console.error('Error al obtener detalle:', err)
+      });
+    }
+  }
+
+  // ==================== EDIT ====================
+  toggleEdit(itemId: number) {
+    if (this.config.getByIdFn) {
+      this.config.getByIdFn(itemId).subscribe({
+        next: (response: any) => {  // ✅ response: any
+          this.itemToEdit = this.formatDateFields(response);
+        },
+        error: (err: any) => console.error('Error al obtener item para editar:', err)
+      });
+    }
+  }
+
+  closeEditModal() {
+    this.itemToEdit = null;
+  }
+
+  onItemUpdated(updatedItem: any) {  // ✅ updatedItem: any
+    this.closeEditModal();
+    this.itemUpdated.emit(updatedItem);
+  }
+
+  // Helper para formatear fechas antes de enviar al modal
+  private formatDateFields(item: any): any {  // ✅ item: any, return: any
+    const formatted = { ...item };
+    
+    if (this.config.editFields) {
+      this.config.editFields.forEach(field => {
+        if (field.type === 'date' && formatted[field.name]) {
+          const dateValue = formatted[field.name];
+          formatted[field.name] = this.formatDateForInput(dateValue);
+        }
+      });
+    }
+    
+    return formatted;
+  }
+
+  private formatDateForInput(isoDate: string): string {
+    if (!isoDate) return '';
+    return new Date(isoDate).toISOString().split('T')[0];
+  }
+
+  // ==================== DELETE ====================
+  toggleDelete(itemId: number) {
+    if (this.config.getByIdFn) {
+      this.config.getByIdFn(itemId).subscribe({
+        next: (response: any) => this.itemToDelete = response,  // ✅ response: any
+        error: (err: any) => console.error('Error al obtener item para eliminar:', err)
+      });
+    }
+  }
+
+  closeDeleteModal() {
+    this.itemToDelete = null;
+  }
+
+  onItemDeleted(deletedId: number) {
+    this.closeDeleteModal();
+    
+    // Si el item eliminado estaba seleccionado, cerrar el detalle
+    if (this.selectedItem && this.getFieldValue(this.selectedItem, 'id') === deletedId) {
+      this.selectedItem = null;
+    }
+    
+    this.itemDeleted.emit(deletedId);
+  }
+
+  // Getters para usar en el template
+  get hasActions(): boolean {
+    return !!(this.config.actions?.edit || this.config.actions?.delete || this.config.actions?.detail);
+  }
+
+  get containerClass(): string {
+    return this.config.layout?.containerClass || 
+           'flex flex-col md:flex-row md:justify-between md:items-center m-2 bg-purple-300 rounded px-2 py-2 gap-2';
+  }
+
+  get fieldsContainerClass(): string {
+    return this.config.layout?.fieldsContainerClass || 
+           'flex flex-col md:flex-row md:gap-4';
+  }
+
+  get actionsContainerClass(): string {
+    return this.config.layout?.actionsContainerClass || 
+           'grid grid-cols-3 gap-2 w-full md:flex md:w-auto md:gap-1';
+  }
+
+  // En generic-list-item.component.ts
+
+getFieldClasses(field: ListItemFieldConfig): string {
+  let classes = field.className || '';
+  
+  // Si debe ocultarse en móvil, añadimos la clase de Tailwind
+  if (field.hideOnMobile) {
+    classes += ' hidden md:block';
+  }
+  
+  return classes;
+}
+}

@@ -1,0 +1,77 @@
+<!-- Contenedor principal del list-item -->
+<div [class]="containerClass">
+  <!-- Campos de información -->
+  <div [class]="fieldsContainerClass">
+  @for (field of config.fields; track field.key) {
+    <p [class]="getFieldClasses(field)">
+      @if (field.label) {
+        <span class="font-medium">{{ field.label }}: </span>
+      }
+      {{ getFormattedValue(item, field) }}
+    </p>
+  }
+</div>
+
+  <!-- Botones de acción -->
+  @if (hasActions) {
+    <div [class]="actionsContainerClass">
+      @if (config.actions?.edit) {
+        <app-boton-edit
+          class="w-full"
+          [id]="item.id"
+          (showEdit)="toggleEdit($event)">
+        </app-boton-edit>
+      }
+
+      @if (config.actions?.delete) {
+        <app-boton-delete
+          class="w-full"
+          [id]="item.id"
+          (showDelete)="toggleDelete($event)">
+        </app-boton-delete>
+      }
+
+      @if (config.actions?.detail) {
+        <app-boton-viewdetail
+          class="w-full"
+          [id]="item.id"
+          (showDetail)="toggleDetail($event)">
+        </app-boton-viewdetail>
+      }
+    </div>
+  }
+</div>
+
+<!-- Sección de modales y detalles -->
+<div>
+  <!-- Detalle (usando template projection) -->
+  @if (selectedItem && detailTemplate) {
+    <ng-container *ngTemplateOutlet="detailTemplate; context: { $implicit: selectedItem }">
+    </ng-container>
+  }
+
+  <!-- Modal de edición -->
+  @if (itemToEdit && config.editFields && config.updateFn) {
+    <app-generic-edit-modal
+      [entityType]="config.entityType || 'el elemento'"
+      [entityName]="getEntityName(itemToEdit)"
+      [entityData]="itemToEdit"
+      [fields]="config.editFields"
+      [updateFunction]="config.updateFn"
+      (closeModal)="closeEditModal()"
+      (entityUpdated)="onItemUpdated($event)">
+    </app-generic-edit-modal>
+  }
+
+  <!-- Modal de eliminación -->
+  @if (itemToDelete && config.deleteFn) {
+    <app-generic-delete-modal
+      [entityType]="config.entityType || 'el elemento'"
+      [entityName]="getEntityName(itemToDelete)"
+      [entityId]="itemToDelete.id"
+      [deleteFunction]="config.deleteFn"
+      (closeModal)="closeDeleteModal()"
+      (entityDeleted)="onItemDeleted($event)">
+    </app-generic-delete-modal>
+  }
+</div>
