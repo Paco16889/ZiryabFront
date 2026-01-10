@@ -7,20 +7,21 @@ import { FooterComponent } from './pages/shared/footer/footer.component';
 import { PerfilComponent } from './pages/shared/perfil/perfil.component'; 
 // Importación del servicio
 import { PerfilMenuService } from './core/services/perfilService.service'; 
-import { BotonAtrasComponent } from './pages/shared/boton-atras/boton-atras.component';
 import { TranslateService } from '@ngx-translate/core';
+import { GenericDeleteModalComponent } from "./pages/admin/modales/generic-delete-modal/generic-delete-modal.component";
+import { ModalDeleteServiceService } from './core/services/UI/modal-delete-service.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterOutlet, 
-    HeaderComponent, 
-    FooterComponent, 
+    CommonModule,
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
     PerfilComponent,
-    BotonAtrasComponent
-  ],
+    GenericDeleteModalComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -28,7 +29,9 @@ export class AppComponent {
   title = 'loginEnAngular';
   private translate = inject(TranslateService);
 
-  constructor(public perfilService: PerfilMenuService) {
+  constructor(public perfilService: PerfilMenuService,
+    public deleteModalService: ModalDeleteServiceService
+  ) {
     this.translate.addLangs(['es', 'en', 'de']);
     // Idioma de fallback
     this.translate.setFallbackLang('es');

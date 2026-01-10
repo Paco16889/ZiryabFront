@@ -162,7 +162,5 @@ export class ListItemComponent {
     this.studentUpdated.emit(updatedStudent);
   }
 
-  onStudentDeleted(deletedId: number) {
-    this.studentDeleted.emit(deletedId);
-  }
+  
 }

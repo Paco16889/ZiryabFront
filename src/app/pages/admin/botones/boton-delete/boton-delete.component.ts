@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
 
 @Component({
   selector: 'app-boton-delete',
@@ -8,10 +10,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class BotonDeleteComponent {
   @Input() id!: number;
-  @Output() showDelete = new EventEmitter<number>();
+  @Input() name!: string;
+  @Input() type!: string;
+  @Input() deleteFn!: (id: number) => Observable<any>;
+
+  constructor(private deleteModalService: ModalDeleteServiceService) {}
   
-  onClick(){
-    this.showDelete.emit(this.id);
-    console.log('Has hecho click enel boton de borrar');
+  onClick() {
+    // ✅ Llama al servicio directamente (sin @Output)
+    this.deleteModalService.openModal({
+      id: this.id,
+      name: this.name,
+      type: this.type,
+      deleteFn: this.deleteFn
+    });
   }
 }

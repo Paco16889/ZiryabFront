@@ -9,7 +9,7 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-generic-list-item',
-  imports: [GenericEditModalComponent, GenericDeleteModalComponent, BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, NgTemplateOutlet],
+  imports: [GenericEditModalComponent, BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, NgTemplateOutlet],
   templateUrl: './generic-list-item.component.html',
   styleUrl: './generic-list-item.component.scss'
 })
@@ -20,12 +20,12 @@ export class GenericListItemComponent {
   @Input() detailTemplate?: TemplateRef<any>;
   
   @Output() itemUpdated = new EventEmitter<any>();  
-  @Output() itemDeleted = new EventEmitter<number>();
+  
 
   // Estado interno
   selectedItem: any | null = null;  
   itemToEdit: any | null = null;  
-  itemToDelete: any | null = null;  
+  
 
   // Obtener valor de un campo usando la clave (soporta propiedades anidadas)
   getFieldValue(item: any, key: string): any { 
@@ -121,30 +121,7 @@ export class GenericListItemComponent {
     return new Date(isoDate).toISOString().split('T')[0];
   }
 
-  // ==================== DELETE ====================
-  toggleDelete(itemId: number) {
-    if (this.config.getByIdFn) {
-      this.config.getByIdFn(itemId).subscribe({
-        next: (response: any) => this.itemToDelete = response,  // ✅ response: any
-        error: (err: any) => console.error('Error al obtener item para eliminar:', err)
-      });
-    }
-  }
-
-  closeDeleteModal() {
-    this.itemToDelete = null;
-  }
-
-  onItemDeleted(deletedId: number) {
-    this.closeDeleteModal();
-    
-    // Si el item eliminado estaba seleccionado, cerrar el detalle
-    if (this.selectedItem && this.getFieldValue(this.selectedItem, 'id') === deletedId) {
-      this.selectedItem = null;
-    }
-    
-    this.itemDeleted.emit(deletedId);
-  }
+ 
 
   // Getters para usar en el template
   get hasActions(): boolean {

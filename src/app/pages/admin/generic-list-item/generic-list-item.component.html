@@ -27,7 +27,10 @@
         <app-boton-delete
           class="w-full"
           [id]="item.id"
-          (showDelete)="toggleDelete($event)">
+          [name]="getEntityName(item)"
+          [type]="config.entityType || 'el elemento'"
+          [deleteFn]="config.deleteFn!">
+          >
         </app-boton-delete>
       }
 
@@ -63,15 +66,6 @@
     </app-generic-edit-modal>
   }
 
-  <!-- Modal de eliminación -->
-  @if (itemToDelete && config.deleteFn) {
-    <app-generic-delete-modal
-      [entityType]="config.entityType || 'el elemento'"
-      [entityName]="getEntityName(itemToDelete)"
-      [entityId]="itemToDelete.id"
-      [deleteFunction]="config.deleteFn"
-      (closeModal)="closeDeleteModal()"
-      (entityDeleted)="onItemDeleted($event)">
-    </app-generic-delete-modal>
-  }
+
+  
 </div>

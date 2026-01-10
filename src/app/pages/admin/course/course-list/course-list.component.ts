@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
 import { Course, CourseByIdResponse } from '../../../../core/models/course';
 import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
 import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
+import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
 
 @Component({
   selector: 'app-course-list',
@@ -19,7 +20,24 @@ export class CourseListComponent {
   courseToEdit: CourseByIdResponse['data'] | null = null;
   courseToDelete: CourseByIdResponse['data'] | null = null;
   showCreateForm = false;  
-      constructor(private courseService: CourseServiceService){}
+      constructor(private courseService: CourseServiceService, private modalDeleteService: ModalDeleteServiceService)
+      {
+        effect(() => {
+      const modalState = this.modalDeleteService.modalState();
+      console.log(
+    '🧠 MODAL STATE:',
+    'isOpen:', modalState.isOpen,
+    'showSuccess:', modalState.showSuccess,
+    'isDeleting:', modalState.isDeleting
+  );
+      
+      // Si el modal se cerró (después de haber estado abierto con éxito)
+      if (!modalState.isOpen && modalState.showSuccess) {
+        console.log('✅ Eliminado con éxito, recargando lista...');
+        this.loadCourses();
+      }
+    });
+      }
     
       ngOnInit():void {
 
@@ -47,9 +65,7 @@ loadCourses() {
     this.loadCourses(); // Recarga la lista
   }
 
-  onCourseDeleted(deletedCourseId: number) {
-    this.loadCourses(); // Recarga la lista
-  }
+  
 
   openCreateForm() {
     this.showCreateForm = true;

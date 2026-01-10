@@ -22,7 +22,7 @@ import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
 export class CourseListItemComponent {
   @Input() course!: Course;
   @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
-  @Output() courseDeleted = new EventEmitter<number>();
+  
 
   // Configuración del list-item para courses
   courseConfig: ListItemConfig<Course> = {
@@ -83,9 +83,7 @@ export class CourseListItemComponent {
     this.courseUpdated.emit(updatedCourse);
   }
 
-  onCourseDeleted(deletedCourse: any) {
-    this.courseDeleted.emit(deletedCourse);
-  }
+
 }
 
 

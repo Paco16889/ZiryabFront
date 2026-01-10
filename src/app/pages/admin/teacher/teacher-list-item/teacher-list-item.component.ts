@@ -158,7 +158,5 @@ export class TeacherListItemComponent {
     this.teacherUpdated.emit(updatedTeacher);
   }
 
-  onTeacherDeleted(deletedId: number) {
-    this.teacherDeleted.emit(deletedId);
-  }
+ 
 }

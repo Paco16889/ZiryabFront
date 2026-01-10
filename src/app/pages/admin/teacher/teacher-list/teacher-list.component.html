@@ -10,7 +10,7 @@
     </div>
 
     @for (tea of teachers; track tea.id){
-        <app-teacher-list-item [teacher]="tea" (teacherUpdated)="onTeacherUpdated($event)" (teacherDeleted)="onTeacherDeleted($event)"></app-teacher-list-item>
+        <app-teacher-list-item [teacher]="tea" (teacherUpdated)="onTeacherUpdated($event)" ></app-teacher-list-item>
     }
 }
 

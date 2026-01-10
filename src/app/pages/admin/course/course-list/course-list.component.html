@@ -10,7 +10,7 @@
       </app-boton-create>
     </div>
     @for (cou of courses; track cou.id){
-    <app-course-list-item [course]="cou" (courseUpdated)="onCourseUpdated($event)"  (courseDeleted)="onCourseDeleted($event)"></app-course-list-item>
+    <app-course-list-item [course]="cou" (courseUpdated)="onCourseUpdated($event)"></app-course-list-item>
     }
 
 }

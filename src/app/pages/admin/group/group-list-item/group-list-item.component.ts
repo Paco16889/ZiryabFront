@@ -74,8 +74,6 @@ export class GroupListItemComponent {
     this.groupUpdated.emit(updatedGroup);
   }
 
-  onGroupDeleted(deletedId: number) {
-    this.groupDeleted.emit(deletedId);
-  }
+ 
 }
 

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Teacher, TeacherUpdateResponse } from '../../../../core/models/teacher';
 import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
 import { TeacherListItemComponent } from '../teacher-list-item/teacher-list-item.component';
 import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-create-form.component';
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
+import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -15,7 +16,26 @@ import { TranslateModule } from '@ngx-translate/core';
 export class TeacherListComponent {
     teachers: Teacher[] = [];
     showCreateForm = false;
-    constructor(private teacherService: TeachersServiceService){}
+    constructor(private teacherService: TeachersServiceService,
+      private modalDeleteService: ModalDeleteServiceService
+    ){
+      effect(() => {
+      const modalState = this.modalDeleteService.modalState();
+      console.log(
+    '🧠 MODAL STATE:',
+    'isOpen:', modalState.isOpen,
+    'showSuccess:', modalState.showSuccess,
+    'isDeleting:', modalState.isDeleting
+  );
+      
+      // Si el modal se cerró (después de haber estado abierto con éxito)
+      if (!modalState.isOpen && modalState.showSuccess) {
+        console.log('✅ Eliminado con éxito, recargando lista...');
+        this.loadTeachers();
+      }
+    });
+      
+    }
     
   ngOnInit() {
     this.loadTeachers();
@@ -42,9 +62,7 @@ export class TeacherListComponent {
     this.loadTeachers();
   }
 
-  onTeacherDeleted(deletedTeacherId: number) {
-    this.loadTeachers();//revisar estee metodo
-  }
+  
 
    onTeacherUpdated(updatedTeacher: TeacherUpdateResponse) {
     this.loadTeachers();
