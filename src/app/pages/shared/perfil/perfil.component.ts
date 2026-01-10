@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, SimpleChange } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -26,10 +26,13 @@ export class PerfilComponent {
     this.loadUserData();
   }
 
-    /*
+    
     ngOnInit(){
       this.loadUserData();
-    }*/
+    }
+    ngOnChanges(changes: SimpleChange): void{
+      this.loadUserData();
+    }
   /**
    * Carga los datos del usuario actual
    */
@@ -67,6 +70,7 @@ export class PerfilComponent {
     // Cerrar sesión usando SOLO AuthService
     this.authService.logout().subscribe({
       next: () => {
+        
         console.log('✅ Sesión cerrada correctamente');
         this.close.emit();
         
@@ -75,6 +79,7 @@ export class PerfilComponent {
           queryParams: {}
         }).then(() => {
           console.log('✅ Redirigido a login');
+          
           this.isLoggingOut = false;
         });
       },
@@ -88,6 +93,7 @@ export class PerfilComponent {
           queryParams: {}
         });
         this.isLoggingOut = false;
+      
       }
     });
   }

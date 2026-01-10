@@ -44,6 +44,12 @@ export class ListItemComponent {
         className: 'text-gray-700',
         hideOnMobile: true,
         order: 4
+      }, 
+      {
+        key: 'dni',
+        className: 'text-purple-700',
+        hideOnMobile: true,
+        order: 5
       }
     ],
     actions: {
