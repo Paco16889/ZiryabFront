@@ -15,8 +15,7 @@ export class GenericDeleteModalComponent {
   @Input() deleteFunction!: (id: number) => Observable<any>; // Función de delete del servicio
   @Input() entityId!: number; // ID de la entidad a borrar
   
-  @Output() closeModal = new EventEmitter<void>();
-  @Output() entityDeleted = new EventEmitter<number>();
+  
 
   constructor(private deleteModalService: ModalDeleteServiceService) {
 

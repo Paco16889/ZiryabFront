@@ -19,7 +19,12 @@
         <app-boton-edit
           class="w-full"
           [id]="item.id"
-          (showEdit)="toggleEdit($event)">
+          [name]="getEntityName(item)"
+          [type]="config.entityType || 'el elemento'"
+          [entityData]="item"
+          [fields]="config.editFields!"
+          [updateFn]="config.updateFn!"
+          >
         </app-boton-edit>
       }
 
@@ -45,27 +50,12 @@
   }
 </div>
 
-<!-- Sección de modales y detalles -->
+
 <div>
   <!-- Detalle (usando template projection) -->
   @if (selectedItem && detailTemplate) {
     <ng-container *ngTemplateOutlet="detailTemplate; context: { $implicit: selectedItem }">
     </ng-container>
   }
-
-  <!-- Modal de edición -->
-  @if (itemToEdit && config.editFields && config.updateFn) {
-    <app-generic-edit-modal
-      [entityType]="config.entityType || 'el elemento'"
-      [entityName]="getEntityName(itemToEdit)"
-      [entityData]="itemToEdit"
-      [fields]="config.editFields"
-      [updateFunction]="config.updateFn"
-      (closeModal)="closeEditModal()"
-      (entityUpdated)="onItemUpdated($event)">
-    </app-generic-edit-modal>
-  }
-
-
   
 </div>

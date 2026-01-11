@@ -70,9 +70,7 @@ export class GroupListItemComponent {
 
   constructor(private groupService: GroupServiceService) {}
 
-  onGroupUpdated(updatedGroup: any) {
-    this.groupUpdated.emit(updatedGroup);
-  }
+ 
 
  
 }

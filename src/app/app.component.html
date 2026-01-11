@@ -2,17 +2,24 @@
 
     <app-header class="flex-none"> </app-header>
 
-    <app-perfil 
-        [isOpen]="perfilService.isMenuOpen()" 
-        (close)="perfilService.closeMenu()">
-    </app-perfil> 
+    <app-perfil [isOpen]="perfilService.isMenuOpen()" (close)="perfilService.closeMenu()">
+    </app-perfil>
 
     <main class="flex-grow relative w-full">
         <router-outlet></router-outlet>
 
         @if (deleteModalService.modalState().isOpen) {
-  <app-generic-delete-modal></app-generic-delete-modal>
-}
+        <app-generic-delete-modal></app-generic-delete-modal>
+        }
+
+        @if (updateModalService.modalState().isOpen) {
+        <app-generic-edit-modal
+        [entityType]="updateModalService.modalState().entityType!"
+        [entityName]="updateModalService.modalState().entityName!"
+        [entityData]="updateModalService.modalState().entityData"
+        [fields]="updateModalService.modalState().fields!"
+        ></app-generic-edit-modal>
+        }
     </main>
 
     <app-footer class="flex-none z-30 relative"></app-footer>

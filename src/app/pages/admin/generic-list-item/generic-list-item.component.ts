@@ -9,7 +9,7 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-generic-list-item',
-  imports: [GenericEditModalComponent, BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, NgTemplateOutlet],
+  imports: [ BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, NgTemplateOutlet],
   templateUrl: './generic-list-item.component.html',
   styleUrl: './generic-list-item.component.scss'
 })
@@ -18,8 +18,9 @@ export class GenericListItemComponent {
   @Input() item!: any;  
   @Input() config!: ListItemConfig<any>;  
   @Input() detailTemplate?: TemplateRef<any>;
+  @Input() entityData: any;
   
-  @Output() itemUpdated = new EventEmitter<any>();  
+  
   
 
   // Estado interno
@@ -79,26 +80,7 @@ export class GenericListItemComponent {
     }
   }
 
-  // ==================== EDIT ====================
-  toggleEdit(itemId: number) {
-    if (this.config.getByIdFn) {
-      this.config.getByIdFn(itemId).subscribe({
-        next: (response: any) => {  // ✅ response: any
-          this.itemToEdit = this.formatDateFields(response);
-        },
-        error: (err: any) => console.error('Error al obtener item para editar:', err)
-      });
-    }
-  }
-
-  closeEditModal() {
-    this.itemToEdit = null;
-  }
-
-  onItemUpdated(updatedItem: any) {  // ✅ updatedItem: any
-    this.closeEditModal();
-    this.itemUpdated.emit(updatedItem);
-  }
+ 
 
   // Helper para formatear fechas antes de enviar al modal
   private formatDateFields(item: any): any {  // ✅ item: any, return: any

@@ -6,6 +6,7 @@ import { GroupCreateFormComponent } from '../group-create-form/group-create-form
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-group-list',
@@ -17,42 +18,60 @@ export class GroupListComponent {
 
   groups: Group[] = [];
   showCreateForm = false;
-    
-      constructor(private groupService: GroupServiceService,
-        private modalDeleteService: ModalDeleteServiceService
-       ){
-        effect(() => {
+
+  constructor(private groupService: GroupServiceService,
+    private modalDeleteService: ModalDeleteServiceService,
+    private modalUpdateService: ModalEditServiceService
+  ) {
+    effect(() => {
       const modalState = this.modalDeleteService.modalState();
+
       console.log(
-    '🧠 MODAL STATE:',
-    'isOpen:', modalState.isOpen,
-    'showSuccess:', modalState.showSuccess,
-    'isDeleting:', modalState.isDeleting
-  );
-      
+        '🧠 MODAL STATE:',
+        'isOpen:', modalState.isOpen,
+        'showSuccess:', modalState.showSuccess,
+        'isDeleting:', modalState.isDeleting
+      );
+
+
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!modalState.isOpen && modalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
         this.loadGroups();
       }
+      const updatemodalstate = this.modalUpdateService.modalState();
+
+      console.log(
+        '🧠 MODAL STATE Update:',
+        'isOpen:', updatemodalstate.isOpen,
+        'showSuccess:', updatemodalstate.showSuccess,
+        'isDeleting:', updatemodalstate.isUpdating
+      );
+      if (!updatemodalstate.isOpen && updatemodalstate.showSuccess) {
+        console.log('✅ Actualizado con éxito, recargando lista...');
+        this.loadGroups()
+      }
     });
-      }
-    
-      ngOnInit():void {
-        this.loadGroups();
-      }
 
-      loadGroups(){
-        this.groupService.getGroups().subscribe({
-          next: (data) => {
-            console.log('Asignaturas:' ,data);
-            this.groups = data;
-          },
-           error: (err) => console.error(err)
-        });
-      }
 
-        openCreateForm() {
+
+  }
+
+  ngOnInit(): void {
+    this.loadGroups();
+  }
+
+  loadGroups() {
+    this.groupService.getGroups().subscribe({
+      next: (data) => {
+        console.log('Asignaturas:', data);
+        this.groups = data;
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+  openCreateForm() {
     this.showCreateForm = true;
   }
 
@@ -64,9 +83,7 @@ export class GroupListComponent {
     this.closeCreateForm();
     this.loadGroups(); // Recarga la lista
   }
-  
 
-  onGroupUpdated(updatedCourseId: number) {
-    this.loadGroups();
-}
+
+ 
 }

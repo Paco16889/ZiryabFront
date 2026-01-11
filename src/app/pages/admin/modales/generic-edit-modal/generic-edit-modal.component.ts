@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
 import { Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
+import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-generic-edit-modal',
@@ -11,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './generic-edit-modal.component.scss'
 })
 export class GenericEditModalComponent {
-   @Input() entityType!: string; // "estudiante", "asignatura", "ciclo"
+  @Input() entityType!: string; // "estudiante", "asignatura", "ciclo"
   @Input() entityName!: string; // El nombre específico
   @Input() entityData!: any; // Datos de la entidad a editar
   @Input() fields!: EditFieldConfig[]; // Configuración de campos
@@ -28,10 +29,11 @@ export class GenericEditModalComponent {
   fieldOptions: { [key: string]: { value: any; label: string }[] } = {};
   loadingOptions: { [key: string]: boolean } = {};
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private editModalService: ModalEditServiceService) {}
 
   ngOnInit() {
     const group: any = {};
+    console.log('entityData:', this.entityData);
     this.fields.forEach(f => {
       group[f.name] = [this.entityData[f.name] || '', f.validators || []];
       
@@ -72,30 +74,15 @@ export class GenericEditModalComponent {
   }
 
   onSubmit() {
-    if (this.editForm.valid) {
-      this.isUpdating = true;
-      this.errorMessage = '';
-
-      const updatedData = { 
-      id: this.entityData.id,  // Mantienes el id
-      ...this.editForm.value   // Solo lo que está en el formulario
-    };
-
-      this.updateFunction(updatedData).subscribe({
-        next: (response) => {
-          this.showSuccess = true;
-          this.isUpdating = false;
-          
-          setTimeout(() => {
-            this.entityUpdated.emit(response.data || response);
-          }, 2000);
-        },
-        error: (err) => {
-          this.isUpdating = false;
-          this.errorMessage = err.error?.message || `Error al actualizar ${this.entityType}.`;
-        }
-      });
-    }
+    if (this.editForm.invalid) return;
+    const updateData = {
+    id: this.entityData.id, // ✅ aquí metemos el id
+    ...this.editForm.value
+  };
+     
+     console.log('🔹 onSubmit updateData', updateData);
+     console.log('y aqui', this.entityData.id);
+     this.editModalService.confirmUpdate(updateData); 
   }
 
   onClose() {

@@ -10,7 +10,7 @@
     </div>
 
     @for (gro of groups; track gro.id){
-    <app-group-list-item [group]="gro" (groupUpdated)="onGroupUpdated($event.id)"></app-group-list-item>
+    <app-group-list-item [group]="gro"></app-group-list-item>
     }
   }
   
