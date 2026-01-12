@@ -9,7 +9,11 @@
         <router-outlet></router-outlet>
 
         @if (deleteModalService.modalState().isOpen) {
-        <app-generic-delete-modal></app-generic-delete-modal>
+        <app-generic-delete-modal
+        [entityType]="deleteModalService.modalState().entityType!"
+        [entityName]="deleteModalService.modalState().entityName!"
+        [entityId]="deleteModalService.modalState().entityId!"
+        ></app-generic-delete-modal>
         }
 
         @if (updateModalService.modalState().isOpen) {
