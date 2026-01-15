@@ -27,7 +27,7 @@ export class GroupListComponent {
       const modalState = this.modalDeleteService.modalState();
 
       console.log(
-        '🧠 MODAL STATE:',
+        '🧠 MODAL STATE Delete:',
         'isOpen:', modalState.isOpen,
         'showSuccess:', modalState.showSuccess,
         'isDeleting:', modalState.isDeleting

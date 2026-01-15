@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, effect, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
@@ -16,20 +16,35 @@ export class GenericDeleteModalComponent {
   @Input() entityId!: number; // ID de la entidad a borrar
   
   
-
-  constructor(private deleteModalService: ModalDeleteServiceService) {
-
-  }
-
   isDeleting = false;
   showSuccess = false;
   errorMessage = '';
+  
+  constructor(private deleteModalService: ModalDeleteServiceService) {
+   effect(() => {
+      const modalState = this.deleteModalService.modalState();
+      console.log(
+    '🧠 MODAL STATE:',
+    'isOpen:', modalState.isOpen,
+    'showSuccess:', modalState.showSuccess,
+    'isDeleting:', modalState.isDeleting
+   );
+   this.isDeleting = modalState.isDeleting!;
+   this.showSuccess = modalState.showSuccess!;
+   this.errorMessage = modalState.errorMessage!;
+  });
+  }
+
 
  onConfirm(){
-  this.deleteModalService.confirmDelete();
+   
+   
+   this.deleteModalService.confirmDelete();
+
  }
 
   onClose() {
     this.deleteModalService.closeModal();
+
   }
 }
