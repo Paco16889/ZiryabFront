@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, effect, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
 import { Observable } from 'rxjs';
@@ -29,7 +29,20 @@ export class GenericEditModalComponent {
   fieldOptions: { [key: string]: { value: any; label: string }[] } = {};
   loadingOptions: { [key: string]: boolean } = {};
 
-  constructor(private fb: FormBuilder, private editModalService: ModalEditServiceService) {}
+  constructor(private fb: FormBuilder, private editModalService: ModalEditServiceService) {
+     effect(() => {
+      const modalState = this.editModalService.modalState();
+      console.log(
+    '🧠 MODAL STATE:',
+    'isOpen:', modalState.isOpen,
+    'showSuccess:', modalState.showSuccess,
+    'isDeleting:', modalState.isUpdating
+   );
+   this.isUpdating = modalState.isUpdating!;
+   this.showSuccess = modalState.showSuccess!;
+   this.errorMessage = modalState.errorMessage!;
+  });
+  }
 
   ngOnInit() {
     const group: any = {};

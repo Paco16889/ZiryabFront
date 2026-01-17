@@ -6,6 +6,7 @@ import { SubjectCreateFormComponent } from '../subject-create-form/subject-creat
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-asignatura-list',
@@ -17,19 +18,27 @@ export class AsignaturaListComponent {
     subjects: Subject[] = []
   
     showCreateForm = false;
-    constructor(private subjectService: SubjectServiceService, private modalDeleteService: ModalDeleteServiceService){
-      effect(() => {
-      const modalState = this.modalDeleteService.modalState();
+    constructor(private subjectService: SubjectServiceService,
+      private modalUpdateService: ModalEditServiceService,
+      private modalDeleteService: ModalDeleteServiceService){
+        effect(() => {
+      const deleteModalState = this.modalDeleteService.modalState();
+      const updateModalState = this.modalUpdateService.modalState();
       console.log(
     '🧠 MODAL STATE:',
-    'isOpen:', modalState.isOpen,
-    'showSuccess:', modalState.showSuccess,
-    'isDeleting:', modalState.isDeleting
+    'isOpen:', deleteModalState.isOpen,
+    'showSuccess:', deleteModalState.showSuccess,
+    'isDeleting:', deleteModalState.isDeleting
   );
       
       // Si el modal se cerró (después de haber estado abierto con éxito)
-      if (!modalState.isOpen && modalState.showSuccess) {
+      if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
+        this.loadSubjects();
+      }
+
+      if(!updateModalState.isOpen && updateModalState.showSuccess){
+        console.log('✅ Actualizado con éxito, recargando lista...');
         this.loadSubjects();
       }
     });

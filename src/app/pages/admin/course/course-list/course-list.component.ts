@@ -6,6 +6,7 @@ import { CourseCreateFormComponent } from '../course-create-form/course-create-f
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-course-list',
@@ -20,20 +21,28 @@ export class CourseListComponent {
   courseToEdit: CourseByIdResponse['data'] | null = null;
   courseToDelete: CourseByIdResponse['data'] | null = null;
   showCreateForm = false;  
-      constructor(private courseService: CourseServiceService, private modalDeleteService: ModalDeleteServiceService)
+      constructor(private courseService: CourseServiceService, 
+        private modalDeleteService: ModalDeleteServiceService,
+        private updateDeleteService: ModalEditServiceService)
       {
         effect(() => {
-      const modalState = this.modalDeleteService.modalState();
+      const deleteModalState = this.modalDeleteService.modalState();
+      const updateModalState = this.updateDeleteService.modalState();
       console.log(
     '🧠 MODAL STATE:',
-    'isOpen:', modalState.isOpen,
-    'showSuccess:', modalState.showSuccess,
-    'isDeleting:', modalState.isDeleting
+    'isOpen:', deleteModalState.isOpen,
+    'showSuccess:', deleteModalState.showSuccess,
+    'isDeleting:', deleteModalState.isDeleting
   );
       
       // Si el modal se cerró (después de haber estado abierto con éxito)
-      if (!modalState.isOpen && modalState.showSuccess) {
+      if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
+        this.loadCourses();
+      }
+
+      if(!updateModalState.isOpen && updateModalState.showSuccess) {
+        console.log('✅ Actualizado con éxito, recargando lista...');
         this.loadCourses();
       }
     });
