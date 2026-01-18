@@ -23,7 +23,6 @@ export class ListComponent implements OnInit {
    
   constructor(
     private studentService: StudentsServiceService, 
-    public createFormState: CreateFormStateServiceService, 
     private deleteModalService: ModalDeleteServiceService
   ){
     effect(() => {this.students = studentService.students()})
