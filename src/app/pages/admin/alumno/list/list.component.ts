@@ -26,32 +26,26 @@ export class ListComponent implements OnInit {
     public createFormState: CreateFormStateServiceService, 
     private deleteModalService: ModalDeleteServiceService
   ){
+    effect(() => {this.students = studentService.students()})
     //Effect que escucha cambios en el modal
+    //falta effect del update
     effect(() => {
       const modalState = this.deleteModalService.modalState();
       
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!modalState.isOpen && modalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
-        this.loadStudents();
+        this.studentService.loadStudents();
       }
     });
 
   }
 
   ngOnInit():void {
-    this.loadStudents();
+    this.studentService.loadStudents();
   }
 
-  loadStudents(){
-    this.studentService.getStudents().subscribe({
-      next: (data) => {
-        console.log('Estudiantes recibidos', data);
-        this.students = data;
-      },
-      error: (err) => console.error(err)
-    });
-  }
+ 
 
     
 openCreateForm() {
@@ -64,12 +58,10 @@ closeCreateForm() {
 
   onStudentCreated() {
     this.closeCreateForm();
-    this.loadStudents(); // Recarga la lista
+    this.studentService.loadStudents(); // Recarga la lista
   }
 
-  onStudentUpdated(updatedStudent: any) { // ← Añade esto
-    this.loadStudents();
-  }
+ 
 
  
 }

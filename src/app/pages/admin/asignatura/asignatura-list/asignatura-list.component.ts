@@ -15,51 +15,45 @@ import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit
   styleUrl: './asignatura-list.component.scss'
 })
 export class AsignaturaListComponent {
-    subjects: Subject[] = []
-  
-    showCreateForm = false;
-    constructor(private subjectService: SubjectServiceService,
-      private modalUpdateService: ModalEditServiceService,
-      private modalDeleteService: ModalDeleteServiceService){
-        effect(() => {
+  subjects: Subject[] = []
+
+  showCreateForm = false;
+  constructor(private subjectService: SubjectServiceService,
+    private modalUpdateService: ModalEditServiceService,
+    private modalDeleteService: ModalDeleteServiceService) {
+
+      effect(() => {this.subjects = subjectService.subjects()})
+    effect(() => {
       const deleteModalState = this.modalDeleteService.modalState();
       const updateModalState = this.modalUpdateService.modalState();
       console.log(
-    '🧠 MODAL STATE:',
-    'isOpen:', deleteModalState.isOpen,
-    'showSuccess:', deleteModalState.showSuccess,
-    'isDeleting:', deleteModalState.isDeleting
-  );
-      
+        '🧠 MODAL STATE:',
+        'isOpen:', deleteModalState.isOpen,
+        'showSuccess:', deleteModalState.showSuccess,
+        'isDeleting:', deleteModalState.isDeleting
+      );
+
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
-        this.loadSubjects();
+        this.subjectService.loadSubjects();
       }
 
-      if(!updateModalState.isOpen && updateModalState.showSuccess){
+      if (!updateModalState.isOpen && updateModalState.showSuccess) {
         console.log('✅ Actualizado con éxito, recargando lista...');
-        this.loadSubjects();
+        this.subjectService.loadSubjects();
       }
     });
-    }
-  
-    ngOnInit():void {
-      this.loadSubjects();
-    }
+  }
 
-    loadSubjects(){
-      this.subjectService.getSubjects().subscribe({
-        next: (data) => {
-          console.log('Asignaturas:' ,data);
-          this.subjects = data;
-        },
-         error: (err) => console.error(err)
-      });
-    }
-    
+  ngOnInit(): void {
+    this.subjectService.loadSubjects();
+  }
 
-      openCreateForm() {
+
+
+
+  openCreateForm() {
     this.showCreateForm = true;
   }
 
@@ -69,13 +63,9 @@ export class AsignaturaListComponent {
 
   onSubjectCreated() {
     this.closeCreateForm();
-    this.loadSubjects();
-  }
-  
-
-  onSubjectUpdated(updatedSubject: any) { // ← Añade esto
-    this.loadSubjects();
+    this.subjectService.loadSubjects();
   }
 
-  
+
+
 }

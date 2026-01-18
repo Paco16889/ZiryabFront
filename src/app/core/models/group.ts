@@ -5,7 +5,7 @@ export interface Group {
 }
 
 export interface GroupsAllResponse{
-  succes: boolean;
+  success: boolean;
   data:{
     id: number,
     name: string,
@@ -22,6 +22,8 @@ export interface GroupByIdResponse {
   };
 
 }
+
+
 
 // request para crear un grupo
 export interface GroupCreateRequest {

@@ -96,7 +96,5 @@ export class AsignaturaListItemComponent {
     this.subjectUpdated.emit(updatedSubject);
   }
 
-  onSubjectDeleted(deletedId: number) {
-    this.subjectDeleted.emit(deletedId);
-  }
+ 
 }

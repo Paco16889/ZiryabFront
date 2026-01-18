@@ -9,19 +9,7 @@ export interface Teacher {
     role: string;
     firebaseUID: string;
     createdAt: string;
-    subject: {
-      idSubject: number;
-      idTeacher: number;
-      subject: {
-        id: number;
-        name: string;
-        idCourse: number;
-        course: {
-          id: number;
-          name: string;
-        };
-      };
-    }[];
+   
     
 }
 
@@ -72,6 +60,7 @@ export interface TeachersAllResponse {
     firebaseUID: string;
     createdAt: string;
   }[];
+  count: number;
   // No hay count en este caso
 }
 

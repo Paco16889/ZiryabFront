@@ -24,6 +24,9 @@ export class GroupListComponent {
     private modalUpdateService: ModalEditServiceService
   ) {
     effect(() => {
+      this.groups = this.groupService.groups();
+    })
+    effect(() => {
       const modalState = this.modalDeleteService.modalState();
 
       console.log(
@@ -37,7 +40,7 @@ export class GroupListComponent {
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!modalState.isOpen && modalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
-        this.loadGroups();
+        this.groupService.loadGroups();
       }
       const updatemodalstate = this.modalUpdateService.modalState();
 
@@ -49,7 +52,7 @@ export class GroupListComponent {
       );
       if (!updatemodalstate.isOpen && updatemodalstate.showSuccess) {
         console.log('✅ Actualizado con éxito, recargando lista...');
-        this.loadGroups()
+        this.groupService.loadGroups()
       }
     });
 
@@ -58,18 +61,10 @@ export class GroupListComponent {
   }
 
   ngOnInit(): void {
-    this.loadGroups();
+    this.groupService.loadGroups();
   }
 
-  loadGroups() {
-    this.groupService.getGroups().subscribe({
-      next: (data) => {
-        console.log('Asignaturas:', data);
-        this.groups = data;
-      },
-      error: (err) => console.error(err)
-    });
-  }
+  
 
   openCreateForm() {
     this.showCreateForm = true;
@@ -81,7 +76,7 @@ export class GroupListComponent {
 
   onGroupCreated() {
     this.closeCreateForm();
-    this.loadGroups(); // Recarga la lista
+    this.groupService.loadGroups(); // Recarga la lista
   }
 
 

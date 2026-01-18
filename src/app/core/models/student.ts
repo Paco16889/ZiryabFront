@@ -32,6 +32,25 @@ export interface StudentByIdResponse {
   
 }
 
+export interface StudentsAllResponse {
+  success: boolean;
+  data: {
+    id: number;
+    email: string;
+    name: string;
+    surname: string;
+    ndSurname: string;
+    birthDate: string;
+    dni: string;
+    role: string;
+    firebaseUID: string;
+    createdAt: string;
+  }[];
+  count: number;
+  // No hay count en este caso
+}
+
+
 export interface StudentCreateResponse{
   success: boolean;
   data: {

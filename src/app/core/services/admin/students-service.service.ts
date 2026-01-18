@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Student, StudentByIdResponse, StudentCreateRequest, StudentCreateResponse, StudentDeleteResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../models/student';
+import { Student, StudentByIdResponse,StudentsAllResponse, StudentCreateRequest, StudentCreateResponse, StudentDeleteResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../models/student';
 
 
 @Injectable({
@@ -17,13 +17,11 @@ export class StudentsServiceService {
   constructor(private http: HttpClient) { }
 
 
-  //Método que pide todos los personajes al servidor
-  getStudents(): Observable<Student[]> {
-     //Devuelve un Observable ( una respuesta que lleva con el tiempo)
-     return this.http.get<any>(this.apiUrl).pipe(
-      map(res => ('data' in res ? res.data : res)),
-      catchError(() => of([]))
-     );
+
+  getAllStudents(): Observable<StudentsAllResponse>{
+    return this.http.get<StudentsAllResponse>(this.apiUrl).pipe(
+      catchError(() => of({success: false, data: [], count: 0}))
+    );
   }
 
   getStudentbyId(id: number): Observable<Student>{
@@ -33,10 +31,10 @@ export class StudentsServiceService {
 
  
    loadStudents() {
-    this.getStudents().subscribe(
+    this.getAllStudents().subscribe(
       response => {
         if (response) {
-          this.students.set(response);
+          this.students.set(response.data);
         } else {
           this.students.set([]);
         }

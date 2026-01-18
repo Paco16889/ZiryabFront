@@ -20,6 +20,9 @@ export class TeacherListComponent {
       private modalDeleteService: ModalDeleteServiceService
     ){
       effect(() => {
+        this.teachers = teacherService.teachers();
+      })//actualizar lista despues de editar falta
+      effect(() => {
       const modalState = this.modalDeleteService.modalState();
       console.log(
     '🧠 MODAL STATE:',
@@ -31,23 +34,17 @@ export class TeacherListComponent {
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!modalState.isOpen && modalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
-        this.loadTeachers();
+        this.teacherService.loadTeachers();
       }
     });
       
     }
     
   ngOnInit() {
-    this.loadTeachers();
+    this.teacherService.loadTeachers();
   }
   
-  loadTeachers() {
-    this.teacherService.getTeachers().subscribe({
-      next: (response) => {
-        this.teachers = response;
-      }
-    });
-  }
+  
 
   openCreateForm() {
     this.showCreateForm = true;
@@ -59,12 +56,9 @@ export class TeacherListComponent {
 
   onTeacherCreated() {
     this.closeCreateForm();
-    this.loadTeachers();
+    this.teacherService.loadTeachers();
   }
 
   
 
-   onTeacherUpdated(updatedTeacher: TeacherUpdateResponse) {
-    this.loadTeachers();
-  }
 }

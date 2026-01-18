@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable} from '@angular/core';
+import { Injectable, signal} from '@angular/core';
 import { Observable, catchError, map, of, throwError} from 'rxjs';
-import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../models/teacher';
+import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse, TeachersAllResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../models/teacher';
 
 
 @Injectable({
@@ -10,14 +10,28 @@ import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResp
 export class TeachersServiceService {
        private apiUrl = 'http://localhost:3000/api/teachers';
 
+       teachers = signal<Teacher[]>([]);
+
   constructor(private http: HttpClient) { }
 
-  getTeachers(): Observable<Teacher[]>{
-    return this.http.get<any>(this.apiUrl).pipe(
-      map(res => ('data' in res ? res.data: res)),
-      catchError(() => of([]))
-    );
+  loadTeachers(){
+    this.getAllTeachers().subscribe(
+      response => {
+        if (response) {
+          this.teachers.set(response.data);
+        }else{
+          this.teachers.set([]);
+        }
+      }
+    )
   }
+
+  getAllTeachers(): Observable<TeachersAllResponse>{
+    return this.http.get<TeachersAllResponse>(this.apiUrl).pipe(
+      catchError(() => of({success: false, data: [], count: 0}))
+    )
+  }
+  
 
   getTeacherById(id: number): Observable<Teacher>{
     return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(

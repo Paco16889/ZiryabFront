@@ -17,17 +17,19 @@ import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit
 export class CourseListComponent {
     courses: Course[] = []
     
-  selectedCourse: CourseByIdResponse['data'] | null = null;
-  courseToEdit: CourseByIdResponse['data'] | null = null;
-  courseToDelete: CourseByIdResponse['data'] | null = null;
+
   showCreateForm = false;  
       constructor(private courseService: CourseServiceService, 
         private modalDeleteService: ModalDeleteServiceService,
         private updateDeleteService: ModalEditServiceService)
       {
         effect(() => {
+          this.courses = this.courseService.courses();
+        })
+        effect(() => {
       const deleteModalState = this.modalDeleteService.modalState();
       const updateModalState = this.updateDeleteService.modalState();
+      
       console.log(
     '🧠 MODAL STATE:',
     'isOpen:', deleteModalState.isOpen,
@@ -38,41 +40,24 @@ export class CourseListComponent {
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
-        this.loadCourses();
+        this.courseService.loadCourses();
       }
 
       if(!updateModalState.isOpen && updateModalState.showSuccess) {
         console.log('✅ Actualizado con éxito, recargando lista...');
-        this.loadCourses();
+        this.courseService.loadCourses();
       }
     });
       }
     
       ngOnInit():void {
 
-        this.loadCourses();
-        /*this.courseService.getCourses().subscribe({
-          next: (data) => {
-            console.log('Asignaturas:' ,data);
-            this.courses = data;
-          },
-           error: (err) => console.error(err)
-        });*/
+        this.courseService.loadCourses();
+       
       }
      
 
-loadCourses() {
-  this.courseService.getAllCourses().subscribe({
-        next: (response) => {
-        this.courses = response.data;  // Aquí sacas el array
-        console.log('Total de cursos:', response.count);
-        console.log('Data: ', this.courses);
-        }
-        });
-}
-  onCourseUpdated(updatedCourse: { id: number, name: string }) {
-    this.loadCourses(); // Recarga la lista
-  }
+
 
   
 
@@ -86,7 +71,7 @@ loadCourses() {
 
   onCourseCreated() {
     this.closeCreateForm();
-    this.loadCourses(); // Recarga la lista
+    this.courseService.loadCourses(); // Recarga la lista
   }
 
 }

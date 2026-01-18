@@ -55,3 +55,11 @@ export interface CourseDeleteResponse {
   message: string;
   deletedId: number;
 }
+
+export interface CourseCreateResponse{
+  success: boolean;
+  data: {
+    id: number;
+    name: string;
+  };
+}

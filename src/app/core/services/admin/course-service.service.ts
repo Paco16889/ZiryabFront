@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { Course, CourseByIdResponse, CourseDeleteResponse, CoursesAllResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../models/course';
+import { Course, CourseByIdResponse, CourseCreateResponse, CourseDeleteResponse, CoursesAllResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../models/course';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +24,7 @@ export class CourseServiceService {
     });
   }
 
-  getCourses(): Observable<Course[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map(res => ('data' in res ? res.data : res)),
-      catchError(() => of([]))
-    );
-  }
+ 
   getAllCourses(): Observable<CoursesAllResponse> {
   return this.http.get<CoursesAllResponse>(this.apiUrl).pipe(
     catchError(() => of({ success: false, data: [], count: 0 }))
@@ -47,8 +42,8 @@ export class CourseServiceService {
   }
   
   
-  createCourse(data: { name: string }): Observable<any> {
-  return this.http.post(`${this.apiUrl}`, data);
+  createCourse(data: { name: string }): Observable<CourseCreateResponse> {
+  return this.http.post<CourseCreateResponse>(`${this.apiUrl}`, data);
 }
   // services/course.service.ts (añade este método)
   updateCourse(data: CourseUpdateRequest): Observable<CourseUpdateResponse> {

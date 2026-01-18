@@ -12,7 +12,7 @@
       </app-boton-create>
     </div>
     @for (sub of subjects; track sub.id){
-    <app-asignatura-list-item [subject]="sub" (subjectUpdated)="onSubjectUpdated($event)"
+    <app-asignatura-list-item [subject]="sub"
         ></app-asignatura-list-item>
     }
   } 

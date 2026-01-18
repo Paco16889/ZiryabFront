@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, map, catchError, of } from 'rxjs';
-import { Subject, SubjectDeleteResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../models/subject';
+import { Subject, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../models/subject';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,10 @@ export class SubjectServiceService {
 
   
  loadSubjects() {
-    this.getSubjects().subscribe(
+    this.getAllSubjects().subscribe(
       response => {
         if (response) {
-          this.subjects.set(response);
+          this.subjects.set(response.data);
         }else{
           this.subjects.set([]);
         }
@@ -34,18 +34,17 @@ export class SubjectServiceService {
 
     return result;
   }
-/* this.getAllCourses().subscribe(res => {
-      if (res.success) {
-        this.courses.set(res.data);
-      } else {
-        this.courses.set([]);
-      }
-    });
-  */
+
 getSubjects(): Observable<Subject[]> {
   return this.http.get<any>(this.apiUrl).pipe(
     map(res => ('data' in res ? res.data : res)),
     catchError(() => of([]))
+  );
+}
+
+getAllSubjects(): Observable<SubjectsAllResponse> {
+  return this.http.get<SubjectsAllResponse>(this.apiUrl).pipe(
+    catchError(() => of({ success: false, data: [], count: 0 }))
   );
 }
 
