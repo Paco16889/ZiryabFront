@@ -56,6 +56,9 @@ export interface CourseDeleteResponse {
   deletedId: number;
 }
 
+export interface CourseCreateRequest{
+  name: string;
+}
 export interface CourseCreateResponse{
   success: boolean;
   data: {

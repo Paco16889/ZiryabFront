@@ -24,9 +24,14 @@ export class StudentsServiceService {
     );
   }
 
-  getStudentbyId(id: number): Observable<Student>{
-    return this.http.get<any>(`${this.apiUrl}/${id}`)
-    .pipe(map(res => res.data));
+  getStudentbyId(id: number): Observable<StudentByIdResponse>{
+    return this.http.get<StudentByIdResponse>(`${this.apiUrl}/${id}`)
+    .pipe(
+      catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    })
+    );
   }
 
  
@@ -45,7 +50,7 @@ export class StudentsServiceService {
   createStudent(data: StudentCreateRequest): Observable<StudentCreateResponse> {
     return this.http.post<StudentCreateResponse>(this.apiUrl, data).pipe(
       catchError((error) => {
-        console.error('Error creating teacher:', error);
+        console.error('Error Creando Estudiante:', error);
         throw error;
       })
     );
@@ -55,7 +60,7 @@ export class StudentsServiceService {
 updateStudent(student: StudentUpdateRequest): Observable<StudentUpdateResponse> {
   return this.http.patch<StudentUpdateResponse>(`${this.apiUrl}/${student.id}`, student).pipe(
     catchError((error) => {
-      console.error('Error updating student:', error);
+      console.error('Error Actualizando Estudiante:', error);
       throw error;
     })
   );
@@ -63,8 +68,12 @@ updateStudent(student: StudentUpdateRequest): Observable<StudentUpdateResponse> 
 
 deleteStudent(id: number): Observable<StudentDeleteResponse>{
 
- return this.http.get<StudentDeleteResponse>(`${this.apiUrl}/${id}`)
-    .pipe(map(res => res));
+ return this.http.get<StudentDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+  catchError((error) => {
+      console.error('Error Borrando Estudiante:', error);
+      throw error;
+    })
+);
 }
   
 }

@@ -88,13 +88,18 @@ export class AsignaturaListItemComponent {
             format: (value) => `${value}`,
             className: 'text-xl font-bold',
             label: 'Nombre de la Asignatura:'
+          },
+          {
+            key: 'course.name',
+            type: 'text',
+            format: (value) => `${value}`,
+            className: 'text-xl font-bold',
+            label: 'Ciclo al que pertenece:'
           }
       ]
       };
       
-  onSubjectUpdated(updatedSubject: any) {
-    this.subjectUpdated.emit(updatedSubject);
-  }
+ 
 
  
 }

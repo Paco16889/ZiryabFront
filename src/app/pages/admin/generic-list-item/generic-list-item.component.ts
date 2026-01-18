@@ -74,7 +74,7 @@ export class GenericListItemComponent {
 
     if (this.config.getByIdFn) {
       this.config.getByIdFn(itemId).subscribe({
-        next: (data: any) => this.selectedItem = data,  // ✅ data: any
+        next: (res: any) => this.selectedItem = res.data,  // ✅ data: any
         error: (err: any) => console.error('Error al obtener detalle:', err)
       });
     }

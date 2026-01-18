@@ -45,6 +45,7 @@ export interface SubjectCreateRequest {
 
 export interface SubjectCreateResponse {
   success: boolean;
+  message: string;
   data: {
     id: number;
     name: string;

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { catchError, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Group, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../models/group';
+import { Group, GroupByIdResponse, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../models/group';
 
 @Injectable({
   providedIn: 'root'
@@ -30,18 +30,31 @@ export class GroupServiceService {
     });
   }
 
-  getGroupById(id: number): Observable<Group>{
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
-      map(res => res.data ));
+  getGroupById(id: number): Observable<GroupByIdResponse>{
+    return this.http.get<GroupByIdResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    }));
     
   }
 
   createGroup(group: GroupCreateRequest): Observable<GroupCreateResponse>{
-    return this.http.post<GroupCreateResponse>(`${this.apiUrl}`, group);
+    return this.http.post<GroupCreateResponse>(`${this.apiUrl}`, group).pipe(
+      catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    })
+    );
   }
 
   updateGroup( group: GroupUpdateRequest): Observable<GroupUpdateResponse>{
-    return this.http.patch<GroupUpdateResponse>(`${this.apiUrl}/${group.id}`, {name: group.name});
+    return this.http.patch<GroupUpdateResponse>(`${this.apiUrl}/${group.id}`, group).pipe(
+      catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    })
+    );
   }
   deleteGroup(id: number): Observable<GroupDeleteResponse>{
     return this.http.delete<GroupDeleteResponse>(`${this.apiUrl}/${id}`).pipe(

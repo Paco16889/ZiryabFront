@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, map, catchError, of } from 'rxjs';
-import { Subject, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../models/subject';
+import { Subject, SubjectByIdResponse, SubjectCreateRequest, SubjectCreateResponse, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../models/subject';
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +35,7 @@ export class SubjectServiceService {
     return result;
   }
 
-getSubjects(): Observable<Subject[]> {
-  return this.http.get<any>(this.apiUrl).pipe(
-    map(res => ('data' in res ? res.data : res)),
-    catchError(() => of([]))
-  );
-}
+
 
 getAllSubjects(): Observable<SubjectsAllResponse> {
   return this.http.get<SubjectsAllResponse>(this.apiUrl).pipe(
@@ -48,13 +43,21 @@ getAllSubjects(): Observable<SubjectsAllResponse> {
   );
 }
 
-getSubjectbyId(id: number): Observable<Subject> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`)
-    .pipe(map(res => res.data));
+getSubjectbyId(id: number): Observable<SubjectByIdResponse> {
+    return this.http.get<SubjectByIdResponse>(`${this.apiUrl}/${id}`)
+    .pipe(catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    }));
   }
 
-  createSubject(data: { name: string; idCourse: number }): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, data);
+  createSubject(data: SubjectCreateRequest): Observable<SubjectCreateResponse> {
+    return this.http.post<SubjectCreateResponse>(`${this.apiUrl}`, data).pipe(
+      catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    })
+    );
   }
 
   deleteSubject(id: number): Observable<SubjectDeleteResponse>{

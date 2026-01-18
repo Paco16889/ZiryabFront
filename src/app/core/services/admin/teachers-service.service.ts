@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal} from '@angular/core';
 import { Observable, catchError, map, of, throwError} from 'rxjs';
-import { Teacher, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse, TeachersAllResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../models/teacher';
+import { Teacher, TeacherByIdResponse, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse, TeachersAllResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../models/teacher';
 
 
 @Injectable({
@@ -33,9 +33,12 @@ export class TeachersServiceService {
   }
   
 
-  getTeacherById(id: number): Observable<Teacher>{
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
-      map(res => res.data)
+  getTeacherById(id: number): Observable<TeacherByIdResponse>{
+    return this.http.get<TeacherByIdResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+      console.error('Error:', error);
+      throw error;
+    })
     );
   }
 
