@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   
 
    showCreateForm = false;
-   readonly UI_KEY = 'students';
+   
   constructor(
     private studentService: StudentsServiceService, 
     public createFormState: CreateFormStateServiceService, 
@@ -49,11 +49,11 @@ export class ListComponent implements OnInit {
 
     
 openCreateForm() {
-  this.createFormState.open(this.UI_KEY);
+  this.showCreateForm = true;
 }
 
 closeCreateForm() {
-  this.createFormState.close(this.UI_KEY);
+  this.showCreateForm = false;
 }
 
   onStudentCreated() {
