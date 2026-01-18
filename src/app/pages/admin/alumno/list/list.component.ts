@@ -5,9 +5,10 @@ import { ListItemComponent } from '../list-item/list-item.component';
 
 import { StudentEnrollmentComponent } from "../student-enrollment/student-enrollment.component";
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
-import { CreateFormStateServiceService } from '../../../../core/services/UI/create-form-state-service.service';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-list',
@@ -23,17 +24,24 @@ export class ListComponent implements OnInit {
    
   constructor(
     private studentService: StudentsServiceService, 
-    private deleteModalService: ModalDeleteServiceService
+    private deleteModalService: ModalDeleteServiceService,
+    private updateModalService: ModalEditServiceService
   ){
     effect(() => {this.students = studentService.students()})
     //Effect que escucha cambios en el modal
     //falta effect del update
     effect(() => {
-      const modalState = this.deleteModalService.modalState();
+      const deleteModalState = this.deleteModalService.modalState();
+      const updateModalState = this.updateModalService.modalState();
       
       // Si el modal se cerró (después de haber estado abierto con éxito)
-      if (!modalState.isOpen && modalState.showSuccess) {
+      if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
+        this.studentService.loadStudents();
+      }
+
+      if(!updateModalState.isOpen && updateModalState.showSuccess){
+        console.log('✅ Actualizado con éxito, recargando lista...');
         this.studentService.loadStudents();
       }
     });

@@ -99,6 +99,6 @@ export class GenericEditModalComponent {
   }
 
   onClose() {
-    this.closeModal.emit();
+    this.editModalService.closeModal();
   }
 }
