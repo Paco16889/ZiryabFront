@@ -27,18 +27,13 @@ export class GroupListComponent {
       this.groups = this.groupService.groups();
     })
     effect(() => {
-      const modalState = this.modalDeleteService.modalState();
+      const deleteModalState = this.modalDeleteService.modalState();
 
-      console.log(
-        '🧠 MODAL STATE Delete:',
-        'isOpen:', modalState.isOpen,
-        'showSuccess:', modalState.showSuccess,
-        'isDeleting:', modalState.isDeleting
-      );
+
 
 
       // Si el modal se cerró (después de haber estado abierto con éxito)
-      if (!modalState.isOpen && modalState.showSuccess) {
+      if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
         this.groupService.loadGroups();
       }

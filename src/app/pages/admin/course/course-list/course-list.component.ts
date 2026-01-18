@@ -30,12 +30,7 @@ export class CourseListComponent {
       const deleteModalState = this.modalDeleteService.modalState();
       const updateModalState = this.updateDeleteService.modalState();
       
-      console.log(
-    '🧠 MODAL STATE:',
-    'isOpen:', deleteModalState.isOpen,
-    'showSuccess:', deleteModalState.showSuccess,
-    'isDeleting:', deleteModalState.isDeleting
-  );
+    
       
       // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!deleteModalState.isOpen && deleteModalState.showSuccess) {

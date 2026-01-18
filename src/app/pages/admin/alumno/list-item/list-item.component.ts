@@ -94,8 +94,8 @@ export class ListItemComponent {
         label: 'DNI', 
         type: 'text',
         maxlength: 9,
-        validators: [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)],
-        errorMessage: 'DNI inválido (formato: 12345678A)'
+        validators: [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z]$/)],
+        errorMessage: 'DNI inválido (formato: 12345678A/X1234567A)'
       },
       { 
         name: 'birthDate', 

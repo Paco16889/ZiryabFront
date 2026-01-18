@@ -29,7 +29,7 @@ export class ListComponent implements OnInit {
   ){
     effect(() => {this.students = studentService.students()})
     //Effect que escucha cambios en el modal
-    //falta effect del update
+    
     effect(() => {
       const deleteModalState = this.deleteModalService.modalState();
       const updateModalState = this.updateModalService.modalState();

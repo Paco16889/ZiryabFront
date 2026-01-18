@@ -6,6 +6,7 @@ import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-creat
 import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -17,23 +18,23 @@ export class TeacherListComponent {
     teachers: Teacher[] = [];
     showCreateForm = false;
     constructor(private teacherService: TeachersServiceService,
-      private modalDeleteService: ModalDeleteServiceService
+      private modalDeleteService: ModalDeleteServiceService,
+      private updateModalService: ModalEditServiceService
     ){
       effect(() => {
         this.teachers = teacherService.teachers();
       })//actualizar lista despues de editar falta
       effect(() => {
-      const modalState = this.modalDeleteService.modalState();
-      console.log(
-    '🧠 MODAL STATE:',
-    'isOpen:', modalState.isOpen,
-    'showSuccess:', modalState.showSuccess,
-    'isDeleting:', modalState.isDeleting
-  );
+      const deleteModalState = this.modalDeleteService.modalState();
+      const updateModalState = this.updateModalService.modalState();
       
       // Si el modal se cerró (después de haber estado abierto con éxito)
-      if (!modalState.isOpen && modalState.showSuccess) {
+      if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
         console.log('✅ Eliminado con éxito, recargando lista...');
+        this.teacherService.loadTeachers();
+      }
+      if (!updateModalState.isOpen && updateModalState.showSuccess) {
+        console.log('✅ Actualizado con éxito, recargando lista...');
         this.teacherService.loadTeachers();
       }
     });
