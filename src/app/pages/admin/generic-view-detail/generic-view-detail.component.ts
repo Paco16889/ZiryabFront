@@ -7,18 +7,18 @@ import { ViewDetailConfig, ViewDetailFieldConfig } from '../../../core/configs/v
   templateUrl: './generic-view-detail.component.html',
   styleUrl: './generic-view-detail.component.scss'
 })
-export class GenericViewDetailComponent {
-  @Input() item!: any;
-  @Input() config!: ViewDetailConfig<any>;
+export class GenericViewDetailComponent<T> {
+  @Input() item!: T;
+  @Input() config!: ViewDetailConfig<T>;
 
   // Obtener valor de un campo (soporta propiedades anidadas)
-  getFieldValue(item: any, key: string): any {
+  getFieldValue(item: T, key: string): any {
     const keys = key.split('.');
     let value: any = item;
     
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
-        value = value[k];
+        value = value[k as keyof typeof value];
       } else {
         return '';
       }
@@ -28,7 +28,7 @@ export class GenericViewDetailComponent {
   }
 
   // Formatear un campo según su configuración
-  getFormattedValue(item: any, fieldConfig: ViewDetailFieldConfig): string {
+  getFormattedValue(item: T, fieldConfig: ViewDetailFieldConfig): string {
     const value = this.getFieldValue(item, fieldConfig.key);
     
     if (fieldConfig.format) {
@@ -39,7 +39,7 @@ export class GenericViewDetailComponent {
   }
 
   // Obtener array anidado
-  getNestedArray(item: any, key: string): any[] {
+  getNestedArray(item: T, key: string): any[] {
     const value = this.getFieldValue(item, key);
     return Array.isArray(value) ? value : [];
   }

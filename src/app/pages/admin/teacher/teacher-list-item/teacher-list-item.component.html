@@ -1,16 +1,7 @@
 <app-generic-list-item
   [item]="teacher"
   [config]="teacherConfig"
-  [detailTemplate]="detailTemplate"
-  (itemUpdated)="onTeacherUpdated($event)"
+  [detailConfig]="teacherDetailConfig"
   >
 </app-generic-list-item>
 
-<!-- Template para el detalle -->
-<ng-template #detailTemplate let-teacher>
-  <app-generic-view-detail
-  [item]="teacher"
-  [config]="teacherDetailConfig">
-
-  </app-generic-view-detail>
-</ng-template>

@@ -52,10 +52,11 @@
 
 
 <div>
-  <!-- Detalle (usando template projection) -->
-  @if (selectedItem && detailTemplate) {
-    <ng-container *ngTemplateOutlet="detailTemplate; context: { $implicit: selectedItem }">
-    </ng-container>
-  }
+ @if (selectedItem && detailConfig) {
+  <app-generic-view-detail 
+    [item]="selectedItem" 
+    [config]="detailConfig">
+  </app-generic-view-detail>
+}
   
 </div>

@@ -90,6 +90,13 @@ export class AsignaturaListItemComponent {
             label: 'Nombre de la Asignatura:'
           },
           {
+            key: 'grade',
+            type: 'text',
+            format: (value) => `${value}`,
+            className: 'text-xl font-bold',
+            label: 'Curso en el que se imparte: '
+          },
+          {
             key: 'course.name',
             type: 'text',
             format: (value) => `${value}`,

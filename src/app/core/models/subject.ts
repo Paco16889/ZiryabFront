@@ -4,6 +4,7 @@
 export interface Subject {
   id: number;
   name: string;
+  grade: string;
   idCourse: number;
   course: {
     id: number;
@@ -26,15 +27,7 @@ export interface SubjectByIdResponse {
 
 export interface SubjectsAllResponse {
   success: boolean;
-  data: {
-    id: number;
-    name: string;
-    idCourse: number;
-    course: {
-      id: number;
-      name: string;
-    };
-  }[];
+  data: Subject[];
   count: number;
 }
 
@@ -46,25 +39,18 @@ export interface SubjectCreateRequest {
 export interface SubjectCreateResponse {
   success: boolean;
   message: string;
-  data: {
-    id: number;
-    name: string;
-    idCourse: number;
-  };
+  data: Subject;
 }
 
 export interface SubjectUpdateRequest {
   name: string;
+  grade: string;
   idCourse: number;
 }
 
 export interface SubjectUpdateResponse {
   success: boolean;
-  data: {
-    id: number;
-    name: string;
-    idCourse: number;
-  };
+  data: Subject;
 }
 
 export interface SubjectDeleteResponse {

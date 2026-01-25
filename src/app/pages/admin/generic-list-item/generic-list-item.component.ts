@@ -5,31 +5,33 @@ import { BotonEditComponent } from "../botones/boton-edit/boton-edit.component";
 import { BotonDeleteComponent } from "../botones/boton-delete/boton-delete.component";
 import { BotonViewdetailComponent } from "../botones/boton-viewdetail/boton-viewdetail.component";
 import { ListItemConfig, ListItemFieldConfig } from '../../../core/configs/list-item-config';
-import { NgTemplateOutlet } from '@angular/common';
+import { GenericViewDetailComponent } from '../generic-view-detail/generic-view-detail.component';
+import { ViewDetailConfig } from '../../../core/configs/view-detail-config';
+
 
 @Component({
   selector: 'app-generic-list-item',
-  imports: [ BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, NgTemplateOutlet],
+  imports: [ BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GenericViewDetailComponent],
   templateUrl: './generic-list-item.component.html',
   styleUrl: './generic-list-item.component.scss'
 })
-export class GenericListItemComponent {
+export class GenericListItemComponent<T> {
 
   @Input() item!: any;  
   @Input() config!: ListItemConfig<any>;  
-  @Input() detailTemplate?: TemplateRef<any>;
-  @Input() entityData: any;
+  @Input() detailConfig?: ViewDetailConfig<T>
+  
   
   
   
 
   // Estado interno
-  selectedItem: any | null = null;  
+  selectedItem: T | null = null;  
   itemToEdit: any | null = null;  
   
 
   // Obtener valor de un campo usando la clave (soporta propiedades anidadas)
-  getFieldValue(item: any, key: string): any { 
+  getFieldValue(item: T, key: string): any { 
     const keys = key.split('.');
     let value: any = item;
     
@@ -45,7 +47,7 @@ export class GenericListItemComponent {
   }
 
   // Formatear un campo según su configuración
-  getFormattedValue(item: any, fieldConfig: any): string {  // ✅ item: any
+  getFormattedValue(item: T, fieldConfig: any): string {  // ✅ item: any
     const value = this.getFieldValue(item, fieldConfig.key);
     
     if (fieldConfig.format) {
@@ -56,7 +58,7 @@ export class GenericListItemComponent {
   }
 
   // Obtener el nombre de la entidad para mostrar en modales
-  getEntityName(item: any): string {  // ✅ item: any
+  getEntityName(item: T): string {  // ✅ item: any
     if (this.config.entityNameFormat) {
       return this.config.entityNameFormat(item);
     }

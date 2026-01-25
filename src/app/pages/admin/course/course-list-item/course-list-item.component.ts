@@ -23,6 +23,7 @@ export class CourseListItemComponent {
   @Input() course!: Course;
   @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
   
+  
 
   // Configuración del list-item para courses
   courseConfig: ListItemConfig<Course> = {
@@ -79,9 +80,7 @@ export class CourseListItemComponent {
 
   constructor(private courseService: CourseServiceService) {}
 
-  onCourseUpdated(updatedCourse: any) {
-    this.courseUpdated.emit(updatedCourse);
-  }
+  
 
 
 }

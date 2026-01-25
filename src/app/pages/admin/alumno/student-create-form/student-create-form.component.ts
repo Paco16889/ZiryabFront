@@ -64,7 +64,8 @@ export class StudentCreateFormComponent {
           ndSurname: this.createForm.value.ndSurname,
           birthDate: this.createForm.value.birthDate,
           dni: this.createForm.value.dni,
-          firebaseUID
+          firebaseUID,
+          
         };
 
         this.studentService.createStudent(studentData).subscribe({

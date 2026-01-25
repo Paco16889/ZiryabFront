@@ -10,28 +10,12 @@ export interface Course {
 
 export interface CourseByIdResponse {
   success: boolean;
-  data: {
-    id: number;
-    name: string;
-    subjects: {
-      id: number;
-      name: string;
-      idCourse: number;
-    }[];
-  };
+  data: Course;
 }
 
 export interface CoursesAllResponse {
   success: boolean;
-  data: {
-    id: number;
-    name: string;
-    subjects: {
-      id: number;
-      name: string;
-      idCourse: number;
-    }[];
-  }[];
+  data: Course[];
   count: number;  // ← Esta es la diferencia clave
 }
 

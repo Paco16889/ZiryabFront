@@ -154,9 +154,6 @@ export class TeacherListItemComponent {
     
   constructor(private teacherService: TeachersServiceService) {}
 
-  onTeacherUpdated(updatedTeacher: any) {
-    this.teacherUpdated.emit(updatedTeacher);
-  }
-
+  
  
 }

@@ -1,27 +1,25 @@
 export interface Group {
     id: number,
     name: string,
-    createdAt: string
+    createdAt: string;
 }
 
 export interface GroupsAllResponse{
   success: boolean;
-  data:{
-    id: number,
-    name: string,
-    createdAt: string
-  }[];
+  data:Group[];
   count: number;
 }
+
+
+
 export interface GroupByIdResponse {
   success: boolean;
   data:{
     id: number,
     name: string,
-    createdAt: string
+    createdAt: string,
+    };
   };
-
-}
 
 
 

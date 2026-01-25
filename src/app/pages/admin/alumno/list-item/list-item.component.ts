@@ -152,15 +152,17 @@ export class ListItemComponent {
         key: 'role',
         label: 'Role:',
         type: 'text'
+      },
+      {
+        key: 'isActive',
+        label: 'Estado: ',
+        type: 'text'
       }
     ]
   };
 
   constructor(private studentService: StudentsServiceService) {}
 
-  onStudentUpdated(updatedStudent: any) {
-    this.studentUpdated.emit(updatedStudent);
-  }
 
   
 }

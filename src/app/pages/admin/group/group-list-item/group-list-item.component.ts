@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Group } from '../../../../core/models/group';
 
 import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
@@ -10,6 +10,7 @@ import { ListItemConfig } from '../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
 import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
 import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-group-list-item',
@@ -17,10 +18,15 @@ import { GenericViewDetailComponent } from "../../generic-view-detail/generic-vi
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })
-export class GroupListItemComponent {
+export class GroupListItemComponent implements OnInit{
   @Input() group!: Group;
   @Output() groupUpdated = new EventEmitter<{id: number, name: string}>();
   @Output() groupDeleted = new EventEmitter<number>();
+
+  coursesToShow: any[] = [];
+   
+
+  
 
   // Configuración del list-item para groups
   groupConfig: ListItemConfig<Group> = {
@@ -55,7 +61,6 @@ export class GroupListItemComponent {
     updateFn: (data: any) => this.groupService.updateGroup(data),
     deleteFn: (id: number) => this.groupService.deleteGroup(id)
   };
-
    groupDetailConfig: ViewDetailConfig<Group> = {
       fields: [
         {
@@ -67,11 +72,38 @@ export class GroupListItemComponent {
         }
     ]
     };
+      
 
-  constructor(private groupService: GroupServiceService) {}
+  constructor(private groupService: GroupServiceService) {
 
+  
+  }
+  ngOnInit(): void {
+   // this.loadCoursesForGroup();
+  }
+/*
+  loadCoursesForGroup() {
+  // Asegúrate de que group tiene id
+  if (!this.group?.id) return;
+
+  this.groupService.getGroupById(this.group.id).subscribe({
+    next: (response) => {
+      // TypeScript sabe que response es el tipo que devuelve tu servicio
+      // Extraemos los cursos usando tus interfaces existentes
+      this.coursesToShow = response.data.studentEnrollments.map(
+        (item) => item.subject.course
+      );
+
+      // Logs para depuración
+      console.log('=== CARGA DE CURSOS ===');
+      console.log('Group:', this.group);
+      console.log('Respuesta completa:', response);
+      console.log('Cursos extraídos:', this.coursesToShow);
+    },
+    error: (err) => console.error('Error cargando cursos:', err)
+  });
  
+}*/
 
- 
 }
 

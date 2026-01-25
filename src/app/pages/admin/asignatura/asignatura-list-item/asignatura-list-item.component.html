@@ -1,14 +1,6 @@
 <app-generic-list-item
   [item]="subject"
   [config]="subjectConfig"
-  [detailTemplate]="detailTemplate"
-  >
+  [detailConfig]="subjectDetailConfig">
+  
 </app-generic-list-item>
-
-<!-- Template para el detalle -->
-<ng-template #detailTemplate let-subject>
-   <app-generic-view-detail 
-    [item]="subject" 
-    [config]="subjectDetailConfig">
-  </app-generic-view-detail>
-</ng-template>
