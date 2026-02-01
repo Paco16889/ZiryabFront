@@ -9,12 +9,7 @@ import { AuthService } from '../services/auth.service';
 export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const token = authService.getToken();
-  console.log(req.urlWithParams);
-  console.log(req.url);
-  console.log(req.withCredentials);
-  console.log(req.body);
-  console.log(req.headers);
-  console.log(req.method);
+  
 
    if (
     req.url.startsWith('/assets/') ||

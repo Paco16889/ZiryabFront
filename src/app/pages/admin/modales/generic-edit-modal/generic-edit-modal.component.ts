@@ -18,9 +18,7 @@ export class GenericEditModalComponent {
   @Input() fields!: EditFieldConfig[]; // Configuración de campos
   @Input() updateFunction!: (data: any) => Observable<any>; // Función de update del servicio
   
-  @Output() closeModal = new EventEmitter<void>();
-  @Output() entityUpdated = new EventEmitter<any>();
-
+  
   editForm!: FormGroup;
   isUpdating = false;
   showSuccess = false;

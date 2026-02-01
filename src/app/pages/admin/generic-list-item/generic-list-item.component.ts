@@ -7,6 +7,7 @@ import { BotonViewdetailComponent } from "../botones/boton-viewdetail/boton-view
 import { ListItemConfig, ListItemFieldConfig } from '../../../core/configs/list-item-config';
 import { GenericViewDetailComponent } from '../generic-view-detail/generic-view-detail.component';
 import { ViewDetailConfig } from '../../../core/configs/view-detail-config';
+import { WithId } from '../../../core/models/withId';
 
 
 @Component({
@@ -15,10 +16,10 @@ import { ViewDetailConfig } from '../../../core/configs/view-detail-config';
   templateUrl: './generic-list-item.component.html',
   styleUrl: './generic-list-item.component.scss'
 })
-export class GenericListItemComponent<T> {
+export class GenericListItemComponent<T extends WithId> {
 
-  @Input() item!: any;  
-  @Input() config!: ListItemConfig<any>;  
+  @Input() item!: T;  
+  @Input() config!: ListItemConfig<T>;  
   @Input() detailConfig?: ViewDetailConfig<T>
   
   

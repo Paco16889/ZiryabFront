@@ -2,6 +2,7 @@ import { Component, effect, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { WithId } from '../../../../core/models/withId';
 
 @Component({
   selector: 'app-generic-delete-modal',
@@ -9,10 +10,10 @@ import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-de
   templateUrl: './generic-delete-modal.component.html',
   styleUrl: './generic-delete-modal.component.scss'
 })
-export class GenericDeleteModalComponent {
+export class GenericDeleteModalComponent<T extends WithId> {
   @Input() entityType!: string; // "estudiante", "asignatura", "ciclo"
   @Input() entityName!: string; // El nombre específico (ej: "Juan Pérez")
-  @Input() deleteFunction!: (id: number) => Observable<any>; // Función de delete del servicio
+  @Input() deleteFunction!: (id: number) => Observable<T>; // Función de delete del servicio
   @Input() entityId!: number; // ID de la entidad a borrar
   
   
