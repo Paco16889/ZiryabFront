@@ -1,20 +1,20 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Subject, SubjectByIdResponse, SubjectsAllResponse } from '../../../../core/models/subject';
+import { Subject, SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/models/subject';
 
-import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
-
-
+import { SubjectServiceService } from '../../../../../core/services/admin/subject-service.service';
 
 
 
-import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+
+
+import { CourseServiceService } from '../../../../../core/services/admin/course-service.service';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
 
-import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ListItemConfig } from '../../../../core/configs/list-item-config';
-import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
-import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
+import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
+import { ListItemConfig } from '../../../../../core/configs/list-item-config';
+import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
+import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
 @Component({
   selector: 'app-asignatura-list-item',
