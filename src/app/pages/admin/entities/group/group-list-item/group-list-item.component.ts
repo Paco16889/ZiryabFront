@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Group } from '../../../../core/models/group';
+import { Group } from '../../../../../core/models/group';
 
-import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
+import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
 
 
 
 import { Validators } from '@angular/forms';
-import { ListItemConfig } from '../../../../core/configs/list-item-config';
-import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
-import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
+import { ListItemConfig } from '../../../../../core/configs/list-item-config';
+import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
+import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
+import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { map } from 'rxjs';
 
 @Component({

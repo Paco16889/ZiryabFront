@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Course } from '../../../../core/models/course';
-import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { Course } from '../../../../../core/models/course';
+import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SubjectServiceService } from '../../../../core/services/admin/subject-service.service';
-import { Subject } from '../../../../core/models/subject';
-import { BotonConfirmarStudentComponent } from "../../botones/boton-confirmar-student/boton-confirmar-student.component";
-import { Student } from '../../../../core/models/student';
-import { StudentRegistrationService } from '../../../../core/services/admin/student-registration.service';
-import { SelectedStudentServiceService } from '../../../../core/services/admin/selected-student-service.service';
+import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
+import { Subject } from '../../../../../core/models/subject';
+import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
+import { Student } from '../../../../../core/models/student';
+import { StudentRegistrationService } from '../../../../../core/services/admin/student-registration.service';
+import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
 
 @Component({
   selector: 'app-set-registration',

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Student } from '../../../../core/models/student';
+import { Student } from '../../../../../core/models/student';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
+import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { PasswordServiceService } from '../../../../core/services/password-service.service';
-import { BotonConfirmarStudentComponent } from "../../botones/boton-confirmar-student/boton-confirmar-student.component";
-import { SelectedStudentServiceService } from '../../../../core/services/admin/selected-student-service.service';
+import { PasswordServiceService } from '../../../../../core/services/password-service.service';
+import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
+import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
 import { Observable } from 'rxjs';
 
 @Component({

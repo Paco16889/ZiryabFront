@@ -1,11 +1,9 @@
+import { Subject } from "./subject";
+
 export interface Course {
     id: number,
     name: string,
-    subjects: {
-      id: number;
-      name: string;
-      idCourse:number;
-    }[];
+    subjects: Subject[];
 }
 
 export interface CourseByIdResponse {

@@ -1,14 +1,14 @@
 import { Component, effect, Input, OnInit } from '@angular/core';
-import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
-import { Student } from '../../../../core/models/student';
+import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
+import { Student } from '../../../../../core/models/student';
 import { ListItemComponent } from '../list-item/list-item.component';
 
 import { StudentEnrollmentComponent } from "../student-enrollment/student-enrollment.component";
-import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-list',

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { SelectedStudentServiceService } from './selected-student-service.service';
 import { Student } from '../../models/student';
 import { Subject } from '../../models/subject';
-import { SubjectServiceService } from './subject-service.service';
+import { SubjectServiceService } from './entities/subject-service.service';
 
 @Injectable({
   providedIn: 'root'

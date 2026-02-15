@@ -1,12 +1,12 @@
 import { Component, effect } from '@angular/core';
-import { Teacher, TeacherUpdateResponse } from '../../../../core/models/teacher';
-import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
+import { Teacher, TeacherUpdateResponse } from '../../../../../core/models/teacher';
+import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
 import { TeacherListItemComponent } from '../teacher-list-item/teacher-list-item.component';
 import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-create-form.component';
-import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-teacher-list',

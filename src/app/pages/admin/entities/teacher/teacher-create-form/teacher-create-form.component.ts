@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
+import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { PasswordServiceService } from '../../../../core/services/password-service.service';
+import { PasswordServiceService } from '../../../../../core/services/password-service.service';
 
 @Component({
   selector: 'app-teacher-create-form',

@@ -1,1 +1,24 @@
-<p>week-schedule-list works!</p>
+<div class="p-4">
+  
+@if(!showCreateForm){
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold">Horario</h1>
+      <app-boton-create 
+      label="Crear Horario"
+      (clickAction)="openCreateForm()"> 
+      </app-boton-create>
+    </div>
+
+    @for (sch of schedules; track sch.id){
+        <app-week-schedule-list-item [schedule]="sch"></app-week-schedule-list-item>
+    }
+}
+
+
+  @if(showCreateForm){
+   <p>aquí iria el formulario de horario???</p>
+  }
+
+
+
+</div>

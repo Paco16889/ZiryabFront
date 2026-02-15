@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 
 @Component({
   selector: 'app-course-create-form',

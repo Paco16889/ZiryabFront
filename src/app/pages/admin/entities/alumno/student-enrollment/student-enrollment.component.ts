@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { StudentCreateFormComponent } from "../student-create-form/student-create-form.component";
 import { StudentSelectorComponent } from "../student-selector/student-selector.component";
-import { Student } from '../../../../core/models/student';
-import { SelectedStudentServiceService } from '../../../../core/services/admin/selected-student-service.service';
+import { Student } from '../../../../../core/models/student';
+import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
 import { SetRegistrationComponent } from "../set-registration/set-registration.component";
 import { StudentModeSelectorComponent } from "../student-mode-selector/student-mode-selector.component";
 

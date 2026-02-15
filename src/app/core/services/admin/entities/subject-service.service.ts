@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, map, catchError, of } from 'rxjs';
-import { Subject, SubjectByIdResponse, SubjectCreateRequest, SubjectCreateResponse, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../models/subject';
+import { Subject, SubjectByIdResponse, SubjectCreateRequest, SubjectCreateResponse, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../../models/subject';
 
 @Injectable({
   providedIn: 'root'

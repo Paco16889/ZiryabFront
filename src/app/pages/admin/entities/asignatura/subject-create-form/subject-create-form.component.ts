@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SubjectServiceService } from '../../../../../core/services/admin/subject-service.service';
-import { CourseServiceService } from '../../../../../core/services/admin/course-service.service';
+import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
+import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 import { CoursesAllResponse } from '../../../../../core/models/course';
 
 @Component({

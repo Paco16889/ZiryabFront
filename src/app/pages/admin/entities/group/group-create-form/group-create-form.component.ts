@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
+import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
 
 @Component({
   selector: 'app-group-create-form',

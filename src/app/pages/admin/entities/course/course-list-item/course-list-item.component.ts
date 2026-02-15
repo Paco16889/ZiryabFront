@@ -1,16 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Course } from '../../../../core/models/course';
-import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { Course } from '../../../../../core/models/course';
+import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 
 
 
 
 import { Validators } from '@angular/forms';
-import { ListItemConfig } from '../../../../core/configs/list-item-config';
-import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
-import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
+import { ListItemConfig } from '../../../../../core/configs/list-item-config';
+import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
+import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
+import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
 
 @Component({

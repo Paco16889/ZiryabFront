@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Student } from '../../../../core/models/student';
+import { Student } from '../../../../../core/models/student';
 
-import { StudentsServiceService } from '../../../../core/services/admin/students-service.service';
+import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
 
 
 import { Validators } from '@angular/forms';
-import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ListItemConfig } from '../../../../core/configs/list-item-config';
-import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
-import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
+import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
+import { ListItemConfig } from '../../../../../core/configs/list-item-config';
+import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
+import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
 @Component({
   selector: 'app-list-item',

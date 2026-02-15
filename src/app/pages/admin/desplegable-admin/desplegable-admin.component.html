@@ -19,6 +19,10 @@
 
     <app-course-list></app-course-list>
 }
+@if (toggleservice.openedMenu() === 'schedules') {
+
+    <app-week-schedule-list></app-week-schedule-list>
+}
 @if(toggleservice.openedMenu() === null){
    <p></p>
 }

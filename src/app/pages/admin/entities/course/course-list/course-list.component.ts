@@ -1,12 +1,12 @@
 import { Component, effect } from '@angular/core';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
-import { Course, CourseByIdResponse } from '../../../../core/models/course';
-import { CourseServiceService } from '../../../../core/services/admin/course-service.service';
+import { Course, CourseByIdResponse } from '../../../../../core/models/course';
+import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
-import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-course-list',

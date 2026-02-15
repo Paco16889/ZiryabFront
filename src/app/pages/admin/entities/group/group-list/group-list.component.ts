@@ -1,12 +1,12 @@
 import { Component, effect } from '@angular/core';
 import { GroupListItemComponent } from '../group-list-item/group-list-item.component';
-import { Group } from '../../../../core/models/group';
-import { GroupServiceService } from '../../../../core/services/admin/group-service.service';
+import { Group } from '../../../../../core/models/group';
+import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
 import { GroupCreateFormComponent } from '../group-create-form/group-create-form.component';
-import { BotonCreateComponent } from "../../botones/boton-create/boton-create.component";
+import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
+import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
 @Component({
   selector: 'app-group-list',

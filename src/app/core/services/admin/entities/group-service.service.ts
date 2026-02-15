@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { catchError, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Group, GroupByIdResponse, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../models/group';
+import { Group, GroupByIdResponse, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../../models/group';
 
 @Injectable({
   providedIn: 'root'

@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Teacher } from '../../../../core/models/teacher';
+import { Teacher } from '../../../../../core/models/teacher';
 
-import { TeachersServiceService } from '../../../../core/services/admin/teachers-service.service';
+import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
 
 
 
 import { Validators } from '@angular/forms';
 
-import { GenericListItemComponent } from "../../generic-list-item/generic-list-item.component";
-import { ListItemConfig } from '../../../../core/configs/list-item-config';
-import { ViewDetailConfig } from '../../../../core/configs/view-detail-config';
-import { GenericViewDetailComponent } from "../../generic-view-detail/generic-view-detail.component";
+import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
+import { ListItemConfig } from '../../../../../core/configs/list-item-config';
+import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
+import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 
 @Component({
   selector: 'app-teacher-list-item',
