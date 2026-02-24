@@ -1,12 +1,18 @@
 import { Injectable, signal } from '@angular/core';
 
+/**
+ * Servicio encargado de gestionar el estado de visibilidad del menú flotante de perfil.
+ */
 @Injectable({
   providedIn: 'root'
 })
 // ⬅️ ¡AQUÍ FALTABA EL EXPORT! Sin esto, el servicio es invisible.
 export class FloatMenuService { 
   
-  // Señal: Estado de visibilidad del menú desplegable.
+ /**
+   * Signal que almacena el estado de visibilidad del menú flotante.
+   * true si el menú está abierto, false si está cerrado.
+   */
   isMenuOpen = signal<boolean>(false);
 
   constructor() { }
