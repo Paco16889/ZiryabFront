@@ -8,13 +8,31 @@ import {
 } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
+/**
+ * Guard que protege las rutas que requieren un rol específico.
+ * Verifica tanto la autenticación como el rol del usuario antes de permitir el acceso.
+ */
 @Injectable({ providedIn: 'root' })
 export class RoleGuard implements CanActivate {
+
+    /**
+   * @param authService - Servicio de autenticación para verificar el estado y rol del usuario
+   * @param router - Router de Angular para gestionar las redirecciones
+   */
     constructor(
         private authService: AuthService,
         private router: Router
     ) { }
 
+     /**
+   * Verifica si el usuario está autenticado y posee el rol requerido por la ruta.
+   * Si no está autenticado redirige a login.
+   * Si no tiene el rol necesario redirige a la página de acceso no autorizado.
+   * Si la ruta no especifica roles permite el acceso a cualquier usuario autenticado.
+   * @param route - Información de la ruta activa, debe contener data.roles con los roles permitidos
+   * @param state - Estado actual del router
+   * @returns true si el usuario tiene el rol requerido, false y redirige en caso contrario
+   */
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
