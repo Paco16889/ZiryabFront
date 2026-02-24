@@ -3,8 +3,23 @@ import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 /**
- * Interceptor funcional que agrega el JWT a TODAS las peticiones HTTP
- * Compatible con Angular 19+
+ * Interceptor funcional que agrega el token JWT a todas las peticiones HTTP salientes.
+ * Compatible con Angular 19+.
+ * Excluye automáticamente las peticiones a ficheros estáticos y JSON de assets
+ * para evitar agregar el token en las cargas de ficheros de traducción y similares.
+ * @param req - La petición HTTP interceptada
+ * @param next - Manejador para continuar la cadena de interceptores
+ * @returns La petición original si es un asset, la petición con el token si existe,
+ * o la petición sin modificar si no hay token disponible
+ * @example
+ * // Registro en app.config.ts
+ * export const appConfig: ApplicationConfig = {
+ *   providers: [
+ *     provideHttpClient(
+ *       withInterceptors([authInterceptorFn])
+ *     )
+ *   ]
+ * };
  */
 export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
