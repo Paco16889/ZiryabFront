@@ -6,17 +6,25 @@ import { DeleteModalState, DeleteRequest } from '../../models/services/delete-mo
 })
 export class ModalDeleteServiceService {
 
-  // Signal principal del estado del modal
+   /**
+   * Signal privada que almacena el estado interno del modal.
+   */
   private _modalState = signal<DeleteModalState>({ isOpen: false });
   
-  // Exponerlo como readonly
+   /**
+   * Signal pública de solo lectura que expone el estado del modal a los componentes.
+   */
   modalState = this._modalState.asReadonly();
 
-  // Configuración actual (para ejecutar el delete)
+    /**
+   * Configuración actual de la entidad pendiente de eliminar.
+   * Se limpia al cerrar el modal.
+   */
   private currentConfig: DeleteRequest | null = null;
 
-  /**
-   * Abrir modal (llamado desde el botón)
+    /**
+   * Abre el modal de confirmación de eliminación con los datos de la entidad a borrar.
+   * @param request - Configuración de la entidad a eliminar, incluyendo id, nombre, tipo y función de borrado
    */
   openModal(request: DeleteRequest) {
     this.currentConfig = request;
@@ -31,8 +39,11 @@ export class ModalDeleteServiceService {
     });
   }
 
-  /**
-   * Confirmar delete (llamado desde el modal)
+   /**
+   * Ejecuta la función de eliminación de la entidad actual.
+   * Actualiza el estado del modal durante el proceso mostrando el estado de carga,
+   * éxito o error según el resultado. Cierra el modal automáticamente tras dos segundos
+   * si la eliminación se completa correctamente.
    */
   confirmDelete() {
     if (!this.currentConfig) return;
@@ -70,8 +81,8 @@ export class ModalDeleteServiceService {
     });
   }
 
-  /**
-   * Cancelar/cerrar modal
+ /**
+   * Cierra el modal y limpia la configuración de la entidad actual.
    */
   closeModal() {
     this._modalState.update(state => ({

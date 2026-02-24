@@ -1,22 +1,34 @@
 import { Injectable, signal } from '@angular/core';
 import { UpdateModalState, UpdateRequest } from '../../models/services/update-models';
 
+/**
+ * Servicio encargado de gestionar el estado y el ciclo de vida del modal de edición.
+ * Centraliza la lógica de apertura, ejecución y resultado del proceso de actualización
+ * para cualquier entidad del sistema.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class ModalEditServiceService {
 
- // Signal principal del estado del modal
+  /**
+   * Signal privada que almacena el estado interno del modal de edición.
+   */
   private _modalState = signal<UpdateModalState>({ isOpen: false });
   
-  // Exponerlo como readonly
+ /**
+   * Signal pública de solo lectura que expone el estado del modal a los componentes.
+   */
   modalState = this._modalState.asReadonly();
-
-  // Configuración actual (para ejecutar el update)
+ /**
+   * Configuración actual de la entidad pendiente de actualizar.
+   * Se limpia al cerrar el modal.
+   */
   private currentConfig: UpdateRequest | null = null;
 
-  /**
-   * Abrir modal (llamado desde el botón)
+ /**
+   * Abre el modal de edición con los datos de la entidad a actualizar.
+   * @param request - Configuración de la entidad a actualizar, incluyendo id, nombre, tipo, datos actuales y campos editables
    */
   openModal(request: UpdateRequest) {
     this.currentConfig = request;
@@ -34,7 +46,11 @@ export class ModalEditServiceService {
   }
 
   /**
-   * Confirmar update (llamado desde el modal)
+   * Ejecuta la función de actualización con los datos del formulario.
+   * Actualiza el estado del modal durante el proceso mostrando el estado de carga,
+   * éxito o error según el resultado. Cierra el modal automáticamente tras dos segundos
+   * si la actualización se completa correctamente.
+   * @param updateData - Datos del formulario de edición a enviar al backend
    */
   confirmUpdate( updateData: any) {
     if (!this.currentConfig) return;
@@ -47,7 +63,7 @@ export class ModalEditServiceService {
       errorMessage: ''
     }));
      
-    // Ejecutar función de update
+   
     this.currentConfig.updateFn(updateData).subscribe({
       next: () => {
         // Mostrar éxito
@@ -74,7 +90,7 @@ export class ModalEditServiceService {
   }
 
   /**
-   * Cancelar/cerrar modal
+   * Cierra el modal y limpia la configuración de la entidad actual.
    */
   closeModal() {
     this._modalState.update(state => ({
