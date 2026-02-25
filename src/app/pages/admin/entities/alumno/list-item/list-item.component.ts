@@ -11,6 +11,11 @@ import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
+/**
+ * Componente que representa un elemento del listado de estudiantes.
+ * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
+ * para el componente genérico GenericListItemComponent.
+ */
 @Component({
   selector: 'app-list-item',
   imports: [ GenericListItemComponent, GenericViewDetailComponent],
@@ -18,11 +23,27 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
   styleUrl: './list-item.component.scss'
 })
 export class ListItemComponent {
+
+   /**
+   * Estudiante a mostrar en el elemento de lista.
+   */
   @Input() student!: Student;
+
+  /**
+   * Evento emitido cuando el estudiante ha sido actualizado.
+   */
   @Output() studentUpdated = new EventEmitter<any>();
+
+   /**
+   * Evento emitido cuando el estudiante ha sido eliminado, incluye su identificador.
+   */
   @Output() studentDeleted = new EventEmitter<number>();
 
-  // Configuración del list-item
+  /**
+   * Configuración del elemento de lista del estudiante.
+   * Define los campos visibles, las acciones disponibles, el layout,
+   * los campos del formulario de edición y las funciones de servicio.
+   */
   studentConfig: ListItemConfig<Student> = {
     fields: [
       { 
@@ -113,6 +134,11 @@ export class ListItemComponent {
     deleteFn: (id: number) => this.studentService.deleteStudent(id)
   };
 
+
+  /**
+   * Configuración de la vista de detalle del estudiante.
+   * Define los campos a mostrar y su formato en la vista de detalle.
+   */
    studentDetailConfig: ViewDetailConfig<Student> = {
     fields: [
       {
@@ -161,6 +187,10 @@ export class ListItemComponent {
     ]
   };
 
+  /**
+   * @param studentService - Servicio que gestiona las operaciones con estudiantes,
+   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
+   */
   constructor(private studentService: StudentsServiceService) {}
 
 

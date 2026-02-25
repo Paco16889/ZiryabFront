@@ -10,6 +10,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
 import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
+/**
+ * Componente que muestra el listado de estudiantes del sistema.
+ * Gestiona la visualización del listado, la apertura del formulario de creación
+ * y la recarga automática de la lista tras operaciones de eliminación o actualización.
+ */
 @Component({
   selector: 'app-list',
   imports: [ListItemComponent, StudentEnrollmentComponent, BotonCreateComponent, TranslateModule],
@@ -17,11 +22,24 @@ import { ModalEditServiceService } from '../../../../../core/services/UI/modal-e
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
+
+  /**
+   * Listado de estudiantes a mostrar, sincronizado con la signal del servicio.
+   */
   students: Student[] = [];
   
-
+ /**
+   * Controla la visibilidad del formulario de creación de estudiantes.
+   */
    showCreateForm = false;
    
+     /**
+   * @param studentService - Servicio que gestiona las operaciones con estudiantes
+   * @param deleteModalService - Servicio del modal de eliminación, usado para detectar
+   * cuando una eliminación se completa y recargar la lista
+   * @param updateModalService - Servicio del modal de edición, usado para detectar
+   * cuando una actualización se completa y recargar la lista
+   */
   constructor(
     private studentService: StudentsServiceService, 
     private deleteModalService: ModalDeleteServiceService,
@@ -48,21 +66,33 @@ export class ListComponent implements OnInit {
 
   }
 
+  /**
+   * Carga el listado de estudiantes al inicializar el componente.
+   */
   ngOnInit():void {
     this.studentService.loadStudents();
   }
 
  
 
-    
+   /**
+   * Muestra el formulario de creación de estudiantes.
+   */ 
 openCreateForm() {
   this.showCreateForm = true;
 }
 
+ /**
+   * Oculta el formulario de creación de estudiantes.
+   */
 closeCreateForm() {
   this.showCreateForm = false;
 }
 
+  /**
+   * Cierra el formulario de creación y recarga el listado de estudiantes.
+   * Se llama cuando el formulario de creación notifica que se ha creado un estudiante.
+   */
   onStudentCreated() {
     this.closeCreateForm();
     this.studentService.loadStudents(); // Recarga la lista

@@ -8,6 +8,12 @@ import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar
 import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
 import { Observable } from 'rxjs';
 
+/**
+ * Componente que gestiona el formulario de creación de un nuevo estudiante.
+ * Crea el usuario en Firebase Authentication y posteriormente lo registra
+ * en el backend con los datos del formulario.
+ * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServiceService.
+ */
 @Component({
   selector: 'app-student-create-form',
   imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
@@ -16,16 +22,51 @@ import { Observable } from 'rxjs';
 })
 export class StudentCreateFormComponent {
 
+  /**
+   * Evento emitido cuando el estudiante se ha creado correctamente.
+   * Incluye los datos del estudiante creado.
+   */
   @Output() studentCreated = new EventEmitter<Student>();
+
+  /**
+   * Evento emitido cuando el usuario cancela la creación.
+   */
   @Output() cancelCreate = new EventEmitter<void>();
+
+    /**
+   * Contraseña generada temporalmente para el nuevo usuario.
+   * Pendiente de revisar su gestión y almacenamiento.
+   */
   contrasenatruquillo = '';
 
-  
+   /**
+   * Formulario reactivo con los campos necesarios para crear un estudiante.
+   */
   createForm: FormGroup;
+
+  /**
+   * Indica si la petición de creación está en curso.
+   */
   isCreating = false;
+
+    /**
+   * Mensaje de error a mostrar si la creación falla o el estudiante ya existe.
+   */
   errorMessage = '';
+
+   /**
+   * Indica si el formulario es válido.
+   */
   validForm = false;
 
+
+    /**
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param studentService - Servicio que gestiona las operaciones con estudiantes
+   * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario
+   * @param passwordGen - Servicio que genera la contraseña aleatoria del nuevo usuario
+   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado tras la creación
+   */
   constructor(
     private fb: FormBuilder,
     private studentService: StudentsServiceService,
@@ -43,6 +84,13 @@ export class StudentCreateFormComponent {
     });
   }
 
+  /**
+   * Crea el usuario en Firebase Authentication y lo registra en el backend.
+   * Genera una contraseña aleatoria para Firebase y usa el UID resultante
+   * para completar el registro en el backend.
+   * ATENCIÓN: usa new Observable() como antipatrón, pendiente de refactorizar con from().
+   * @returns Observable con los datos del estudiante creado
+   */
   createStudent(): Observable<Student> {
   const email = this.createForm.value.email;
   const password = this.passwordGen.generateRandomPassword();
@@ -87,6 +135,11 @@ export class StudentCreateFormComponent {
   });
 }
 
+ /**
+   * Valida el formulario, comprueba si el estudiante ya existe por DNI
+   * y ejecuta la creación si todo es correcto.
+   * Si el estudiante ya existe muestra un mensaje de error sin crear.
+   */
   onSubmit() {
     if (this.createForm.invalid) return;
     //this.createStudent();
@@ -127,6 +180,9 @@ export class StudentCreateFormComponent {
   
   }
 
+  /**
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+   */
   onCancel() {
     this.cancelCreate.emit();
   }

@@ -5,6 +5,11 @@ import { Student, StudentByIdResponse } from '../../../../../core/models/student
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
 
+/**
+ * Componente que permite buscar y seleccionar un estudiante existente por su DNI.
+ * Busca en el listado de estudiantes recibido por Input y permite confirmar
+ * la selección para continuar con el proceso de matriculación.
+ */
 @Component({
   selector: 'app-student-selector',
   imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
@@ -12,16 +17,50 @@ import { SelectedStudentServiceService } from '../../../../../core/services/admi
   styleUrl: './student-selector.component.scss'
 })
 export class StudentSelectorComponent {
- @Input() students: Student[] = []; // ← Recibe la lista
+
+  /**
+   * Listado de estudiantes en el que se realiza la búsqueda por DNI.
+   */
+ @Input() students: Student[] = []; 
+
+ /**
+   * Evento emitido cuando el usuario cancela la selección.
+   */
+
  @Output() cancelSelection = new EventEmitter<void>();
   
-  student: Student | null = null; // ← Cambiado de StudentByIdResponse['data']
+ /**
+   * Estudiante encontrado en la búsqueda por DNI.
+   * Es null cuando no se ha realizado ninguna búsqueda o no se han encontrado resultados.
+   */
+  student: Student | null = null;
+
+    /**
+   * Identificador del estudiante seleccionado mediante el radio button.
+   * Pendiente de revisar si es necesario o puede sustituirse por student?.id directamente.
+   */
   selectedStudentId: number | null = null;
+
+   /**
+   * Mensaje de error a mostrar si el DNI es inválido o no se encuentra el estudiante.
+   */
   errorMessage: string = '';
+
+    /**
+   * Formulario reactivo con el campo DNI para la búsqueda de estudiantes.
+   */
   dniForm: FormGroup;
 
+  /**
+   * Evento emitido cuando el usuario confirma la selección de un estudiante.
+   */
   @Output() studentSelected = new EventEmitter<Student>(); // ← Cambiado
 
+
+    /**
+   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   */
   constructor(private selectedStudentService: SelectedStudentServiceService
     ,private fb : FormBuilder
   ) {
@@ -30,7 +69,11 @@ export class StudentSelectorComponent {
     });
   }
 
-
+/**
+   * Busca un estudiante en el listado por el DNI introducido en el formulario.
+   * Si el DNI no es válido marca todos los campos como tocados para mostrar los errores.
+   * Si no se encuentra el estudiante muestra un mensaje de error.
+   */
   searchStudent() {
 
     
@@ -59,6 +102,11 @@ export class StudentSelectorComponent {
     }
   }
 
+   /**
+   * Confirma la selección del estudiante encontrado.
+   * Emite el evento studentSelected y almacena el estudiante en el servicio de selección.
+   * Pendiente de revisar la comprobación de selectedStudentId que puede ser redundante.
+   */
   confirmSelection() {
     if (this.selectedStudentId && this.student?.id === this.selectedStudentId) {
       this.studentSelected.emit(this.student);
@@ -67,6 +115,9 @@ export class StudentSelectorComponent {
   }
 
   
+   /**
+   * Emite el evento cancelSelection para cancelar la selección.
+   */
     onCancel() {
     this.cancelSelection.emit();
   }
