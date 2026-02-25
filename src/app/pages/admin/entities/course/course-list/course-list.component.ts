@@ -8,6 +8,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
 import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
+/**
+ * Componente que muestra el listado de ciclos académicos del sistema.
+ * Gestiona la visualización del listado, la apertura del formulario de creación
+ * y la recarga automática de la lista tras operaciones de eliminación o actualización.
+ */
 @Component({
   selector: 'app-course-list',
   imports: [CourseListItemComponent, CourseCreateFormComponent, BotonCreateComponent, TranslateModule],
@@ -15,10 +20,25 @@ import { ModalEditServiceService } from '../../../../../core/services/UI/modal-e
   styleUrl: './course-list.component.scss'
 })
 export class CourseListComponent {
-    courses: Course[] = []
-    
 
+    /**
+   * Listado de ciclos académicos a mostrar, sincronizado con la signal del servicio.
+   */
+    courses: Course[] = [];
+    
+ /**
+   * Controla la visibilidad del formulario de creación de ciclos académicos.
+   */
   showCreateForm = false;  
+
+   /**
+   * @param courseService - Servicio que gestiona las operaciones con ciclos académicos
+   * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
+   * cuando una eliminación se completa y recargar la lista
+   * @param updateDeleteService - Servicio del modal de edición, usado para detectar
+   * cuando una actualización se completa y recargar la lista.
+   * ATENCIÓN: nombre confuso, debería llamarse modalUpdateService para ser consistente
+   */
       constructor(private courseService: CourseServiceService, 
         private modalDeleteService: ModalDeleteServiceService,
         private updateDeleteService: ModalEditServiceService)
@@ -45,6 +65,9 @@ export class CourseListComponent {
     });
       }
     
+       /**
+   * Carga el listado de ciclos académicos al inicializar el componente.
+   */
       ngOnInit():void {
 
         this.courseService.loadCourses();
@@ -55,15 +78,25 @@ export class CourseListComponent {
 
 
   
-
+/**
+   * Muestra el formulario de creación de ciclos académicos.
+   */
   openCreateForm() {
     this.showCreateForm = true;
   }
 
+
+  /**
+   * Oculta el formulario de creación de ciclos académicos.
+   */
   closeCreateForm() {
     this.showCreateForm = false;
   }
 
+   /**
+   * Cierra el formulario de creación y recarga el listado de ciclos académicos.
+   * Se llama cuando el formulario de creación notifica que se ha creado un ciclo.
+   */
   onCourseCreated() {
     this.closeCreateForm();
     this.courseService.loadCourses(); // Recarga la lista

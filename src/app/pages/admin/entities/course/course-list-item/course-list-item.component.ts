@@ -12,7 +12,12 @@ import { GenericListItemComponent } from "../../../generic-list-item/generic-lis
 import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
-
+/**
+ * Componente que representa un elemento del listado de ciclos académicos.
+ * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
+ * incluyendo la lista anidada de asignaturas del ciclo,
+ * para el componente genérico GenericListItemComponent.
+ */
 @Component({
   selector: 'app-course-list-item',
   imports: [ GenericListItemComponent, GenericViewDetailComponent],
@@ -20,12 +25,24 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
   styleUrl: './course-list-item.component.scss'
 })
 export class CourseListItemComponent {
+  /**
+   * Ciclo académico a mostrar en el elemento de lista.
+   */
   @Input() course!: Course;
+
+   /**
+   * Evento emitido cuando el ciclo ha sido actualizado.
+   * Pendiente de sustituir el tipo inline por CourseUpdateRequest.
+   */
   @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
   
   
 
-  // Configuración del list-item para courses
+ /**
+   * Configuración del elemento de lista del ciclo académico.
+   * Define los campos visibles, las acciones disponibles, el layout,
+   * los campos del formulario de edición y las funciones de servicio.
+   */
   courseConfig: ListItemConfig<Course> = {
     fields: [
       { 
@@ -59,6 +76,10 @@ export class CourseListItemComponent {
     deleteFn: (id: number) => this.courseService.deleteCourse(id)
   };
 
+  /**
+   * Configuración de la vista de detalle del ciclo académico.
+   * Muestra el nombre del ciclo y la lista anidada de asignaturas que lo componen.
+   */
   courseDetailConfig: ViewDetailConfig<Course> = {
     fields: [
       {
@@ -78,6 +99,10 @@ export class CourseListItemComponent {
   ]
   };
 
+/**
+   * @param courseService - Servicio que gestiona las operaciones con ciclos académicos,
+   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
+   */
   constructor(private courseService: CourseServiceService) {}
 
   

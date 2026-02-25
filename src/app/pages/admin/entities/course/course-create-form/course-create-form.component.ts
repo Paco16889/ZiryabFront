@@ -2,6 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 
+/**
+ * Componente que gestiona el formulario de creación de un nuevo ciclo académico.
+ * Valida el formulario y envía los datos al backend para crear el ciclo.
+ */
 @Component({
   selector: 'app-course-create-form',
   imports: [ReactiveFormsModule],
@@ -9,13 +13,36 @@ import { CourseServiceService } from '../../../../../core/services/admin/entitie
   styleUrl: './course-create-form.component.scss'
 })
 export class CourseCreateFormComponent {
+
+   /**
+   * Evento emitido cuando el usuario cancela la creación.
+   */
   @Output() cancelCreate = new EventEmitter<void>();
+
+    /**
+   * Evento emitido cuando el ciclo se ha creado correctamente.
+   */
   @Output() courseCreated = new EventEmitter<void>();
 
+   /**
+   * Formulario reactivo con el campo nombre del ciclo académico.
+   */
   createForm: FormGroup;
+
+   /**
+   * Indica si la petición de creación está en curso.
+   */
   isCreating = false;
+
+  /**
+   * Mensaje de error a mostrar si la creación falla.
+   */
   errorMessage = '';
 
+   /**
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param courseService - Servicio que gestiona las operaciones con ciclos académicos
+   */
   constructor(
     private fb: FormBuilder,
     private courseService: CourseServiceService
@@ -25,6 +52,10 @@ export class CourseCreateFormComponent {
     });
   }
 
+  /**
+   * Valida el formulario y envía los datos al backend para crear el ciclo académico.
+   * Si la creación es exitosa emite el evento courseCreated.
+   */
   onSubmit() {
     if (this.createForm.valid) {
       this.isCreating = true;
@@ -42,6 +73,9 @@ export class CourseCreateFormComponent {
     }
   }
 
+  /**
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+   */
   onCancel() {
     this.cancelCreate.emit();
   }
