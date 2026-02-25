@@ -4,6 +4,11 @@ import { SubjectServiceService } from '../../../../../core/services/admin/entiti
 import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 import { CoursesAllResponse } from '../../../../../core/models/course';
 
+/**
+ * Componente que gestiona el formulario de creación de una nueva asignatura.
+ * Carga los ciclos disponibles al inicializarse para permitir su selección
+ * y envía los datos al backend tras validar el formulario.
+ */
 @Component({
   selector: 'app-subject-create-form',
   imports: [ReactiveFormsModule],
@@ -11,15 +16,47 @@ import { CoursesAllResponse } from '../../../../../core/models/course';
   styleUrl: './subject-create-form.component.scss'
 })
 export class SubjectCreateFormComponent {
+    /**
+   * Evento emitido cuando el usuario cancela la creación.
+   */
   @Output() cancelCreate = new EventEmitter<void>();
+
+   /**
+   * Evento emitido cuando la asignatura se ha creado correctamente.
+   */
   @Output() subjectCreated = new EventEmitter<void>();
 
+   /**
+   * Formulario reactivo con los campos nombre e idCourse.
+   */
   createForm: FormGroup;
-  courses: CoursesAllResponse['data'] = []; // ← Tipo correcto
+
+  /**
+   * Listado de ciclos disponibles para el selector del formulario.
+   */
+  courses: CoursesAllResponse['data'] = [];
+
+   /**
+   * Indica si la petición de creación está en curso.
+   */
   isCreating = false;
+
+
+  /**
+   * Indica si los ciclos están siendo cargados desde el backend.
+   */
   isLoadingCourses = true;
+
+    /**
+   * Mensaje de error a mostrar si la creación o la carga de ciclos falla.
+   */
   errorMessage = '';
 
+   /**
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param subjectService - Servicio que gestiona las operaciones con asignaturas
+   * @param courseService - Servicio que proporciona los ciclos disponibles para el selector
+   */
   constructor(
     private fb: FormBuilder,
     private subjectService: SubjectServiceService,
@@ -31,6 +68,9 @@ export class SubjectCreateFormComponent {
     });
   }
 
+  /**
+   * Carga el listado de ciclos disponibles al inicializar el componente.
+   */
   ngOnInit() {
     this.courseService.getAllCourses().subscribe({
       next: (response) => {
@@ -45,6 +85,10 @@ export class SubjectCreateFormComponent {
     });
   }
 
+  /**
+   * Valida el formulario y envía los datos al backend para crear la asignatura.
+   * Si la creación es exitosa emite el evento subjectCreated.
+   */
   onSubmit() {
     if (this.createForm.valid) {
       console.log('Datos a enviar:', this.createForm.value);
@@ -63,6 +107,9 @@ export class SubjectCreateFormComponent {
     }
   }
 
+    /**
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+   */
   onCancel() {
     this.cancelCreate.emit();
   }

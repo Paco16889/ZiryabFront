@@ -16,6 +16,11 @@ import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
+/**
+ * Componente que representa un elemento del listado de asignaturas.
+ * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
+ * para el componente genérico GenericListItemComponent.
+ */
 @Component({
   selector: 'app-asignatura-list-item',
   imports: [GenericListItemComponent, GenericViewDetailComponent],
@@ -23,16 +28,41 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
   styleUrl: './asignatura-list-item.component.scss'
 })
 export class AsignaturaListItemComponent {
+  /**
+   * Asignatura a mostrar en el elemento de lista.
+   */
    @Input() subject!: Subject;
+
+    /**
+   * Evento emitido cuando la asignatura ha sido actualizada.
+   * Pendiente de sustituir el tipo inline por SubjectUpdateRequest.
+   */
   @Output() subjectUpdated = new EventEmitter<{id: number, name: string, idCourse: number}>();
+
+  /**
+   * Evento emitido cuando la asignatura ha sido eliminada, incluye su identificador.
+   */
   @Output() subjectDeleted = new EventEmitter<number>();
 
+    /**
+   * @param subjectService - Servicio que gestiona las operaciones con asignaturas,
+   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
+   * @param courseService - Servicio que proporciona los ciclos disponibles
+   * para el selector del formulario de edición
+   */
   constructor(
     private subjectService: SubjectServiceService,
     private courseService: CourseServiceService
   ) {}
 
-  // ✅ Getter que se evalúa cada vez que se accede
+    /**
+   * Configuración del elemento de lista de la asignatura.
+   * Definida como getter para garantizar que las referencias a this sean correctas
+   * al acceder a los servicios dentro de la configuración.
+   * Define los campos visibles, las acciones disponibles, el layout,
+   * los campos del formulario de edición con el selector de ciclos asíncrono
+   * y las funciones de servicio.
+   */
   get subjectConfig(): ListItemConfig<Subject> {
     return {
       fields: [
@@ -80,6 +110,11 @@ export class AsignaturaListItemComponent {
     };
   }
 
+
+  /**
+   * Configuración de la vista de detalle de la asignatura.
+   * Define los campos nombre, curso y ciclo al que pertenece.
+   */
   subjectDetailConfig: ViewDetailConfig<Subject> = {
         fields: [
           {
