@@ -4,6 +4,13 @@ import { Observable } from 'rxjs';
 import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
 import { WithId } from '../../../../core/models/withId';
 
+/**
+ * Componente genérico que representa el modal de confirmación de eliminación.
+ * Muestra tres estados: confirmación, eliminando y éxito.
+ * Se sincroniza con el ModalDeleteServiceService mediante un effect
+ * para reflejar el estado actual del proceso de eliminación.
+ * @template T - Tipo de la entidad a eliminar, debe tener al menos un campo id
+ */
 @Component({
   selector: 'app-generic-delete-modal',
   imports: [TranslateModule],
@@ -11,16 +18,49 @@ import { WithId } from '../../../../core/models/withId';
   styleUrl: './generic-delete-modal.component.scss'
 })
 export class GenericDeleteModalComponent<T extends WithId> {
-  @Input() entityType!: string; // "estudiante", "asignatura", "ciclo"
-  @Input() entityName!: string; // El nombre específico (ej: "Juan Pérez")
-  @Input() deleteFunction!: (id: number) => Observable<T>; // Función de delete del servicio
-  @Input() entityId!: number; // ID de la entidad a borrar
+   /**
+   * Tipo de la entidad a eliminar para mostrar en los mensajes del modal,
+   * por ejemplo 'estudiante', 'asignatura' o 'ciclo'.
+   */
+  @Input() entityType!: string; 
+
+  /**
+   * Nombre concreto de la entidad a eliminar para mostrar en el mensaje de confirmación,
+   * por ejemplo 'Juan Pérez'.
+   */
+  @Input() entityName!: string; 
+
+   /**
+   * Función que ejecuta la petición de eliminación al backend.
+   * @param id - Identificador de la entidad a eliminar
+   */
+  @Input() deleteFunction!: (id: number) => Observable<T>;
+
+   /**
+   * Identificador único de la entidad a eliminar.
+   */
+  @Input() entityId!: number; 
   
-  
+  /**
+   * Indica si la petición de eliminación está en curso.
+   */
   isDeleting = false;
+
+  /**
+   * Indica si la eliminación se ha completado con éxito.
+   */
   showSuccess = false;
+
+  /**
+   * Mensaje de error a mostrar si la eliminación falla.
+   */
   errorMessage = '';
   
+    /**
+   * @param deleteModalService - Servicio que gestiona el estado del modal de eliminación.
+   * Se suscribe mediante un effect a los cambios de estado para sincronizar
+   * las propiedades isDeleting, showSuccess y errorMessage.
+   */
   constructor(private deleteModalService: ModalDeleteServiceService) {
    effect(() => {
       const modalState = this.deleteModalService.modalState();
@@ -36,7 +76,9 @@ export class GenericDeleteModalComponent<T extends WithId> {
   });
   }
 
-
+/**
+   * Delega la confirmación de eliminación al servicio del modal.
+   */
  onConfirm(){
    
    
@@ -44,6 +86,9 @@ export class GenericDeleteModalComponent<T extends WithId> {
 
  }
 
+ /**
+   * Delega el cierre del modal al servicio del modal.
+   */
   onClose() {
     this.deleteModalService.closeModal();
 
