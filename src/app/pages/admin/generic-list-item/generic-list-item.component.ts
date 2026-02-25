@@ -9,6 +9,12 @@ import { GenericViewDetailComponent } from '../generic-view-detail/generic-view-
 import { ViewDetailConfig } from '../../../core/configs/view-detail-config';
 import { WithId } from '../../../core/models/withId';
 
+/**
+ * Componente genérico que representa un elemento de una lista.
+ * Soporta visualización de campos configurables, acciones de edición,
+ * eliminación y vista de detalle para cualquier entidad del sistema.
+ * @template T - Tipo de la entidad que debe tener al menos un campo id
+ */
 
 @Component({
   selector: 'app-generic-list-item',
@@ -18,20 +24,44 @@ import { WithId } from '../../../core/models/withId';
 })
 export class GenericListItemComponent<T extends WithId> {
 
+  /**
+   * Entidad a mostrar en el elemento de lista.
+   */
   @Input() item!: T;  
+
+  /**
+   * Configuración del elemento de lista con campos, acciones y layout.
+   */
   @Input() config!: ListItemConfig<T>;  
+
+  /**
+   * Configuración opcional de la vista de detalle de la entidad.
+   */
   @Input() detailConfig?: ViewDetailConfig<T>
   
   
   
   
 
-  // Estado interno
+   /**
+   * Entidad actualmente seleccionada para mostrar su detalle.
+   * Es null cuando no hay ningún detalle abierto.
+   */
   selectedItem: T | null = null;  
+
+    /**
+   * Entidad actualmente seleccionada para editar.
+   */
   itemToEdit: any | null = null;  
   
 
-  // Obtener valor de un campo usando la clave (soporta propiedades anidadas)
+  /**
+   * Obtiene el valor de un campo de la entidad.
+   * Soporta notación anidada separada por puntos, por ejemplo 'course.name'.
+   * @param item - Entidad de la que obtener el valor
+   * @param key - Clave del campo, soporta notación anidada
+   * @returns El valor del campo o cadena vacía si no existe
+   */
   getFieldValue(item: T, key: string): any { 
     const keys = key.split('.');
     let value: any = item;
@@ -47,7 +77,13 @@ export class GenericListItemComponent<T extends WithId> {
     return value;
   }
 
-  // Formatear un campo según su configuración
+   /**
+   * Obtiene el valor formateado de un campo según su configuración.
+   * Si el campo tiene función de formato la aplica, si no devuelve el valor como texto.
+   * @param item - Entidad de la que obtener el valor
+   * @param fieldConfig - Configuración del campo
+   * @returns El valor formateado como cadena de texto
+   */
   getFormattedValue(item: T, fieldConfig: any): string {  // ✅ item: any
     const value = this.getFieldValue(item, fieldConfig.key);
     
@@ -58,7 +94,12 @@ export class GenericListItemComponent<T extends WithId> {
     return value?.toString() || '';
   }
 
-  // Obtener el nombre de la entidad para mostrar en modales
+  /**
+   * Obtiene el nombre representativo de la entidad para mostrar en los modales.
+   * Usa la función entityNameFormat de la configuración o el campo name por defecto.
+   * @param item - Entidad de la que obtener el nombre
+   * @returns Nombre representativo de la entidad
+   */
   getEntityName(item: T): string {  // ✅ item: any
     if (this.config.entityNameFormat) {
       return this.config.entityNameFormat(item);
@@ -68,7 +109,11 @@ export class GenericListItemComponent<T extends WithId> {
     return this.getFieldValue(item, 'name');
   }
 
-  // ==================== DETAIL ====================
+    /**
+   * Alterna la vista de detalle de un elemento.
+   * Si el elemento ya está seleccionado lo cierra, si no llama al backend para obtener sus datos.
+   * @param itemId - Identificador del elemento cuyo detalle se quiere mostrar
+   */
   toggleDetail(itemId: number) {
     if (this.selectedItem && this.getFieldValue(this.selectedItem, 'id') === itemId) {
       this.selectedItem = null;
@@ -85,8 +130,13 @@ export class GenericListItemComponent<T extends WithId> {
 
  
 
-  // Helper para formatear fechas antes de enviar al modal
-  private formatDateFields(item: any): any {  // ✅ item: any, return: any
+  /**
+   * Formatea los campos de tipo fecha de una entidad para su uso en inputs de formulario.
+   * Convierte el formato ISO a formato YYYY-MM-DD requerido por los inputs de tipo date.
+   * @param item - Entidad cuyos campos de fecha se van a formatear
+   * @returns Copia de la entidad con los campos de fecha formateados
+   */
+    private formatDateFields(item: any): any {  // ✅ item: any, return: any
     const formatted = { ...item };
     
     if (this.config.editFields) {
@@ -101,6 +151,11 @@ export class GenericListItemComponent<T extends WithId> {
     return formatted;
   }
 
+    /**
+   * Convierte una fecha en formato ISO al formato YYYY-MM-DD para inputs de tipo date.
+   * @param isoDate - Fecha en formato ISO
+   * @returns Fecha en formato YYYY-MM-DD o cadena vacía si no hay fecha
+   */
   private formatDateForInput(isoDate: string): string {
     if (!isoDate) return '';
     return new Date(isoDate).toISOString().split('T')[0];
@@ -108,21 +163,35 @@ export class GenericListItemComponent<T extends WithId> {
 
  
 
-  // Getters para usar en el template
+  /**
+   * Indica si el elemento tiene alguna acción disponible.
+   */
   get hasActions(): boolean {
     return !!(this.config.actions?.edit || this.config.actions?.delete || this.config.actions?.detail);
   }
 
+   /**
+   * Devuelve las clases CSS del contenedor principal del elemento.
+   * Usa las clases de la configuración o las clases por defecto.
+   */
   get containerClass(): string {
     return this.config.layout?.containerClass || 
            'flex flex-col md:flex-row md:justify-between md:items-center m-2 bg-purple-300 rounded px-2 py-2 gap-2';
   }
 
+  /**
+   * Devuelve las clases CSS del contenedor de campos del elemento.
+   * Usa las clases de la configuración o las clases por defecto.
+   */
   get fieldsContainerClass(): string {
     return this.config.layout?.fieldsContainerClass || 
            'flex flex-col md:flex-row md:gap-4';
   }
 
+    /**
+   * Devuelve las clases CSS del contenedor de acciones del elemento.
+   * Si responsive es true usa grid en móvil, si no usa flex siempre.
+   */
   get actionsContainerClass(): string {
   // Si hay una clase personalizada, úsala
   if (this.config.layout?.actionsContainerClass) {
@@ -138,7 +207,12 @@ export class GenericListItemComponent<T extends WithId> {
   return 'flex gap-1 py-1';
 }
 
-  // En generic-list-item.component.ts
+
+ /**
+   * Devuelve las clases CSS de un campo incluyendo la ocultación en móvil si procede.
+   * @param field - Configuración del campo
+   * @returns Cadena de clases CSS a aplicar al campo
+   */
 
 getFieldClasses(field: ListItemFieldConfig): string {
   let classes = field.className || '';

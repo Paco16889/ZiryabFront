@@ -10,6 +10,12 @@ import { GroupListComponent } from '../entities/group/group-list/group-list.comp
 import { ListComponent } from '../entities/alumno/list/list.component';
 import { WeekScheduleListComponent } from '../entities/weekSchedule/week-schedule-list/week-schedule-list.component';
 
+/**
+ * Componente que actúa como área de contenido principal del panel de administración.
+ * Renderiza el componente de listado correspondiente a la sección activa
+ * según el valor de la signal openedMenu del ToggleService.
+ * Si no hay ninguna sección activa el área de contenido queda vacía.
+ */
 @Component({
   selector: 'app-desplegable-admin',
   imports: [ListComponent, AsignaturaListComponent, TeacherListComponent, CourseListComponent, GroupListComponent, WeekScheduleListComponent],
@@ -18,6 +24,9 @@ import { WeekScheduleListComponent } from '../entities/weekSchedule/week-schedul
 })
 export class DesplegableAdminComponent {
 
+   /**
+   * @param toggleservice - Servicio que expone la sección activa del menú
+   */
   constructor(public toggleservice: ToggleService){
 
   }
