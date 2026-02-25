@@ -4,6 +4,12 @@ import { TeachersServiceService } from '../../../../../core/services/admin/entit
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { PasswordServiceService } from '../../../../../core/services/password-service.service';
 
+/**
+ * Componente que gestiona el formulario de creación de un nuevo profesor.
+ * Crea el usuario en Firebase Authentication y posteriormente lo registra
+ * en el backend con los datos del formulario.
+ * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServiceService.
+ */
 @Component({
   selector: 'app-teacher-create-form',
   imports: [ReactiveFormsModule],
@@ -11,13 +17,37 @@ import { PasswordServiceService } from '../../../../../core/services/password-se
   styleUrl: './teacher-create-form.component.scss'
 })
 export class TeacherCreateFormComponent {
+    /**
+   * Evento emitido cuando el usuario cancela la creación.
+   */
   @Output() cancelCreate = new EventEmitter<void>();
+
+   /**
+   * Evento emitido cuando el profesor se ha creado correctamente.
+   */
   @Output() teacherCreated = new EventEmitter<void>();
 
+   /**
+   * Formulario reactivo con los campos necesarios para crear un profesor.
+   */
   createForm: FormGroup;
+
+   /**
+   * Indica si la petición de creación está en curso.
+   */
   isCreating = false;
+
+    /**
+   * Mensaje de error a mostrar si la creación falla.
+   */
   errorMessage = '';
 
+    /**
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param teacherService - Servicio que gestiona las operaciones con profesores
+   * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario
+   * @param passwordGen - Servicio que genera la contraseña aleatoria del nuevo usuario
+   */
   constructor(
     private fb: FormBuilder,
     private teacherService: TeachersServiceService,
@@ -34,6 +64,13 @@ export class TeacherCreateFormComponent {
     });
   }
 
+    /**
+   * Crea el usuario en Firebase Authentication y lo registra en el backend.
+   * Genera una contraseña aleatoria para Firebase y usa el UID resultante
+   * para completar el registro en el backend.
+   * ATENCIÓN: si el backend falla isCreating se queda en true bloqueando el formulario.
+   * ATENCIÓN: mismo antipatrón que StudentCreateFormComponent, pendiente de refactorizar.
+   */
   createTeacher() {
   const email = this.createForm.value.email;
   const password = this.passwordGen.generateRandomPassword();
@@ -71,7 +108,9 @@ export class TeacherCreateFormComponent {
     });
 }
 
-
+ /**
+   * Valida el formulario y ejecuta la creación si es correcto.
+   */
   onSubmit() {
     if (this.createForm.valid) {
     this.isCreating = true;
@@ -82,6 +121,9 @@ export class TeacherCreateFormComponent {
   }
   }
 
+    /**
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+   */
   onCancel() {
     this.cancelCreate.emit();
   }

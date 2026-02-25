@@ -13,6 +13,12 @@ import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 
+
+/**
+ * Componente que representa un elemento del listado de profesores.
+ * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
+ * para el componente genérico GenericListItemComponent.
+ */
 @Component({
   selector: 'app-teacher-list-item',
   imports: [ GenericListItemComponent, GenericViewDetailComponent],
@@ -21,11 +27,27 @@ import { GenericViewDetailComponent } from "../../../generic-view-detail/generic
 })
 export class TeacherListItemComponent {
 
+  /**
+   * Profesor a mostrar en el elemento de lista.
+   */
 @Input() teacher!: Teacher;
+
+ /**
+   * Evento emitido cuando el profesor ha sido actualizado.
+   * Pendiente de sustituir any por Teacher o TeacherUpdateRequest.
+   */
   @Output() teacherUpdated = new EventEmitter<any>();
+
+   /**
+   * Evento emitido cuando el profesor ha sido eliminado, incluye su identificador.
+   */
   @Output() teacherDeleted = new EventEmitter<number>();
 
-  // Configuración del list-item para teachers
+  /**
+   * Configuración del elemento de lista del profesor.
+   * Define los campos visibles, las acciones disponibles, el layout,
+   * los campos del formulario de edición y las funciones de servicio.
+   */
   teacherConfig: ListItemConfig<Teacher> = {
     fields: [
       { 
@@ -109,6 +131,10 @@ export class TeacherListItemComponent {
     deleteFn: (id: number) => this.teacherService.deleteTeacher(id)
   };
 
+    /**
+   * Configuración de la vista de detalle del profesor.
+   * Muestra nombre completo, DNI, email, fecha de nacimiento y rol.
+   */
   teacherDetailConfig: ViewDetailConfig<Teacher> = {
       fields: [
         {
@@ -152,6 +178,10 @@ export class TeacherListItemComponent {
       ]
     };
     
+      /**
+   * @param teacherService - Servicio que gestiona las operaciones con profesores,
+   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
+   */
   constructor(private teacherService: TeachersServiceService) {}
 
   
