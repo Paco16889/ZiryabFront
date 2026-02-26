@@ -14,8 +14,15 @@ import { Router } from '@angular/router';
   `,
 })
 export class UnauthorizedComponent {
+
+   /**
+   * @param router - Router de Angular para redirigir al dashboard
+   */
     constructor(private router: Router) { }
 
+     /**
+   * Redirige al dashboard principal del usuario.
+   */
     goBack() {
         this.router.navigate(['/dashboard']);
     }

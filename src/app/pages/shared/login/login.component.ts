@@ -6,6 +6,12 @@ import { AuthService } from '../../../core/services/auth.service'; // CAMBIO: Us
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
+
+/**
+ * Componente que gestiona el formulario de inicio de sesión.
+ * Autentica al usuario mediante Firebase y el backend,
+ * y redirige según el rol al dashboard correspondiente.
+ */
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, CommonModule, TranslateModule],
@@ -13,11 +19,31 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+   /**
+   * Indica si ha ocurrido un error durante el inicio de sesión.
+   */
   error = signal(false);
+
+  /**
+   * Indica si la petición de inicio de sesión está en curso.
+   */
   loading = signal(false);
+
+  /**
+   * Router de Angular para gestionar las redirecciones tras el login.
+   */
   private router: Router = inject(Router);
+
+  /**
+   * Formulario reactivo con los campos email y contraseña.
+   */
   formLogin;
 
+   /**
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param authService - Servicio de autenticación que gestiona Firebase y el backend
+   */
   constructor(
     private fb: FormBuilder,
     private authService: AuthService // CAMBIO: Inyectar AuthService
@@ -41,6 +67,10 @@ export class LoginComponent {
     }
   }
 
+   /**
+   * Valida el formulario y ejecuta el inicio de sesión.
+   * Redirige a dashboard-admin si el rol es ADMIN, o a dashboard en cualquier otro caso.
+   */
   async onSubmit() {
     console.log('📝 Formulario:', this.formLogin.value);
 
@@ -93,6 +123,12 @@ export class LoginComponent {
     }
   }
 
+   /**
+   * Devuelve el mensaje de error correspondiente al campo indicado.
+   * Pendiente de sustituir los textos hardcodeados por el sistema de traducciones.
+   * @param control - Nombre del campo del formulario a validar
+   * @returns Mensaje de error o cadena vacía si no hay error
+   */
   getError(control: string) {
     switch (control) {
       case 'email':

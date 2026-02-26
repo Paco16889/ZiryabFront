@@ -4,6 +4,11 @@ import { PerfilMenuService } from '../../../core/services/perfilService.service'
 import { AuthService } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.component";
 
+/**
+ * Componente que representa la cabecera de la aplicación.
+ * Muestra el nombre y rol del usuario autenticado y gestiona
+ * la apertura del menú de perfil.
+ */
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -12,14 +17,29 @@ import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.comp
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+
+  /**
+   * Nombre del usuario autenticado a mostrar en la cabecera.
+   */
   userName: string = 'Nombre';
+
+ /**
+   * Etiqueta del rol del usuario autenticado a mostrar en la cabecera.
+   */
   userRole: string = 'Usuario activo';
 
+   /**
+   * @param perfilService - Servicio que gestiona el estado del menú de perfil
+   * @param authService - Servicio de autenticación para obtener los datos del usuario actual
+   */
   constructor(
     private perfilService: PerfilMenuService,
     private authService: AuthService
   ) {}
 
+  /**
+   * Carga los datos del usuario actual y se suscribe a cambios en el estado de autenticación.
+   */
   ngOnInit(): void {
     this.loadUserData();
 
