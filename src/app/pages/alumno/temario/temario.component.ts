@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
+
+/**
+ * Componente que muestra el temario de una asignatura organizado por unidades.
+ * Actualmente contiene datos mockeados, pendiente de reimplementarse
+ * usando la entidad Task con tipo THEORY.
+ */
 @Component({
   selector: 'app-temario',
   standalone: true,
@@ -9,6 +15,11 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
   styleUrls: ['./temario.component.scss'] 
 })
 export class TemarioComponent {  
+
+    /**
+   * Listado de unidades didácticas con sus temas.
+   * Datos mockeados, pendiente de sustituir por datos reales del backend.
+   */
   unidades = [
     {
       id: 1,
@@ -52,6 +63,12 @@ export class TemarioComponent {
     }
   ];
 
+
+    /**
+   * Alterna el estado abierto o cerrado de una unidad didáctica.
+   * Solo permite tener una unidad abierta a la vez.
+   * @param id - Identificador de la unidad a alternar
+   */
   toggleUnidad(id: number) {
     this.unidades = this.unidades.map(u => {
       if (u.id === id) {

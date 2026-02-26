@@ -5,6 +5,12 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
+/**
+ * Componente que muestra las asignaturas matriculadas del estudiante autenticado.
+ * Carga las asignaturas del estudiante y el nombre del profesor de cada una
+ * de forma asíncrona, mostrando cada asignatura como una tarjeta con tema de color.
+ * Si no hay usuario autenticado redirige al login.
+ */
 @Component({
   selector: 'app-clases',
   standalone: true,
@@ -18,12 +24,32 @@ export class ClasesComponent implements OnInit {
   private clasesService = inject(ClasesService);
   private authService = inject(AuthService); 
 
+    /**
+   * Listado de asignaturas matriculadas del estudiante.
+   * 
+   */
   public asignaturas = signal<any[]>([]);
+
+    /**
+   * Indica si los datos están siendo cargados desde el backend.
+   */
   public loading = signal<boolean>(true);
+
+   /**
+   * Mensaje de error a mostrar si la carga de asignaturas falla.
+   */
   public errorMessage = signal<string>('');
 
+  /**
+   * Mapa que relaciona el identificador de cada asignatura con el nombre de su profesor.
+   * Se rellena de forma asíncrona tras cargar las asignaturas.
+   */
   public profesoresMap = signal<Record<number, string>>({});
 
+  /**
+   * Temas de color para las tarjetas de asignaturas.
+   * Se asignan de forma cíclica según el índice de la asignatura.
+   */
   public colorThemes = [
     { 
       bg: 'from-blue-100 via-blue-50 to-blue-200 border-blue-200', 
@@ -63,6 +89,11 @@ export class ClasesComponent implements OnInit {
     }
   ];
 
+    /**
+   * Carga las asignaturas del estudiante autenticado al inicializar el componente.
+   * Para cada asignatura carga también el nombre del profesor asignado.
+   * Si no hay usuario autenticado redirige al login.
+   */
   ngOnInit(): void {
     const user = this.authService.getCurrentUser(); 
     console.log('Alumno detectado:', user);
@@ -117,6 +148,12 @@ export class ClasesComponent implements OnInit {
     }
   }
   
+   /**
+   * Navega a la vista de temario de la asignatura indicada.
+   * ATENCIÓN: la ruta se construye con el nombre en minúsculas, puede ser frágil
+   * si el nombre contiene espacios o caracteres especiales.
+   * @param nombreAsignatura - Nombre de la asignatura cuyo temario se quiere ver
+   */
   goToTemario(nombreAsignatura: string): void {
     if (nombreAsignatura) {
       this.navegador.toComponent(`temario/${nombreAsignatura.toLowerCase()}`); 
