@@ -5,6 +5,12 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
+/**
+ * Componente que muestra las asignaturas asignadas al profesor autenticado.
+ * Estructura idéntica a ClasesComponent del estudiante, candidato a unificarse.
+ * ATENCIÓN: usa un endpoint desactualizado que no contempla la relación
+ * ternaria profesor-asignatura-grupo-año académico del modelo actual.
+ */
 @Component({
   selector: 'app-clases-profesor', 
   standalone: true,
@@ -14,14 +20,43 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 })
 export class ClasesProfesorComponent implements OnInit {
   
+  
+ /**
+   * Servicio de navegación para gestionar las redirecciones de la aplicación.
+   */
   private navegador = inject(NavigationService);
-  private clasesService = inject(ClasesService);
-  private authService = inject(AuthService); 
+
+  /**
+   * Servicio que gestiona la carga de asignaturas del profesor.
+   */
+  private clasesService = inject(ClasesService); 
+
+  /**
+   * Servicio de autenticación para obtener los datos del usuario actualmente autenticado.
+   */
+  private authService = inject(AuthService);
+
+    /**
+   * Listado de asignaturas asignadas al profesor.
+   * 
+   */
 
   public asignaturas = signal<any[]>([]);
+
+   /**
+   * Indica si los datos están siendo cargados desde el backend.
+   */
   public loading = signal<boolean>(true);
+
+    /**
+   * Mensaje de error a mostrar si la carga de asignaturas falla.
+   */
   public errorMessage = signal<string>('');
 
+   /**
+   * Temas de color para las tarjetas de asignaturas.
+   * Se asignan de forma cíclica según el índice de la asignatura.
+   */
   public colorThemes = [
     { 
       bg: 'from-blue-100 via-blue-50 to-blue-200 border-blue-200', 
@@ -61,6 +96,10 @@ export class ClasesProfesorComponent implements OnInit {
     }
   ];
 
+   /**
+   * Carga las asignaturas del profesor autenticado al inicializar el componente.
+   * Si no hay usuario autenticado redirige al login.
+   */
   ngOnInit(): void {
     const user = this.authService.getCurrentUser(); 
     console.log('Profesor detectado:', user);
@@ -89,6 +128,10 @@ export class ClasesProfesorComponent implements OnInit {
     }
   }
   
+    /**
+   * Navega a la vista de temario de la asignatura indicada.
+   * @param nombreAsignatura - Nombre de la asignatura cuyo temario se quiere ver
+   */
   goToTemario(nombreAsignatura: string): void {
     if (nombreAsignatura) {
       this.navegador.toComponent(`temario/${nombreAsignatura.toLowerCase()}`); 
