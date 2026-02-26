@@ -13,6 +13,12 @@ import { ModalDeleteServiceService } from './core/services/UI/modal-delete-servi
 import { ModalEditServiceService } from './core/services/UI/modal-edit-service.service';
 import { GenericEditModalComponent } from "./pages/admin/modales/generic-edit-modal/generic-edit-modal.component";
 
+
+/**
+ * Componente raíz de la aplicación.
+ * Inicializa el sistema de traducciones, gestiona la visibilidad
+ * del menú de perfil y los modales globales de eliminación y edición.
+ */
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -29,9 +35,23 @@ import { GenericEditModalComponent } from "./pages/admin/modales/generic-edit-mo
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
+   /**
+   * Título de la aplicación.
+   * Pendiente de actualizar desde el nombre por defecto del proyecto.
+   */
   title = 'loginEnAngular';
+
+    /**
+   * Servicio de traducción inyectado para la inicialización del sistema i18n.
+   */
   private translate = inject(TranslateService);
 
+   /**
+   * @param perfilService - Servicio que gestiona la visibilidad del menú de perfil
+   * @param deleteModalService - Servicio que gestiona el estado del modal de eliminación global
+   * @param updateModalService - Servicio que gestiona el estado del modal de edición global
+   */
   constructor(public perfilService: PerfilMenuService,
     public deleteModalService: ModalDeleteServiceService,
     public updateModalService: ModalEditServiceService

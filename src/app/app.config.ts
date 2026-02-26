@@ -10,6 +10,18 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideTranslateService } from '@ngx-translate/core';
 
 
+/**
+ * Configuración principal de la aplicación.
+ * Registra los providers globales: router, cliente HTTP con interceptor de autenticación,
+ * Firebase Authentication y el sistema de traducciones.
+ */
+
+
+/**
+ * Configuración de Firebase.
+ * ATENCIÓN: las credenciales deberían cargarse desde variables de entorno
+ * en lugar de estar hardcodeadas en el fichero.
+ */
 const firebaseConfig = {
   apiKey: "AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA",
   authDomain: "ziryab-7006e.firebaseapp.com",
@@ -20,6 +32,15 @@ const firebaseConfig = {
   measurementId: "G-WNWVENZL8X"
 };
 
+/**
+ * Configuración de providers de la aplicación.
+ * - ZoneChangeDetection con eventCoalescing para optimizar la detección de cambios
+ * - Router con las rutas de la aplicación
+ * - HttpClient con el interceptor de autenticación JWT
+ * - Firebase con autenticación
+ * - Sistema de traducciones con español como idioma por defecto,
+ *   cargando los ficheros JSON desde /assets/i18n/
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

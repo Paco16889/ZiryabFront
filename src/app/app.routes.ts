@@ -12,6 +12,12 @@ import { RoleGuard } from './core/guards/role.guard';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 import { AboutComponent } from './pages/shared/about/about.component';
 
+/**
+ * Definición de rutas de la aplicación.
+ * Organizada en secciones: rutas públicas, rutas protegidas por autenticación,
+ * rutas por rol (estudiante, profesor, administrador) y catch-all.
+ * ATENCIÓN: dashboard y ficha-usuario están duplicados, pendiente de limpiar.
+ */
 export const routes: Routes = [
     // ============================================
     // RUTAS PÚBLICAS (sin autenticación)
