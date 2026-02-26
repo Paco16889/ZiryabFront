@@ -7,6 +7,13 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
 import { WeekScheduleServiceService } from '../../../../../core/services/admin/entities/week-schedule-service.service';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 
+
+/**
+ * Componente que representa un elemento del listado de franjas horarias semanales.
+ * Configura los campos a mostrar y la vista de detalle para el componente genérico
+ * GenericListItemComponent. Las acciones de edición y eliminación están deshabilitadas
+ * ya que su gestión está pendiente de implementación.
+ */
 @Component({
   selector: 'app-week-schedule-list-item',
   imports: [GenericListItemComponent],
@@ -14,17 +21,39 @@ import { GenericListItemComponent } from "../../../generic-list-item/generic-lis
   styleUrl: './week-schedule-list-item.component.scss'
 })
 export class WeekScheduleListItemComponent {
+
+
+  /**
+   * Franja horaria semanal a mostrar en el elemento de lista.
+   */
     @Input() schedule!: WeekSchedule;
+
+     /**
+   * Evento emitido cuando la franja horaria ha sido actualizada.
+   */
   @Output() scheduleUpdated = new EventEmitter<WeekScheduleUpdateRequest>();
+
+   /**
+   * Evento emitido cuando la franja horaria ha sido eliminada, incluye su identificador.
+   */
   @Output() scheduleDeleted = new EventEmitter<number>();
 
+   /**
+   * Evento emitido cuando la franja horaria ha sido eliminada, incluye su identificador.
+   */
   constructor(
     private weekScheduleService: WeekScheduleServiceService
   ){
 
   }
 
-  // ✅ Getter que se evalúa cada vez que se accede
+   /**
+   * Configuración del elemento de lista de la franja horaria semanal.
+   * Definida como getter para garantizar que las referencias a this sean correctas.
+   * Solo muestra el detalle, las acciones de edición y eliminación están deshabilitadas.
+   * ATENCIÓN: los editFields están copiados de AsignaturaListItemComponent y no corresponden
+   * a WeekSchedule, pendiente de corregir cuando se implementen las acciones de edición.
+   */
   get scheduleConfig(): ListItemConfig<WeekSchedule> {
     return {
       fields: [
@@ -78,6 +107,10 @@ export class WeekScheduleListItemComponent {
     };
   }
 
+    /**
+   * Configuración de la vista de detalle de la franja horaria semanal.
+   * Muestra el día de la semana, hora de inicio y hora de finalización.
+   */
    scheduleDetailConfig: ViewDetailConfig<WeekSchedule> = {
           fields: [
             {
