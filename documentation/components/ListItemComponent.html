@@ -1,0 +1,972 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ListItemComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/alumno/list-item/list-item.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente que representa un elemento del listado de estudiantes.
+Configura los campos a mostrar, las acciones disponibles y la vista de detalle
+para el componente genérico GenericListItemComponent.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-list-item</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/GenericListItemComponent.html" target="_self" >GenericListItemComponent</a></code>
+                                <code><a href="../components/GenericViewDetailComponent.html" target="_self" >GenericViewDetailComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./list-item.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./list-item.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#studentConfig" >studentConfig</a>
+                            </li>
+                            <li>
+                                <a href="#studentDetailConfig" >studentDetailConfig</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#student" >student</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#studentDeleted" >studentDeleted</a>
+                            </li>
+                            <li>
+                                <a href="#studentUpdated" >studentUpdated</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(studentService: <a href="../injectables/StudentsServiceService.html" target="_self">StudentsServiceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/app/pages/admin/entities/alumno/list-item/list-item.component.ts:188</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>studentService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StudentsServiceService.html" target="_self" >StudentsServiceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio que gestiona las operaciones con estudiantes,
+usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="student"></a>
+                        <b>student</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Student.html" target="_self" >Student</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/entities/alumno/list-item/list-item.component.ts:30</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Estudiante a mostrar en el elemento de lista.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="studentDeleted"></a>
+                        <b>studentDeleted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/alumno/list-item/list-item.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Evento emitido cuando el estudiante ha sido eliminado, incluye su identificador.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="studentUpdated"></a>
+                        <b>studentUpdated</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/alumno/list-item/list-item.component.ts:35</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Evento emitido cuando el estudiante ha sido actualizado.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentConfig"></a>
+                    <span class="name">
+                        <span ><b>studentConfig</b></span>
+                        <a href="#studentConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ListItemConfig&lt;Student&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    fields: [
+      { 
+        key: &#x27;surname&#x27;, 
+        className: &#x27;font-medium&#x27;,
+        order: 1,
+        format: (value) &#x3D;&gt; &#x60;${value},&#x60;
+      },
+      { 
+        key: &#x27;ndSurname&#x27;,
+        order: 2
+      },
+      { 
+        key: &#x27;name&#x27;,
+        order: 3
+      },
+      { 
+        key: &#x27;email&#x27;,
+        className: &#x27;text-gray-700&#x27;,
+        hideOnMobile: true,
+        order: 4
+      }, 
+      {
+        key: &#x27;dni&#x27;,
+        className: &#x27;text-purple-700&#x27;,
+        hideOnMobile: true,
+        order: 5
+      }
+    ],
+    actions: {
+      edit: true,
+      delete: true,
+      detail: true
+    },
+    layout: {
+      responsive: false
+    },
+    editFields: [
+      { 
+        name: &#x27;email&#x27;, 
+        label: &#x27;Email&#x27;, 
+        type: &#x27;email&#x27;, 
+        validators: [Validators.required, Validators.email],
+        errorMessage: &#x27;Email inválido o requerido&#x27;
+      },
+      { 
+        name: &#x27;name&#x27;, 
+        label: &#x27;Nombre&#x27;, 
+        type: &#x27;text&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;El nombre es requerido&#x27;
+      },
+      { 
+        name: &#x27;surname&#x27;, 
+        label: &#x27;Primer apellido&#x27;, 
+        type: &#x27;text&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;El primer apellido es requerido&#x27;
+      },
+      { 
+        name: &#x27;ndSurname&#x27;, 
+        label: &#x27;Segundo apellido&#x27;, 
+        type: &#x27;text&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;El segundo apellido es requerido&#x27;
+      },
+      { 
+        name: &#x27;dni&#x27;, 
+        label: &#x27;DNI&#x27;, 
+        type: &#x27;text&#x27;,
+        maxlength: 9,
+        validators: [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z]$/)],
+        errorMessage: &#x27;DNI inválido (formato: 12345678A/X1234567A)&#x27;
+      },
+      { 
+        name: &#x27;birthDate&#x27;, 
+        label: &#x27;Fecha de nacimiento&#x27;, 
+        type: &#x27;date&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;La fecha de nacimiento es requerida&#x27;
+      }
+      
+    ],
+    entityType: &#x27;el estudiante&#x27;,
+    entityNameFormat: (student: Student) &#x3D;&gt; &#x60;${student.name} ${student.surname}&#x60;,
+    getByIdFn: (id: number) &#x3D;&gt; this.studentService.getStudentbyId(id),
+    updateFn: (data: any) &#x3D;&gt; this.studentService.updateStudent(data),
+    deleteFn: (id: number) &#x3D;&gt; this.studentService.deleteStudent(id)
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/admin/entities/alumno/list-item/list-item.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración del elemento de lista del estudiante.
+Define los campos visibles, las acciones disponibles, el layout,
+los campos del formulario de edición y las funciones de servicio.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentDetailConfig"></a>
+                    <span class="name">
+                        <span ><b>studentDetailConfig</b></span>
+                        <a href="#studentDetailConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ViewDetailConfig&lt;Student&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    fields: [
+      {
+        key: &#x27;surname&#x27;,
+        type: &#x27;title&#x27;,
+        format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+        className: &#x27;text-xl font-bold&#x27;
+      },
+      {
+        key: &#x27;ndSurname&#x27;,
+        type: &#x27;title&#x27;,
+        format: (value) &#x3D;&gt; &#x60; ${value},&#x60;,
+        className: &#x27;text-xl font-bold&#x27;
+      },
+      {
+        key: &#x27;name&#x27;,
+        type: &#x27;title&#x27;,
+        format: (value) &#x3D;&gt; &#x60; ${value}&#x60;,
+        className: &#x27;text-xl font-bold&#x27;
+      },
+      {
+        key: &#x27;dni&#x27;,
+        label: &#x27;DNI:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;email&#x27;,
+        label: &#x27;Email:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;birthDate&#x27;,
+        label: &#x27;Fecha nacimiento:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;role&#x27;,
+        label: &#x27;Role:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;isActive&#x27;,
+        label: &#x27;Estado: &#x27;,
+        type: &#x27;text&#x27;
+      }
+    ]
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/pages/admin/entities/alumno/list-item/list-item.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración de la vista de detalle del estudiante.
+Define los campos a mostrar y su formato en la vista de detalle.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
+
+import { Student } from &#x27;../../../../../core/models/student&#x27;;
+
+import { StudentsServiceService } from &#x27;../../../../../core/services/admin/entities/students-service.service&#x27;;
+
+
+import { Validators } from &#x27;@angular/forms&#x27;;
+import { GenericListItemComponent } from &quot;../../../generic-list-item/generic-list-item.component&quot;;
+import { ListItemConfig } from &#x27;../../../../../core/configs/list-item-config&#x27;;
+import { GenericViewDetailComponent } from &quot;../../../generic-view-detail/generic-view-detail.component&quot;;
+import { ViewDetailConfig } from &#x27;../../../../../core/configs/view-detail-config&#x27;;
+
+/**
+ * Componente que representa un elemento del listado de estudiantes.
+ * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
+ * para el componente genérico GenericListItemComponent.
+ */
+@Component({
+  selector: &#x27;app-list-item&#x27;,
+  imports: [ GenericListItemComponent, GenericViewDetailComponent],
+  templateUrl: &#x27;./list-item.component.html&#x27;,
+  styleUrl: &#x27;./list-item.component.scss&#x27;
+})
+export class ListItemComponent {
+
+   /**
+   * Estudiante a mostrar en el elemento de lista.
+   */
+  @Input() student!: Student;
+
+  /**
+   * Evento emitido cuando el estudiante ha sido actualizado.
+   */
+  @Output() studentUpdated &#x3D; new EventEmitter&lt;any&gt;();
+
+   /**
+   * Evento emitido cuando el estudiante ha sido eliminado, incluye su identificador.
+   */
+  @Output() studentDeleted &#x3D; new EventEmitter&lt;number&gt;();
+
+  /**
+   * Configuración del elemento de lista del estudiante.
+   * Define los campos visibles, las acciones disponibles, el layout,
+   * los campos del formulario de edición y las funciones de servicio.
+   */
+  studentConfig: ListItemConfig&lt;Student&gt; &#x3D; {
+    fields: [
+      { 
+        key: &#x27;surname&#x27;, 
+        className: &#x27;font-medium&#x27;,
+        order: 1,
+        format: (value) &#x3D;&gt; &#x60;${value},&#x60;
+      },
+      { 
+        key: &#x27;ndSurname&#x27;,
+        order: 2
+      },
+      { 
+        key: &#x27;name&#x27;,
+        order: 3
+      },
+      { 
+        key: &#x27;email&#x27;,
+        className: &#x27;text-gray-700&#x27;,
+        hideOnMobile: true,
+        order: 4
+      }, 
+      {
+        key: &#x27;dni&#x27;,
+        className: &#x27;text-purple-700&#x27;,
+        hideOnMobile: true,
+        order: 5
+      }
+    ],
+    actions: {
+      edit: true,
+      delete: true,
+      detail: true
+    },
+    layout: {
+      responsive: false
+    },
+    editFields: [
+      { 
+        name: &#x27;email&#x27;, 
+        label: &#x27;Email&#x27;, 
+        type: &#x27;email&#x27;, 
+        validators: [Validators.required, Validators.email],
+        errorMessage: &#x27;Email inválido o requerido&#x27;
+      },
+      { 
+        name: &#x27;name&#x27;, 
+        label: &#x27;Nombre&#x27;, 
+        type: &#x27;text&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;El nombre es requerido&#x27;
+      },
+      { 
+        name: &#x27;surname&#x27;, 
+        label: &#x27;Primer apellido&#x27;, 
+        type: &#x27;text&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;El primer apellido es requerido&#x27;
+      },
+      { 
+        name: &#x27;ndSurname&#x27;, 
+        label: &#x27;Segundo apellido&#x27;, 
+        type: &#x27;text&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;El segundo apellido es requerido&#x27;
+      },
+      { 
+        name: &#x27;dni&#x27;, 
+        label: &#x27;DNI&#x27;, 
+        type: &#x27;text&#x27;,
+        maxlength: 9,
+        validators: [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z]$/)],
+        errorMessage: &#x27;DNI inválido (formato: 12345678A/X1234567A)&#x27;
+      },
+      { 
+        name: &#x27;birthDate&#x27;, 
+        label: &#x27;Fecha de nacimiento&#x27;, 
+        type: &#x27;date&#x27;,
+        validators: [Validators.required],
+        errorMessage: &#x27;La fecha de nacimiento es requerida&#x27;
+      }
+      
+    ],
+    entityType: &#x27;el estudiante&#x27;,
+    entityNameFormat: (student: Student) &#x3D;&gt; &#x60;${student.name} ${student.surname}&#x60;,
+    getByIdFn: (id: number) &#x3D;&gt; this.studentService.getStudentbyId(id),
+    updateFn: (data: any) &#x3D;&gt; this.studentService.updateStudent(data),
+    deleteFn: (id: number) &#x3D;&gt; this.studentService.deleteStudent(id)
+  };
+
+
+  /**
+   * Configuración de la vista de detalle del estudiante.
+   * Define los campos a mostrar y su formato en la vista de detalle.
+   */
+   studentDetailConfig: ViewDetailConfig&lt;Student&gt; &#x3D; {
+    fields: [
+      {
+        key: &#x27;surname&#x27;,
+        type: &#x27;title&#x27;,
+        format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+        className: &#x27;text-xl font-bold&#x27;
+      },
+      {
+        key: &#x27;ndSurname&#x27;,
+        type: &#x27;title&#x27;,
+        format: (value) &#x3D;&gt; &#x60; ${value},&#x60;,
+        className: &#x27;text-xl font-bold&#x27;
+      },
+      {
+        key: &#x27;name&#x27;,
+        type: &#x27;title&#x27;,
+        format: (value) &#x3D;&gt; &#x60; ${value}&#x60;,
+        className: &#x27;text-xl font-bold&#x27;
+      },
+      {
+        key: &#x27;dni&#x27;,
+        label: &#x27;DNI:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;email&#x27;,
+        label: &#x27;Email:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;birthDate&#x27;,
+        label: &#x27;Fecha nacimiento:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;role&#x27;,
+        label: &#x27;Role:&#x27;,
+        type: &#x27;text&#x27;
+      },
+      {
+        key: &#x27;isActive&#x27;,
+        label: &#x27;Estado: &#x27;,
+        type: &#x27;text&#x27;
+      }
+    ]
+  };
+
+  /**
+   * @param studentService - Servicio que gestiona las operaciones con estudiantes,
+   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
+   */
+  constructor(private studentService: StudentsServiceService) {}
+
+
+  
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-generic-list-item
+  [item]&#x3D;&quot;student&quot;
+  [config]&#x3D;&quot;studentConfig&quot;
+  [detailConfig]&#x3D;&quot;studentDetailConfig&quot;
+ 
+  &gt;
+&lt;/app-generic-list-item&gt;
+
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-generic-list-item  [item]="student"  [config]="studentConfig"  [detailConfig]="studentDetailConfig"   ></app-generic-list-item></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ListItemComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ListItemComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

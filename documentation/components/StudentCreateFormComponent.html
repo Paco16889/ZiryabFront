@@ -1,0 +1,1298 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  StudentCreateFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente que gestiona el formulario de creación de un nuevo estudiante.
+Crea el usuario en Firebase Authentication y posteriormente lo registra
+en el backend con los datos del formulario.
+Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServiceService.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-student-create-form</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                <code><a href="../components/BotonConfirmarStudentComponent.html" target="_self" >BotonConfirmarStudentComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./student-create-form.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./student-create-form.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contrasenatruquillo" >contrasenatruquillo</a>
+                            </li>
+                            <li>
+                                <a href="#createForm" >createForm</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                <a href="#isCreating" >isCreating</a>
+                            </li>
+                            <li>
+                                <a href="#validForm" >validForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createStudent" >createStudent</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelCreate" >cancelCreate</a>
+                            </li>
+                            <li>
+                                <a href="#studentCreated" >studentCreated</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, studentService: <a href="../injectables/StudentsServiceService.html" target="_self">StudentsServiceService</a>, fireBaseAuth: Auth, passwordGen: <a href="../injectables/PasswordServiceService.html" target="_self">PasswordServiceService</a>, selectedStudentService: <a href="../injectables/SelectedStudentServiceService.html" target="_self">SelectedStudentServiceService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>FormBuilder de Angular para construir el formulario reactivo</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>studentService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StudentsServiceService.html" target="_self" >StudentsServiceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio que gestiona las operaciones con estudiantes</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>fireBaseAuth</td>
+                                                  
+                                                        <td>
+                                                                    <code>Auth</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Instancia de Firebase Authentication para crear el usuario</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>passwordGen</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PasswordServiceService.html" target="_self" >PasswordServiceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio que genera la contraseña aleatoria del nuevo usuario</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>selectedStudentService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SelectedStudentServiceService.html" target="_self" >SelectedStudentServiceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Servicio que almacena el estudiante seleccionado tras la creación</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelCreate"></a>
+                        <b>cancelCreate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:34</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Evento emitido cuando el usuario cancela la creación.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="studentCreated"></a>
+                        <b>studentCreated</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:29</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Evento emitido cuando el estudiante se ha creado correctamente.
+Incluye los datos del estudiante creado.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createStudent"></a>
+                    <span class="name">
+                        <span ><b>createStudent</b></span>
+                        <a href="#createStudent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createStudent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Crea el usuario en Firebase Authentication y lo registra en el backend.
+Genera una contraseña aleatoria para Firebase y usa el UID resultante
+para completar el registro en el backend.
+ATENCIÓN: usa new Observable() como antipatrón, pendiente de refactorizar con from().</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Student.html" target="_self" >Observable&lt;Student&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con los datos del estudiante creado</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:186</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emite el evento cancelCreate para cerrar el formulario sin guardar.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida el formulario, comprueba si el estudiante ya existe por DNI
+y ejecuta la creación si todo es correcto.
+Si el estudiante ya existe muestra un mensaje de error sin crear.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contrasenatruquillo"></a>
+                    <span class="name">
+                        <span ><b>contrasenatruquillo</b></span>
+                        <a href="#contrasenatruquillo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Contraseña generada temporalmente para el nuevo usuario.
+Pendiente de revisar su gestión y almacenamiento.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createForm"></a>
+                    <span class="name">
+                        <span ><b>createForm</b></span>
+                        <a href="#createForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario reactivo con los campos necesarios para crear un estudiante.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error a mostrar si la creación falla o el estudiante ya existe.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCreating"></a>
+                    <span class="name">
+                        <span ><b>isCreating</b></span>
+                        <a href="#isCreating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si la petición de creación está en curso.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validForm"></a>
+                    <span class="name">
+                        <span ><b>validForm</b></span>
+                        <a href="#validForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si el formulario es válido.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Output } from &#x27;@angular/core&#x27;;
+import { Student } from &#x27;../../../../../core/models/student&#x27;;
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { StudentsServiceService } from &#x27;../../../../../core/services/admin/entities/students-service.service&#x27;;
+import { Auth, createUserWithEmailAndPassword } from &#x27;@angular/fire/auth&#x27;;
+import { PasswordServiceService } from &#x27;../../../../../core/services/password-service.service&#x27;;
+import { BotonConfirmarStudentComponent } from &quot;../../../botones/boton-confirmar-student/boton-confirmar-student.component&quot;;
+import { SelectedStudentServiceService } from &#x27;../../../../../core/services/admin/selected-student-service.service&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+
+/**
+ * Componente que gestiona el formulario de creación de un nuevo estudiante.
+ * Crea el usuario en Firebase Authentication y posteriormente lo registra
+ * en el backend con los datos del formulario.
+ * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServiceService.
+ */
+@Component({
+  selector: &#x27;app-student-create-form&#x27;,
+  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
+  templateUrl: &#x27;./student-create-form.component.html&#x27;,
+  styleUrl: &#x27;./student-create-form.component.scss&#x27;
+})
+export class StudentCreateFormComponent {
+
+  /**
+   * Evento emitido cuando el estudiante se ha creado correctamente.
+   * Incluye los datos del estudiante creado.
+   */
+  @Output() studentCreated &#x3D; new EventEmitter&lt;Student&gt;();
+
+  /**
+   * Evento emitido cuando el usuario cancela la creación.
+   */
+  @Output() cancelCreate &#x3D; new EventEmitter&lt;void&gt;();
+
+    /**
+   * Contraseña generada temporalmente para el nuevo usuario.
+   * Pendiente de revisar su gestión y almacenamiento.
+   */
+  contrasenatruquillo &#x3D; &#x27;&#x27;;
+
+   /**
+   * Formulario reactivo con los campos necesarios para crear un estudiante.
+   */
+  createForm: FormGroup;
+
+  /**
+   * Indica si la petición de creación está en curso.
+   */
+  isCreating &#x3D; false;
+
+    /**
+   * Mensaje de error a mostrar si la creación falla o el estudiante ya existe.
+   */
+  errorMessage &#x3D; &#x27;&#x27;;
+
+   /**
+   * Indica si el formulario es válido.
+   */
+  validForm &#x3D; false;
+
+
+    /**
+   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param studentService - Servicio que gestiona las operaciones con estudiantes
+   * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario
+   * @param passwordGen - Servicio que genera la contraseña aleatoria del nuevo usuario
+   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado tras la creación
+   */
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentsServiceService,
+    private fireBaseAuth: Auth,
+    private passwordGen: PasswordServiceService,
+    private selectedStudentService: SelectedStudentServiceService
+  ) {
+    this.createForm &#x3D; this.fb.group({
+      email: [&#x27;&#x27;, [Validators.required, Validators.email]],
+      name: [&#x27;&#x27;, Validators.required],
+      surname: [&#x27;&#x27;, Validators.required],
+      ndSurname: [&#x27;&#x27;, Validators.required],
+      birthDate: [&#x27;&#x27;, Validators.required],
+      dni: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z]$/)]]
+    });
+  }
+
+  /**
+   * Crea el usuario en Firebase Authentication y lo registra en el backend.
+   * Genera una contraseña aleatoria para Firebase y usa el UID resultante
+   * para completar el registro en el backend.
+   * ATENCIÓN: usa new Observable() como antipatrón, pendiente de refactorizar con from().
+   * @returns Observable con los datos del estudiante creado
+   */
+  createStudent(): Observable&lt;Student&gt; {
+  const email &#x3D; this.createForm.value.email;
+  const password &#x3D; this.passwordGen.generateRandomPassword();
+
+  console.log(password);
+  this.contrasenatruquillo &#x3D; password;
+
+  this.isCreating &#x3D; true;
+
+  return new Observable&lt;Student&gt;((observer) &#x3D;&gt; {
+    createUserWithEmailAndPassword(this.fireBaseAuth, email, password)
+      .then(credential &#x3D;&gt; {
+        const firebaseUID &#x3D; credential.user.uid;
+
+        const studentData &#x3D; {
+          email,
+          name: this.createForm.value.name,
+          surname: this.createForm.value.surname,
+          ndSurname: this.createForm.value.ndSurname,
+          birthDate: this.createForm.value.birthDate,
+          dni: this.createForm.value.dni,
+          firebaseUID,
+          
+        };
+
+        this.studentService.createStudent(studentData).subscribe({
+          next: (createdStudent) &#x3D;&gt; {
+            this.isCreating &#x3D; false;
+            observer.next(createdStudent.data);
+            observer.complete();
+          },
+          error: (err) &#x3D;&gt; {
+            this.isCreating &#x3D; false;
+            observer.error(err);
+          }
+        });
+      })
+      .catch(err &#x3D;&gt; {
+        this.isCreating &#x3D; false;
+        observer.error(err);
+      });
+  });
+}
+
+ /**
+   * Valida el formulario, comprueba si el estudiante ya existe por DNI
+   * y ejecuta la creación si todo es correcto.
+   * Si el estudiante ya existe muestra un mensaje de error sin crear.
+   */
+  onSubmit() {
+    if (this.createForm.invalid) return;
+    //this.createStudent();
+      const formValue &#x3D; this.createForm.value;
+      const dni &#x3D; formValue.dni;
+
+  // 1️⃣ comprobar existencias
+    const exists &#x3D; this.studentService.students().some(
+    student &#x3D;&gt; student.dni &#x3D;&#x3D;&#x3D; dni
+  );
+
+  // 2️⃣ si existe → avisar y return
+  if (exists) {
+    console.log(&#x27;estudiante existente&#x27;);
+    this.errorMessage &#x3D; &#x27;Estudiante existente matricular desde estudiante existente&#x27;;
+    return;
+  } 
+   this.createStudent().subscribe({
+    next: (createdStudent) &#x3D;&gt; {
+      console.log(&#x27;✅ Estudiante creado: &#x27;, createdStudent);
+      console.log(&#x27;Contraseña: &#x27; , this.contrasenatruquillo);
+
+      // 3️⃣ guardar en signal global
+      this.selectedStudentService.setSelectedStudent(createdStudent);
+
+      // 4️⃣ avisar al padre (si lo necesitas)
+      this.studentCreated.emit(createdStudent);
+
+      // 5️⃣ aquí NO cambiamos modo (eso lo hace el padre)
+    },
+    error: (err) &#x3D;&gt; {
+      console.error(&#x27;❌ Error al crear estudiante:&#x27;, err);
+      this.errorMessage &#x3D; &#x27;Error al crear el estudiante&#x27;;
+    }
+  });
+  
+
+  
+  }
+
+  /**
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+   */
+  onCancel() {
+    this.cancelCreate.emit();
+  }
+
+  /**getError(control: string) {
+    switch (control) {
+      case &#x27;email&#x27;:
+        if (this.formRegister.controls.email.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.email.errors).includes(&#x27;required&#x27;))
+          return &#x27;El campo email es requerido&#x27;;
+        else if (this.formRegister.controls.email.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.email.errors).includes(&#x27;email&#x27;))
+          return &#x27;El email no es correcto&#x27;;
+        break;
+      case &#x27;password&#x27;:
+        if (this.formRegister.controls.password.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.password.errors).includes(&#x27;required&#x27;))
+          return &#x27;El campo contraseña es requerido&#x27;;
+        else if (this.formRegister.controls.password.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.password.errors).includes(&#x27;minlength&#x27;))
+          return &#x27;La contraseña debe tener al menos 6 caracteres&#x27;;
+        break;
+      case &#x27;name&#x27;:
+        if (this.formRegister.controls.name.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.name.errors).includes(&#x27;required&#x27;))
+          return &#x27;El campo nombre es requerido&#x27;;
+        break;
+      case &#x27;surname&#x27;:
+        if (this.formRegister.controls.surname.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.surname.errors).includes(&#x27;required&#x27;))
+          return &#x27;El campo apellido es requerido&#x27;;
+        break;
+      case &#x27;birthDate&#x27;:
+        if (this.formRegister.controls.birthDate.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.birthDate.errors).includes(&#x27;required&#x27;))
+          return &#x27;La fecha de nacimiento es requerida&#x27;;
+        break;
+      case &#x27;dni&#x27;:
+        if (this.formRegister.controls.dni.errors !&#x3D; null &amp;&amp;
+          Object.keys(this.formRegister.controls.dni.errors).includes(&#x27;required&#x27;))
+          return &#x27;El DNI es requerido&#x27;;
+        break;
+      default:
+        return &#x27;&#x27;;
+    }
+    return &#x27;&#x27;;
+  } */
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;form [formGroup]&#x3D;&quot;createForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+
+  &lt;!-- Email --&gt;
+  &lt;!-- Nombre --&gt;
+  &lt;!-- Apellidos --&gt;
+  &lt;!-- Fecha nacimiento --&gt;
+  &lt;!-- DNI --&gt;
+   &lt;!-- Email --&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Email&lt;/label&gt;
+        &lt;input 
+          formControlName&#x3D;&quot;email&quot;
+          type&#x3D;&quot;email&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+          placeholder&#x3D;&quot;profesor@ziryab.es&quot;
+        /&gt;
+        @if(createForm.get(&#x27;email&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;email&#x27;)?.touched){
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          Email inválido
+        &lt;/span&gt;
+        }
+        
+      &lt;/div&gt;
+
+      &lt;!-- Nombre --&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Nombre&lt;/label&gt;
+        &lt;input 
+          formControlName&#x3D;&quot;name&quot;
+          type&#x3D;&quot;text&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+          placeholder&#x3D;&quot;Nombre&quot;
+        /&gt;
+        @if(createForm.get(&#x27;name&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;name&#x27;)?.touched){
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          El nombre es requerido
+        &lt;/span&gt;
+        }
+        
+      &lt;/div&gt;
+
+      &lt;!-- Primer apellido --&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Primer apellido&lt;/label&gt;
+        &lt;input 
+          formControlName&#x3D;&quot;surname&quot;
+          type&#x3D;&quot;text&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+          placeholder&#x3D;&quot;Primer apellido&quot;
+        /&gt;
+        @if(createForm.get(&#x27;surname&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;surname&#x27;)?.touched){
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          El primer apellido es requerido
+        &lt;/span&gt;
+        }
+        
+      &lt;/div&gt;
+
+      &lt;!-- Segundo apellido --&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Segundo apellido&lt;/label&gt;
+        &lt;input 
+          formControlName&#x3D;&quot;ndSurname&quot;
+          type&#x3D;&quot;text&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+          placeholder&#x3D;&quot;Segundo apellido&quot;
+        /&gt;
+        @if(createForm.get(&#x27;ndSurname&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;ndSurname&#x27;)?.touched){
+             &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          El segundo apellido es requerido
+        &lt;/span&gt;
+        }
+       
+      &lt;/div&gt;
+
+      &lt;!-- Fecha de nacimiento --&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Fecha de nacimiento&lt;/label&gt;
+        &lt;input 
+          formControlName&#x3D;&quot;birthDate&quot;
+          type&#x3D;&quot;date&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+        /&gt;
+        @if(createForm.get(&#x27;birthDate&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;birthDate&#x27;)?.touched){
+             &lt;span
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          La fecha de nacimiento es requerida
+        &lt;/span&gt;
+        }
+       
+      &lt;/div&gt;
+
+      &lt;!-- DNI --&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;DNI&lt;/label&gt;
+        &lt;input 
+          formControlName&#x3D;&quot;dni&quot;
+          type&#x3D;&quot;text&quot;
+          maxlength&#x3D;&quot;9&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+          placeholder&#x3D;&quot;12345678A&quot;
+        /&gt;
+        @if(createForm.get(&#x27;dni&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;dni&#x27;)?.touched){
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          DNI inválido (formato: 12345678A)
+        &lt;/span&gt;
+        }
+        
+      &lt;/div&gt;
+
+  &lt;!-- errores --&gt;
+   &lt;!-- Mensaje de error --&gt;
+       @if(errorMessage){
+        &lt;div 
+           class&#x3D;&quot;mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700&quot;&gt;
+        {{ errorMessage }}
+      &lt;/div&gt;
+       }
+
+ &lt;div class&#x3D;&quot;flex justify-end gap-3&quot;&gt;
+  &lt;button 
+    type&#x3D;&quot;button&quot;
+    (click)&#x3D;&quot;onCancel()&quot;
+    [disabled]&#x3D;&quot;isCreating&quot;
+    class&#x3D;&quot;px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50&quot;&gt;
+    Cancelar
+  &lt;/button&gt;
+  &lt;app-boton-confirmar-student
+  [disabled]&#x3D;&quot;createForm.invalid&quot;
+  (confirm)&#x3D;&quot;onSubmit()&quot;&gt;&gt;
+
+  &lt;/app-boton-confirmar-student&gt;
+&lt;/div&gt;
+
+&lt;/form&gt;  
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="createForm" (ngSubmit)="onSubmit()">  <!-- Email -->  <!-- Nombre -->  <!-- Apellidos -->  <!-- Fecha nacimiento -->  <!-- DNI -->   <!-- Email -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Email</label>        <input           formControlName="email"          type="email"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="profesor@ziryab.es"        />        @if(createForm.get(\'email\')?.invalid && createForm.get(\'email\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          Email inválido        </span>        }              </div>      <!-- Nombre -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Nombre</label>        <input           formControlName="name"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="Nombre"        />        @if(createForm.get(\'name\')?.invalid && createForm.get(\'name\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          El nombre es requerido        </span>        }              </div>      <!-- Primer apellido -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Primer apellido</label>        <input           formControlName="surname"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="Primer apellido"        />        @if(createForm.get(\'surname\')?.invalid && createForm.get(\'surname\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          El primer apellido es requerido        </span>        }              </div>      <!-- Segundo apellido -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Segundo apellido</label>        <input           formControlName="ndSurname"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="Segundo apellido"        />        @if(createForm.get(\'ndSurname\')?.invalid && createForm.get(\'ndSurname\')?.touched){             <span               class="text-red-500 text-sm mt-1 block">          El segundo apellido es requerido        </span>        }             </div>      <!-- Fecha de nacimiento -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>        <input           formControlName="birthDate"          type="date"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"        />        @if(createForm.get(\'birthDate\')?.invalid && createForm.get(\'birthDate\')?.touched){             <span              class="text-red-500 text-sm mt-1 block">          La fecha de nacimiento es requerida        </span>        }             </div>      <!-- DNI -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">DNI</label>        <input           formControlName="dni"          type="text"          maxlength="9"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="12345678A"        />        @if(createForm.get(\'dni\')?.invalid && createForm.get(\'dni\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          DNI inválido (formato: 12345678A)        </span>        }              </div>  <!-- errores -->   <!-- Mensaje de error -->       @if(errorMessage){        <div            class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">        {{ errorMessage }}      </div>       } <div class="flex justify-end gap-3">  <button     type="button"    (click)="onCancel()"    [disabled]="isCreating"    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">    Cancelar  </button>  <app-boton-confirmar-student  [disabled]="createForm.invalid"  (confirm)="onSubmit()">>  </app-boton-confirmar-student></div></form>  </div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'StudentCreateFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'StudentCreateFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
