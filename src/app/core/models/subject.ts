@@ -1,6 +1,4 @@
-
 // models/subject.model.ts
-
 
 /**
  * Representa una asignatura del sistema.
@@ -22,17 +20,29 @@
  * };
  */
 export interface Subject {
+  /** Identificador único de la asignatura */
   id: number;
+  /** Nombre de la asignatura */
   name: string;
+  /** Curso en el que se imparte la asignatura */
   grade: string;
+  /** Horas semanales de la asignatura */
   hours: number;
+  /** Descripción de la asignatura */
   description: string;
+  /** Identificador del ciclo al que pertenece la asignatura */
   idCourse: number;
+  /** Datos del ciclo al que pertenece la asignatura */
   course: {
+    /** Identificador único del ciclo */
     id: number;
+    /** Nombre del ciclo */
     name: string;
+    /** Descripción del ciclo */
     description: string;
+    /** Duración del ciclo en años */
     duration: number;
+    /** Fecha de creación del registro del ciclo */
     createdAt: string;
   };
 }
@@ -60,7 +70,9 @@ export interface Subject {
  * };
  */
 export interface SubjectByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la asignatura encontrada */
   data: Subject;
 }
 
@@ -90,8 +102,11 @@ export interface SubjectByIdResponse {
  * };
  */
 export interface SubjectsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de asignaturas */
   data: Subject[];
+  /** Número total de asignaturas devueltas */
   count: number;
 }
 
@@ -107,10 +122,15 @@ export interface SubjectsAllResponse {
  * };
  */
 export interface SubjectCreateRequest {
+  /** Nombre de la asignatura */
   name: string;
+  /** Curso en el que se imparte la asignatura */
   grade: string;
+  /** Horas semanales de la asignatura */
   hours: number;
+  /** Descripción de la asignatura */
   description: string;
+  /** Identificador del ciclo al que pertenece la asignatura */
   idCourse: number;
 }
 
@@ -140,8 +160,11 @@ export interface SubjectCreateRequest {
  * };
  */
 export interface SubjectCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Datos de la asignatura creada */
   data: Subject;
 }
 
@@ -157,10 +180,15 @@ export interface SubjectCreateResponse {
  * };
  */
 export interface SubjectUpdateRequest {
+  /** Nuevo nombre de la asignatura */
   name: string;
+  /** Nuevo curso en el que se imparte la asignatura */
   grade: string;
+  /** Nuevas horas semanales de la asignatura */
   hours: number;
+  /** Nueva descripción de la asignatura */
   description: string;
+  /** Nuevo identificador del ciclo al que pertenece la asignatura */
   idCourse: number;
 }
 
@@ -187,7 +215,9 @@ export interface SubjectUpdateRequest {
  * };
  */
 export interface SubjectUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la asignatura actualizada */
   data: Subject;
 }
 
@@ -203,7 +233,10 @@ export interface SubjectUpdateResponse {
  * };
  */
 export interface SubjectDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la asignatura eliminada */
   deletedId: number;
 }

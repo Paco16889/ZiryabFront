@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+/**
+ * Componente que se muestra cuando un usuario intenta acceder a un recurso
+ * para el que no tiene los permisos necesarios.
+ * Ofrece un botón para redirigir al usuario al dashboard principal.
+ */
+
 @Component({
     selector: 'app-unauthorized',
     template: `

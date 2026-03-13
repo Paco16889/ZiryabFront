@@ -137,6 +137,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio de autenticación basado en localStorage.
+Gestiona el login, registro y sesión del usuario mediante peticiones al backend
+y almacenamiento del token JWT en localStorage.</p>
+
+            </p>
 
 
 
@@ -216,7 +225,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -230,6 +239,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -244,6 +254,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Cliente HTTP de Angular para realizar las peticiones a la API</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -281,22 +297,27 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:116</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>GET USER: Obtiene datos del usuario autenticado
-Requiere JWT en header</p>
+                        <div class="io-description"><p>Obtiene los datos del usuario autenticado desde el backend.
+Requiere que el interceptor adjunte el JWT en la cabecera de la petición.
+ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar por <code>firstValueFrom</code>.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>Promesa con los datos del usuario autenticado</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -321,21 +342,25 @@ Requiere JWT en header</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:144</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>GET TOKEN: Obtiene el token guardado</p>
+                        <div class="io-description"><p>Obtiene el token JWT almacenado en localStorage.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>string | null</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>El token JWT o null si no existe</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -360,21 +385,25 @@ Requiere JWT en header</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:152</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>IS AUTHENTICATED: Verifica si hay token</p>
+                        <div class="io-description"><p>Verifica si hay una sesión activa comprobando la existencia del token JWT.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>true si existe token, false en caso contrario</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -401,16 +430,17 @@ Requiere JWT en header</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:42</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>LOGIN: Autentica usuario existente
-Recibe firebaseUID del frontend y devuelve JWT</p>
+                        <div class="io-description"><p>Autentica un usuario existente contra el backend mediante su UID de Firebase.
+Almacena el token JWT y los datos del usuario en localStorage tras el login.
+ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar por <code>firstValueFrom</code>.</p>
 </div>
 
                             <div class="io-description">
@@ -422,6 +452,7 @@ Recibe firebaseUID del frontend y devuelve JWT</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -436,6 +467,12 @@ Recibe firebaseUID del frontend y devuelve JWT</p>
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Objeto con el UID de Firebase del usuario a autenticar</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -445,7 +482,8 @@ Recibe firebaseUID del frontend y devuelve JWT</p>
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Promesa con la respuesta completa del backend</p>
+
                             </div>
                 </td>
             </tr>
@@ -471,15 +509,16 @@ Recibe firebaseUID del frontend y devuelve JWT</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:133</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>LOGOUT: Cierra sesión</p>
+                        <div class="io-description"><p>Cierra la sesión del usuario eliminando el token JWT y los datos
+almacenados en localStorage y limpiando la signal de usuario.</p>
 </div>
 
                         <div class="io-description">
@@ -512,16 +551,17 @@ Recibe firebaseUID del frontend y devuelve JWT</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:79</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>REGISTER: Registra nuevo usuario
-Recibe datos del usuario + firebaseUID</p>
+                        <div class="io-description"><p>Registra un nuevo usuario en el backend con sus datos personales y UID de Firebase.
+Almacena el token JWT y los datos del usuario en localStorage tras el registro.
+ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar por <code>firstValueFrom</code>.</p>
 </div>
 
                             <div class="io-description">
@@ -533,6 +573,7 @@ Recibe datos del usuario + firebaseUID</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -547,6 +588,12 @@ Recibe datos del usuario + firebaseUID</p>
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Datos del usuario a registrar</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -556,7 +603,8 @@ Recibe datos del usuario + firebaseUID</p>
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Promesa con la respuesta completa del backend</p>
+
                             </div>
                 </td>
             </tr>
@@ -593,10 +641,16 @@ Recibe datos del usuario + firebaseUID</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:26</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>URL base de la API obtenida desde el fichero de entorno.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -620,10 +674,19 @@ Recibe datos del usuario + firebaseUID</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:21</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que almacena los datos del usuario autenticado.
+ATENCIÓN: se inicializa dentro del constructor en lugar de como propiedad
+de clase, lo cual es un antipatrón. Debería declararse como
+<code>public user = signal&lt;any&gt;(null)</code> directamente en la clase.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -637,20 +700,42 @@ Recibe datos del usuario + firebaseUID</p>
 import { HttpClient, HttpResponse } from &#x27;@angular/common/http&#x27;;
 import { environment } from &#x27;../../../environments/environment&#x27;;
 
+/**
+ * Servicio de autenticación basado en localStorage.
+ * Gestiona el login, registro y sesión del usuario mediante peticiones al backend
+ * y almacenamiento del token JWT en localStorage.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class LocalStorageAuthService {
+
+  /**
+   * Signal que almacena los datos del usuario autenticado.
+   * ATENCIÓN: se inicializa dentro del constructor en lugar de como propiedad
+   * de clase, lo cual es un antipatrón. Debería declararse como
+   * &#x60;public user &#x3D; signal&lt;any&gt;(null)&#x60; directamente en la clase.
+   */
   public user: any;
+
+  /**
+   * URL base de la API obtenida desde el fichero de entorno.
+   */
   private apiUrl &#x3D; environment.apiUrl;
 
+  /**
+   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
+   */
   constructor(private http: HttpClient) {
     this.user &#x3D; signal&lt;any&gt;(null);
   }
 
   /**
-   * LOGIN: Autentica usuario existente
-   * Recibe firebaseUID del frontend y devuelve JWT
+   * Autentica un usuario existente contra el backend mediante su UID de Firebase.
+   * Almacena el token JWT y los datos del usuario en localStorage tras el login.
+   * ATENCIÓN: usa &#x60;.toPromise()&#x60; deprecado desde Angular 16, reemplazar por &#x60;firstValueFrom&#x60;.
+   * @param data - Objeto con el UID de Firebase del usuario a autenticar
+   * @returns Promesa con la respuesta completa del backend
    */
   async login(data: { firebaseUID: string }): Promise&lt;any&gt; {
     try {
@@ -661,7 +746,6 @@ export class LocalStorageAuthService {
 
       console.log(&#x27;✅ Response del backend:&#x27;, response);
 
-      // Guardar token en localStorage
       if (response?.data?.token) {
         localStorage.setItem(&#x27;token&#x27;, response.data.token);
         localStorage.setItem(&#x27;user&#x27;, JSON.stringify(response.data));
@@ -676,8 +760,19 @@ export class LocalStorageAuthService {
   }
 
   /**
-   * REGISTER: Registra nuevo usuario
-   * Recibe datos del usuario + firebaseUID
+   * Registra un nuevo usuario en el backend con sus datos personales y UID de Firebase.
+   * Almacena el token JWT y los datos del usuario en localStorage tras el registro.
+   * ATENCIÓN: usa &#x60;.toPromise()&#x60; deprecado desde Angular 16, reemplazar por &#x60;firstValueFrom&#x60;.
+   * @param data - Datos del usuario a registrar
+   * @param data.firebaseUID - Identificador único del usuario en Firebase
+   * @param data.email - Correo electrónico del usuario
+   * @param data.name - Nombre del usuario
+   * @param data.surname - Primer apellido del usuario
+   * @param data.ndSurname - Segundo apellido del usuario, opcional
+   * @param data.birthDate - Fecha de nacimiento del usuario
+   * @param data.dni - Documento de identidad del usuario
+   * @param data.role - Rol del usuario en el sistema
+   * @returns Promesa con la respuesta completa del backend
    */
   async register(data: {
     firebaseUID: string;
@@ -697,7 +792,6 @@ export class LocalStorageAuthService {
 
       console.log(&#x27;✅ Response del backend (register):&#x27;, response);
 
-      // Guardar token en localStorage
       if (response?.data?.token) {
         localStorage.setItem(&#x27;token&#x27;, response.data.token);
         localStorage.setItem(&#x27;user&#x27;, JSON.stringify(response.data));
@@ -712,8 +806,10 @@ export class LocalStorageAuthService {
   }
 
   /**
-   * GET USER: Obtiene datos del usuario autenticado
-   * Requiere JWT en header
+   * Obtiene los datos del usuario autenticado desde el backend.
+   * Requiere que el interceptor adjunte el JWT en la cabecera de la petición.
+   * ATENCIÓN: usa &#x60;.toPromise()&#x60; deprecado desde Angular 16, reemplazar por &#x60;firstValueFrom&#x60;.
+   * @returns Promesa con los datos del usuario autenticado
    */
   async getMe(): Promise&lt;any&gt; {
     try {
@@ -729,7 +825,8 @@ export class LocalStorageAuthService {
   }
 
   /**
-   * LOGOUT: Cierra sesión
+   * Cierra la sesión del usuario eliminando el token JWT y los datos
+   * almacenados en localStorage y limpiando la signal de usuario.
    */
   logout(): void {
     localStorage.removeItem(&#x27;token&#x27;);
@@ -739,20 +836,21 @@ export class LocalStorageAuthService {
   }
 
   /**
-   * GET TOKEN: Obtiene el token guardado
+   * Obtiene el token JWT almacenado en localStorage.
+   * @returns El token JWT o null si no existe
    */
   getToken(): string | null {
     return localStorage.getItem(&#x27;token&#x27;);
   }
 
   /**
-   * IS AUTHENTICATED: Verifica si hay token
+   * Verifica si hay una sesión activa comprobando la existencia del token JWT.
+   * @returns true si existe token, false en caso contrario
    */
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
-}
-</code></pre>
+}</code></pre>
     </div>
 
 </div>

@@ -3,7 +3,7 @@
 /**
  * Representa un grupo del sistema.
  * Un grupo identifica una división dentro de un ciclo académico,
- * su nombre puede ser  Mañana, Tarde, A, B, C, etc. y la capacidad de alumnos del grupo
+ * su nombre puede ser Mañana, Tarde, A, B, C, etc. y la capacidad de alumnos del grupo.
  * @example
  * const group: Group = {
  *   id: ID_GRUPO,
@@ -12,8 +12,11 @@
  * };
  */
 export interface Group {
+  /** Identificador único del grupo */
   id: number;
+  /** Nombre del grupo, por ejemplo 'Mañana', 'Tarde', 'A', 'B' */
   name: string;
+  /** Capacidad máxima de alumnos del grupo */
   capacity: number;
 }
 
@@ -33,8 +36,11 @@ export interface Group {
  * };
  */
 export interface GroupsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de grupos */
   data: Group[];
+  /** Número total de grupos devueltos */
   count: number;
 }
 
@@ -51,7 +57,9 @@ export interface GroupsAllResponse {
  * };
  */
 export interface GroupByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del grupo encontrado */
   data: Group;
 }
 
@@ -64,7 +72,9 @@ export interface GroupByIdResponse {
  * };
  */
 export interface GroupCreateRequest {
+  /** Nombre del grupo */
   name: string;
+  /** Capacidad máxima de alumnos del grupo */
   capacity: number;
 }
 
@@ -81,7 +91,9 @@ export interface GroupCreateRequest {
  * };
  */
 export interface GroupCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del grupo creado */
   data: Group;
 }
 
@@ -95,8 +107,11 @@ export interface GroupCreateResponse {
  * };
  */
 export interface GroupUpdateRequest {
+  /** Identificador único del grupo a actualizar */
   id: number;
+  /** Nuevo nombre del grupo */
   name: string;
+  /** Nueva capacidad máxima de alumnos del grupo */
   capacity: number;
 }
 
@@ -113,10 +128,15 @@ export interface GroupUpdateRequest {
  * };
  */
 export interface GroupUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del grupo actualizado */
   data: {
+    /** Identificador único del grupo actualizado */
     id: number;
+    /** Nombre del grupo actualizado */
     name: string;
+    /** Capacidad máxima de alumnos del grupo actualizado */
     capacity: number;
   };
 }
@@ -133,7 +153,10 @@ export interface GroupUpdateResponse {
  * };
  */
 export interface GroupDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador del grupo eliminado */
   deletedId: number;
 }

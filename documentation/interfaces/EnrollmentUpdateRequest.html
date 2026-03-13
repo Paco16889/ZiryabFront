@@ -254,6 +254,12 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nuevo identificador del grupo</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -292,6 +298,12 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nuevo identificador del estudiante</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -330,6 +342,12 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nuevo identificador de la asignatura</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -368,6 +386,12 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nuevo año académico</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -406,6 +430,12 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nuevo estado de la matrícula</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -421,6 +451,7 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
   WITHDRAWN &#x3D; &#x27;WITHDRAWN&#x27;,
   EXPELLED &#x3D; &#x27;EXPELLED&#x27;
 }
+
 /**
  * Representa la matrícula de un estudiante en una asignatura y grupo en un año académico concreto.
  * @example
@@ -434,11 +465,17 @@ Todos los campos son opcionales, se actualizan solo los que se envíen.</p>
  * };
  */
 export interface Enrollment {
+  /** Identificador único de la matrícula */
   id: number;
+  /** Identificador del estudiante matriculado */
   idStudent: number;
+  /** Identificador del grupo en el que está matriculado */
   idGroup: number;
+  /** Identificador de la asignatura en la que está matriculado */
   idSubject: number;
+  /** Año académico de la matrícula, por ejemplo &#x27;2024-2025&#x27; */
   schoolYear: string;
+  /** Estado actual de la matrícula */
   status: EnrollmentStatus;
 }
 
@@ -461,8 +498,11 @@ export interface Enrollment {
  * };
  */
 export interface EnrollmentsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de matrículas */
   data: Enrollment[];
+  /** Número total de matrículas devueltas */
   count: number;
 }
 
@@ -482,7 +522,9 @@ export interface EnrollmentsAllResponse {
  * };
  */
 export interface EnrollmentByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la matrícula encontrada */
   data: Enrollment;
 }
 
@@ -497,9 +539,13 @@ export interface EnrollmentByIdResponse {
  * };
  */
 export interface EnrollmentCreateRequest {
+  /** Identificador del estudiante a matricular */
   idStudent: number;
+  /** Identificador del grupo en el que se matricula */
   idGroup: number;
+  /** Identificador de la asignatura en la que se matricula */
   idSubject: number;
+  /** Año académico de la matrícula, por ejemplo &#x27;2024-2025&#x27; */
   schoolYear: string;
 }
 
@@ -519,7 +565,9 @@ export interface EnrollmentCreateRequest {
  * };
  */
 export interface EnrollmentCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la matrícula creada */
   data: Enrollment;
 }
 
@@ -536,10 +584,15 @@ export interface EnrollmentCreateResponse {
  * };
  */
 export interface EnrollmentUpdateRequest {
+  /** Nuevo identificador del estudiante */
   idStudent?: number;
+  /** Nuevo identificador del grupo */
   idGroup?: number;
+  /** Nuevo identificador de la asignatura */
   idSubject?: number;
+  /** Nuevo año académico */
   schoolYear?: string;
+  /** Nuevo estado de la matrícula */
   status?: EnrollmentStatus;
 }
 
@@ -559,7 +612,9 @@ export interface EnrollmentUpdateRequest {
  * };
  */
 export interface EnrollmentUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la matrícula actualizada */
   data: Enrollment;
 }
 
@@ -575,8 +630,11 @@ export interface EnrollmentUpdateResponse {
  * };
  */
 export interface EnrollmentDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la matrícula eliminada */
   deletedId: number;
 }</code></pre>
     </div>

@@ -24,21 +24,32 @@ import { Subject } from "./subject";
  * };
  */
 export interface Course {
+  /** Identificador único del ciclo */
   id: number;
+  /** Nombre del ciclo */
   name: string;
+  /** Descripción del ciclo */
   description: string;
+  /** Duración del ciclo en años */
   duration: number;
+  /** Fecha de creación del registro */
   createdAt: string;
+  /** Asignaturas que pertenecen al ciclo */
   subjects: {
+    /** Identificador único de la asignatura */
     id: number;
+    /** Nombre de la asignatura */
     name: string;
+    /** Curso en el que se imparte la asignatura */
     grade: string;
+    /** Horas semanales de la asignatura */
     hours: number;
+    /** Descripción de la asignatura */
     description: string;
+    /** Identificador del ciclo al que pertenece la asignatura */
     idCourse: number;
   }[];
 }
-
 
 /**
  * Respuesta de la API al consultar un ciclo por su identificador.
@@ -65,7 +76,9 @@ export interface Course {
  * };
  */
 export interface CourseByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del ciclo encontrado */
   data: Course;
 }
 
@@ -97,8 +110,11 @@ export interface CourseByIdResponse {
  * };
  */
 export interface CoursesAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de ciclos */
   data: Course[];
+  /** Número total de ciclos devueltos */
   count: number;
 }
 
@@ -110,9 +126,11 @@ export interface CoursesAllResponse {
  *   duration: 2
  * };
  */
-export interface CourseCreateRequest{
+export interface CourseCreateRequest {
+  /** Nombre del ciclo */
   name: string;
-  duration: number
+  /** Duración del ciclo en años */
+  duration: number;
 }
 
 /**
@@ -128,14 +146,18 @@ export interface CourseCreateRequest{
  * };
  */
 export interface CourseCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del ciclo creado */
   data: {
+    /** Identificador único del ciclo creado */
     id: number;
+    /** Nombre del ciclo creado */
     name: string;
-    duration: 2
+    /** Duración del ciclo en años */
+    duration: 2;
   };
 }
-
 
 /**
  * Datos necesarios para actualizar un ciclo existente.
@@ -148,9 +170,13 @@ export interface CourseCreateResponse {
  * };
  */
 export interface CourseUpdateRequest {
+  /** Identificador único del ciclo a actualizar */
   id: number;
+  /** Nuevo nombre del ciclo */
   name: string;
+  /** Nueva descripción del ciclo */
   description: string;
+  /** Nueva duración del ciclo en años */
   duration: number;
 }
 
@@ -168,11 +194,17 @@ export interface CourseUpdateRequest {
  * };
  */
 export interface CourseUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del ciclo actualizado */
   data: {
+    /** Identificador único del ciclo actualizado */
     id: number;
+    /** Nombre del ciclo actualizado */
     name: string;
+    /** Descripción del ciclo actualizado */
     description: string;
+    /** Duración del ciclo en años */
     duration: number;
   };
 }
@@ -189,9 +221,10 @@ export interface CourseUpdateResponse {
  * };
  */
 export interface CourseDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador del ciclo eliminado */
   deletedId: number;
 }
-
-

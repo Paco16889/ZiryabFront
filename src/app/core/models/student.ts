@@ -15,21 +15,27 @@
  * };
  */
 export interface Student {
+  /** Identificador único del estudiante */
   id: number;
+  /** Correo electrónico del estudiante */
   email: string;
+  /** Nombre del estudiante */
   name: string;
+  /** Primer apellido del estudiante */
   surname: string;
+  /** Segundo apellido del estudiante */
   ndSurname: string;
+  /** Fecha de nacimiento del estudiante */
   birthDate: string;
+  /** DNI o NIE del estudiante */
   dni: string;
+  /** Rol del estudiante en el sistema */
   role: string;
+  /** Identificador único del estudiante en Firebase */
   firebaseUID: string;
+  /** Fecha de creación del registro */
   createdAt: string;
 }
-
-
-
-
 
 /**
  * Respuesta de la API al consultar un estudiante por su identificador.
@@ -40,7 +46,9 @@ export interface Student {
  * };
  */
 export interface StudentByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del estudiante encontrado */
   data: Student;
 }
 
@@ -68,11 +76,13 @@ export interface StudentByIdResponse {
  * };
  */
 export interface StudentsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de estudiantes */
   data: Student[];
+  /** Número total de estudiantes devueltos */
   count: number;
 }
-
 
 /**
  * Datos necesarios para crear un nuevo estudiante.
@@ -88,12 +98,19 @@ export interface StudentsAllResponse {
  * };
  */
 export interface StudentCreateRequest {
+  /** Correo electrónico del estudiante */
   email: string;
+  /** Nombre del estudiante */
   name: string;
+  /** Primer apellido del estudiante */
   surname: string;
+  /** Segundo apellido del estudiante */
   ndSurname: string;
+  /** Fecha de nacimiento del estudiante */
   birthDate: string;
+  /** DNI o NIE del estudiante */
   dni: string;
+  /** Rol del estudiante, por defecto STUDENT si no se indica */
   role?: string;
 }
 
@@ -119,17 +136,29 @@ export interface StudentCreateRequest {
  * };
  */
 export interface StudentCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del estudiante creado */
   data: {
+    /** Identificador único del estudiante creado */
     id: number;
+    /** Correo electrónico del estudiante */
     email: string;
+    /** Nombre del estudiante */
     name: string;
+    /** Primer apellido del estudiante */
     surname: string;
+    /** Segundo apellido del estudiante */
     ndSurname: string;
+    /** Fecha de nacimiento del estudiante */
     birthDate: string;
+    /** DNI o NIE del estudiante */
     dni: string;
+    /** Rol del estudiante en el sistema */
     role: string;
+    /** Identificador único del estudiante en Firebase */
     firebaseUID: string;
+    /** Fecha de creación del registro */
     createdAt: string;
   };
 }
@@ -148,12 +177,19 @@ export interface StudentCreateResponse {
  * };
  */
 export interface StudentUpdateRequest {
+  /** Identificador único del estudiante a actualizar */
   id: number;
+  /** Nuevo correo electrónico del estudiante */
   email: string;
+  /** Nuevo nombre del estudiante */
   name: string;
+  /** Nuevo primer apellido del estudiante */
   surname: string;
+  /** Nuevo segundo apellido del estudiante */
   ndSurname: string;
+  /** Nueva fecha de nacimiento del estudiante */
   birthDate: string;
+  /** Nuevo DNI o NIE del estudiante */
   dni: string;
 }
 
@@ -177,22 +213,32 @@ export interface StudentUpdateRequest {
  * };
  */
 export interface StudentUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del estudiante actualizado */
   data: {
+    /** Identificador único del estudiante actualizado */
     id: number;
+    /** Correo electrónico del estudiante */
     email: string;
+    /** Nombre del estudiante */
     name: string;
+    /** Primer apellido del estudiante */
     surname: string;
+    /** Segundo apellido del estudiante */
     ndSurname: string;
+    /** Fecha de nacimiento del estudiante */
     birthDate: string;
+    /** DNI o NIE del estudiante */
     dni: string;
+    /** Rol del estudiante en el sistema */
     role: string;
+    /** Identificador único del estudiante en Firebase */
     firebaseUID: string;
+    /** Fecha de creación del registro */
     createdAt: string;
   };
 }
-
-  
 
 /**
  * Respuesta de la API tras eliminar un estudiante.
@@ -203,6 +249,7 @@ export interface StudentUpdateResponse {
  *   success: true
  * };
  */
-export interface StudentDeleteResponse{
-    success: boolean;
-  }
+export interface StudentDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
+  success: boolean;
+}

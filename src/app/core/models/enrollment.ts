@@ -17,6 +17,7 @@ export enum EnrollmentStatus {
   WITHDRAWN = 'WITHDRAWN',
   EXPELLED = 'EXPELLED'
 }
+
 /**
  * Representa la matrícula de un estudiante en una asignatura y grupo en un año académico concreto.
  * @example
@@ -30,11 +31,17 @@ export enum EnrollmentStatus {
  * };
  */
 export interface Enrollment {
+  /** Identificador único de la matrícula */
   id: number;
+  /** Identificador del estudiante matriculado */
   idStudent: number;
+  /** Identificador del grupo en el que está matriculado */
   idGroup: number;
+  /** Identificador de la asignatura en la que está matriculado */
   idSubject: number;
+  /** Año académico de la matrícula, por ejemplo '2024-2025' */
   schoolYear: string;
+  /** Estado actual de la matrícula */
   status: EnrollmentStatus;
 }
 
@@ -57,8 +64,11 @@ export interface Enrollment {
  * };
  */
 export interface EnrollmentsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de matrículas */
   data: Enrollment[];
+  /** Número total de matrículas devueltas */
   count: number;
 }
 
@@ -78,7 +88,9 @@ export interface EnrollmentsAllResponse {
  * };
  */
 export interface EnrollmentByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la matrícula encontrada */
   data: Enrollment;
 }
 
@@ -93,9 +105,13 @@ export interface EnrollmentByIdResponse {
  * };
  */
 export interface EnrollmentCreateRequest {
+  /** Identificador del estudiante a matricular */
   idStudent: number;
+  /** Identificador del grupo en el que se matricula */
   idGroup: number;
+  /** Identificador de la asignatura en la que se matricula */
   idSubject: number;
+  /** Año académico de la matrícula, por ejemplo '2024-2025' */
   schoolYear: string;
 }
 
@@ -115,7 +131,9 @@ export interface EnrollmentCreateRequest {
  * };
  */
 export interface EnrollmentCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la matrícula creada */
   data: Enrollment;
 }
 
@@ -132,10 +150,15 @@ export interface EnrollmentCreateResponse {
  * };
  */
 export interface EnrollmentUpdateRequest {
+  /** Nuevo identificador del estudiante */
   idStudent?: number;
+  /** Nuevo identificador del grupo */
   idGroup?: number;
+  /** Nuevo identificador de la asignatura */
   idSubject?: number;
+  /** Nuevo año académico */
   schoolYear?: string;
+  /** Nuevo estado de la matrícula */
   status?: EnrollmentStatus;
 }
 
@@ -155,7 +178,9 @@ export interface EnrollmentUpdateRequest {
  * };
  */
 export interface EnrollmentUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la matrícula actualizada */
   data: Enrollment;
 }
 
@@ -171,7 +196,10 @@ export interface EnrollmentUpdateResponse {
  * };
  */
 export interface EnrollmentDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la matrícula eliminada */
   deletedId: number;
 }

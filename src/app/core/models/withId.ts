@@ -8,5 +8,6 @@
  * };
  */
 export interface WithId {
+  /**Id */
   id: number;
 }

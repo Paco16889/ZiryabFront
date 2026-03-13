@@ -1,14 +1,12 @@
-// models/assistance.model.ts
-
 import { ClassSession } from "./class-sessions";
 import { Enrollment } from "./enrollment";
 
 /**
  * Estado de asistencia de un estudiante a una sesión de clase.
- * - PRESENT: Asistió a clase.
- * - MISSING: Faltó a clase.
- * - LAG: Llegó tarde.
- * - JUSTIFY: Falta justificada.
+ * - PRESENT: asistió a clase.
+ * - MISSING: faltó a clase.
+ * - LAG: llegó tarde.
+ * - JUSTIFY: falta justificada.
  */
 export enum AssistanceStatus {
   PRESENT = 'PRESENT',
@@ -19,137 +17,89 @@ export enum AssistanceStatus {
 
 /**
  * Representa el registro de asistencia de un estudiante a una sesión de clase concreta.
- * @example
- * const assistance: Assistance = {
- *   id: ID_ASISTENCIA,
- *   status: AssistanceStatus.PRESENT,
- *   session: OBJETO_CLASSSESSION,
- *   studentEnrollment: OBJETO_ENROLLMENT
- * };
  */
 export interface Assistance {
+  /** Identificador único del registro de asistencia */
   id: number;
+  /** Estado de asistencia del estudiante a la sesión */
   status: AssistanceStatus;
+  /** Sesión de clase a la que corresponde el registro */
   session: ClassSession;
+  /** Matrícula del estudiante asociada al registro de asistencia */
   studentEnrollment: Enrollment;
 }
 
 /**
  * Respuesta de la API al consultar todos los registros de asistencia.
- * @example
- * const response: AssistancesAllResponse = {
- *   success: true,
- *   count: TOTAL_ASISTENCIAS,
- *   data: [
- *     {
- *       id: ID_ASISTENCIA,
- *       status: AssistanceStatus.PRESENT,
- *       session: OBJETO_CLASSSESSION,
- *       studentEnrollment: OBJETO_ENROLLMENT
- *     }
- *   ]
- * };
  */
 export interface AssistancesAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de registros de asistencia */
   data: Assistance[];
+  /** Número total de registros de asistencia devueltos */
   count: number;
 }
 
 /**
  * Respuesta de la API al consultar un registro de asistencia por su identificador.
- * @example
- * const response: AssistanceByIdResponse = {
- *   success: true,
- *   data: {
- *     id: ID_ASISTENCIA,
- *     status: AssistanceStatus.PRESENT,
- *     session: OBJETO_CLASSSESSION,
- *     studentEnrollment: OBJETO_ENROLLMENT
- *   }
- * };
  */
 export interface AssistanceByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del registro de asistencia encontrado */
   data: Assistance;
 }
 
 /**
  * Datos necesarios para registrar una nueva asistencia.
  * El campo status es opcional, por defecto el backend asignará PRESENT.
- * @example
- * const request: AssistanceCreateRequest = {
- *   idSession: ID_SESION,
- *   idStudentEnrollment: ID_ENROLLMENT,
- *   status: AssistanceStatus.PRESENT
- * };
  */
 export interface AssistanceCreateRequest {
+  /** Identificador de la sesión de clase a la que se registra la asistencia */
   idSession: number;
+  /** Identificador de la matrícula del estudiante */
   idStudentEnrollment: number;
+  /** Estado de asistencia, por defecto PRESENT si no se indica */
   status?: AssistanceStatus;
 }
 
 /**
  * Respuesta de la API tras registrar una nueva asistencia.
- * @example
- * const response: AssistanceCreateResponse = {
- *   success: true,
- *   data: {
- *     id: ID_ASISTENCIA,
- *     status: AssistanceStatus.PRESENT,
- *     session: OBJETO_CLASSSESSION,
- *     studentEnrollment: OBJETO_ENROLLMENT
- *   }
- * };
  */
 export interface AssistanceCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del registro de asistencia creado */
   data: Assistance;
 }
 
 /**
  * Datos necesarios para actualizar un registro de asistencia existente.
- * @example
- * const request: AssistanceUpdateRequest = {
- *   status: AssistanceStatus.JUSTIFY
- * };
  */
 export interface AssistanceUpdateRequest {
+  /** Nuevo estado de asistencia del estudiante */
   status: AssistanceStatus;
 }
 
 /**
  * Respuesta de la API tras actualizar un registro de asistencia.
- * @example
- * const response: AssistanceUpdateResponse = {
- *   success: true,
- *   data: {
- *     id: ID_ASISTENCIA,
- *     status: AssistanceStatus.JUSTIFY,
- *     session: OBJETO_CLASSSESSION,
- *     studentEnrollment: OBJETO_ENROLLMENT
- *   }
- * };
  */
 export interface AssistanceUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del registro de asistencia actualizado */
   data: Assistance;
 }
 
 /**
  * Respuesta de la API tras eliminar un registro de asistencia.
- * El campo message lo devuelve tu backend, consúltalo en el controlador
- * correspondiente a la ruta DELETE de assistances.
- * @example
- * const response: AssistanceDeleteResponse = {
- *   success: true,
- *   message: 'MENSAJE_BACKEND_DELETE_ASSISTANCE',
- *   deletedId: ID_ASISTENCIA
- * };
  */
 export interface AssistanceDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador del registro de asistencia eliminado */
   deletedId: number;
 }

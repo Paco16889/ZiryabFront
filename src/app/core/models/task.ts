@@ -34,14 +34,23 @@ export enum TaskType {
  * };
  */
 export interface Task {
+  /** Identificador único de la tarea */
   id: number;
+  /** Identificador de la asignación del profesor a la que pertenece la tarea */
   idTeacherAssignment: number;
+  /** Datos completos de la asignación del profesor */
   teacherAssignment: Assignment;
+  /** Título de la tarea */
   title: string;
+  /** Descripción detallada de la tarea, null si no se ha indicado */
   description: string | null;
+  /** Tipo de tarea */
   type: TaskType;
+  /** Fecha de inicio de la tarea */
   startDate: string;
+  /** Fecha límite de entrega de la tarea */
   dueDate: string;
+  /** Año académico al que pertenece la tarea, por ejemplo '2024-2025' */
   schoolYear: string;
 }
 
@@ -67,8 +76,11 @@ export interface Task {
  * };
  */
 export interface TasksAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de tareas */
   data: Task[];
+  /** Número total de tareas devueltas */
   count: number;
 }
 
@@ -91,7 +103,9 @@ export interface TasksAllResponse {
  * };
  */
 export interface TaskByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la tarea encontrada */
   data: Task;
 }
 
@@ -110,12 +124,19 @@ export interface TaskByIdResponse {
  * };
  */
 export interface TaskCreateRequest {
+  /** Identificador de la asignación del profesor a la que pertenece la tarea */
   idTeacherAssignment: number;
+  /** Título de la tarea */
   title: string;
+  /** Descripción detallada de la tarea, opcional */
   description?: string;
+  /** Tipo de tarea */
   type: TaskType;
+  /** Fecha de inicio de la tarea */
   startDate: string;
+  /** Fecha límite de entrega de la tarea */
   dueDate: string;
+  /** Año académico al que pertenece la tarea, por ejemplo '2024-2025' */
   schoolYear: string;
 }
 
@@ -138,7 +159,9 @@ export interface TaskCreateRequest {
  * };
  */
 export interface TaskCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la tarea creada */
   data: Task;
 }
 
@@ -155,10 +178,15 @@ export interface TaskCreateResponse {
  * };
  */
 export interface TaskUpdateRequest {
+  /** Nuevo título de la tarea */
   title?: string;
+  /** Nueva descripción de la tarea */
   description?: string;
+  /** Nuevo tipo de tarea */
   type?: TaskType;
+  /** Nueva fecha de inicio de la tarea */
   startDate?: string;
+  /** Nueva fecha límite de entrega de la tarea */
   dueDate?: string;
 }
 
@@ -181,7 +209,9 @@ export interface TaskUpdateRequest {
  * };
  */
 export interface TaskUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la tarea actualizada */
   data: Task;
 }
 
@@ -197,7 +227,10 @@ export interface TaskUpdateResponse {
  * };
  */
 export interface TaskDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la tarea eliminada */
   deletedId: number;
 }

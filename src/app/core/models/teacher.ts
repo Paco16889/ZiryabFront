@@ -1,4 +1,3 @@
-
 /**
  * Representa un profesor del sistema.
  * @example
@@ -16,22 +15,27 @@
  * };
  */
 export interface Teacher {
-    id: number;
-    email: string;
-    name: string;
-    surname: string;
-    ndSurname: string;
-    birthDate: string;
-    dni: string;
-    role: string;
-    firebaseUID: string;
-    createdAt: string;
-   
-    
+  /** Identificador único del profesor */
+  id: number;
+  /** Correo electrónico del profesor */
+  email: string;
+  /** Nombre del profesor */
+  name: string;
+  /** Primer apellido del profesor */
+  surname: string;
+  /** Segundo apellido del profesor */
+  ndSurname: string;
+  /** Fecha de nacimiento del profesor */
+  birthDate: string;
+  /** DNI del profesor */
+  dni: string;
+  /** Rol del profesor en el sistema */
+  role: string;
+  /** Identificador único del profesor en Firebase */
+  firebaseUID: string;
+  /** Fecha de creación del registro */
+  createdAt: string;
 }
-
-
-
 
 /**
  * Respuesta de la API al consultar un profesor por su identificador.
@@ -53,10 +57,11 @@ export interface Teacher {
  * };
  */
 export interface TeacherByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del profesor encontrado */
   data: Teacher;
 }
-
 
 /**
  * Respuesta de la API al consultar todos los profesores.
@@ -81,11 +86,13 @@ export interface TeacherByIdResponse {
  * };
  */
 export interface TeachersAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de profesores */
   data: Teacher[];
+  /** Número total de profesores devueltos */
   count: number;
 }
-
 
 /**
  * Datos necesarios para crear un nuevo profesor.
@@ -101,13 +108,20 @@ export interface TeachersAllResponse {
  * };
  */
 export interface TeacherCreateRequest {
+  /** Correo electrónico del profesor */
   email: string;
+  /** Nombre del profesor */
   name: string;
+  /** Primer apellido del profesor */
   surname: string;
+  /** Segundo apellido del profesor */
   ndSurname: string;
+  /** Fecha de nacimiento del profesor */
   birthDate: string;
+  /** DNI del profesor */
   dni: string;
-  role?: string; // Opcional si siempre es TEACHER por defecto
+  /** Rol del profesor, por defecto TEACHER si no se indica */
+  role?: string;
 }
 
 /**
@@ -130,17 +144,29 @@ export interface TeacherCreateRequest {
  * };
  */
 export interface TeacherCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del profesor creado */
   data: {
+    /** Identificador único del profesor creado */
     id: number;
+    /** Correo electrónico del profesor */
     email: string;
+    /** Nombre del profesor */
     name: string;
+    /** Primer apellido del profesor */
     surname: string;
+    /** Segundo apellido del profesor */
     ndSurname: string;
+    /** Fecha de nacimiento del profesor */
     birthDate: string;
+    /** DNI del profesor */
     dni: string;
+    /** Rol del profesor en el sistema */
     role: string;
+    /** Identificador único del profesor en Firebase */
     firebaseUID: string;
+    /** Fecha de creación del registro */
     createdAt: string;
   };
 }
@@ -159,12 +185,19 @@ export interface TeacherCreateResponse {
  * };
  */
 export interface TeacherUpdateRequest {
+  /** Identificador único del profesor a actualizar */
   id: number;
+  /** Nuevo correo electrónico del profesor */
   email: string;
+  /** Nuevo nombre del profesor */
   name: string;
+  /** Nuevo primer apellido del profesor */
   surname: string;
+  /** Nuevo segundo apellido del profesor, opcional */
   ndSurname?: string;
+  /** Nueva fecha de nacimiento del profesor */
   birthDate: string;
+  /** Nuevo DNI del profesor */
   dni: string;
 }
 
@@ -188,21 +221,32 @@ export interface TeacherUpdateRequest {
  * };
  */
 export interface TeacherUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos del profesor actualizado */
   data: {
+    /** Identificador único del profesor actualizado */
     id: number;
+    /** Correo electrónico del profesor */
     email: string;
+    /** Nombre del profesor */
     name: string;
+    /** Primer apellido del profesor */
     surname: string;
+    /** Segundo apellido del profesor */
     ndSurname: string;
+    /** Fecha de nacimiento del profesor */
     birthDate: string;
+    /** DNI del profesor */
     dni: string;
+    /** Rol del profesor en el sistema */
     role: string;
+    /** Identificador único del profesor en Firebase */
     firebaseUID: string;
+    /** Fecha de creación del registro */
     createdAt: string;
   };
 }
-
 
 /**
  * Respuesta de la API tras eliminar un profesor.
@@ -216,7 +260,10 @@ export interface TeacherUpdateResponse {
  * };
  */
 export interface TeacherDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador del profesor eliminado */
   deletedId: number;
 }

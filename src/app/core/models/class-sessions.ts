@@ -1,5 +1,3 @@
-// models/class-session.model.ts
-
 import { Assistance } from "./assistance";
 import { WeekSchedule } from "./week-schedule";
 
@@ -17,12 +15,19 @@ import { WeekSchedule } from "./week-schedule";
  * };
  */
 export interface ClassSession {
+  /** Identificador único de la sesión de clase */
   id: number;
+  /** Fecha en la que se celebra la sesión */
   date: string;
+  /** Estado actual de la sesión */
   status: string;
+  /** Anotaciones o comentarios sobre la sesión, null si no hay ninguno */
   appointments: string | null;
+  /** Fecha de creación del registro */
   createdAt: string;
+  /** Franja horaria semanal a la que pertenece la sesión */
   schedule: WeekSchedule;
+  /** Registros de asistencia de los estudiantes a esta sesión */
   assistances: Assistance[];
 }
 
@@ -46,8 +51,11 @@ export interface ClassSession {
  * };
  */
 export interface ClassSessionsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de sesiones de clase */
   data: ClassSession[];
+  /** Número total de sesiones de clase devueltas */
   count: number;
 }
 
@@ -68,7 +76,9 @@ export interface ClassSessionsAllResponse {
  * };
  */
 export interface ClassSessionByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la sesión de clase encontrada */
   data: ClassSession;
 }
 
@@ -83,9 +93,13 @@ export interface ClassSessionByIdResponse {
  * };
  */
 export interface ClassSessionCreateRequest {
+  /** Identificador de la franja horaria semanal a la que pertenece la sesión */
   idSchedule: number;
+  /** Fecha en la que se celebra la sesión */
   date: string;
+  /** Estado inicial de la sesión, opcional */
   status?: string;
+  /** Anotaciones o comentarios sobre la sesión, opcional */
   appointments?: string;
 }
 
@@ -106,7 +120,9 @@ export interface ClassSessionCreateRequest {
  * };
  */
 export interface ClassSessionCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la sesión de clase creada */
   data: ClassSession;
 }
 
@@ -121,8 +137,11 @@ export interface ClassSessionCreateResponse {
  * };
  */
 export interface ClassSessionUpdateRequest {
+  /** Nueva fecha de la sesión */
   date?: string;
+  /** Nuevo estado de la sesión */
   status?: string;
+  /** Nuevas anotaciones o comentarios sobre la sesión */
   appointments?: string;
 }
 
@@ -146,8 +165,11 @@ export interface ClassSessionUpdateRequest {
  * };
  */
 export interface ClassSessionUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Datos de la sesión de clase actualizada */
   data: ClassSession;
 }
 
@@ -163,7 +185,10 @@ export interface ClassSessionUpdateResponse {
  * };
  */
 export interface ClassSessionDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la sesión de clase eliminada */
   deletedId: number;
 }

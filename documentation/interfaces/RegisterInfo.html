@@ -144,6 +144,19 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Datos necesarios para registrar un nuevo usuario en el sistema.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">const registerInfo: RegisterInfo = {
+  name: &#39;NOMBRE_USUARIO&#39;,
+  surname: &#39;APELLIDO_USUARIO&#39;,
+  email: &#39;EMAIL_USUARIO&#39;,
+  password: &#39;CONTRASEÑA_USUARIO&#39;,
+  confirmPassword: &#39;CONFIRMACION_CONTRASEÑA&#39;
+};</code></pre></div>
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -230,6 +243,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Confirmación de la contraseña, debe coincidir con password</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -263,6 +282,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Correo electrónico del usuario</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -296,6 +321,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nombre del usuario</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -329,6 +360,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Contraseña del usuario</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -362,6 +399,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Apellido del usuario</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -369,24 +412,46 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface LoginResponse{
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface LoginResponse {}
 
+/**
+ * Datos necesarios para registrar un nuevo usuario en el sistema.
+ * @example
+ * const registerInfo: RegisterInfo &#x3D; {
+ *   name: &#x27;NOMBRE_USUARIO&#x27;,
+ *   surname: &#x27;APELLIDO_USUARIO&#x27;,
+ *   email: &#x27;EMAIL_USUARIO&#x27;,
+ *   password: &#x27;CONTRASEÑA_USUARIO&#x27;,
+ *   confirmPassword: &#x27;CONFIRMACION_CONTRASEÑA&#x27;
+ * };
+ */
+export interface RegisterInfo {
+  /** Nombre del usuario */
+  name: string;
+  /** Apellido del usuario */
+  surname: string;
+  /** Correo electrónico del usuario */
+  email: string;
+  /** Contraseña del usuario */
+  password: string;
+  /** Confirmación de la contraseña, debe coincidir con password */
+  confirmPassword: string;
 }
 
-export interface RegisterInfo{
-    name:string,
-    surname:string,
-    email:string,
-    password:string,
-    confirmPassword:string
-}
-
-
-export interface Credentials{
-    email:string;
-    password:string;
-}
-</code></pre>
+/**
+ * Credenciales necesarias para autenticar a un usuario en el sistema.
+ * @example
+ * const credentials: Credentials &#x3D; {
+ *   email: &#x27;EMAIL_USUARIO&#x27;,
+ *   password: &#x27;CONTRASEÑA_USUARIO&#x27;
+ * };
+ */
+export interface Credentials {
+  /** Correo electrónico del usuario */
+  email: string;
+  /** Contraseña del usuario */
+  password: string;
+}</code></pre>
     </div>
 </div>
 

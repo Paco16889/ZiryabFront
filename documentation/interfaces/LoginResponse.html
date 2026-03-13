@@ -144,6 +144,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Respuesta de la API tras iniciar sesión correctamente.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">const response: LoginResponse = {};</code></pre></div>
+            </p>
 
 
 
@@ -153,24 +160,46 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface LoginResponse{
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface LoginResponse {}
 
+/**
+ * Datos necesarios para registrar un nuevo usuario en el sistema.
+ * @example
+ * const registerInfo: RegisterInfo &#x3D; {
+ *   name: &#x27;NOMBRE_USUARIO&#x27;,
+ *   surname: &#x27;APELLIDO_USUARIO&#x27;,
+ *   email: &#x27;EMAIL_USUARIO&#x27;,
+ *   password: &#x27;CONTRASEÑA_USUARIO&#x27;,
+ *   confirmPassword: &#x27;CONFIRMACION_CONTRASEÑA&#x27;
+ * };
+ */
+export interface RegisterInfo {
+  /** Nombre del usuario */
+  name: string;
+  /** Apellido del usuario */
+  surname: string;
+  /** Correo electrónico del usuario */
+  email: string;
+  /** Contraseña del usuario */
+  password: string;
+  /** Confirmación de la contraseña, debe coincidir con password */
+  confirmPassword: string;
 }
 
-export interface RegisterInfo{
-    name:string,
-    surname:string,
-    email:string,
-    password:string,
-    confirmPassword:string
-}
-
-
-export interface Credentials{
-    email:string;
-    password:string;
-}
-</code></pre>
+/**
+ * Credenciales necesarias para autenticar a un usuario en el sistema.
+ * @example
+ * const credentials: Credentials &#x3D; {
+ *   email: &#x27;EMAIL_USUARIO&#x27;,
+ *   password: &#x27;CONTRASEÑA_USUARIO&#x27;
+ * };
+ */
+export interface Credentials {
+  /** Correo electrónico del usuario */
+  email: string;
+  /** Contraseña del usuario */
+  password: string;
+}</code></pre>
     </div>
 </div>
 

@@ -18,11 +18,17 @@ import { environment } from '../../../environments/environment';
  * Contiene los datos del usuario y el token JWT para las siguientes peticiones.
  */
 export interface UserResponse {
+    /** Identificador único del usuario en el sistema */
     id: number;
+    /** Correo electrónico del usuario */
     email: string;
+    /** Nombre del usuario */
     name: string;
+    /** Rol del usuario en el sistema */
     role: 'STUDENT' | 'TEACHER' | 'ADMIN';
+    /** Identificador único del usuario en Firebase */
     firebaseUID: string;
+    /** Token JWT para autenticar las siguientes peticiones al backend */
     token: string;
 }
 
@@ -31,7 +37,9 @@ export interface UserResponse {
  * @template T - Tipo del campo data que varía según el endpoint
  */
 interface ApiResponse<T> {
+    /** Mensaje descriptivo del resultado devuelto por el backend */
     message: string;
+    /** Datos de la respuesta, cuyo tipo varía según el endpoint */
     data: T;
 }
 
@@ -47,30 +55,29 @@ interface ApiResponse<T> {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-      /**
-   * URL base de la API obtenida desde el fichero de entorno.
-   */
+    /**
+     * URL base de la API obtenida desde el fichero de entorno.
+     */
     private apiUrl = environment.apiUrl;
 
-     /**
-   * BehaviorSubject que mantiene el estado del usuario autenticado en memoria.
-   */
+    /**
+     * BehaviorSubject que mantiene el estado del usuario autenticado en memoria.
+     */
     private currentUserSubject = new BehaviorSubject<UserResponse | null>(null);
 
-     /**
-   * Observable público del usuario actual al que pueden suscribirse los componentes.
-   */
+    /**
+     * Observable público del usuario actual al que pueden suscribirse los componentes.
+     */
     public currentUser$ = this.currentUserSubject.asObservable();
 
     /**
-   * @param http - Cliente HTTP de Angular para las peticiones al backend
-   * @param firebaseAuth - Instancia de Firebase Authentication
-   */
+     * @param http - Cliente HTTP de Angular para las peticiones al backend
+     * @param firebaseAuth - Instancia de Firebase Authentication
+     */
     constructor(
         private http: HttpClient,
         private firebaseAuth: Auth
     ) {
-        
         this.loadFromStorage();
     }
 
@@ -78,23 +85,23 @@ export class AuthService {
     // INICIALIZACIÓN
     // ============================================
 
-   /**
-   * Carga el usuario almacenado en localStorage al iniciar la aplicación.
-   * Si encuentra datos inválidos los elimina para evitar estados inconsistentes.
-   * Sincroniza además el token JWT entre las distintas claves de almacenamiento.
-   */
+    /**
+     * Carga el usuario almacenado en localStorage al iniciar la aplicación.
+     * Si encuentra datos inválidos los elimina para evitar estados inconsistentes.
+     * Sincroniza además el token JWT entre las distintas claves de almacenamiento.
+     */
     private loadFromStorage(): void {
         const userJson = localStorage.getItem('user');
         if (userJson) {
             try {
                 const user = JSON.parse(userJson) as UserResponse;
                 this.currentUserSubject.next(user);
-                
+
                 // Asegurar que jwtToken esté sincronizado
                 if (user.token) {
                     localStorage.setItem('jwtToken', user.token);
                 }
-                
+
                 console.log('✅ Usuario cargado desde localStorage:', user.name);
             } catch {
                 // Si hay error, eliminar datos inválidos
@@ -107,18 +114,18 @@ export class AuthService {
     // REGISTRO
     // ============================================
 
-     /**
-   * Registra un nuevo usuario tanto en Firebase como en el backend.
-   * Primero crea el usuario en Firebase y con el UID resultante lo registra en el backend.
-   * @param email - Correo electrónico del usuario
-   * @param password - Contraseña del usuario
-   * @param name - Nombre del usuario
-   * @param surname - Primer apellido del usuario
-   * @param birthDate - Fecha de nacimiento del usuario
-   * @param dni - Documento de identidad del usuario
-   * @param role - Rol del usuario en el sistema
-   * @returns Observable con los datos del usuario registrado
-   */
+    /**
+     * Registra un nuevo usuario tanto en Firebase como en el backend.
+     * Primero crea el usuario en Firebase y con el UID resultante lo registra en el backend.
+     * @param email - Correo electrónico del usuario
+     * @param password - Contraseña del usuario
+     * @param name - Nombre del usuario
+     * @param surname - Primer apellido del usuario
+     * @param birthDate - Fecha de nacimiento del usuario
+     * @param dni - Documento de identidad del usuario
+     * @param role - Rol del usuario en el sistema
+     * @returns Observable con los datos del usuario registrado
+     */
     register(
         email: string,
         password: string,
@@ -167,18 +174,18 @@ export class AuthService {
     // LOGIN
     // ============================================
 
-  /**
-   * Autentica un usuario existente contra Firebase y obtiene el JWT del backend.
-   * Primero verifica las credenciales en Firebase y con el UID resultante
-   * solicita el JWT al backend propio.
-   * @param email - Correo electrónico del usuario
-   * @param password - Contraseña del usuario
-   * @returns Observable con los datos del usuario autenticado
-   */
+    /**
+     * Autentica un usuario existente contra Firebase y obtiene el JWT del backend.
+     * Primero verifica las credenciales en Firebase y con el UID resultante
+     * solicita el JWT al backend propio.
+     * @param email - Correo electrónico del usuario
+     * @param password - Contraseña del usuario
+     * @returns Observable con los datos del usuario autenticado
+     */
     login(email: string, password: string): Observable<UserResponse> {
         return new Observable((observer) => {
             console.log('🔐 Autenticando con Firebase...');
-            
+
             signInWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then(async (credential) => {
                     const firebaseUID = credential.user.uid;
@@ -214,10 +221,10 @@ export class AuthService {
     // LOGOUT
     // ============================================
 
-     /**
-   * Desconecta al usuario de Firebase y limpia todos los datos de sesión almacenados.
-   * @returns Observable que completa cuando el logout ha finalizado correctamente
-   */
+    /**
+     * Desconecta al usuario de Firebase y limpia todos los datos de sesión almacenados.
+     * @returns Observable que completa cuando el logout ha finalizado correctamente
+     */
     logout(): Observable<void> {
         return new Observable((observer) => {
             signOut(this.firebaseAuth)
@@ -225,7 +232,7 @@ export class AuthService {
                     this.clearAllStorage();
                     this.currentUserSubject.next(null);
                     console.log('✅ Logout completado');
-                    
+
                     observer.next();
                     observer.complete();
                 })
@@ -240,23 +247,23 @@ export class AuthService {
     // GETTERS / INFORMACIÓN
     // ============================================
 
-     /**
-   * Obtiene el usuario actualmente autenticado.
-   * @returns El usuario actual o null si no hay sesión activa
-   */
+    /**
+     * Obtiene el usuario actualmente autenticado.
+     * @returns El usuario actual o null si no hay sesión activa
+     */
     getCurrentUser(): UserResponse | null {
         return this.currentUserSubject.value;
     }
 
-   /**
-   * Obtiene el token JWT almacenado en localStorage.
-   * Busca primero en la clave estándar jwtToken y como fallback en token por compatibilidad.
-   * @returns El token JWT o null si no existe
-   */
+    /**
+     * Obtiene el token JWT almacenado en localStorage.
+     * Busca primero en la clave estándar jwtToken y como fallback en token por compatibilidad.
+     * @returns El token JWT o null si no existe
+     */
     getToken(): string | null {
         // Primero buscar en jwtToken (estándar)
         let token = localStorage.getItem('jwtToken');
-        
+
         // Si no existe, buscar en 'token' (compatibilidad)
         if (!token) {
             token = localStorage.getItem('token');
@@ -265,30 +272,30 @@ export class AuthService {
                 localStorage.setItem('jwtToken', token);
             }
         }
-        
+
         return token;
     }
 
     /**
-   * Verifica si hay un usuario autenticado con token válido.
-   * @returns true si hay usuario y token, false en caso contrario
-   */
+     * Verifica si hay un usuario autenticado con token válido.
+     * @returns true si hay usuario y token, false en caso contrario
+     */
     isAuthenticated(): boolean {
         return !!this.currentUserSubject.value && !!this.getToken();
     }
 
-     /**
-   * Obtiene el rol del usuario actualmente autenticado.
-   * @returns El rol del usuario o null si no hay sesión activa
-   */
+    /**
+     * Obtiene el rol del usuario actualmente autenticado.
+     * @returns El rol del usuario o null si no hay sesión activa
+     */
     getUserRole(): string | null {
         return this.currentUserSubject.value?.role ?? null;
     }
 
     /**
-   * Obtiene el identificador del usuario actualmente autenticado.
-   * @returns El id del usuario o null si no hay sesión activa
-   */
+     * Obtiene el identificador del usuario actualmente autenticado.
+     * @returns El id del usuario o null si no hay sesión activa
+     */
     getUserId(): number | null {
         return this.currentUserSubject.value?.id ?? null;
     }
@@ -297,17 +304,17 @@ export class AuthService {
     // PRIVADOS
     // ============================================
 
-     /**
-   * Guarda los datos del usuario y el token en localStorage y actualiza el BehaviorSubject.
-   * Mantiene sincronizadas las claves jwtToken y token por compatibilidad.
-   * @param user - Datos del usuario a almacenar en sesión
-   */
+    /**
+     * Guarda los datos del usuario y el token en localStorage y actualiza el BehaviorSubject.
+     * Mantiene sincronizadas las claves jwtToken y token por compatibilidad.
+     * @param user - Datos del usuario a almacenar en sesión
+     */
     private setSession(user: UserResponse): void {
         localStorage.setItem('jwtToken', user.token);
         localStorage.setItem('token', user.token); // Compatibilidad
         localStorage.setItem('user', JSON.stringify(user));
         this.currentUserSubject.next(user);
-        
+
         console.log('💾 Sesión guardada:', {
             user: user.name,
             role: user.role,
@@ -316,7 +323,7 @@ export class AuthService {
     }
 
     /**
-     * Limpia TODO el localStorage
+     * Limpia TODO el localStorage.
      */
     private clearAllStorage(): void {
         localStorage.removeItem('user');

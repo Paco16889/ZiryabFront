@@ -144,6 +144,18 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Representa una matrícula individual de un estudiante en una asignatura y grupo.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">const registration: StudentRegistration = {
+  idStudent: ID_ESTUDIANTE,
+  idGroup: ID_GRUPO,
+  idSubject: ID_ASIGNATURA,
+  schoolYear: &#39;AÑO_ACADEMICO&#39;
+};</code></pre></div>
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -224,6 +236,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador del grupo en el que se matricula</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -257,6 +275,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador del estudiante a matricular</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -290,6 +314,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador de la asignatura en la que se matricula</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -323,6 +353,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Año académico de la matrícula, por ejemplo &#39;2024-2025&#39;</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -331,21 +367,55 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface StudentRegistration {
+  /** Identificador del estudiante a matricular */
   idStudent: number;
+  /** Identificador del grupo en el que se matricula */
   idGroup: number;
+  /** Identificador de la asignatura en la que se matricula */
   idSubject: number;
+  /** Año académico de la matrícula, por ejemplo &#x27;2024-2025&#x27; */
   schoolYear: string;
 }
 
+/**
+ * Cuerpo de la petición para registrar una o varias matrículas de estudiantes.
+ * @example
+ * const request: StudentRegistrationRequest &#x3D; {
+ *   registrations: [
+ *     {
+ *       idStudent: ID_ESTUDIANTE,
+ *       idGroup: ID_GRUPO,
+ *       idSubject: ID_ASIGNATURA,
+ *       schoolYear: &#x27;AÑO_ACADEMICO&#x27;
+ *     }
+ *   ]
+ * };
+ */
 export interface StudentRegistrationRequest {
+  /** Listado de matrículas a registrar */
   registrations: StudentRegistration[];
 }
 
+/**
+ * Respuesta del backend tras ejecutar el registro de matrículas.
+ * @example
+ * const response: StudentRegistrationResponse &#x3D; {
+ *   success: true,
+ *   message: &#x27;MENSAJE_BACKEND_REGISTRO&#x27;,
+ *   data: {
+ *     created: TOTAL_REGISTROS_CREADOS
+ *   }
+ * };
+ */
 export interface StudentRegistrationResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Datos del resultado de la operación */
   data: {
-    created: number; // Número de registros creados
+    /** Número de registros de matrícula creados correctamente */
+    created: number;
   };
 }</code></pre>
     </div>

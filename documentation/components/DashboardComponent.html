@@ -284,8 +284,8 @@ según el rol del usuario autenticado.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/pages/alumno/dashboard/dashboard.component.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/pages/alumno/dashboard/dashboard.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -372,10 +372,16 @@ Si el usuario es profesor y selecciona &#39;clases&#39; redirige a la vista espe
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/alumno/dashboard/dashboard.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/alumno/dashboard/dashboard.component.ts:24</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de autenticación para obtener el usuario y su rol actual</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -404,10 +410,16 @@ Si el usuario es profesor y selecciona &#39;clases&#39; redirige a la vista espe
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/alumno/dashboard/dashboard.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/alumno/dashboard/dashboard.component.ts:21</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de navegación para gestionar las redirecciones entre vistas</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -418,45 +430,45 @@ Si el usuario es profesor y selecciona &#39;clases&#39; redirige a la vista espe
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject } from &#x27;@angular/core&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;; 
+import { CommonModule } from &#x27;@angular/common&#x27;;
 import { NavigationService } from &#x27;../../../core/services/navigation.service&#x27;;
-import { AuthService } from &#x27;../../../core/services/auth.service&#x27;; 
+import { AuthService } from &#x27;../../../core/services/auth.service&#x27;;
 
 /**
  * Componente principal del panel del estudiante.
  * Muestra las opciones de navegación disponibles y gestiona las redirecciones
  * según el rol del usuario autenticado.
  */
-
 @Component({
   selector: &#x27;app-dashboard&#x27;,
-  standalone: true, 
-  imports: [CommonModule], 
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: &#x27;./dashboard.component.html&#x27;,
   styleUrl: &#x27;./dashboard.component.scss&#x27;
 })
 export class DashboardComponent {
+
+  /** Servicio de navegación para gestionar las redirecciones entre vistas */
   private navegador &#x3D; inject(NavigationService);
+
+  /** Servicio de autenticación para obtener el usuario y su rol actual */
   private authService &#x3D; inject(AuthService);
 
-    /**
+  /**
    * Navega a la sección indicada.
    * Si el usuario es profesor y selecciona &#x27;clases&#x27; redirige a la vista específica de profesor.
    * @param str - Nombre de la ruta a la que navegar
    */
-  goTo(str: string){
-    // Interceptar si el usuario quiere ir a &#x27;clases&#x27;
+  goTo(str: string): void {
     if (str &#x3D;&#x3D;&#x3D; &#x27;clases&#x27;) {
-        const user &#x3D; this.authService.getCurrentUser(); // CAMBIO: Método correcto
-        
-        // Si es profesor, redirigir a su ruta específica
-        if (user &amp;&amp; user.role &#x3D;&#x3D;&#x3D; &#x27;TEACHER&#x27;) {
-            this.navegador.toComponent(&#x27;clases-profesor&#x27;);
-            return;
-        }
+      const user &#x3D; this.authService.getCurrentUser();
+
+      if (user &amp;&amp; user.role &#x3D;&#x3D;&#x3D; &#x27;TEACHER&#x27;) {
+        this.navegador.toComponent(&#x27;clases-profesor&#x27;);
+        return;
+      }
     }
 
-    // Navegación normal para el resto de casos
     this.navegador.toComponent(str);
   }
 }</code></pre>

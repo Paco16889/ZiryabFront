@@ -148,14 +148,8 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Respuesta de la API tras eliminar una asignación.
-El campo message lo devuelve tu backend, consúltalo en el controlador
-correspondiente a la ruta DELETE de assignments.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html">const response: AssignmentDeleteResponse = {
-  success: true,
-  message: &#39;MENSAJE_BACKEND_DELETE_ASSIGNMENT&#39;,
-  deletedId: ID_ASSIGNMENT
-};</code></pre></div>
+                <p>Respuesta de la API tras eliminar una asignación.</p>
+
             </p>
 
 
@@ -231,6 +225,12 @@ correspondiente a la ruta DELETE de assignments.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador de la asignación eliminada</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -264,6 +264,12 @@ correspondiente a la ruta DELETE de assignments.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Mensaje descriptivo del resultado devuelto por el backend</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -297,6 +303,12 @@ correspondiente a la ruta DELETE de assignments.</p>
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Indica si la operación se ha completado correctamente</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -315,161 +327,104 @@ correspondiente a la ruta DELETE de assignments.</p>
 
 /**
  * Representa la asignación de un profesor a una asignatura y grupo en un año académico concreto.
- * @example
- * const assignment: Assignment &#x3D; {
- *   id: ID_ASSIGNMENT,
- *   idTeacher: ID_PROFESOR,
- *   idSubject: ID_ASIGNATURA,
- *   idGroup: ID_GRUPO,
- *   schoolYear: &#x27;AÑO_ACADEMICO&#x27;,
- *   status: &#x27;ACTIVE&#x27;
- * };
  */
 export interface Assignment {
+  /** Identificador único de la asignación */
   id: number;
+  /** Identificador del profesor asignado */
   idTeacher: number;
+  /** Identificador de la asignatura impartida */
   idSubject: number;
+  /** Identificador del grupo al que se imparte */
   idGroup: number;
+  /** Año académico de la asignación, por ejemplo &#x27;2024-2025&#x27; */
   schoolYear: string;
+  /** Estado actual de la asignación */
   status: AssignmentStatus;
 }
 
-
 /**
  * Respuesta de la API al consultar todas las asignaciones.
- * @example
- * const response: AssignmentsAllResponse &#x3D; {
- *   success: true,
- *   count: TOTAL_ASIGNACIONES,
- *   data: [
- *     {
- *       id: ID_ASSIGNMENT,
- *       idTeacher: ID_PROFESOR,
- *       idSubject: ID_ASIGNATURA,
- *       idGroup: ID_GRUPO,
- *       schoolYear: &#x27;AÑO_ACADEMICO&#x27;,
- *       status: &#x27;ACTIVE&#x27;
- *     }
- *   ]
- * };
  */
 export interface AssignmentsAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de asignaciones */
   data: Assignment[];
+  /** Número total de asignaciones devueltas */
   count: number;
 }
 
 /**
  * Respuesta de la API al consultar una asignación por su identificador.
- * @example
- * const response: AssignmentByIdResponse &#x3D; {
- *   success: true,
- *   data: {
- *     id: ID_ASSIGNMENT,
- *     idTeacher: ID_PROFESOR,
- *     idSubject: ID_ASIGNATURA,
- *     idGroup: ID_GRUPO,
- *     schoolYear: &#x27;AÑO_ACADEMICO&#x27;,
- *     status: &#x27;ACTIVE&#x27;
- *   }
- * };
  */
 export interface AssignmentByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la asignación encontrada */
   data: Assignment;
 }
 
 /**
  * Datos necesarios para crear una nueva asignación.
- * @example
- * const request: AssignmentCreateRequest &#x3D; {
- *   idTeacher: ID_PROFESOR,
- *   idSubject: ID_ASIGNATURA,
- *   idGroup: ID_GRUPO,
- *   schoolYear: &#x27;AÑO_ACADEMICO&#x27;
- * };
  */
 export interface AssignmentCreateRequest {
+  /** Identificador del profesor a asignar */
   idTeacher: number;
+  /** Identificador de la asignatura a impartir */
   idSubject: number;
+  /** Identificador del grupo al que se imparte */
   idGroup: number;
+  /** Año académico de la asignación, por ejemplo &#x27;2024-2025&#x27; */
   schoolYear: string;
 }
 
 /**
  * Respuesta de la API tras crear una nueva asignación.
- * @example
- * const response: AssignmentCreateResponse &#x3D; {
- *   success: true,
- *   data: {
- *     id: ID_ASSIGNMENT,
- *     idTeacher: ID_PROFESOR,
- *     idSubject: ID_ASIGNATURA,
- *     idGroup: ID_GRUPO,
- *     schoolYear: &#x27;AÑO_ACADEMICO&#x27;,
- *     status: &#x27;ACTIVE&#x27;
- *   }
- * };
  */
 export interface AssignmentCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la asignación creada */
   data: Assignment;
 }
 
 /**
  * Datos necesarios para actualizar una asignación existente.
  * Todos los campos son opcionales, se actualizan solo los que se envíen.
- * @example
- * const request: AssignmentUpdateRequest &#x3D; {
- *   idTeacher: ID_PROFESOR,
- *   idSubject: ID_ASIGNATURA,
- *   idGroup: ID_GRUPO,
- *   schoolYear: &#x27;AÑO_ACADEMICO&#x27;,
- *   status: &#x27;ACTIVE&#x27;
- * };
  */
 export interface AssignmentUpdateRequest {
+  /** Identificador del nuevo profesor asignado */
   idTeacher?: number;
+  /** Identificador de la nueva asignatura */
   idSubject?: number;
+  /** Identificador del nuevo grupo */
   idGroup?: number;
+  /** Nuevo año académico */
   schoolYear?: string;
+  /** Nuevo estado de la asignación */
   status?: AssignmentStatus;
 }
 
 /**
  * Respuesta de la API tras actualizar una asignación.
- * @example
- * const response: AssignmentUpdateResponse &#x3D; {
- *   success: true,
- *   data: {
- *     id: ID_ASSIGNMENT,
- *     idTeacher: ID_PROFESOR,
- *     idSubject: ID_ASIGNATURA,
- *     idGroup: ID_GRUPO,
- *     schoolYear: &#x27;AÑO_ACADEMICO&#x27;,
- *     status: &#x27;ACTIVE&#x27;
- *   }
- * };
  */
 export interface AssignmentUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la asignación actualizada */
   data: Assignment;
 }
 
 /**
  * Respuesta de la API tras eliminar una asignación.
- * El campo message lo devuelve tu backend, consúltalo en el controlador
- * correspondiente a la ruta DELETE de assignments.
- * @example
- * const response: AssignmentDeleteResponse &#x3D; {
- *   success: true,
- *   message: &#x27;MENSAJE_BACKEND_DELETE_ASSIGNMENT&#x27;,
- *   deletedId: ID_ASSIGNMENT
- * };
  */
 export interface AssignmentDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la asignación eliminada */
   deletedId: number;
 }</code></pre>
     </div>

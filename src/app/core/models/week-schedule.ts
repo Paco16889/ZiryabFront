@@ -14,10 +14,15 @@ import { Assignment } from "./assingment";
  * };
  */
 export interface WeekSchedule {
+  /** Identificador único de la franja horaria */
   id: number;
+  /** Día de la semana en formato numérico, donde 1 es lunes y 7 es domingo */
   weekDay: number;
+  /** Hora de inicio de la franja horaria, por ejemplo '09:00' */
   startTime: string;
+  /** Hora de fin de la franja horaria, por ejemplo '10:00' */
   finishTime: string;
+  /** Datos completos de la asignación del profesor asociada a esta franja */
   teacherAssignment: Assignment;
 }
 
@@ -39,8 +44,11 @@ export interface WeekSchedule {
  * };
  */
 export interface WeekSchedulesAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de franjas horarias semanales */
   data: WeekSchedule[];
+  /** Número total de franjas horarias devueltas */
   count: number;
 }
 
@@ -59,7 +67,9 @@ export interface WeekSchedulesAllResponse {
  * };
  */
 export interface WeekScheduleByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la franja horaria encontrada */
   data: WeekSchedule;
 }
 
@@ -74,9 +84,13 @@ export interface WeekScheduleByIdResponse {
  * };
  */
 export interface WeekScheduleCreateRequest {
+  /** Identificador de la asignación del profesor a la que pertenece la franja */
   idTeacherAssignment: number;
+  /** Día de la semana en formato numérico, donde 1 es lunes y 7 es domingo */
   weekDay: number;
+  /** Hora de inicio de la franja horaria, por ejemplo '09:00' */
   startTime: string;
+  /** Hora de fin de la franja horaria, por ejemplo '10:00' */
   finishTime: string;
 }
 
@@ -95,7 +109,9 @@ export interface WeekScheduleCreateRequest {
  * };
  */
 export interface WeekScheduleCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la franja horaria creada */
   data: WeekSchedule;
 }
 
@@ -110,8 +126,11 @@ export interface WeekScheduleCreateResponse {
  * };
  */
 export interface WeekScheduleUpdateRequest {
+  /** Nuevo día de la semana en formato numérico */
   weekDay?: number;
+  /** Nueva hora de inicio de la franja horaria */
   startTime?: string;
+  /** Nueva hora de fin de la franja horaria */
   finishTime?: string;
 }
 
@@ -130,7 +149,9 @@ export interface WeekScheduleUpdateRequest {
  * };
  */
 export interface WeekScheduleUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la franja horaria actualizada */
   data: WeekSchedule;
 }
 
@@ -146,7 +167,10 @@ export interface WeekScheduleUpdateResponse {
  * };
  */
 export interface WeekScheduleDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la franja horaria eliminada */
   deletedId: number;
 }

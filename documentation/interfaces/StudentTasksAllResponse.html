@@ -242,6 +242,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Número total de entregas devueltas</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -275,6 +281,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Listado de entregas de tareas</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -308,6 +320,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Indica si la operación se ha completado correctamente</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -351,15 +369,25 @@ export enum SubmissionStatus {
  * };
  */
 export interface StudentTask {
+  /** Identificador único de la entrega */
   id: number;
+  /** Identificador de la tarea asociada a la entrega */
   idTask: number;
+  /** Datos completos de la tarea asociada */
   task: Task;
+  /** Identificador de la matrícula del estudiante que realiza la entrega */
   idStudentEnrollment: number;
+  /** Datos completos de la matrícula del estudiante */
   studentEnrollment: Enrollment;
+  /** Estado actual de la entrega */
   status: SubmissionStatus;
+  /** Fecha en la que se realizó la entrega, null si aún no se ha entregado */
   submissionDate: string | null;
+  /** Nota obtenida en la tarea, null si aún no ha sido calificada */
   score: number | null;
+  /** Comentarios del profesor sobre la entrega, null si no hay feedback */
   feedback: string | null;
+  /** URL del archivo adjunto de la entrega, null si no hay adjunto */
   attachmentUrl: string | null;
 }
 
@@ -386,8 +414,11 @@ export interface StudentTask {
  * };
  */
 export interface StudentTasksAllResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Listado de entregas de tareas */
   data: StudentTask[];
+  /** Número total de entregas devueltas */
   count: number;
 }
 
@@ -411,7 +442,9 @@ export interface StudentTasksAllResponse {
  * };
  */
 export interface StudentTaskByIdResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la entrega encontrada */
   data: StudentTask;
 }
 
@@ -428,12 +461,19 @@ export interface StudentTaskByIdResponse {
  * };
  */
 export interface StudentTaskCreateRequest {
+  /** Identificador de la tarea a entregar */
   idTask: number;
+  /** Identificador de la matrícula del estudiante que realiza la entrega */
   idStudentEnrollment: number;
+  /** Estado inicial de la entrega, opcional */
   status?: SubmissionStatus;
+  /** Fecha de entrega, opcional */
   submissionDate?: string;
+  /** Nota obtenida, opcional */
   score?: number;
+  /** Comentarios del profesor, opcional */
   feedback?: string;
+  /** URL del archivo adjunto, opcional */
   attachmentUrl?: string;
 }
 
@@ -457,7 +497,9 @@ export interface StudentTaskCreateRequest {
  * };
  */
 export interface StudentTaskCreateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la entrega creada */
   data: StudentTask;
 }
 
@@ -472,10 +514,15 @@ export interface StudentTaskCreateResponse {
  * };
  */
 export interface StudentTaskUpdateRequest {
+  /** Nuevo estado de la entrega */
   status?: SubmissionStatus;
+  /** Nueva fecha de entrega */
   submissionDate?: string;
+  /** Nueva nota obtenida */
   score?: number;
+  /** Nuevos comentarios del profesor */
   feedback?: string;
+  /** Nueva URL del archivo adjunto */
   attachmentUrl?: string;
 }
 
@@ -499,7 +546,9 @@ export interface StudentTaskUpdateRequest {
  * };
  */
 export interface StudentTaskUpdateResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Datos de la entrega actualizada */
   data: StudentTask;
 }
 
@@ -515,8 +564,11 @@ export interface StudentTaskUpdateResponse {
  * };
  */
 export interface StudentTaskDeleteResponse {
+  /** Indica si la operación se ha completado correctamente */
   success: boolean;
+  /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
+  /** Identificador de la entrega eliminada */
   deletedId: number;
 }</code></pre>
     </div>
