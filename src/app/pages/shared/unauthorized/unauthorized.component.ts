@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
  * para el que no tiene los permisos necesarios.
  * Ofrece un botón para redirigir al usuario al dashboard principal.
  */
-
 @Component({
     selector: 'app-unauthorized',
     template: `
@@ -22,6 +21,7 @@ import { Router } from '@angular/router';
 export class UnauthorizedComponent {
 
    /**
+   * Inicializa el componente.
    * @param router - Router de Angular para redirigir al dashboard
    */
     constructor(private router: Router) { }

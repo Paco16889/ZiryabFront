@@ -196,6 +196,8 @@ Redirige al login si el usuario no está autenticado.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el guard.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -278,8 +280,8 @@ Redirige al login si el usuario no está autenticado.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/core/guards/auth.guard.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/core/guards/auth.guard.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -377,6 +379,7 @@ import { AuthService } from &#x27;../services/auth.service&#x27;;
 export class AuthGuard implements CanActivate {
 
    /**
+   * Inicializa el guard.
    * @param authService - Servicio de autenticación para verificar el estado del usuario
    * @param router - Router de Angular para gestionar las redirecciones
    */

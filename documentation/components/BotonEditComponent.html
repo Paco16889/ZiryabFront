@@ -271,6 +271,8 @@ sin necesidad de emitir eventos al componente padre.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -509,8 +511,8 @@ Se pasa desde el componente padre y se delega al modal para su ejecución.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/pages/admin/botones/boton-edit/boton-edit.component.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/pages/admin/botones/boton-edit/boton-edit.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -585,7 +587,8 @@ export class BotonEditComponent {
    */
   @Input() updateFn!: (data: any) &#x3D;&gt; Observable&lt;any&gt;;
 
-  /**
+   /**
+   * Inicializa el componente.
    * @param updateModalService - Servicio que gestiona el estado y ciclo de vida del modal de edición
    */
   constructor(private updateModalService: ModalEditServiceService) {

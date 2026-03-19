@@ -196,6 +196,8 @@ Verifica tanto la autenticación como el rol del usuario antes de permitir el ac
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el guard.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -278,8 +280,8 @@ Verifica tanto la autenticación como el rol del usuario antes de permitir el ac
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/core/guards/role.guard.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/core/guards/role.guard.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -379,6 +381,7 @@ import { AuthService } from &#x27;../services/auth.service&#x27;;
 export class RoleGuard implements CanActivate {
 
     /**
+   * Inicializa el guard.
    * @param authService - Servicio de autenticación para verificar el estado y rol del usuario
    * @param router - Router de Angular para gestionar las redirecciones
    */

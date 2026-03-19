@@ -232,6 +232,8 @@ para construir y enviar la petición de matriculación al backend.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el servicio.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -257,7 +259,7 @@ para construir y enviar la petición de matriculación al backend.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Cliente HTTP de Angular para realizar las peticiones a la API</li>
+<li>Cliente HTTP de Angular para realizar peticiones al backend</li>
 </ul>
 
                                                         </td>
@@ -274,10 +276,6 @@ para construir y enviar la petición de matriculación al backend.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>Servicio que proporciona el estudiante actualmente seleccionado</li>
-</ul>
-
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -293,7 +291,7 @@ para construir y enviar la petición de matriculación al backend.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Servicio que proporciona las asignaturas seleccionadas</li>
+<li>Servicio para obtener la asignaturas seleccionadas</li>
 </ul>
 
                                                         </td>
@@ -332,8 +330,8 @@ para construir y enviar la petición de matriculación al backend.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -409,8 +407,8 @@ para construir y enviar la petición de matriculación al backend.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="94"
-                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:94</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -450,8 +448,8 @@ Llama a registerStudent con el grupo por defecto y gestiona la respuesta.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -753,9 +751,11 @@ export class StudentRegistrationService {
    private apiUrl &#x3D; &#x27;http://localhost:3000/api/studentregistration&#x27;;
 
  /**
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
-   * @param selectedStudent - Servicio que proporciona el estudiante actualmente seleccionado
-   * @param subjectService - Servicio que proporciona las asignaturas seleccionadas
+   * Inicializa el servicio.
+   * @param auth - Instancia de Auth de Firebase para obtener el token actual
+   * @param http - Cliente HTTP de Angular para realizar peticiones al backend
+   * @param subjectService - Servicio para obtener la asignaturas seleccionadas
+   * @param studentSelectedService - Servicio para obtener el estudiante seleccionado
    */
   constructor(private http: HttpClient, private selectedStudent: SelectedStudentServiceService, private subjectService: SubjectServiceService) {}
 

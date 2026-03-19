@@ -24,6 +24,7 @@ export class FichaUsuarioComponent implements OnInit {
   currentView: 'faltas' | 'justificacion' = 'faltas';
   
     /**
+   * Inicializa el componente.
    * @param router - Router de Angular, pendiente de usar o eliminar si no es necesario
    */
   constructor(private router: Router) {}

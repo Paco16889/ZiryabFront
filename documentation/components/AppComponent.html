@@ -274,6 +274,8 @@ del menú de perfil y los modales globales de eliminación y edición.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente raíz de la aplicación.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -299,7 +301,7 @@ del menú de perfil y los modales globales de eliminación y edición.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Servicio que gestiona la visibilidad del menú de perfil</li>
+<li>Servicio para gestionar el menú de perfil</li>
 </ul>
 
                                                         </td>
@@ -317,7 +319,7 @@ del menú de perfil y los modales globales de eliminación y edición.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Servicio que gestiona el estado del modal de eliminación global</li>
+<li>Servicio para gestionar el modal global de eliminación</li>
 </ul>
 
                                                         </td>
@@ -335,7 +337,7 @@ del menú de perfil y los modales globales de eliminación y edición.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Servicio que gestiona el estado del modal de edición global</li>
+<li>Servicio para gestionar el modal global de edición</li>
 </ul>
 
                                                         </td>
@@ -379,13 +381,13 @@ del menú de perfil y los modales globales de eliminación y edición.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/app.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/app.component.ts:57</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">- Servicio que gestiona el estado del modal de eliminación global</div>
+                    <div class="io-description">- Servicio para gestionar el modal global de eliminación</div>
                 </td>
             </tr>
 
@@ -411,13 +413,13 @@ del menú de perfil y los modales globales de eliminación y edición.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/app.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/app.component.ts:56</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">- Servicio que gestiona la visibilidad del menú de perfil</div>
+                    <div class="io-description">- Servicio para gestionar el menú de perfil</div>
                 </td>
             </tr>
 
@@ -519,13 +521,13 @@ Pendiente de actualizar desde el nombre por defecto del proyecto.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/app.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/app.component.ts:58</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">- Servicio que gestiona el estado del modal de edición global</div>
+                    <div class="io-description">- Servicio para gestionar el modal global de edición</div>
                 </td>
             </tr>
 
@@ -587,9 +589,10 @@ export class AppComponent {
   private translate &#x3D; inject(TranslateService);
 
    /**
-   * @param perfilService - Servicio que gestiona la visibilidad del menú de perfil
-   * @param deleteModalService - Servicio que gestiona el estado del modal de eliminación global
-   * @param updateModalService - Servicio que gestiona el estado del modal de edición global
+   * Inicializa el componente raíz de la aplicación.
+   * @param perfilService - Servicio para gestionar el menú de perfil
+   * @param deleteModalService - Servicio para gestionar el modal global de eliminación
+   * @param updateModalService - Servicio para gestionar el modal global de edición
    */
   constructor(public perfilService: PerfilMenuService,
     public deleteModalService: ModalDeleteServiceService,

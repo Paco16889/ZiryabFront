@@ -8,6 +8,9 @@ import { Injectable } from '@angular/core';
 })
 export class PasswordServiceService {
 
+  /**
+   * Inicializa el servicio sin dependencias externas.
+   */
   constructor() { }
 
     /**

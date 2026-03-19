@@ -2,10 +2,17 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
+/**
+ * Servicio encargado de obtener las asignaturas de alumnos y profesores,
+ * así como la información de los profesores asociados a cada asignatura.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class ClasesService {
+  /**
+   * Cliente HTTP de Angular para realizar las peticiones a la API.
+   */
   private http = inject(HttpClient);
   /**
    * URL base de la API.

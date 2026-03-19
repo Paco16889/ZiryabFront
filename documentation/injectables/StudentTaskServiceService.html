@@ -226,6 +226,8 @@ Incluye una signal para mantener el estado de las entregas en memoria.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el servicio.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -290,8 +292,8 @@ Incluye una signal para mantener el estado de las entregas en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -367,8 +369,8 @@ Incluye una signal para mantener el estado de las entregas en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="101"
-                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:101</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -444,8 +446,8 @@ Incluye una signal para mantener el estado de las entregas en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -487,8 +489,8 @@ Incluye una signal para mantener el estado de las entregas en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -564,8 +566,8 @@ Incluye una signal para mantener el estado de las entregas en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -604,8 +606,8 @@ Si la petición falla, la signal se establece como array vacío.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/core/services/admin/entities/student-task-service.service.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -789,7 +791,8 @@ export class StudentTaskServiceService {
    */
   studentTasks &#x3D; signal&lt;StudentTask[]&gt;([]); // aquí el código }
 
-  /**
+    /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { } // aquí el código }

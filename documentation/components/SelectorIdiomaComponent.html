@@ -235,12 +235,14 @@ Persiste la selección en localStorage para mantenerla entre sesiones.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/shared/selector-idioma/selector-idioma.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/pages/shared/selector-idioma/selector-idioma.component.ts:14</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -309,8 +311,8 @@ Persiste la selección en localStorage para mantenerla entre sesiones.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/pages/shared/selector-idioma/selector-idioma.component.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/pages/shared/selector-idioma/selector-idioma.component.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -384,16 +386,10 @@ import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
   templateUrl: &#x27;./selector-idioma.component.html&#x27;,
   styleUrl: &#x27;./selector-idioma.component.scss&#x27;
 })
-/**
- * Componente que permite al usuario cambiar el idioma de la aplicación.
- * 
- * Utiliza el servicio de traducción para establecer el idioma activo
- * y guarda la preferencia del usuario en localStorage para mantenerla
- * entre sesiones.
- */
 export class SelectorIdiomaComponent {
 
    /**
+   * Inicializa el componente.
    * @param translate - Servicio de traducción para cambiar el idioma activo
    */
   constructor(private translate: TranslateService) {}

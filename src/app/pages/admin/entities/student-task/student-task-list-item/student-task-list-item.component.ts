@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * Componente que representa un elemento individual de tarea de estudiante dentro del listado.
+ */
 @Component({
   selector: 'app-student-task-list-item',
   imports: [],

@@ -137,6 +137,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio encargado de gestionar el estado y el ciclo de vida del modal de eliminación.
+Centraliza la lógica de apertura, confirmación y resultado del proceso de borrado
+para cualquier entidad del sistema.</p>
+
+            </p>
 
 
 
@@ -222,8 +231,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -261,8 +270,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -303,8 +312,8 @@ si la eliminación se completa correctamente.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -390,7 +399,7 @@ si la eliminación se completa correctamente.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -428,7 +437,7 @@ si la eliminación se completa correctamente.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -466,7 +475,7 @@ Se limpia al cerrar el modal.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/core/services/UI/modal-delete-service.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -488,6 +497,11 @@ Se limpia al cerrar el modal.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal } from &#x27;@angular/core&#x27;;
 import { DeleteModalState, DeleteRequest } from &#x27;../../models/services/delete-models&#x27;;
 
+/**
+ * Servicio encargado de gestionar el estado y el ciclo de vida del modal de eliminación.
+ * Centraliza la lógica de apertura, confirmación y resultado del proceso de borrado
+ * para cualquier entidad del sistema.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })

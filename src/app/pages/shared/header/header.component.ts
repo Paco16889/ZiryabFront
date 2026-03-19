@@ -29,8 +29,9 @@ export class HeaderComponent implements OnInit {
   userRole: string = 'Usuario activo';
 
    /**
-   * @param perfilService - Servicio que gestiona el estado del menú de perfil
-   * @param authService - Servicio de autenticación para obtener los datos del usuario actual
+   * Inicializa el componente.
+   * @param perfilService - Servicio para controlar el estado del menú de perfil
+   * @param authService - Servicio de autenticación para obtener datos del usuario actual
    */
   constructor(
     private perfilService: PerfilMenuService,

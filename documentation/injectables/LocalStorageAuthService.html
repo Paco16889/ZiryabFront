@@ -231,6 +231,8 @@ y almacenamiento del token JWT en localStorage.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el servicio.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -256,7 +258,7 @@ y almacenamiento del token JWT en localStorage.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Cliente HTTP de Angular para realizar las peticiones a la API</li>
+<li>Cliente HTTP de Angular para realizar peticiones al backend</li>
 </ul>
 
                                                         </td>
@@ -297,8 +299,8 @@ y almacenamiento del token JWT en localStorage.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -342,8 +344,8 @@ ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="144"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:144</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:145</a></div>
                         </td>
                     </tr>
 
@@ -385,8 +387,8 @@ ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="152"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:152</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -430,8 +432,8 @@ ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -509,8 +511,8 @@ ATENCIÓN: usa <code>.toPromise()</code> deprecado desde Angular 16, reemplazar 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="133"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:133</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -551,8 +553,8 @@ almacenados en localStorage y limpiando la signal de usuario.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/core/services/localstorage-auth.service.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -723,8 +725,9 @@ export class LocalStorageAuthService {
    */
   private apiUrl &#x3D; environment.apiUrl;
 
-  /**
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
+   /**
+   * Inicializa el servicio.
+   * @param http - Cliente HTTP de Angular para realizar peticiones al backend
    */
   constructor(private http: HttpClient) {
     this.user &#x3D; signal&lt;any&gt;(null);

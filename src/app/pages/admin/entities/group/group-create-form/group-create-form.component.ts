@@ -41,6 +41,7 @@ export class GroupCreateFormComponent {
   errorMessage = '';
 
     /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param groupService - Servicio que gestiona las operaciones con grupos
    */

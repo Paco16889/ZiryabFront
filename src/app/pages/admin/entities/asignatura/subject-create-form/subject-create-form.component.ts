@@ -53,6 +53,7 @@ export class SubjectCreateFormComponent {
   errorMessage = '';
 
    /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param subjectService - Servicio que gestiona las operaciones con asignaturas
    * @param courseService - Servicio que proporciona los ciclos disponibles para el selector

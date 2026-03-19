@@ -235,12 +235,14 @@ Ofrece un botón para redirigir al usuario al dashboard principal.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/shared/unauthorized/unauthorized.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/shared/unauthorized/unauthorized.component.ts:21</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -342,7 +344,6 @@ import { Router } from &#x27;@angular/router&#x27;;
  * para el que no tiene los permisos necesarios.
  * Ofrece un botón para redirigir al usuario al dashboard principal.
  */
-
 @Component({
     selector: &#x27;app-unauthorized&#x27;,
     template: &#x60;
@@ -358,6 +359,7 @@ import { Router } from &#x27;@angular/router&#x27;;
 export class UnauthorizedComponent {
 
    /**
+   * Inicializa el componente.
    * @param router - Router de Angular para redirigir al dashboard
    */
     constructor(private router: Router) { }

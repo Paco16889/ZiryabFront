@@ -278,6 +278,8 @@ y redirige según el rol al dashboard correspondiente.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -321,7 +323,7 @@ y redirige según el rol al dashboard correspondiente.</p>
                                                     
                                                         <td>
                                                                 <ul>
-<li>Servicio de autenticación que gestiona Firebase y el backend</li>
+<li>Servicio de autenticación para realizar el inicio de sesión</li>
 </ul>
 
                                                         </td>
@@ -364,8 +366,8 @@ y redirige según el rol al dashboard correspondiente.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="132"
-                                    class="link-to-prism">src/app/pages/shared/login/login.component.ts:132</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/pages/shared/login/login.component.ts:133</a></div>
                         </td>
                     </tr>
 
@@ -444,8 +446,8 @@ Pendiente de sustituir los textos hardcodeados por el sistema de traducciones.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/pages/shared/login/login.component.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/pages/shared/login/login.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -663,8 +665,9 @@ export class LoginComponent {
   formLogin;
 
    /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
-   * @param authService - Servicio de autenticación que gestiona Firebase y el backend
+   * @param authService - Servicio de autenticación para realizar el inicio de sesión
    */
   constructor(
     private fb: FormBuilder,

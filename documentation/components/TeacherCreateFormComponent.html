@@ -292,6 +292,8 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -353,7 +355,7 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
                                                     
                                                         <td>
                                                                 <ul>
-<li>Instancia de Firebase Authentication para crear el usuario</li>
+<li>Instancia de Firebase Authentication para crear usuarios</li>
 </ul>
 
                                                         </td>
@@ -371,7 +373,7 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
                                                     
                                                         <td>
                                                                 <ul>
-<li>Servicio que genera la contraseña aleatoria del nuevo usuario</li>
+<li>Servicio para generar contraseñas seguras por defecto</li>
 </ul>
 
                                                         </td>
@@ -470,8 +472,8 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/pages/admin/entities/teacher/teacher-create-form/teacher-create-form.component.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/pages/admin/entities/teacher/teacher-create-form/teacher-create-form.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -513,8 +515,8 @@ ATENCIÓN: mismo antipatrón que StudentCreateFormComponent, pendiente de refact
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/app/pages/admin/entities/teacher/teacher-create-form/teacher-create-form.component.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/pages/admin/entities/teacher/teacher-create-form/teacher-create-form.component.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -552,8 +554,8 @@ ATENCIÓN: mismo antipatrón que StudentCreateFormComponent, pendiente de refact
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/pages/admin/entities/teacher/teacher-create-form/teacher-create-form.component.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/pages/admin/entities/teacher/teacher-create-form/teacher-create-form.component.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -734,10 +736,11 @@ export class TeacherCreateFormComponent {
   errorMessage &#x3D; &#x27;&#x27;;
 
     /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param teacherService - Servicio que gestiona las operaciones con profesores
-   * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario
-   * @param passwordGen - Servicio que genera la contraseña aleatoria del nuevo usuario
+   * @param fireBaseAuth - Instancia de Firebase Authentication para crear usuarios
+   * @param passwordGen - Servicio para generar contraseñas seguras por defecto
    */
   constructor(
     private fb: FormBuilder,

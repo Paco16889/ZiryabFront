@@ -41,8 +41,9 @@ export class LoginComponent {
   formLogin;
 
    /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
-   * @param authService - Servicio de autenticación que gestiona Firebase y el backend
+   * @param authService - Servicio de autenticación para realizar el inicio de sesión
    */
   constructor(
     private fb: FormBuilder,

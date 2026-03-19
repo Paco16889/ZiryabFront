@@ -3,6 +3,10 @@ import { ClassSession, ClassSessionByIdResponse, ClassSessionCreateRequest, Clas
 import { catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+/**
+ * Servicio encargado de gestionar las operaciones con sesiones de clase.
+ * Incluye una signal para mantener el estado de las sesiones en memoria.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +22,7 @@ export class ClassSessionServiceService {
   private apiUrl = 'http://localhost:3000/api/sessions';
 
     /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { }

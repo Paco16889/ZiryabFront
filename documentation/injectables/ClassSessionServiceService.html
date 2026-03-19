@@ -137,6 +137,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio encargado de gestionar las operaciones con sesiones de clase.
+Incluye una signal para mantener el estado de las sesiones en memoria.</p>
+
+            </p>
 
 
 
@@ -212,12 +220,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:22</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el servicio.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -282,8 +292,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -359,8 +369,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -436,8 +446,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -479,8 +489,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -556,8 +566,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -596,8 +606,8 @@ Si la petición falla, la signal se establece como array vacío.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -702,7 +712,7 @@ Si la petición falla, la signal se establece como array vacío.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -739,7 +749,7 @@ Si la petición falla, la signal se establece como array vacío.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/admin/entities/class-session-service.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -763,6 +773,10 @@ import { ClassSession, ClassSessionByIdResponse, ClassSessionCreateRequest, Clas
 import { catchError, Observable, of } from &#x27;rxjs&#x27;;
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 
+/**
+ * Servicio encargado de gestionar las operaciones con sesiones de clase.
+ * Incluye una signal para mantener el estado de las sesiones en memoria.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -778,6 +792,7 @@ export class ClassSessionServiceService {
   private apiUrl &#x3D; &#x27;http://localhost:3000/api/sessions&#x27;;
 
     /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { }

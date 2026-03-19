@@ -68,6 +68,7 @@ export class SetRegistrationComponent {
    @Output() closeForm = new EventEmitter<void>();
    
     /**
+   * Inicializa el componente.
    * @param courseService - Servicio que gestiona los ciclos académicos
    * @param subjectService - Servicio que gestiona las asignaturas
    * @param studentRegService - Servicio que gestiona el proceso de matriculación

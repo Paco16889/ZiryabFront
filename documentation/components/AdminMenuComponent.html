@@ -276,6 +276,8 @@ mostrarse en el área de contenido principal.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -374,8 +376,8 @@ El componente padre lo usa para cerrar el menú móvil tras la selección.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/app/pages/admin/admin-menu/admin-menu.component.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/pages/admin/admin-menu/admin-menu.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -508,6 +510,7 @@ export class AdminMenuComponent {
   @Output() optionClicked &#x3D; new EventEmitter&lt;void&gt;();
   
  /**
+   * Inicializa el componente.
    * @param toggle - Servicio que notifica qué sección debe mostrarse en el área de contenido principal
    */
   constructor(private toggle: ToggleService){}

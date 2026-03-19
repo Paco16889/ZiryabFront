@@ -226,6 +226,8 @@ Incluye una signal para mantener el estado de los horarios en memoria.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el servicio.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -290,8 +292,8 @@ Incluye una signal para mantener el estado de los horarios en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -367,8 +369,8 @@ Incluye una signal para mantener el estado de los horarios en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -444,8 +446,8 @@ Incluye una signal para mantener el estado de los horarios en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -487,8 +489,8 @@ Incluye una signal para mantener el estado de los horarios en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -564,8 +566,8 @@ Incluye una signal para mantener el estado de los horarios en memoria.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -604,8 +606,8 @@ Si la petición falla, la signal se establece como array vacío.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/core/services/admin/entities/week-schedule-service.service.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -791,7 +793,8 @@ export class WeekScheduleServiceService {
    */
   schedules &#x3D; signal&lt;WeekSchedule[]&gt;([]);
 
-  /**
+    /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { }

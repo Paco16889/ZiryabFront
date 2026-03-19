@@ -137,6 +137,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio encargado de gestionar la actualización de los listados de la interfaz.
+Permite notificar a los componentes cuando deben refrescar sus datos tras una operación de borrado o edición.</p>
+
+            </p>
 
 
 
@@ -152,10 +160,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/core/services/UI/list-refresh-service.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/UI/list-refresh-service.service.ts:10</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el servicio sin dependencias externas.</p>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -168,11 +182,18 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
+/**
+ * Servicio encargado de gestionar la actualización de los listados de la interfaz.
+ * Permite notificar a los componentes cuando deben refrescar sus datos tras una operación de borrado o edición.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class ListRefreshServiceService {
 
+  /**
+   * Inicializa el servicio sin dependencias externas.
+   */
   constructor() { }
 /*
    effect(() &#x3D;&gt; {

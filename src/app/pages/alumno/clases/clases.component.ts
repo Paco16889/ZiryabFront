@@ -20,8 +20,17 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 })
 export class ClasesComponent implements OnInit {
   
+  /**
+   * Servicio de navegación para redirigir entre rutas de la aplicación.
+   */
   private navegador = inject(NavigationService);
+  /**
+   * Servicio para obtener las asignaturas del estudiante y la información del profesor.
+   */
   private clasesService = inject(ClasesService);
+  /**
+   * Servicio de autenticación para obtener los datos del usuario actual.
+   */
   private authService = inject(AuthService); 
 
     /**

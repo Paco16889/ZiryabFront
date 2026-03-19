@@ -16,6 +16,7 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
 
    /**
+   * Inicializa el guard.
    * @param authService - Servicio de autenticación para verificar el estado del usuario
    * @param router - Router de Angular para gestionar las redirecciones
    */

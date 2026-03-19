@@ -137,6 +137,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio encargado de obtener las asignaturas de alumnos y profesores,
+así como la información de los profesores asociados a cada asignatura.</p>
+
+            </p>
 
 
 
@@ -219,8 +227,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/core/services/clases.service.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/core/services/clases.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -296,8 +304,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/core/services/clases.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/core/services/clases.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -373,8 +381,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/core/services/clases.service.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/core/services/clases.service.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -462,7 +470,7 @@ que la imparte, para mostrarla en el componente correspondiente.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/clases.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/core/services/clases.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -500,10 +508,16 @@ que la imparte, para mostrarla en el componente correspondiente.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/core/services/clases.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/clases.service.ts:16</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cliente HTTP de Angular para realizar las peticiones a la API.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -517,10 +531,17 @@ que la imparte, para mostrarla en el componente correspondiente.</p>
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Observable, map } from &#x27;rxjs&#x27;;
 
+/**
+ * Servicio encargado de obtener las asignaturas de alumnos y profesores,
+ * así como la información de los profesores asociados a cada asignatura.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class ClasesService {
+  /**
+   * Cliente HTTP de Angular para realizar las peticiones a la API.
+   */
   private http &#x3D; inject(HttpClient);
   /**
    * URL base de la API.

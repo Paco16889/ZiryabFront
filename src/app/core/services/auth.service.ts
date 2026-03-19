@@ -71,9 +71,10 @@ export class AuthService {
     public currentUser$ = this.currentUserSubject.asObservable();
 
     /**
-     * @param http - Cliente HTTP de Angular para las peticiones al backend
-     * @param firebaseAuth - Instancia de Firebase Authentication
-     */
+   * Inicializa el servicio.
+   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
+   * @param firebaseAuth - Instancia de Firebase Authentication
+   */
     constructor(
         private http: HttpClient,
         private firebaseAuth: Auth

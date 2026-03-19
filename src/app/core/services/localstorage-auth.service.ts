@@ -25,8 +25,9 @@ export class LocalStorageAuthService {
    */
   private apiUrl = environment.apiUrl;
 
-  /**
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
+   /**
+   * Inicializa el servicio.
+   * @param http - Cliente HTTP de Angular para realizar peticiones al backend
    */
   constructor(private http: HttpClient) {
     this.user = signal<any>(null);

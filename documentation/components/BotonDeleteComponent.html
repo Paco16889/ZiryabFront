@@ -265,6 +265,8 @@ sin necesidad de emitir eventos al componente padre.</p>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el componente.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -444,8 +446,8 @@ Se pasa desde el componente padre y se delega al modal para su ejecución.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/pages/admin/botones/boton-delete/boton-delete.component.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/pages/admin/botones/boton-delete/boton-delete.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -508,6 +510,7 @@ export class BotonDeleteComponent {
   @Input() deleteFn!: (id: number) &#x3D;&gt; Observable&lt;any&gt;;
 
   /**
+   * Inicializa el componente.
    * @param deleteModalService - Servicio que gestiona el estado y ciclo de vida del modal de eliminación
    */
   constructor(private deleteModalService: ModalDeleteServiceService) {}

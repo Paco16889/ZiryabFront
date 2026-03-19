@@ -16,6 +16,7 @@ import { AuthService } from '../services/auth.service';
 export class RoleGuard implements CanActivate {
 
     /**
+   * Inicializa el guard.
    * @param authService - Servicio de autenticación para verificar el estado y rol del usuario
    * @param router - Router de Angular para gestionar las redirecciones
    */

@@ -15,6 +15,9 @@ export class FloatMenuService {
    */
   isMenuOpen = signal<boolean>(false);
 
+  /**
+   * Inicializa el servicio sin dependencias externas.
+   */
   constructor() { }
 
   /**
