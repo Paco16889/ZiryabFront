@@ -40,36 +40,32 @@ export class AuthService {
     constructor(
         private http: HttpClient,
         private firebaseAuth: Auth
-    ) {
-        this.loadFromStorage();
-    }
+    ) { }
 
     // ============================================
-    // INICIALIZACIÓN
+    // VERIFICACIÓN DE SESIÓN (INIT)
     // ============================================
 
     /**
-     * Carga el usuario desde localStorage al iniciar la app
-     * Busca en 'user' y también migra desde 'token' si existe
+     * comprueba con el back si la cookie HttpOnly es valida.
      */
-    private loadFromStorage(): void {
-        const userJson = localStorage.getItem('user');
-        if (userJson) {
-            try {
-                const user = JSON.parse(userJson) as UserResponse;
-                this.currentUserSubject.next(user);
-                
-                // Asegurar que jwtToken esté sincronizado
-                if (user.token) {
-                    localStorage.setItem('jwtToken', user.token);
-                }
-                
-                console.log('✅ Usuario cargado desde localStorage:', user.name);
-            } catch {
-                // Si hay error, eliminar datos inválidos
-                this.clearAllStorage();
-            }
-        }
+    verifySession(): Observable<UserResponse> {
+        return new Observable((observer) => {
+            this.http.get<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/me`)
+                .subscribe({
+                    next: (res) => {
+                        console.log('✅ Sesión restaurada desde Cookie HttpOnly');
+                        this.currentUserSubject.next(res.data);
+                        observer.next(res.data);
+                        observer.complete();
+                    },
+                    error: (err) => {
+                        console.log('⚠️ No hay sesión válida en las Cookies');
+                        this.currentUserSubject.next(null);
+                        observer.error(err);
+                    }
+                });
+        });
     }
 
     // ============================================
@@ -133,7 +129,7 @@ export class AuthService {
     login(email: string, password: string): Observable<UserResponse> {
         return new Observable((observer) => {
             console.log('🔐 Autenticando con Firebase...');
-            
+
             signInWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then(async (credential) => {
                     const firebaseUID = credential.user.uid;
@@ -176,15 +172,21 @@ export class AuthService {
         return new Observable((observer) => {
             signOut(this.firebaseAuth)
                 .then(() => {
-                    this.clearAllStorage();
-                    this.currentUserSubject.next(null);
-                    console.log('✅ Logout completado');
-                    
-                    observer.next();
-                    observer.complete();
+                    this.http.post(`${this.apiUrl}/auth/logout`, {}).subscribe({
+                        next: () => {
+                            this.currentUserSubject.next(null);
+                            console.log('✅ Logout completado y Cookie limpiada');
+                            observer.next();
+                            observer.complete();
+                        },
+                        error: (err) => {
+                            console.error('❌ Error limpiando Cookie:', err);
+                            observer.error(err);
+                        }
+                    });
                 })
                 .catch((error) => {
-                    console.error('❌ Error en logout:', error);
+                    console.error('❌ Error en logout Firebase:', error);
                     observer.error(error);
                 });
         });
@@ -202,29 +204,10 @@ export class AuthService {
     }
 
     /**
-     * Obtiene el JWT almacenado
-     */
-    getToken(): string | null {
-        // Primero buscar en jwtToken (estándar)
-        let token = localStorage.getItem('jwtToken');
-        
-        // Si no existe, buscar en 'token' (compatibilidad)
-        if (!token) {
-            token = localStorage.getItem('token');
-            // Migrar a jwtToken si existe
-            if (token) {
-                localStorage.setItem('jwtToken', token);
-            }
-        }
-        
-        return token;
-    }
-
-    /**
      * Verifica si está autenticado
      */
     isAuthenticated(): boolean {
-        return !!this.currentUserSubject.value && !!this.getToken();
+        return !!this.currentUserSubject.value;
     }
 
     /**
@@ -246,28 +229,14 @@ export class AuthService {
     // ============================================
 
     /**
-     * Guarda usuario y token en localStorage y el BehaviorSubject
+     * Actualiza el BehaviorSubject del usuario en sesion
      */
     private setSession(user: UserResponse): void {
-        localStorage.setItem('jwtToken', user.token);
-        localStorage.setItem('token', user.token); // Compatibilidad
-        localStorage.setItem('user', JSON.stringify(user));
         this.currentUserSubject.next(user);
-        
-        console.log('💾 Sesión guardada:', {
-            user: user.name,
-            role: user.role,
-            token: user.token.substring(0, 20) + '...'
-        });
-    }
 
-    /**
-     * Limpia TODO el localStorage
-     */
-    private clearAllStorage(): void {
-        localStorage.removeItem('user');
-        localStorage.removeItem('jwtToken');
-        localStorage.removeItem('token');
-        console.log('🗑️ Storage limpiado');
+        console.log('💾 Sesión guardada en Memoria (Cookie gestionada por backend):', {
+            user: user.name,
+            role: user.role
+        });
     }
 }
