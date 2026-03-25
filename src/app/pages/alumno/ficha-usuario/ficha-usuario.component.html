@@ -115,4 +115,13 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de Justificación -->
+<app-justificar-falta-modal 
+    *ngIf="isJustificarModalOpen()"
+    [falta]="faltaSeleccionada()"
+    (closeModal)="isJustificarModalOpen.set(false)"
+    (justifySuccess)="onJustifySuccess($event)">
+</app-justificar-falta-modal>
+
 <app-boton-atras></app-boton-atras>
