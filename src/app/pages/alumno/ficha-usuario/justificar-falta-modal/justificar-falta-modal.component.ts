@@ -24,6 +24,23 @@ export class JustificarFaltaModalComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
+      // 1. Validar tamaño (max 5MB)
+      const maxSizeInBytes = 5 * 1024 * 1024;
+      if (file.size > maxSizeInBytes) {
+        this.errorMessage.set('El archivo no puede pesar más de 5 MB.');
+        this.selectedFile.set(null);
+        return;
+      }
+
+      // 2. Validar formato (PDF o imagenes)
+      const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+      if (!allowedTypes.includes(file.type)) {
+        this.errorMessage.set('El formato no es válido. Sube un PDF, JPG o PNG.');
+        this.selectedFile.set(null);
+        return;
+      }
+
+      // Archivo válido
       this.selectedFile.set(file);
       this.errorMessage.set('');
     }
