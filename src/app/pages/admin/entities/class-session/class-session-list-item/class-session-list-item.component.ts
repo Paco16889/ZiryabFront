@@ -56,7 +56,7 @@ export class ClassSessionListItemComponent {
    * ATENCIÓN: los editFields y métodos del servicio están copiados de AsignaturaListItemComponent
    * y no corresponden a ClassSession, pendiente de corregir.
    */
-  get subjectConfig(): ListItemConfig<ClassSession> {
+  get classSessionConfig(): ListItemConfig<ClassSession> {
     return {
       fields: [
         { 
@@ -97,9 +97,9 @@ export class ClassSessionListItemComponent {
       ],
       entityType: 'la Sesión',
       entityNameFormat: (classSession: ClassSession) => classSession.date,
-      getByIdFn: (id: number) => this.classSessionService.getSubjectbyId(id),
-      updateFn: (data: any) => this.classSessionService.updateSubject(data.id, data),
-      deleteFn: (id: number) => this.classSessionService.deleteSubject(id)
+      getByIdFn: (id: number) => this.classSessionService.getSessionById(id),
+      updateFn: (data: any) => this.classSessionService.updateSession(data.id, data),
+      deleteFn: (id: number) => this.classSessionService.deleteSession(id)
     };
   }
 
@@ -108,7 +108,7 @@ export class ClassSessionListItemComponent {
    * Muestra el identificador, la fecha y el horario asociado.
    * ATENCIÓN: mal nombrada como subjectDetailConfig, debería ser classSessionDetailConfig.
    */
-  subjectDetailConfig: ViewDetailConfig<ClassSession> = {
+  classSessionDetailConfig: ViewDetailConfig<ClassSession> = {
         fields: [
           {
             key: 'id',
