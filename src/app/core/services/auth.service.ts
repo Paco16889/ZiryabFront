@@ -139,13 +139,13 @@ export class AuthService {
         return new Observable((observer) => {
             createUserWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then(async (credential) => {
-                    const firebaseUID = credential.user.uid;
+                    const token = await credential.user.getIdToken();
 
                     this.http
                         .post<ApiResponse<UserResponse>>(
                             `${this.apiUrl}/auth/register`,
                             {
-                                firebaseUID,
+                                token,
                                 email,
                                 name,
                                 surname,
@@ -189,14 +189,14 @@ export class AuthService {
 
             signInWithEmailAndPassword(this.firebaseAuth, email, password)
                 .then(async (credential) => {
-                    const firebaseUID = credential.user.uid;
-                    console.log('✅ Firebase UID:', firebaseUID);
+                    const token = await credential.user.getIdToken();
+                    console.log('✅ Firebase JWT Token obtenido');
 
                     console.log('🔑 Obteniendo JWT del backend...');
                     this.http
                         .post<ApiResponse<UserResponse>>(
                             `${this.apiUrl}/auth/login`,
-                            { firebaseUID }
+                            { token }
                         )
                         .subscribe({
                             next: (res) => {
