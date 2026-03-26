@@ -24,10 +24,10 @@ export class JustificarFaltaModalComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      // 1. Validar tamaño (max 5MB)
-      const maxSizeInBytes = 5 * 1024 * 1024;
+      // 1. Validar tamaño (max 1MB)
+      const maxSizeInBytes = 1 * 1024 * 1024;
       if (file.size > maxSizeInBytes) {
-        this.errorMessage.set('El archivo no puede pesar más de 5 MB.');
+        this.errorMessage.set('El archivo no puede pesar más de 1 MB.');
         this.selectedFile.set(null);
         return;
       }
