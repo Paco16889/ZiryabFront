@@ -9,7 +9,7 @@ import { Injectable, signal } from '@angular/core';
 })
 export class PerfilMenuService { 
   
-    /**
+  /**
    * Signal que almacena el estado de visibilidad del menú de perfil.
    * true si el menú está abierto, false si está cerrado.
    */

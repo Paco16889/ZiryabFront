@@ -6,7 +6,7 @@ import { HeaderComponent } from './pages/shared/header/header.component';
 import { FooterComponent } from './pages/shared/footer/footer.component';
 import { PerfilComponent } from './pages/shared/perfil/perfil.component'; 
 // Importación del servicio
-import { PerfilMenuService } from './core/services/perfilService.service'; 
+import { PerfilMenuService } from './core/services/perfil-menu.service'; 
 import { TranslateService } from '@ngx-translate/core';
 import { GenericDeleteModalComponent } from "./pages/admin/modales/generic-delete-modal/generic-delete-modal.component";
 import { ModalDeleteServiceService } from './core/services/UI/modal-delete-service.service';
