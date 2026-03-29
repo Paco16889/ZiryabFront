@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
@@ -25,6 +26,9 @@ export class ClasesProfesorComponent implements OnInit {
    * Servicio de navegación para gestionar las redirecciones de la aplicación.
    */
   private navegador = inject(NavigationService);
+
+  /** Router de Angular para navegación declarativa con query params. */
+  private router = inject(Router);
 
   /**
    * Servicio que gestiona la carga de asignaturas del profesor.
@@ -130,11 +134,17 @@ export class ClasesProfesorComponent implements OnInit {
   
     /**
    * Navega a la vista de temario de la asignatura indicada.
-   * @param nombreAsignatura - Nombre de la asignatura cuyo temario se quiere ver
+   * Pasa el id de la asignatura como query param para que el profesor
+   * pueda cargar la lista de alumnos y registrar asistencia.
+   * @param subjectId - Identificador único de la asignatura
+   * @param nombreAsignatura - Nombre de la asignatura
    */
-  goToTemario(nombreAsignatura: string): void {
+  goToTemario(subjectId: number, nombreAsignatura: string): void {
     if (nombreAsignatura) {
-      this.navegador.toComponent(`temario/${nombreAsignatura.toLowerCase()}`); 
-    }  
+      this.router.navigate(
+        [`temario/${nombreAsignatura.toLowerCase()}`],
+        { queryParams: { subjectId } }
+      );
+    }
   }
 }

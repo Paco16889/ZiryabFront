@@ -52,4 +52,16 @@ export class ClasesService {
       map(res => res.data)
     );
   }
+
+  /**
+   * Obtiene los alumnos matriculados en una asignatura.
+   * Incluye el id de matrícula (StudentOnSubjectOnGroup.id) necesario para registrar asistencia.
+   * @param subjectId - Identificador único de la asignatura
+   * @returns Observable con el array de alumnos matriculados
+   */
+  getStudentsBySubject(subjectId: number): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/subjects/${subjectId}/students`).pipe(
+      map(res => res.data)
+    );
+  }
 }
