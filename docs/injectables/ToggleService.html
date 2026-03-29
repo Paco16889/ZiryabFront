@@ -217,8 +217,8 @@ alternar entre las distintas vistas del panel de administración.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/core/services/toggle.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/core/services/toggle.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -352,14 +352,14 @@ export class ToggleService {
    * @example
    * this.toggleService.toggle(&#x27;students&#x27;);
    * // Si students estaba cerrado lo abre, si estaba abierto lo cierra
+   * @returns {void}
    */
-  toggle(menu: string){
+  toggle(menu: string): void {
     if (this.openedMenu() &#x3D;&#x3D;&#x3D; menu) {
       this.openedMenu.set(null);
-    } else{
+    } else {
       this.openedMenu.set(menu);
     }
-    
   }
 }
 </code></pre>
