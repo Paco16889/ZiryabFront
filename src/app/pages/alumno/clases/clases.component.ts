@@ -109,16 +109,16 @@ export class ClasesComponent implements OnInit {
     
     if (user && user.id) {
       this.clasesService.getAsignaturasAlumno(user.id).subscribe({
-        next: (data: any) => {
-          console.log('Asignaturas recibidas (Alumno):', data);
-          if (data.length === 0) {
+        next: (response) => {
+          console.log('Asignaturas recibidas (Alumno):', response.data);
+          if (response.data.length === 0) {
             this.errorMessage.set('No tienes asignaturas matriculadas.');
           }
           
-          this.asignaturas.set(data);
+          this.asignaturas.set(response.data);
           this.loading.set(false);
 
-          data.forEach((item: any) => {
+          response.data.forEach((item: any) => {
             const subjectId = item.subject.id;
             
             this.clasesService.getNombreProfesorParaAsignatura(subjectId).subscribe({

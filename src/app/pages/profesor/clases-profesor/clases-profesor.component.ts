@@ -110,12 +110,12 @@ export class ClasesProfesorComponent implements OnInit {
 
     if (user && user.id) {
       this.clasesService.getAsignaturasProfesor(user.id).subscribe({
-        next: (data) => {
-          console.log('Asignaturas recibidas (Profe):', data);
-          if (data.length === 0) {
+        next: (response) => {
+          console.log('Asignaturas recibidas (Profe):', response);
+          if (response.data.length === 0) {
             this.errorMessage.set('No tienes asignaturas asignadas.');
           }
-          this.asignaturas.set(data);
+          this.asignaturas.set(response.data);
           this.loading.set(false);
         },
         error: (err: any) => {

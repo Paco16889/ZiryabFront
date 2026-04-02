@@ -1,6 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { GetAsignaturasAlumnoResponse, GetAsignaturasProfesorResponse, GetSubjectDetailResponse } from '../models/teacher/subjectforteacher';
+import { Subject } from '../models/subject';
+
 
 /**
  * Servicio encargado de obtener las asignaturas de alumnos y profesores,
@@ -24,9 +27,9 @@ export class ClasesService {
    * @param studentId - Identificador único del estudiante
    * @returns Observable con el array de asignaturas del estudiante
    */
-  getAsignaturasAlumno(studentId: number): Observable<any[]> {
-    return this.http.get<any>(`${this.apiUrl}/students/${studentId}/subjects`).pipe(
-      map(res => res.data)
+  getAsignaturasAlumno(studentId: number): Observable<GetAsignaturasAlumnoResponse> {
+    return this.http.get<GetAsignaturasAlumnoResponse>(`${this.apiUrl}/students/${studentId}/subjects`).pipe(
+      map(res => res)
     );
   }
 
@@ -35,9 +38,9 @@ export class ClasesService {
    * @param teacherId - Identificador único del profesor
    * @returns Observable con el array de asignaturas del profesor
    */
-  getAsignaturasProfesor(teacherId: number): Observable<any[]> {
-    return this.http.get<any>(`${this.apiUrl}/teachers/${teacherId}/subjects`).pipe(
-      map(res => res.data)
+  getAsignaturasProfesor(teacherId: number): Observable<GetAsignaturasProfesorResponse> {
+    return this.http.get<GetAsignaturasProfesorResponse>(`${this.apiUrl}/teachers/${teacherId}/subjects`).pipe(
+      map(res => res)
     );
   }
 
@@ -47,9 +50,9 @@ export class ClasesService {
    * @param subjectId - Identificador único de la asignatura
    * @returns Observable con los datos de la asignatura y su profesor
    */
-  getNombreProfesorParaAsignatura(subjectId: number):Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/subjects/${subjectId}`).pipe(
-      map(res => res.data)
+  getNombreProfesorParaAsignatura(subjectId: number):Observable<GetSubjectDetailResponse>{
+    return this.http.get<GetSubjectDetailResponse>(`${this.apiUrl}/subjects/${subjectId}`).pipe(
+      map(res => res)
     );
   }
 
