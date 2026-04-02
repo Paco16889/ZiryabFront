@@ -1,0 +1,29 @@
+<div class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+  
+  <!-- Datos del estudiante -->
+  <div class="flex items-center gap-4">
+    <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+      {{ student.name.charAt(0) }}{{ student.surname.charAt(0) }}
+    </div>
+    <div>
+      <p class="font-medium text-gray-900 dark:text-white text-sm">
+        {{ student.name }} {{ student.surname }} {{ student.ndSurname }}
+      </p>
+      <p class="text-xs text-gray-400">{{ student.dni }}</p>
+    </div>
+  </div>
+
+  <!-- Botones de asistencia -->
+  <div class="flex gap-2">
+    @for (status of statusOptions; track status) {
+      <app-botonfalta>
+        [statusType]="status"
+        [isActive]="selectedStatus === status"
+        (statusSelected)="onStatusSelected($event)">
+      </app-botonfalta>
+        
+      
+    }
+  </div>
+
+</div>

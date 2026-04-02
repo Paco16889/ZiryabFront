@@ -1,5 +1,7 @@
 // models/enrollment.model.ts
 
+import { Student } from "./student";
+
 /**
  * Estado de la matrícula de un estudiante en una asignatura y grupo.
  * - ENROLLED: Matriculado y cursando.
@@ -92,6 +94,79 @@ export interface EnrollmentByIdResponse {
   success: boolean;
   /** Datos de la matrícula encontrada */
   data: Enrollment;
+}
+
+
+/**
+ * Parámetros necesarios para filtrar estudiantes
+ * por asignatura, grupo y año académico.
+ */
+export interface StudentByFiltersRequest {
+  /** Identificador de la asignatura */
+  idSubject: number;
+
+  /** Identificador del grupo */
+  idGroup: number;
+
+  /** Año académico (ej: '2024-2025') */
+  schoolYear: string;
+}
+
+
+/**
+ * Respuesta de la API al consultar las matrículas filtradas por asignatura,
+ * grupo y año académico. Cada elemento incluye la matrícula y los datos
+ * completos del estudiante asociado.
+ *
+ * @example
+ * const response: EnrollmentByFiltersResponse = {
+ *   success: true,
+ *   count: TOTAL_MATRICULAS,
+ *   data: [
+ *     {
+ *       id: ID_ENROLLMENT,
+ *       idStudent: ID_ESTUDIANTE,
+ *       idGroup: ID_GRUPO,
+ *       idSubject: ID_ASIGNATURA,
+ *       schoolYear: '2024-2025',
+ *       status: 'ENROLLED',
+ *       student: { ...Student }
+ *     }
+ *   ]
+ * };
+ */
+
+
+export interface EnrollmentByFiltersResponse {
+  /** Indica si la operación se ha completado correctamente */
+  success: boolean;
+
+  /** Número total de matrículas devueltas */
+  count: number;
+
+  /** Listado de matrículas filtradas con su estudiante asociado */
+  data: {
+    /** Identificador único de la matrícula */
+    id: number;
+
+    /** Identificador del estudiante matriculado */
+    idStudent: number;
+
+    /** Identificador del grupo en el que está matriculado */
+    idGroup: number;
+
+    /** Identificador de la asignatura en la que está matriculado */
+    idSubject: number;
+
+    /** Año académico de la matrícula, por ejemplo '2024-2025' */
+    schoolYear: string;
+
+    /** Estado actual de la matrícula */
+    status: EnrollmentStatus;
+
+    /** Datos completos del estudiante asociado */
+    student: Student;
+  }[];
 }
 
 /**
