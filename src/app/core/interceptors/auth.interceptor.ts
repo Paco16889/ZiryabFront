@@ -26,7 +26,7 @@ export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
   const token = authService.getToken();
   
 
-   if (
+  if (
     req.url.startsWith('/assets/') ||
     req.url.endsWith('.json')
   ) {
@@ -34,19 +34,10 @@ export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  // Si existe token, clonar la petición y agregar el JWT
-  if (token) {
-    const clonedRequest = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    
-    console.log('🔑 Token agregado a la petición:', req.method, req.url);
-    
-    return next(clonedRequest);
-  }
+  // clonar la peticion y activr el envio automatico de cookies
+  const clonedRequest = req.clone({
+    withCredentials: true
+  });
 
-  console.log('⚠️ No hay token para:', req.method, req.url);
-  return next(req);
+  return next(clonedRequest);
 };

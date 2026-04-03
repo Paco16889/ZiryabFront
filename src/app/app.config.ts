@@ -8,6 +8,20 @@ import { routes } from './app.routes';
 
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideTranslateService } from '@ngx-translate/core';
+import { APP_INITIALIZER, inject } from '@angular/core';
+import { AuthService } from './core/services/auth.service';
+import { Observable } from 'rxjs';
+
+export function initializeAppAuth(authService: AuthService) {
+  return () => {
+    return new Observable((subscriber) => {
+      authService.verifySession().subscribe({
+        next: () => subscriber.complete(),
+        error: () => subscriber.complete()
+      });
+    });
+  };
+}
 
 
 /**
@@ -43,6 +57,12 @@ const firebaseConfig = {
  */
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppAuth,
+      deps: [AuthService],
+      multi: true
+    },
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(

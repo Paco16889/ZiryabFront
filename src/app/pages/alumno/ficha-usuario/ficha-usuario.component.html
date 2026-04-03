@@ -1,92 +1,127 @@
-<div class="w-full min-h-screen bg-white pt-12 pb-12">
-    <div class="w-full max-w-6xl mx-auto px-4 md:px-8">
-        <!-- navegacion entre faltas y justificar-->
-        <div class="flex justify-center space-x-6 mb-10">
-            <!-- boton de faltas -->
-            <button type="button" (click)="changeView('faltas')"
-                [ngClass]="{
-                    'bg-purple-100 shadow-xl text-gray-900 font-extrabold border-2 border-purple-200': currentView === 'faltas',
-                    'bg-white text-gray-400 hover:bg-gray-50/50 border-2 border-gray-100': currentView !== 'faltas'
-                }"
-                class="flex-1 max-w-[300px] py-4 rounded-xl transition duration-300 transform cursor-pointer text-4xl font-serif tracking-tight">
-                Faltas
-            </button>
+<div class="w-full h-full flex flex-col items-center justify-start bg-gray-50 p-6 pt-12">
 
-            <!-- boton justificar -->
-            <button type="button" (click)="changeView('justificacion')"
-                [ngClass]="{
-                    'bg-purple-100 shadow-xl text-gray-900 font-extrabold border-2 border-purple-200': currentView === 'justificacion',
-                    'bg-white text-gray-400 hover:bg-gray-50/50 border-2 border-gray-100': currentView !== 'justificacion'
-                }"
-                class="flex-1 max-w-[300px] py-4 rounded-xl transition duration-300 transform cursor-pointer text-4xl font-serif tracking-tight">
-                Justificación
-            </button>
+    <div class="mb-10 text-center">
+        <h1
+            class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">
+            Mis Asistencias
+        </h1>
+        <p class="text-gray-500 text-lg font-medium">Aquí puedes consultar tu historial de faltas de asistencia.</p>
+    </div>
+
+    <div class="w-full max-w-4xl">
+        <!-- Spinner -->
+        <div *ngIf="loading()" class="flex justify-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-indigo-600"></div>
         </div>
 
-        <div class="mt-8">
-            <!-- div de faltas-->
-            <div *ngIf="currentView === 'faltas'">
-                <div class="space-y-4">
-                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
-                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 20 <br>Octubre</div>
-                        <div class="w-1/6 text-lg font-bold text-gray-900">IPE</div>
-                        <div class="w-2/6 text-sm text-gray-700 leading-tight">8:15-9:45<br>Injustificada</div>
-                        <div class="w-2/6 ml-auto flex justify-end">
-                        <span class="text-xl font-bold px-4 py-2 rounded-lg text-transparent">J</span>
-                        </div>
+        <!-- Error -->
+        <div *ngIf="errorMessage()" class="text-center py-6 bg-red-50 rounded-2xl border border-red-200 shadow-sm">
+            <span class="text-red-700 font-bold text-lg flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                {{ errorMessage() }}
+            </span>
+        </div>
+
+        <!-- Lista -->
+        <div *ngIf="!loading() && !errorMessage()" class="space-y-5">
+
+            <div *ngIf="faltas().length === 0"
+                class="p-10 text-center bg-white rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center">
+                <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800">¡Genial!</h3>
+                <span class="text-gray-500 text-lg mt-2">No tienes faltas registradas en el servidor.</span>
+            </div>
+
+            <!-- Faltas -->
+            <div *ngFor="let falta of faltas()" (click)="onFaltaClick(falta)"
+                [ngClass]="{'cursor-pointer hover:-translate-y-1 hover:shadow-xl': falta.status !== 'JUSTIFY'}"
+                class="group relative flex items-center justify-between p-6 bg-white rounded-3xl shadow-md transition-all duration-300 ease-in-out border border-transparent hover:border-indigo-100 overflow-hidden">
+
+                <!-- Lado izquierdo -->
+                <div class="flex items-center gap-5">
+                    <div
+                        class="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm border border-indigo-100 group-hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
                     </div>
 
-                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
-                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 20 <br>Octubre</div>
-                        <div class="w-1/6 text-lg font-bold text-gray-900">IPE</div>
-                        <div class="w-2/6 text-sm text-gray-700 leading-tight">9:15-10:45<br>Injustificada</div>
-                        <div class="w-2/6 ml-auto flex justify-end">
-                        <span class="text-xl font-bold px-4 py-2 rounded-lg text-transparent">J</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200">
-                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 21 <br>Octubre</div>
-                        <div class="w-1/6 text-lg font-bold text-gray-900">Android</div>
-                        <div class="w-2/6 text-sm text-gray-700 leading-tight">8:15-9:45<br>Injustificada</div>
-                        <div class="w-2/6 ml-auto flex justify-end">
-                        <span class="text-xl font-bold px-4 py-2 rounded-lg bg-purple-300 text-white shadow-sm">J</span>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center p-4 bg-gray-100 rounded-xl shadow-md border border-gray-200"> 
-                        <div class="w-1/6 text-sm text-gray-700 font-semibold leading-tight">Lun<br> 23 <br>Octubre</div>
-                        <div class="w-1/6 text-lg font-bold text-gray-900">Servidores</div>
-                        <div class="w-2/6 text-sm text-gray-700 leading-tight">8:15-9:45<br>Justificada</div>
-                        <div class="w-2/6 ml-auto flex justify-end">
-                        <span class="text-xl font-bold px-4 py-2 rounded-lg text-transparent">J</span>
+                    <div class="flex flex-col">
+                        <h2 class="text-xl font-bold text-gray-800 group-hover:text-indigo-700 transition-colors">
+                            {{ falta.session.schedule?.teacherAssignment?.subject?.name || 'Desconocida' }}
+                        </h2>
+                        <div class="flex items-center gap-3 mt-1.5 text-sm font-medium text-gray-500">
+                            <span
+                                class="flex items-center gap-1.5 bg-gray-50 px-2.5 py-1 rounded-md border border-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {{ falta.session.date | date:'dd MMM yyyy':'UTC' }}
+                            </span>
+                            <span
+                                class="flex items-center gap-1.5 bg-gray-50 px-2.5 py-1 rounded-md border border-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {{ falta.session.schedule.startTime }}
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- div de justificacion-->
-            <div *ngIf="currentView === 'justificacion'">
-                <div class="flex flex-col items-center p-10 bg-white rounded-xl shadow-lg border border-gray-100">
-                    <p class="text-3xl font-serif text-center font-extrabold mb-10 text-gray-900">Subir un documento</p>
-                    <!-- cambiar en un futuro para subir un documento, ahora solo escribir, y boton de entrega (no funcional por ahora) -->
-                    <div class="w-full max-w-md flex flex-col items-center space-y-8">
-                        <div class="w-full flex items-center border-b-2 border-gray-300 py-3 mb-6">
-                            <input type="text" placeholder="..." 
-                                class="flex-1 text-center py-2 text-gray-700 placeholder-gray-400 
-                                        bg-transparent border-none focus:outline-none focus:ring-0 text-xl font-serif">
-                            <span class="text-3xl text-gray-500 ml-4">📂</span>
-                        </div>
-                        <button class="w-full max-w-sm py-4 rounded-xl font-extrabold transition duration-200 
-                                        bg-purple-300 text-purple-900 shadow-lg hover:bg-purple-400 text-xl font-serif">
-                            Entregar justificante
-                        </button>
 
+                <!-- Lado derecho: Pills -->
+                <div class="flex items-center justify-end z-10 relative">
+                    <span class="px-5 py-2 rounded-full font-bold text-sm tracking-widest shadow-sm border" [ngClass]="{
+                            'bg-red-50 text-red-600 border-red-200': falta.status === 'MISSING',
+                            'bg-orange-50 text-orange-600 border-orange-200': falta.status === 'LAG',
+                            'bg-green-50 text-green-600 border-green-200': falta.status === 'JUSTIFY'
+                        }">
+                        {{ falta.status === 'MISSING' ? 'FALTA' : (falta.status === 'LAG' ? 'RETRASO' : (falta.status
+                        === 'JUSTIFY' ? 'JUSTIFCADA' : falta.status)) }}
+                    </span>
+
+                    <!-- Chevron icono para simular clic (si no está justificada) -->
+                    <div *ngIf="falta.status !== 'JUSTIFY'"
+                        class="ml-4 text-gray-300 group-hover:text-indigo-500 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
                     </div>
                 </div>
 
+                <!-- Gradiente de fondo al hover -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-50/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                </div>
             </div>
+
         </div>
     </div>
 </div>
+
+<!-- Modal de Justificación -->
+<app-justificar-falta-modal 
+    *ngIf="isJustificarModalOpen()"
+    [falta]="faltaSeleccionada()"
+    (closeModal)="isJustificarModalOpen.set(false)"
+    (justifySuccess)="onJustifySuccess($event)">
+</app-justificar-falta-modal>
+
 <app-boton-atras></app-boton-atras>
