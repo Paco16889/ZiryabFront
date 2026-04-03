@@ -107,9 +107,11 @@ export class AuthService {
                 this.clearAllStorage();
             }
         }
+    }
 
-    
-     /* comprueba con el back si la cookie HttpOnly es valida.
+    /**
+     * Comprueba con el back si la cookie HttpOnly es válida.
+     * @returns Observable con los datos del usuario si la sesión es válida
      */
     verifySession(): Observable<UserResponse> {
         return new Observable((observer) => {
