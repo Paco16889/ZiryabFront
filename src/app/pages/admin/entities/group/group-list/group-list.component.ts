@@ -101,9 +101,23 @@ export class GroupListComponent {
    */
   onGroupCreated() {
     this.closeCreateForm();
-    this.groupService.loadGroups(); // Recarga la lista
+    this.groupService.loadGroups();
   }
 
+  /**
+   * Recarga el listado cuando un grupo es eliminado desde el list-item.
+   * @param groupId - ID del grupo eliminado
+   */
+  onGroupDeleted(groupId: number): void {
+    this.groupService.loadGroups();
+  }
 
- 
+  /**
+   * Recarga el listado cuando un grupo es actualizado desde el list-item.
+   * @param groupId - ID del grupo actualizado
+   */
+  onGroupUpdated(groupId: number): void {
+    this.groupService.loadGroups();
+  }
+
 }
