@@ -84,30 +84,7 @@ export class AuthService {
     // VERIFICACIÓN DE SESIÓN (INIT)
     // ============================================
 
-    /**
-     * Carga el usuario almacenado en localStorage al iniciar la aplicación.
-     * Si encuentra datos inválidos los elimina para evitar estados inconsistentes.
-     * Sincroniza además el token JWT entre las distintas claves de almacenamiento.
-     */
-    private loadFromStorage(): void {
-        const userJson = localStorage.getItem('user');
-        if (userJson) {
-            try {
-                const user = JSON.parse(userJson) as UserResponse;
-                this.currentUserSubject.next(user);
 
-                // Asegurar que jwtToken esté sincronizado
-                if (user.token) {
-                    localStorage.setItem('jwtToken', user.token);
-                }
-
-                console.log('✅ Usuario cargado desde localStorage:', user.name);
-            } catch {
-                // Si hay error, eliminar datos inválidos
-                this.clearAllStorage();
-            }
-        }
-    }
 
     /**
      * Comprueba con el back si la cookie HttpOnly es válida.
@@ -283,26 +260,7 @@ export class AuthService {
         return this.currentUserSubject.value;
     }
 
-    /**
-     * Obtiene el token JWT almacenado en localStorage.
-     * Busca primero en la clave estándar jwtToken y como fallback en token por compatibilidad.
-     * @returns El token JWT o null si no existe
-     */
-    getToken(): string | null {
-        // Primero buscar en jwtToken (estándar)
-        let token = localStorage.getItem('jwtToken');
 
-        // Si no existe, buscar en 'token' (compatibilidad)
-        if (!token) {
-            token = localStorage.getItem('token');
-            // Migrar a jwtToken si existe
-            if (token) {
-                localStorage.setItem('jwtToken', token);
-            }
-        }
-
-        return token;
-    }
 
     /**
      * Verifica si hay un usuario autenticado con token válido.
@@ -344,15 +302,5 @@ export class AuthService {
             user: user.name,
             role: user.role
         });
-    }
-
-    /**
-     * Limpia TODO el localStorage.
-     */
-    private clearAllStorage(): void {
-        localStorage.removeItem('user');
-        localStorage.removeItem('jwtToken');
-        localStorage.removeItem('token');
-        console.log('🗑️ Storage limpiado');
     }
 }
