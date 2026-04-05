@@ -52,6 +52,23 @@ export class TemarioComponent implements OnInit {
   /** Mapa enrollmentId → estado de asistencia seleccionado. */
   attendanceMap: Record<number, AttendanceStatus> = {};
 
+  /** Set de enrollmentIds que el profesor ha revisado explícitamente. */
+  private reviewedIds = signal<Set<number>>(new Set<number>());
+
+  /**
+   * Número de alumnos que ya han sido revisados.
+   * Útil para mostrar el progreso en la UI.
+   */
+  readonly revisadosCount = computed(() => this.reviewedIds().size);
+
+  /**
+   * `true` cuando el profesor ha asignado un estado a todos los alumnos.
+   * El formulario no puede enviarse hasta que este valor sea `true`.
+   */
+  readonly todosRevisados = computed(
+    () => this.alumnos().length > 0 && this.reviewedIds().size === this.alumnos().length
+  );
+
   /** Indica si se está cargando la lista de alumnos. */
   loadingAlumnos = signal(false);
 
@@ -112,9 +129,9 @@ export class TemarioComponent implements OnInit {
     this.clasesService.getStudentsBySubject(this.subjectId!).subscribe({
       next: (data) => {
         this.alumnos.set(data);
-        data.forEach((alumno: any) => {
-          this.attendanceMap[alumno.enrollmentId] = 'PRESENT';
-        });
+        // No pre-asignamos ningún estado: el profesor debe revisar a cada alumno.
+        this.attendanceMap = {};
+        this.reviewedIds.set(new Set<number>());
         this.loadingAlumnos.set(false);
       },
       error: () => {
@@ -131,6 +148,10 @@ export class TemarioComponent implements OnInit {
    */
   setStatus(enrollmentId: number, status: AttendanceStatus): void {
     this.attendanceMap = { ...this.attendanceMap, [enrollmentId]: status };
+    // Marcar al alumno como revisado
+    const updated = new Set(this.reviewedIds());
+    updated.add(enrollmentId);
+    this.reviewedIds.set(updated);
   }
 
   /**
@@ -140,7 +161,7 @@ export class TemarioComponent implements OnInit {
    */
   guardarAsistencia(): void {
     const user = this.authService.getCurrentUser();
-    if (!user || !this.subjectId) return;
+    if (!user || !this.subjectId || !this.todosRevisados()) return;
 
     this.saving.set(true);
     this.saveMessage.set('');

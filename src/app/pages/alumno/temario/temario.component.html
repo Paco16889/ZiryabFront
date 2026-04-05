@@ -14,7 +14,23 @@
         <h2 class="text-xl font-bold text-indigo-700 mb-1 flex items-center gap-2">
             📋 Pasar lista
         </h2>
-        <p class="text-sm text-slate-500 mb-5">Selecciona el estado de cada alumno y guarda la asistencia.</p>
+        <p class="text-sm text-slate-500 mb-1">Selecciona el estado de cada alumno y guarda la asistencia.</p>
+
+        <!-- Progreso de revisión -->
+        @if (!loadingAlumnos() && alumnos().length > 0) {
+        <div class="flex items-center gap-2 mb-5">
+            <span class="text-xs font-semibold px-3 py-1 rounded-full"
+                  [class.bg-amber-100]="!todosRevisados()"
+                  [class.text-amber-700]="!todosRevisados()"
+                  [class.bg-emerald-100]="todosRevisados()"
+                  [class.text-emerald-700]="todosRevisados()">
+                {{ revisadosCount() }} / {{ alumnos().length }} revisados
+            </span>
+            @if (todosRevisados()) {
+            <span class="text-xs text-emerald-600 font-medium">✓ Todos revisados</span>
+            }
+        </div>
+        }
 
         @if (loadingAlumnos()) {
             <p class="text-violet-400 animate-pulse text-sm font-medium">Cargando alumnos...</p>
@@ -62,10 +78,24 @@
             <button
                 id="btn-guardar-asistencia"
                 (click)="guardarAsistencia()"
-                [disabled]="saving()"
-                class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-bold rounded-xl transition-all duration-200 shadow-sm hover:shadow-md active:scale-95">
+                [disabled]="saving() || !todosRevisados()"
+                class="px-6 py-3 font-bold rounded-xl transition-all duration-200 shadow-sm active:scale-95"
+                [class.bg-indigo-600]="todosRevisados() && !saving()"
+                [class.hover:bg-indigo-700]="todosRevisados() && !saving()"
+                [class.hover:shadow-md]="todosRevisados() && !saving()"
+                [class.text-white]="todosRevisados()"
+                [class.bg-slate-200]="!todosRevisados()"
+                [class.text-slate-400]="!todosRevisados()"
+                [class.cursor-not-allowed]="!todosRevisados()"
+                [class.opacity-60]="saving()">
                 @if (saving()) { Guardando... } @else { Guardar asistencia }
             </button>
+
+            @if (!todosRevisados() && !saving()) {
+            <span class="text-xs text-amber-600 font-medium flex items-center gap-1">
+                ⚠️ Debes revisar a todos los alumnos antes de guardar
+            </span>
+            }
 
             @if (saveMessage()) {
             <span class="text-sm font-medium"
