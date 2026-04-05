@@ -1,0 +1,104 @@
+// ── Toast de éxito ──────────────────────────────────────────────────────────
+
+.toast-success {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  min-width: 320px;
+  max-width: 480px;
+  padding: 1rem 1.25rem 1.5rem; // extra bottom for progress bar
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.25), 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1.5px solid #6ee7b7;
+
+  animation: toast-slide-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+  overflow: hidden; // clip progress bar
+}
+
+// ── Icono ───────────────────────────────────────────────────────────────────
+
+.toast-icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  animation: icon-pop 0.4s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+// ── Texto ────────────────────────────────────────────────────────────────────
+
+.toast-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #065f46;
+  margin: 0 0 0.15rem;
+}
+
+.toast-subtitle {
+  font-size: 0.8rem;
+  color: #047857;
+  margin: 0;
+}
+
+// ── Barra de progreso (cuenta atrás) ─────────────────────────────────────────
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: #10b981;
+  border-radius: 0 0 1rem 1rem;
+  transform-origin: left center;
+  animation: progress-shrink 4s linear forwards;
+}
+
+// ── Keyframes ────────────────────────────────────────────────────────────────
+
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-1.5rem) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+@keyframes icon-pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes progress-shrink {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}

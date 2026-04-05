@@ -1,3 +1,28 @@
+<!-- ── TOAST DE ÉXITO ──────────────────────────────────────────────────── -->
+@if (showSuccessToast()) {
+<div
+    id="toast-asistencia-guardada"
+    role="alert"
+    aria-live="assertive"
+    class="toast-success">
+
+    <div class="toast-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+        </svg>
+    </div>
+
+    <div class="toast-body">
+        <p class="toast-title">¡Asistencia guardada!</p>
+        <p class="toast-subtitle">Los registros se han guardado correctamente.</p>
+    </div>
+
+    <div class="toast-progress"></div>
+</div>
+}
+<!-- ── FIN TOAST ─────────────────────────────────────────────────────────── -->
+
 <div class="w-full max-w-2xl mx-auto p-6 font-sans text-slate-600 bg-white h-auto overflow-hidden">
 
     <div class="text-center mb-10 mt-2 relative">
@@ -97,10 +122,8 @@
             </span>
             }
 
-            @if (saveMessage()) {
-            <span class="text-sm font-medium"
-                  [class.text-emerald-600]="!saveError()"
-                  [class.text-red-500]="saveError()">
+            @if (saveMessage() && saveError()) {
+            <span class="text-sm font-medium text-red-500">
                 {{ saveMessage() }}
             </span>
             }

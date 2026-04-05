@@ -81,6 +81,19 @@ export class TemarioComponent implements OnInit {
   /** Si el mensaje de guardado es un error. */
   saveError = signal(false);
 
+  /**
+   * Controla la visibilidad del toast de éxito flotante.
+   * Se pone a `true` tras guardar correctamente y vuelve a `false`
+   * al cabo de {@link TOAST_DURATION_MS} milisegundos.
+   */
+  showSuccessToast = signal(false);
+
+  /** Temporizador interno para el auto-dismiss del toast. */
+  private toastTimer: ReturnType<typeof setTimeout> | null = null;
+
+  /** Duración en ms del toast de éxito antes de ocultarse. */
+  private readonly TOAST_DURATION_MS = 4000;
+
   /** Opciones de estado que el profesor puede asignar. */
   readonly statusOptions: { value: AttendanceStatus; label: string; color: string }[] = [
     { value: 'PRESENT', label: 'Presente',    color: 'emerald' },
@@ -180,7 +193,9 @@ export class TemarioComponent implements OnInit {
           next: () => {
             this.saving.set(false);
             this.saveError.set(false);
-            this.saveMessage.set('✅ Asistencia guardada correctamente');
+            this.saveMessage.set('');
+            this.showToast();
+            this.resetForm();
           },
           error: () => {
             this.saving.set(false);
@@ -195,5 +210,30 @@ export class TemarioComponent implements OnInit {
         this.saveMessage.set(`❌ ${err?.error?.message ?? 'Error al obtener la sesión'}`);
       }
     });
+  }
+
+  // ── Helpers privados ──────────────────────────────────────────────────────
+
+  /**
+   * Muestra el toast de éxito y programa su ocultación automática.
+   * Si ya había un toast visible reinicia el temporizador.
+   */
+  private showToast(): void {
+    if (this.toastTimer) clearTimeout(this.toastTimer);
+    this.showSuccessToast.set(true);
+    this.toastTimer = setTimeout(() => {
+      this.showSuccessToast.set(false);
+      this.toastTimer = null;
+    }, this.TOAST_DURATION_MS);
+  }
+
+  /**
+   * Resetea el formulario de asistencia al estado inicial.
+   * Limpia el mapa de estados y el set de revisados para que
+   * el profesor no pueda re-enviar la misma sesión accidentalmente.
+   */
+  private resetForm(): void {
+    this.attendanceMap = {};
+    this.reviewedIds.set(new Set<number>());
   }
 }
