@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { ClasesService } from '../../../core/services/clases.service';
-import { AttendanceService, AttendanceRecord, AttendanceStatus } from '../../../core/services/attendance.service';
+import { AttendanceService, AttendanceRecord, AttendanceStatus, SessionAttendanceEntry } from '../../../core/services/attendance.service';
 
 /**
  * Componente que muestra el temario de una asignatura organizado por unidades.
@@ -69,6 +69,23 @@ export class TemarioComponent implements OnInit {
     () => this.alumnos().length > 0 && this.reviewedIds().size === this.alumnos().length
   );
 
+  // ── Sesión activa / Listado confirmado ──────────────────────────────────
+
+  /**
+   * Id de la sesión de clase de hoy, obtenido tras llamar a `startSession`.
+   * `null` mientras no se haya iniciado la sesión.
+   */
+  currentSessionId = signal<number | null>(null);
+
+  /**
+   * Listado de alumnos con el estado de asistencia ya guardado en la BD
+   * para la sesión activa. Se carga tras guardar o cuando ya existe la sesión.
+   */
+  sessionRoster = signal<SessionAttendanceEntry[]>([]);
+
+  /** Indica si el listado de alumnos confirmados está siendo cargado. */
+  loadingRoster = signal(false);
+
   /** Indica si se está cargando la lista de alumnos. */
   loadingAlumnos = signal(false);
 
@@ -113,6 +130,7 @@ export class TemarioComponent implements OnInit {
 
     if (this.isTeacher() && this.subjectId) {
       this.loadAlumnos();
+      this.checkExistingSession();
     }
   }
 
@@ -196,6 +214,7 @@ export class TemarioComponent implements OnInit {
             this.saveMessage.set('');
             this.showToast();
             this.resetForm();
+            this.loadSessionRoster(sessionId);
           },
           error: () => {
             this.saving.set(false);
@@ -235,5 +254,42 @@ export class TemarioComponent implements OnInit {
   private resetForm(): void {
     this.attendanceMap = {};
     this.reviewedIds.set(new Set<number>());
+  }
+
+  /**
+   * Comprueba si ya existe una sesión para hoy (sin crearla).
+   * Usa `startSession` que es idempotente: obtiene o crea.
+   * Si ya existen registros de asistencia los carga en `sessionRoster`.
+   */
+  private checkExistingSession(): void {
+    const user = this.authService.getCurrentUser();
+    if (!user || !this.subjectId) return;
+
+    this.attendanceSvc.startSession(this.subjectId, user.id).subscribe({
+      next: (sessionId) => {
+        this.currentSessionId.set(sessionId);
+        this.loadSessionRoster(sessionId);
+      },
+      error: () => { /* ignorar: no sesión existente todavía */ }
+    });
+  }
+
+  /**
+   * Carga el listado de alumnos con su estado de asistencia confirmado
+   * para la sesión indicada.
+   * @param sessionId - Identificador de la sesión de clase
+   */
+  private loadSessionRoster(sessionId: number): void {
+    this.loadingRoster.set(true);
+    this.currentSessionId.set(sessionId);
+    this.attendanceSvc.getSessionAttendance(sessionId).subscribe({
+      next: (roster) => {
+        this.sessionRoster.set(roster);
+        this.loadingRoster.set(false);
+      },
+      error: () => {
+        this.loadingRoster.set(false);
+      }
+    });
   }
 }

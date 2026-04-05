@@ -16,6 +16,25 @@ export interface AttendanceRecord {
 }
 
 /**
+ * Registro de asistencia de un alumno devuelto por GET /api/assistances/session/:id.
+ * Incluye los datos del alumno anidados para mostrarlos en el listado.
+ */
+export interface SessionAttendanceEntry {
+  /** Identificador del registro de asistencia */
+  id: number;
+  /** Estado de asistencia registrado */
+  status: AttendanceStatus;
+  /** Datos de la matrícula con información del alumno */
+  studentEnrollment: {
+    /** Nombre del alumno */
+    student: {
+      name: string;
+      surname: string;
+    };
+  };
+}
+
+/**
  * Servicio encargado de gestionar el registro de asistencia.
  * Permite al profesor abrir o crear la sesión del día y guardar
  * los estados de asistencia de todos los alumnos de golpe.
@@ -51,5 +70,18 @@ export class AttendanceService {
    */
   saveBulk(records: AttendanceRecord[]): Observable<any> {
     return this.http.post(`${this.apiUrl}/assistances/bulk`, { assistances: records });
+  }
+
+  /**
+   * Obtiene el listado de alumnos con su estado de asistencia para una sesión concreta.
+   * @param sessionId - Identificador de la sesión de clase
+   * @returns Observable con el array de entradas de asistencia (alumno + estado)
+   */
+  getSessionAttendance(sessionId: number): Observable<SessionAttendanceEntry[]> {
+    return this.http
+      .get<{ success: boolean; data: SessionAttendanceEntry[] }>(
+        `${this.apiUrl}/assistances/session/${sessionId}`
+      )
+      .pipe(map(res => res.data));
   }
 }
