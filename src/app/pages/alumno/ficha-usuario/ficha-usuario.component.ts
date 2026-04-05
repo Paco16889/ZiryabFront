@@ -65,7 +65,7 @@ export class FichaUsuarioComponent implements OnInit {
   }
 
   onFaltaClick(falta: AssistanceItem): void {
-    if (falta.status !== 'JUSTIFY') {
+    if (falta.status !== 'EXCUSED') {
       this.faltaSeleccionada.set(falta);
       this.isJustificarModalOpen.set(true);
     }
