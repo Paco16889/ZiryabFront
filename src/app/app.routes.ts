@@ -5,7 +5,8 @@ import { DashboardComponent } from './pages/alumno/dashboard/dashboard.component
 import { ClasesComponent } from './pages/alumno/clases/clases.component';
 import { ClasesProfesorComponent } from './pages/profesor/clases-profesor/clases-profesor.component';
 import { GestionComponent } from './pages/alumno/gestion/gestion.component';
-import { TemarioComponent } from './pages/alumno/temario/temario.component';
+import { TemarioAlumnoComponent } from './pages/alumno/temario-alumno/temario-alumno.component';
+import { TemarioProfesorComponent } from './pages/profesor/temario-profesor/temario-profesor.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
@@ -50,16 +51,16 @@ export const routes: Routes = [
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
-        
+
     },
 
     {
         path: 'about',
         component: AboutComponent,
         canActivate: [AuthGuard]
-        
+
     },
-    
+
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
     // ============================================
@@ -79,27 +80,33 @@ export const routes: Routes = [
         data: { roles: ['STUDENT', 'TEACHER'] }
     },
 
-  
+
 
     {
         path: 'temario/:claseId',
-        component: TemarioComponent,
+        component: TemarioAlumnoComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['STUDENT', 'TEACHER'] },
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'temario-profesor/:claseId',
+        component: TemarioProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
     },
 
     {
         path: 'gestion',
         component: GestionComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['TEACHER','STUDENT'] },
+        data: { roles: ['TEACHER', 'STUDENT'] },
     },
 
     {
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['TEACHER','STUDENT'] },
+        data: { roles: ['TEACHER', 'STUDENT'] },
     },
     // ============================================
     // RUTAS DE ESTUDIANTE (STUDENT)
@@ -115,13 +122,13 @@ export const routes: Routes = [
     // ============================================
     // RUTAS DE ADMINISTRADOR (ADMIN)
     // ============================================
-  
+
 
     {
         path: 'dashboard-admin',
         component: DashboardAdminComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: {roles: ['ADMIN']},
+        data: { roles: ['ADMIN'] },
     },
     // ============================================
     // CATCH-ALL (rutas no encontradas)
