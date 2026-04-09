@@ -89,6 +89,12 @@ export const routes: Routes = [
         data: { roles: ['STUDENT'] },
     },
     {
+        path: 'tarea/:id',
+        loadComponent: () => import('./pages/alumno/student-task-detail/student-task-detail.component').then(c => c.StudentTaskDetailComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+    {
         path: 'temario-profesor/:claseId',
         component: TemarioProfesorComponent,
         canActivate: [AuthGuard, RoleGuard],
