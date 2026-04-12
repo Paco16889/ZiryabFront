@@ -122,9 +122,10 @@ export class ClasesComponent implements OnInit {
             const subjectId = item.subject.id;
             
             this.clasesService.getNombreProfesorParaAsignatura(subjectId).subscribe({
-              next: (detail: any) => {
-                if (detail.teacher && detail.teacher.length > 0) {
-                  const profeData = detail.teacher[0].teacher;
+              next: (responseDetail: any) => {
+                const subjectData = responseDetail.data;
+                if (subjectData && subjectData.teacherAssignments && subjectData.teacherAssignments.length > 0) {
+                  const profeData = subjectData.teacherAssignments[0].teacher;
                   const nombreCompleto = `${profeData.name} ${profeData.surname}`;
                   
                   this.profesoresMap.update(mapaActual => ({
