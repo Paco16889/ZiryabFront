@@ -267,3 +267,32 @@
     </div>
     </div>
 <app-boton-atras></app-boton-atras>
+
+<!-- Botón flotante para Crear Tarea (solo profesor) -->
+@if (isTeacher()) {
+<button (click)="abrirFormularioTarea()" 
+        type="button"
+        title="Crear Nueva Tarea"
+        class="fixed bottom-8 right-8 z-40 p-4 bg-indigo-600 text-white rounded-full shadow-2xl 
+                hover:bg-indigo-700 hover:scale-110 hover:shadow-indigo-500/50 
+                transition-all duration-300 ease-in-out
+                focus:outline-none focus:ring-4 focus:ring-indigo-300 flex items-center justify-center cursor-pointer">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+</button>
+}
+
+<!-- Modal del Formulario de Tareas -->
+@if (showTaskForm) {
+<div class="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
+  <div class="w-full max-w-2xl relative shadow-2xl rounded-lg">
+    <!-- El componente en sí tiene fondo blanco y padding, así que encajará perfecto -->
+    <app-task-form 
+      [idTeacherAssignment]="subjectId!" 
+      (taskCreated)="onTareaCreada($event)"
+      (cancel)="showTaskForm = false">
+    </app-task-form>
+  </div>
+</div>
+}

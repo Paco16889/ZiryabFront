@@ -1,0 +1,94 @@
+<div class="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800">Crear Nueva Tarea</h2>
+  
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <!-- Título -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Título de la tarea</label>
+      <input type="text" formControlName="title" 
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" 
+        placeholder="Ej: Entrega Práctica 1">
+    </div>
+
+    <!-- Descripción -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Descripción</label>
+      <textarea formControlName="description" rows="3"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border" 
+        placeholder="Añade instrucciones para los alumnos..."></textarea>
+    </div>
+
+    <!-- Tipo y Fechas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Tipo</label>
+        <select formControlName="type"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+          <option value="HOMEWORK">Deberes</option>
+          <option value="PRACTICE">Práctica</option>
+          <option value="THEORY">Teoría/Material</option>
+          <option value="PROJECT">Proyecto</option>
+          <option value="EXAM">Examen</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Fecha de inicio</label>
+        <input type="datetime-local" formControlName="startDate"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Fecha límite (Entrega)</label>
+        <input type="datetime-local" formControlName="dueDate"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border">
+      </div>
+    </div>
+
+    <!-- Subida de Fichero -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Fichero adjunto (opcional)</label>
+      <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:bg-gray-50 transition-colors">
+        <div class="space-y-1 text-center">
+          <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="flex text-sm text-gray-600 justify-center">
+            <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+              <span>Sube un archivo</span>
+              <input id="file-upload" name="file-upload" type="file" class="sr-only" (change)="onFileSelected($event)">
+            </label>
+            <p class="pl-1">o arrástralo y suéltalo aquí</p>
+          </div>
+          <p class="text-xs text-gray-500">
+            PDF, DOCX, ZIP, PNG, JPG hasta 10MB
+          </p>
+          <p *ngIf="selectedFile" class="text-sm text-green-600 font-semibold mt-2">
+            ✅ Seleccionado: {{ selectedFile.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alertas -->
+    <div *ngIf="errorMessage" class="bg-red-50 border-l-4 border-red-400 p-4">
+      <p class="text-sm text-red-700">{{ errorMessage }}</p>
+    </div>
+    
+    <div *ngIf="successMessage" class="bg-green-50 border-l-4 border-green-400 p-4">
+      <p class="text-sm text-green-700">{{ successMessage }}</p>
+    </div>
+
+    <!-- Botonera -->
+    <div class="flex justify-end space-x-3 mt-6">
+      <button type="button" (click)="onCancel()" class="px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50">
+        Cancelar
+      </button>
+      <button type="submit" [disabled]="taskForm.invalid || loading" 
+        class="px-4 py-2 bg-indigo-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none disabled:bg-indigo-300">
+        <span *ngIf="loading">Guardando...</span>
+        <span *ngIf="!loading">Crear Tarea</span>
+      </button>
+    </div>
+  </form>
+</div>

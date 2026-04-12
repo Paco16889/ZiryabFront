@@ -5,6 +5,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 import { AuthService } from '../../../core/services/auth.service';
 import { ClasesService } from '../../../core/services/clases.service';
 import { AttendanceService, AttendanceRecord, AttendanceStatus, SessionAttendanceEntry } from '../../../core/services/attendance.service';
+import { TaskFormComponent } from '../../profesor/task-form/task-form.component';
 
 /**
  * Componente que muestra el temario de una asignatura organizado por unidades.
@@ -14,7 +15,7 @@ import { AttendanceService, AttendanceRecord, AttendanceStatus, SessionAttendanc
 @Component({
   selector: 'app-temario',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent],
+  imports: [CommonModule, BotonAtrasComponent, TaskFormComponent],
   templateUrl: './temario.component.html',
   styleUrls: ['./temario.component.scss'] 
 })
@@ -45,6 +46,9 @@ export class TemarioComponent implements OnInit {
 
   /** Id de la asignatura recibido como query param. */
   subjectId: number | null = null;
+
+  /** Estado para mostrar/ocultar el modal de creación de tareas */
+  showTaskForm = false;
 
   /** Lista de alumnos matriculados en la asignatura con sus datos de matrícula. */
   alumnos = signal<any[]>([]);
@@ -147,6 +151,20 @@ export class TemarioComponent implements OnInit {
       ...u,
       abierta: u.id === id ? !u.abierta : false,
     }));
+  }
+
+  // ── Métodos de tareas ─────────────────────────────────────────────────────
+
+  /** Abre el formulario de crear tareas */
+  abrirFormularioTarea(): void {
+    this.showTaskForm = true;
+  }
+
+  /** Callback cuando se crea una tarea */
+  onTareaCreada(data: any): void {
+    this.showTaskForm = false;
+    // Opcional: mostrar un toast o recargar tareas (cuando estén integradas)
+    console.log('Tarea creada con éxito desde el temario:', data);
   }
 
   // ── Métodos de asistencia ─────────────────────────────────────────────────

@@ -70,7 +70,7 @@ export class TaskServiceService {
    * @param data - Datos necesarios para crear la tarea
    * @returns Observable con la respuesta que contiene la tarea creada
    */
-  createTask(data: TaskCreateRequest): Observable<TaskCreateResponse> {
+  createTask(data: TaskCreateRequest | FormData): Observable<TaskCreateResponse> {
     return this.http.post<TaskCreateResponse>(this.apiUrl, data).pipe(
       catchError((error) => {
         console.error('Error creating task:', error);
@@ -85,7 +85,7 @@ export class TaskServiceService {
    * @param data - Datos de la tarea a actualizar
    * @returns Observable con la respuesta que contiene la tarea actualizada
    */
-  updateTask(id: number, data: TaskUpdateRequest): Observable<TaskUpdateResponse> {
+  updateTask(id: number, data: TaskUpdateRequest | FormData): Observable<TaskUpdateResponse> {
     return this.http.patch<TaskUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
       catchError((error) => {
         console.error('Error updating task:', error);
