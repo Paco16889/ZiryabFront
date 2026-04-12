@@ -33,4 +33,10 @@ export class StudentTaskService {
   gradeStudentTask(id: number, data: { score: number, feedback?: string }): Observable<StudentTaskUpdateResponse> {
     return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/grade`, data);
   }
+
+  uploadSubmissionFile(file: File): Observable<{ success: boolean; message: string; data: { attachmentUrl: string } }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<{ success: boolean; message: string; data: { attachmentUrl: string } }>(`${this.apiUrl}/upload-submission`, formData);
+  }
 }
