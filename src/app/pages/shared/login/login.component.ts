@@ -31,6 +31,11 @@ export class LoginComponent {
   loading = signal(false);
 
   /**
+   * Indica si queremos ver la contraseña en texto plano.
+   */
+  showPassword = signal(false);
+
+  /**
    * Router de Angular para gestionar las redirecciones tras el login.
    */
   private router: Router = inject(Router);
@@ -66,6 +71,13 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']); // otros roles van a dashboard
       }
     }
+  }
+
+  /**
+   * Refresca la visibilidad de la constraseña.
+   */
+  togglePasswordVisibility() {
+    this.showPassword.set(!this.showPassword());
   }
 
    /**
