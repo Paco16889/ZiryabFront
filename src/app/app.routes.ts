@@ -100,6 +100,19 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
+    {
+        path: 'calificar-tarea/:id',
+        loadComponent: () => import('./pages/profesor/calificar-tarea/calificar-tarea.component').then(c => c.CalificarTareaComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+    {
+        path: 'tarea/:taskId/entregas',
+        loadComponent: () => import('./pages/profesor/entregas-tarea/entregas-tarea.component').then(c => c.EntregasTareaComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+
 
     {
         path: 'gestion',

@@ -5,6 +5,9 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 import { AuthService } from '../../../core/services/auth.service';
 import { ClasesService } from '../../../core/services/clases.service';
 import { AttendanceService, AttendanceRecord, AttendanceStatus } from '../../../core/services/attendance.service';
+import { TaskService } from '../../../core/services/task.service';
+import { Task, TaskType } from '../../../core/models/task';
+import { Router } from '@angular/router';
 
 /**
  * Componente que muestra el temario de una asignatura.
@@ -24,16 +27,15 @@ export class TemarioProfesorComponent implements OnInit {
     private authService = inject(AuthService);
     private clasesService = inject(ClasesService);
     private attendanceSvc = inject(AttendanceService);
+    private taskService = inject(TaskService);
+    private router = inject(Router);
 
-    unidades = [
-        { id: 1, titulo: 'Conceptos Básicos', abierta: true, temas: ['1. Variables y tipos de datos primitivos', '2. Operadores aritméticos y de asignación', '3. Entrada y salida de datos por consola'] },
-        { id: 2, titulo: 'Control de Flujo', abierta: false, temas: ['1. Estructuras condicionales (if, else, switch)', '2. Operadores lógicos y relacionales', '3. Manejo de errores básicos'] },
-        { id: 3, titulo: 'Bucles e Iteraciones', abierta: false, temas: ['1. Bucle For y sus variantes', '2. Bucles While y Do-While', '3. Break y Continue: Controlando el ciclo'] },
-        { id: 4, titulo: 'Funciones', abierta: false, temas: ['1. Declaración y expresión de funciones', '2. Parámetros, argumentos y retorno', '3. Scope (Alcance) de variables'] },
-    ];
+    bloques = signal<any[]>([]);
+    claseEnCurso = decodeURIComponent(this.route.snapshot.paramMap.get('claseId') || '');
 
     subjectId: number | null = null;
     alumnos = signal<any[]>([]);
+    tasksLoadError = signal(false);
     attendanceMap: Record<number, AttendanceStatus> = {};
     loadingAlumnos = signal(false);
     saving = signal(false);
@@ -53,13 +55,64 @@ export class TemarioProfesorComponent implements OnInit {
             this.subjectId = Number(param);
             this.loadAlumnos();
         }
+        this.loadTasks();
     }
 
-    toggleUnidad(id: number): void {
-        this.unidades = this.unidades.map(u => ({
-            ...u,
-            abierta: u.id === id ? !u.abierta : false,
-        }));
+    loadTasks() {
+      this.taskService.getAllTasks().subscribe({
+        next: (res) => {
+          if (res.success) {
+            const filteredTasks = res.data.filter(t => 
+               (t.teacherAssignment as any)?.subject?.name?.toLowerCase() === this.claseEnCurso.toLowerCase()
+            );
+            this.groupTasksByType(filteredTasks);
+          }
+        },
+        error: (err) => {
+          console.error(err);
+          this.tasksLoadError.set(true);
+        }
+      });
+    }
+
+    groupTasksByType(tasks: Task[]) {
+      const configBloques = [
+        { tipo: TaskType.THEORY, titulo: 'Material Teórico y Documentos', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+        { tipo: TaskType.EXAM, titulo: 'Exámenes y Pruebas', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+        { tipo: TaskType.PROJECT, titulo: 'Proyectos Evaluables', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+        { tipo: TaskType.PRACTICE, titulo: 'Ejercicios Prácticos', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+        { tipo: TaskType.HOMEWORK, titulo: 'Deberes Generales', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+      ];
+
+      const nuevosBloques: any[] = [];
+      const user = this.authService.getCurrentUser();
+      for (const conf of configBloques) {
+        // Filtrar tareas que pertenecen al profesor logueado además de a la clase
+        const tareasDeTipo = tasks.filter(t => t.type === conf.tipo && t.teacherAssignment?.idTeacher === user?.id);
+        
+        if (tareasDeTipo.length > 0) {
+          tareasDeTipo.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+          nuevosBloques.push({
+            id: nuevosBloques.length + 1,
+            titulo: conf.titulo,
+            abierta: nuevosBloques.length === 0,
+            icono: conf.icono,
+            tareas: tareasDeTipo
+          });
+        }
+      }
+      this.bloques.set(nuevosBloques);
+    }
+
+    toggleBloque(id: number): void {
+        this.bloques.update(bs => bs.map(b => ({
+            ...b,
+            abierta: b.id === id ? !b.abierta : b.abierta
+        })));
+    }
+
+    goToEntregas(taskId: number): void {
+      this.router.navigate(['/tarea', taskId, 'entregas']);
     }
 
     private loadAlumnos(): void {

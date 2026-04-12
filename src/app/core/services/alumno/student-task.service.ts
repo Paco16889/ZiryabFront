@@ -22,7 +22,15 @@ export class StudentTaskService {
     return this.http.get<StudentTaskByIdResponse>(`${this.apiUrl}/${id}`);
   }
 
+  getStudentTasksByTask(taskId: number): Observable<StudentTasksAllResponse> {
+    return this.http.get<StudentTasksAllResponse>(`${this.apiUrl}/task/${taskId}`);
+  }
+
   submitStudentTask(id: number, data: { attachmentUrl?: string }): Observable<StudentTaskUpdateResponse> {
     return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/submit`, data);
+  }
+
+  gradeStudentTask(id: number, data: { score: number, feedback?: string }): Observable<StudentTaskUpdateResponse> {
+    return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/grade`, data);
   }
 }
