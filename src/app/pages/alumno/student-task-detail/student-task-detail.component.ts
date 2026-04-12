@@ -35,8 +35,9 @@ export class StudentTaskDetailComponent implements OnInit {
   SubmissionStatus = SubmissionStatus;
 
   constructor() {
+    const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/i;
     this.submitForm = this.fb.group({
-      attachmentUrl: ['']
+      attachmentUrl: ['', [Validators.pattern(urlRegex)]]
     });
   }
 

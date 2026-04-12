@@ -128,12 +128,12 @@
                 <button type="button" (click)="setSubmissionMode('file')"
                         class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap"
                         [ngClass]="submissionMode() === 'file' ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50' : 'text-slate-500 hover:text-slate-700'">
-                  Dropzone Local (Archivos .ZIP)
+                  Dropzone
                 </button>
                 <button type="button" (click)="setSubmissionMode('url')"
                         class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap"
                         [ngClass]="submissionMode() === 'url' ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50' : 'text-slate-500 hover:text-slate-700'">
-                  Enlace Ext. a la Web
+                  Subir enlace 
                 </button>
               </div>
 
@@ -174,19 +174,25 @@
                 </div>
               }
 
-              <!-- ENLACE URL MODE -->
               @if (submissionMode() === 'url') {
-                <div class="animate-fade-in">
+                <div class="animate-fade-in relative">
                   <label class="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 ml-1">Vincular Recurso a la URL Web</label>
-                  <input type="text" formControlName="attachmentUrl" 
+                  <input type="url" formControlName="attachmentUrl" 
+                         [class.border-red-400]="submitForm.get('attachmentUrl')?.invalid && (submitForm.get('attachmentUrl')?.dirty || submitForm.get('attachmentUrl')?.touched)"
                          placeholder="Ej: https://docs.google.com/document/d/mI-trabajO1/"
                          class="w-full p-4 rounded-2xl border-2 border-slate-200 text-slate-700 font-medium focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all">
+                  
+                  @if (submitForm.get('attachmentUrl')?.invalid && (submitForm.get('attachmentUrl')?.dirty || submitForm.get('attachmentUrl')?.touched)) {
+                    <p class="text-xs font-bold text-red-500 mt-2 ml-1 flex items-center">
+                      <svg class="w-4 h-4 mr-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                      Por favor, introduce un enlace web válido que empiece por http:// o https://
+                    </p>
+                  }
                 </div>
               }
               
-              <!-- BOTON GUARDAR -->
               <div class="pt-8 flex justify-end">
-                <button type="submit" [disabled]="submitting() || (submissionMode() === 'file' && !selectedFile()) || (submissionMode() === 'url' && submitForm.get('attachmentUrl')?.value.trim() === '')"
+                <button type="submit" [disabled]="submitting() || (submissionMode() === 'file' && !selectedFile()) || (submissionMode() === 'url' && (submitForm.get('attachmentUrl')?.value.trim() === '' || submitForm.get('attachmentUrl')?.invalid))"
                         class="w-full sm:w-auto px-10 py-4 bg-indigo-600 text-white font-extrabold text-sm rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-200 focus:ring-4 focus:ring-indigo-100 transition-all disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed hover:-translate-y-1 active:translate-y-0 active:scale-95 flex justify-center items-center min-w-[240px]">
                   @if (submitting()) {
                     <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
