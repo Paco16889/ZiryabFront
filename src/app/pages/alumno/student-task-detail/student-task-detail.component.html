@@ -108,7 +108,7 @@
           @if (isPastDueDate() && t.status === SubmissionStatus.PENDING) {
             <div class="bg-red-50 border border-red-100 px-5 py-4 mb-6 rounded-2xl shadow-sm text-sm">
               <span class="font-bold text-red-800 uppercase tracking-widest text-xs">Aviso Importante</span>
-              <p class="text-red-700 mt-1 font-medium">Has superado la fecha límite ({{ t.task.dueDate | date:'medium' }}). Puedes procesar tu documento pero quedará marcado como <span class="font-bold">Fuera de Plazo (LATE)</span>.</p>
+              <p class="text-red-700 mt-1 font-medium">Has superado la fecha límite ({{ t.task.dueDate | date:'medium' }}). Si haces una entrega quedará marcada como <span class="font-bold">Fuera de Plazo (LATE)</span>.</p>
             </div>
           }
 
@@ -121,6 +121,32 @@
 
           <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
             
+            @if (t.status !== SubmissionStatus.PENDING) {
+              <div class="pt-2 mb-8 animate-fade-in">
+                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 text-slate-700 font-medium shadow-inner">
+                  <div class="flex justify-between items-start flex-wrap gap-4 mb-4">
+                    <p>Tu entrega ha sido guardada satisfactoriamente en nuestras bases de datos el <strong>{{ t.submissionDate | date:'medium' }}</strong>.</p>
+                    
+                    @if (t.status !== SubmissionStatus.GRADED) {
+                      <button type="button" (click)="unsubmitTask()" class="px-4 py-2 bg-rose-50 text-rose-600 font-bold text-sm rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors border border-rose-200 shadow-sm flex items-center gap-2 shadow-sm active:scale-95">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        Borrar Entrega
+                      </button>
+                    }
+                  </div>
+                  @if (t.attachmentUrl) {
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-center justify-between">
+                      <div class="flex items-center gap-3 overflow-hidden pr-4">
+                        <svg class="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        <a [href]="t.attachmentUrl" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-extrabold truncate text-sm hover:underline">{{ t.attachmentUrl.split('/').pop() || t.attachmentUrl }}</a>
+                      </div>
+                      <a [href]="t.attachmentUrl" target="_blank" class="text-xs font-bold bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 whitespace-nowrap hidden sm:block">Abrir Link Original</a>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+
             @if (t.status === SubmissionStatus.PENDING) {
               
               <!-- Tabs para elegir subida -->
@@ -205,27 +231,9 @@
                   }
                 </button>
               </div>
-
-            } @else {
-              <!-- YA ENTREGADO VIEW -->
-              <div class="pt-2">
-                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 text-slate-700 font-medium shadow-inner">
-                  <p class="mb-4">Tu entrega ha sido guardada satisfactoriamente en nuestras bases de datos el <strong>{{ t.submissionDate | date:'medium' }}</strong>.</p>
-                  @if (t.attachmentUrl) {
-                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-center justify-between">
-                      <div class="flex items-center gap-3 overflow-hidden pr-4">
-                        <svg class="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                        <a [href]="t.attachmentUrl" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-extrabold truncate text-sm hover:underline">{{ t.attachmentUrl.split('/').pop() || t.attachmentUrl }}</a>
-                      </div>
-                      <a [href]="t.attachmentUrl" target="_blank" class="text-xs font-bold bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 whitespace-nowrap hidden sm:block">Abrir Link Original</a>
-                    </div>
-                  }
-                </div>
-              </div>
             }
           </form>
         </div>
-
       </div>
     }
   </div>

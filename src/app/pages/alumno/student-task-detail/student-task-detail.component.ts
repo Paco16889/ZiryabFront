@@ -76,7 +76,7 @@ export class StudentTaskDetailComponent implements OnInit {
 
     if (studentTask.status !== SubmissionStatus.PENDING) {
       this.submitForm.disable(); 
-    } else if (this.isPastDueDate()) {
+    } else {
       this.submitForm.enable(); 
     }
   }
@@ -213,5 +213,31 @@ export class StudentTaskDetailComponent implements OnInit {
         this.submitting.set(false);
       }
     });
+  }
+
+  unsubmitTask(): void {
+    const t = this.task();
+    if (!t) return;
+    
+    if (confirm('¿Estás seguro de que quieres borrar tu entrega actual? Tendrás que subirla de nuevo.')) {
+      this.submitting.set(true);
+      this.studentTaskService.unsubmitStudentTask(t.id).subscribe({
+        next: (res) => {
+          if (res.success && res.data) {
+            this.task.set(res.data);
+            this.successMessage.set('');
+            this.errorMessage.set('');
+            this.submitForm.reset();
+            this.selectedFile.set(null);
+            this.submitForm.enable();
+          }
+          this.submitting.set(false);
+        },
+        error: (err) => {
+          this.errorMessage.set(err.error?.message || 'Error al borrar la entrega.');
+          this.submitting.set(false);
+        }
+      });
+    }
   }
 }

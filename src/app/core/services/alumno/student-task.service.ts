@@ -30,6 +30,10 @@ export class StudentTaskService {
     return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/submit`, data);
   }
 
+  unsubmitStudentTask(id: number): Observable<StudentTaskUpdateResponse> {
+    return this.http.delete<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/submit`);
+  }
+
   gradeStudentTask(id: number, data: { score: number, feedback?: string }): Observable<StudentTaskUpdateResponse> {
     return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/grade`, data);
   }
