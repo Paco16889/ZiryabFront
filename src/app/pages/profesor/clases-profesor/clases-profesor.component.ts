@@ -5,6 +5,7 @@ import { NavigationService } from '../../../core/services/navigation.service';
 import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
+import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
 
 /**
  * Componente que muestra las asignaturas asignadas al profesor autenticado.
@@ -15,7 +16,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 @Component({
   selector: 'app-clases-profesor',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent],
+  imports: [CommonModule, BotonAtrasComponent, CardGridComponent],
   templateUrl: './clases-profesor.component.html',
   styleUrl: './clases-profesor.component.scss'
 })
@@ -41,11 +42,11 @@ export class ClasesProfesorComponent implements OnInit {
   private authService = inject(AuthService);
 
   /**
- * Listado de asignaturas asignadas al profesor.
+ * Listado de asignaturas asignadas al profesor mapeadas a CardItem.
  * 
  */
-
-  public asignaturas = signal<any[]>([]);
+  public asignaturasCards = signal<CardItem[]>([]);
+  private asignaturasOriginales = signal<any[]>([]);
 
   /**
   * Indica si los datos están siendo cargados desde el backend.
@@ -57,48 +58,7 @@ export class ClasesProfesorComponent implements OnInit {
  */
   public errorMessage = signal<string>('');
 
-  /**
-  * Temas de color para las tarjetas de asignaturas.
-  * Se asignan de forma cíclica según el índice de la asignatura.
-  */
-  public colorThemes = [
-    {
-      bg: 'from-blue-100 via-blue-50 to-blue-200 border-blue-200',
-      line: 'border-blue-300',
-      text: 'text-blue-600',
-      btn: 'bg-blue-500 hover:bg-blue-600 text-white'
-    },
-    {
-      bg: 'from-purple-100 via-purple-50 to-purple-200 border-purple-200',
-      line: 'border-purple-300',
-      text: 'text-purple-600',
-      btn: 'bg-purple-500 hover:bg-purple-600 text-white'
-    },
-    {
-      bg: 'from-emerald-100 via-emerald-50 to-emerald-200 border-emerald-200',
-      line: 'border-emerald-300',
-      text: 'text-emerald-600',
-      btn: 'bg-emerald-500 hover:bg-emerald-600 text-white'
-    },
-    {
-      bg: 'from-rose-100 via-rose-50 to-rose-200 border-rose-200',
-      line: 'border-rose-300',
-      text: 'text-rose-600',
-      btn: 'bg-rose-500 hover:bg-rose-600 text-white'
-    },
-    {
-      bg: 'from-amber-100 via-amber-50 to-amber-200 border-amber-200',
-      line: 'border-amber-300',
-      text: 'text-amber-600',
-      btn: 'bg-amber-500 hover:bg-amber-600 text-white'
-    },
-    {
-      bg: 'from-cyan-100 via-cyan-50 to-cyan-200 border-cyan-200',
-      line: 'border-cyan-300',
-      text: 'text-cyan-600',
-      btn: 'bg-cyan-500 hover:bg-cyan-600 text-white'
-    }
-  ];
+  // Themes removidos: delegados a CardGridComponent
 
   /**
   * Carga las asignaturas del profesor autenticado al inicializar el componente.
@@ -115,7 +75,8 @@ export class ClasesProfesorComponent implements OnInit {
           if (response.data.length === 0) {
             this.errorMessage.set('No tienes asignaturas asignadas.');
           }
-          this.asignaturas.set(response.data);
+          this.asignaturasOriginales.set(response.data);
+          this.construirCards();
           this.loading.set(false);
         },
         error: (err: any) => {
@@ -132,18 +93,27 @@ export class ClasesProfesorComponent implements OnInit {
     }
   }
 
+  private construirCards(): void {
+    const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
+      id: item.subject.id,
+      title: item.subject.name,
+      subtitleTopLabel: 'Curso',
+      subtitleTopValue: item.subject.course?.name || 'General',
+      subtitleBottomLabel: 'Grado/Grupo',
+      subtitleBottomValue: item.group?.name || 'Varios',
+      actionLabel: 'Gestionar Clase'
+    }));
+    this.asignaturasCards.set(cards);
+  }
+
   /**
- * Navega a la vista de temario de la asignatura indicada.
- * Pasa el id de la asignatura como query param para que el profesor
- * pueda cargar la lista de alumnos y registrar asistencia.
- * @param subjectId - Identificador único de la asignatura
- * @param nombreAsignatura - Nombre de la asignatura
+ * Navega a la vista de temario de la asignatura indicada usando el actionClicked event.
  */
-  goToTemario(subjectId: number, nombreAsignatura: string): void {
-    if (nombreAsignatura) {
+  handleCardAction(item: CardItem): void {
+    if (item.title) {
       this.router.navigate(
-        [`temario-profesor/${nombreAsignatura.toLowerCase()}`],
-        { queryParams: { subjectId } }
+        [`temario-profesor/${item.title.toLowerCase()}`],
+        { queryParams: { subjectId: item.id } }
       );
     }
   }
