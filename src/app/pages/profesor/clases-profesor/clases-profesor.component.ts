@@ -132,9 +132,10 @@ export class ClasesProfesorComponent implements OnInit {
    * Navega a la vista de temario de la asignatura indicada.
    * @param nombreAsignatura - Nombre de la asignatura cuyo temario se quiere ver
    */
-  goToTemario(nombreAsignatura: string): void {
-    if (nombreAsignatura) {
-      this.navegador.toComponent(`temario/${nombreAsignatura.toLowerCase()}`); 
-    }  
+  goToTemario(idTeacherAssignment: number): void {
+  if (idTeacherAssignment) {
+     console.log('valor recibido:', idTeacherAssignment);
+    this.navegador.toComponent(`menu-clase/${idTeacherAssignment}`);
   }
+}
 }

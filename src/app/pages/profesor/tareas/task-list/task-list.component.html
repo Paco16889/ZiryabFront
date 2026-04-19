@@ -1,0 +1,35 @@
+<!-- Estado de carga -->
+<div *ngIf="loading()" class="flex flex-col gap-3 p-4">
+    <div *ngFor="let i of [1,2,3]"
+         class="h-20 rounded-xl bg-gray-100 animate-pulse">
+    </div>
+  </div>
+  
+  <!-- Lista agrupada -->
+  <div *ngIf="!loading()" class="flex flex-col gap-4 p-4">
+  
+    <!-- Cabecera -->
+    <div class="flex items-center justify-between mb-2">
+      <div>
+        <p class="text-sm text-gray-400">
+          {{ tasks().length }} tareas
+        </p>
+      </div>
+    </div>
+  
+    <!-- Sin tareas -->
+    <div *ngIf="tasks().length === 0"
+         class="flex flex-col items-center justify-center py-16 text-gray-400">
+      <p class="text-sm">No hay tareas en esta asignación</p>
+    </div>
+  
+    <!-- Grupos -->
+    <app-task-group-item
+      *ngFor="let group of groupedTasks()"
+      [groupKey]="group.key"
+      [groupName]="group.name"
+      [color]="group.color"
+      [tasks]="group.tasks"
+    />
+  
+  </div>

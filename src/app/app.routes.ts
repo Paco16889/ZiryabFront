@@ -11,6 +11,8 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
 import { AboutComponent } from './pages/shared/about/about.component';
+import { MenuClaseComponent } from './pages/profesor/menu-clase/menu-clase.component';
+import { TaskListComponent } from './pages/profesor/tareas/task-list/task-list.component';
 
 /**
  * Definición de rutas de la aplicación.
@@ -50,22 +52,35 @@ export const routes: Routes = [
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
         data: { roles: ['STUDENT', 'TEACHER'] },
-        
+
     },
 
     {
         path: 'about',
         component: AboutComponent,
         canActivate: [AuthGuard]
-        
+
     },
-    
+
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
     // ============================================
     {
         path: 'clases-profesor',
         component: ClasesProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+
+    },
+    {
+        path: 'menu-clase/:idTeacherAssignment',
+        component: MenuClaseComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+    {
+        path: 'tareas/:idTeacherAssignment',
+        component: TaskListComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
@@ -79,7 +94,7 @@ export const routes: Routes = [
         data: { roles: ['STUDENT', 'TEACHER'] }
     },
 
-  
+
 
     {
         path: 'temario/:claseId',
@@ -92,14 +107,14 @@ export const routes: Routes = [
         path: 'gestion',
         component: GestionComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['TEACHER','STUDENT'] },
+        data: { roles: ['TEACHER', 'STUDENT'] },
     },
 
     {
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['TEACHER','STUDENT'] },
+        data: { roles: ['TEACHER', 'STUDENT'] },
     },
     // ============================================
     // RUTAS DE ESTUDIANTE (STUDENT)
@@ -115,13 +130,13 @@ export const routes: Routes = [
     // ============================================
     // RUTAS DE ADMINISTRADOR (ADMIN)
     // ============================================
-  
+
 
     {
         path: 'dashboard-admin',
         component: DashboardAdminComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: {roles: ['ADMIN']},
+        data: { roles: ['ADMIN'] },
     },
     // ============================================
     // CATCH-ALL (rutas no encontradas)

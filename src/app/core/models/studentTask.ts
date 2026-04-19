@@ -1,6 +1,6 @@
 // models/student-task.model.ts
 
-import { Task } from "./task";
+import { Task } from "./teacher/tasks";
 import { Enrollment } from "./enrollment";
 
 /**
@@ -18,27 +18,32 @@ export enum SubmissionStatus {
   GRADED = 'GRADED',
   NOT_SUBMITTED = 'NOT_SUBMITTED'
 }
-
 /**
  * Representa la entrega de una tarea por parte de un estudiante.
+ * Incluye el control de visibilidad individual (`isEnabled`) que permite
+ * al profesor habilitar o deshabilitar la tarea para un alumno concreto,
+ * útil por ejemplo para recuperaciones o tareas personalizadas.
+ *
  * @example
  * const studentTask: StudentTask = {
- *   id: ID_ENTREGA,
- *   idTask: ID_TAREA,
+ *   id: 1,
+ *   idTask: 5,
  *   task: OBJETO_TASK,
- *   idStudentEnrollment: ID_ENROLLMENT,
+ *   idStudentEnrollment: 12,
  *   studentEnrollment: OBJETO_ENROLLMENT,
+ *   isEnabled: true,
  *   status: SubmissionStatus.PENDING,
- *   submissionDate: 'FECHA_ENTREGA',
- *   score: NOTA,
- *   feedback: 'COMENTARIOS_PROFESOR',
- *   attachmentUrl: 'URL_ARCHIVO'
+ *   submissionDate: null,
+ *   score: null,
+ *   feedback: null,
+ *   attachmentUrl: null,
+ *   createdAt: '2024-09-01T08:00:00.000Z'
  * };
  */
 export interface StudentTask {
   /** Identificador único de la entrega */
   id: number;
-  /** Identificador de la tarea asociada a la entrega */
+  /** Identificador de la tarea asociada a esta entrega */
   idTask: number;
   /** Datos completos de la tarea asociada */
   task: Task;
@@ -46,16 +51,76 @@ export interface StudentTask {
   idStudentEnrollment: number;
   /** Datos completos de la matrícula del estudiante */
   studentEnrollment: Enrollment;
+  /**
+   * Indica si esta entrega es visible para el alumno concreto.
+   * El profesor puede deshabilitarla individualmente aunque `Task.isPublished` sea `true`.
+   * Útil para recuperaciones o tareas personalizadas.
+   */
+  isEnabled: boolean;
   /** Estado actual de la entrega */
   status: SubmissionStatus;
-  /** Fecha en la que se realizó la entrega, null si aún no se ha entregado */
+  /** Fecha y hora en que el alumno realizó la entrega, o `null` si no ha entregado */
   submissionDate: string | null;
-  /** Nota obtenida en la tarea, null si aún no ha sido calificada */
+  /** Puntuación otorgada por el profesor, o `null` si aún no ha sido calificada */
   score: number | null;
-  /** Comentarios del profesor sobre la entrega, null si no hay feedback */
+  /** Comentario de retroalimentación del profesor, o `null` si no hay feedback */
   feedback: string | null;
-  /** URL del archivo adjunto de la entrega, null si no hay adjunto */
+  /** URL del fichero adjunto subido por el alumno, o `null` si no hay adjunto */
   attachmentUrl: string | null;
+  /** Fecha y hora de creación del registro en ISO 8601 */
+  createdAt: string;
+}
+
+/**
+ * Cuerpo de la petición `POST /api/student-tasks/bulk` para crear
+ * múltiples entregas de una misma tarea en una sola llamada.
+ * Se utiliza tras crear una tarea para generar automáticamente
+ * una entrega en estado `PENDING` por cada alumno matriculado.
+ *
+ * @example
+ * const request: StudentTaskCreateBulkRequest = {
+ *   idTask: 5,
+ *   enrollmentIds: [12, 13, 14, 15]
+ * };
+ */
+export interface StudentTaskCreateBulkRequest {
+  /** Identificador de la tarea para la que se crean las entregas */
+  idTask: number;
+  /** Lista de identificadores de matrícula de los alumnos a los que se asigna la tarea */
+  enrollmentIds: number[];
+}
+
+/**
+ * Respuesta de la API tras crear múltiples entregas en bulk.
+ * Devuelve todas las entregas creadas para la tarea indicada.
+ *
+ * @example
+ * const response: StudentTaskCreateBulkResponse = {
+ *   success: true,
+ *   count: 4,
+ *   data: [
+ *     {
+ *       id: 1,
+ *       idTask: 5,
+ *       idStudentEnrollment: 12,
+ *       isEnabled: true,
+ *       status: SubmissionStatus.PENDING,
+ *       submissionDate: null,
+ *       score: null,
+ *       feedback: null,
+ *       attachmentUrl: null,
+ *       createdAt: '2024-09-01T08:00:00.000Z'
+ *     }
+ *   ]
+ * };
+ */
+export interface StudentTaskCreateBulkResponse {
+  /** Indica si la operación se completó sin errores */
+  success: boolean;
+  /** Número total de entregas creadas */
+  count: number;
+  /** Lista de entregas creadas */
+  data: StudentTask[];
 }
 
 /**
@@ -132,6 +197,8 @@ export interface StudentTaskCreateRequest {
   idTask: number;
   /** Identificador de la matrícula del estudiante que realiza la entrega */
   idStudentEnrollment: number;
+  /** Indica si la entrega está habilitada */
+  isEnabled?: boolean;         
   /** Estado inicial de la entrega, opcional */
   status?: SubmissionStatus;
   /** Fecha de entrega, opcional */
@@ -238,3 +305,4 @@ export interface StudentTaskDeleteResponse {
   /** Identificador de la entrega eliminada */
   deletedId: number;
 }
+
