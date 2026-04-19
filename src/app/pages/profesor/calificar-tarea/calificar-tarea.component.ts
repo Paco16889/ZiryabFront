@@ -5,6 +5,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StudentTaskService } from '../../../core/services/alumno/student-task.service';
 import { StudentTask } from '../../../core/models/studentTask';
 
+/**
+ * Componente que permite al profesor calificar la entrega de una tarea.
+ * Proporciona un formulario reactivo para emitir una nota (0-10) y feedback.
+ */
 @Component({
   selector: 'app-calificar-tarea',
   standalone: true,
@@ -38,6 +42,11 @@ export class CalificarTareaComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga los datos de la entrega especificada por ID para inicializar la vista.
+   * Si ya ha sido evaluada, rellena el formulario con los datos preexistentes.
+   * @param id Identificador único de la entrega.
+   */
   loadStudentTask(id: number): void {
     this.studentTaskService.getStudentTaskById(id).subscribe({
       next: (response) => {
@@ -63,6 +72,10 @@ export class CalificarTareaComponent implements OnInit {
     });
   }
 
+  /**
+   * Envía la evaluación al backend cuando el formulario es válido.
+   * Tras la correcta comunicación, redirige a la vista anterior.
+   */
   submitGrade(): void {
     if (this.gradeForm.invalid || !this.taskDelivery) {
       this.gradeForm.markAllAsTouched();
@@ -88,6 +101,9 @@ export class CalificarTareaComponent implements OnInit {
     });
   }
 
+  /**
+   * Regresa a la vista anterior en el historial de navegación.
+   */
   goBack(): void {
     window.history.back();
   }

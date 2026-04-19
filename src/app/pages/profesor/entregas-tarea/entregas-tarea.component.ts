@@ -6,6 +6,11 @@ import { TaskService } from '../../../core/services/task.service';
 import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask';
 import { Task } from '../../../core/models/task';
 
+/**
+ * Componente para mostrar las entregas correspondientes a una tarea específica.
+ * Permite al profesor visualizar una lista de todos los estudiantes y su estado de entrega,
+ * con la finalidad de acceder a la revisión o calificación individual.
+ */
 @Component({
   selector: 'app-entregas-tarea',
   standalone: true,
@@ -38,6 +43,9 @@ export class EntregasTareaComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga la información de la cabecera (título, descripción, etc.) de la tarea solicitada.
+   */
   loadTaskHeader() {
     this.taskService.getTaskById(this.taskId).subscribe({
       next: (res) => {
@@ -47,12 +55,20 @@ export class EntregasTareaComponent implements OnInit {
     });
   }
 
+  /**
+   * Comprueba si la fecha límite de la tarea ya ha superado la fecha y hora actuales.
+   * @returns Verdadero si la tarea ya ha vencido, falso en caso contrario.
+   */
   isPastDue(): boolean {
     const td = this.taskDetails();
     if (!td || !td.dueDate) return false;
     return new Date(td.dueDate).getTime() < this.today.getTime();
   }
 
+  /**
+   * Recupera el listado completo de entregas (StudentTask) asociadas a esta tarea.
+   * Ordena los envíos priorizando las fechas de entrega más recientes.
+   */
   loadDeliveries() {
     this.studentTaskService.getStudentTasksByTask(this.taskId).subscribe({
       next: (res) => {
@@ -75,6 +91,9 @@ export class EntregasTareaComponent implements OnInit {
     });
   }
 
+  /**
+   * Regresa a la vista previa del temario usando la API nativa de historial.
+   */
   goBack() {
     window.history.back();
   }
