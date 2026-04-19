@@ -10,11 +10,15 @@ export type TaskType = 'PRACTICE' | 'THEORY' | 'EXAM' | 'PROJECT' | 'HOMEWORK';
 
 /**
  * Estados posibles de la entrega de un alumno para una tarea.
- * - `PENDING`   — La tarea ha sido asignada pero el alumno no ha entregado nada.
- * - `SUBMITTED` — El alumno ha realizado la entrega, pendiente de corrección.
- * - `GRADED`    — El profesor ha calificado la entrega.
+ * Refleja el enum `SubmissionStatus` del esquema Prisma del backend.
+ * - `PENDING`       — Pendiente de entregar.
+ * - `SUBMITTED`     — Entregada en plazo.
+ * - `LATE`          — Entregada fuera de plazo.
+ * - `GRADED`        — Calificada por el profesor.
+ * - `NOT_SUBMITTED` — No entregada tras superar la fecha límite.
  */
-export type StudentTaskStatus = 'PENDING' | 'SUBMITTED' | 'GRADED';
+export type StudentTaskStatus = 'PENDING' | 'SUBMITTED' | 'LATE' | 'GRADED' | 'NOT_SUBMITTED';
+
 
 /**
  * Estado de la asignación de un profesor a una asignatura y grupo.
@@ -54,6 +58,10 @@ export interface StudentTask {
   idTask: number;
   /** ID de la matrícula del alumno en la asignatura */
   idStudentEnrollment: number;
+  /** Datos de la matrícula con el estudiante anidado */
+  studentEnrollment: { id: number; student: { id: number; name: string; surname: string; ndSurname: string; email: string; }; }; // AÑADIDO: soluciona fallo 'studentEnrollment' does not exist on type StudentTask
+  /** Indica si la entrega está habilitada para este alumno concreto */
+  isEnabled: boolean; // AÑADIDO: campo isEnabled de bbdd
   /** Estado actual de la entrega */
   status: StudentTaskStatus;
   /** Fecha y hora en que el alumno realizó la entrega, o `null` si no ha entregado */
@@ -117,6 +125,10 @@ export interface Task {
   startDate: string;
   /** Fecha y hora límite de entrega en ISO 8601 */
   dueDate: string;
+  /** Indica si la tarea está publicada y visible para los alumnos */
+isPublished: boolean; // AÑADIDO: campo isPublished de bbdd, soluciona fallo 'allowLateSubmission' does not exist on type Task
+/** Indica si se permite la entrega tardía */
+allowLateSubmission: boolean; // AÑADIDO: campo allowLateSubmission de bbdd, soluciona fallo 'allowLateSubmission' does not exist on type Task
   /** URL del fichero adjunto subido por el profesor, o `null` si no hay adjunto */
   attachmentUrl: string | null;
   /** Curso académico al que pertenece la tarea en formato `"YYYY-YYYY"` */
@@ -265,6 +277,10 @@ export interface CreateTaskRequest {
   schoolYear: string;
   /** ID del grupo al que se quiere asociar la tarea. Opcional */
   idTaskGroup?: number;
+  /** Indica si la tarea se publica inmediatamente */
+isPublished?: boolean; // AÑADIDO: campo isPublished de bbdd
+/** Indica si se permite entrega tardía */
+allowLateSubmission?: boolean; // AÑADIDO: campo allowLateSubmission de bbdd
 }
 
 /**
@@ -295,4 +311,8 @@ export interface UpdateTaskRequest {
   attachmentUrl?: string | null;
   /** ID del grupo al que asociar la tarea, o `null` para desasociarla */
   idTaskGroup?: number | null;
+  /** Actualiza la visibilidad de la tarea */
+isPublished?: boolean; // AÑADIDO: campo isPublished de bbdd
+/** Actualiza si se permite entrega tardía */
+allowLateSubmission?: boolean; // AÑADIDO: campo allowLateSubmission de bbdd
 }

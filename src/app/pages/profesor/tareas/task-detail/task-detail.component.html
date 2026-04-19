@@ -1,0 +1,152 @@
+@if (task()) {
+
+  <!-- CABECERA TAREA -->
+  <div class="p-6 border-b border-gray-200">
+
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-lg font-semibold text-gray-800">{{ task()!.title }}</h2>
+      <span class="text-xs font-semibold px-2 py-1 rounded-full bg-blue-100 text-blue-800">
+        {{ task()!.type }}
+      </span>
+    </div>
+
+    @if (task()!.description) {
+      <p class="text-sm text-gray-500 mb-3">{{ task()!.description }}</p>
+    }
+
+    <div class="flex flex-wrap gap-4 text-xs text-gray-500">
+      <span>📅 Inicio: {{ task()!.startDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <span>⏰ Entrega: {{ task()!.dueDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+      @if (task()!.allowLateSubmission) {
+        <span class="text-orange-500">⚠️ Permite entrega tardía</span>
+      }
+    </div>
+
+  </div>
+
+  <!-- ESTADÍSTICAS -->
+  <div class="grid grid-cols-4 gap-3 p-4 border-b border-gray-200">
+
+    <div class="text-center">
+      <p class="text-xl font-bold text-gray-700">{{ stats().total }}</p>
+      <p class="text-xs text-gray-400">Total</p>
+    </div>
+    <div class="text-center">
+      <p class="text-xl font-bold text-green-600">{{ stats().submitted }}</p>
+      <p class="text-xs text-gray-400">Entregadas</p>
+    </div>
+    <div class="text-center">
+      <p class="text-xl font-bold text-blue-600">{{ stats().graded }}</p>
+      <p class="text-xs text-gray-400">Calificadas</p>
+    </div>
+    <div class="text-center">
+      <p class="text-xl font-bold text-red-500">{{ stats().notSubmitted }}</p>
+      <p class="text-xs text-gray-400">No entregadas</p>
+    </div>
+
+  </div>
+
+  <!-- LISTA DE ALUMNOS -->
+  <div class="flex flex-col gap-2 p-4">
+
+    @for (st of studentTasks(); track st.id) {
+      <div
+        class="flex items-center justify-between border border-gray-200 rounded-lg px-4 py-3 bg-white hover:shadow-sm transition-shadow cursor-pointer"
+        (click)="openGradeForm(st)">
+
+        <div class="flex flex-col">
+          <span class="text-sm font-medium text-gray-800">
+            {{ st.studentEnrollment.student.surname }}, {{ st.studentEnrollment.student.name }}
+          </span>
+          @if (st.submissionDate) {
+            <span class="text-xs text-gray-400">
+              Entregada: {{ st.submissionDate | date: 'dd/MM/yyyy HH:mm' }}
+            </span>
+          }
+        </div>
+
+        <div class="flex items-center gap-3">
+          @if (st.score !== null) {
+            <span class="text-sm font-bold text-gray-700">{{ st.score }}/10</span>
+          }
+          <span class="text-xs font-semibold px-2 py-1 rounded-full"
+            [ngClass]="{
+              'bg-yellow-100 text-yellow-800':  st.status === 'PENDING',
+              'bg-green-100 text-green-800':    st.status === 'SUBMITTED',
+              'bg-orange-100 text-orange-800':  st.status === 'LATE',
+              'bg-blue-100 text-blue-800':      st.status === 'GRADED',
+              'bg-red-100 text-red-800':        st.status === 'NOT_SUBMITTED'
+            }">
+            {{ statusLabel(st.status) }}
+          </span>
+        </div>
+
+      </div>
+    }
+
+  </div>
+
+  <!-- MODAL CALIFICACIÓN -->
+  @if (selectedStudentTask()) {
+    <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+      <div class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
+
+        <h3 class="text-base font-semibold text-gray-800 mb-1">Calificar entrega</h3>
+        <p class="text-sm text-gray-500 mb-4">
+          {{ selectedStudentTask()!.studentEnrollment.student.surname }},
+          {{ selectedStudentTask()!.studentEnrollment.student.name }}
+        </p>
+
+        <form [formGroup]="gradeForm" class="flex flex-col gap-4">
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-gray-600">Nota (0-10)</label>
+            <input
+              type="number"
+              formControlName="score"
+              min="0"
+              max="10"
+              step="0.1"
+              class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+            />
+            @if (gradeForm.get('score')?.invalid && gradeForm.get('score')?.touched) {
+              <span class="text-xs text-red-500">Introduce una nota entre 0 y 10</span>
+            }
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-gray-600">Feedback (opcional)</label>
+            <textarea
+              formControlName="feedback"
+              rows="3"
+              class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
+            ></textarea>
+          </div>
+
+          <div class="flex justify-end gap-2 mt-2">
+            <button
+              type="button"
+              (click)="closeGradeForm()"
+              class="px-4 py-2 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50">
+              Cancelar
+            </button>
+            <button
+              type="button"
+              (click)="submitGrade()"
+              [disabled]="gradeForm.invalid"
+              class="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50">
+              Guardar
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  }
+
+} @else {
+  <div class="flex items-center justify-center h-full text-gray-400 text-sm p-6">
+    Selecciona una tarea para ver el detalle.
+  </div>
+}

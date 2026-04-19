@@ -50,7 +50,16 @@ export interface StudentTask {
   /** Identificador de la matrícula del estudiante que realiza la entrega */
   idStudentEnrollment: number;
   /** Datos completos de la matrícula del estudiante */
-  studentEnrollment: Enrollment;
+studentEnrollment: { // AÑADIDO: expandido para coincidir con tasks.ts
+  id: number;
+  student: {
+    id: number;
+    name: string;
+    surname: string;
+    ndSurname: string;
+    email: string;
+  };
+};
   /**
    * Indica si esta entrega es visible para el alumno concreto.
    * El profesor puede deshabilitarla individualmente aunque `Task.isPublished` sea `true`.
