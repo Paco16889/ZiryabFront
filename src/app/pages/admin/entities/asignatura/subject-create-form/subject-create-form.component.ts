@@ -63,9 +63,12 @@ export class SubjectCreateFormComponent {
     private courseService: CourseServiceService
   ) {
     this.createForm = this.fb.group({
-      name: ['', Validators.required],
-      idCourse: ['', Validators.required]
-    });
+  name:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+  grade:       ['', Validators.required],
+  hours:       [null, [Validators.min(1), Validators.max(30)]],
+  description: ['', Validators.maxLength(255)],
+  idCourse:    ['', Validators.required]
+});
   }
 
   /**

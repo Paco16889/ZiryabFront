@@ -32,6 +32,50 @@
         }
        
       </div>
+      <!-- Curso -->
+<div class="mb-4">
+  <label class="block text-gray-700 font-medium mb-2">Curso</label>
+  <select
+    formControlName="grade"
+    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+    <option value="">Selecciona un curso</option>
+    <option value="1">1º</option>
+    <option value="2">2º</option>
+  </select>
+  @if(createForm.get('grade')?.invalid && createForm.get('grade')?.touched){
+    <span class="text-red-500 text-sm mt-1 block">Debes seleccionar un curso</span>
+  }
+</div>
+
+<!-- Horas semanales -->
+<div class="mb-4">
+  <label class="block text-gray-700 font-medium mb-2">Horas semanales <span class="text-gray-400 text-sm">(opcional)</span></label>
+  <input
+    formControlName="hours"
+    type="number"
+    min="1"
+    max="30"
+    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+    placeholder="Ej: 6"
+  />
+  @if(createForm.get('hours')?.invalid && createForm.get('hours')?.touched){
+    <span class="text-red-500 text-sm mt-1 block">Las horas deben estar entre 1 y 30</span>
+  }
+</div>
+
+<!-- Descripción -->
+<div class="mb-4">
+  <label class="block text-gray-700 font-medium mb-2">Descripción <span class="text-gray-400 text-sm">(opcional)</span></label>
+  <textarea
+    formControlName="description"
+    rows="3"
+    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+    placeholder="Descripción breve de la asignatura"
+  ></textarea>
+  @if(createForm.get('description')?.invalid && createForm.get('description')?.touched){
+    <span class="text-red-500 text-sm mt-1 block">La descripción no puede superar los 255 caracteres</span>
+  }
+</div>
 
       <!-- Dropdown de ciclos -->
       <div class="mb-4">

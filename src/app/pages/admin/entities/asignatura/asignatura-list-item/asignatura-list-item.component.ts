@@ -100,7 +100,35 @@ export class AsignaturaListItemComponent {
           ),
           optionValueKey: 'id',
           optionLabelKey: 'name'
-        }
+        },
+        {
+  name: 'grade',
+  label: 'Curso',
+  fieldType: 'select',
+  placeholder: 'Selecciona un curso',
+  validators: [Validators.required],
+  errorMessage: 'Debes seleccionar un curso',
+  options: [
+    { value: '1', label: '1º' },
+    { value: '2', label: '2º' }
+  ]
+},
+{
+  name: 'hours',
+  label: 'Horas semanales',
+  type: 'number',
+  placeholder: 'Ej: 6',
+  validators: [Validators.min(1), Validators.max(30)],
+  errorMessage: 'Las horas deben estar entre 1 y 30'
+},
+{
+  name: 'description',
+  label: 'Descripción',
+  type: 'text',
+  placeholder: 'Descripción breve de la asignatura',
+  validators: [Validators.maxLength(255)],
+  errorMessage: 'La descripción no puede superar los 255 caracteres'
+}
       ],
       entityType: 'la asignatura',
       entityNameFormat: (subject: Subject) => subject.name,
@@ -137,7 +165,21 @@ export class AsignaturaListItemComponent {
             format: (value) => `${value}`,
             className: 'text-xl font-bold',
             label: 'Ciclo al que pertenece:'
-          }
+          },
+          {
+  key: 'hours',
+  type: 'text',
+  format: (value) => `${value}`,
+  className: 'text-xl font-bold',
+  label: 'Horas semanales:'
+},
+{
+  key: 'description',
+  type: 'text',
+  format: (value) => `${value}`,
+  className: 'text-xl font-bold',
+  label: 'Descripción:'
+}
       ]
       };
       
