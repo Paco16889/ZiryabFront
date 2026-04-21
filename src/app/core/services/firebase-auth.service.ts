@@ -6,13 +6,13 @@ import {
   signOut,
 } from '@angular/fire/auth';
 import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 /**
  * Servicio que encapsula exclusivamente la interacción con **Firebase Authentication**.
  *
  * Su única responsabilidad es verificar credenciales contra Firebase y devolver
- * el `firebaseUID` resultante. No conoce el backend propio, no gestiona tokens JWT
+ * el ID token firmado por Firebase. No conoce el backend propio, no gestiona tokens JWT
  * ni toca `localStorage`.
  *
  * Separar esta capa permite sustituir Firebase por otro proveedor de autenticación
@@ -21,7 +21,7 @@ import { map } from 'rxjs/operators';
  * @example
  * ```ts
  * this.firebaseAuth.signIn(email, password).pipe(
- *   switchMap((uid) => this.http.post('/auth/login', { firebaseUID: uid }))
+ *   switchMap((token) => this.http.post('/auth/login', { token }))
  * ).subscribe();
  * ```
  */
@@ -41,12 +41,12 @@ export class FirebaseAuthService {
    *
    * @param email    - Correo electrónico del usuario
    * @param password - Contraseña del usuario
-   * @returns `Observable<string>` que emite el `firebaseUID` del usuario autenticado
+   * @returns `Observable<string>` que emite el ID token del usuario autenticado
    *          y completa inmediatamente, o lanza error si las credenciales son inválidas
    */
   signIn(email: string, password: string): Observable<string> {
     return from(signInWithEmailAndPassword(this.firebaseAuth, email, password)).pipe(
-      map((credential) => credential.user.uid)
+      switchMap((credential) => from(credential.user.getIdToken())),
     );
   }
 
@@ -54,17 +54,17 @@ export class FirebaseAuthService {
    * Crea una nueva cuenta en Firebase con email y contraseña.
    *
    * Convierte la `Promise` nativa de Firebase en un `Observable` mediante `from()`.
-   * El `firebaseUID` resultante debe usarse de inmediato para registrar al usuario
+   * El token resultante debe usarse de inmediato para registrar al usuario
    * en el backend propio.
    *
    * @param email    - Correo electrónico para la nueva cuenta
    * @param password - Contraseña para la nueva cuenta
-   * @returns `Observable<string>` que emite el `firebaseUID` de la cuenta recién creada
+   * @returns `Observable<string>` que emite el ID token de la cuenta recién creada
    *          y completa inmediatamente, o lanza error si el email ya está en uso
    */
   signUp(email: string, password: string): Observable<string> {
     return from(createUserWithEmailAndPassword(this.firebaseAuth, email, password)).pipe(
-      map((credential) => credential.user.uid)
+      switchMap((credential) => from(credential.user.getIdToken())),
     );
   }
 

@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { FirebaseAuthService } from './firebase-auth.service';
-import { AuthStorageService } from './auth-storage.service';
 
 // ============================================
 // INTERFACES
@@ -83,17 +82,13 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    @Inject(FirebaseAuthService) private firebaseAuthService: FirebaseAuthService,
-    @Inject(AuthStorageService) private storage: AuthStorageService
-  ) {
-    const savedUser = this.storage.getUser();
-    if (savedUser) this.currentUserSubject.next(savedUser);
-  }
+    @Inject(FirebaseAuthService) private firebaseAuthService: FirebaseAuthService
+  ) {}
 
   login(email: string, password: string): Observable<UserResponse> {
     return this.firebaseAuthService.signIn(email, password).pipe(
-      switchMap((firebaseUID) =>
-        this.http.post<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/login`, { firebaseUID })
+      switchMap((token) =>
+        this.http.post<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/login`, { token })
       ),
       map((res) => res.data),
       tap((user) => this.openSession(user))
@@ -110,9 +105,9 @@ export class AuthService {
     role: 'STUDENT' | 'TEACHER' | 'ADMIN'
   ): Observable<UserResponse> {
     return this.firebaseAuthService.signUp(email, password).pipe(
-      switchMap((firebaseUID) =>
+      switchMap((token) =>
         this.http.post<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/register`, {
-          firebaseUID,
+          token,
           email,
           name,
           surname,
@@ -144,7 +139,7 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return this.storage.getToken();
+    return this.currentUserSubject.value?.token ?? null;
   }
 
   getUserRole(): string | null {
@@ -156,16 +151,14 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.currentUserSubject.value && !!this.getToken();
+    return !!this.currentUserSubject.value;
   }
 
   private openSession(user: UserResponse): void {
-    this.storage.saveSession(user);
     this.currentUserSubject.next(user);
   }
 
   private closeSession(): void {
-    this.storage.clearSession();
     this.currentUserSubject.next(null);
   }
 }
