@@ -51,12 +51,13 @@ export class CalificarTareaComponent implements OnInit {
     this.studentTaskService.getStudentTaskById(id).subscribe({
       next: (response) => {
         if (response.success && response.data) {
-          this.taskDelivery = response.data;
+          const taskDelivery = response.data;
+          this.taskDelivery = taskDelivery;
           // Set form values if it's already graded
-          if (this.taskDelivery.status === 'GRADED') {
+          if (taskDelivery.status === 'GRADED') {
             this.gradeForm.patchValue({
-              score: this.taskDelivery.score,
-              feedback: this.taskDelivery.feedback
+              score: taskDelivery.score,
+              feedback: taskDelivery.feedback
             });
           }
         } else {

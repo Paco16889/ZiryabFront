@@ -13,7 +13,6 @@ import { map } from 'rxjs';
 
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
-import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
 /**
@@ -23,7 +22,7 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
  */
 @Component({
   selector: 'app-asignatura-list-item',
-  imports: [GenericListItemComponent, GenericViewDetailComponent],
+  imports: [GenericListItemComponent],
   templateUrl: './asignatura-list-item.component.html',
   styleUrl: './asignatura-list-item.component.scss'
 })

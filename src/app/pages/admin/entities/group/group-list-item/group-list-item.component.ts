@@ -9,7 +9,6 @@ import { Validators } from '@angular/forms';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
-import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { map } from 'rxjs';
 
 
@@ -20,7 +19,7 @@ import { map } from 'rxjs';
  */
 @Component({
   selector: 'app-group-list-item',
-  imports: [GenericListItemComponent, GenericViewDetailComponent],
+  imports: [GenericListItemComponent],
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })

@@ -8,7 +8,6 @@ import { StudentsServiceService } from '../../../../../core/services/admin/entit
 import { Validators } from '@angular/forms';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
-import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
 /**
@@ -18,7 +17,7 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
  */
 @Component({
   selector: 'app-list-item',
-  imports: [ GenericListItemComponent, GenericViewDetailComponent],
+  imports: [GenericListItemComponent],
   templateUrl: './list-item.component.html',
   styleUrl: './list-item.component.scss'
 })

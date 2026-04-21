@@ -99,6 +99,16 @@ loadStudentTasksByStudent(idStudent: number): void {
     );
   }
 
+  // Alias de compatibilidad tras merge
+  getAllStudentTasks(): Observable<StudentTasksAllResponse> {
+    return this.getAll();
+  }
+
+  // Alias de compatibilidad tras merge
+  getStudentTaskById(id: number): Observable<StudentTaskByIdResponse> {
+    return this.getById(id);
+  }
+
   getStudentTasksByTask(idTask: number): Observable<StudentTasksAllResponse> {
     return this.http.get<StudentTasksAllResponse>(`${this.apiUrl}/task/${idTask}`).pipe(
       catchError(() => of({ success: false, data: [], count: 0 }))
@@ -147,6 +157,35 @@ getStudentTasksByStudent(idStudent: number): Observable<StudentTasksAllResponse>
 
   delete(id: number): Observable<StudentTaskDeleteResponse> {
     return this.http.delete<StudentTaskDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError(error => { throw error; })
+    );
+  }
+
+  uploadSubmissionFile(file: File): Observable<{ success: boolean; data?: { attachmentUrl: string } }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<{ success: boolean; data?: { attachmentUrl: string } }>(
+      `${this.apiUrl}/upload-submission`,
+      formData
+    ).pipe(
+      catchError(error => { throw error; })
+    );
+  }
+
+  submitStudentTask(id: number, data: { attachmentUrl: string }): Observable<StudentTaskUpdateResponse> {
+    return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/submit`, data).pipe(
+      catchError(error => { throw error; })
+    );
+  }
+
+  unsubmitStudentTask(id: number): Observable<StudentTaskUpdateResponse> {
+    return this.http.delete<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/submit`).pipe(
+      catchError(error => { throw error; })
+    );
+  }
+
+  gradeStudentTask(id: number, data: { score: number; feedback?: string }): Observable<StudentTaskUpdateResponse> {
+    return this.http.put<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}/grade`, data).pipe(
       catchError(error => { throw error; })
     );
   }

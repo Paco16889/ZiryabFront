@@ -11,7 +11,6 @@ import { Validators } from '@angular/forms';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
-import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 
 
 /**
@@ -21,7 +20,7 @@ import { GenericViewDetailComponent } from "../../../generic-view-detail/generic
  */
 @Component({
   selector: 'app-teacher-list-item',
-  imports: [ GenericListItemComponent, GenericViewDetailComponent],
+  imports: [GenericListItemComponent],
   templateUrl: './teacher-list-item.component.html',  
   styleUrl: './teacher-list-item.component.scss'
 })

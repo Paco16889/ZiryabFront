@@ -9,7 +9,6 @@ import { CourseServiceService } from '../../../../../core/services/admin/entitie
 import { Validators } from '@angular/forms';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
-import { GenericViewDetailComponent } from "../../../generic-view-detail/generic-view-detail.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 
 /**
@@ -20,7 +19,7 @@ import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config
  */
 @Component({
   selector: 'app-course-list-item',
-  imports: [ GenericListItemComponent, GenericViewDetailComponent],
+  imports: [GenericListItemComponent],
   templateUrl: './course-list-item.component.html',
   styleUrl: './course-list-item.component.scss'
 })

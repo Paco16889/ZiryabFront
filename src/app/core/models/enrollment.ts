@@ -1,9 +1,6 @@
 // models/enrollment.model.ts
 import { Student } from './student';
 
-
-import { Student } from "./student";
-
 /**
  * Estado de la matrícula de un estudiante en una asignatura y grupo.
  * - ENROLLED: Matriculado y cursando.
