@@ -6,6 +6,12 @@ import { StudentTaskService } from '../../../core/services/alumno/student-task.s
 import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
+/**
+ * Componente StudentTaskDetail
+ * Gestiona la visualización del detalle de una tarea específica para el alumno.
+ * Proporciona la interfaz para adjuntar archivos (vía drop o selector) o URLs
+ * para realizar la entrega de la tarea, respetando las restricciones de bloqueo por fecha límite.
+ */
 @Component({
   selector: 'app-student-task-detail',
   standalone: true,
@@ -51,6 +57,11 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * Carga los detalles de una tarea asignada basada en su ID.
+   * Valida además si se ha excedido la fecha límite calculada con `checkDueDate`.
+   * @param id Identificador de la tarea (StudentTask).
+   */
   loadTask(id: number): void {
     this.studentTaskService.getStudentTaskById(id).subscribe({
       next: (res) => {
@@ -69,6 +80,11 @@ export class StudentTaskDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Comprueba si la fecha actual sobrepasa la fecha límite (`dueDate`) impuesta por el profesor.
+   * Si es así, bloquea el formulario de entrega si este aún pendía de envío.
+   * @param studentTask Tarea asignada a evaluar.
+   */
   checkDueDate(studentTask: StudentTask): void {
     const dueDate = new Date(studentTask.task.dueDate);
     const now = new Date();
@@ -81,11 +97,18 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * Cambia la modalidad de entrega en la UI.
+   * @param mode Modalidad, 'url' externa o 'file' físico local.
+   */
   setSubmissionMode(mode: 'url' | 'file'): void {
     this.submissionMode.set(mode);
     this.errorMessage.set('');
   }
 
+  /**
+   * Manejador para el evento drag over.
+   */
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     if (this.task()?.status === SubmissionStatus.PENDING) {
@@ -98,6 +121,9 @@ export class StudentTaskDetailComponent implements OnInit {
     this.isDragging.set(false);
   }
 
+  /**
+   * Manejadr para el evento drop. Procesa el archivo arrastrado y soltado.
+   */
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging.set(false);
@@ -112,6 +138,9 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * Manejador de selección clásica de archivos vía input type file.
+   */
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -133,6 +162,10 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * Valida formato lógico y peso de un archivo candidato antes de habilitar su subida.
+   * @param file Archivo local.
+   */
   processFile(file: File): void {
     // Si pesa 0 (o no tiene punto) es muy probable que sea una carpeta en file system OS antiguos
     if (file.size === 0 || (!file.type && file.name.indexOf('.') === -1)) {
@@ -156,6 +189,9 @@ export class StudentTaskDetailComponent implements OnInit {
     this.errorMessage.set('');
   }
 
+  /**
+   * Ejecuta la subida final del archivo o URL de entrega asociándolo a la tarea.
+   */
   onSubmit(): void {
     const t = this.task();
     if (!t) return;
@@ -196,6 +232,11 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /**
+   * Registra a nivel de base de datos la confirmación en firme de una entrega subida.
+   * @param taskId ID de la tarea a marcar.
+   * @param url URL resultante del adjunto o introducida por teclado.
+   */
   private finalizeSubmission(taskId: number, url: string): void {
     this.submitting.set(true);
     this.studentTaskService.submitStudentTask(taskId, { attachmentUrl: url }).subscribe({
@@ -215,6 +256,9 @@ export class StudentTaskDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Permite que el estudiante anule su propia entrega para volver a mandarla.
+   */
   unsubmitTask(): void {
     const t = this.task();
     if (!t) return;

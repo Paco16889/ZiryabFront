@@ -6,13 +6,26 @@ import { StudentTaskService } from '../../../core/services/alumno/student-task.s
 import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask';
 import { TaskType } from '../../../core/models/task';
 
+/**
+ * Interfaz que define la estructura agrupada de un bloque temático en el acordeón del Temario.
+ */
 interface BloqueTemario {
+  /** Título del bloque (ej: "Material Teórico y Documentos") */
   titulo: string;
+  /** Indica si este bloque está expandido visualmente */
   abierto: boolean;
+  /** URL de icono asociado al bloque */
   icono: string;
+  /** Tareas (StudentTasks) agrupadas correspondientes a este bloque */
   tareas: StudentTask[];
 }
 
+/**
+ * Componente TemarioAlumno
+ * 
+ * Responsable de renderizar las tareas y materiales de la asignatura
+ * categorizados en bloques semánticos (acordeones) interactivos para el alumno.
+ */
 @Component({
   selector: 'app-temario-alumno',
   standalone: true,
@@ -36,6 +49,10 @@ export class TemarioAlumnoComponent implements OnInit {
     this.loadTasks();
   }
 
+  /**
+   * Carga todas las tareas del estudiante y filtra por la asignatura actual.
+   * Posteriormente, agrupa los resultados por tipo de tarea.
+   */
   loadTasks() {
     this.studentTaskService.getAllStudentTasks().subscribe({
       next: (res) => {
@@ -57,6 +74,11 @@ export class TemarioAlumnoComponent implements OnInit {
     });
   }
 
+  /**
+   * Categoriza las tareas en grupos (BloqueTemario) basados en su `TaskType`.
+   * Verifica automáticamente si las tareas pendientes están atrasadas y cambia su estado local.
+   * @param tasks Listado de tareas pre-filtradas para la asignatura actual.
+   */
   groupTasksByType(tasks: StudentTask[]) {
     const configBloques = [
       { tipo: TaskType.THEORY, titulo: 'Material Teórico y Documentos', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
@@ -91,6 +113,10 @@ export class TemarioAlumnoComponent implements OnInit {
     this.bloques.set(nuevosBloques);
   }
 
+  /**
+   * Alterna el estado (abierto/cerrado) del bloque de acordeón indicado en la interfaz.
+   * @param index Posición del bloque dentro de la lista interactiva.
+   */
   toggleBloque(index: number): void {
     this.bloques.update(bs => {
       const clon = [...bs];
