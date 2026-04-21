@@ -11,10 +11,9 @@ import { Subject, SubjectByIdResponse, SubjectCreateRequest, SubjectCreateRespon
   providedIn: 'root'
 })
 export class SubjectServiceService {
-    /**
+   /**
    * Signal que almacena el listado completo de asignaturas en memoria.
    */
-
   subjects = signal<Subject[]>([]);
 
   /**
@@ -25,10 +24,10 @@ export class SubjectServiceService {
   /**
    * URL base del endpoint de asignaturas.
    */
-    private apiUrl = 'http://localhost:3000/api/subjects';
-
+  private apiUrl = 'http://localhost:3000/api/subjects';
 
   /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { }

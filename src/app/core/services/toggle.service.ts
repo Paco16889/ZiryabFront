@@ -24,13 +24,13 @@ export class ToggleService {
    * @example
    * this.toggleService.toggle('students');
    * // Si students estaba cerrado lo abre, si estaba abierto lo cierra
+   * @returns {void}
    */
-  toggle(menu: string){
+  toggle(menu: string): void {
     if (this.openedMenu() === menu) {
       this.openedMenu.set(null);
-    } else{
+    } else {
       this.openedMenu.set(menu);
     }
-    
   }
 }

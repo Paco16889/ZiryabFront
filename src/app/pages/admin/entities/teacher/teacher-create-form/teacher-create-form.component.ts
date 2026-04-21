@@ -43,10 +43,11 @@ export class TeacherCreateFormComponent {
   errorMessage = '';
 
     /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param teacherService - Servicio que gestiona las operaciones con profesores
-   * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario
-   * @param passwordGen - Servicio que genera la contraseña aleatoria del nuevo usuario
+   * @param fireBaseAuth - Instancia de Firebase Authentication para crear usuarios
+   * @param passwordGen - Servicio para generar contraseñas seguras por defecto
    */
   constructor(
     private fb: FormBuilder,

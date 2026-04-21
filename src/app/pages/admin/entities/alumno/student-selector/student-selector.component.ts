@@ -58,6 +58,7 @@ export class StudentSelectorComponent {
 
 
     /**
+   * Inicializa el componente.
    * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    */

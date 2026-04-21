@@ -49,7 +49,8 @@ export class BotonEditComponent {
    */
   @Input() updateFn!: (data: any) => Observable<any>;
 
-  /**
+   /**
+   * Inicializa el componente.
    * @param updateModalService - Servicio que gestiona el estado y ciclo de vida del modal de edición
    */
   constructor(private updateModalService: ModalEditServiceService) {

@@ -22,6 +22,7 @@ export class AssistanceServiceService {
   assistances = signal<Assistance[]>([]); // aquí el código }
 
   /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { } // aquí el código }

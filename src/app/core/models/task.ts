@@ -52,6 +52,8 @@ export interface Task {
   dueDate: string;
   /** Año académico al que pertenece la tarea, por ejemplo '2024-2025' */
   schoolYear: string;
+  /** Enlace a los archivos o material adjunto por el profesor. */
+  attachmentUrl?: string | null;
 }
 
 /**

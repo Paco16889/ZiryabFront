@@ -15,6 +15,9 @@ export class NavigationService {
   private router: Router = inject(Router);
 
 
+  /**
+   * Inicializa el servicio sin dependencias externas.
+   */
   constructor() { }
 
     /**

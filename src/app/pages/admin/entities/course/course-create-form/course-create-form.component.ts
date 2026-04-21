@@ -40,6 +40,7 @@ export class CourseCreateFormComponent {
   errorMessage = '';
 
    /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param courseService - Servicio que gestiona las operaciones con ciclos académicos
    */

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PerfilMenuService } from '../../../core/services/perfilService.service';
+import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.component";
 
@@ -29,8 +29,9 @@ export class HeaderComponent implements OnInit {
   userRole: string = 'Usuario activo';
 
    /**
-   * @param perfilService - Servicio que gestiona el estado del menú de perfil
-   * @param authService - Servicio de autenticación para obtener los datos del usuario actual
+   * Inicializa el componente.
+   * @param perfilService - Servicio para controlar el estado del menú de perfil
+   * @param authService - Servicio de autenticación para obtener datos del usuario actual
    */
   constructor(
     private perfilService: PerfilMenuService,

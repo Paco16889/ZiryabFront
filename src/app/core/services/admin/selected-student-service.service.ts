@@ -10,6 +10,9 @@ import { Student } from '../../models/student';
 })
 export class SelectedStudentServiceService {
 
+  /**
+   * Inicializa el servicio sin dependencias externas.
+   */
   constructor() { }
 
     /**

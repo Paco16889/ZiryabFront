@@ -27,6 +27,7 @@ export class AdminMenuComponent {
   @Output() optionClicked = new EventEmitter<void>();
   
  /**
+   * Inicializa el componente.
    * @param toggle - Servicio que notifica qué sección debe mostrarse en el área de contenido principal
    */
   constructor(private toggle: ToggleService){}

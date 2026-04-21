@@ -5,7 +5,8 @@ import { DashboardComponent } from './pages/alumno/dashboard/dashboard.component
 import { ClasesComponent } from './pages/alumno/clases/clases.component';
 import { ClasesProfesorComponent } from './pages/profesor/clases-profesor/clases-profesor.component';
 import { GestionComponent } from './pages/alumno/gestion/gestion.component';
-import { TemarioComponent } from './pages/alumno/temario/temario.component';
+import { TemarioAlumnoComponent } from './pages/alumno/temario-alumno/temario-alumno.component';
+import { TemarioProfesorComponent } from './pages/profesor/temario-profesor/temario-profesor.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
@@ -98,10 +99,35 @@ export const routes: Routes = [
 
     {
         path: 'temario/:claseId',
-        component: TemarioComponent,
+        component: TemarioAlumnoComponent,
         canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['STUDENT', 'TEACHER'] },
+        data: { roles: ['STUDENT'] },
     },
+    {
+        path: 'tarea/:id',
+        loadComponent: () => import('./pages/alumno/student-task-detail/student-task-detail.component').then(c => c.StudentTaskDetailComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'temario-profesor/:claseId',
+        component: TemarioProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+    {
+        path: 'calificar-tarea/:id',
+        loadComponent: () => import('./pages/profesor/calificar-tarea/calificar-tarea.component').then(c => c.CalificarTareaComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+    {
+        path: 'tarea/:taskId/entregas',
+        loadComponent: () => import('./pages/profesor/entregas-tarea/entregas-tarea.component').then(c => c.EntregasTareaComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+
 
     {
         path: 'gestion',

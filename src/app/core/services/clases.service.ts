@@ -5,10 +5,17 @@ import { GetAsignaturasAlumnoResponse, GetAsignaturasProfesorResponse, GetSubjec
 import { Subject } from '../models/subject';
 
 
+/**
+ * Servicio encargado de obtener las asignaturas de alumnos y profesores,
+ * así como la información de los profesores asociados a cada asignatura.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class ClasesService {
+  /**
+   * Cliente HTTP de Angular para realizar las peticiones a la API.
+   */
   private http = inject(HttpClient);
   /**
    * URL base de la API.
@@ -46,6 +53,18 @@ export class ClasesService {
   getNombreProfesorParaAsignatura(subjectId: number):Observable<GetSubjectDetailResponse>{
     return this.http.get<GetSubjectDetailResponse>(`${this.apiUrl}/subjects/${subjectId}`).pipe(
       map(res => res)
+    );
+  }
+
+  /**
+   * Obtiene los alumnos matriculados en una asignatura.
+   * Incluye el id de matrícula (StudentOnSubjectOnGroup.id) necesario para registrar asistencia.
+   * @param subjectId - Identificador único de la asignatura
+   * @returns Observable con el array de alumnos matriculados
+   */
+  getStudentsBySubject(subjectId: number): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/subjects/${subjectId}/students`).pipe(
+      map(res => res.data)
     );
   }
 }

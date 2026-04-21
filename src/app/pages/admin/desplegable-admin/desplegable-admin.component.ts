@@ -25,6 +25,7 @@ import { WeekScheduleListComponent } from '../entities/weekSchedule/week-schedul
 export class DesplegableAdminComponent {
 
    /**
+   * Inicializa el componente.
    * @param toggleservice - Servicio que expone la sección activa del menú
    */
   constructor(public toggleservice: ToggleService){

@@ -61,6 +61,7 @@ export class StudentCreateFormComponent {
 
 
     /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param studentService - Servicio que gestiona las operaciones con estudiantes
    * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario

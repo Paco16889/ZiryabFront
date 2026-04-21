@@ -17,7 +17,8 @@ export class CourseServiceService {
    */
   private apiUrl = 'http://localhost:3000/api/courses';
 
-  /**
+    /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { }

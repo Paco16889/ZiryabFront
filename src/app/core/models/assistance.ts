@@ -10,9 +10,9 @@ import { Enrollment } from "./enrollment";
  */
 export enum AssistanceStatus {
   PRESENT = 'PRESENT',
-  MISSING = 'MISSING',
-  LAG = 'LAG',
-  JUSTIFY = 'JUSTIFY'
+  ABSENT = 'ABSENT',
+  LATE = 'LATE',
+  EXCUSED = 'EXCUSED'
 }
 
 /**
@@ -27,6 +27,10 @@ export interface Assistance {
   session: ClassSession;
   /** Matrícula del estudiante asociada al registro de asistencia */
   studentEnrollment: Enrollment;
+  /** URI de la justificación enviada */
+  justificationUri?: string;
+  /** Estado de la justificación (PENDING, VIEWED, etc.) */
+  justificationStatus?: 'PENDING' | 'VIEWED' | 'REJECTED' | null;
 }
 
 /**
@@ -102,4 +106,27 @@ export interface AssistanceDeleteResponse {
   message: string;
   /** Identificador del registro de asistencia eliminado */
   deletedId: number;
+}
+export interface AssistanceItem {
+  id: number;
+  status: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+  justificationUri?: string;
+  justificationStatus?: 'PENDING' | 'VIEWED' | 'REJECTED' | null;
+  session: {
+    date: string;
+    schedule: {
+      startTime: string;
+      teacherAssignment: {
+        subject: {
+          name: string;
+        }
+      }
+    }
+  }
+}
+
+export interface AssistanceResponse {
+  success: boolean;
+  data: AssistanceItem[];
+  count: number;
 }

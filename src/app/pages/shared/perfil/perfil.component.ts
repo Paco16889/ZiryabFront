@@ -44,6 +44,7 @@ export class PerfilComponent {
   isLoggingOut: boolean = false;
 
   /**
+   * Inicializa el componente.
    * @param router - Router de Angular para redirigir al login tras cerrar sesión
    * @param authService - Servicio de autenticación para obtener datos del usuario y cerrar sesión
    */

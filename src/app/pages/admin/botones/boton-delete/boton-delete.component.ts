@@ -37,6 +37,7 @@ export class BotonDeleteComponent {
   @Input() deleteFn!: (id: number) => Observable<any>;
 
   /**
+   * Inicializa el componente.
    * @param deleteModalService - Servicio que gestiona el estado y ciclo de vida del modal de eliminación
    */
   constructor(private deleteModalService: ModalDeleteServiceService) {}

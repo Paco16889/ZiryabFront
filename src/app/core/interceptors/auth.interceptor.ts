@@ -1,16 +1,12 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 
 /**
- * Interceptor funcional que agrega el token JWT a todas las peticiones HTTP salientes.
+ * Interceptor funcional que habilita el envío de cookies en las peticiones HTTP salientes.
  * Compatible con Angular 19+.
- * Excluye automáticamente las peticiones a ficheros estáticos y JSON de assets
- * para evitar agregar el token en las cargas de ficheros de traducción y similares.
+ * Excluye automáticamente las peticiones a ficheros estáticos y JSON de assets.
  * @param req - La petición HTTP interceptada
  * @param next - Manejador para continuar la cadena de interceptores
- * @returns La petición original si es un asset, la petición con el token si existe,
- * o la petición sin modificar si no hay token disponible
+ * @returns La petición original si es un asset, o la petición clonada con credenciales activadas.
  * @example
  * // Registro en app.config.ts
  * export const appConfig: ApplicationConfig = {
@@ -22,31 +18,17 @@ import { AuthService } from '../services/auth.service';
  * };
  */
 export const authInterceptorFn: HttpInterceptorFn = (req, next) => {
-  const authService = inject(AuthService);
-  const token = authService.getToken();
-  
-
-   if (
+  if (
     req.url.startsWith('/assets/') ||
     req.url.endsWith('.json')
   ) {
-    console.log(next(req));
     return next(req);
   }
 
-  // Si existe token, clonar la petición y agregar el JWT
-  if (token) {
-    const clonedRequest = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    
-    console.log('🔑 Token agregado a la petición:', req.method, req.url);
-    
-    return next(clonedRequest);
-  }
+  // clonar la peticion y activr el envio automatico de cookies
+  const clonedRequest = req.clone({
+    withCredentials: true
+  });
 
-  console.log('⚠️ No hay token para:', req.method, req.url);
-  return next(req);
+  return next(clonedRequest);
 };

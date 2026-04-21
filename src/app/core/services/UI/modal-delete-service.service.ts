@@ -1,6 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 import { DeleteModalState, DeleteRequest } from '../../models/services/delete-models';
 
+/**
+ * Servicio encargado de gestionar el estado y el ciclo de vida del modal de eliminación.
+ * Centraliza la lógica de apertura, confirmación y resultado del proceso de borrado
+ * para cualquier entidad del sistema.
+ */
 @Injectable({
   providedIn: 'root'
 })

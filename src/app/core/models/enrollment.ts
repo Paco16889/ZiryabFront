@@ -1,4 +1,6 @@
 // models/enrollment.model.ts
+import { Student } from './student';
+
 
 import { Student } from "./student";
 
@@ -45,6 +47,8 @@ export interface Enrollment {
   schoolYear: string;
   /** Estado actual de la matrícula */
   status: EnrollmentStatus;
+  /** Datos completos del estudiante (cuando está populado) */
+  student?: Student;
 }
 
 /**

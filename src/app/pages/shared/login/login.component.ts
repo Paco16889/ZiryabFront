@@ -31,6 +31,11 @@ export class LoginComponent {
   loading = signal(false);
 
   /**
+   * Indica si queremos ver la contraseña en texto plano.
+   */
+  showPassword = signal(false);
+
+  /**
    * Router de Angular para gestionar las redirecciones tras el login.
    */
   private router: Router = inject(Router);
@@ -41,8 +46,9 @@ export class LoginComponent {
   formLogin;
 
    /**
+   * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
-   * @param authService - Servicio de autenticación que gestiona Firebase y el backend
+   * @param authService - Servicio de autenticación para realizar el inicio de sesión
    */
   constructor(
     private fb: FormBuilder,
@@ -65,6 +71,13 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']); // otros roles van a dashboard
       }
     }
+  }
+
+  /**
+   * Refresca la visibilidad de la constraseña.
+   */
+  togglePasswordVisibility() {
+    this.showPassword.set(!this.showPassword());
   }
 
    /**

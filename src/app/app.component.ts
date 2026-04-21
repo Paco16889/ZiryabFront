@@ -6,7 +6,7 @@ import { HeaderComponent } from './pages/shared/header/header.component';
 import { FooterComponent } from './pages/shared/footer/footer.component';
 import { PerfilComponent } from './pages/shared/perfil/perfil.component'; 
 // Importación del servicio
-import { PerfilMenuService } from './core/services/perfilService.service'; 
+import { PerfilMenuService } from './core/services/perfil-menu.service'; 
 import { TranslateService } from '@ngx-translate/core';
 import { GenericDeleteModalComponent } from "./pages/admin/modales/generic-delete-modal/generic-delete-modal.component";
 import { ModalDeleteServiceService } from './core/services/UI/modal-delete-service.service';
@@ -48,9 +48,10 @@ export class AppComponent {
   private translate = inject(TranslateService);
 
    /**
-   * @param perfilService - Servicio que gestiona la visibilidad del menú de perfil
-   * @param deleteModalService - Servicio que gestiona el estado del modal de eliminación global
-   * @param updateModalService - Servicio que gestiona el estado del modal de edición global
+   * Inicializa el componente raíz de la aplicación.
+   * @param perfilService - Servicio para gestionar el menú de perfil
+   * @param deleteModalService - Servicio para gestionar el modal global de eliminación
+   * @param updateModalService - Servicio para gestionar el modal global de edición
    */
   constructor(public perfilService: PerfilMenuService,
     public deleteModalService: ModalDeleteServiceService,

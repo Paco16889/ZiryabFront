@@ -40,9 +40,11 @@ export class StudentRegistrationService {
    private apiUrl = 'http://localhost:3000/api/studentregistration';
 
  /**
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
-   * @param selectedStudent - Servicio que proporciona el estudiante actualmente seleccionado
-   * @param subjectService - Servicio que proporciona las asignaturas seleccionadas
+   * Inicializa el servicio.
+   * @param auth - Instancia de Auth de Firebase para obtener el token actual
+   * @param http - Cliente HTTP de Angular para realizar peticiones al backend
+   * @param subjectService - Servicio para obtener la asignaturas seleccionadas
+   * @param studentSelectedService - Servicio para obtener el estudiante seleccionado
    */
   constructor(private http: HttpClient, private selectedStudent: SelectedStudentServiceService, private subjectService: SubjectServiceService) {}
 

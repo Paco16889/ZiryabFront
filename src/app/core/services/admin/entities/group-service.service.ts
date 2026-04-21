@@ -19,7 +19,8 @@ export class GroupServiceService {
    */
   private apiUrl = 'http://localhost:3000/api/groups';
 
-  /**
+    /**
+   * Inicializa el servicio.
    * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
    */
   constructor(private http: HttpClient) { }

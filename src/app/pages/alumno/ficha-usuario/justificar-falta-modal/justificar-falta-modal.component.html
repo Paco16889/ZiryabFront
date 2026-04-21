@@ -1,0 +1,80 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4" *ngIf="falta">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" (click)="onClose()"></div>
+    
+    <div class="relative bg-white rounded-3xl shadow-xl w-full max-w-md p-8 transform transition-all animate-fade-in-up">
+        <button *ngIf="!isSuccess()" (click)="onClose()" [disabled]="isSubmitting()"
+            class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Formulario (Se oculta al completarse) -->
+        <div *ngIf="!isSuccess()">
+            <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800">Justificar Falta</h3>
+            <p class="text-sm text-gray-500 mt-2 font-medium break-words">
+                {{ falta.session.schedule.teacherAssignment.subject.name }} el {{ falta.session.date | date:'dd MMM yyyy':'UTC' }}
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="border-2 border-dashed border-gray-200 rounded-2xl p-6 text-center hover:bg-gray-50 transition-colors">
+                <input type="file" id="file" class="hidden" (change)="onFileSelected($event)" accept=".pdf,image/*" [disabled]="isSubmitting()">
+                <label for="file" class="cursor-pointer flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                    </svg>
+                    <span class="text-indigo-600 font-semibold text-sm hover:text-indigo-700">Seleccionar documento</span>
+                    <span class="text-xs text-gray-400 mt-1">PNG, JPG, PDF (Max. 1MB)</span>
+                </label>
+            </div>
+
+            <div *ngIf="selectedFile()" class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div class="flex flex-col flex-1 overflow-hidden">
+                    <span class="text-sm font-semibold text-gray-700 truncate">{{ selectedFile()?.name }}</span>
+                    <span class="text-xs text-gray-400">{{ (selectedFile()!.size / 1024 / 1024).toFixed(2) }} MB</span>
+                </div>
+            </div>
+
+            <div *ngIf="errorMessage()" class="text-sm text-red-600 bg-red-50 p-3 rounded-lg flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                {{ errorMessage() }}
+            </div>
+
+            <button (click)="onSubmit()" [disabled]="isSubmitting() || !selectedFile()"
+                class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                <span *ngIf="!isSubmitting()">Subir Justificante</span>
+                <span *ngIf="isSubmitting()" class="flex items-center gap-2">
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Enviando...
+                </span>
+            </button>
+        </div>
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div *ngIf="isSuccess()" class="text-center py-8 animate-fade-in-up">
+            <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800">¡Justificante enviado!</h3>
+            <p class="text-gray-500 mt-2 font-medium">El profesor revisará el documento para justificar tu falta.</p>
+        </div>
+    </div>
+</div>

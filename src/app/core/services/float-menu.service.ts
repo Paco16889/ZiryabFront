@@ -15,15 +15,16 @@ export class FloatMenuService {
    */
   isMenuOpen = signal<boolean>(false);
 
+  /**
+   * Inicializa el servicio sin dependencias externas.
+   */
   constructor() { }
 
   /**
-   * Abre o cierra el menú de perfil alternando el valor de la señal.
+   * Abre el menú de perfil estableciendo el valor de la señal a true.
    */
-  toggleMenu(): void {
-    
-      this.isMenuOpen.set(true);
- 
+  openMenu(): void {
+    this.isMenuOpen.set(true);
   }
 
   /**
