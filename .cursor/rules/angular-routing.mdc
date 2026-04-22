@@ -1,0 +1,91 @@
+---
+description: Convenciones de rutas y guards del proyecto Angular Ziryab
+globs: **/*.routes.ts
+alwaysApply: false
+---
+
+# Convenciones de rutas
+
+Aplica a `app.routes.ts` y cualquier futuro `*.routes.ts` de feature.
+
+## Estructura del fichero
+
+Las rutas están agrupadas por secciones con comentarios separadores (ver `app.routes.ts`):
+
+```typescript
+// ============================================
+// RUTAS PÚBLICAS (sin autenticación)
+// ============================================
+// ============================================
+// RUTAS PROTEGIDAS PARA TODOS (autenticados)
+// ============================================
+// ============================================
+// RUTAS DE PROFESOR (TEACHER)
+// ============================================
+// ============================================
+// RUTAS DE ADMINISTRADOR (ADMIN)
+// ============================================
+// ============================================
+// CATCH-ALL (rutas no encontradas)
+// ============================================
+```
+
+Mantener este orden y separación al añadir rutas nuevas.
+
+## Guards obligatorios
+
+Toda ruta privada usa `AuthGuard`. Las específicas de rol añaden `RoleGuard`
+y declaran `data.roles`:
+
+```typescript
+// Solo autenticación
+{ path: 'about', component: AboutComponent, canActivate: [AuthGuard] }
+
+// Autenticación + rol
+{
+  path: 'dashboard-admin',
+  component: DashboardAdminComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { roles: ['ADMIN'] },
+}
+
+// Autenticación + varios roles permitidos
+{
+  path: 'gestion',
+  component: GestionComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { roles: ['TEACHER', 'STUDENT'] },
+}
+```
+
+Roles válidos: `'STUDENT' | 'TEACHER' | 'ADMIN'`.
+
+## Lazy loading
+
+Las pantallas pesadas se cargan con `loadComponent` (ya en uso para `student-task-detail`,
+`calificar-tarea`, `entregas-tarea`):
+
+```typescript
+{
+  path: 'tarea/:id',
+  loadComponent: () =>
+    import('./pages/alumno/student-task-detail/student-task-detail.component')
+      .then(c => c.StudentTaskDetailComponent),
+  canActivate: [AuthGuard, RoleGuard],
+  data: { roles: ['STUDENT'] },
+}
+```
+
+Al crear una feature nueva con varias rutas, exportar desde `features/{nombre}/{nombre}.routes.ts`
+y registrarla en `app.routes.ts` con `loadChildren`.
+
+## Catch-all
+
+Siempre mantener la ruta `**` al final redirigiendo a `login`:
+
+```typescript
+{ path: '**', redirectTo: 'login' }
+```
+
+No duplicar rutas. Si detectas duplicados (p. ej. `dashboard` o `ficha-usuario`
+aparecen dos veces en `app.routes.ts`), avisa al usuario antes de modificar.

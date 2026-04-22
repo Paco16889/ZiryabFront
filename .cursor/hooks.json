@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/lint-and-format.sh"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/guard-commands.sh",
+        "matcher": "rm -rf|git push --force|ng build --configuration production|npm publish",
+        "failClosed": true
+      },
+      {
+        "command": ".cursor/hooks/validate-commit.sh",
+        "matcher": "git commit"
+      }
+    ],
+    "afterMCPExecution": [
+      {
+        "command": ".cursor/hooks/audit-mcp.sh"
+      }
+    ]
+  }
+}
