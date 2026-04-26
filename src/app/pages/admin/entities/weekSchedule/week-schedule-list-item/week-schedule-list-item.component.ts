@@ -133,7 +133,7 @@ export class WeekScheduleListItemComponent {
               className: 'text-xl font-bold',
               label: 'Día de la semana:'
             },
-            {
+              {
               key: 'startTime',
               type: 'text',
               format: (value: string) => `${value}`,
