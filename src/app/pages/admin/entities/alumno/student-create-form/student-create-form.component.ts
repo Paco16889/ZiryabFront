@@ -6,7 +6,8 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { PasswordServiceService } from '../../../../../core/services/password-service.service';
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { switchMap, map, finalize } from 'rxjs/operators';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo estudiante.
@@ -32,12 +33,6 @@ export class StudentCreateFormComponent {
    * Evento emitido cuando el usuario cancela la creación.
    */
   @Output() cancelCreate = new EventEmitter<void>();
-
-    /**
-   * Contraseña generada temporalmente para el nuevo usuario.
-   * Pendiente de revisar su gestión y almacenamiento.
-   */
-  contrasenatruquillo = '';
 
    /**
    * Formulario reactivo con los campos necesarios para crear un estudiante.
@@ -89,21 +84,16 @@ export class StudentCreateFormComponent {
    * Crea el usuario en Firebase Authentication y lo registra en el backend.
    * Genera una contraseña aleatoria para Firebase y usa el UID resultante
    * para completar el registro en el backend.
-   * ATENCIÓN: usa new Observable() como antipatrón, pendiente de refactorizar con from().
    * @returns Observable con los datos del estudiante creado
    */
   createStudent(): Observable<Student> {
-  const email = this.createForm.value.email;
-  const password = this.passwordGen.generateRandomPassword();
+    const email = this.createForm.value.email;
+    const password = this.passwordGen.generateRandomPassword();
 
-  console.log(password);
-  this.contrasenatruquillo = password;
+    this.isCreating = true;
 
-  this.isCreating = true;
-
-  return new Observable<Student>((observer) => {
-    createUserWithEmailAndPassword(this.fireBaseAuth, email, password)
-      .then(credential => {
+    return from(createUserWithEmailAndPassword(this.fireBaseAuth, email, password)).pipe(
+      switchMap(credential => {
         const firebaseUID = credential.user.uid;
 
         const studentData = {
@@ -114,27 +104,17 @@ export class StudentCreateFormComponent {
           birthDate: this.createForm.value.birthDate,
           dni: this.createForm.value.dni,
           firebaseUID,
-          
         };
 
-        this.studentService.createStudent(studentData).subscribe({
-          next: (createdStudent) => {
-            this.isCreating = false;
-            observer.next(createdStudent.data);
-            observer.complete();
-          },
-          error: (err) => {
-            this.isCreating = false;
-            observer.error(err);
-          }
-        });
-      })
-      .catch(err => {
+        return this.studentService.createStudent(studentData).pipe(
+          map(response => response.data)
+        );
+      }),
+      finalize(() => {
         this.isCreating = false;
-        observer.error(err);
-      });
-  });
-}
+      })
+    );
+  }
 
  /**
    * Valida el formulario, comprueba si el estudiante ya existe por DNI
@@ -161,7 +141,6 @@ export class StudentCreateFormComponent {
    this.createStudent().subscribe({
     next: (createdStudent) => {
       console.log('✅ Estudiante creado: ', createdStudent);
-      console.log('Contraseña: ' , this.contrasenatruquillo);
 
       // 3️⃣ guardar en signal global
       this.selectedStudentService.setSelectedStudent(createdStudent);
@@ -188,47 +167,4 @@ export class StudentCreateFormComponent {
     this.cancelCreate.emit();
   }
 
-  /**getError(control: string) {
-    switch (control) {
-      case 'email':
-        if (this.formRegister.controls.email.errors != null &&
-          Object.keys(this.formRegister.controls.email.errors).includes('required'))
-          return 'El campo email es requerido';
-        else if (this.formRegister.controls.email.errors != null &&
-          Object.keys(this.formRegister.controls.email.errors).includes('email'))
-          return 'El email no es correcto';
-        break;
-      case 'password':
-        if (this.formRegister.controls.password.errors != null &&
-          Object.keys(this.formRegister.controls.password.errors).includes('required'))
-          return 'El campo contraseña es requerido';
-        else if (this.formRegister.controls.password.errors != null &&
-          Object.keys(this.formRegister.controls.password.errors).includes('minlength'))
-          return 'La contraseña debe tener al menos 6 caracteres';
-        break;
-      case 'name':
-        if (this.formRegister.controls.name.errors != null &&
-          Object.keys(this.formRegister.controls.name.errors).includes('required'))
-          return 'El campo nombre es requerido';
-        break;
-      case 'surname':
-        if (this.formRegister.controls.surname.errors != null &&
-          Object.keys(this.formRegister.controls.surname.errors).includes('required'))
-          return 'El campo apellido es requerido';
-        break;
-      case 'birthDate':
-        if (this.formRegister.controls.birthDate.errors != null &&
-          Object.keys(this.formRegister.controls.birthDate.errors).includes('required'))
-          return 'La fecha de nacimiento es requerida';
-        break;
-      case 'dni':
-        if (this.formRegister.controls.dni.errors != null &&
-          Object.keys(this.formRegister.controls.dni.errors).includes('required'))
-          return 'El DNI es requerido';
-        break;
-      default:
-        return '';
-    }
-    return '';
-  } */
 }
