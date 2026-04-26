@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { PasswordServiceService } from '../../../../../core/services/password-service.service';
+import { Observable, from } from 'rxjs';
+import { switchMap, finalize } from 'rxjs/operators';
+import { TeacherCreateResponse } from '../../../../../core/models/teacher';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo profesor.
@@ -65,61 +68,57 @@ export class TeacherCreateFormComponent {
     });
   }
 
-    /**
+  /**
    * Crea el usuario en Firebase Authentication y lo registra en el backend.
    * Genera una contraseña aleatoria para Firebase y usa el UID resultante
    * para completar el registro en el backend.
-   * ATENCIÓN: si el backend falla isCreating se queda en true bloqueando el formulario.
-   * ATENCIÓN: mismo antipatrón que StudentCreateFormComponent, pendiente de refactorizar.
    */
-  createTeacher() {
-  const email = this.createForm.value.email;
-  const password = this.passwordGen.generateRandomPassword();
+  createTeacher(): Observable<TeacherCreateResponse> {
+    const email = this.createForm.value.email;
+    const password = this.passwordGen.generateRandomPassword();
 
-  this.isCreating = true;
+    return from(createUserWithEmailAndPassword(this.fireBaseAuth, email, password)).pipe(
+      switchMap(credential => {
+        const firebaseUID = credential.user.uid;
+        console.log('Firebase UID:', firebaseUID);
 
-  // 1️⃣ Crear usuario en Firebase
-  createUserWithEmailAndPassword(this.fireBaseAuth, email, password)
-    .then(credential => {
+        const teacherData = {
+          email,
+          name: this.createForm.value.name,
+          surname: this.createForm.value.surname,
+          ndSurname: this.createForm.value.ndSurname,
+          birthDate: this.createForm.value.birthDate,
+          dni: this.createForm.value.dni,
+          firebaseUID   
+        };
 
-      const firebaseUID = credential.user.uid;
-      console.log('Firebase UID:', firebaseUID);
+        return this.teacherService.createTeacher(teacherData);
+      }),
+      finalize(() => {
+        this.isCreating = false;
+      })
+    );
+  }
 
-      // 2️⃣ Crear teacher en BBDD
-      const teacherData = {
-        email,
-        name: this.createForm.value.name,
-        surname: this.createForm.value.surname,
-        ndSurname: this.createForm.value.ndSurname,
-        birthDate: this.createForm.value.birthDate,
-        dni: this.createForm.value.dni,
-        firebaseUID   
-      };
-
-      this.teacherService.createTeacher(teacherData).subscribe({
-        
-        next: () => {console.log('✅ Teacher creado'),this.isCreating = false, this.teacherCreated.emit()},
-        error: err => console.error('❌ Error BBDD', err)
-      });
-    })
-    .catch(err => {
-         this.isCreating = false; 
-          this.errorMessage = err.error?.message || 'Error al crear el profesor';
-      console.error('❌ Error Firebase', err);
-    });
-}
-
- /**
+  /**
    * Valida el formulario y ejecuta la creación si es correcto.
    */
   onSubmit() {
     if (this.createForm.valid) {
-    this.isCreating = true;
-    this.errorMessage = '';
+      this.isCreating = true;
+      this.errorMessage = '';
 
-    // Llamar al método que ya hace Firebase + backend
-    this.createTeacher();
-  }
+      this.createTeacher().subscribe({
+        next: () => {
+          console.log('✅ Teacher creado');
+          this.teacherCreated.emit();
+        },
+        error: (err) => {
+          console.error('❌ Error guardando teacher:', err);
+          this.errorMessage = err.error?.message || err.message || 'Error al crear el profesor';
+        }
+      });
+    }
   }
 
     /**
