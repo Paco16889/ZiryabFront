@@ -48,7 +48,7 @@
           type="radio"
           name="selectedStudent"
           [value]="student.id"
-          (change)="selectedStudentId = student.id"
+          checked
         />
         {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}
       </label>
@@ -64,7 +64,7 @@
         </button>
         
         <app-boton-confirmar-student
-        [disabled]="!selectedStudentId"
+        [disabled]="!student?.id"
         (confirm)="confirmSelection()">
 
         </app-boton-confirmar-student>

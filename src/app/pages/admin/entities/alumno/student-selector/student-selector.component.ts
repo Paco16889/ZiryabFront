@@ -35,11 +35,7 @@ export class StudentSelectorComponent {
    */
   student: Student | null = null;
 
-    /**
-   * Identificador del estudiante seleccionado mediante el radio button.
-   * Pendiente de revisar si es necesario o puede sustituirse por student?.id directamente.
-   */
-  selectedStudentId: number | null = null;
+
 
    /**
    * Mensaje de error a mostrar si el DNI es inválido o no se encuentra el estudiante.
@@ -103,13 +99,12 @@ export class StudentSelectorComponent {
     }
   }
 
-   /**
+  /**
    * Confirma la selección del estudiante encontrado.
    * Emite el evento studentSelected y almacena el estudiante en el servicio de selección.
-   * Pendiente de revisar la comprobación de selectedStudentId que puede ser redundante.
    */
   confirmSelection() {
-    if (this.selectedStudentId && this.student?.id === this.selectedStudentId) {
+    if (this.student?.id) {
       this.studentSelected.emit(this.student);
       this.selectedStudentService.setSelectedStudent(this.student);
     }
