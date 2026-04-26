@@ -35,20 +35,19 @@ export class CourseListComponent {
    * @param courseService - Servicio que gestiona las operaciones con ciclos académicos
    * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
    * cuando una eliminación se completa y recargar la lista
-   * @param updateDeleteService - Servicio del modal de edición, usado para detectar
+   * @param modalUpdateService - Servicio del modal de edición, usado para detectar
    * cuando una actualización se completa y recargar la lista.
-   * ATENCIÓN: nombre confuso, debería llamarse modalUpdateService para ser consistente
    */
       constructor(private courseService: CourseServiceService, 
         private modalDeleteService: ModalDeleteServiceService,
-        private updateDeleteService: ModalEditServiceService)
+        private modalUpdateService: ModalEditServiceService)
       {
         effect(() => {
           this.courses = this.courseService.courses();
         })
         effect(() => {
       const deleteModalState = this.modalDeleteService.modalState();
-      const updateModalState = this.updateDeleteService.modalState();
+      const updateModalState = this.modalUpdateService.modalState();
       
     
       
