@@ -4,7 +4,7 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service'; // CAMBIO: Usar AuthService
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 /**
@@ -35,46 +35,35 @@ export class LoginComponent {
    */
   showPassword = signal(false);
 
-  /**
-   * Router de Angular para gestionar las redirecciones tras el login.
-   */
-  private router: Router = inject(Router);
+  private router = inject(Router);
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private translateService = inject(TranslateService);
 
   /**
    * Formulario reactivo con los campos email y contraseña.
    */
-  formLogin;
+  formLogin = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
+  });
 
    /**
-   * Inicializa el componente.
-   * @param fb - FormBuilder de Angular para construir el formulario reactivo
-   * @param authService - Servicio de autenticación para realizar el inicio de sesión
+   * Inicializa el componente y redirige si ya está autenticado.
    */
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService // CAMBIO: Inyectar AuthService
-  ) {
-    // Si ya está autenticado, redirigir a dashboard
+  constructor() {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/dashboard']);
-    }
-
-    this.formLogin = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-    });
-     if (this.authService.isAuthenticated()) {
-      const role = this.authService.getUserRole(); // obtener rol
+      const role = this.authService.getUserRole();
       if (role === 'ADMIN') {
-        this.router.navigate(['/dashboard-admin']); // admin va a dashboard-admin
+        this.router.navigate(['/dashboard-admin']);
       } else {
-        this.router.navigate(['/dashboard']); // otros roles van a dashboard
+        this.router.navigate(['/dashboard']);
       }
     }
   }
 
   /**
-   * Refresca la visibilidad de la constraseña.
+   * Refresca la visibilidad de la contraseña.
    */
   togglePasswordVisibility() {
     this.showPassword.set(!this.showPassword());
@@ -85,7 +74,7 @@ export class LoginComponent {
    * Redirige a dashboard-admin si el rol es ADMIN, o a dashboard en cualquier otro caso.
    */
   async onSubmit() {
-    console.log('📝 Formulario:', this.formLogin.value);
+    console.log('Formulario:', this.formLogin.value);
 
     if (this.formLogin.invalid) {
       console.log('❌ Formulario inválido');
@@ -102,19 +91,18 @@ export class LoginComponent {
         throw new Error('Email y contraseña son requeridos');
       }
 
-      console.log('🔐 Iniciando sesión con AuthService...');
+      console.log('Iniciando sesión con AuthService...');
 
-      // CAMBIO: Usar AuthService.login() que maneja todo (Firebase + Backend)
+      // Inicio de sesión mediante AuthService (Firebase + Backend con Cookies)
       this.authService.login(email, password).subscribe({
         next: (response) => {
-          console.log('✅ Login exitoso:', response);
-          console.log('📦 Token guardado en jwtToken');
+          console.log('Login exitoso:', response);
+          console.log('Sesión establecida mediante cookies segura');
           
           this.loading.set(false);
           
-          // Redirigir a dashboard limpiando query params
-          
-             const role = response.role; // obtener rol del usuario logueado
+          // Redirigir a dashboard
+          const role = response.role; // obtener rol del usuario logueado
           if (role === 'ADMIN') {
             this.router.navigate(['/dashboard-admin']); // admin va a dashboard-admin
           } else {
@@ -138,24 +126,21 @@ export class LoginComponent {
 
    /**
    * Devuelve el mensaje de error correspondiente al campo indicado.
-   * Pendiente de sustituir los textos hardcodeados por el sistema de traducciones.
+   * Utiliza el sistema de traducciones para los textos.
    * @param control - Nombre del campo del formulario a validar
    * @returns Mensaje de error o cadena vacía si no hay error
    */
   getError(control: string) {
     switch (control) {
       case 'email':
-        if (this.formLogin.controls.email.errors != null &&
-          Object.keys(this.formLogin.controls.email.errors).includes('required'))
-          return 'El campo email es requerido';
-        else if (this.formLogin.controls.email.errors != null &&
-          Object.keys(this.formLogin.controls.email.errors).includes('email'))
-          return 'El email no es correcto';
+        if (this.formLogin.controls.email.errors?.['required'])
+          return this.translateService.instant('common.validation.required');
+        else if (this.formLogin.controls.email.errors?.['email'])
+          return this.translateService.instant('common.validation.emailInvalid');
         break;
       case 'password':
-        if (this.formLogin.controls.password.errors != null &&
-          Object.keys(this.formLogin.controls.password.errors).includes('required'))
-          return 'El campo contraseña es requerido';
+        if (this.formLogin.controls.password.errors?.['required'])
+          return this.translateService.instant('common.validation.required');
         break;
       default:
         return '';
