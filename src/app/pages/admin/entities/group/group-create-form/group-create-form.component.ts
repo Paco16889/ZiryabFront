@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
-
+import { GroupService } from '../../../../../core/services/admin/entities/group.service';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo grupo.
@@ -47,7 +46,7 @@ export class GroupCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private groupService: GroupServiceService
+    private groupService: GroupService
   ){
     this.createForm = this.fb.group({
       name: ['', Validators.required]

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Student } from '../../../../../core/models/student';
 
-import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
+import { StudentsService } from '../../../../../core/services/admin/entities/students.service';
 
 
 import { Validators } from '@angular/forms';
@@ -190,7 +190,7 @@ export class ListItemComponent {
    * @param studentService - Servicio que gestiona las operaciones con estudiantes,
    * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
    */
-  constructor(private studentService: StudentsServiceService) {}
+  constructor(private studentService: StudentsService) {}
 
 
   

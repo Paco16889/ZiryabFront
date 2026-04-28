@@ -1,13 +1,12 @@
 import { Component, effect } from '@angular/core';
 import { Teacher, TeacherUpdateResponse } from '../../../../../core/models/teacher';
-import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
+import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { TeacherListItemComponent } from '../teacher-list-item/teacher-list-item.component';
 import { TeacherCreateFormComponent } from '../teacher-create-form/teacher-create-form.component';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
-
 
 /**
  * Componente que muestra el listado de profesores del sistema.
@@ -39,9 +38,9 @@ export class TeacherListComponent {
    * @param updateModalService - Servicio del modal de edición, usado para detectar
    * cuando una actualización se completa y recargar la lista
    */
-    constructor(private teacherService: TeachersServiceService,
-      private modalDeleteService: ModalDeleteServiceService,
-      private updateModalService: ModalEditServiceService
+    constructor(private teacherService: TeachersService,
+      private modalDeleteService: ModalDeleteService,
+      private updateModalService: ModalEditService
     ){
       effect(() => {
         this.teachers = teacherService.teachers();

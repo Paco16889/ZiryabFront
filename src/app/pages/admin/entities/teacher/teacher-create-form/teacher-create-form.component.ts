@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
+import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
+import { PasswordService } from '../../../../../core/services/password.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { PasswordServiceService } from '../../../../../core/services/password-service.service';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo profesor.
  * Crea el usuario en Firebase Authentication y posteriormente lo registra
  * en el backend con los datos del formulario.
- * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServiceService.
+ * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordService.
  */
 @Component({
   selector: 'app-teacher-create-form',
@@ -51,9 +51,9 @@ export class TeacherCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private teacherService: TeachersServiceService,
+    private teacherService: TeachersService,
     private fireBaseAuth: Auth,
-    private passwordGen: PasswordServiceService
+    private passwordGen: PasswordService
   ) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],

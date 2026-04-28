@@ -1,11 +1,10 @@
 import { Component, effect, EventEmitter, Input, Output } from '@angular/core';
 import { WeekSchedule, WeekScheduleUpdateRequest } from '../../../../../core/models/week-schedule';
-import { WeekScheduleServiceService } from '../../../../../core/services/admin/entities/week-schedule-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
+import { WeekScheduleService } from '../../../../../core/services/admin/entities/week-schedule.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { WeekScheduleListItemComponent } from "../week-schedule-list-item/week-schedule-list-item.component";
-
 
 /**
  * Componente que muestra el listado de franjas horarias semanales del sistema.
@@ -39,9 +38,9 @@ export class WeekScheduleListComponent {
    * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
    * cuando una eliminación se completa y recargar la lista
    */
-  constructor(private weekScheduleService: WeekScheduleServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+  constructor(private weekScheduleService: WeekScheduleService,
+    private modalUpdateService: ModalEditService,
+    private modalDeleteService: ModalDeleteService) {
 
       effect(() => {this.schedules = weekScheduleService.schedules()
           console.log('📦 Schedules actualizados:', this.schedules);

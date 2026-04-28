@@ -9,8 +9,8 @@ import { PerfilComponent } from './pages/shared/perfil/perfil.component';
 import { PerfilMenuService } from './core/services/perfil-menu.service'; 
 import { TranslateService } from '@ngx-translate/core';
 import { GenericDeleteModalComponent } from "./pages/admin/modales/generic-delete-modal/generic-delete-modal.component";
-import { ModalDeleteServiceService } from './core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from './core/services/UI/modal-edit-service.service';
+import { ModalDeleteService } from './core/services/UI/modal-delete.service';
+import { ModalEditService } from './core/services/UI/modal-edit.service';
 import { GenericEditModalComponent } from "./pages/admin/modales/generic-edit-modal/generic-edit-modal.component";
 
 
@@ -54,8 +54,8 @@ export class AppComponent {
    * @param updateModalService - Servicio para gestionar el modal global de edición
    */
   constructor(public perfilService: PerfilMenuService,
-    public deleteModalService: ModalDeleteServiceService,
-    public updateModalService: ModalEditServiceService
+    public deleteModalService: ModalDeleteService,
+    public updateModalService: ModalEditService
   ) {
     this.translate.addLangs(['es', 'en', 'de']);
     // Idioma de fallback

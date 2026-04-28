@@ -1,11 +1,11 @@
 import { Component, effect } from '@angular/core';
-import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
+import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { Subject } from '../../../../../core/models/subject';
 
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { AsignaturaListItemComponent } from '../asignatura-list-item/asignatura-list-item.component';
 import { SubjectCreateFormComponent } from '../subject-create-form/subject-create-form.component';
 
@@ -39,9 +39,9 @@ export class AsignaturaListComponent {
    * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
    * cuando una eliminación se completa y recargar la lista
    */
-  constructor(private subjectService: SubjectServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+  constructor(private subjectService: SubjectService,
+    private modalUpdateService: ModalEditService,
+    private modalDeleteService: ModalDeleteService) {
 
       effect(() => {this.subjects = subjectService.subjects()})
     effect(() => {

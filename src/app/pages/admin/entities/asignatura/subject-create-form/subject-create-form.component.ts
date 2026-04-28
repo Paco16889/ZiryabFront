@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
-import { CoursesAllResponse } from '../../../../../core/models/course';
+import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
+import { SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/models/subject';
 
 /**
  * Componente que gestiona el formulario de creación de una nueva asignatura.
- * Carga los ciclos disponibles al inicializarse para permitir su selección
- * y envía los datos al backend tras validar el formulario.
+ * Carga los ciclos disponibles para asociar la asignatura y envía los datos
+ * de creación al backend tras validar el formulario.
  */
 @Component({
   selector: 'app-subject-create-form',
@@ -52,7 +52,7 @@ export class SubjectCreateFormComponent {
    */
   errorMessage = '';
 
-   /**
+    /**
    * Inicializa el componente.
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    * @param subjectService - Servicio que gestiona las operaciones con asignaturas
@@ -60,8 +60,8 @@ export class SubjectCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private subjectService: SubjectServiceService,
-    private courseService: CourseServiceService
+    private subjectService: SubjectService,
+    private courseService: CourseService
   ) {
     this.createForm = this.fb.group({
   name:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],

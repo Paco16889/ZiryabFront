@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
+import { StudentsService } from '../../../../../core/services/admin/entities/students.service';
 import { Student, StudentByIdResponse } from '../../../../../core/models/student';
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
-import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
+import { SelectedStudentService } from '../../../../../core/services/admin/selected-student.service';
 
 /**
  * Componente que permite buscar y seleccionar un estudiante existente por su DNI.
@@ -62,7 +62,7 @@ export class StudentSelectorComponent {
    * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
    * @param fb - FormBuilder de Angular para construir el formulario reactivo
    */
-  constructor(private selectedStudentService: SelectedStudentServiceService
+  constructor(private selectedStudentService: SelectedStudentService
     ,private fb : FormBuilder
   ) {
      this.dniForm = this.fb.group({

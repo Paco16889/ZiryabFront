@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Student } from '../../../../../core/models/student';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
+import { StudentsService } from '../../../../../core/services/admin/entities/students.service';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { PasswordServiceService } from '../../../../../core/services/password-service.service';
+import { PasswordService } from '../../../../../core/services/password.service';
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
-import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
+import { SelectedStudentService } from '../../../../../core/services/admin/selected-student.service';
 import { Observable } from 'rxjs';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo estudiante.
  * Crea el usuario en Firebase Authentication y posteriormente lo registra
  * en el backend con los datos del formulario.
- * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServiceService.
+ * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordService.
  */
 @Component({
   selector: 'app-student-create-form',
@@ -23,7 +23,7 @@ import { Observable } from 'rxjs';
 export class StudentCreateFormComponent {
 
   /**
-   * Evento emitido cuando el estudiante se ha creado correctamente.
+   * Evento emitido cuando the estudiante se ha creado correctamente.
    * Incluye los datos del estudiante creado.
    */
   @Output() studentCreated = new EventEmitter<Student>();
@@ -70,10 +70,10 @@ export class StudentCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private studentService: StudentsServiceService,
+    private studentService: StudentsService,
     private fireBaseAuth: Auth,
-    private passwordGen: PasswordServiceService,
-    private selectedStudentService: SelectedStudentServiceService
+    private passwordGen: PasswordService,
+    private selectedStudentService: SelectedStudentService
   ) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
