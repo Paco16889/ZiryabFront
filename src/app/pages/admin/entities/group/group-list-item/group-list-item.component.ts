@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Group } from '../../../../../core/models/group';
+import { Course } from '../../../../../core/models/course';
 
 import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
 
@@ -45,7 +46,7 @@ export class GroupListItemComponent implements OnInit{
    * Listado de ciclos asociados al grupo.
    * Pendiente de tipar correctamente en lugar de usar any[].
    */
-  coursesToShow: any[] = [];
+  coursesToShow: Course[] = [];
    
 
   

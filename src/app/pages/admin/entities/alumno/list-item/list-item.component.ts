@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Student } from '../../../../../core/models/student';
+import { StudentUpdateRequest } from '../../../../../core/models/student';
 
 import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
 
@@ -31,7 +32,7 @@ export class ListItemComponent {
   /**
    * Evento emitido cuando el estudiante ha sido actualizado.
    */
-  @Output() studentUpdated = new EventEmitter<any>();
+  @Output() studentUpdated = new EventEmitter<StudentUpdateRequest>();
 
    /**
    * Evento emitido cuando el estudiante ha sido eliminado, incluye su identificador.

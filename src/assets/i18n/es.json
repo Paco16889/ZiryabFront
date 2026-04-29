@@ -188,6 +188,11 @@
     "passwordPlaceholder": "tu contraseña",
     "submit": "Acceder"
   },
+  "notifications": {
+    "bellAria": "Notificaciones",
+    "unreadAria": "Hay notificaciones sin leer",
+    "toastClose": "Cerrar aviso"
+  },
   "perfil": {
     "logout": "Cerrar sesión",
     "loggingOut": "Cerrando sesión..."

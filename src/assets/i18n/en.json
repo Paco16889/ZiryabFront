@@ -192,6 +192,12 @@
     "submit": "Access"
   },
 
+  "notifications": {
+    "bellAria": "Notifications",
+    "unreadAria": "You have unread notifications",
+    "toastClose": "Dismiss notification"
+  },
+
   "perfil": {
     "logout": "Log out",
     "loggingOut": "Logging out..."

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Teacher } from '../../../../../core/models/teacher';
+import { TeacherUpdateRequest } from '../../../../../core/models/teacher';
 
 import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
 
@@ -35,7 +36,7 @@ export class TeacherListItemComponent {
    * Evento emitido cuando el profesor ha sido actualizado.
    * Pendiente de sustituir any por Teacher o TeacherUpdateRequest.
    */
-  @Output() teacherUpdated = new EventEmitter<any>();
+  @Output() teacherUpdated = new EventEmitter<TeacherUpdateRequest>();
 
    /**
    * Evento emitido cuando el profesor ha sido eliminado, incluye su identificador.

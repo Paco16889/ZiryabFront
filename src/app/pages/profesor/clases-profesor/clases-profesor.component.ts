@@ -7,6 +7,11 @@ import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
 
+interface TeacherSubjectCardSource {
+  subject: { id: number; name: string; course?: { name: string } | null };
+  group?: { name: string } | null;
+}
+
 /**
  * Componente que muestra las asignaturas asignadas al profesor autenticado.
  * Estructura idéntica a ClasesComponent del estudiante, candidato a unificarse.
@@ -46,7 +51,7 @@ export class ClasesProfesorComponent implements OnInit {
  * 
  */
   public asignaturasCards = signal<CardItem[]>([]);
-  private asignaturasOriginales = signal<any[]>([]);
+  private asignaturasOriginales = signal<TeacherSubjectCardSource[]>([]);
 
   /**
   * Indica si los datos están siendo cargados desde el backend.

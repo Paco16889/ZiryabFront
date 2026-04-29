@@ -5,6 +5,12 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
+import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
+
+interface StudentSubjectCardSource {
+  subject: { id: number; name: string };
+  group?: { name: string } | null;
+}
 
 /**
  * Componente que muestra las asignaturas matriculadas del estudiante autenticado.
@@ -42,7 +48,7 @@ export class ClasesComponent implements OnInit {
 
   // Guardamos las raw asignaturas temporalmente por si hacen falta, 
   // o podemos simplemente construir los cards.
-  private asignaturasOriginales = signal<any[]>([]);
+  private asignaturasOriginales = signal<StudentSubjectCardSource[]>([]);
 
     /**
    * Indica si los datos están siendo cargados desde el backend.
@@ -83,11 +89,11 @@ export class ClasesComponent implements OnInit {
           this.construirCards();
           this.loading.set(false);
 
-          response.data.forEach((item: any) => {
+          response.data.forEach((item: StudentSubjectCardSource) => {
             const subjectId = item.subject.id;
             
             this.clasesService.getNombreProfesorParaAsignatura(subjectId).subscribe({
-              next: (responseDetail: any) => {
+              next: (responseDetail: GetSubjectDetailResponse) => {
                 const subjectData = responseDetail.data;
                 if (subjectData && subjectData.teacherAssignments && subjectData.teacherAssignments.length > 0) {
                   const profeData = subjectData.teacherAssignments[0].teacher;
@@ -105,7 +111,7 @@ export class ClasesComponent implements OnInit {
                 }
                 this.construirCards(); 
               },
-              error: (e: any) => console.warn(`No se pudo cargar info extra para asignatura ${subjectId}`)
+              error: () => console.warn(`No se pudo cargar info extra para asignatura ${subjectId}`)
             });
           });
 

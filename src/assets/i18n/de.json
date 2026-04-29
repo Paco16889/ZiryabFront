@@ -192,6 +192,12 @@
     "submit": "Anmelden"
   },
 
+  "notifications": {
+    "bellAria": "Benachrichtigungen",
+    "unreadAria": "Ungelesene Benachrichtigungen",
+    "toastClose": "Hinweis schließen"
+  },
+
   "perfil": {
     "logout": "Abmelden",
     "loggingOut": "Abmeldung läuft..."

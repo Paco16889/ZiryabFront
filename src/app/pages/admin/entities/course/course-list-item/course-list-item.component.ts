@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Course } from '../../../../../core/models/course';
+import { Course, CourseUpdateRequest } from '../../../../../core/models/course';
 import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 
 
@@ -33,7 +33,7 @@ export class CourseListItemComponent {
    * Evento emitido cuando el ciclo ha sido actualizado.
    * Pendiente de sustituir el tipo inline por CourseUpdateRequest.
    */
-  @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
+  @Output() courseUpdated = new EventEmitter<CourseUpdateRequest>();
   
   
 
