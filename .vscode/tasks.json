@@ -37,6 +37,17 @@
           }
         }
       }
-    }
+    },
+    {
+      "label": "Ejecutar Auditoría MCP",
+      "type": "shell",
+      "command": "bash .cursor/audit-mcp.sh",
+      "isBackground": true,
+      "presentation": {
+          "reveal": "silent",
+          "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
   ]
 }
