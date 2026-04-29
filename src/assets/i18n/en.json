@@ -208,5 +208,19 @@
     "teacher": "Teacher",
     "admin": "Administrator",
     "user": "Active user"
+  },
+  "horario": {
+    "titleStudent": "My timetable",
+    "titleTeacher": "Teacher timetable",
+    "subtitle": "Check your weekly class schedule",
+    "noData": "There are no classes assigned",
+    "group": "Group",
+    "days": {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday"
+    }
   }
 }

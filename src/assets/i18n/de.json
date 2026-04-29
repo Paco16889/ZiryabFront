@@ -208,5 +208,19 @@
     "teacher": "Lehrer",
     "admin": "Administrator",
     "user": "Aktiver Benutzer"
+  },
+  "horario": {
+    "titleStudent": "Mein Stundenplan",
+    "titleTeacher": "Lehrerstundenplan",
+    "subtitle": "Pruefen Sie Ihre woechentliche Unterrichtsplanung",
+    "noData": "Es sind keine Klassen zugewiesen",
+    "group": "Gruppe",
+    "days": {
+      "1": "Montag",
+      "2": "Dienstag",
+      "3": "Mittwoch",
+      "4": "Donnerstag",
+      "5": "Freitag"
+    }
   }
 }

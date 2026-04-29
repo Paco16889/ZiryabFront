@@ -29,13 +29,23 @@ export class DashboardComponent {
    * @param str - Nombre de la ruta a la que navegar
    */
   goTo(str: string): void {
-    if (str === 'clases') {
-      const user = this.authService.getCurrentUser();
+    const user = this.authService.getCurrentUser();
 
+    if (str === 'clases') {
       if (user && user.role === 'TEACHER') {
         this.navegador.toComponent('clases-profesor');
         return;
       }
+    }
+
+    if (str === 'horario') {
+      if (user && user.role === 'TEACHER') {
+        this.navegador.toComponent('horario-profesor');
+        return;
+      }
+
+      this.navegador.toComponent('horario-alumno');
+      return;
     }
 
     this.navegador.toComponent(str);

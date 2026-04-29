@@ -55,6 +55,28 @@ export class WeekScheduleService {
     );
   }
 
+  /**
+   * Obtiene las franjas horarias semanales asociadas a un estudiante.
+   * @param idStudent - Identificador del estudiante autenticado
+   * @returns Observable con las franjas horarias del estudiante
+   */
+  getSchedulesByStudent(idStudent: number): Observable<WeekSchedulesAllResponse> {
+    return this.http.get<WeekSchedulesAllResponse>(`${this.apiUrl}/student/${idStudent}`).pipe(
+      catchError(() => of({ success: false, data: [], count: 0 }))
+    );
+  }
+
+  /**
+   * Obtiene las franjas horarias semanales asociadas a un profesor.
+   * @param idTeacher - Identificador del profesor autenticado
+   * @returns Observable con las franjas horarias del profesor
+   */
+  getSchedulesByTeacher(idTeacher: number): Observable<WeekSchedulesAllResponse> {
+    return this.http.get<WeekSchedulesAllResponse>(`${this.apiUrl}/teacher/${idTeacher}`).pipe(
+      catchError(() => of({ success: false, data: [], count: 0 }))
+    );
+  }
+
     /**
    * Obtiene una franja horaria semanal por su identificador.
    * @param id - Identificador único de la franja horaria
