@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Teacher } from '../../../../../core/models/teacher';
 import { TeacherUpdateRequest } from '../../../../../core/models/teacher';
 
-import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
+import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 
 
 
@@ -182,7 +182,7 @@ export class TeacherListItemComponent {
    * @param teacherService - Servicio que gestiona las operaciones con profesores,
    * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
    */
-  constructor(private teacherService: TeachersServiceService) {}
+  constructor(private teacherService: TeachersService) {}
 
   
  

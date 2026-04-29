@@ -4,9 +4,8 @@ import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
-import { WeekScheduleServiceService } from '../../../../../core/services/admin/entities/week-schedule-service.service';
+import { WeekScheduleService } from '../../../../../core/services/admin/entities/week-schedule.service';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
-
 
 /**
  * Componente que representa un elemento del listado de franjas horarias semanales.
@@ -42,7 +41,7 @@ export class WeekScheduleListItemComponent {
    * Evento emitido cuando la franja horaria ha sido eliminada, incluye su identificador.
    */
   constructor(
-    private weekScheduleService: WeekScheduleServiceService
+    private weekScheduleService: WeekScheduleService
   ){
 
   }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ClasesService } from './clases.service';
+import { TaskGroupUiService } from './task-group-ui.service';
 
-describe('ClasesService', () => {
-  let service: ClasesService;
+describe('TaskGroupUiService', () => {
+  let service: TaskGroupUiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ClasesService);
+    service = TestBed.inject(TaskGroupUiService);
   });
 
   it('should be created', () => {

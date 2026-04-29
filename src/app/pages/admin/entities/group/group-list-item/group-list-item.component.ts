@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Group } from '../../../../../core/models/group';
 import { Course } from '../../../../../core/models/course';
 
-import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
+import { GroupService } from '../../../../../core/services/admin/entities/group.service';
 
 
 

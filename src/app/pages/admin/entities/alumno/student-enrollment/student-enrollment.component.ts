@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { StudentCreateFormComponent } from "../student-create-form/student-create-form.component";
 import { StudentSelectorComponent } from "../student-selector/student-selector.component";
 import { Student } from '../../../../../core/models/student';
-import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
+import { SelectedStudentService } from '../../../../../core/services/admin/selected-student.service';
 import { SetRegistrationComponent } from "../set-registration/set-registration.component";
 import { StudentModeSelectorComponent } from "../student-mode-selector/student-mode-selector.component";
 
@@ -38,7 +38,7 @@ export class StudentEnrollmentComponent implements OnChanges{
    * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
    * para compartirlo entre los componentes del flujo de matriculación
    */
-       constructor(private selectedStudentService: SelectedStudentServiceService) {}
+       constructor(private selectedStudentService: SelectedStudentService) {}
 
          /**
    * Detecta cambios en el listado de estudiantes recibido por Input.

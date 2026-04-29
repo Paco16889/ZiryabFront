@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../../../../core/models/course';
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
+import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { Subject } from '../../../../../core/models/subject';
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { Student } from '../../../../../core/models/student';
 import { StudentRegistrationService } from '../../../../../core/services/admin/student-registration.service';
-import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
+import { SelectedStudentService } from '../../../../../core/services/admin/selected-student.service';
 
 
 /**
@@ -74,10 +74,10 @@ export class SetRegistrationComponent {
    * @param studentRegService - Servicio que gestiona el proceso de matriculación
    * @param studentSelectedService - Servicio que proporciona el estudiante actualmente seleccionado
    */
-    constructor(public courseService: CourseServiceService,
-      public subjectService: SubjectServiceService,
+    constructor(public courseService: CourseService,
+      public subjectService: SubjectService,
       public studentRegService: StudentRegistrationService,
-      public studentSelectedService: SelectedStudentServiceService
+      public studentSelectedService: SelectedStudentService
     ){
       
     }

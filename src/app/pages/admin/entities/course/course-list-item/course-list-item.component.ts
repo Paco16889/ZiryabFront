@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Course, CourseUpdateRequest } from '../../../../../core/models/course';
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
+import { Course } from '../../../../../core/models/course';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 
 
 
@@ -102,7 +102,7 @@ export class CourseListItemComponent {
    * @param courseService - Servicio que gestiona las operaciones con ciclos académicos,
    * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
    */
-  constructor(private courseService: CourseServiceService) {}
+  constructor(private courseService: CourseService) {}
 
   
 

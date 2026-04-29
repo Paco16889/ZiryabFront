@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { TaskServiceService } from '../../../core/services/admin/entities/task-service.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TaskService } from '../../../core/services/admin/entities/task.service';
 
 @Component({
   selector: 'app-task-form',
@@ -27,7 +26,7 @@ export class TaskFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private taskService: TaskServiceService
+    private taskService: TaskService
   ) {}
 
   ngOnInit(): void {

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject, SubjectByIdResponse, SubjectsAllResponse, SubjectUpdateRequest } from '../../../../../core/models/subject';
 
-import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
+import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 
 
 
 
 
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
 
@@ -50,8 +50,8 @@ export class AsignaturaListItemComponent {
    * para el selector del formulario de edición
    */
   constructor(
-    private subjectService: SubjectServiceService,
-    private courseService: CourseServiceService
+    private subjectService: SubjectService,
+    private courseService: CourseService
   ) {}
 
     /**

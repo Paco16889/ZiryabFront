@@ -1,12 +1,12 @@
 import { Component, effect } from '@angular/core';
 import { GroupListItemComponent } from '../group-list-item/group-list-item.component';
 import { Group } from '../../../../../core/models/group';
-import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
+import { GroupService } from '../../../../../core/services/admin/entities/group.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { GroupCreateFormComponent } from '../group-create-form/group-create-form.component';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
 /**
  * Componente que muestra el listado de grupos del sistema.
@@ -38,9 +38,9 @@ export class GroupListComponent {
    * @param modalUpdateService - Servicio del modal de edición, usado para detectar
    * cuando una actualización se completa y recargar la lista
    */
-  constructor(private groupService: GroupServiceService,
-    private modalDeleteService: ModalDeleteServiceService,
-    private modalUpdateService: ModalEditServiceService
+  constructor(private groupService: GroupService,
+    private modalDeleteService: ModalDeleteService,
+    private modalUpdateService: ModalEditService
   ) {
     effect(() => {
       this.groups = this.groupService.groups();

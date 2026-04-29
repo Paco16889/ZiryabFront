@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CargaStudentsporGrupoAsignaturaServiceService } from '../../../core/services/profesor/carga-studentspor-grupo-asignatura-service.service';
-import { TarjetaasistenciaComponent } from "../tarjetaasistencia/tarjetaasistencia.component";
+import { CargaStudentsporGrupoAsignaturaService } from '../../../core/services/profesor/carga-studentspor-grupo-asignatura.service';
 
 @Component({
   selector: 'app-listaasistencia',
@@ -9,6 +8,6 @@ import { TarjetaasistenciaComponent } from "../tarjetaasistencia/tarjetaasistenc
   styleUrl: './listaasistencia.component.scss'
 })
 export class ListaasistenciaComponent {
-    readonly studentsService = inject(CargaStudentsporGrupoAsignaturaServiceService);
+    readonly studentsService = inject(CargaStudentsporGrupoAsignaturaService);
 
 }
