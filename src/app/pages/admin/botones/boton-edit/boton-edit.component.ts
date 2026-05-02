@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { ModalEditService } from '../../../../core/services/UI/modal-edit.service';
 import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
 
 /**
  * Componente que representa el botón de edición de una entidad.
- * Al pulsarlo abre el modal de edición mediante el ModalEditServiceService,
+ * Al pulsarlo abre el modal de edición mediante el ModalEditService,
  * sin necesidad de emitir eventos al componente padre.
  */
 
@@ -53,7 +53,7 @@ export class BotonEditComponent {
    * Inicializa el componente.
    * @param updateModalService - Servicio que gestiona el estado y ciclo de vida del modal de edición
    */
-  constructor(private updateModalService: ModalEditServiceService) {
+  constructor(private updateModalService: ModalEditService) {
 
   }
 
@@ -61,8 +61,6 @@ export class BotonEditComponent {
    * Abre el modal de edición con los datos de la entidad actual.
    */
   onClick() {
-      console.log('🔹 BotonEdit click', { id: this.id, name: this.name, entityData: this.entityData });
-
     this.updateModalService.openModal({
       id: this.id,
       name: this.name,

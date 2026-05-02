@@ -1,16 +1,17 @@
-import { Component, effect, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DestroyRef, effect, inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
 import { Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ModalEditService } from '../../../../core/services/UI/modal-edit.service';
 
 /**
  * Componente genérico que representa el modal de edición de una entidad.
  * Genera el formulario dinámicamente a partir de la configuración de campos recibida.
  * Soporta campos de texto y selectores con opciones estáticas o asíncronas.
  * Muestra tres estados: formulario, actualizando y éxito.
- * Se sincroniza con el ModalEditServiceService mediante un effect
+ * Se sincroniza con el ModalEditService mediante un effect
  * para reflejar el estado actual del proceso de actualización.
  */
 @Component({
@@ -83,15 +84,11 @@ export class GenericEditModalComponent {
    * Se suscribe mediante un effect a los cambios de estado para sincronizar
    * las propiedades isUpdating, showSuccess y errorMessage.
    */
-  constructor(private fb: FormBuilder, private editModalService: ModalEditServiceService) {
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor(private fb: FormBuilder, private editModalService: ModalEditService) {
      effect(() => {
       const modalState = this.editModalService.modalState();
-      console.log(
-    '🧠 MODAL STATE:',
-    'isOpen:', modalState.isOpen,
-    'showSuccess:', modalState.showSuccess,
-    'isDeleting:', modalState.isUpdating
-   );
    this.isUpdating = modalState.isUpdating!;
    this.showSuccess = modalState.showSuccess!;
    this.errorMessage = modalState.errorMessage!;
@@ -104,7 +101,6 @@ export class GenericEditModalComponent {
    */
   ngOnInit() {
     const group: any = {};
-    console.log('entityData:', this.entityData);
     this.fields.forEach(f => {
       group[f.name] = [this.entityData[f.name] || '', f.validators || []];
       
@@ -120,7 +116,6 @@ export class GenericEditModalComponent {
    * Carga las opciones de un campo selector.
    * Si el campo tiene opciones estáticas las usa directamente.
    * Si tiene un observable las carga de forma asíncrona.
-   * ATENCIÓN: la suscripción al observable no se gestiona, puede provocar memory leaks.
    * @param field - Configuración del campo selector
    */
   private loadSelectOptions(field: EditFieldConfig) {
@@ -134,7 +129,7 @@ export class GenericEditModalComponent {
     if (field.optionsObservable) {
       this.loadingOptions[field.name] = true;
       
-      field.optionsObservable.subscribe({
+      field.optionsObservable.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
         next: (data) => {
           // Transforma los datos al formato { value, label }
           this.fieldOptions[field.name] = data.map(item => ({
@@ -162,8 +157,6 @@ export class GenericEditModalComponent {
     ...this.editForm.value
   };
      
-     console.log('🔹 onSubmit updateData', updateData);
-     console.log('y aqui', this.entityData.id);
      this.editModalService.confirmUpdate(updateData); 
   }
 
