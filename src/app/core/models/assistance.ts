@@ -107,17 +107,32 @@ export interface AssistanceDeleteResponse {
   /** Identificador del registro de asistencia eliminado */
   deletedId: number;
 }
+/**
+ * Representa un elemento individual de asistencia simplificado para su visualización en listas.
+ * Incluye información sobre el estado, el justificante y datos básicos de la sesión y asignatura.
+ */
 export interface AssistanceItem {
+  /** Identificador único de la asistencia */
   id: number;
+  /** Estado de asistencia: PRESENTE, AUSENTE, TARDE o EXCUSADO (justificado) */
   status: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+  /** URL o path del archivo justificante subido, si existe */
   justificationUri?: string;
+  /** Estado de revisión de la justificación enviada */
   justificationStatus?: 'PENDING' | 'VIEWED' | 'REJECTED' | null;
+  /** Información detallada de la sesión de clase */
   session: {
+    /** Fecha de la sesión en formato string (ej: ISO) */
     date: string;
+    /** Información del horario y la asignatura */
     schedule: {
+      /** Hora de inicio de la clase */
       startTime: string;
+      /** Información del profesor y asignatura asignada */
       teacherAssignment: {
+        /** Información de la asignatura */
         subject: {
+          /** Nombre de la asignatura */
           name: string;
         }
       }
@@ -125,8 +140,14 @@ export interface AssistanceItem {
   }
 }
 
+/**
+ * Estructura de respuesta de la API para listados de asistencias.
+ */
 export interface AssistanceResponse {
+  /** Indica si la petición se procesó correctamente */
   success: boolean;
+  /** Array de elementos de asistencia encontrados */
   data: AssistanceItem[];
+  /** Número total de asistencias devueltas */
   count: number;
 }

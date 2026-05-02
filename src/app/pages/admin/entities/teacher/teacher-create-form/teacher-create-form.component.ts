@@ -21,24 +21,16 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
   styleUrl: './teacher-create-form.component.scss'
 })
 export class TeacherCreateFormComponent {
-    /**
-   * Evento emitido cuando el usuario cancela la creación.
-   */
+  /** Evento emitido cuando el usuario cancela la creación */
   @Output() cancelCreate = new EventEmitter<void>();
 
-   /**
-   * Evento emitido cuando el profesor se ha creado correctamente.
-   */
+  /** Evento emitido cuando el profesor se ha creado correctamente */
   @Output() teacherCreated = new EventEmitter<void>();
 
-   /**
-   * Formulario reactivo con los campos necesarios para crear un profesor.
-   */
+  /** Formulario reactivo con los campos necesarios para crear un profesor */
   createForm: FormGroup;
 
-   /**
-   * Indica si la petición de creación está en curso.
-   */
+  /** Indica si la petición de creación está en curso */
   isCreating = false;
 
     /**
@@ -73,6 +65,7 @@ export class TeacherCreateFormComponent {
    * Crea el usuario en Firebase Authentication y lo registra en el backend.
    * Genera una contraseña aleatoria para Firebase y usa el UID resultante
    * para completar el registro en el backend.
+   * @returns Un observable con la respuesta de la creación del profesor.
    */
   createTeacher(): Observable<TeacherCreateResponse> {
     const email = this.createForm.value.email;
@@ -102,7 +95,8 @@ export class TeacherCreateFormComponent {
   }
 
   /**
-   * Valida el formulario y ejecuta la creación si es correcto.
+   * Valida el formulario y ejecuta la creación del profesor si es correcto.
+   * Gestiona el estado de carga y los posibles errores de la API.
    */
   onSubmit() {
     if (this.createForm.valid) {
@@ -122,8 +116,8 @@ export class TeacherCreateFormComponent {
     }
   }
 
-    /**
-   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+  /**
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar cambios.
    */
   onCancel() {
     this.cancelCreate.emit();

@@ -54,10 +54,10 @@ export class StudentSelectorComponent {
   @Output() studentSelected = new EventEmitter<Student>(); // ← Cambiado
 
 
-    /**
+  /**
    * Inicializa el componente.
-   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
-   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param selectedStudentService Servicio que almacena el estudiante seleccionado para matriculación.
+   * @param fb FormBuilder de Angular para construir el formulario reactivo de búsqueda.
    */
   constructor(private selectedStudentService: SelectedStudentServiceService
     ,private fb : FormBuilder
@@ -101,8 +101,8 @@ export class StudentSelectorComponent {
   }
 
   /**
-   * Confirma la selección del estudiante encontrado.
-   * Emite el evento studentSelected y almacena el estudiante en el servicio de selección.
+   * Confirma la selección del estudiante encontrado en la búsqueda.
+   * Almacena el estudiante en el servicio de selección global y notifica al componente padre.
    */
   confirmSelection() {
     if (this.student?.id) {

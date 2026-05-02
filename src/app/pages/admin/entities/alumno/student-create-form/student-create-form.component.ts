@@ -50,10 +50,8 @@ export class StudentCreateFormComponent {
    */
   errorMessage = '';
 
-   /**
-   * Indica si el formulario es válido.
-   */
-  validForm = false;
+  /** Indica si el formulario es válido */
+  public validForm = false;
 
 
     /**
@@ -85,7 +83,7 @@ export class StudentCreateFormComponent {
    * Crea el usuario en Firebase Authentication y lo registra en el backend.
    * Genera una contraseña aleatoria para Firebase y usa el UID resultante
    * para completar el registro en el backend.
-   * @returns Observable con los datos del estudiante creado
+   * @returns Observable con los datos del estudiante creado.
    */
   createStudent(): Observable<Student> {
     const email = this.createForm.value.email;
@@ -117,55 +115,50 @@ export class StudentCreateFormComponent {
     );
   }
 
- /**
+  /**
    * Valida el formulario, comprueba si el estudiante ya existe por DNI
    * y ejecuta la creación si todo es correcto.
-   * Si el estudiante ya existe muestra un mensaje de error sin crear.
+   * Si el estudiante ya existe, muestra un mensaje de error sin realizar la creación.
    */
   onSubmit() {
     if (this.createForm.invalid) return;
-    //this.createStudent();
-      const formValue = this.createForm.value;
-      const dni = formValue.dni;
+    
+    const formValue = this.createForm.value;
+    const dni = formValue.dni;
 
-  // 1️⃣ comprobar existencias
+    // 1️⃣ comprobar existencias
     const exists = this.studentService.students().some(
-    student => student.dni === dni
-  );
+      student => student.dni === dni
+    );
 
-  // 2️⃣ si existe → avisar y return
-  if (exists) {
-    console.log('estudiante existente');
-    this.errorMessage = 'Estudiante existente matricular desde estudiante existente';
-    return;
-  } 
-   this.createStudent().subscribe({
-    next: (createdStudent) => {
-      console.log('✅ Estudiante creado: ', createdStudent);
-
-      // 3️⃣ guardar en signal global
-      this.selectedStudentService.setSelectedStudent(createdStudent);
-
-      // 4️⃣ avisar al padre (si lo necesitas)
-      this.studentCreated.emit(createdStudent);
-
-      // 5️⃣ aquí NO cambiamos modo (eso lo hace el padre)
-    },
-    error: (err) => {
-      console.error('❌ Error al crear estudiante:', err);
-      this.errorMessage = 'Error al crear el estudiante';
+    // 2️⃣ si existe → avisar y return
+    if (exists) {
+      console.log('estudiante existente');
+      this.errorMessage = 'Estudiante existente. Matricular desde estudiante existente.';
+      return;
     }
-  });
-  
 
-  
+    this.createStudent().subscribe({
+      next: (createdStudent) => {
+        console.log('✅ Estudiante creado: ', createdStudent);
+
+        //  guardar en signal global
+        this.selectedStudentService.setSelectedStudent(createdStudent);
+
+        //  avisar al padre
+        this.studentCreated.emit(createdStudent);
+      },
+      error: (err) => {
+        console.error('❌ Error al crear estudiante:', err);
+        this.errorMessage = 'Error al crear el estudiante';
+      }
+    });
   }
 
   /**
-   * Emite el evento cancelCreate para cerrar el formulario sin guardar.
+   * Emite el evento cancelCreate para cerrar el formulario sin guardar cambios.
    */
   onCancel() {
     this.cancelCreate.emit();
   }
-
 }
