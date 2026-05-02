@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass, DatePipe } from '@angular/common';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { JustificarFaltaModalComponent } from './justificar-falta-modal/justificar-falta-modal.component';
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
@@ -15,7 +15,7 @@ import { AssistanceItem } from '../../../core/models/assistance';
 @Component({
   selector: 'app-ficha-usuario',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent, JustificarFaltaModalComponent],
+  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent],
   templateUrl: './ficha-usuario.component.html',
   styleUrl: './ficha-usuario.component.scss'
 })

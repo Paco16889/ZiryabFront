@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, signal, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { AssistanceItem } from '../../../../core/models/assistance';
 import { AssistanceService } from '../../../../core/services/alumno/assistance.service';
 
 @Component({
   selector: 'app-justificar-falta-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [DatePipe],
   templateUrl: './justificar-falta-modal.component.html'
 })
 export class JustificarFaltaModalComponent {
@@ -14,12 +14,12 @@ export class JustificarFaltaModalComponent {
   @Output() closeModal = new EventEmitter<void>();
   @Output() justifySuccess = new EventEmitter<number>();
 
+  private assistanceService = inject(AssistanceService);
+
   public selectedFile = signal<File | null>(null);
   public isSubmitting = signal<boolean>(false);
   public isSuccess = signal<boolean>(false);
   public errorMessage = signal<string>('');
-
-  constructor(private assistanceService: AssistanceService) {}
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
