@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.component";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /**
  * Componente que representa la cabecera de la aplicación.
@@ -17,6 +18,7 @@ import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.comp
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
 
   /**
    * Nombre del usuario autenticado a mostrar en la cabecera.
@@ -45,15 +47,17 @@ export class HeaderComponent implements OnInit {
     this.loadUserData();
 
     // Suscribirse a cambios en el usuario
-    this.authService.currentUser$.subscribe(user => {
-      if (user) {
-        this.userName = user.name;
-        this.userRole = this.getRoleLabel(user.role);
-      } else {
-        this.userName = 'Nombre';
-        this.userRole = 'Usuario activo';
-      }
-    });
+    this.authService.currentUser$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(user => {
+        if (user) {
+          this.userName = user.name;
+          this.userRole = this.getRoleLabel(user.role);
+        } else {
+          this.userName = 'Nombre';
+          this.userRole = 'Usuario activo';
+        }
+      });
   }
 
   /**
