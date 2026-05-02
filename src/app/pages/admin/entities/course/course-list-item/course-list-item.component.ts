@@ -33,7 +33,7 @@ export class CourseListItemComponent {
    * Evento emitido cuando el ciclo ha sido actualizado.
    * Pendiente de sustituir el tipo inline por CourseUpdateRequest.
    */
-  @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
+  @Output() courseUpdated = new EventEmitter<CourseUpdateRequest>();
   
   
 

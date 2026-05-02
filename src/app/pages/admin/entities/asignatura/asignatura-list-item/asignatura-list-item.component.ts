@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Subject, SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/models/subject';
+import { Subject, SubjectByIdResponse, SubjectsAllResponse, SubjectUpdateRequest } from '../../../../../core/models/subject';
 
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 
@@ -36,7 +36,7 @@ export class AsignaturaListItemComponent {
    * Evento emitido cuando la asignatura ha sido actualizada.
    * Pendiente de sustituir el tipo inline por SubjectUpdateRequest.
    */
-  @Output() subjectUpdated = new EventEmitter<{id: number, name: string, idCourse: number}>();
+  @Output() subjectUpdated = new EventEmitter<SubjectUpdateRequest>();
 
   /**
    * Evento emitido cuando la asignatura ha sido eliminada, incluye su identificador.
