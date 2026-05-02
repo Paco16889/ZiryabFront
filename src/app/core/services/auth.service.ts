@@ -134,6 +134,14 @@ export class AuthService {
     );
   }
 
+  /**
+   * Fuerza el cierre de sesión local cuando la llamada de logout al backend falla.
+   * Centraliza la limpieza del estado de autenticación y del almacenamiento local.
+   */
+  forceCloseSession(): void {
+    this.closeSession();
+  }
+
   getCurrentUser(): UserResponse | null {
     return this.currentUserSubject.value;
   }
@@ -159,6 +167,7 @@ export class AuthService {
   }
 
   private closeSession(): void {
+    localStorage.clear();
     this.currentUserSubject.next(null);
   }
 }
