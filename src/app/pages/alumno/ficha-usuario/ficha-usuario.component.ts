@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { JustificarFaltaModalComponent } from './justificar-falta-modal/justificar-falta-modal.component';
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
@@ -11,7 +10,7 @@ import { AssistanceItem } from '../../../core/models/assistance';
  * Componente que muestra la ficha de asistencia del estudiante.
  * Actualmente contiene datos mockeados a la espera de integrarse con el backend.
  * Permite alternar entre la vista de faltas y la vista de justificación.
- * ATENCIÓN: componente pendiente de implementación real, ver issues.
+ * componente pendiente de implementación real, ver issues.
  */
 @Component({
   selector: 'app-ficha-usuario',
@@ -32,10 +31,8 @@ export class FichaUsuarioComponent implements OnInit {
   public isJustificarModalOpen = signal<boolean>(false);
   public faltaSeleccionada = signal<AssistanceItem | null>(null);
 
-  // Lista plana de faltas como en Android equivalente a List<AssistanceItem>
+  // Lista plana de faltas
   public faltas = signal<AssistanceItem[]>([]);
-
-  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.cargarFaltas();
