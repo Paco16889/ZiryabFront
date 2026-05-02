@@ -25,6 +25,7 @@ export class ModalEditService {
    * Se limpia al cerrar el modal.
    */
   private currentConfig: UpdateRequest | null = null;
+  private autoCloseTimeout: ReturnType<typeof setTimeout> | null = null;
 
  /**
    * Abre el modal de edición con los datos de la entidad a actualizar.
@@ -74,7 +75,8 @@ export class ModalEditService {
         }));
 
         // Cerrar después de 2 segundos
-        setTimeout(() => {
+        this.clearAutoCloseTimeout();
+        this.autoCloseTimeout = setTimeout(() => {
           this.closeModal();
         }, 2000);
       },
@@ -83,7 +85,7 @@ export class ModalEditService {
         this._modalState.update(state => ({
           ...state,
           isUpdating: false,
-          errorMessage: err.error?.message || `Error al actualizar ${this.currentConfig?.type}.`
+          errorMessage: this.getErrorMessage(err, 'actualizar')
         }));
       }
     });
@@ -93,10 +95,23 @@ export class ModalEditService {
    * Cierra el modal y limpia la configuración de la entidad actual.
    */
   closeModal() {
+    this.clearAutoCloseTimeout();
     this._modalState.update(state => ({
       ...state,
       isOpen : false
     }));
     this.currentConfig = null;
+  }
+
+  private clearAutoCloseTimeout(): void {
+    if (this.autoCloseTimeout !== null) {
+      clearTimeout(this.autoCloseTimeout);
+      this.autoCloseTimeout = null;
+    }
+  }
+
+  private getErrorMessage(err: unknown, action: 'actualizar'): string {
+    const backendMessage = (err as { error?: { message?: string } })?.error?.message;
+    return backendMessage || `Error al ${action} ${this.currentConfig?.type}.`;
   }
 }

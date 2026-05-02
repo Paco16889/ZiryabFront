@@ -26,6 +26,7 @@ export class ModalDeleteService {
    * Se limpia al cerrar el modal.
    */
   private currentConfig: DeleteRequest | null = null;
+  private autoCloseTimeout: ReturnType<typeof setTimeout> | null = null;
 
     /**
    * Abre el modal de confirmación de eliminación con los datos de la entidad a borrar.
@@ -71,7 +72,8 @@ export class ModalDeleteService {
         }));
 
         // Cerrar después de 2 segundos
-        setTimeout(() => {
+        this.clearAutoCloseTimeout();
+        this.autoCloseTimeout = setTimeout(() => {
           this.closeModal();
         }, 2000);
       },
@@ -80,7 +82,7 @@ export class ModalDeleteService {
         this._modalState.update(state => ({
           ...state,
           isDeleting: false,
-          errorMessage: err.error?.message || `Error al eliminar ${this.currentConfig?.type}.`
+          errorMessage: this.getErrorMessage(err, 'eliminar')
         }));
       }
     });
@@ -90,10 +92,23 @@ export class ModalDeleteService {
    * Cierra el modal y limpia la configuración de la entidad actual.
    */
   closeModal() {
+    this.clearAutoCloseTimeout();
     this._modalState.update(state => ({
       ...state,
       isOpen : false
     }));
     this.currentConfig = null;
+  }
+
+  private clearAutoCloseTimeout(): void {
+    if (this.autoCloseTimeout !== null) {
+      clearTimeout(this.autoCloseTimeout);
+      this.autoCloseTimeout = null;
+    }
+  }
+
+  private getErrorMessage(err: unknown, action: 'eliminar'): string {
+    const backendMessage = (err as { error?: { message?: string } })?.error?.message;
+    return backendMessage || `Error al ${action} ${this.currentConfig?.type}.`;
   }
 }
