@@ -6,6 +6,7 @@ import { PasswordServiceService } from '../../../../../core/services/password-se
 import { Observable, from } from 'rxjs';
 import { switchMap, finalize } from 'rxjs/operators';
 import { TeacherCreateResponse } from '../../../../../core/models/teacher';
+import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo profesor.
@@ -64,7 +65,7 @@ export class TeacherCreateFormComponent {
       surname: ['', Validators.required],
       ndSurname: ['', Validators.required],
       birthDate: ['', Validators.required],
-      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)]]
+      dni: ['', [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]]
     });
   }
 

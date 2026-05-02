@@ -8,6 +8,7 @@ import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar
 import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
 import { Observable, from } from 'rxjs';
 import { switchMap, map, finalize } from 'rxjs/operators';
+import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo estudiante.
@@ -76,7 +77,7 @@ export class StudentCreateFormComponent {
       surname: ['', Validators.required],
       ndSurname: ['', Validators.required],
       birthDate: ['', Validators.required],
-      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z]$/)]]
+      dni: ['', [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]]
     });
   }
 

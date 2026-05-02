@@ -4,6 +4,7 @@ import { StudentsServiceService } from '../../../../../core/services/admin/entit
 import { Student, StudentByIdResponse } from '../../../../../core/models/student';
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
+import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
 
 /**
  * Componente que permite buscar y seleccionar un estudiante existente por su DNI.
@@ -62,7 +63,7 @@ export class StudentSelectorComponent {
     ,private fb : FormBuilder
   ) {
      this.dniForm = this.fb.group({
-      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)]]
+      dni: ['', [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]]
     });
   }
 
@@ -76,7 +77,7 @@ export class StudentSelectorComponent {
     
   if (this.dniForm.invalid) {
     this.dniForm.markAllAsTouched();
-    this.errorMessage = 'Introduce un DNI válido';
+    this.errorMessage = 'Introduce un DNI / NIE válido';
     return;
   }
   const dni = this.dniForm.get('dni')?.value;
