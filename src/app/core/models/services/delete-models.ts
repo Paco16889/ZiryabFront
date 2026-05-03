@@ -34,7 +34,7 @@ export interface DeleteModalState {
  *   deleteFn: (id) => this.miServicio.delete(id)
  * };
  */
-export interface DeleteRequest {
+export interface DeleteRequest<T> {
   /** Identificador único de la entidad a eliminar */
   id: number;
   /** Nombre de la entidad a mostrar en el mensaje de confirmación */
@@ -42,5 +42,5 @@ export interface DeleteRequest {
   /** Tipo de entidad, usado en los mensajes del modal */
   type: string;
   /** Función que ejecuta la petición de eliminación al backend */
-  deleteFn: (id: number) => Observable<any>;
+  deleteFn: (id: number) => Observable<T>;
 }

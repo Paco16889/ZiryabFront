@@ -25,13 +25,13 @@ export class ModalDeleteServiceService {
    * Configuración actual de la entidad pendiente de eliminar.
    * Se limpia al cerrar el modal.
    */
-  private currentConfig: DeleteRequest | null = null;
+  private currentConfig: DeleteRequest<unknown> | null = null;
 
     /**
    * Abre el modal de confirmación de eliminación con los datos de la entidad a borrar.
    * @param request - Configuración de la entidad a eliminar, incluyendo id, nombre, tipo y función de borrado
    */
-  openModal(request: DeleteRequest) {
+  openModal(request: DeleteRequest<unknown>) {
     this.currentConfig = request;
     this._modalState.set({
       isOpen: true,

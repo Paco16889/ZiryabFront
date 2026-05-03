@@ -69,7 +69,7 @@ export interface ListItemConfig<T> {
   /** Función que ejecuta la actualización de la entidad */
   updateFn?: (data: any) => any;
   /** Función que ejecuta la eliminación de la entidad */
-  deleteFn?: (id: number) => any;
+  deleteFn?: (id: number) => T;
   /** Texto descriptivo del tipo de entidad para los mensajes del modal */
   entityType?: string;
   /** Función que genera el nombre representativo de la entidad para mostrar en los modales */
