@@ -17,7 +17,7 @@ import { WithId } from '../../../../core/models/withId';
   templateUrl: './generic-delete-modal.component.html',
   styleUrl: './generic-delete-modal.component.scss'
 })
-export class GenericDeleteModalComponent<T> {
+export class GenericDeleteModalComponent<R> {
    /**
    * Tipo de la entidad a eliminar para mostrar en los mensajes del modal,
    * por ejemplo 'estudiante', 'asignatura' o 'ciclo'.
@@ -52,7 +52,7 @@ export class GenericDeleteModalComponent<T> {
    * Se suscribe mediante un effect a los cambios de estado para sincronizar
    * las propiedades isDeleting, showSuccess y errorMessage.
    */
-  constructor(private deleteModalService: ModalDeleteServiceService) {
+  constructor(private deleteModalService: ModalDeleteServiceService<R>) {
    effect(() => {
       const modalState = this.deleteModalService.modalState();
       console.log(

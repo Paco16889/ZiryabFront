@@ -9,7 +9,7 @@ import { DeleteModalState, DeleteRequest } from '../../models/services/delete-mo
 @Injectable({
   providedIn: 'root'
 })
-export class ModalDeleteServiceService {
+export class ModalDeleteServiceService<R> {
 
    /**
    * Signal privada que almacena el estado interno del modal.
@@ -25,13 +25,13 @@ export class ModalDeleteServiceService {
    * Configuración actual de la entidad pendiente de eliminar.
    * Se limpia al cerrar el modal.
    */
-  private currentConfig: DeleteRequest<unknown> | null = null;
+  private currentConfig: DeleteRequest<R> | null = null;
 
     /**
    * Abre el modal de confirmación de eliminación con los datos de la entidad a borrar.
    * @param request - Configuración de la entidad a eliminar, incluyendo id, nombre, tipo y función de borrado
    */
-  openModal(request: DeleteRequest<unknown>) {
+  openModal(request: DeleteRequest<R>) {
     this.currentConfig = request;
     this._modalState.set({
       isOpen: true,
