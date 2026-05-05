@@ -9,12 +9,12 @@ import { UpdateModalState, UpdateRequest } from '../../models/services/update-mo
 @Injectable({
   providedIn: 'root'
 })
-export class ModalEditServiceService {
+export class ModalEditServiceService<T, U, R> {
 
   /**
    * Signal privada que almacena el estado interno del modal de edición.
    */
-  private _modalState = signal<UpdateModalState>({ isOpen: false });
+  private _modalState = signal<UpdateModalState<T>>({ isOpen: false });
   
  /**
    * Signal pública de solo lectura que expone el estado del modal a los componentes.
@@ -24,13 +24,13 @@ export class ModalEditServiceService {
    * Configuración actual de la entidad pendiente de actualizar.
    * Se limpia al cerrar el modal.
    */
-  private currentConfig: UpdateRequest | null = null;
+  private currentConfig: UpdateRequest<T,U, R> | null = null;
 
  /**
    * Abre el modal de edición con los datos de la entidad a actualizar.
    * @param request - Configuración de la entidad a actualizar, incluyendo id, nombre, tipo, datos actuales y campos editables
    */
-  openModal(request: UpdateRequest) {
+  openModal(request: UpdateRequest<T, U, R>) {
     this.currentConfig = request;
     this._modalState.set({
       isOpen: true,
@@ -52,7 +52,7 @@ export class ModalEditServiceService {
    * si la actualización se completa correctamente.
    * @param updateData - Datos del formulario de edición a enviar al backend
    */
-  confirmUpdate( updateData: any) {
+  confirmUpdate( updateData: U) {
     if (!this.currentConfig) return;
     
 

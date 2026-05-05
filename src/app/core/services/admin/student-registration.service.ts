@@ -21,18 +21,7 @@ export class StudentRegistrationService {
    * Identificador del estudiante a matricular.
    */
   private idStudent:number | null = null;
-   /**
-   * Identificador del grupo en el que se matricula el estudiante.
-   */
-  private idGroup: number | null = null;
-   /**
-   * Identificador de la asignatura en la que se matricula el estudiante.
-   */
-  private idSubject: number | null = null;
-    /**
-   * Año académico para el que se realiza la matriculación.
-   */
-  private cursoEscolar: string = '25/26';
+ 
 
   /**
    * URL base del endpoint de matriculaciones.
