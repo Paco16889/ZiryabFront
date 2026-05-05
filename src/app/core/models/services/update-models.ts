@@ -7,7 +7,7 @@ import { EditFieldConfig } from "../../configs/edit-modal-config";
  * Todos los campos excepto isOpen son opcionales ya que solo se
  * rellenan cuando el modal está abierto.
  */
-export interface UpdateModalState {
+export interface UpdateModalState<T> {
 
   /** Indica si el modal está visible */
   isOpen: boolean;
@@ -18,7 +18,7 @@ export interface UpdateModalState {
   /** Tipo de entidad a actualizar, por ejemplo 'student', 'course' */
   entityType?: string;
   /** Datos actuales de la entidad para prerellenar el formulario */
-  entityData?: any;
+  entityData?: T;
   /** Configuración de los campos editables del formulario */
   fields?: EditFieldConfig[];
   /** Indica si la petición de actualización está en curso */
@@ -43,7 +43,7 @@ export interface UpdateModalState {
  *   updateFn: (data) => this.miServicio.update(data)
  * };
  */
-export interface UpdateRequest {
+export interface UpdateRequest<T, U,  R> {
     /** Identificador único de la entidad a actualizar */
   id: number;
   /** Nombre de la entidad a mostrar en el título del modal */
@@ -51,9 +51,9 @@ export interface UpdateRequest {
   /** Tipo de entidad, usado en los mensajes del modal */
   type: string;
   /** Datos actuales de la entidad para prerellenar el formulario */
-  entityData: any;
+  entityData: T;
   /** Configuración de los campos editables del formulario */
   fields: EditFieldConfig[];
   /** Función que ejecuta la petición de actualización al backend */
-  updateFn: (data: any) => Observable<any>;
+  updateFn: (data: U) => Observable<R>;
 }

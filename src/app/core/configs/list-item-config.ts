@@ -37,7 +37,7 @@ export interface ListItemFieldConfig {
  *   entityNameFormat: (s) => `${s.name} ${s.surname}`
  * };
  */
-export interface ListItemConfig<T> {
+export interface ListItemConfig<T, U, R, S> {
   /** Configuración de los campos a mostrar en el elemento de lista */
   fields: ListItemFieldConfig[];
   /** Configuración de las acciones disponibles para la entidad */
@@ -67,9 +67,9 @@ export interface ListItemConfig<T> {
   /** Función que obtiene la entidad por su identificador */
   getByIdFn?: (id: number) => any;
   /** Función que ejecuta la actualización de la entidad */
-  updateFn?: (data: any) => any;
+  updateFn?: (data: U) => R;
   /** Función que ejecuta la eliminación de la entidad */
-  deleteFn?: (id: number) => T;
+  deleteFn?: (id: number) => S;
   /** Texto descriptivo del tipo de entidad para los mensajes del modal */
   entityType?: string;
   /** Función que genera el nombre representativo de la entidad para mostrar en los modales */
