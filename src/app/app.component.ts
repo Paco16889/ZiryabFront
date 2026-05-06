@@ -12,6 +12,7 @@ import { GenericDeleteModalComponent } from "./pages/admin/modales/generic-delet
 import { ModalDeleteServiceService } from './core/services/UI/modal-delete-service.service';
 import { ModalEditServiceService } from './core/services/UI/modal-edit-service.service';
 import { GenericEditModalComponent } from "./pages/admin/modales/generic-edit-modal/generic-edit-modal.component";
+import { WithId } from './core/models/withId';
 
 
 /**
@@ -54,8 +55,8 @@ export class AppComponent {
    * @param updateModalService - Servicio para gestionar el modal global de edición
    */
   constructor(public perfilService: PerfilMenuService,
-    public deleteModalService: ModalDeleteServiceService,
-    public updateModalService: ModalEditServiceService
+    public deleteModalService: ModalDeleteServiceService<unknown>,
+    public updateModalService: ModalEditServiceService<WithId & Record<string, unknown>, unknown, unknown>
   ) {
     this.translate.addLangs(['es', 'en', 'de']);
     // Idioma de fallback

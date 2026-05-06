@@ -132,7 +132,7 @@ export class AsignaturaListItemComponent {
       entityType: 'la asignatura',
       entityNameFormat: (subject: Subject) => subject.name,
       getByIdFn: (id: number) => this.subjectService.getSubjectbyId(id),
-      updateFn: (data: any) => this.subjectService.updateSubject(data.id, data),
+      updateFn: (data: SubjectUpdateRequest) => this.subjectService.updateSubject(data.id, data),
       deleteFn: (id: number) => this.subjectService.deleteSubject(id)
     };
   }

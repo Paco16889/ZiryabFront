@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Group } from '../../../../../core/models/group';
+import { Group, GroupDeleteResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../../../../core/models/group';
 
 import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
 
@@ -10,6 +10,7 @@ import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 import { map } from 'rxjs';
+import { Course } from '../../../../../core/models/course';
 
 
 /**
@@ -34,7 +35,7 @@ export class GroupListItemComponent implements OnInit{
    * Evento emitido cuando el grupo ha sido actualizado.
    * Pendiente de sustituir el tipo inline por GroupUpdateRequest.
    */
-  @Output() groupUpdated = new EventEmitter<{id: number, name: string}>();
+  @Output() groupUpdated = new EventEmitter<GroupUpdateResponse>();
 
     /**
    * Evento emitido cuando el grupo ha sido eliminado, incluye su identificador.
@@ -45,7 +46,7 @@ export class GroupListItemComponent implements OnInit{
    * Listado de ciclos asociados al grupo.
    * Pendiente de tipar correctamente en lugar de usar any[].
    */
-  coursesToShow: any[] = [];
+  coursesToShow: Course[] = [];
    
 
   
@@ -54,7 +55,7 @@ export class GroupListItemComponent implements OnInit{
    * Define los campos visibles, las acciones disponibles, el layout,
    * los campos del formulario de edición y las funciones de servicio.
    */
-  groupConfig: ListItemConfig<Group> = {
+  groupConfig: ListItemConfig<Group, GroupUpdateRequest, GroupUpdateResponse, GroupDeleteResponse> = {
     fields: [
       { 
         key: 'name',
@@ -83,7 +84,7 @@ export class GroupListItemComponent implements OnInit{
     entityType: 'el grupo',
     entityNameFormat: (group: Group) => group.name,
     getByIdFn: (id: number) => this.groupService.getGroupById(id),
-    updateFn: (data: any) => this.groupService.updateGroup(data),
+    updateFn: (data: GroupUpdateRequest) => this.groupService.updateGroup(data),
     deleteFn: (id: number) => this.groupService.deleteGroup(id)
   };
 
@@ -96,7 +97,7 @@ export class GroupListItemComponent implements OnInit{
         {
           key: 'name',
           type: 'text',
-          format: (value) => `${value}`,
+          format: (value: string) => `${value}`,
           className: 'text-xl font-bold',
           label:'Nombre del Grupo: '
         }

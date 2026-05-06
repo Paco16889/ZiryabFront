@@ -1,6 +1,7 @@
 // models/weekschedule.model.ts
 
 import { Assignment } from "./assingment";
+import { WithId } from "./withId";
 
 /**
  * Representa una franja horaria semanal asociada a la asignación de un profesor.
@@ -125,7 +126,7 @@ export interface WeekScheduleCreateResponse {
  *   finishTime: 'HORA_FIN'
  * };
  */
-export interface WeekScheduleUpdateRequest {
+export interface WeekScheduleUpdateRequest extends WithId{
   /** Nuevo día de la semana en formato numérico */
   weekDay?: number;
   /** Nueva hora de inicio de la franja horaria */

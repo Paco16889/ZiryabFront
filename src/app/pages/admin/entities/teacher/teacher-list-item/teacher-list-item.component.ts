@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Teacher } from '../../../../../core/models/teacher';
+import { Teacher, TeacherDeleteResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../../../../core/models/teacher';
 
 import { TeachersServiceService } from '../../../../../core/services/admin/entities/teachers-service.service';
 
@@ -35,7 +35,7 @@ export class TeacherListItemComponent {
    * Evento emitido cuando el profesor ha sido actualizado.
    * Pendiente de sustituir any por Teacher o TeacherUpdateRequest.
    */
-  @Output() teacherUpdated = new EventEmitter<any>();
+  @Output() teacherUpdated = new EventEmitter<TeacherUpdateRequest>();
 
    /**
    * Evento emitido cuando el profesor ha sido eliminado, incluye su identificador.
@@ -47,13 +47,13 @@ export class TeacherListItemComponent {
    * Define los campos visibles, las acciones disponibles, el layout,
    * los campos del formulario de edición y las funciones de servicio.
    */
-  teacherConfig: ListItemConfig<Teacher> = {
+  teacherConfig: ListItemConfig<Teacher, TeacherUpdateRequest, TeacherUpdateResponse, TeacherDeleteResponse> = {
     fields: [
       { 
         key: 'surname', 
         className: 'font-medium',
         order: 1,
-        format: (value) => `${value},`
+        format: (value: string) => `${value},`
       },
       { 
         key: 'ndSurname',
@@ -126,7 +126,7 @@ export class TeacherListItemComponent {
     entityType: 'el profesor',
     entityNameFormat: (teacher: Teacher) => `${teacher.name} ${teacher.surname}`,
     getByIdFn: (id: number) => this.teacherService.getTeacherById(id),
-    updateFn: (data: any) => this.teacherService.updateTeacher(data),
+    updateFn: (data: TeacherUpdateRequest) => this.teacherService.updateTeacher(data),
     deleteFn: (id: number) => this.teacherService.deleteTeacher(id)
   };
 
@@ -139,19 +139,19 @@ export class TeacherListItemComponent {
         {
           key: 'surname',
           type: 'title',
-          format: (value) => `${value}`,
+          format: (value: string) => `${value}`,
           className: 'text-xl font-bold'
         },
         {
           key: 'ndSurname',
           type: 'title',
-          format: (value) => ` ${value},`,
+          format: (value: string) => ` ${value},`,
           className: 'text-xl font-bold'
         },
         {
           key: 'name',
           type: 'title',
-          format: (value) => ` ${value}`,
+          format: (value: string) => ` ${value}`,
           className: 'text-xl font-bold'
         },
         {

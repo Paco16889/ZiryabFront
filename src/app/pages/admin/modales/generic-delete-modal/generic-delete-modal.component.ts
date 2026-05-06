@@ -30,7 +30,8 @@ export class GenericDeleteModalComponent<R> {
    */
   @Input() entityName!: string; 
 
- 
+ @Input() entityId!: number;
+
   
   /**
    * Indica si la petición de eliminación está en curso.

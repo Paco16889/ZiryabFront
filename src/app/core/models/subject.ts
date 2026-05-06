@@ -1,5 +1,7 @@
 // models/subject.model.ts
 
+import { WithId } from "./withId";
+
 /**
  * Representa una asignatura del sistema.
  * @example
@@ -179,7 +181,7 @@ export interface SubjectCreateResponse {
  *   idCourse: ID_CICLO
  * };
  */
-export interface SubjectUpdateRequest {
+export interface SubjectUpdateRequest extends WithId {
   /** Nuevo nombre de la asignatura */
   name: string;
   /** Nuevo curso en el que se imparte la asignatura */
