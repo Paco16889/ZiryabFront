@@ -64,4 +64,5 @@ export class AppComponent {
     // Idioma inicial
     this.translate.use('es');
   } 
+  //seguridad antonio
 }
