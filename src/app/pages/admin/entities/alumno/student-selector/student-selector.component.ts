@@ -4,6 +4,7 @@ import { StudentsServiceService } from '../../../../../core/services/admin/entit
 import { Student, StudentByIdResponse } from '../../../../../core/models/student';
 import { BotonConfirmarStudentComponent } from "../../../botones/boton-confirmar-student/boton-confirmar-student.component";
 import { SelectedStudentServiceService } from '../../../../../core/services/admin/selected-student-service.service';
+import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
 
 /**
  * Componente que permite buscar y seleccionar un estudiante existente por su DNI.
@@ -35,11 +36,7 @@ export class StudentSelectorComponent {
    */
   student: Student | null = null;
 
-    /**
-   * Identificador del estudiante seleccionado mediante el radio button.
-   * Pendiente de revisar si es necesario o puede sustituirse por student?.id directamente.
-   */
-  selectedStudentId: number | null = null;
+
 
    /**
    * Mensaje de error a mostrar si el DNI es inválido o no se encuentra el estudiante.
@@ -57,16 +54,16 @@ export class StudentSelectorComponent {
   @Output() studentSelected = new EventEmitter<Student>(); // ← Cambiado
 
 
-    /**
+  /**
    * Inicializa el componente.
-   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
-   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param selectedStudentService Servicio que almacena el estudiante seleccionado para matriculación.
+   * @param fb FormBuilder de Angular para construir el formulario reactivo de búsqueda.
    */
   constructor(private selectedStudentService: SelectedStudentServiceService
     ,private fb : FormBuilder
   ) {
      this.dniForm = this.fb.group({
-      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)]]
+      dni: ['', [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]]
     });
   }
 
@@ -80,7 +77,7 @@ export class StudentSelectorComponent {
     
   if (this.dniForm.invalid) {
     this.dniForm.markAllAsTouched();
-    this.errorMessage = 'Introduce un DNI válido';
+    this.errorMessage = 'Introduce un DNI / NIE válido';
     return;
   }
   const dni = this.dniForm.get('dni')?.value;
@@ -103,13 +100,12 @@ export class StudentSelectorComponent {
     }
   }
 
-   /**
-   * Confirma la selección del estudiante encontrado.
-   * Emite el evento studentSelected y almacena el estudiante en el servicio de selección.
-   * Pendiente de revisar la comprobación de selectedStudentId que puede ser redundante.
+  /**
+   * Confirma la selección del estudiante encontrado en la búsqueda.
+   * Almacena el estudiante en el servicio de selección global y notifica al componente padre.
    */
   confirmSelection() {
-    if (this.selectedStudentId && this.student?.id === this.selectedStudentId) {
+    if (this.student?.id) {
       this.studentSelected.emit(this.student);
       this.selectedStudentService.setSelectedStudent(this.student);
     }

@@ -4,20 +4,20 @@
   <div class="mb-4">
     <form [formGroup]="dniForm">
        <label class="block text-gray-700 font-medium mb-2">
-      Introduce DNI del alumno
+      Introduce DNI / NIE del alumno
     </label>
     <input
     type="text"
     formControlName = "dni"
       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-      placeholder="12345678A"
+      placeholder="12345678A o X1234567A"
     
     />
 
     @if(dniForm.get('dni')?.invalid && dniForm.get('dni')?.touched){
             <span 
               class="text-red-500 text-sm mt-1 block">
-          DNI inválido (formato: 12345678A)
+          DNI/NIE inválido (ej: 12345678A o X1234567A)
         </span>
         }
 
@@ -48,7 +48,7 @@
           type="radio"
           name="selectedStudent"
           [value]="student.id"
-          (change)="selectedStudentId = student.id"
+          checked
         />
         {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}
       </label>
@@ -64,7 +64,7 @@
         </button>
         
         <app-boton-confirmar-student
-        [disabled]="!selectedStudentId"
+        [disabled]="!student?.id"
         (confirm)="confirmSelection()">
 
         </app-boton-confirmar-student>

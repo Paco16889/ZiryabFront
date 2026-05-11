@@ -41,7 +41,7 @@ export class AppComponent {
    * Título de la aplicación.
    * Pendiente de actualizar desde el nombre por defecto del proyecto.
    */
-  title = 'loginEnAngular';
+  title = 'Ziryab';
 
     /**
    * Servicio de traducción inyectado para la inicialización del sistema i18n.
@@ -61,8 +61,10 @@ export class AppComponent {
     this.translate.addLangs(['es', 'en', 'de']);
     // Idioma de fallback
     this.translate.setFallbackLang('es');
-    // Idioma inicial
-    this.translate.use('es');
+    
+    // Idioma inicial: leer de localStorage o usar 'es' por defecto
+    const savedLang = localStorage.getItem('lang') || 'es';
+    this.translate.use(savedLang);
   } 
   //seguridad antonio
 }

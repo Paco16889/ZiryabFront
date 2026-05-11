@@ -24,7 +24,7 @@ import { Course } from '../../../../../core/models/course';
   templateUrl: './group-list-item.component.html',
   styleUrl: './group-list-item.component.scss'
 })
-export class GroupListItemComponent implements OnInit{
+export class GroupListItemComponent {
 
     /**
    * Grupo a mostrar en el elemento de lista.
@@ -112,37 +112,6 @@ export class GroupListItemComponent implements OnInit{
 
   
   }
-
-   /**
-   * Pendiente de implementar la carga de ciclos asociados al grupo
-   * mediante loadCoursesForGroup actualmente comentado.
-   */
-  ngOnInit(): void {
-   // this.loadCoursesForGroup();
-  }
-/*
-  loadCoursesForGroup() {
-  // Asegúrate de que group tiene id
-  if (!this.group?.id) return;
-
-  this.groupService.getGroupById(this.group.id).subscribe({
-    next: (response) => {
-      // TypeScript sabe que response es el tipo que devuelve tu servicio
-      // Extraemos los cursos usando tus interfaces existentes
-      this.coursesToShow = response.data.studentEnrollments.map(
-        (item) => item.subject.course
-      );
-
-      // Logs para depuración
-      console.log('=== CARGA DE CURSOS ===');
-      console.log('Group:', this.group);
-      console.log('Respuesta completa:', response);
-      console.log('Cursos extraídos:', this.coursesToShow);
-    },
-    error: (err) => console.error('Error cargando cursos:', err)
-  });
- 
-}*/
 
 }
 

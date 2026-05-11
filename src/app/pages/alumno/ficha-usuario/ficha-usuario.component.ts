@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { NgClass, DatePipe } from '@angular/common';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { JustificarFaltaModalComponent } from './justificar-falta-modal/justificar-falta-modal.component';
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
@@ -11,36 +10,45 @@ import { AssistanceItem } from '../../../core/models/assistance';
  * Componente que muestra la ficha de asistencia del estudiante.
  * Actualmente contiene datos mockeados a la espera de integrarse con el backend.
  * Permite alternar entre la vista de faltas y la vista de justificación.
- * ATENCIÓN: componente pendiente de implementación real, ver issues.
+ * componente pendiente de implementación real, ver issues.
  */
 @Component({
   selector: 'app-ficha-usuario',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent, JustificarFaltaModalComponent],
+  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent],
   templateUrl: './ficha-usuario.component.html',
   styleUrl: './ficha-usuario.component.scss'
 })
 export class FichaUsuarioComponent implements OnInit {
 
+  /** Servicio para gestionar las operaciones de asistencia */
   private assistanceService = inject(AssistanceService);
+  /** Servicio para gestionar la autenticación y obtener el usuario actual */
   private authService = inject(AuthService);
 
+  /** Signal que indica si los datos están cargándose */
   public loading = signal<boolean>(true);
+  /** Signal para almacenar mensajes de error durante la carga */
   public errorMessage = signal<string>('');
 
-  // Estados del modal de justificación
+  /** Signal que controla la visibilidad del modal de justificación */
   public isJustificarModalOpen = signal<boolean>(false);
+  /** Signal que almacena la falta seleccionada para justificar */
   public faltaSeleccionada = signal<AssistanceItem | null>(null);
 
-  // Lista plana de faltas como en Android equivalente a List<AssistanceItem>
+  /** Signal que contiene el listado de faltas de asistencia del alumno */
   public faltas = signal<AssistanceItem[]>([]);
 
-  constructor(private router: Router) { }
-
+  /**
+   * Ciclo de vida: Inicializa el componente cargando el historial de faltas.
+   */
   ngOnInit(): void {
     this.cargarFaltas();
   }
 
+  /**
+   * Obtiene las faltas del estudiante identificado mediante el servicio de asistencia.
+   */
   cargarFaltas(): void {
     const user = this.authService.getCurrentUser();
     if (user && user.id) {
@@ -64,6 +72,11 @@ export class FichaUsuarioComponent implements OnInit {
     }
   }
 
+  /**
+   * Gestiona el clic en una falta específica del listado.
+   * Si la falta no está ya justificada, abre el modal de justificación.
+   * @param falta Objeto de asistencia pulsado.
+   */
   onFaltaClick(falta: AssistanceItem): void {
     if (falta.status !== 'EXCUSED') {
       this.faltaSeleccionada.set(falta);
@@ -71,6 +84,10 @@ export class FichaUsuarioComponent implements OnInit {
     }
   }
 
+  /**
+   * Callback ejecutado cuando un justificante se envía con éxito desde el modal.
+   * @param assistanceId Identificador de la falta justificada.
+   */
   onJustifySuccess(assistanceId: number): void {
     console.log(`Justificante enviado para la falta ${assistanceId}. A la espera del profesor.`);
   }

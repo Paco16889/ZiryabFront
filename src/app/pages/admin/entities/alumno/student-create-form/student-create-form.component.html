@@ -97,18 +97,18 @@
 
       <!-- DNI -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">DNI</label>
+        <label class="block text-gray-700 font-medium mb-2">DNI / NIE</label>
         <input 
           formControlName="dni"
           type="text"
           maxlength="9"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="12345678A"
+          placeholder="12345678A o X1234567A"
         />
         @if(createForm.get('dni')?.invalid && createForm.get('dni')?.touched){
             <span 
               class="text-red-500 text-sm mt-1 block">
-          DNI inválido (formato: 12345678A)
+          DNI/NIE inválido (ej: 12345678A o X1234567A)
         </span>
         }
         

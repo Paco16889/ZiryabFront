@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { WeekSchedule, WeekScheduleDeleteResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../../../core/models/week-schedule';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
-import { map } from 'rxjs';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 import { WeekScheduleServiceService } from '../../../../../core/services/admin/entities/week-schedule-service.service';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
@@ -78,25 +77,39 @@ export class WeekScheduleListItemComponent {
       },
       editFields: [
         {
-          name: 'name',
-          label: 'Nombre',
-          type: 'text',
-          placeholder: 'Nombre de la asignatura',
+          name: 'weekDay',
+          label: 'Día de la semana',
+          fieldType: 'select',
+          placeholder: 'Selecciona un día',
           validators: [Validators.required],
-          errorMessage: 'El nombre es requerido'
+          errorMessage: 'El día de la semana es requerido',
+          options: [
+            { label: 'Lunes', value: 1 },
+            { label: 'Martes', value: 2 },
+            { label: 'Miércoles', value: 3 },
+            { label: 'Jueves', value: 4 },
+            { label: 'Viernes', value: 5 },
+            { label: 'Sábado', value: 6 },
+            { label: 'Domingo', value: 7 }
+          ],
+          optionValueKey: 'value',
+          optionLabelKey: 'label'
         },
         {
-          name: 'idCourse',
-          label: 'Ciclo',
-          fieldType: 'select',
-          placeholder: 'Selecciona un ciclo',
+          name: 'startTime',
+          label: 'Hora de Inicio',
+          type: 'time',
+          placeholder: 'Ej: 09:00',
           validators: [Validators.required],
-          errorMessage: 'Debes seleccionar un ciclo',
-          optionsObservable: this.weekScheduleService.getAllSchedules().pipe(
-            map(res => res.data)
-          ),
-          optionValueKey: 'id',
-          optionLabelKey: 'name'
+          errorMessage: 'La hora de inicio es requerida'
+        },
+        {
+          name: 'finishTime',
+          label: 'Hora de Finalización',
+          type: 'time',
+          placeholder: 'Ej: 10:00',
+          validators: [Validators.required],
+          errorMessage: 'La hora de finalización es requerida'
         }
       ],
       entityType: 'El Horario Semanal',
@@ -120,7 +133,7 @@ export class WeekScheduleListItemComponent {
               className: 'text-xl font-bold',
               label: 'Día de la semana:'
             },
-            {
+              {
               key: 'startTime',
               type: 'text',
               format: (value: string) => `${value}`,
