@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -15,7 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
-export class PerfilComponent {
+export class PerfilComponent implements OnInit, OnChanges {
 
    /**
    * Controla la visibilidad del menú de perfil.
@@ -51,9 +51,7 @@ export class PerfilComponent {
   constructor(
     private router: Router,
     private authService: AuthService // SOLO AuthService
-  ) {
-    this.loadUserData();
-  }
+  ) {}
 
      /**
    * Carga los datos del usuario actual al inicializar el componente.
@@ -66,8 +64,10 @@ export class PerfilComponent {
    * Recarga los datos del usuario cuando cambia el Input isOpen.
    * ATENCIÓN: el parámetro debería ser SimpleChanges en lugar de SimpleChange.
    */
-    ngOnChanges(changes: SimpleChange): void{
-      this.loadUserData();
+    ngOnChanges(changes: SimpleChanges): void{
+      if (changes['isOpen']) {
+        this.loadUserData();
+      }
     }
   /**
    * Carga los datos del usuario actual
@@ -125,8 +125,8 @@ export class PerfilComponent {
       error: (error) => {
         console.error('❌ Error al cerrar sesión:', error);
         
-        // Aunque falle, limpiar localmente
-        localStorage.clear();
+        // Aunque falle la petición al backend, el servicio centraliza la limpieza local de sesión
+        this.authService.forceCloseSession();
         this.close.emit();
         this.router.navigate(['/login'], { 
           queryParams: {}

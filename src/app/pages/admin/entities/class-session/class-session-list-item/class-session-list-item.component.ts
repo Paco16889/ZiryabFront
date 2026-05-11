@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ClassSession, ClassSessionUpdateRequest } from '../../../../../core/models/class-sessions';
-import { ClassSessionServiceService } from '../../../../../core/services/admin/entities/class-session-service.service';
+import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
-
 
 /**
  * Componente que representa un elemento del listado de sesiones de clase.
@@ -44,7 +43,7 @@ export class ClassSessionListItemComponent {
    * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
    */
   constructor(
-    private classSessionService: ClassSessionServiceService
+    private classSessionService: ClassSessionService
   ) {}
 
   

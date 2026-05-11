@@ -1,16 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Group, GroupDeleteResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../../../../core/models/group';
-
-import { GroupServiceService } from '../../../../../core/services/admin/entities/group-service.service';
-
-
-
+import { Course } from '../../../../../core/models/course';
+import { GroupService } from '../../../../../core/services/admin/entities/group.service';
 import { Validators } from '@angular/forms';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 import { map } from 'rxjs';
-import { Course } from '../../../../../core/models/course';
 
 
 /**
@@ -108,7 +104,7 @@ export class GroupListItemComponent {
    * @param groupService - Servicio que gestiona las operaciones con grupos,
    * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
    */
-  constructor(private groupService: GroupServiceService) {
+  constructor(private groupService: GroupService) {
 
   
   }

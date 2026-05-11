@@ -1,102 +1,129 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.component";
-import { NotificationBadgeComponent } from "../notification/notification-badge/notification-badge.component";
-import { NotificationToggleServiceService } from '../../../core/services/notification/notification-toggle-service.service';
-import { NotificationListComponent } from "../notification/notification-list/notification-list.component";
+import { AppNotification, NotificationsService } from '../../../core/services/notifications.service';
+import type { UserResponse } from '../../../core/services/auth.service';
+import { SelectorIdiomaComponent } from '../selector-idioma/selector-idioma.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que representa la cabecera de la aplicación.
- * Muestra el nombre y rol del usuario autenticado y gestiona
- * la apertura del menú de perfil.
+ *
+ * Muestra el nombre y rol del usuario autenticado (claves i18n bajo `roles.*`),
+ * la campana de notificaciones en tiempo real (SSE) y gestiona la apertura del menú de perfil.
+ *
+ * Las dependencias se inyectan con `inject()`:
+ * - {@link PerfilMenuService} — estado del menú de perfil
+ * - {@link AuthService} — usuario autenticado y stream de sesión
+ * - {@link NotificationsService} — canal SSE, contador de no leídas y avisos (toast)
  */
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, SelectorIdiomaComponent, NotificationBadgeComponent, NotificationListComponent],
+  imports: [CommonModule, SelectorIdiomaComponent, TranslateModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  private readonly perfilService = inject(PerfilMenuService);
+  private readonly authService = inject(AuthService);
+  private readonly notificationsService = inject(NotificationsService);
 
-  /**
-   * Nombre del usuario autenticado a mostrar en la cabecera.
-   */
-  userName: string = 'Nombre';
+  /** Nombre del usuario autenticado a mostrar en la cabecera. */
+  userName = 'Nombre';
 
- /**
-   * Etiqueta del rol del usuario autenticado a mostrar en la cabecera.
-   */
-  userRole: string = 'Usuario activo';
+  /** Clave de traducción del rol del usuario (p. ej. `roles.student`) mostrada en la cabecera. */
+  userRoleKey = 'roles.user';
 
-    notificationCount = 7;
+  /** Número de notificaciones no leídas mostrado en el badge de la campana. */
+  unreadCount = 0;
 
+  /** Notificación recibida por SSE para mostrar un aviso rápido (toast) en pantalla. */
+  toastNotification: AppNotification | null = null;
 
-   /**
-   * Inicializa el componente.
-   * @param perfilService - Servicio para controlar el estado del menú de perfil
-   * @param authService - Servicio de autenticación para obtener datos del usuario actual
-   */
-  constructor(
-    private perfilService: PerfilMenuService,
-    private authService: AuthService,
-    private notificationToggle: NotificationToggleServiceService
+  private readonly subs = new Subscription();
 
-  ) {}
+  private toastClearHandle: ReturnType<typeof setTimeout> | null = null;
 
-  /**
-   * Carga los datos del usuario actual y se suscribe a cambios en el estado de autenticación.
-   */
   ngOnInit(): void {
     this.loadUserData();
 
-    // Suscribirse a cambios en el usuario
-    this.authService.currentUser$.subscribe(user => {
-      if (user) {
-        this.userName = user.name;
-        this.userRole = this.getRoleLabel(user.role);
-      } else {
-        this.userName = 'Nombre';
-        this.userRole = 'Usuario activo';
-      }
-    });
+    this.subs.add(
+      this.authService.currentUser$.subscribe((user: UserResponse | null) => {
+        if (user) {
+          this.userName = user.name;
+          this.userRoleKey = this.getRoleKey(user.role);
+        } else {
+          this.userName = 'Nombre';
+          this.userRoleKey = 'roles.user';
+          this.dismissToast();
+        }
+      })
+    );
+
+    this.subs.add(
+      this.notificationsService.unreadCount$.subscribe((n: number) => {
+        this.unreadCount = n;
+      })
+    );
+
+    this.subs.add(
+      this.notificationsService.notification$.subscribe((notification: AppNotification) => {
+        this.showToast(notification);
+      })
+    );
   }
 
-  /**
-   * Carga los datos del usuario actual
-   */
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+    if (this.toastClearHandle !== null) {
+      clearTimeout(this.toastClearHandle);
+    }
+  }
+
   private loadUserData(): void {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       this.userName = currentUser.name;
-      this.userRole = this.getRoleLabel(currentUser.role);
+      this.userRoleKey = this.getRoleKey(currentUser.role);
     }
   }
 
-  /**
-   * Convierte el rol a un texto legible
-   */
-  private getRoleLabel(role: string): string {
-    const roleLabels: { [key: string]: string } = {
-      'STUDENT': 'Estudiante',
-      'TEACHER': 'Profesor',
-      'ADMIN': 'Administrador'
+  private getRoleKey(role: string): string {
+    const map: Record<string, string> = {
+      STUDENT: 'roles.student',
+      TEACHER: 'roles.teacher',
+      ADMIN: 'roles.admin',
     };
-    return roleLabels[role] || 'Usuario activo';
+    return map[role] ?? 'roles.user';
   }
 
-  /**
-   * Abre/cierra el menú de perfil
-   */
   toggleProfileMenu(): void {
-    console.log('🔄 Toggle menú de perfil');
     this.perfilService.toggleMenu();
   }
 
-  toggleNotificationPanel(): void {
-    console.log('Has hecho click en toggle notificaciones');
-  this.notificationToggle.toggle();
-}
+  private showToast(notification: AppNotification): void {
+    this.toastNotification = notification;
+    if (this.toastClearHandle !== null) {
+      clearTimeout(this.toastClearHandle);
+    }
+    this.toastClearHandle = setTimeout(() => {
+      this.dismissToast();
+    }, 6000);
+  }
+
+  dismissToast(): void {
+    this.toastNotification = null;
+    if (this.toastClearHandle !== null) {
+      clearTimeout(this.toastClearHandle);
+      this.toastClearHandle = null;
+    }
+  }
+
+  unreadBadge(): string {
+    if (this.unreadCount <= 0) return '';
+    return this.unreadCount > 99 ? '99+' : String(this.unreadCount);
+  }
 }

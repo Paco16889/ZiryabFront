@@ -1,5 +1,5 @@
 import { Component, effect, Input, OnInit } from '@angular/core';
-import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
+import { StudentsService } from '../../../../../core/services/admin/entities/students.service';
 import { Student } from '../../../../../core/models/student';
 import { ListItemComponent } from '../list-item/list-item.component';
 
@@ -7,8 +7,8 @@ import { StudentEnrollmentComponent } from "../student-enrollment/student-enroll
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 
 /**
  * Componente que muestra el listado de estudiantes del sistema.
@@ -41,11 +41,11 @@ export class ListComponent implements OnInit {
    * cuando una actualización se completa y recargar la lista
    */
   constructor(
-    private studentService: StudentsServiceService, 
-    private deleteModalService: ModalDeleteServiceService<unknown>,
-    private updateModalService: ModalEditServiceService<unknown, unknown, unknown>
+    private studentService: StudentsService,
+    private deleteModalService: ModalDeleteService,
+    private updateModalService: ModalEditService
   ){
-    effect(() => {this.students = studentService.students()})
+    effect(() => {this.students = this.studentService.students()})
     //Effect que escucha cambios en el modal
     
     effect(() => {

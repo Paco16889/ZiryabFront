@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Course, CourseDeleteResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../../../../core/models/course';
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 
 
 
@@ -33,7 +33,7 @@ export class CourseListItemComponent {
    * Evento emitido cuando el ciclo ha sido actualizado.
    * Pendiente de sustituir el tipo inline por CourseUpdateRequest.
    */
-  @Output() courseUpdated = new EventEmitter<{id: number, name: string}>();
+  @Output() courseUpdated = new EventEmitter<CourseUpdateRequest>();
   
   
 
@@ -102,7 +102,7 @@ export class CourseListItemComponent {
    * @param courseService - Servicio que gestiona las operaciones con ciclos académicos,
    * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
    */
-  constructor(private courseService: CourseServiceService) {}
+  constructor(private courseService: CourseService) {}
 
   
 

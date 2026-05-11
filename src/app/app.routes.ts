@@ -14,6 +14,8 @@ import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard
 import { AboutComponent } from './pages/shared/about/about.component';
 import { MenuClaseComponent } from './pages/profesor/menu-clase/menu-clase.component';
 import { TaskListComponent } from './pages/profesor/tareas/task-list/task-list.component';
+import { HorarioAlumnoComponent } from './pages/alumno/horario/horario-alumno.component';
+import { HorarioProfesorComponent } from './pages/profesor/horario/horario-profesor.component';
 
 /**
  * Definición de rutas de la aplicación.
@@ -72,6 +74,12 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
 
+    },
+    {
+        path: 'horario-profesor',
+        component: HorarioProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
     },
     {
         path: 'menu-clase/:idTeacherAssignment',
@@ -149,6 +157,12 @@ export const routes: Routes = [
     {
         path: 'clases',
         component: ClasesComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'horario-alumno',
+        component: HorarioAlumnoComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT'] },
     },

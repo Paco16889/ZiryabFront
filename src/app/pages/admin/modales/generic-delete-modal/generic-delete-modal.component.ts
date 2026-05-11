@@ -1,13 +1,13 @@
 import { Component, effect, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalDeleteService } from '../../../../core/services/UI/modal-delete.service';
 import { WithId } from '../../../../core/models/withId';
 
 /**
  * Componente genérico que representa el modal de confirmación de eliminación.
  * Muestra tres estados: confirmación, eliminando y éxito.
- * Se sincroniza con el ModalDeleteServiceService mediante un effect
+ * Se sincroniza con el ModalDeleteService mediante un effect
  * para reflejar el estado actual del proceso de eliminación.
  * @template T - Tipo de la entidad a eliminar, debe tener al menos un campo id
  */
@@ -53,7 +53,7 @@ export class GenericDeleteModalComponent<R> {
    * Se suscribe mediante un effect a los cambios de estado para sincronizar
    * las propiedades isDeleting, showSuccess y errorMessage.
    */
-  constructor(private deleteModalService: ModalDeleteServiceService<R>) {
+  constructor(private deleteModalService: ModalDeleteService) {
    effect(() => {
       const modalState = this.deleteModalService.modalState();
       console.log(

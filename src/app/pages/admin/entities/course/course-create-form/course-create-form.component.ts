@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo ciclo académico.
@@ -46,7 +46,7 @@ export class CourseCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private courseService: CourseServiceService
+    private courseService: CourseService
   ) {
     this.createForm = this.fb.group({
       name: ['', Validators.required]

@@ -1,12 +1,12 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
 import { Course, CourseByIdResponse } from '../../../../../core/models/course';
-import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
+import { CourseService } from '../../../../../core/services/admin/entities/course.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
 
 /**
  * Componente que muestra el listado de ciclos académicos del sistema.
@@ -19,7 +19,7 @@ import { ModalEditServiceService } from '../../../../../core/services/UI/modal-e
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })
-export class CourseListComponent {
+export class CourseListComponent implements OnInit {
 
     /**
    * Listado de ciclos académicos a mostrar, sincronizado con la signal del servicio.
@@ -38,9 +38,9 @@ export class CourseListComponent {
    * @param modalUpdateService - Servicio del modal de edición, usado para detectar
    * cuando una actualización se completa y recargar la lista.
    */
-      constructor(private courseService: CourseServiceService, 
-        private modalDeleteService: ModalDeleteServiceService<unknown>,
-        private updateDeleteService: ModalEditServiceService<unknown, unknown, unknown>)
+      constructor(private courseService: CourseService,
+        private modalDeleteService: ModalDeleteService,
+        private modalUpdateService: ModalEditService)
       {
         effect(() => {
           this.courses = this.courseService.courses();

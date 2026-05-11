@@ -1,0 +1,26 @@
+<div class="w-full min-h-screen bg-gray-50 p-6 pt-10 pb-24">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-extrabold text-gray-800 mb-2">{{ 'horario.titleStudent' | translate }}</h1>
+    <p class="text-gray-500 mb-8">{{ 'horario.subtitle' | translate }}</p>
+
+    <div *ngIf="isLoading" class="text-gray-500">{{ 'common.messages.loading' | translate }}...</div>
+
+    <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+      <section *ngFor="let day of weekDays" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+        <h2 class="text-lg font-bold text-indigo-700 mb-4">{{ ('horario.days.' + day) | translate }}</h2>
+
+        <div *ngIf="getDaySchedules(day).length === 0" class="text-sm text-gray-500">
+          {{ 'horario.noData' | translate }}
+        </div>
+
+        <div *ngFor="let schedule of getDaySchedules(day)" class="rounded-xl border border-indigo-100 bg-indigo-50/60 p-3 mb-3">
+          <p class="text-sm font-semibold text-gray-800">{{ getSubjectName(schedule) }}</p>
+          <p class="text-xs text-gray-600">{{ schedule.startTime }} - {{ schedule.finishTime }}</p>
+          <p class="text-xs text-gray-500">{{ 'horario.group' | translate }}: {{ getGroupName(schedule) }}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<app-boton-atras></app-boton-atras>

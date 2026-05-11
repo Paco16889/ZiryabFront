@@ -2,10 +2,9 @@ import { Component, effect } from '@angular/core';
 import { ClassSessionListItemComponent } from "../class-session-list-item/class-session-list-item.component";
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { ClassSession } from '../../../../../core/models/class-sessions';
-import { ClassSessionServiceService } from '../../../../../core/services/admin/entities/class-session-service.service';
-import { ModalEditServiceService } from '../../../../../core/services/UI/modal-edit-service.service';
-import { ModalDeleteServiceService } from '../../../../../core/services/UI/modal-delete-service.service';
-
+import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
+import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 
 /**
  * Componente que muestra el listado de sesiones de clase del sistema.
@@ -38,9 +37,9 @@ export class ClassSessionListComponent {
    * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
    * cuando una eliminación se completa y recargar la lista
    */
-  constructor(private classSessionService: ClassSessionServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+  constructor(private classSessionService: ClassSessionService,
+    private modalUpdateService: ModalEditService,
+    private modalDeleteService: ModalDeleteService) {
 
       effect(() => {this.classSessions = classSessionService.classSessions()})
     effect(() => {

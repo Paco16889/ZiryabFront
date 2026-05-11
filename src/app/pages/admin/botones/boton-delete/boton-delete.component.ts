@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-delete-service.service';
+import { ModalDeleteService } from '../../../../core/services/UI/modal-delete.service';
+import { DeleteRequest } from '../../../../core/models/services/delete-models';
 
 /**
  * Componente que representa el botón de eliminación de una entidad.
- * Al pulsarlo abre el modal de confirmación de eliminación mediante el ModalDeleteServiceService,
+ * Al pulsarlo abre el modal de confirmación de eliminación mediante el ModalDeleteService,
  * sin necesidad de emitir eventos al componente padre.
  */
 @Component({
@@ -40,7 +41,7 @@ export class BotonDeleteComponent<R> {
    * Inicializa el componente.
    * @param deleteModalService - Servicio que gestiona el estado y ciclo de vida del modal de eliminación
    */
-  constructor(private deleteModalService: ModalDeleteServiceService<R>) {}
+  constructor(private deleteModalService: ModalDeleteService) {}
   
   /**
    * Abre el modal de confirmación de eliminación con los datos de la entidad actual.
@@ -52,6 +53,6 @@ export class BotonDeleteComponent<R> {
       name: this.name,
       type: this.type,
       deleteFn: this.deleteFn
-    });
+    } as DeleteRequest<unknown>);
   }
 }
