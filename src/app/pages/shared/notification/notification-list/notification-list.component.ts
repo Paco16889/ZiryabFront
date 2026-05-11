@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NotificationListItemComponent } from "../notification-list-item/notification-list-item.component";
-import { NotificationServiceService } from '../../../../core/services/notification/notification-service.service';
-import { NotificationToggleServiceService } from '../../../../core/services/notification/notification-toggle-service.service';
+import { NotificationService } from '../../../../core/services/notification/notification.service';
+import { NotificationToggleService } from '../../../../core/services/notification/notification-toggle.service';
 import { NotificationEntityType } from '../../../../core/models/notification';
 
 @Component({
@@ -11,8 +11,8 @@ import { NotificationEntityType } from '../../../../core/models/notification';
   styleUrl: './notification-list.component.scss'
 })
 export class NotificationListComponent {
-  protected readonly service      = inject(NotificationServiceService);
-  protected readonly panelService = inject(NotificationToggleServiceService);
+  protected readonly service      = inject(NotificationService);
+  protected readonly panelService = inject(NotificationToggleService);
 
  onItemClicked(event: { entityId: number; entityType: NotificationEntityType }): void {
   this.service.markAsRead(event.entityId);

@@ -6,8 +6,7 @@ import { Notification } from '../../models/notification';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationServiceService {
-
+export class NotificationService {
   private readonly repo = inject(NotificationRepository);
   private readonly _notifications = signal<Notification[]>([]);
 

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, inject, computed } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TaskService } from '../../../../core/services/profesor/task-service.service';
-import { TaskGroupUiService } from '../../../../core/services/profesor/task-group-ui-service.service';
+import { TaskService } from '../../../../core/services/profesor/task.service';
+import { TaskGroupUiService } from '../../../../core/services/profesor/task-group-ui.service';
 import { TaskGroupItemComponent } from '../task-group-item/task-group-item.component';
 import { Task, TaskGroup } from '../../../../core/models/teacher/tasks';
 

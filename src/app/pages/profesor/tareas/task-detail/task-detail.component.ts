@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { TaskService } from '../../../../core/services/profesor/task-service.service';
+import { TaskService } from '../../../../core/services/profesor/task.service';
 import { StudentTaskService } from '../../../../core/services/alumno/student-task.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentTaskStatus } from '../../../../core/models/teacher/tasks';

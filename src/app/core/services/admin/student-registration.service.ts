@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StudentRegistration, StudentRegistrationRequest, StudentRegistrationResponse } from '../../models/student-registration';
 import { Observable } from 'rxjs';
-import { SelectedStudentServiceService } from './selected-student-service.service';
+import { SelectedStudentService } from './selected-student.service';
 import { Student } from '../../models/student';
 import { Subject } from '../../models/subject';
-import { SubjectServiceService } from './entities/subject-service.service';
+import { SubjectService } from './entities/subject.service';
 
 /**
  * Servicio encargado de gestionar el proceso de matriculación de un estudiante
@@ -35,7 +35,7 @@ export class StudentRegistrationService {
    * @param subjectService - Servicio para obtener la asignaturas seleccionadas
    * @param studentSelectedService - Servicio para obtener el estudiante seleccionado
    */
-  constructor(private http: HttpClient, private selectedStudent: SelectedStudentServiceService, private subjectService: SubjectServiceService) {}
+  constructor(private http: HttpClient, private selectedStudent: SelectedStudentService, private subjectService: SubjectService) {}
 
    /**
    * Envía la petición de matriculación al backend.

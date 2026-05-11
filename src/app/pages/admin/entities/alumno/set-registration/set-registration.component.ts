@@ -53,7 +53,7 @@ export class SetRegistrationComponent {
   selectedSubjects: Subject[] | null = [];
 
    /**
-   * Estudiante seleccionado para matricular, obtenido del SelectedStudentServiceService.
+   * Estudiante seleccionado para matricular, obtenido del SelectedStudentService.
    */
   selectedStudent: Student | null = null;
 

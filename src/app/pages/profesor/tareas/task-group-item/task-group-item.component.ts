@@ -1,6 +1,6 @@
 import { Component, inject, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskGroupUiService } from '../../../../core/services/profesor/task-group-ui-service.service';
+import { TaskGroupUiService } from '../../../../core/services/profesor/task-group-ui.service';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import { Task } from '../../../../core/models/teacher/tasks';
 

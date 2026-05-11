@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 import { SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/models/subject';
+import { CoursesAllResponse } from '../../../../../core/models/course';
 
 /**
  * Componente que gestiona el formulario de creación de una nueva asignatura.
