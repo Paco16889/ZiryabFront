@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Course } from '../../../../../core/models/course';
+import { Course, CourseDeleteResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../../../../core/models/course';
 import { CourseServiceService } from '../../../../../core/services/admin/entities/course-service.service';
 
 
@@ -42,7 +42,7 @@ export class CourseListItemComponent {
    * Define los campos visibles, las acciones disponibles, el layout,
    * los campos del formulario de edición y las funciones de servicio.
    */
-  courseConfig: ListItemConfig<Course> = {
+  courseConfig: ListItemConfig<Course, CourseUpdateRequest, CourseUpdateResponse, CourseDeleteResponse> = {
     fields: [
       { 
         key: 'name',
@@ -71,7 +71,7 @@ export class CourseListItemComponent {
     entityType: 'el ciclo',
     entityNameFormat: (course: Course) => course.name,
     getByIdFn: (id: number) => this.courseService.getCourseById(id),
-    updateFn: (data: any) => this.courseService.updateCourse(data),
+    updateFn: (data: CourseUpdateRequest) => this.courseService.updateCourse(data),
     deleteFn: (id: number) => this.courseService.deleteCourse(id)
   };
 

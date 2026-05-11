@@ -40,8 +40,8 @@ export class TeacherListComponent {
    * cuando una actualización se completa y recargar la lista
    */
     constructor(private teacherService: TeachersServiceService,
-      private modalDeleteService: ModalDeleteServiceService,
-      private updateModalService: ModalEditServiceService
+      private modalDeleteService: ModalDeleteServiceService<unknown>,
+      private updateModalService: ModalEditServiceService<unknown, unknown, unknown>
     ){
       effect(() => {
         this.teachers = teacherService.teachers();

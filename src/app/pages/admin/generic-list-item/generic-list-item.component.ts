@@ -22,7 +22,7 @@ import { WithId } from '../../../core/models/withId';
   templateUrl: './generic-list-item.component.html',
   styleUrl: './generic-list-item.component.scss'
 })
-export class GenericListItemComponent<T extends WithId> {
+export class GenericListItemComponent<T extends WithId, U, R, S> {
 
   /**
    * Entidad a mostrar en el elemento de lista.
@@ -32,7 +32,7 @@ export class GenericListItemComponent<T extends WithId> {
   /**
    * Configuración del elemento de lista con campos, acciones y layout.
    */
-  @Input() config!: ListItemConfig<T>;  
+  @Input() config!: ListItemConfig<T, U, R, S>;  
 
   /**
    * Configuración opcional de la vista de detalle de la entidad.
@@ -52,7 +52,7 @@ export class GenericListItemComponent<T extends WithId> {
     /**
    * Entidad actualmente seleccionada para editar.
    */
-  itemToEdit: any | null = null;  
+  itemToEdit: U | null = null;  
   
 
   /**

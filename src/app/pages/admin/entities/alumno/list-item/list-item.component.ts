@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Student } from '../../../../../core/models/student';
+import { Student, StudentDeleteResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../../../../core/models/student';
 
 import { StudentsServiceService } from '../../../../../core/services/admin/entities/students-service.service';
 
@@ -43,7 +43,7 @@ export class ListItemComponent {
    * Define los campos visibles, las acciones disponibles, el layout,
    * los campos del formulario de edición y las funciones de servicio.
    */
-  studentConfig: ListItemConfig<Student> = {
+  studentConfig: ListItemConfig<Student, StudentUpdateRequest, StudentUpdateResponse, StudentDeleteResponse> = {
     fields: [
       { 
         key: 'surname', 
@@ -129,7 +129,7 @@ export class ListItemComponent {
     entityType: 'el estudiante',
     entityNameFormat: (student: Student) => `${student.name} ${student.surname}`,
     getByIdFn: (id: number) => this.studentService.getStudentbyId(id),
-    updateFn: (data: any) => this.studentService.updateStudent(data),
+    updateFn: (data: StudentUpdateRequest) => this.studentService.updateStudent(data),
     deleteFn: (id: number) => this.studentService.deleteStudent(id)
   };
 
@@ -143,19 +143,19 @@ export class ListItemComponent {
       {
         key: 'surname',
         type: 'title',
-        format: (value) => `${value}`,
+        format: (value: string) => `${value}`,
         className: 'text-xl font-bold'
       },
       {
         key: 'ndSurname',
         type: 'title',
-        format: (value) => ` ${value},`,
+        format: (value: string) => ` ${value},`,
         className: 'text-xl font-bold'
       },
       {
         key: 'name',
         type: 'title',
-        format: (value) => ` ${value}`,
+        format: (value: string) => ` ${value}`,
         className: 'text-xl font-bold'
       },
       {

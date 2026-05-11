@@ -40,8 +40,8 @@ export class WeekScheduleListComponent {
    * cuando una eliminación se completa y recargar la lista
    */
   constructor(private weekScheduleService: WeekScheduleServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+    private modalUpdateService: ModalEditServiceService<unknown, unknown, unknown >,
+    private modalDeleteService: ModalDeleteServiceService<unknown>) {
 
       effect(() => {this.schedules = weekScheduleService.schedules()
           console.log('📦 Schedules actualizados:', this.schedules);

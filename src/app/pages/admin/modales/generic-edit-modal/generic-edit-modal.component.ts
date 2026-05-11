@@ -4,6 +4,7 @@ import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
 import { Observable } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit-service.service';
+import { WithId } from '../../../../core/models/withId';
 
 /**
  * Componente genérico que representa el modal de edición de una entidad.
@@ -19,7 +20,7 @@ import { ModalEditServiceService } from '../../../../core/services/UI/modal-edit
   templateUrl: './generic-edit-modal.component.html',
   styleUrl: './generic-edit-modal.component.scss'
 })
-export class GenericEditModalComponent {
+export class GenericEditModalComponent<T extends WithId & Record<string, unknown>, U, R> {
 
    /**
    * Tipo de la entidad a editar para mostrar en los mensajes del modal,
@@ -35,7 +36,7 @@ export class GenericEditModalComponent {
   /**
    * Datos actuales de la entidad para prerellenar el formulario de edición.
    */
-  @Input() entityData!: any; // Datos de la entidad a editar
+  @Input() entityData!: T; // Datos de la entidad a editar
 
    /**
    * Configuración de los campos editables del formulario.
@@ -45,7 +46,7 @@ export class GenericEditModalComponent {
   /**
    * Función que ejecuta la petición de actualización al backend.
    */
-  @Input() updateFunction!: (data: any) => Observable<any>; // Función de update del servicio
+  @Input() updateFunction!: (data: U) => Observable<R>; // Función de update del servicio
   
     /**
    * Formulario reactivo generado dinámicamente a partir de la configuración de campos.
@@ -83,7 +84,7 @@ export class GenericEditModalComponent {
    * Se suscribe mediante un effect a los cambios de estado para sincronizar
    * las propiedades isUpdating, showSuccess y errorMessage.
    */
-  constructor(private fb: FormBuilder, private editModalService: ModalEditServiceService) {
+  constructor(private fb: FormBuilder, private editModalService: ModalEditServiceService<T, U, R>) {
      effect(() => {
       const modalState = this.editModalService.modalState();
       console.log(
@@ -160,7 +161,7 @@ export class GenericEditModalComponent {
     const updateData = {
     id: this.entityData.id, // ✅ aquí metemos el id
     ...this.editForm.value
-  };
+  } as U;
      
      console.log('🔹 onSubmit updateData', updateData);
      console.log('y aqui', this.entityData.id);

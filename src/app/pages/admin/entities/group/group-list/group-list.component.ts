@@ -39,8 +39,8 @@ export class GroupListComponent {
    * cuando una actualización se completa y recargar la lista
    */
   constructor(private groupService: GroupServiceService,
-    private modalDeleteService: ModalDeleteServiceService,
-    private modalUpdateService: ModalEditServiceService
+    private modalDeleteService: ModalDeleteServiceService<unknown>,
+    private modalUpdateService: ModalEditServiceService<unknown, unknown, unknown>
   ) {
     effect(() => {
       this.groups = this.groupService.groups();

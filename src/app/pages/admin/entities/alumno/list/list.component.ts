@@ -42,8 +42,8 @@ export class ListComponent implements OnInit {
    */
   constructor(
     private studentService: StudentsServiceService, 
-    private deleteModalService: ModalDeleteServiceService,
-    private updateModalService: ModalEditServiceService
+    private deleteModalService: ModalDeleteServiceService<unknown>,
+    private updateModalService: ModalEditServiceService<unknown, unknown, unknown>
   ){
     effect(() => {this.students = studentService.students()})
     //Effect que escucha cambios en el modal

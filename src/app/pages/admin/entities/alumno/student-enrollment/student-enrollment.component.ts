@@ -44,6 +44,7 @@ export class StudentEnrollmentComponent implements OnChanges{
    * Detecta cambios en el listado de estudiantes recibido por Input.
    * @param changes - Objeto con los cambios detectados en los Inputs
    */
+  //se queda para desarrollo quitar en producción
     ngOnChanges(changes: SimpleChanges) {
     if (changes['students']) {
       console.log('📦 Enrollment recibe students (ngOnChanges):', this.students);

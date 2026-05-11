@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.component";
+import { NotificationBadgeComponent } from "../notification/notification-badge/notification-badge.component";
+import { NotificationToggleServiceService } from '../../../core/services/notification/notification-toggle-service.service';
+import { NotificationListComponent } from "../notification/notification-list/notification-list.component";
 
 /**
  * Componente que representa la cabecera de la aplicación.
@@ -12,7 +15,7 @@ import { SelectorIdiomaComponent } from "../selector-idioma/selector-idioma.comp
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, SelectorIdiomaComponent],
+  imports: [CommonModule, SelectorIdiomaComponent, NotificationBadgeComponent, NotificationListComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -28,6 +31,9 @@ export class HeaderComponent implements OnInit {
    */
   userRole: string = 'Usuario activo';
 
+    notificationCount = 7;
+
+
    /**
    * Inicializa el componente.
    * @param perfilService - Servicio para controlar el estado del menú de perfil
@@ -35,7 +41,9 @@ export class HeaderComponent implements OnInit {
    */
   constructor(
     private perfilService: PerfilMenuService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationToggle: NotificationToggleServiceService
+
   ) {}
 
   /**
@@ -86,4 +94,9 @@ export class HeaderComponent implements OnInit {
     console.log('🔄 Toggle menú de perfil');
     this.perfilService.toggleMenu();
   }
+
+  toggleNotificationPanel(): void {
+    console.log('Has hecho click en toggle notificaciones');
+  this.notificationToggle.toggle();
+}
 }

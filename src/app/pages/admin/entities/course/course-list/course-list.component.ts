@@ -40,8 +40,8 @@ export class CourseListComponent {
    * ATENCIÓN: nombre confuso, debería llamarse modalUpdateService para ser consistente
    */
       constructor(private courseService: CourseServiceService, 
-        private modalDeleteService: ModalDeleteServiceService,
-        private updateDeleteService: ModalEditServiceService)
+        private modalDeleteService: ModalDeleteServiceService<unknown>,
+        private updateDeleteService: ModalEditServiceService<unknown, unknown, unknown>)
       {
         effect(() => {
           this.courses = this.courseService.courses();

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { WeekSchedule, WeekScheduleUpdateRequest } from '../../../../../core/models/week-schedule';
+import { WeekSchedule, WeekScheduleDeleteResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../../../core/models/week-schedule';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
@@ -54,7 +54,7 @@ export class WeekScheduleListItemComponent {
    * ATENCIÓN: los editFields están copiados de AsignaturaListItemComponent y no corresponden
    * a WeekSchedule, pendiente de corregir cuando se implementen las acciones de edición.
    */
-  get scheduleConfig(): ListItemConfig<WeekSchedule> {
+  get scheduleConfig(): ListItemConfig<WeekSchedule, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse, WeekScheduleDeleteResponse> {
     return {
       fields: [
         { 
@@ -102,7 +102,7 @@ export class WeekScheduleListItemComponent {
       entityType: 'El Horario Semanal',
       entityNameFormat: (schedule: WeekSchedule) => schedule.startTime,
       getByIdFn: (id: number) => this.weekScheduleService.getWeekSchedulebyId(id),
-      updateFn: (data: any) => this.weekScheduleService.updateSchedule(data.id, data),
+      updateFn: (data: WeekScheduleUpdateRequest) => this.weekScheduleService.updateSchedule(data.id, data),
       deleteFn: (id: number) => this.weekScheduleService.deleteSchedule(id)
     };
   }
@@ -116,21 +116,21 @@ export class WeekScheduleListItemComponent {
             {
               key: 'weekDay',
               type: 'text',
-              format: (value) => `${value}`,
+              format: (value: string) => `${value}`,
               className: 'text-xl font-bold',
               label: 'Día de la semana:'
             },
             {
               key: 'startTime',
               type: 'text',
-              format: (value) => `${value}`,
+              format: (value: string) => `${value}`,
               className: 'text-xl font-bold',
               label: 'Hora de Inicio: '
             },
             {
               key: 'finishTime',
               type: 'text',
-              format: (value) => `${value}`,
+              format: (value: string) => `${value}`,
               className: 'text-xl font-bold',
               label: 'Hora de Finalización:'
             }

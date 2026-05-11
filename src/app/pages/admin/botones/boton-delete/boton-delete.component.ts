@@ -13,7 +13,7 @@ import { ModalDeleteServiceService } from '../../../../core/services/UI/modal-de
   templateUrl: './boton-delete.component.html',
   styleUrl: './boton-delete.component.scss'
 })
-export class BotonDeleteComponent {
+export class BotonDeleteComponent<R> {
 
   /**
    * Identificador único de la entidad a eliminar.
@@ -34,13 +34,13 @@ export class BotonDeleteComponent {
    * Función que ejecuta la petición de eliminación al backend.
    * Se pasa desde el componente padre y se delega al modal para su ejecución.
    */
-  @Input() deleteFn!: (id: number) => Observable<any>;
+  @Input() deleteFn!: (id: number) => Observable<R>;
 
   /**
    * Inicializa el componente.
    * @param deleteModalService - Servicio que gestiona el estado y ciclo de vida del modal de eliminación
    */
-  constructor(private deleteModalService: ModalDeleteServiceService) {}
+  constructor(private deleteModalService: ModalDeleteServiceService<R>) {}
   
   /**
    * Abre el modal de confirmación de eliminación con los datos de la entidad actual.

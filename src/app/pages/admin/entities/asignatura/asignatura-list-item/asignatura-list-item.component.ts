@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Subject, SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/models/subject';
+import { Subject, SubjectByIdResponse, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../../../../core/models/subject';
 
 import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
 
@@ -62,7 +62,7 @@ export class AsignaturaListItemComponent {
    * los campos del formulario de edición con el selector de ciclos asíncrono
    * y las funciones de servicio.
    */
-  get subjectConfig(): ListItemConfig<Subject> {
+  get subjectConfig(): ListItemConfig<Subject, SubjectUpdateRequest, SubjectUpdateResponse, SubjectDeleteResponse>  {
     return {
       fields: [
         { 
@@ -132,7 +132,7 @@ export class AsignaturaListItemComponent {
       entityType: 'la asignatura',
       entityNameFormat: (subject: Subject) => subject.name,
       getByIdFn: (id: number) => this.subjectService.getSubjectbyId(id),
-      updateFn: (data: any) => this.subjectService.updateSubject(data.id, data),
+      updateFn: (data: SubjectUpdateRequest) => this.subjectService.updateSubject(data.id, data),
       deleteFn: (id: number) => this.subjectService.deleteSubject(id)
     };
   }

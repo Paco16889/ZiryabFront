@@ -15,7 +15,7 @@ import { EditFieldConfig } from '../../../../core/configs/edit-modal-config';
   templateUrl: './boton-edit.component.html',
   styleUrl: './boton-edit.component.scss'
 })
-export class BotonEditComponent {
+export class BotonEditComponent<T, U, R> {
 
 
 /**
@@ -36,7 +36,7 @@ export class BotonEditComponent {
    /**
    * Datos actuales de la entidad para prerellenar el formulario de edición.
    */
-  @Input() entityData : any;
+  @Input() entityData! : T;
 
    /**
    * Configuración de los campos editables del formulario.
@@ -47,13 +47,13 @@ export class BotonEditComponent {
    * Función que ejecuta la petición de actualización al backend.
    * Se pasa desde el componente padre y se delega al modal para su ejecución.
    */
-  @Input() updateFn!: (data: any) => Observable<any>;
+  @Input() updateFn!: (data: U) => Observable<R>;
 
    /**
    * Inicializa el componente.
    * @param updateModalService - Servicio que gestiona el estado y ciclo de vida del modal de edición
    */
-  constructor(private updateModalService: ModalEditServiceService) {
+  constructor(private updateModalService: ModalEditServiceService<T, U, R>) {
 
   }
 

@@ -1,6 +1,6 @@
 import { Component, effect } from '@angular/core';
 import { SubjectServiceService } from '../../../../../core/services/admin/entities/subject-service.service';
-import { Subject } from '../../../../../core/models/subject';
+import { Subject, SubjectDeleteResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../../../../core/models/subject';
 
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
@@ -40,8 +40,8 @@ export class AsignaturaListComponent {
    * cuando una eliminación se completa y recargar la lista
    */
   constructor(private subjectService: SubjectServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+    private modalUpdateService: ModalEditServiceService<Subject, SubjectUpdateRequest, SubjectUpdateResponse>,
+    private modalDeleteService: ModalDeleteServiceService<SubjectDeleteResponse>) {
 
       effect(() => {this.subjects = subjectService.subjects()})
     effect(() => {
