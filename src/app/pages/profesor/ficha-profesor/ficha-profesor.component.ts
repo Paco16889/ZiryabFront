@@ -53,7 +53,7 @@ export class FichaProfesorComponent implements OnInit {
         if (res.success && res.data) {
           // Filtrar faltas que tengan un justificante enviado o estén en estado PENDING, sin comprobar EXCUSED ni ABSENT por ahora para depurar.
           const pendientes = res.data.filter(a => 
-            a.justificationUri || a.justificationStatus === 'PENDING'
+            (a.justificationUri || a.justificationStatus === 'PENDING') && a.status !== 'EXCUSED'
           );
           this.justificacionesPendientes.set(pendientes);
           
