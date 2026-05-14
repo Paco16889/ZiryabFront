@@ -65,5 +65,8 @@ export class AppComponent {
     const savedLang = localStorage.getItem('lang') || 'es';
     this.translate.use(savedLang);
   } 
-  //seguridad antonio
+  
+  get entityDataForEdit() {
+    return this.updateModalService.modalState().entityData as import('./core/models/withId').WithId & Record<string, unknown>;
+  }
 }

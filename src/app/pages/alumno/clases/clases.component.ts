@@ -91,7 +91,8 @@ export class ClasesComponent implements OnInit {
           this.loading.set(false);
 
           response.data.forEach((item: Enrollment) => {
-            const subjectId = item.idSubject;
+            const subjectId = item.idSubject || item.subject?.id;
+            if (!subjectId) return;
             
             this.clasesService.getNombreProfesorParaAsignatura(subjectId).subscribe({
               next: (responseDetail: GetSubjectDetailResponse) => {
@@ -119,7 +120,7 @@ export class ClasesComponent implements OnInit {
           });
 
         },
-        error: (err: any) => {
+        error: (err) => {
           console.error('Error al cargar asignaturas:', err);
           this.errorMessage.set('Error de conexión con el servidor.');
           this.loading.set(false);

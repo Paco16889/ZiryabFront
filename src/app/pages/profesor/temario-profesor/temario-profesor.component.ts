@@ -8,6 +8,15 @@ import { AttendanceService, AttendanceRecord, AttendanceStatus } from '../../../
 import { TaskService } from '../../../core/services/task.service';
 import { Task, TaskType } from '../../../core/models/task';
 import { Router } from '@angular/router';
+import { StudentBySubject } from '../../../core/models/student-by-subject';
+
+export interface BloqueTemario {
+  id: number;
+  titulo: string;
+  abierta: boolean;
+  icono: string;
+  tareas: Task[];
+}
 
 /**
  * Componente que muestra el temario de una asignatura.
@@ -30,11 +39,11 @@ export class TemarioProfesorComponent implements OnInit {
     private taskService = inject(TaskService);
     private router = inject(Router);
 
-    bloques = signal<any[]>([]);
+    bloques = signal<BloqueTemario[]>([]);
     claseEnCurso = decodeURIComponent(this.route.snapshot.paramMap.get('claseId') || '');
 
     subjectId: number | null = null;
-    alumnos = signal<any[]>([]);
+    alumnos = signal<StudentBySubject[]>([]);
     tasksLoadError = signal(false);
     attendanceMap: Record<number, AttendanceStatus> = {};
     loadingAlumnos = signal(false);
@@ -64,7 +73,7 @@ export class TemarioProfesorComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             const filteredTasks = res.data.filter(t => 
-               (t.teacherAssignment as any)?.subject?.name?.toLowerCase() === this.claseEnCurso.toLowerCase()
+               t.teacherAssignment?.subject?.name?.toLowerCase() === this.claseEnCurso.toLowerCase()
             );
             this.groupTasksByType(filteredTasks);
           }
@@ -85,7 +94,7 @@ export class TemarioProfesorComponent implements OnInit {
         { tipo: TaskType.HOMEWORK, titulo: 'Deberes Generales', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
       ];
 
-      const nuevosBloques: any[] = [];
+      const nuevosBloques: BloqueTemario[] = [];
       const user = this.authService.getCurrentUser();
       for (const conf of configBloques) {
         // Filtrar tareas que pertenecen al profesor logueado además de a la clase
@@ -119,9 +128,9 @@ export class TemarioProfesorComponent implements OnInit {
     private loadAlumnos(): void {
         this.loadingAlumnos.set(true);
         this.clasesService.getStudentsBySubject(this.subjectId!).subscribe({
-            next: (data) => {
-                this.alumnos.set(data);
-                data.forEach((alumno: any) => {
+            next: (response) => {
+                this.alumnos.set(response.data);
+                response.data.forEach((alumno: StudentBySubject) => {
                     this.attendanceMap[alumno.enrollmentId] = 'PRESENT';
                 });
                 this.loadingAlumnos.set(false);

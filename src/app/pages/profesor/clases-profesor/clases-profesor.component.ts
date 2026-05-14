@@ -85,7 +85,7 @@ export class ClasesProfesorComponent implements OnInit {
           this.construirCards();
           this.loading.set(false);
         },
-        error: (err: any) => {
+        error: (err) => {
           console.error('Error al cargar asignaturas:', err);
           this.errorMessage.set('Error de conexión con el servidor.');
           this.loading.set(false);

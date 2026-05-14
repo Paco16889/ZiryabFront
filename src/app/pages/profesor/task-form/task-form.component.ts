@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from '../../../core/services/admin/entities/task.service';
+import { Task } from '../../../core/models/task';
 
 @Component({
   selector: 'app-task-form',
@@ -15,7 +16,7 @@ export class TaskFormComponent implements OnInit {
   @Input() idTeacherAssignment!: number; // Necesario para crear la tarea en la asignatura correcta
   @Input() schoolYear: string = '2024-2025'; // Año escolar actual
 
-  @Output() taskCreated = new EventEmitter<any>();
+  @Output() taskCreated = new EventEmitter<Task>();
   @Output() cancel = new EventEmitter<void>();
 
   taskForm!: FormGroup;
@@ -39,8 +40,10 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+    const file: File = input.files[0];
     if (file) {
       // Validar límite (10MB)
       if (file.size > 10 * 1024 * 1024) {
@@ -83,7 +86,7 @@ export class TaskFormComponent implements OnInit {
       formData.append('file', this.selectedFile);
     }
 
-    this.taskService.createTask(formData as any).subscribe({
+    this.taskService.createTask(formData).subscribe({
       next: (response) => {
         this.loading = false;
         this.successMessage = 'Tarea creada con éxito con su fichero adjunto.';

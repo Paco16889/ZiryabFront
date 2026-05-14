@@ -59,7 +59,7 @@ export class TemarioAlumnoComponent implements OnInit {
         if (res.success) {
           // filtrado por asignatura
           const filteredTasks = res.data.filter(t => 
-             (t.task.teacherAssignment as any)?.subject?.name.toLowerCase() === this.claseEnCurso.toLowerCase()
+             t.task.teacherAssignment?.subject?.name?.toLowerCase() === this.claseEnCurso.toLowerCase()
           );
           this.groupTasksByType(filteredTasks);
         } else {
