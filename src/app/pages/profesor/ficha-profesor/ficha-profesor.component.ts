@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { NgClass, DatePipe } from '@angular/common';
+import { NgClass, DatePipe, CommonModule } from '@angular/common';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
+import { StudentAbsencesModalComponent } from './student-absences-modal/student-absences-modal.component';
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
 import { AssistanceItem } from '../../../core/models/assistance';
 import { environment } from '../../../../environments/environment';
@@ -12,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-ficha-profesor',
   standalone: true,
-  imports: [NgClass, DatePipe, BotonAtrasComponent],
+  imports: [CommonModule, BotonAtrasComponent, StudentAbsencesModalComponent],
   templateUrl: './ficha-profesor.component.html',
   styleUrl: './ficha-profesor.component.scss'
 })
@@ -28,6 +29,9 @@ export class FichaProfesorComponent implements OnInit {
 
   /** Signal que contiene el listado de faltas pendientes de revisión */
   public justificacionesPendientes = signal<AssistanceItem[]>([]);
+
+  /** Estado del modal de ausencias */
+  public isAbsencesModalOpen = signal<boolean>(false);
 
   public apiUrl = environment.apiUrl;
 
@@ -47,11 +51,9 @@ export class FichaProfesorComponent implements OnInit {
     this.assistanceService.getAllAssistances().subscribe({
       next: (res) => {
         if (res.success && res.data) {
-          // Filtrar faltas que tengan justificationUri y no estén EXCUSED
+          // Filtrar faltas que tengan un justificante enviado o estén en estado PENDING, sin comprobar EXCUSED ni ABSENT por ahora para depurar.
           const pendientes = res.data.filter(a => 
-            a.justificationUri && 
-            a.status !== 'EXCUSED' && 
-            (a.status === 'ABSENT' || a.status === 'LATE')
+            a.justificationUri || a.justificationStatus === 'PENDING'
           );
           this.justificacionesPendientes.set(pendientes);
           

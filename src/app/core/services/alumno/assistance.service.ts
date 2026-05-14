@@ -59,4 +59,19 @@ export class AssistanceService {
     rejectJustification(assistanceId: number): Observable<any> {
         return this.http.patch(`${this.apiUrl}/assistancestatus/${assistanceId}`, { status: 'ABSENT' });
     }
+
+    /**
+     * Obtiene el estado de justificación de una falta de asistencia.
+     * @param assistanceId Identificador de la asistencia.
+     */
+    getJustificationStatus(assistanceId: number): Observable<any> {
+        return this.http.get(`${this.apiUrl}/${assistanceId}/justification-status`);
+    }
+
+    /**
+     * Obtiene las faltas de asistencia de los estudiantes del profesor.
+     */
+    getStudentsAbsences(): Observable<any> {
+        return this.http.get(`${environment.apiUrl}/teachers/my-students-absences`);
+    }
 }
