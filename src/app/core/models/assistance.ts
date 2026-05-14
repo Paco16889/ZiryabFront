@@ -137,6 +137,13 @@ export interface AssistanceItem {
         }
       }
     }
+  },
+  /** Información del alumno (devuelta por getAllByTeacher) */
+  studentEnrollment?: {
+    student: {
+      name: string;
+      surname: string;
+    }
   }
 }
 

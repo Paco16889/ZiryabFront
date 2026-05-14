@@ -8,6 +8,7 @@ import { GestionComponent } from './pages/alumno/gestion/gestion.component';
 import { TemarioAlumnoComponent } from './pages/alumno/temario-alumno/temario-alumno.component';
 import { TemarioProfesorComponent } from './pages/profesor/temario-profesor/temario-profesor.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
+import { FichaProfesorComponent } from './pages/profesor/ficha-profesor/ficha-profesor.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
@@ -54,8 +55,13 @@ export const routes: Routes = [
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['STUDENT', 'TEACHER'] },
-
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'ficha-profesor',
+        component: FichaProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
     },
 
     {
@@ -144,12 +150,7 @@ export const routes: Routes = [
         data: { roles: ['TEACHER', 'STUDENT'] },
     },
 
-    {
-        path: 'ficha-usuario',
-        component: FichaUsuarioComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['TEACHER', 'STUDENT'] },
-    },
+
     // ============================================
     // RUTAS DE ESTUDIANTE (STUDENT)
     // ============================================

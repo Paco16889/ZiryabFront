@@ -36,7 +36,9 @@ export class GestionComponent {
    */
   goToComponent(route: string) {
     if (route === 'ficha-usuario') {
-        this.router.navigate(['/ficha-usuario']); 
+        const userRole = this.authService.getUserRole();
+        const targetRoute = userRole === 'TEACHER' ? '/ficha-profesor' : '/ficha-usuario';
+        this.router.navigate([targetRoute]); 
     } else if (route === 'horario') {
         const userRole = this.authService.getUserRole();
         const targetRoute = userRole === 'TEACHER' ? '/horario-profesor' : '/horario-alumno';

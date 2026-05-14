@@ -26,20 +26,37 @@ export class AssistanceService {
         return this.http.get<AssistanceResponse>(`${this.apiUrl}/student/${studentId}`);
     }
 
+
     /**
-     * Simula la subida de un documento de justificación para una falta de asistencia.
-     * Actualmente es una implementación simulada (mock) que emite éxito tras un retraso.
-     * @param assistanceId Identificador de la falta de asistencia que se desea justificar.
-     * @param file El archivo (PDF, JPG, PNG) que contiene el justificante médico o personal.
-     * @returns Un observable que emite true cuando la operación simulada se completa con éxito.
+     * Sube un documento de justificación para una falta de asistencia.
+     * @param assistanceId Identificador de la falta de asistencia.
+     * @param file El archivo (PDF, JPG, PNG) que contiene el justificante.
      */
-    submitJustification(assistanceId: number, file: File): Observable<boolean> {
-        return new Observable<boolean>(observer => {
-            setTimeout(() => {
-                console.log(`[Mock] Justificante '${file.name}' subido para la falta con ID ${assistanceId}`);
-                observer.next(true);
-                observer.complete();
-            }, 1500);
-        });
+    submitJustification(assistanceId: number, file: File): Observable<any> {
+        const formData = new FormData();
+        formData.append('document', file);
+        return this.http.post(`${this.apiUrl}/${assistanceId}/justification-document`, formData);
+    }
+
+    /**
+     * Obtiene todas las asistencias  */
+    getAllAssistances(): Observable<AssistanceResponse> {
+        return this.http.get<AssistanceResponse>(this.apiUrl);
+    }
+
+    /**
+     * Justifica una falta de asistencia (cambia su estado a EXCUSED).
+     * @param assistanceId Identificador de la asistencia a justificar.
+     */
+    justifyAbsence(assistanceId: number): Observable<any> {
+        return this.http.patch(`${this.apiUrl}/justify/${assistanceId}`, {});
+    }
+
+    /**
+     * Rechaza un justificante, manteniendo o cambiando la falta al estado indicado (por defecto ABSENT).
+     * @param assistanceId Identificador de la asistencia.
+     */
+    rejectJustification(assistanceId: number): Observable<any> {
+        return this.http.patch(`${this.apiUrl}/assistancestatus/${assistanceId}`, { status: 'ABSENT' });
     }
 }
