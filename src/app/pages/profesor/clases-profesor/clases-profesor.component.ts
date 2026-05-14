@@ -6,6 +6,7 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
+import { Assignment } from '../../../core/models/assingment';
 
 interface TeacherSubjectCardSource {
   subject: { id: number; name: string; course?: { name: string } | null };
@@ -51,7 +52,7 @@ export class ClasesProfesorComponent implements OnInit {
  * 
  */
   public asignaturasCards = signal<CardItem[]>([]);
-  private asignaturasOriginales = signal<TeacherSubjectCardSource[]>([]);
+  private asignaturasOriginales = signal<Assignment[]>([]);
 
   /**
   * Indica si los datos están siendo cargados desde el backend.
@@ -100,10 +101,10 @@ export class ClasesProfesorComponent implements OnInit {
 
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
-      id: item.subject.id,
-      title: item.subject.name,
+      id: item.subject?.id || 0,
+      title: item.subject?.name || 'Asignatura',
       subtitleTopLabel: 'Curso',
-      subtitleTopValue: item.subject.course?.name || 'General',
+      subtitleTopValue: item.subject?.course?.name || 'General',
       subtitleBottomLabel: 'Grado/Grupo',
       subtitleBottomValue: item.group?.name || 'Varios',
       actionLabel: 'Gestionar Clase'

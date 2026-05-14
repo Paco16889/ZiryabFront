@@ -37,17 +37,6 @@ export class DashboardComponent {
         return;
       }
     }
-
-    if (str === 'horario') {
-      if (user && user.role === 'TEACHER') {
-        this.navegador.toComponent('horario-profesor');
-        return;
-      }
-
-      this.navegador.toComponent('horario-alumno');
-      return;
-    }
-
     this.navegador.toComponent(str);
   }
 }

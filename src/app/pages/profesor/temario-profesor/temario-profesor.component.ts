@@ -41,6 +41,7 @@ export class TemarioProfesorComponent implements OnInit {
     saving = signal(false);
     saveMessage = signal('');
     saveError = signal(false);
+    showAttendanceModal = signal(false);
 
     readonly statusOptions: { value: AttendanceStatus; label: string; color: string }[] = [
         { value: 'PRESENT', label: 'Presente', color: 'emerald' },
@@ -156,12 +157,15 @@ export class TemarioProfesorComponent implements OnInit {
                     next: () => {
                         this.saving.set(false);
                         this.saveError.set(false);
-                        this.saveMessage.set('✅ Asistencia guardada correctamente');
+                        this.saveMessage.set('Asistencia guardada correctamente');
+                        setTimeout(() => {
+                            this.closeAttendanceModal();
+                        }, 1500);
                     },
                     error: () => {
                         this.saving.set(false);
                         this.saveError.set(true);
-                        this.saveMessage.set('❌ Error al guardar la asistencia');
+                        this.saveMessage.set('Error al guardar la asistencia');
                     }
                 });
             },
@@ -171,5 +175,14 @@ export class TemarioProfesorComponent implements OnInit {
                 this.saveMessage.set(`❌ ${err?.error?.message ?? 'Error al obtener la sesión'}`);
             }
         });
+    }
+
+    openAttendanceModal(): void {
+        this.showAttendanceModal.set(true);
+        this.saveMessage.set('');
+    }
+
+    closeAttendanceModal(): void {
+        this.showAttendanceModal.set(false);
     }
 }
