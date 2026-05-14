@@ -17,8 +17,8 @@ import { WithId } from "./withId";
 export interface WeekSchedule {
   /** Identificador único de la franja horaria */
   id: number;
-  /** Día de la semana en formato numérico, donde 1 es lunes y 7 es domingo */
-  weekDay: number;
+  /** Día de la semana en formato numérico (1-7) o string (Enum de backend) */
+  weekDay: number | string;
   /** Hora de inicio de la franja horaria, por ejemplo '09:00' */
   startTime: string;
   /** Hora de fin de la franja horaria, por ejemplo '10:00' */

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { WeekSchedule, WeekScheduleByIdResponse, WeekScheduleCreateRequest, WeekScheduleCreateResponse, WeekScheduleDeleteResponse, WeekSchedulesAllResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../models/week-schedule';
 import { catchError, Observable, of } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Servicio encargado de gestionar las operaciones con franjas horarias semanales.
@@ -16,7 +17,7 @@ export class WeekScheduleService {
    /**
     * URL base del endpoint de franjas horarias semanales.
     */
-  private apiUrl = 'http://localhost:3000/api/horarios-semanales';
+  private apiUrl = `${environment.apiUrl}/horarios-semanales`;
 
   /**
    * Signal que almacena el listado completo de franjas horarias en memoria.
