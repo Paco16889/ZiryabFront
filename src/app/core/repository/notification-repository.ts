@@ -1,22 +1,95 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, forkJoin, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { Notification } from '../models/notification';
+
+/** Respuesta de `GET /api/notifications` (misma forma que usa `NotificationsService`). */
+interface NotificationsListResponse {
+  message: string;
+  data: ApiNotification[];
+  pagination?: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
+interface ApiNotification {
+  id: number;
+  recipientFirebaseUID: string;
+  title: string;
+  message: string;
+  type: string;
+  isRead: boolean;
+  readAt: string | null;
+  createdAt: string;
+}
+
+function mapApiToNotification(n: ApiNotification): Notification {
+  const created = new Date(n.createdAt);
+  return {
+    id: n.id,
+    idStudent: null,
+    idTeacher: null,
+    isRead: n.isRead,
+    entityType: 'SYSTEM',
+    entityId: n.id,
+    action: 'TASK_CREATED',
+    title: n.title,
+    body: n.message,
+    scheduledFor: created,
+    createdAt: created,
+  };
+}
 
 @Injectable({ providedIn: 'root' })
 export class NotificationRepository {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = environment.apiUrl;
 
   getAll(): Observable<Notification[]> {
-    return of(MOCK_NOTIFICATIONS);
+    if (environment.useMockNotifications) {
+      return of(MOCK_NOTIFICATIONS.map((notification) => ({ ...notification })));
+    }
+
+    return this.http
+      .get<NotificationsListResponse>(`${this.apiUrl}/notifications`, {
+        params: { page: '1', limit: '500' },
+      })
+      .pipe(
+        map((res) => (res.data ?? []).map(mapApiToNotification)),
+        catchError(() => of([]))
+      );
   }
 
   markAsRead(id: number): Observable<void> {
-    // TODO: PATCH /notifications/:id/read
-    return of(void 0);
+    if (environment.useMockNotifications) {
+      return of(undefined);
+    }
+
+    return this.http.patch(`${this.apiUrl}/notifications/${id}/read`, {}).pipe(
+      map(() => undefined),
+      catchError(() => of(undefined))
+    );
   }
 
-  markAllAsRead(): Observable<void> {
-    // TODO: PATCH /notifications/read-all
-    return of(void 0);
+  /** Marca varias como leídas en el servidor (no hay endpoint bulk). */
+  markAllAsRead(ids: number[]): Observable<void> {
+    if (ids.length === 0) {
+      return of(undefined);
+    }
+
+    if (environment.useMockNotifications) {
+      return of(undefined);
+    }
+
+    return forkJoin(ids.map((id) => this.markAsRead(id))).pipe(
+      map(() => undefined),
+      catchError(() => of(undefined))
+    );
   }
 }
 
@@ -32,7 +105,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     title: 'Nueva tarea asignada',
     body: 'Se te ha asignado la tarea "Ejercicios tema 3".',
     scheduledFor: new Date(Date.now() - 1000 * 60 * 5),
-    createdAt:   new Date(Date.now() - 1000 * 60 * 5),
+    createdAt: new Date(Date.now() - 1000 * 60 * 5),
   },
   {
     id: 2,
@@ -45,7 +118,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     title: 'Entrega próxima',
     body: 'La tarea "Ejercicios tema 3" vence mañana.',
     scheduledFor: new Date(Date.now() - 1000 * 60 * 60),
-    createdAt:   new Date(Date.now() - 1000 * 60 * 60),
+    createdAt: new Date(Date.now() - 1000 * 60 * 60),
   },
   {
     id: 3,
@@ -58,7 +131,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     title: 'Entrega recibida',
     body: 'Un alumno ha entregado la tarea "Ejercicios tema 3".',
     scheduledFor: new Date(Date.now() - 1000 * 60 * 60 * 2),
-    createdAt:   new Date(Date.now() - 1000 * 60 * 60 * 2),
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2),
   },
   {
     id: 4,
@@ -71,7 +144,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     title: 'Tarea calificada',
     body: 'Tu tarea "Ejercicios tema 3" ha sido calificada.',
     scheduledFor: new Date(Date.now() - 1000 * 60 * 60 * 5),
-    createdAt:   new Date(Date.now() - 1000 * 60 * 60 * 5),
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 5),
   },
   {
     id: 5,
@@ -84,6 +157,6 @@ const MOCK_NOTIFICATIONS: Notification[] = [
     title: 'Justificante recibido',
     body: 'Un alumno ha enviado un justificante de ausencia.',
     scheduledFor: new Date(Date.now() - 1000 * 60 * 60 * 24),
-    createdAt:   new Date(Date.now() - 1000 * 60 * 60 * 24),
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24),
   },
 ];

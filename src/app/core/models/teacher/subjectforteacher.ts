@@ -1,12 +1,49 @@
 // ── Entidades base ────────────────────────────────────────────────────────────
 
 import { Assignment } from "../assingment";
-import { Course } from "../course";
 import { Enrollment } from "../enrollment";
-import { Group } from "../group";
-import { Student } from "../student";
 import { Subject } from "../subject";
 import { Teacher } from "../teacher";
+
+/**
+ * Fila devuelta por GET /api/students/:id/subjects (matrícula con asignatura y grupo).
+ * Coincide con `findSubjectsByStudentId` en el backend (subject + group incluidos).
+ */
+export interface StudentSubjectEnrollmentRow {
+  id: number;
+  subject: {
+    id: number;
+    name: string;
+    grade?: string;
+    hours?: number;
+    description?: string;
+    idCourse?: number;
+    course?: { id: number; name: string; description?: string; duration?: number; createdAt?: string };
+  };
+  group?: { id: number; name: string; capacity?: number } | null;
+  schoolYear: string;
+}
+
+/**
+ * Fila devuelta por GET /api/teachers/:id/subjects (TeacherOnSubjectOnGroup con includes).
+ */
+export interface TeacherSubjectAssignmentRow {
+  id: number;
+  idTeacher: number;
+  idSubject: number;
+  idGroup: number;
+  schoolYear: string;
+  status?: string;
+  subject: {
+    id: number;
+    name: string;
+    course?: { id: number; name: string; description?: string; duration?: number; createdAt?: string };
+  };
+  group?: { id: number; name: string; capacity?: number } | null;
+}
+
+/** Asignación de profesor a asignatura tal como viene en GET /api/subjects/:id (include teacher). */
+export type SubjectTeacherAssignment = Assignment & { teacher: Teacher };
 
 
 
@@ -23,7 +60,7 @@ import { Teacher } from "../teacher";
 
 export interface GetAsignaturasAlumnoResponse {
   success: boolean;
-  data: Enrollment[];
+  data: StudentSubjectEnrollmentRow[];
   count: number;
 }
 
@@ -32,13 +69,13 @@ export interface GetAsignaturasAlumnoResponse {
 
 export interface GetAsignaturasProfesorResponse {
   success: boolean;
-  data: Assignment[];
+  data: TeacherSubjectAssignmentRow[];
   count: number;
 }
 
 // GET /subjects/:id  →  getNombreProfesorParaAsignatura
 export interface SubjectDetail extends Subject {
-  teacherAssignments: Assignment[];
+  teacherAssignments: SubjectTeacherAssignment[];
   studentEnrollments: Enrollment[];
 }
 

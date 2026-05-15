@@ -1,10 +1,11 @@
-import { Component, computed, input, Input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-notification-badge',
+  standalone: true,
   imports: [],
   templateUrl: './notification-badge.component.html',
-  styleUrl: './notification-badge.component.scss'
+  styleUrl: './notification-badge.component.scss',
 })
 export class NotificationBadgeComponent {
      count    = input<number>(0);

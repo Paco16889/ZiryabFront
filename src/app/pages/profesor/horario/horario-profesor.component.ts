@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { WeekSchedule } from '../../../core/models/week-schedule';
 import { AuthService } from '../../../core/services/auth.service';
 import { WeekScheduleService } from '../../../core/services/admin/entities/week-schedule.service';
+import { prismaDayOfWeekToNumber } from '../../../core/utils/week-day';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 /**
@@ -36,7 +37,7 @@ export class HorarioProfesorComponent implements OnInit {
     this.weekScheduleService.getSchedulesByTeacher(userId).subscribe((response) => {
       this.isLoading = false;
       const schedules = response.success ? response.data : [];
-      this.schedulesByDay = this.groupByDay(schedules);
+      this.schedulesByDay = this.groupByDay(this.normalizeSchedules(schedules));
     });
   }
 
@@ -52,6 +53,13 @@ export class HorarioProfesorComponent implements OnInit {
   getGroupName(schedule: WeekSchedule): string {
     const assignment = schedule.teacherAssignment as unknown as { group?: { name?: string } };
     return assignment.group?.name ?? '-';
+  }
+
+  private normalizeSchedules(schedules: WeekSchedule[]): WeekSchedule[] {
+    return schedules.map((s) => ({
+      ...s,
+      weekDay: prismaDayOfWeekToNumber(s.weekDay as unknown as string | number),
+    }));
   }
 
   private groupByDay(schedules: WeekSchedule[]): Record<number, WeekSchedule[]> {

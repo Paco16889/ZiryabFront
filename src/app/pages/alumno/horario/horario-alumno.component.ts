@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { WeekSchedule } from '../../../core/models/week-schedule';
 import { WeekScheduleService } from '../../../core/services/admin/entities/week-schedule.service';
+import { prismaDayOfWeekToNumber } from '../../../core/utils/week-day';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 /**
@@ -36,7 +37,7 @@ export class HorarioAlumnoComponent implements OnInit {
     this.weekScheduleService.getSchedulesByStudent(userId).subscribe((response) => {
       this.isLoading = false;
       const schedules = response.success ? response.data : [];
-      this.schedulesByDay = this.groupByDay(schedules);
+      this.schedulesByDay = this.groupByDay(this.normalizeSchedules(schedules));
     });
   }
 
@@ -52,6 +53,14 @@ export class HorarioAlumnoComponent implements OnInit {
   getGroupName(schedule: WeekSchedule): string {
     const assignment = schedule.teacherAssignment as unknown as { group?: { name?: string } };
     return assignment.group?.name ?? '-';
+  }
+
+  /** El API envía `weekDay` como enum Prisma (`MONDAY`…); la vista agrupa por 1–5. */
+  private normalizeSchedules(schedules: WeekSchedule[]): WeekSchedule[] {
+    return schedules.map((s) => ({
+      ...s,
+      weekDay: prismaDayOfWeekToNumber(s.weekDay as unknown as string | number),
+    }));
   }
 
   private groupByDay(schedules: WeekSchedule[]): Record<number, WeekSchedule[]> {

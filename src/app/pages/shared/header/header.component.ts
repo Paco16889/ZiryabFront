@@ -7,22 +7,28 @@ import { AppNotification, NotificationsService } from '../../../core/services/no
 import type { UserResponse } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from '../selector-idioma/selector-idioma.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NotificationBadgeComponent } from '../notification/notification-badge/notification-badge.component';
+import { NotificationListComponent } from '../notification/notification-list/notification-list.component';
+import { NotificationService } from '../../../core/services/notification/notification.service';
+import { NotificationToggleService } from '../../../core/services/notification/notification-toggle.service';
 
 /**
  * Componente que representa la cabecera de la aplicación.
  *
  * Muestra el nombre y rol del usuario autenticado (claves i18n bajo `roles.*`),
- * la campana de notificaciones en tiempo real (SSE) y gestiona la apertura del menú de perfil.
- *
- * Las dependencias se inyectan con `inject()`:
- * - {@link PerfilMenuService} — estado del menú de perfil
- * - {@link AuthService} — usuario autenticado y stream de sesión
- * - {@link NotificationsService} — canal SSE, contador de no leídas y avisos (toast)
+ * la campana de notificaciones (badge + panel vía {@link NotificationService} /
+ * {@link NotificationRepository}), toasts en tiempo real (SSE) y el menú de perfil.
  */
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, SelectorIdiomaComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    SelectorIdiomaComponent,
+    TranslateModule,
+    NotificationBadgeComponent,
+    NotificationListComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -30,15 +36,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private readonly perfilService = inject(PerfilMenuService);
   private readonly authService = inject(AuthService);
   private readonly notificationsService = inject(NotificationsService);
+  protected readonly notificationService = inject(NotificationService);
+  protected readonly notificationPanel = inject(NotificationToggleService);
 
   /** Nombre del usuario autenticado a mostrar en la cabecera. */
   userName = 'Nombre';
 
   /** Clave de traducción del rol del usuario (p. ej. `roles.student`) mostrada en la cabecera. */
   userRoleKey = 'roles.user';
-
-  /** Número de notificaciones no leídas mostrado en el badge de la campana. */
-  unreadCount = 0;
 
   /** Notificación recibida por SSE para mostrar un aviso rápido (toast) en pantalla. */
   toastNotification: AppNotification | null = null;
@@ -55,23 +60,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (user) {
           this.userName = user.name;
           this.userRoleKey = this.getRoleKey(user.role);
+          this.notificationService.load();
         } else {
           this.userName = 'Nombre';
           this.userRoleKey = 'roles.user';
           this.dismissToast();
+          this.notificationPanel.close();
         }
-      })
-    );
-
-    this.subs.add(
-      this.notificationsService.unreadCount$.subscribe((n: number) => {
-        this.unreadCount = n;
       })
     );
 
     this.subs.add(
       this.notificationsService.notification$.subscribe((notification: AppNotification) => {
         this.showToast(notification);
+        this.notificationService.load();
       })
     );
   }
@@ -88,6 +90,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (currentUser) {
       this.userName = currentUser.name;
       this.userRoleKey = this.getRoleKey(currentUser.role);
+      this.notificationService.load();
     }
   }
 
@@ -120,10 +123,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
       clearTimeout(this.toastClearHandle);
       this.toastClearHandle = null;
     }
-  }
-
-  unreadBadge(): string {
-    if (this.unreadCount <= 0) return '';
-    return this.unreadCount > 99 ? '99+' : String(this.unreadCount);
   }
 }

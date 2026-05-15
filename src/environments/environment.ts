@@ -5,6 +5,7 @@
 export const environment = {
     production: false,
     apiUrl: 'http://localhost:3000/api',
+    useMockNotifications: true,
     firebase: {
         apiKey: 'AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA',
         authDomain: 'ziryab-7006e.firebaseapp.com',
