@@ -1,3 +1,4 @@
+Cte joder para para par
 #!/usr/bin/env bash
 # ------------------------------------------------------------------
 # Hook: afterFileEdit

@@ -71,6 +71,11 @@
       "singular": "grupo",
       "plural": "grupos",
       "title": "Grupos"
+    },
+    "weekSchedule": {
+      "singular": "franja horaria",
+      "plural": "franjas horarias",
+      "title": "Horarios"
     }
   },
 
@@ -100,12 +105,89 @@
     "confirmButton": "Confirmar selección"
   },
 
+  "weekScheduleBuilder": {
+    "title": "Crear horario",
+    "modeLabel": "Modo de creación",
+    "modeSimple": "Franja a franja",
+    "modeGrid": "Rejilla semanal",
+    "placeholder": "Aquí se configurará el constructor de franjas horarias.",
+    "selectGroup": "Grupo (sin franjas todavía)",
+    "selectTeacher": "Profesor",
+    "selectAssignment": "Asignatura docente en el grupo",
+    "professorSlot": "Profesor asignado a la franja",
+    "weekDay": "Día de la semana",
+    "startTime": "Hora inicio",
+    "endTime": "Hora fin",
+    "submit": "Guardar franja",
+    "saving": "Guardando...",
+    "saveError": "No se pudo guardar la franja.",
+    "emptyEligibleGroups": "No hay grupos sin horario: todos tienen al menos una franja, o no se pudieron cargar grupos.",
+    "loadEligibleGroupsError": "No se pudieron cargar grupos elegibles.",
+    "emptyTeachers": "No hay profesores cargados. Comprueba la API o recarga.",
+    "emptyAssignments": "Este profesor no tiene asignaciones para este periodo.",
+    "emptyAssignmentsForGroup": "No hay asignaciones docentes para este grupo. Comprueba matrículas o la API.",
+    "emptyPeers": "No hay profesores en esa asignatura/grupo/año para elegir la franja.",
+    "loadAssignmentsError": "No se pudieron cargar las asignaciones del grupo.",
+    "loadPeersError": "No se pudieron cargar los profesores de la asignatura.",
+    "timeOrderError": "La hora de fin debe ser posterior a la de inicio.",
+    "days": {
+      "1": "Lunes",
+      "2": "Martes",
+      "3": "Miércoles",
+      "4": "Jueves",
+      "5": "Viernes",
+      "6": "Sábado",
+      "7": "Domingo"
+    },
+    "grid": {
+      "title": "Rejilla semanal (L–V)",
+      "intro": "Elige un grupo y asigna cada franja a un docente–asignatura (Assignment).",
+      "introClass": "La clase son las asignaturas del mismo ciclo (course) y curso (grade), impartidas en un turno concreto (entidad Group: Mañana, Tarde…). El desplegable de cada celda lista los docentes dados de alta en esa asignatura para ese grupo y año escolar.",
+      "introSingleGroup": "Un único listado: el **grupo** (tabla `Group`, ej. Mañana o Tarde) determina el conjunto de assignments (`TeacherOnSubjectOnGroup`) del año escolar. Cada día muestra las franjas del centro; en cada una eliges qué assignment ocupa esa hora.",
+      "selectGroupAssignmentSet": "Grupo (conjunto de assignments)",
+      "schoolYearLabel": "Año escolar",
+      "selectCourse": "Ciclo formativo",
+      "coursePlaceholder": "— Ciclo —",
+      "loadCoursesError": "No se pudieron cargar los ciclos.",
+      "selectGrade": "Curso (grade)",
+      "gradePlaceholder": "— Curso —",
+      "selectShiftGroup": "Turno (grupo)",
+      "shiftGroupHint": "Coincide con Group en BD; solo aparecen turnos con oferta docente para ciclo+grade+año.",
+      "shiftPlaceholder": "— Turno —",
+      "loadContextError": "No se pudo cargar el horario de este grupo.",
+      "cellSelectPlaceholder": "— Libre —",
+      "emptyClassAssignments": "No hay docentes asignados a esta clase en el año escolar. Revisa asignaciones grupo–asignatura.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Grupo",
+      "groupPlaceholder": "— Selecciona grupo —",
+      "loadError": "No se pudieron cargar los grupos.",
+      "emptyGroups": "No hay grupos disponibles.",
+      "loading": "Cargando oferta docente…",
+      "paletteTitle": "Asignaturas del grupo",
+      "paletteHint": "Clic para seleccionar; Enter o clic en celda para colocar. Arrastra al calendario.",
+      "slotColumn": "Franja",
+      "dropHint": "Soltar aquí",
+      "clearCell": "Quitar",
+      "save": "Guardar horario",
+      "saving": "Guardando…",
+      "saveError": "No se pudo guardar el horario.",
+      "keyboardHint": "Accesible: Tab por celdas; selecciona una asignatura y pulsa Enter en una celda vacía.",
+      "peerResolveError": "No se pudo resolver la asignación docente para este grupo y asignatura.",
+      "validationNoGroup": "Selecciona un grupo.",
+      "validationIncompleteClass": "Selecciona ciclo, curso (grade) y turno (grupo).",
+      "validationGroupOverlap": "Solape en el mismo grupo: «{{a}}» y «{{b}}» el día {{day}}.",
+      "validationSubjectHours": "La asignatura «{{subject}}» supera sus horas semanales (máx. {{max}} h, actual {{current}} h).",
+      "validationTeacherOverlap": "Posible solape: «{{label}}» el día {{day}} con otro grupo."
+    }
+  },
+
   "adminMenu": {
     "students": "Alumnos",
     "teachers": "Profesores",
     "subjects": "Asignaturas",
     "groups": "Grupos",
-    "courses": "Ciclos"
+    "courses": "Ciclos",
+    "schedules": "Horarios"
   },
 
   "deleteModal": {
@@ -149,6 +231,10 @@
     "groups": {
       "title": "Grupos",
       "createButton": "Nuevo Grupo"
+    },
+    "schedules": {
+      "createButton": "Crear horario",
+      "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
     }
   },
   "LANG": {

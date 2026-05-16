@@ -70,6 +70,11 @@
       "singular": "group",
       "plural": "groups",
       "title": "Groups"
+    },
+    "weekSchedule": {
+      "singular": "time slot",
+      "plural": "time slots",
+      "title": "Schedules"
     }
   },
 
@@ -99,12 +104,89 @@
     "confirmButton": "Confirm selection"
   },
 
+  "weekScheduleBuilder": {
+    "title": "Create schedule",
+    "modeLabel": "Creation mode",
+    "modeSimple": "One slot at a time",
+    "modeGrid": "Weekly grid",
+    "placeholder": "The weekly schedule builder will be configured here.",
+    "selectGroup": "Group (no slots yet)",
+    "selectTeacher": "Teacher",
+    "selectAssignment": "Teaching assignment in the group",
+    "professorSlot": "Teacher for this slot's assignment",
+    "weekDay": "Weekday",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "submit": "Save time slot",
+    "saving": "Saving...",
+    "saveError": "Could not save the time slot.",
+    "emptyEligibleGroups": "No groups are eligible: all already have at least one slot, or groups could not be loaded.",
+    "loadEligibleGroupsError": "Could not load eligible groups.",
+    "emptyTeachers": "No teachers loaded. Check the API or reload.",
+    "emptyAssignments": "This teacher has no assignments to display.",
+    "emptyAssignmentsForGroup": "No teaching assignments for this group. Check enrollments or the API.",
+    "emptyPeers": "No teachers match that subject/group/year for this slot.",
+    "loadAssignmentsError": "Could not load assignments for the group.",
+    "loadPeersError": "Could not load teachers for the subject.",
+    "timeOrderError": "End time must be after start time.",
+    "days": {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday",
+      "7": "Sunday"
+    },
+    "grid": {
+      "title": "Weekly grid (Mon–Fri)",
+      "intro": "Choose a group and assign each slot to a teacher–subject (Assignment).",
+      "introClass": "The class is the set of subjects sharing the same programme (course) and grade, taught in one shift (Group entity, e.g. Morning/Afternoon). Each cell lists teachers assigned to that subject for that group and school year.",
+      "introSingleGroup": "Single list: the **group** (`Group`, e.g. Morning/Afternoon) defines the set of assignments (`TeacherOnSubjectOnGroup`) for the school year. Each day lists the centre’s time slots; pick which assignment fills each slot.",
+      "selectGroupAssignmentSet": "Group (assignment set)",
+      "schoolYearLabel": "School year",
+      "selectCourse": "Programme (course)",
+      "coursePlaceholder": "— Programme —",
+      "loadCoursesError": "Could not load programmes.",
+      "selectGrade": "Grade (class year)",
+      "gradePlaceholder": "— Grade —",
+      "selectShiftGroup": "Shift (group)",
+      "shiftGroupHint": "Same Group as in the DB; only shifts with teaching for cycle+grade+year are listed.",
+      "shiftPlaceholder": "— Shift —",
+      "loadContextError": "Could not load this group's timetable context.",
+      "cellSelectPlaceholder": "— Empty —",
+      "emptyClassAssignments": "No teacher assignments for this class and school year. Check group–subject assignments.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Group",
+      "groupPlaceholder": "— Select group —",
+      "loadError": "Could not load groups.",
+      "emptyGroups": "No groups available.",
+      "loading": "Loading teaching assignments…",
+      "paletteTitle": "Subjects in this group",
+      "paletteHint": "Click to select; Enter or cell click to place. Drag to the grid.",
+      "slotColumn": "Slot",
+      "dropHint": "Drop here",
+      "clearCell": "Remove",
+      "save": "Save timetable",
+      "saving": "Saving…",
+      "saveError": "Could not save the timetable.",
+      "keyboardHint": "Keyboard: Tab through cells; select a subject and press Enter on an empty cell.",
+      "peerResolveError": "Could not resolve the teacher assignment for this group and subject.",
+      "validationNoGroup": "Select a group.",
+      "validationIncompleteClass": "Select programme, grade and shift (group).",
+      "validationGroupOverlap": "Same-group overlap: «{{a}}» and «{{b}}» on day {{day}}.",
+      "validationSubjectHours": "Subject «{{subject}}» exceeds weekly hours (max {{max}} h, current {{current}} h).",
+      "validationTeacherOverlap": "Possible overlap: «{{label}}» on day {{day}} with another group."
+    }
+  },
+
   "adminMenu": {
     "students": "Students",
     "teachers": "Teachers",
     "subjects": "Subjects",
     "groups": "Groups",
-    "courses": "Courses"
+    "courses": "Courses",
+    "schedules": "Schedules"
   },
 
   "deleteModal": {
@@ -148,6 +230,10 @@
   "groups": {
     "title": "Groups",
     "createButton": "New Group"
+  },
+  "schedules": {
+    "createButton": "Create schedule",
+    "createPlaceholder": "The schedule creation form will appear here."
   }
   },
 

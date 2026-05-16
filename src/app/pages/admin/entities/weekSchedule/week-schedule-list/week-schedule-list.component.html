@@ -2,9 +2,9 @@
   
 @if(!showCreateForm){
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">Horario</h1>
+      <h1 class="text-2xl font-bold">{{ 'entities.weekSchedule.title' | translate }}</h1>
       <app-boton-create 
-      label="Crear Horario"
+      label="{{ 'lists.schedules.createButton' | translate }}"
       (clickAction)="openCreateForm()"> 
       </app-boton-create>
     </div>
@@ -16,7 +16,10 @@
 
 
   @if(showCreateForm){
-   <p>aquí iria el formulario de horario???</p>
+    <app-week-schedule-builder
+      (cancelCreate)="closeCreateForm()"
+      (scheduleCreated)="onScheduleCreated()">
+    </app-week-schedule-builder>
   }
 
 

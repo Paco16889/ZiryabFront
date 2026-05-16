@@ -5,16 +5,17 @@ import { ModalEditService } from '../../../../../core/services/UI/modal-edit.ser
 import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { WeekScheduleListItemComponent } from "../week-schedule-list-item/week-schedule-list-item.component";
+import { TranslateModule } from '@ngx-translate/core';
+import { WeekScheduleBuilderComponent } from '../week-schedule-builder/week-schedule-builder.component';
 
 /**
  * Componente que muestra el listado de franjas horarias semanales del sistema.
- * Gestiona la visualización del listado, la apertura del formulario de creación
- * y la recarga automática de la lista tras operaciones de eliminación o actualización.
- * ATENCIÓN: el formulario de creación no está implementado todavía.
+ * Gestiona la visualización del listado, la apertura del constructor de creación
+ * y la recarga automática de la lista tras operaciones de eliminación, actualización o alta.
  */
 @Component({
   selector: 'app-week-schedule-list',
-  imports: [BotonCreateComponent, WeekScheduleListItemComponent],
+  imports: [BotonCreateComponent, WeekScheduleListItemComponent, TranslateModule, WeekScheduleBuilderComponent],
   templateUrl: './week-schedule-list.component.html',
   styleUrl: './week-schedule-list.component.scss'
 })

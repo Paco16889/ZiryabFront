@@ -5,6 +5,20 @@
 export const environment = {
     production: false,
     apiUrl: 'http://localhost:3000/api',
+    /** Año académico por defecto para filtros admin (assignments, horarios). Ajustar por centro/curso. */
+    currentSchoolYear: '2024-2025',
+    /**
+     * Franjas del centro para el builder en modo rejilla (L–V × filas).
+     * Deben ser coherentes con el calendario lectivo (no solapadas).
+     */
+    timetableSlots: [
+        { startTime: '08:15', finishTime: '09:15' },
+        { startTime: '09:15', finishTime: '10:15' },
+        { startTime: '10:15', finishTime: '11:15' },
+        { startTime: '11:45', finishTime: '12:45' },
+        { startTime: '12:45', finishTime: '13:45' },
+        { startTime: '13:45', finishTime: '14:45' },
+    ] as const satisfies ReadonlyArray<{ startTime: string; finishTime: string }>,
     useMockNotifications: true,
     firebase: {
         apiKey: 'AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA',

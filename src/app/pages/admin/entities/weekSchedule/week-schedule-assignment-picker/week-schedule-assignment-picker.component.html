@@ -1,0 +1,12 @@
+<select
+  [id]="selectId()"
+  [class]="selectClass()"
+  [value]="selectedId()"
+  [disabled]="disabled()"
+  (change)="onChange($event)"
+>
+  <option value="">{{ 'weekScheduleBuilder.grid.cellSelectPlaceholder' | translate }}</option>
+  @for (row of options(); track row.id) {
+    <option [value]="row.id">{{ optionLabel(row) }}</option>
+  }
+</select>
