@@ -1,47 +1,40 @@
 #!/usr/bin/env bash
 # ------------------------------------------------------------------
 # Hook: beforeShellExecution (matcher = "git commit")
-# Valida el mensaje según .cursor/commit-format.conf
-# Preferido: [CURSO-XX] descripción
-# Alternativo: tipo(CURSO-XX): descripción (conventional)
+# Valida que el mensaje de commit siga el formato:
+#   tipo(CLAVE-XX): descripción
+# donde tipo ∈ {feat,fix,refactor,docs,style,test,chore,perf,build,ci}
+# y CLAVE-XX es una clave Jira (ej. CURSO-12).
 # ------------------------------------------------------------------
 
 input=$(cat)
 
 command=$(echo "$input" | grep -oE '"command"[[:space:]]*:[[:space:]]*"[^"]*"' | head -n1 | sed -E 's/.*"command"[[:space:]]*:[[:space:]]*"([^"]*)".*/\1/')
 
+# Solo validar si es realmente un git commit con -m
 if ! echo "$command" | grep -qE 'git[[:space:]]+commit'; then
   echo '{"permission":"allow"}'
   exit 0
 fi
 
+# Extrae el mensaje después de -m "..." o -m '...'
 message=$(echo "$command" | sed -nE 's/.*-m[[:space:]]+"([^"]+)".*/\1/p')
 if [[ -z "$message" ]]; then
   message=$(echo "$command" | sed -nE "s/.*-m[[:space:]]+'([^']+)'.*/\1/p")
 fi
 
 if [[ -z "$message" ]]; then
+  # No hay mensaje inline (-m); se abrirá el editor — lo dejamos pasar.
   echo '{"permission":"allow"}'
   exit 0
 fi
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG="${SCRIPT_DIR}/../commit-format.conf"
+regex='^(feat|fix|refactor|docs|style|test|chore|perf|build|ci)\([A-Z]+-[0-9]+\):[[:space:]]+.+'
 
-PREFERRED_REGEX='^\[[A-Z]+-[0-9]+\][[:space:]]+.+'
-ALT_REGEX='^(feat|fix|refactor|docs|style|test|chore|perf|build|ci)\([A-Z]+-[0-9]+\):[[:space:]]+.+'
-PREFERRED_EXAMPLE='[CURSO-59] descripción breve'
-ALT_EXAMPLE='feat(CURSO-59): descripción breve'
-
-if [[ -f "$CONFIG" ]]; then
-  # shellcheck disable=SC1090
-  source "$CONFIG"
-fi
-
-if echo "$message" | grep -qE "$PREFERRED_REGEX" || echo "$message" | grep -qE "$ALT_REGEX"; then
+if echo "$message" | grep -qE "$regex"; then
   echo '{"permission":"allow"}'
 else
-  reason="El mensaje de commit no cumple el formato.\\nPreferido: ${PREFERRED_EXAMPLE}\\nAlternativo: ${ALT_EXAMPLE}\\nRecibido: ${message}"
+  reason="El mensaje de commit no cumple el formato requerido.\\nFormato esperado: tipo(CURSO-XX): descripción\\nEjemplos:\\n  feat(CURSO-4): añadir feature de productos\\n  fix(CURSO-12): corregir memory leak\\nMensaje recibido: ${message}"
   printf '{"permission":"deny","userMessage":"%s"}\n' "$reason"
 fi
 exit 0

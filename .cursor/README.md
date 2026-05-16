@@ -36,6 +36,6 @@ con tu cuenta Atlassian.
 
 ## Convención Jira
 
-Commits: formato preferido `[CURSO-XX] descripción` (ver `.cursor/commit-format.conf`
-y `rules/jira-integration.mdc`). Sigue válido el alternativo `tipo(CURSO-XX): …`.
-El hook `validate-commit.sh` acepta ambos.
+Todos los commits deben seguir `tipo(CURSO-XX): descripción` (ver
+`rules/jira-integration.mdc`). El hook `validate-commit.sh` bloquea los que
+no cumplan el formato.
