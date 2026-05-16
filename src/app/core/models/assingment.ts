@@ -46,6 +46,28 @@ export interface AssignmentsAllResponse {
   count: number;
 }
 
+/** Asignación con `teacher`, `subject` y `group` incluidos (`GET /api/assignments`). */
+export interface AssignmentWithIncludes extends Assignment {
+  teacher?: { id: number; name: string; surname?: string; email?: string };
+  subject?: {
+    id: number;
+    name: string;
+    grade?: string;
+    hours?: number;
+    course?: { id: number; name: string };
+  };
+  group?: { id: number; name: string; capacity?: number };
+}
+
+/**
+ * Respuesta de `GET /api/assignments` con relaciones anidadas.
+ */
+export interface AssignmentsWithIncludesResponse {
+  success: boolean;
+  data: AssignmentWithIncludes[];
+  count: number;
+}
+
 /**
  * Respuesta de la API al consultar una asignación por su identificador.
  */

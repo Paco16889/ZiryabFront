@@ -1,22 +1,49 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { catchError, Observable, of } from 'rxjs';
+import { environment } from '../../../../../../environments/environment';
+import { AssignmentsWithIncludesResponse } from '../../../../models/assingment';
+import { GetAsignaturasProfesorResponse } from '../../../../models/teacher/subjectforteacher';
+
 /**
- * @file Servicio HTTP de **asignaciones docente–asignatura–grupo** vía ruta de profesores (CURSO-59).
+ * Cliente HTTP de **asignaciones docente** (`/api/assignments`) para el flujo de horarios (CURSO-59).
  *
- * ## Objetivo en Jira
- * Exponer de forma explícita y tipada `GET /api/teachers/:id/subjects` (assignments del profesor),
- * coherente con el resto de servicios `entities` y con `environment.apiUrl`.
+ * Sustituye los endpoints deprecados de enrollments que devolvían `TeacherOnSubjectOnGroup`.
  *
- * ## Relación con código existente
- * - Hoy parte de esta lectura puede vivir en `ClasesService` u otros; aquí se documentará
- *   la intención de **unificar** o delegar para que el flujo de horarios no dependa de rutas sueltas.
- *
- * ## Tipado
- * - Respuestas según `TeacherSubjectAssignmentRow` y respuestas API en
- *   `core/models/teacher/subjectforteacher.ts` (y modelos de flujo si se extienden).
- *
- * ## Criterios Jira
- * - Sin URLs hardcodeadas; errores alineados al proyecto; `providedIn: 'root'` cuando se implemente la clase `@Injectable`.
- *
+ * @see https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/1277953
  * @see https://franciscocobsan.atlassian.net/browse/CURSO-59
  */
+@Injectable({
+  providedIn: 'root',
+})
+export class AssignmentHttpService {
+  private readonly http = inject(HttpClient);
 
-export {};
+  private readonly apiUrl = `${environment.apiUrl}/assignments`;
+
+  /**
+   * `GET /api/assignments` — listado global con `teacher`, `subject` y `group` incluidos.
+   */
+  getAll(): Observable<AssignmentsWithIncludesResponse> {
+    return this.http.get<AssignmentsWithIncludesResponse>(this.apiUrl).pipe(
+      catchError(() => of({ success: false, data: [], count: 0 })),
+    );
+  }
+
+  /**
+   * `GET /api/assignments/teacher/:idTeacher?schoolYear=...` — asignaciones de un profesor en un año.
+   *
+   * @param idTeacher - Identificador del profesor
+   * @param schoolYear - Año académico obligatorio (ej. `2024-2025`)
+   */
+  getByTeacher(
+    idTeacher: number,
+    schoolYear: string,
+  ): Observable<GetAsignaturasProfesorResponse> {
+    const params = new HttpParams().set('schoolYear', schoolYear);
+
+    return this.http
+      .get<GetAsignaturasProfesorResponse>(`${this.apiUrl}/teacher/${idTeacher}`, { params })
+      .pipe(catchError(() => of({ success: false, data: [], count: 0 })));
+  }
+}

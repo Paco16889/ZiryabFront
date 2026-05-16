@@ -1,23 +1,48 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { catchError, Observable, of } from 'rxjs';
+import { environment } from '../../../../../../environments/environment';
+import {
+  EnrollmentByFiltersResponse,
+  StudentByFiltersRequest,
+} from '../../../../models/enrollment';
+
 /**
- * @file Servicio HTTP de **matrículas (enrollments)** para el flujo de horarios (CURSO-59).
+ * Cliente HTTP de **matrículas de alumnos** (`/api/enrollments`) para el flujo de horarios (CURSO-59).
  *
- * ## Objetivo en Jira
- * Centralizar llamadas a `/api/enrollments` con `HttpClient`, `environment.apiUrl` y el mismo
- * patrón de manejo de errores / `Observable` que el resto de servicios admin.
+ * Solo expone `by-filters` (estudiantes). Las asignaciones de profesor viven en
+ * {@link AssignmentHttpService} (`/api/assignments`).
  *
- * ## Endpoints previstos
- * - `GET /api/enrollments` — listado (filtros y query params según contrato del backend).
- * - `GET /api/enrollments/teacher/:idTeacher` — matrículas asociadas a un profesor.
- *
- * ## Tipado
- * - Respuestas alineadas con `core/models/enrollment.ts` y, donde aplique al flujo de horarios,
- *   con `core/models/week-schedule-flow/week-schedule-enrollment-context.model.ts`.
- *
- * ## Refactor pendiente (fuera del solo esqueleto)
- * - Sustituir URLs hardcodeadas en servicios que hoy apuntan a `.../api/enrollments` (p. ej.
- *   flujos de profesor) para usar este servicio y una única base URL.
- *
+ * @see https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/1277953
  * @see https://franciscocobsan.atlassian.net/browse/CURSO-59
  */
+@Injectable({
+  providedIn: 'root',
+})
+export class EnrollmentHttpService {
+  private readonly http = inject(HttpClient);
 
-export {};
+  private readonly apiUrl = `${environment.apiUrl}/enrollments`;
+
+  /**
+   * `GET /api/enrollments/by-filters` — matrículas de alumnos por asignatura, grupo y año.
+   */
+  getByFilters(filters: StudentByFiltersRequest): Observable<EnrollmentByFiltersResponse> {
+    const params = new HttpParams()
+      .set('idSubject', filters.idSubject)
+      .set('idGroup', filters.idGroup)
+      .set('schoolYear', filters.schoolYear);
+
+    return this.http
+      .get<EnrollmentByFiltersResponse>(`${this.apiUrl}/by-filters`, { params })
+      .pipe(
+        catchError(() =>
+          of({
+            success: false,
+            count: 0,
+            data: [],
+          }),
+        ),
+      );
+  }
+}
