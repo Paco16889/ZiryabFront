@@ -6,7 +6,7 @@ Los hooks están registrados en `.cursor/hooks.json` y se disparan en estos even
 |---|---|---|
 | `afterFileEdit` | `lint-and-format.sh` | Formatea con Prettier/ESLint cada fichero que edita el agente. |
 | `beforeShellExecution` | `guard-commands.sh` | Pide confirmación en comandos peligrosos (`rm -rf`, `git push --force`, `ng build --configuration production`, `npm publish`). |
-| `beforeShellExecution` | `validate-commit.sh` | Bloquea commits que no cumplan `tipo(CURSO-XX): …`. |
+| `beforeShellExecution` | `validate-commit.sh` | Bloquea commits que no cumplan `[CURSO-XX] …` (preferido) ni `tipo(CURSO-XX): …` (alternativo). Ver `commit-format.conf`. |
 | `afterMCPExecution` | `audit-mcp.sh` | Guarda cada llamada MCP en `mcp-audit.log`. |
 
 ## Ejecutar en Windows
