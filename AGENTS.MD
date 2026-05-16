@@ -54,7 +54,7 @@ src/app/
 5. **HTTP** con tipado genérico `ApiResponse<T> = { message: string; data: T }`
    (ver `auth.service.ts`).
 6. **Textos visibles** pasan siempre por `| translate` o `TranslateService`.
-7. **Commits**: `tipo(CURSO-XX): descripción` (conventional commits + clave Jira).
+7. **Commits**: preferido `[CURSO-XX] descripción`; alternativo `tipo(CURSO-XX): …` (ver `.cursor/commit-format.conf`).
 8. **TODOs**: `// TODO [CURSO-XX]: ...` con clave Jira entre corchetes.
 
 ## Roles

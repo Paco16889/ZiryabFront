@@ -10,29 +10,39 @@ Todos los commits y TODOs del proyecto deben referenciar un ticket de Jira
 
 ## Formato de commits
 
-Conventional Commits + clave de ticket entre paréntesis:
+Config central: `.cursor/commit-format.conf` (la valida `validate-commit.sh`).
+
+### Preferido (usar por defecto)
+
+```
+[CLAVE-XX] descripción breve
+```
+
+Ejemplos:
+
+```
+[CURSO-59] servicios http assignments y enrollments by-filters
+[CURSO-12] corregir memory leak en UserListComponent
+```
+
+### Alternativo (válido, no borrar — Conventional + Jira, CURSO-3)
 
 ```
 tipo(CLAVE-XX): descripción breve en minúsculas
 ```
 
-Tipos válidos: `feat | fix | refactor | docs | style | test | chore | perf | build | ci`.
-
-Ejemplos correctos:
+Tipos: `feat | fix | refactor | docs | style | test | chore | perf | build | ci`.
 
 ```
 feat(CURSO-4): añadir feature de gestión de productos
 fix(CURSO-12): corregir memory leak en UserListComponent
-docs(CURSO-6): documentar AuthService en Confluence
-refactor(CURSO-2): migrar LoginComponent a signal inputs
 ```
 
-Ejemplos incorrectos:
+### Incorrecto
 
 ```
-CURSO-3: sin tipo conventional commit         -> INCORRECTO
+arreglar el bug del formulario                -> sin clave Jira
 fix: corregir login sin clave Jira            -> INCORRECTO
-arreglar el bug del formulario                -> INCORRECTO
 ```
 
 ## Flujo al hacer commit
@@ -41,9 +51,8 @@ Antes de redactar el mensaje de commit, el agente debe:
 
 1. Preguntar la clave de Jira si no se infiere del contexto (rama, archivos tocados).
 2. Usar `getJiraIssue` del MCP de Atlassian Rovo para leer el resumen del ticket.
-3. Redactar el mensaje con ese resumen como base.
-4. Validar que cumple el regex antes de ejecutar `git commit`:
-   `^(feat|fix|refactor|docs|style|test|chore|perf|build|ci)\([A-Z]+-\d+\): .+`
+3. Redactar el mensaje en formato **preferido** `[CURSO-XX] …` (ver `commit-format.conf`).
+4. Validar contra `.cursor/commit-format.conf` antes de `git commit`.
 
 ## Formato de TODOs en código
 
