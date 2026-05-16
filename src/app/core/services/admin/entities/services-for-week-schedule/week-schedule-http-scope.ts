@@ -19,10 +19,11 @@
  * - Mantener `environment.apiUrl` y política de errores homogénea.
  *
  * ## Nota
- * La implementación concreta puede vivir en el mismo `WeekScheduleService` o en un servicio
- * colaborador; este fichero solo fija el **alcance** del ticket hasta que se codifique.
+ * Listado de clases para el selector: {@link WeekScheduleClassesHttpService} (CURSO-70).
+ * CRUD de franjas: `WeekScheduleService` en la carpeta padre `entities/`.
  *
  * @see https://franciscocobsan.atlassian.net/browse/CURSO-59
+ * @see https://franciscocobsan.atlassian.net/browse/CURSO-70
  */
 
 export {};
