@@ -1,8 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { EnrollmentByFiltersResponse, StudentByFiltersRequest } from '../../models/enrollment';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Student } from '../../models/student';
+import { EnrollmentHttpService } from '../admin/entities/services-for-week-schedule/enrollment-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,7 @@ export class CargaStudentsporGrupoAsignaturaService {
    */
   students = signal<Student[]>([]);
 
-   private apiUrl = 'http://localhost:3000/api/enrollments';
-
-  constructor(private http: HttpClient) {}
+  private readonly enrollments = inject(EnrollmentHttpService);
 
     /**
    * Carga los estudiantes filtrados y actualiza la signal students.
@@ -48,15 +46,6 @@ loadStudentsByFilters(filters: StudentByFiltersRequest): void {
 getEnrollmentsByFilters(
   filters: StudentByFiltersRequest
 ): Observable<EnrollmentByFiltersResponse> {
-
-  const params = new HttpParams()
-    .set('idSubject', filters.idSubject)
-    .set('idGroup', filters.idGroup)
-    .set('schoolYear', filters.schoolYear);
-
-  return this.http.get<EnrollmentByFiltersResponse>(
-    `${this.apiUrl}/by-filters`,
-    { params }
-  );
+  return this.enrollments.getByFilters(filters);
 }
 }
