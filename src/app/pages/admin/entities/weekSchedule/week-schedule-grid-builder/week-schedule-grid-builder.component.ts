@@ -8,10 +8,10 @@ import { TimetableSlot } from '../../../../../core/models/timetable-slot';
 import { WeekScheduleClassItem } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
 import { WeekSchedule } from '../../../../../core/models/week-schedule';
 import { TeacherSubjectAssignmentRow } from '../../../../../core/models/teacher/subjectforteacher';
-import { WeekScheduleAssignmentDataService } from '../../../../../core/services/admin/week-schedule-assignment-data.service';
+import { WeekScheduleAssignmentDataService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-assignment-data.service';
 import { WeekScheduleClassesHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-classes-http.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
-import { WeekScheduleService } from '../../../../../core/services/admin/entities/week-schedule.service';
+import { WeekScheduleService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 import {
   hoursBetween,
   timeRangesOverlap,

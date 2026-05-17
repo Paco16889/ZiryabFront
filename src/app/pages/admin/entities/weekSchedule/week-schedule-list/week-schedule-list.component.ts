@@ -1,6 +1,6 @@
 import { Component, effect, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WeekSchedule, WeekScheduleUpdateRequest } from '../../../../../core/models/week-schedule';
-import { WeekScheduleService } from '../../../../../core/services/admin/entities/week-schedule.service';
+import { WeekScheduleService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";

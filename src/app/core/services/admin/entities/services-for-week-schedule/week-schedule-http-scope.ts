@@ -4,7 +4,7 @@
  * ## Objetivo en Jira
  * Completar o alinear el cliente HTTP con el contrato del backend: colección, CRUD y **variantes**
  * mencionadas en el ticket (por profesor, assignment, estudiante, día), además de lo ya cubierto
- * por `WeekScheduleService` (carpeta padre `entities/`).
+ * por {@link WeekScheduleService} (esta carpeta).
  *
  * ## Estado actual (referencia)
  * - `WeekScheduleService` ya implementa parte de las rutas (listado global, por estudiante, por
@@ -20,7 +20,8 @@
  *
  * ## Nota
  * Listado de clases para el selector: {@link WeekScheduleClassesHttpService} (CURSO-70).
- * CRUD de franjas: `WeekScheduleService` en la carpeta padre `entities/`.
+ * CRUD de franjas y orquestación del builder: {@link WeekScheduleService},
+ * {@link WeekScheduleAssignmentDataService} (esta carpeta).
  *
  * @see https://franciscocobsan.atlassian.net/browse/CURSO-59
  * @see https://franciscocobsan.atlassian.net/browse/CURSO-70

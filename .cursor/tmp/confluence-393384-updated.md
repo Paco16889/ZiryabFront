@@ -34,6 +34,7 @@ Fase previa al trabajo de producto del TFG: configuración del entorno ágil con
 | Clave | Resumen | Documentación Confluence |
 | --- | --- | --- |
 | [**CURSO-61**](https://franciscocobsan.atlassian.net/browse/CURSO-61) | Separar **assignments** (`TeacherOnSubjectOnGroup`) de **enrollments** (`StudentOnSubjectOnGroup`); nuevo módulo `/api/assignments` y avisos de deprecación en enrollments | [**Módulo API: Assignments (CURSO-61)**](https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/1277953) |
+| [**CURSO-70**](https://franciscocobsan.atlassian.net/browse/CURSO-70) | Endpoint `GET /api/horarios-semanales/classes` — selector de clases (agregación sin tabla nueva) para builder horarios admin | [**Endpoint Clases (CURSO-70)**](https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/1474577) |
 
 ### TFG Ziryab — qué hay hoy en el frontend (`loginEnAngular`)
 
@@ -90,7 +91,7 @@ Desde **CURSO-16** cada bloque agrupa tickets que comparten una **decisión de p
 
 | Clave | Tipo | Estado | SP | Resumen | Qué se hizo / por qué | Repo / doc |
 | --- | --- | --- | --- | --- | --- | --- |
-| [**CURSO-33**](https://franciscocobsan.atlassian.net/browse/CURSO-33) | Epic | Por hacer | — | Horarios v2: rejilla por grupo | Épica contenedora; historias 34–39 cerradas | — |
+| [**CURSO-33**](https://franciscocobsan.atlassian.net/browse/CURSO-33) | Epic | Finalizada | — | Horarios v2: rejilla por grupo | Épica contenedora cerrada; historias **CURSO-34–39** y subtareas **CURSO-40–54** finalizadas (rejilla L–V entregada) | [Doc Confluence](https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/622615) |
 | [**CURSO-34**](https://franciscocobsan.atlassian.net/browse/CURSO-34) | Historia | Finalizada | 5 | Spike: contrato API, schoolYear, franjas | Inventario endpoints y estrategia de guardado | Subtareas CURSO-40, 41 |
 | [**CURSO-35**](https://franciscocobsan.atlassian.net/browse/CURSO-35) | Historia | Finalizada | 8 | Capa datos: assignments + horarios del grupo | Servicio de contexto de grupo para la rejilla | Subtareas CURSO-42–44; `week-schedule-assignment-data.service.ts` |
 | [**CURSO-36**](https://franciscocobsan.atlassian.net/browse/CURSO-36) | Historia | Finalizada | 13 | UI rejilla + DnD assignments | `WeekScheduleGridBuilderComponent`, paleta, drag-and-drop | [**Doc Confluence**](https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/622615); `week-schedule-grid-builder/` |
@@ -120,16 +121,16 @@ Desde **CURSO-16** cada bloque agrupa tickets que comparten una **decisión de p
 
 #### Decisión 4 — Componentes modulares reutilizables (builder v3 interno)
 
-**Por qué:** Extraer piezas del builder (picker de assignment, tarjetas por día/hora, modelos y capa HTTP) para reutilizarlas fuera de la rejilla y preparar tests. Historia en curso; no sustituye la rejilla de **CURSO-33** sino que la complementa.
+**Por qué:** Extraer piezas del builder (picker de assignment, tarjetas por día/hora, modelos y capa HTTP) para reutilizarlas fuera de la rejilla y preparar tests. Historia **cerrada** en sprint actual; no sustituye la rejilla de **CURSO-33** sino que la complementa.
 
 | Clave | Tipo | Estado | SP | Resumen | Qué se hizo / por qué | Repo / doc |
 | --- | --- | --- | --- | --- | --- | --- |
-| [**CURSO-55**](https://franciscocobsan.atlassian.net/browse/CURSO-55) | Historia | Por hacer | 5 | Componentes y flujo interno horarios | Historia padre: Assignment + WeekSchedule como dominio | `pages/admin/entities/weekSchedule/` |
+| [**CURSO-55**](https://franciscocobsan.atlassian.net/browse/CURSO-55) | Historia | Finalizada | 5 | Componentes y flujo interno horarios | Historia cerrada en sprint: picker, tarjetas día/hora, modelos y servicios HTTP; rejilla con selector `/classes` (CURSO-70); tareas **CURSO-56–60** finalizadas | `pages/admin/entities/weekSchedule/` |
 | [**CURSO-56**](https://franciscocobsan.atlassian.net/browse/CURSO-56) | Tarea | Finalizada | 2 | Selector profesor/assignment reutilizable | Input/output tipado; emite fila de asignación | `week-schedule-assignment-picker/` |
 | [**CURSO-57**](https://franciscocobsan.atlassian.net/browse/CURSO-57) | Tarea | Finalizada | 3 | Vista semanal: tarjetas por día | Contenedor día + tarjetas de franja | `week-schedule-day-card/`, `week-schedule-hour-card/` |
 | [**CURSO-58**](https://franciscocobsan.atlassian.net/browse/CURSO-58) | Tarea | Finalizada | 1 | Modelos TypeScript flujo horarios | Interfaces en `week-schedule-flow/` | `core/models/week-schedule-flow/` |
-| [**CURSO-59**](https://franciscocobsan.atlassian.net/browse/CURSO-59) | Tarea | En curso | 2 | Servicios HTTP enrollments + horarios | `EnrollmentHttpService` implementado; falta `AssignmentHttpService` | `services-for-week-schedule/enrollment-http.service.ts` |
-| [**CURSO-60**](https://franciscocobsan.atlassian.net/browse/CURSO-60) | Tarea | Por hacer | 2 | Tests Jasmine builder | Specs de componentes y servicios del flujo | `*.spec.ts` en `weekSchedule/` |
+| [**CURSO-59**](https://franciscocobsan.atlassian.net/browse/CURSO-59) | Tarea | Finalizada | 2 | Servicios HTTP enrollments + horarios | `AssignmentHttpService`, `EnrollmentHttpService` (`by-filters`); CRUD en `WeekScheduleService`. Consumo en rejilla → **CURSO-65** | `services-for-week-schedule/` |
+| [**CURSO-60**](https://franciscocobsan.atlassian.net/browse/CURSO-60) | Tarea | Finalizada | 2 | Tests Jasmine builder | QA manual rejilla + selector de clases (`GET /horarios-semanales/classes`); seed corregido; criterios de tests cumplidos para el alcance del sprint | `week-schedule-grid-builder/`, `services-for-week-schedule/week-schedule-classes-http.service.ts` |
 
 #### Decisión 5 — Backend: separar **assignments** de **enrollments**
 
@@ -138,6 +139,7 @@ Desde **CURSO-16** cada bloque agrupa tickets que comparten una **decisión de p
 | Clave | Tipo | Estado | SP | Resumen | Qué se hizo / por qué | Repo / doc |
 | --- | --- | --- | --- | --- | --- | --- |
 | [**CURSO-61**](https://franciscocobsan.atlassian.net/browse/CURSO-61) | Error | Finalizada | 5 | Módulo `/api/assignments` + deprecación enrollments | Nuevo módulo backend; avisos de migración en endpoints viejos | [**Doc Confluence**](https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/1277953) (también en tabla Backend arriba) |
+| [**CURSO-70**](https://franciscocobsan.atlassian.net/browse/CURSO-70) | Tarea | Finalizada | 3 | Endpoint `GET /api/horarios-semanales/classes` — selector clases | Agregación sin tabla; para builder clases | [**Doc Confluence**](https://franciscocobsan.atlassian.net/wiki/spaces/CCA/pages/1474577) (también en tabla Backend arriba) |
 
 #### Decisión 6 — Frontend: migrar lecturas a `/api/assignments` (post CURSO-61)
 

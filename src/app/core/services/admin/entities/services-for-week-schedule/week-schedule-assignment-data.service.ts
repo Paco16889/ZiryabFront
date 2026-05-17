@@ -1,15 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, catchError, forkJoin, map, of, switchMap } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { WeekSchedule } from '../../models/week-schedule';
-import { TeacherSubjectAssignmentRow } from '../../models/teacher/subjectforteacher';
+import { Observable, catchError, forkJoin, map, of } from 'rxjs';
+import { environment } from '../../../../../../environments/environment';
+import { WeekSchedule } from '../../../../models/week-schedule';
+import { TeacherSubjectAssignmentRow } from '../../../../models/teacher/subjectforteacher';
 import {
   filterTeacherAssignmentsForClass,
   filterTeacherAssignmentsForSchoolYear,
-} from '../../utils/week-schedule-assignment-filters';
-import { ClasesService } from '../clases.service';
-import { TeachersService } from './entities/teachers.service';
-import { WeekScheduleService } from './entities/week-schedule.service';
+} from '../../../../utils/week-schedule-assignment-filters';
+import { AssignmentHttpService } from './teacher-assignment-http.service';
+import { WeekScheduleService } from './week-schedule.service';
 
 /**
  * Orquesta las lecturas HTTP para el constructor de horarios admin (rejilla):
@@ -19,16 +18,11 @@ import { WeekScheduleService } from './entities/week-schedule.service';
   providedIn: 'root',
 })
 export class WeekScheduleAssignmentDataService {
-  private readonly clases = inject(ClasesService);
+  private readonly assignments = inject(AssignmentHttpService);
   private readonly schedules = inject(WeekScheduleService);
-  private readonly teachers = inject(TeachersService);
 
   /**
-   * Todas las filas de asignación docente (`TeacherOnSubjectOnGroup`) para un
-   * grupo: agrega `GET /teachers/:id/subjects` de cada profesor, filtra por
-   * `schoolYear` y estado schedulable (p. ej. ACTIVE).
-   *
-   * @param schoolYear - Si se omite, se usa `environment.currentSchoolYear`.
+   * Filas de asignación docente para un grupo y año (`GET /api/assignments` + filtro local).
    */
   private fetchAssignmentRowsForGroup(
     groupId: number,
@@ -88,45 +82,19 @@ export class WeekScheduleAssignmentDataService {
   }
 
   /**
-   * Filas de asignación para el grupo sin filtrar año ni estado (uso interno / debug).
+   * Todas las filas de asignación del grupo vía un único `GET /api/assignments`.
    */
   private fetchAllAssignmentRowsForGroupRaw(
     groupId: number,
   ): Observable<TeacherSubjectAssignmentRow[]> {
-    return this.teachers.getAllTeachers().pipe(
-      switchMap((res) => {
-        const list = res.success ? res.data : [];
-        if (list.length === 0) {
-          return of([]);
+    return this.assignments.getAll().pipe(
+      map((res) => {
+        if (!res.success || !res.data?.length) {
+          return [];
         }
-        return forkJoin(
-          list.map((t) =>
-            this.fetchAssignmentsForTeacher(t.id).pipe(
-              catchError(() => of([] as TeacherSubjectAssignmentRow[])),
-            ),
-          ),
-        ).pipe(
-          map((chunks) => {
-            const merged = chunks
-              .flat()
-              .filter((r) => r.idGroup === groupId);
-            const byId = new Map(merged.map((r) => [r.id, r]));
-            return [...byId.values()];
-          }),
-        );
+        return res.data.filter((r) => r.idGroup === groupId) as TeacherSubjectAssignmentRow[];
       }),
       catchError(() => of([])),
-    );
-  }
-
-  /**
-   * Filas de asignación docente para un profesor (`GET /teachers/:id/subjects`).
-   */
-  private fetchAssignmentsForTeacher(
-    teacherId: number,
-  ): Observable<TeacherSubjectAssignmentRow[]> {
-    return this.clases.getAsignaturasProfesor(teacherId).pipe(
-      map((res) => res.data ?? []),
     );
   }
 }

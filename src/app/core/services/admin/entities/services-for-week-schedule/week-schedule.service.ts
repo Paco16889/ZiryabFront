@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { WeekSchedule, WeekScheduleByIdResponse, WeekScheduleCreateRequest, WeekScheduleCreateResponse, WeekScheduleDeleteResponse, WeekSchedulesAllResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../models/week-schedule';
+import { WeekSchedule, WeekScheduleByIdResponse, WeekScheduleCreateRequest, WeekScheduleCreateResponse, WeekScheduleDeleteResponse, WeekSchedulesAllResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../../models/week-schedule';
 import { catchError, map, Observable, of } from 'rxjs';
-import { environment } from '../../../../../environments/environment';
-import { numberToPrismaDayOfWeek, prismaDayOfWeekToNumber } from '../../../utils/week-day';
+import { environment } from '../../../../../../environments/environment';
+import { numberToPrismaDayOfWeek, prismaDayOfWeekToNumber } from '../../../../utils/week-day';
 
 /**
  * Servicio encargado de gestionar las operaciones con franjas horarias semanales.

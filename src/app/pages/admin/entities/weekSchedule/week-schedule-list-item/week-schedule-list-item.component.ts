@@ -3,7 +3,7 @@ import { WeekSchedule, WeekScheduleDeleteResponse, WeekScheduleUpdateRequest, We
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
-import { WeekScheduleService } from '../../../../../core/services/admin/entities/week-schedule.service';
+import { WeekScheduleService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 
 /**
