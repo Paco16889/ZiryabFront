@@ -1,56 +1,27 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, forkJoin, map, of, switchMap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { Group } from '../../models/group';
 import { WeekSchedule } from '../../models/week-schedule';
+import { TeacherSubjectAssignmentRow } from '../../models/teacher/subjectforteacher';
 import {
-  SubjectTeacherAssignment,
-  TeacherSubjectAssignmentRow,
-} from '../../models/teacher/subjectforteacher';
-import { filterTeacherAssignmentsForSchoolYear } from '../../utils/week-schedule-assignment-filters';
+  filterTeacherAssignmentsForClass,
+  filterTeacherAssignmentsForSchoolYear,
+} from '../../utils/week-schedule-assignment-filters';
 import { ClasesService } from '../clases.service';
-import { GroupService } from './entities/group.service';
 import { TeachersService } from './entities/teachers.service';
 import { WeekScheduleService } from './entities/week-schedule.service';
 
 /**
- * Orquesta las lecturas HTTP para el constructor de horarios admin: grupos
- * elegibles, asignaciones docente por grupo y profesores colindantes (mismo
- * grupo/asignatura/año).
+ * Orquesta las lecturas HTTP para el constructor de horarios admin (rejilla):
+ * asignaciones docente por clase agregada y franjas existentes.
  */
 @Injectable({
   providedIn: 'root',
 })
 export class WeekScheduleAssignmentDataService {
   private readonly clases = inject(ClasesService);
-  private readonly groups = inject(GroupService);
   private readonly schedules = inject(WeekScheduleService);
   private readonly teachers = inject(TeachersService);
-
-  /**
-   * Grupos que aún no tienen ninguna franja en `GET /horarios-semanales`
-   * (al menos una `WeekSchedule` con `teacherAssignment.idGroup` = id del grupo).
-   */
-  fetchEligibleGroupsForNewSchedule(): Observable<Group[]> {
-    return forkJoin({
-      groups: this.groups.getAllGroups(),
-      schedules: this.schedules.getAllSchedules(),
-    }).pipe(
-      map(({ groups, schedules }) => {
-        if (!groups.success) {
-          return [];
-        }
-        const busyIds = new Set<number>();
-        if (schedules.success) {
-          for (const s of schedules.data) {
-            busyIds.add(s.teacherAssignment.idGroup);
-          }
-        }
-        return groups.data.filter((g) => !busyIds.has(g.id));
-      }),
-      catchError(() => of([])),
-    );
-  }
 
   /**
    * Todas las filas de asignación docente (`TeacherOnSubjectOnGroup`) para un
@@ -59,7 +30,7 @@ export class WeekScheduleAssignmentDataService {
    *
    * @param schoolYear - Si se omite, se usa `environment.currentSchoolYear`.
    */
-  fetchAssignmentRowsForGroup(
+  private fetchAssignmentRowsForGroup(
     groupId: number,
     schoolYear: string = environment.currentSchoolYear,
   ): Observable<TeacherSubjectAssignmentRow[]> {
@@ -71,7 +42,7 @@ export class WeekScheduleAssignmentDataService {
   /**
    * `WeekSchedule` del listado global cuyo `teacherAssignment` pertenece al grupo.
    */
-  fetchWeekSchedulesForGroup(groupId: number): Observable<WeekSchedule[]> {
+  private fetchWeekSchedulesForGroup(groupId: number): Observable<WeekSchedule[]> {
     return this.schedules.getAllSchedules().pipe(
       map((res) => {
         if (!res.success || !res.data?.length) {
@@ -84,9 +55,11 @@ export class WeekScheduleAssignmentDataService {
   }
 
   /**
-   * Assignments del grupo + franjas existentes (`TeacherOnSubjectOnGroup` ↔ `WeekSchedule`).
+   * Contexto del builder para una clase `(course, grade, group, schoolYear)`.
    */
-  fetchGroupScheduleContext(
+  fetchClassScheduleContext(
+    courseId: number,
+    grade: string,
     groupId: number,
     schoolYear: string = environment.currentSchoolYear,
   ): Observable<{
@@ -94,9 +67,24 @@ export class WeekScheduleAssignmentDataService {
     weekSchedules: WeekSchedule[];
   }> {
     return forkJoin({
-      assignments: this.fetchAssignmentRowsForGroup(groupId, schoolYear),
+      assignments: this.fetchAssignmentRowsForGroup(groupId, schoolYear).pipe(
+        map((rows) =>
+          filterTeacherAssignmentsForClass(rows, courseId, grade, groupId, schoolYear),
+        ),
+      ),
       weekSchedules: this.fetchWeekSchedulesForGroup(groupId),
-    }).pipe(catchError(() => of({ assignments: [], weekSchedules: [] })));
+    }).pipe(
+      map(({ assignments, weekSchedules }) => {
+        const assignmentIds = new Set(assignments.map((a) => a.id));
+        return {
+          assignments,
+          weekSchedules: weekSchedules.filter((ws) =>
+            assignmentIds.has(ws.teacherAssignment.id),
+          ),
+        };
+      }),
+      catchError(() => of({ assignments: [], weekSchedules: [] })),
+    );
   }
 
   /**
@@ -134,32 +122,11 @@ export class WeekScheduleAssignmentDataService {
   /**
    * Filas de asignación docente para un profesor (`GET /teachers/:id/subjects`).
    */
-  fetchAssignmentsForTeacher(
+  private fetchAssignmentsForTeacher(
     teacherId: number,
   ): Observable<TeacherSubjectAssignmentRow[]> {
     return this.clases.getAsignaturasProfesor(teacherId).pipe(
       map((res) => res.data ?? []),
-    );
-  }
-
-  /**
-   * Profesores con asignación en la misma asignatura, grupo y curso escolar,
-   * a partir del detalle de asignatura (`GET /subjects/:id`).
-   */
-  fetchPeerAssignmentsForRow(row: TeacherSubjectAssignmentRow): Observable<{
-    peers: SubjectTeacherAssignment[];
-    preferredPeerAssignmentId: number | null;
-  }> {
-    return this.clases.getNombreProfesorParaAsignatura(row.idSubject).pipe(
-      map((res) => {
-        const peers = (res.data?.teacherAssignments ?? []).filter(
-          (ta) =>
-            ta.idGroup === row.idGroup && ta.schoolYear === row.schoolYear,
-        );
-        const preferredPeerAssignmentId =
-          peers.find((p) => p.id === row.id)?.id ?? peers[0]?.id ?? null;
-        return { peers, preferredPeerAssignmentId };
-      }),
     );
   }
 }

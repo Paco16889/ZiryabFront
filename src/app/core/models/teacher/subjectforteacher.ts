@@ -37,6 +37,8 @@ export interface TeacherSubjectAssignmentRow {
   subject: {
     id: number;
     name: string;
+    /** Curso académico de la asignatura (p. ej. `1º`) */
+    grade?: string;
     /** Horas semanales si el API las incluye en el include de asignatura */
     hours?: number;
     course?: { id: number; name: string; description?: string; duration?: number; createdAt?: string };

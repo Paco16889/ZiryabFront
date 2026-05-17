@@ -75,3 +75,27 @@ export function filterTeacherAssignmentsForSchoolYear(
     (r) => r.schoolYear === schoolYear && isTeacherAssignmentRowSchedulable(r),
   );
 }
+
+/** Normaliza curso académico para comparar (`1º` ↔ `1`). */
+function normalizeGradeValue(grade: string): string {
+  return grade.replace(/º/g, '').trim();
+}
+
+/**
+ * Filas de una **clase** agregada: mismo ciclo, grade, grupo y año escolar.
+ */
+export function filterTeacherAssignmentsForClass(
+  rows: TeacherSubjectAssignmentRow[],
+  courseId: number,
+  grade: string,
+  groupId: number,
+  schoolYear: string,
+): TeacherSubjectAssignmentRow[] {
+  const targetGrade = normalizeGradeValue(grade);
+  return filterTeacherAssignmentsForSchoolYear(rows, schoolYear).filter(
+    (r) =>
+      r.idGroup === groupId &&
+      r.subject?.course?.id === courseId &&
+      normalizeGradeValue(r.subject?.grade ?? '') === targetGrade,
+  );
+}

@@ -4,12 +4,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { concat, forkJoin, Observable, of, last, map, catchError, mergeMap } from 'rxjs';
 import { environment } from '../../../../../../environments/environment';
 import { Assignment } from '../../../../../core/models/assingment';
-import { Group } from '../../../../../core/models/group';
 import { TimetableSlot } from '../../../../../core/models/timetable-slot';
+import { WeekScheduleClassItem } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
 import { WeekSchedule } from '../../../../../core/models/week-schedule';
 import { TeacherSubjectAssignmentRow } from '../../../../../core/models/teacher/subjectforteacher';
 import { WeekScheduleAssignmentDataService } from '../../../../../core/services/admin/week-schedule-assignment-data.service';
-import { GroupService } from '../../../../../core/services/admin/entities/group.service';
+import { WeekScheduleClassesHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-classes-http.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 import { WeekScheduleService } from '../../../../../core/services/admin/entities/week-schedule.service';
 import {
@@ -25,6 +25,11 @@ export function weekScheduleCellKey(weekDay: number, startTime: string): string 
   return `${weekDay}|${startTime}`;
 }
 
+/** Clave estable de clase agregada para el `<select>`. */
+export function weekScheduleClassKey(c: WeekScheduleClassItem): string {
+  return `${c.course.id}|${c.grade}|${c.group.id}|${c.schoolYear}`;
+}
+
 export interface GridCellState {
   idTeacherAssignment: number;
   serverId?: number;
@@ -37,7 +42,7 @@ export interface GridCellState {
 }
 
 /**
- * Constructor por días: un **grupo** (FK `Group`, p. ej. Mañana/Tarde) define el
+ * Constructor por días: una **clase** `(course, grade, group, schoolYear)` define el
  * conjunto de `Assignment`; cada franja lleva un desplegable docente–asignatura.
  */
 @Component({
@@ -55,7 +60,7 @@ export interface GridCellState {
 })
 export class WeekScheduleGridBuilderComponent implements OnInit {
   private readonly assignmentData = inject(WeekScheduleAssignmentDataService);
-  private readonly groupsApi = inject(GroupService);
+  private readonly classesApi = inject(WeekScheduleClassesHttpService);
   private readonly teachersApi = inject(TeachersService);
   private readonly schedules = inject(WeekScheduleService);
   private readonly translate = inject(TranslateService);
@@ -66,9 +71,11 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
   readonly weekdays = [1, 2, 3, 4, 5] as const;
   readonly slots: TimetableSlot[] = [...environment.timetableSlots];
 
-  readonly groups = signal<Group[]>([]);
-  readonly groupsLoadError = signal(false);
-  readonly selectedGroupId = signal<number | null>(null);
+  readonly classes = signal<WeekScheduleClassItem[]>([]);
+  readonly classesLoadError = signal(false);
+  readonly selectedClass = signal<WeekScheduleClassItem | null>(null);
+
+  readonly selectedGroupId = computed(() => this.selectedClass()?.group.id ?? null);
 
   readonly schoolYear = signal<string>(environment.currentSchoolYear);
 
@@ -96,37 +103,46 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   });
 
+  readonly classKey = weekScheduleClassKey;
+
   ngOnInit(): void {
-    this.loadGroups();
+    this.loadClasses();
   }
 
-  loadGroups(): void {
-    this.groupsLoadError.set(false);
-    this.groupsApi.getAllGroups().subscribe({
+  loadClasses(): void {
+    this.classesLoadError.set(false);
+    this.classesApi.getAllClasses(this.schoolYear()).subscribe({
       next: (res) => {
-        this.groups.set(
-          res.success ? [...res.data].sort((a, b) => a.name.localeCompare(b.name)) : [],
+        this.classes.set(
+          res.success ? [...res.data].sort((a, b) => a.label.localeCompare(b.label)) : [],
         );
       },
-      error: () => this.groupsLoadError.set(true),
+      error: () => this.classesLoadError.set(true),
     });
   }
 
-  onGroupSelected(idStr: string): void {
-    const id = idStr ? Number(idStr) : null;
-    this.selectedGroupId.set(id);
+  onClassSelected(key: string): void {
+    const cls = key
+      ? (this.classes().find((c) => weekScheduleClassKey(c) === key) ?? null)
+      : null;
+    this.selectedClass.set(cls);
     this.assignments.set([]);
     this.cells.set(new Map());
     this.initialServerSchedules.set([]);
     this.validationMessages.set([]);
     this.teacherNameById.set(new Map());
-    if (id == null) {
+    if (cls == null) {
       return;
     }
     this.loading.set(true);
     this.loadError.set(false);
     forkJoin({
-      ctx: this.assignmentData.fetchGroupScheduleContext(id, this.schoolYear()),
+      ctx: this.assignmentData.fetchClassScheduleContext(
+        cls.course.id,
+        cls.grade,
+        cls.group.id,
+        cls.schoolYear,
+      ),
       teachers: this.teachersApi.getAllTeachers(),
     }).subscribe({
       next: ({ ctx, teachers }) => {
@@ -242,8 +258,8 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
   runValidation(): boolean {
     const msgs: string[] = [];
     const groupId = this.selectedGroupId();
-    if (groupId == null) {
-      msgs.push(this.translate.instant('weekScheduleBuilder.grid.validationNoGroup'));
+    if (this.selectedClass() == null || groupId == null) {
+      msgs.push(this.translate.instant('weekScheduleBuilder.grid.validationNoClass'));
       this.validationMessages.set(msgs);
       return false;
     }

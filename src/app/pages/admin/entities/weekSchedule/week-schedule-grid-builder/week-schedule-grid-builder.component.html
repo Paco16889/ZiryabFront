@@ -10,7 +10,7 @@
     <h1 class="text-2xl font-bold">{{ 'weekScheduleBuilder.grid.title' | translate }}</h1>
   </div>
 
-  <p class="text-sm text-gray-600 mb-2">{{ 'weekScheduleBuilder.grid.introSingleGroup' | translate }}</p>
+  <p class="text-sm text-gray-600 mb-2">{{ 'weekScheduleBuilder.grid.introClass' | translate }}</p>
   <p class="text-xs text-gray-500 mb-4">
     {{ 'weekScheduleBuilder.grid.schoolYearLabel' | translate }}:
     <strong>{{ schoolYear() }}</strong>
@@ -18,19 +18,21 @@
 
   <div class="mb-6">
     <label class="block text-sm font-medium text-gray-700 mb-1">
-      {{ 'weekScheduleBuilder.grid.selectGroupAssignmentSet' | translate }}
+      {{ 'weekScheduleBuilder.grid.selectClass' | translate }}
     </label>
     <select
       class="w-full max-w-lg border border-gray-300 rounded-md px-3 py-2 bg-white"
-      (change)="onGroupSelected($any($event.target).value)"
+      (change)="onClassSelected($any($event.target).value)"
     >
-      <option value="">{{ 'weekScheduleBuilder.grid.groupPlaceholder' | translate }}</option>
-      @for (g of groups(); track g.id) {
-        <option [value]="g.id">{{ g.name }}</option>
+      <option value="">{{ 'weekScheduleBuilder.grid.classPlaceholder' | translate }}</option>
+      @for (c of classes(); track classKey(c)) {
+        <option [value]="classKey(c)">{{ c.label }}</option>
       }
     </select>
-    @if (groupsLoadError()) {
-      <p class="text-sm text-red-600 mt-1">{{ 'weekScheduleBuilder.grid.loadGroupsError' | translate }}</p>
+    @if (classesLoadError()) {
+      <p class="text-sm text-red-600 mt-1">{{ 'weekScheduleBuilder.grid.loadClassesError' | translate }}</p>
+    } @else if (classes().length === 0 && !classesLoadError()) {
+      <p class="text-sm text-amber-700 mt-1">{{ 'weekScheduleBuilder.grid.emptyClasses' | translate }}</p>
     }
   </div>
 
@@ -40,7 +42,9 @@
 
   @if (loading()) {
     <p class="text-gray-600">{{ 'weekScheduleBuilder.grid.loading' | translate }}</p>
-  } @else if (selectedGroupId() != null) {
+  } @else if (selectedClass() != null && assignments().length === 0) {
+    <p class="text-sm text-amber-700 mb-4">{{ 'weekScheduleBuilder.grid.emptyClassAssignments' | translate }}</p>
+  } @else if (selectedClass() != null) {
     <div class="space-y-6 hidden lg:block">
       @for (d of weekdays; track d) {
         <section
