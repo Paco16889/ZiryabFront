@@ -1,14 +1,16 @@
-<div class="max-w-4xl mx-auto px-2 sm:px-4">
-  <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
-    <button
-      type="button"
-      (click)="onCancel()"
-      class="text-left text-gray-600 hover:text-gray-900 shrink-0"
-    >
-      ← {{ 'common.buttons.back' | translate }}
-    </button>
-    <h1 class="text-2xl font-bold">{{ 'weekScheduleBuilder.grid.title' | translate }}</h1>
-  </div>
+<div class="max-w-4xl mx-auto px-2 sm:px-4" [class.max-w-none]="embedded()" [class.px-0]="embedded()">
+  @if (!embedded()) {
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="text-left text-gray-600 hover:text-gray-900 shrink-0"
+      >
+        ← {{ 'common.buttons.back' | translate }}
+      </button>
+      <h1 class="text-2xl font-bold">{{ 'weekScheduleBuilder.grid.title' | translate }}</h1>
+    </div>
+  }
 
   <p class="text-sm text-gray-600 mb-2">{{ 'weekScheduleBuilder.grid.introClass' | translate }}</p>
   <p class="text-xs text-gray-500 mb-4">

@@ -69,3 +69,8 @@ export interface WeekScheduleUpdateApiResponse {
   success: boolean;
   data: WeekScheduleApi;
 }
+
+export type {
+  WeekScheduleMaterializeRequest,
+  WeekScheduleMaterializeSlot,
+} from './week-schedule-materialize.model';

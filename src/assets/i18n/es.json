@@ -111,7 +111,21 @@
     "modeCreate": "Crear plantilla",
     "modeGrid": "Rejilla semanal",
     "create": {
-      "pending": "Próximamente: formulario para crear la plantilla horaria de una clase."
+      "daysLabel": "Días de la semana (L–V)",
+      "validationNoDay": "Selecciona al menos un día.",
+      "loadingClasses": "Cargando clases…",
+      "emptyEligibleClasses": "No hay clases con asignaturas y sin horario semanal para este año escolar.",
+      "validationNoClass": "Selecciona una clase.",
+      "slotCount": "Número de franjas horarias",
+      "slotsTitle": "Horario de cada franja",
+      "slotRow": "Franja {{n}}",
+      "validationMinSlots": "Indica al menos una franja.",
+      "timeFormatHint": "Formato obligatorio HH:mm con dos dígitos en hora y minutos (ej. 08:15, 09:00, 14:45). No uses 8:15.",
+      "validationTimeFormat": "Formato inválido. Usa dos cifras en hora y minutos (ej. 08:15, no 8:15).",
+      "pendingApi": "El guardado de la plantilla estará disponible cuando el backend exponga el endpoint de materialización.",
+      "submit": "Crear plantilla horaria",
+      "validate": "Comprobar formulario",
+      "submitHint": "El guardado se habilitará cuando el backend exponga el endpoint (CURSO-71)."
     },
     "placeholder": "Aquí se configurará el constructor de franjas horarias.",
     "selectGroup": "Grupo (sin franjas todavía)",

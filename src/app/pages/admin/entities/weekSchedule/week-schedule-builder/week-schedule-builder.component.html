@@ -48,11 +48,10 @@
   </div>
 
   @if (builderMode() === 'create') {
-    <p class="text-sm text-gray-600 max-w-2xl">
-      {{ 'weekScheduleBuilder.create.pending' | translate }}
-    </p>
+    <app-week-schedule-create-template />
   } @else {
     <app-week-schedule-grid-builder
+      [embedded]="true"
       (cancelCreate)="onCancel()"
       (scheduleSaved)="onGridScheduleSaved()"
     />

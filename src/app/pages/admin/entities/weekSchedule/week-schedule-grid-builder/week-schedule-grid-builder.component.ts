@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, OnInit, output, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { concat, forkJoin, Observable, of, last, map, catchError, mergeMap } from 'rxjs';
 import { environment } from '../../../../../../environments/environment';
 import { Assignment } from '../../../../../core/models/assingment';
 import { TimetableSlot } from '../../../../../core/models/timetable-slot';
-import { WeekScheduleClassItem } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
+import {
+  WeekScheduleClassItem,
+  weekScheduleClassKey,
+} from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
 import { WeekSchedule } from '../../../../../core/models/week-schedule';
 import { TeacherSubjectAssignmentRow } from '../../../../../core/models/teacher/subjectforteacher';
 import { WeekScheduleAssignmentDataService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-assignment-data.service';
@@ -23,11 +26,6 @@ import { WeekScheduleHourCardComponent } from '../week-schedule-hour-card/week-s
 /** Clave estable: día 1–7 + inicio de franja */
 export function weekScheduleCellKey(weekDay: number, startTime: string): string {
   return `${weekDay}|${startTime}`;
-}
-
-/** Clave estable de clase agregada para el `<select>`. */
-export function weekScheduleClassKey(c: WeekScheduleClassItem): string {
-  return `${c.course.id}|${c.grade}|${c.group.id}|${c.schoolYear}`;
 }
 
 export interface GridCellState {
@@ -67,6 +65,9 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
 
   readonly cancelCreate = output<void>();
   readonly scheduleSaved = output<void>();
+
+  /** En pestaña grid del shell: oculta cabecera propia (atrás / título). @see CURSO-91 */
+  readonly embedded = input(false);
 
   readonly weekdays = [1, 2, 3, 4, 5] as const;
   readonly slots: TimetableSlot[] = [...environment.timetableSlots];

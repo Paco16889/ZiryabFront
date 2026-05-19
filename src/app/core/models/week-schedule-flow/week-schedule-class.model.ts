@@ -30,3 +30,13 @@ export interface WeekScheduleClassesResponse {
   count: number;
   data: WeekScheduleClassItem[];
 }
+
+/** Clave estable de clase agregada para `<select>` y mapas en memoria. */
+export function weekScheduleClassKey(c: WeekScheduleClassItem): string {
+  return `${c.course.id}|${c.grade}|${c.group.id}|${c.schoolYear}`;
+}
+
+/** Clases con oferta docente y sin plantilla horaria creada (pestaña Crear plantilla). */
+export function isWeekScheduleClassEligibleForCreateTemplate(c: WeekScheduleClassItem): boolean {
+  return c.subjectCount > 0 && !c.hasWeekSchedule;
+}

@@ -85,3 +85,24 @@ export function timeRangesOverlap(
 export function hoursBetween(start: string, end: string): number {
   return Math.max(0, (timeToMinutes(end) - timeToMinutes(start)) / 60);
 }
+
+/**
+ * Formato estricto `HH:mm`: dos dígitos en hora y dos en minutos (24 h).
+ * Válido: `07:00`, `08:15`, `14:45`. Inválido: `8:15`, `25:00`, `08:60`.
+ */
+export const HH_MM_TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+/** Comprueba `HH:mm` con hora y minutos siempre a dos cifras. */
+export function isValidHhMmTime(value: string): boolean {
+  const trimmed = value.trim();
+  return trimmed.length > 0 && HH_MM_TIME_PATTERN.test(trimmed);
+}
+
+/**
+ * Si el valor cumple `HH:mm` estricto, lo devuelve recortado; si no, `null`.
+ * No rellena un solo dígito (`8:15` → inválido; debe escribirse `08:15`).
+ */
+export function normalizeHhMmTime(value: string): string | null {
+  const trimmed = value.trim();
+  return isValidHhMmTime(trimmed) ? trimmed : null;
+}

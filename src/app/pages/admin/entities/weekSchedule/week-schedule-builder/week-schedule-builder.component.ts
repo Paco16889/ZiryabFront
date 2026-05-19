@@ -1,5 +1,6 @@
 import { Component, output, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { WeekScheduleCreateTemplateComponent } from '../week-schedule-create-template/week-schedule-create-template.component';
 import { WeekScheduleGridBuilderComponent } from '../week-schedule-grid-builder/week-schedule-grid-builder.component';
 
 export type WeekScheduleBuilderMode = 'create' | 'grid';
@@ -11,7 +12,11 @@ export type WeekScheduleBuilderMode = 'create' | 'grid';
 @Component({
   selector: 'app-week-schedule-builder',
   standalone: true,
-  imports: [TranslateModule, WeekScheduleGridBuilderComponent],
+  imports: [
+    TranslateModule,
+    WeekScheduleCreateTemplateComponent,
+    WeekScheduleGridBuilderComponent,
+  ],
   templateUrl: './week-schedule-builder.component.html',
   styleUrl: './week-schedule-builder.component.scss',
 })

@@ -110,7 +110,21 @@
     "modeCreate": "Vorlage anlegen",
     "modeGrid": "Wochenraster",
     "create": {
-      "pending": "Demnächst: Formular zur Erstellung einer Wochenstundenplan-Vorlage pro Klasse."
+      "daysLabel": "Wochentage (Mo–Fr)",
+      "validationNoDay": "Wähle mindestens einen Tag.",
+      "loadingClasses": "Klassen werden geladen…",
+      "emptyEligibleClasses": "Keine Klassen mit Fächern und ohne Wochenstundenplan für dieses Schuljahr.",
+      "validationNoClass": "Wähle eine Klasse.",
+      "slotCount": "Anzahl der Unterrichtseinheiten",
+      "slotsTitle": "Zeiten je Einheit",
+      "slotRow": "Einheit {{n}}",
+      "validationMinSlots": "Mindestens eine Einheit angeben.",
+      "timeFormatHint": "Pflichtformat HH:mm mit zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
+      "validationTimeFormat": "Ungültiges Format. Zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
+      "pendingApi": "Das Speichern der Vorlage ist verfügbar, sobald das Backend den Materialisierungs-Endpunkt bereitstellt.",
+      "submit": "Wochenstundenplan-Vorlage erstellen",
+      "validate": "Formular prüfen",
+      "submitHint": "Speichern wird freigeschaltet, sobald das Backend den Endpunkt bereitstellt (CURSO-71)."
     },
     "placeholder": "Hier wird der Editor für Wochenstundenpläne eingerichtet.",
     "selectGroup": "Gruppe (noch keine Einheiten)",

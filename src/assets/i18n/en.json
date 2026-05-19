@@ -110,7 +110,21 @@
     "modeCreate": "Create template",
     "modeGrid": "Weekly grid",
     "create": {
-      "pending": "Coming soon: form to create a class weekly schedule template."
+      "daysLabel": "Weekdays (Mon–Fri)",
+      "validationNoDay": "Select at least one day.",
+      "loadingClasses": "Loading classes…",
+      "emptyEligibleClasses": "No classes with subjects and without a weekly schedule for this school year.",
+      "validationNoClass": "Select a class.",
+      "slotCount": "Number of time slots",
+      "slotsTitle": "Time for each slot",
+      "slotRow": "Slot {{n}}",
+      "validationMinSlots": "Enter at least one slot.",
+      "timeFormatHint": "Required format HH:mm with two digits for hours and minutes (e.g. 08:15, not 8:15).",
+      "validationTimeFormat": "Invalid format. Use two digits for hours and minutes (e.g. 08:15, not 8:15).",
+      "pendingApi": "Saving the template will be available once the backend exposes the materialization endpoint.",
+      "submit": "Create weekly schedule template",
+      "validate": "Check form",
+      "submitHint": "Saving will be enabled once the backend exposes the endpoint (CURSO-71)."
     },
     "placeholder": "The weekly schedule builder will be configured here.",
     "selectGroup": "Group (no slots yet)",
