@@ -107,8 +107,11 @@
   "weekScheduleBuilder": {
     "title": "Stundenplan anlegen",
     "modeLabel": "Erstellungsmodus",
-    "modeSimple": "Einzelne Einheit",
+    "modeCreate": "Vorlage anlegen",
     "modeGrid": "Wochenraster",
+    "create": {
+      "pending": "Demnächst: Formular zur Erstellung einer Wochenstundenplan-Vorlage pro Klasse."
+    },
     "placeholder": "Hier wird der Editor für Wochenstundenpläne eingerichtet.",
     "selectGroup": "Gruppe (noch keine Einheiten)",
     "selectTeacher": "Lehrer",

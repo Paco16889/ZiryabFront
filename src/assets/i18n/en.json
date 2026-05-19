@@ -107,8 +107,11 @@
   "weekScheduleBuilder": {
     "title": "Create schedule",
     "modeLabel": "Creation mode",
-    "modeSimple": "One slot at a time",
+    "modeCreate": "Create template",
     "modeGrid": "Weekly grid",
+    "create": {
+      "pending": "Coming soon: form to create a class weekly schedule template."
+    },
     "placeholder": "The weekly schedule builder will be configured here.",
     "selectGroup": "Group (no slots yet)",
     "selectTeacher": "Teacher",

@@ -108,8 +108,11 @@
   "weekScheduleBuilder": {
     "title": "Crear horario",
     "modeLabel": "Modo de creación",
-    "modeSimple": "Franja a franja",
+    "modeCreate": "Crear plantilla",
     "modeGrid": "Rejilla semanal",
+    "create": {
+      "pending": "Próximamente: formulario para crear la plantilla horaria de una clase."
+    },
     "placeholder": "Aquí se configurará el constructor de franjas horarias.",
     "selectGroup": "Grupo (sin franjas todavía)",
     "selectTeacher": "Profesor",
