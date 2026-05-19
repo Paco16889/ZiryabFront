@@ -7,6 +7,8 @@ import { AppNotification, NotificationsService } from '../../../core/services/no
 import type { UserResponse } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from '../selector-idioma/selector-idioma.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NotificationListComponent } from '../notification/notification-list/notification-list.component';
+import { NotificationToggleService } from '../../../core/services/notification/notification-toggle.service';
 
 /**
  * Componente que representa la cabecera de la aplicación.
@@ -22,7 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, SelectorIdiomaComponent, TranslateModule],
+  imports: [CommonModule, SelectorIdiomaComponent, TranslateModule, NotificationListComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -30,6 +32,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private readonly perfilService = inject(PerfilMenuService);
   private readonly authService = inject(AuthService);
   private readonly notificationsService = inject(NotificationsService);
+  protected readonly notificationToggleService = inject(NotificationToggleService);
+
 
   /** Nombre del usuario autenticado a mostrar en la cabecera. */
   userName = 'Nombre';
@@ -101,8 +105,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleProfileMenu(): void {
+    if (this.notificationToggleService.isOpen()) {
+      this.notificationToggleService.toggle();
+    }
     this.perfilService.toggleMenu();
   }
+
+  toggleNotifications(): void {
+    if (this.perfilService.isMenuOpen()) {
+      this.perfilService.closeMenu();
+    }
+    this.notificationToggleService.toggle();
+  }
+
 
   private showToast(notification: AppNotification): void {
     this.toastNotification = notification;

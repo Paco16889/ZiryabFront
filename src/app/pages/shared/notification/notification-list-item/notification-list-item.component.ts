@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
-import { Notification, NotificationEntityType } from '../../../../core/models/notification';
-import { NotificationAction } from '../../../../core/models/notification';
+import { Notification } from '../../../../core/models/notification';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-notification-list-item',
   imports: [DatePipe],
@@ -9,12 +9,11 @@ import { DatePipe } from '@angular/common';
   styleUrl: './notification-list-item.component.scss'
 })
 export class NotificationListItemComponent {
-    notification = input.required<Notification>();
-    
-  notificationClick = output<{ entityId: number; entityType: NotificationEntityType }>();
+  notification = input.required<Notification>();
+  notificationClick = output<number>();
 
   protected onItemClick(): void {
-    const { entityId, entityType } = this.notification();
-    this.notificationClick.emit({ entityId, entityType });
+    this.notificationClick.emit(this.notification().id);
   }
 }
+

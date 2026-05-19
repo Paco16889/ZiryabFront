@@ -5,18 +5,19 @@
 >
   <div class="flex-1 min-w-0">
     <p class="text-sm font-medium text-gray-900 truncate">
-      {{ notification().title ?? notification().body }}
+      {{ notification().title }}
     </p>
 
-    @if (notification().body && notification().title) {
+    @if (notification().message && notification().title) {
       <p class="text-xs text-gray-500 mt-0.5 truncate">
-        {{ notification().body }}
+        {{ notification().message }}
       </p>
     }
 
    <p class="text-xs text-gray-400 mt-1">
-  {{ notification().scheduledFor | date:'short' }}
+  {{ notification().createdAt | date:'short' }}
 </p>
+
   </div>
 
   @if (!notification().isRead) {
