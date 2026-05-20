@@ -1,27 +1,21 @@
-<!-- subject-list.component.html -->
 <div class="p-4">
-  
-  <!-- Vista: Lista -->
-  @if(!showCreateForm){
+  @if (!showCreateForm) {
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">Class Sessions</h1>
-      <app-boton-create 
-      label="Crear Sesiones"
-      (clickAction)="openCreateForm()"> 
+      <h1 class="text-2xl font-bold">{{ 'lists.classSessions.title' | translate }}</h1>
+      <app-boton-create
+        [label]="'lists.classSessions.createButton' | translate"
+        (clickAction)="openCreateForm()">
       </app-boton-create>
     </div>
-    @for (class of classSessions; track class.id){
-    <app-class-session-list-item [classSession]="class"
-        ></app-class-session-list-item>
+    @for (classSession of classSessions; track classSession.id) {
+      <app-class-session-list-item [classSession]="classSession"></app-class-session-list-item>
     }
-  } 
-   
-    
-
-  <!-- Vista: Formulario -->
-  @if(showCreateForm){
-   <p>
-    aquí tendriamos el create form 
-    pero este irá de otra manera...
-   </p>
   }
+
+  @if (showCreateForm) {
+    <app-class-session-create-form
+      (cancelCreate)="closeCreateForm()"
+      (sessionCreated)="onSessionCreated()">
+    </app-class-session-create-form>
+  }
+</div>

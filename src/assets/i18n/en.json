@@ -70,6 +70,11 @@
       "singular": "group",
       "plural": "groups",
       "title": "Groups"
+    },
+    "classSession": {
+      "singular": "class session",
+      "plural": "class sessions",
+      "title": "Class sessions"
     }
   },
 
@@ -104,7 +109,9 @@
     "teachers": "Teachers",
     "subjects": "Subjects",
     "groups": "Groups",
-    "courses": "Courses"
+    "courses": "Courses",
+    "schedules": "Schedules",
+    "sessions": "Class sessions"
   },
 
   "deleteModal": {
@@ -148,7 +155,33 @@
   "groups": {
     "title": "Groups",
     "createButton": "New Group"
+  },
+  "classSessions": {
+    "title": "Class sessions",
+    "createButton": "New session"
   }
+  },
+  "classSessionCreateForm": {
+    "title": "Create new session",
+    "back": "Back",
+    "date": "Date",
+    "dateRequired": "Date is required",
+    "schedule": "Time slot",
+    "schedulePlaceholder": "Select a time slot",
+    "scheduleRequired": "You must select a time slot",
+    "scheduleLoading": "Loading schedules...",
+    "status": "Status",
+    "statusScheduled": "Scheduled",
+    "statusCompleted": "Completed",
+    "statusCancelled": "Cancelled",
+    "appointments": "Notes",
+    "appointmentsOptional": "(optional)",
+    "appointmentsPlaceholder": "Session notes",
+    "cancel": "Cancel",
+    "submit": "Create session",
+    "creating": "Creating...",
+    "errorSchedules": "Could not load schedules",
+    "errorCreate": "Error creating session"
   },
 
   "LANG": {

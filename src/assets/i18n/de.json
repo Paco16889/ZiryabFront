@@ -70,6 +70,11 @@
       "singular": "Gruppe",
       "plural": "Gruppen",
       "title": "Gruppen"
+    },
+    "classSession": {
+      "singular": "Unterrichtsstunde",
+      "plural": "Unterrichtsstunden",
+      "title": "Unterrichtsstunden"
     }
   },
 
@@ -104,7 +109,9 @@
     "teachers": "Lehrer",
     "subjects": "Fächer",
     "groups": "Gruppen",
-    "courses": "Bildungsgänge"
+    "courses": "Bildungsgänge",
+    "schedules": "Stundenpläne",
+    "sessions": "Unterrichtsstunden"
   },
 
   "deleteModal": {
@@ -148,7 +155,33 @@
   "groups": {
     "title": "Gruppen",
     "createButton": "Neue Gruppe"
+  },
+  "classSessions": {
+    "title": "Unterrichtsstunden",
+    "createButton": "Neue Stunde"
   }
+  },
+  "classSessionCreateForm": {
+    "title": "Neue Stunde anlegen",
+    "back": "Zurück",
+    "date": "Datum",
+    "dateRequired": "Datum ist erforderlich",
+    "schedule": "Zeitfenster",
+    "schedulePlaceholder": "Zeitfenster auswählen",
+    "scheduleRequired": "Bitte ein Zeitfenster auswählen",
+    "scheduleLoading": "Zeitpläne werden geladen...",
+    "status": "Status",
+    "statusScheduled": "Geplant",
+    "statusCompleted": "Abgeschlossen",
+    "statusCancelled": "Abgesagt",
+    "appointments": "Anmerkungen",
+    "appointmentsOptional": "(optional)",
+    "appointmentsPlaceholder": "Anmerkungen zur Stunde",
+    "cancel": "Abbrechen",
+    "submit": "Stunde anlegen",
+    "creating": "Wird erstellt...",
+    "errorSchedules": "Zeitpläne konnten nicht geladen werden",
+    "errorCreate": "Fehler beim Erstellen der Stunde"
   },
 
   "LANG": {

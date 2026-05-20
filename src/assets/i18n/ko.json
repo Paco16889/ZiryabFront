@@ -104,7 +104,9 @@
     "teachers": "교사",
     "subjects": "과목",
     "groups": "그룹",
-    "courses": "과정"
+    "courses": "과정",
+    "schedules": "시간표",
+    "sessions": "수업 세션"
   },
 
   "deleteModal": {

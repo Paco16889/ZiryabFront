@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
-import { ClassSession, ClassSessionUpdateRequest } from '../../../../../core/models/class-sessions';
+import {
+  ClassSession,
+  ClassSessionDeleteResponse,
+  ClassSessionUpdateRequest,
+  ClassSessionUpdateResponse,
+} from '../../../../../core/models/class-sessions';
 import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
@@ -55,13 +60,18 @@ export class ClassSessionListItemComponent {
    * ATENCIÓN: los editFields y métodos del servicio están copiados de AsignaturaListItemComponent
    * y no corresponden a ClassSession, pendiente de corregir.
    */
-  get classSessionConfig(): ListItemConfig<ClassSession> {
+  get classSessionConfig(): ListItemConfig<
+    ClassSession,
+    ClassSessionUpdateRequest,
+    ClassSessionUpdateResponse,
+    ClassSessionDeleteResponse
+  > {
     return {
       fields: [
-        { 
-          key: 'name',
-          className: 'font-medium'
-        }
+        {
+          key: 'date',
+          className: 'font-medium',
+        },
       ],
       actions: {
         edit: true,

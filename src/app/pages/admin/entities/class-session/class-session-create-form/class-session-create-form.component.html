@@ -1,0 +1,105 @@
+<div class="max-w-2xl mx-auto">
+  <div class="flex items-center mb-6">
+    <button
+      type="button"
+      (click)="onCancel()"
+      class="mr-4 text-gray-600 hover:text-gray-900">
+      ← {{ 'classSessionCreateForm.back' | translate }}
+    </button>
+    <h1 class="text-2xl font-bold">{{ 'classSessionCreateForm.title' | translate }}</h1>
+  </div>
+
+  <div class="bg-white p-6 rounded-lg shadow">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">
+          {{ 'classSessionCreateForm.date' | translate }}
+        </label>
+        <input
+          formControlName="date"
+          type="date"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" />
+        @if (createForm.get('date')?.invalid && createForm.get('date')?.touched) {
+          <span class="text-red-500 text-sm mt-1 block">
+            {{ 'classSessionCreateForm.dateRequired' | translate }}
+          </span>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">
+          {{ 'classSessionCreateForm.schedule' | translate }}
+        </label>
+        @if (isLoadingSchedules) {
+          <div class="text-gray-500">{{ 'classSessionCreateForm.scheduleLoading' | translate }}</div>
+        }
+        @if (!isLoadingSchedules) {
+          <select
+            formControlName="idSchedule"
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+            <option value="">{{ 'classSessionCreateForm.schedulePlaceholder' | translate }}</option>
+            @for (schedule of schedules; track schedule.id) {
+              <option [ngValue]="schedule.id">{{ getScheduleLabel(schedule) }}</option>
+            }
+          </select>
+        }
+        @if (createForm.get('idSchedule')?.invalid && createForm.get('idSchedule')?.touched) {
+          <span class="text-red-500 text-sm mt-1 block">
+            {{ 'classSessionCreateForm.scheduleRequired' | translate }}
+          </span>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">
+          {{ 'classSessionCreateForm.status' | translate }}
+        </label>
+        <select
+          formControlName="status"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+          @for (option of statusOptions; track option.value) {
+            <option [value]="option.value">{{ option.labelKey | translate }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">
+          {{ 'classSessionCreateForm.appointments' | translate }}
+          <span class="text-gray-400 text-sm">{{ 'classSessionCreateForm.appointmentsOptional' | translate }}</span>
+        </label>
+        <textarea
+          formControlName="appointments"
+          rows="3"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+          [placeholder]="'classSessionCreateForm.appointmentsPlaceholder' | translate"></textarea>
+      </div>
+
+      @if (errorMessage) {
+        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          (click)="onCancel()"
+          [disabled]="isCreating"
+          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">
+          {{ 'classSessionCreateForm.cancel' | translate }}
+        </button>
+        <button
+          type="submit"
+          [disabled]="createForm.invalid || isCreating || isLoadingSchedules"
+          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed">
+          {{
+            isCreating
+              ? ('classSessionCreateForm.creating' | translate)
+              : ('classSessionCreateForm.submit' | translate)
+          }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

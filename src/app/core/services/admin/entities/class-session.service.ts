@@ -71,7 +71,12 @@ export class ClassSessionService {
    * @returns Observable con la respuesta que contiene la sesión creada
    */
   createSession(data: ClassSessionCreateRequest): Observable<ClassSessionCreateResponse> {
-    return this.http.post<ClassSessionCreateResponse>(this.apiUrl, data).pipe(
+    const { appointments, ...rest } = data;
+    const body = {
+      ...rest,
+      ...(appointments ? { apointments: appointments } : {}),
+    };
+    return this.http.post<ClassSessionCreateResponse>(this.apiUrl, body).pipe(
       catchError((error) => {
         console.error('Error creating session:', error);
         throw error;

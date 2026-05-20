@@ -71,6 +71,11 @@
       "singular": "grupo",
       "plural": "grupos",
       "title": "Grupos"
+    },
+    "classSession": {
+      "singular": "sesión de clase",
+      "plural": "sesiones de clase",
+      "title": "Sesiones de clase"
     }
   },
 
@@ -105,7 +110,9 @@
     "teachers": "Profesores",
     "subjects": "Asignaturas",
     "groups": "Grupos",
-    "courses": "Ciclos"
+    "courses": "Ciclos",
+    "schedules": "Horarios",
+    "sessions": "Sesiones de clase"
   },
 
   "deleteModal": {
@@ -149,7 +156,33 @@
     "groups": {
       "title": "Grupos",
       "createButton": "Nuevo Grupo"
+    },
+    "classSessions": {
+      "title": "Sesiones de clase",
+      "createButton": "Nueva sesión"
     }
+  },
+  "classSessionCreateForm": {
+    "title": "Crear nueva sesión",
+    "back": "Volver",
+    "date": "Fecha",
+    "dateRequired": "La fecha es obligatoria",
+    "schedule": "Franja horaria",
+    "schedulePlaceholder": "Selecciona una franja horaria",
+    "scheduleRequired": "Debes seleccionar una franja horaria",
+    "scheduleLoading": "Cargando horarios...",
+    "status": "Estado",
+    "statusScheduled": "Programada",
+    "statusCompleted": "Completada",
+    "statusCancelled": "Cancelada",
+    "appointments": "Observaciones",
+    "appointmentsOptional": "(opcional)",
+    "appointmentsPlaceholder": "Anotaciones sobre la sesión",
+    "cancel": "Cancelar",
+    "submit": "Crear sesión",
+    "creating": "Creando...",
+    "errorSchedules": "No se pudieron cargar los horarios",
+    "errorCreate": "Error al crear la sesión"
   },
   "LANG": {
     "ES": "Español",
