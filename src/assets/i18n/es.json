@@ -506,6 +506,185 @@
     "subtitle": "Eventos y fechas importantes del centro",
     "iframeTitle": "Calendario de Google"
   },
+  "studentPages": {
+    "common": {
+      "access": "Acceder"
+    },
+    "classes": {
+      "title": "Asignaturas",
+      "loading": "Cargando tus clases...",
+      "empty": "No estás matriculado en ninguna asignatura.",
+      "subjectFallback": "Asignatura",
+      "levelLabel": "Grado/Curso",
+      "generalGroup": "General",
+      "teacherLabel": "Profesor",
+      "loadingTeacher": "Consultando..."
+    },
+    "dashboard": {
+      "title": "Mi Espacio",
+      "subtitle": "¿Qué te gustaría hacer hoy?",
+      "cards": {
+        "classes": {
+          "title": "Clases",
+          "description": "Accede a tus asignaturas"
+        },
+        "management": {
+          "title": "Gestión",
+          "description": "Administra tu expediente"
+        }
+      }
+    },
+    "management": {
+      "title": "Gestión Académica",
+      "subtitle": "Administra tu perfil y actividades",
+      "cards": {
+        "record": {
+          "title": "Ficha Usuario",
+          "cta": "Ver Perfil"
+        },
+        "schedule": {
+          "title": "Horario",
+          "cta": "Consultar"
+        },
+        "calendar": {
+          "title": "Calendario",
+          "cta": "Ver Eventos"
+        },
+        "board": {
+          "title": "Tablón",
+          "cta": "Ver Avisos"
+        }
+      }
+    },
+    "record": {
+      "title": "Ficha de Usuario",
+      "subtitle": "Aquí puedes consultar tu historial de faltas de asistencia.",
+      "empty": "No tienes faltas registradas en el servidor.",
+      "unknownSubject": "Desconocida",
+      "attendanceLabel": "Asistencia",
+      "justificationLabel": "Justificante",
+      "status": {
+        "absent": "FALTA",
+        "late": "RETRASO",
+        "excused": "JUSTIFICADA"
+      },
+      "justification": {
+        "pending": "PENDIENTE",
+        "rejected": "RECHAZADO",
+        "accepted": "ACEPTADO",
+        "notSent": "NO ENVIADO"
+      }
+    },
+    "justificationModal": {
+      "title": "Justificar Falta",
+      "selectDocument": "Seleccionar documento",
+      "allowedFormats": "PNG, JPG, PDF (Max. 1MB)",
+      "submit": "Subir Justificante",
+      "sending": "Enviando...",
+      "successTitle": "¡Justificante enviado!",
+      "successMessage": "El profesor revisará el documento para justificar tu falta."
+    },
+    "grades": {
+      "title": "Mis Evaluaciones",
+      "subtitle": "Consulta tus notas de cada trimestre",
+      "subjectColumn": "Asignatura",
+      "averageRow": "Nota Media",
+      "loading": "Cargando tus calificaciones...",
+      "empty": "Aún no tienes calificaciones registradas"
+    },
+    "tasks": {
+      "loading": "Cargando tareas...",
+      "empty": "No tienes tareas asignadas.",
+      "noGroup": "Sin grupo",
+      "item": {
+        "due": "Entrega",
+        "submitted": "Entregada",
+        "score": "Nota"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "submitted": "Entregada",
+        "late": "Entregada tarde",
+        "lateShort": "Retraso",
+        "graded": "Calificada",
+        "notSubmitted": "No entregada",
+        "pendingUpper": "PENDIENTE",
+        "submittedUpper": "ENTREGADA",
+        "gradedUpper": "CALIFICADA",
+        "expiredUpper": "VENCIDA"
+      }
+    },
+    "taskDetail": {
+      "errorTitle": "Problema detectado",
+      "deadline": "Fecha Límite",
+      "noDescription": "El profesor no ha proporcionado una descripción.",
+      "supportMaterial": "Material de Consulta",
+      "openDownload": "Ver / Descargar",
+      "teacherEvaluation": "Evaluación del Profesor",
+      "finalScore": "Nota Final",
+      "comments": "Comentarios Adjuntos",
+      "noComments": "Tu calificación ha sido procesada sin comentarios.",
+      "deliveryArea": "Área de Entrega",
+      "importantNotice": "Aviso Importante",
+      "deadlinePassed": "Has superado la fecha límite ({{date}}). Si haces una entrega quedará marcada como",
+      "lateTag": "Fuera de Plazo (LATE)",
+      "sentOk": "Enviado correctamente",
+      "savedAt": "Tu entrega ha sido guardada satisfactoriamente en nuestras bases de datos el",
+      "deleteDelivery": "Borrar Entrega",
+      "openOriginalLink": "Abrir Link Original",
+      "dropzone": "Dropzone",
+      "uploadLink": "Subir enlace",
+      "dragHint": "Haz click o arrastra aquí tu documento",
+      "zipHint": "Si tu entrega es una carpeta con varios archivos, no la aceptaremos directamente. Debes crear un .ZIP comprimido con la misma e insertarlo aquí.",
+      "maxSize": "Máximo de Capacidad de Peso: 50MB",
+      "localUploadOk": "Carga local asegurada",
+      "linkResourceLabel": "Vincular Recurso a la URL Web",
+      "linkPlaceholder": "Ej: https://docs.google.com/document/d/mI-trabajO1/",
+      "invalidUrl": "Por favor, introduce un enlace web válido que empiece por http:// o https://",
+      "processing": "Procesando Archivo/Enlace...",
+      "confirmSend": "Confirmar Envío al Servidor",
+      "confirmDeleteDelivery": "¿Estás seguro de que quieres borrar tu entrega actual? Tendrás que subirla de nuevo.",
+      "success": {
+        "deliveryRegistered": "La carga y entrega de tu tarea fue registrada con éxito."
+      },
+      "errors": {
+        "missingTaskId": "ID de tarea no proporcionado.",
+        "cannotLoadTask": "No se pudo cargar la tarea.",
+        "loadTaskDetail": "Error al cargar la tarea detallada.",
+        "foldersNotAllowedZip": "Las carpetas enteras no están permitidas. Por favor, comprímela a .ZIP haciendo \"Click Derecho -> Comprimir\".",
+        "folderBlockedSecurity": "Las carpetas enteras no están permitidas por seguridad. Por favor, comprímela a un solo archivo .ZIP",
+        "maxFileSize": "El archivo supera los 50 MB de peso máximo permitido.",
+        "urlRequired": "Debes proveer una URL.",
+        "fileRequired": "Debes seleccionar o arrastrar un archivo / ZIP.",
+        "serverNoLink": "El servidor procesó el archivo, pero no devolvió un enlace válido.",
+        "uploadServerError": "Hubo un error internamente al subir el archivo al servidor.",
+        "deliveryNotifyFailed": "Tu archivo fue subido pero falló la notificación de entrega a la BBDD.",
+        "deleteDeliveryError": "Error al borrar la entrega."
+      }
+    },
+    "subject": {
+      "idLabel": "ID"
+    },
+    "syllabus": {
+      "title": "Temario",
+      "subtitle": "Material de clase, documentos de la unidad, ejercicios y tareas.",
+      "items": "Ítems",
+      "due": "Vence",
+      "emptyTitle": "El temario está vacío",
+      "emptyDescription": "Tu profesor todavía no ha subido material ni ha activado tareas para este bloque.",
+      "blocks": {
+        "theory": "Material Teórico y Documentos",
+        "exam": "Exámenes y Pruebas",
+        "project": "Proyectos Evaluables",
+        "practice": "Ejercicios Prácticos",
+        "homework": "Deberes Generales"
+      },
+      "errors": {
+        "cannotFetchTasks": "No se pudieron obtener las tareas.",
+        "serverTasksError": "Error del servidor al obtener tareas."
+      }
+    }
+  },
   "INITIAL": "Evaluación Inicial",
   "FIRST_TRIMESTER": "1º Trimestre",
   "SECOND_TRIMESTER": "2º Trimestre",

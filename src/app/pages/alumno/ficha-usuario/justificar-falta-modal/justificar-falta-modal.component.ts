@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, signal, inject } from '@angular
 import { DatePipe } from '@angular/common';
 import { AssistanceItem } from '../../../../core/models/assistance';
 import { AssistanceService } from '../../../../core/services/alumno/assistance.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente de modal para que el alumno pueda justificar una falta de asistencia.
@@ -10,7 +11,7 @@ import { AssistanceService } from '../../../../core/services/alumno/assistance.s
 @Component({
   selector: 'app-justificar-falta-modal',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, TranslateModule],
   templateUrl: './justificar-falta-modal.component.html'
 })
 export class JustificarFaltaModalComponent {

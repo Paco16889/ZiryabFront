@@ -7,6 +7,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
 import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
 import { StudentSubjectEnrollmentRow } from '../../../core/models/teacher/subjectforteacher';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface StudentSubjectCardSource {
   subject: { id: number; name: string };
@@ -22,7 +23,7 @@ interface StudentSubjectCardSource {
 @Component({
   selector: 'app-clases',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent, CardGridComponent],
+  imports: [CommonModule, BotonAtrasComponent, CardGridComponent, TranslateModule],
   templateUrl: './clases.component.html',
   styleUrls: ['./clases.component.scss'] 
 })
@@ -40,6 +41,7 @@ export class ClasesComponent implements OnInit {
    * Servicio de autenticación para obtener los datos del usuario actual.
    */
   private authService = inject(AuthService); 
+  private translate = inject(TranslateService);
 
     /**
    * Listado de asignaturas matriculadas del estudiante mapeadas al formato CardItem.
@@ -137,12 +139,12 @@ export class ClasesComponent implements OnInit {
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
       id: item.subject?.id || 0,
-      title: item.subject?.name || 'Asignatura',
-      subtitleTopLabel: 'Grado/Curso',
-      subtitleTopValue: item.group?.name || 'General',
-      subtitleBottomLabel: 'Profesor',
-      subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || 'Consultando...',
-      actionLabel: 'Acceder'
+      title: item.subject?.name || this.translate.instant('studentPages.classes.subjectFallback'),
+      subtitleTopLabel: this.translate.instant('studentPages.classes.levelLabel'),
+      subtitleTopValue: item.group?.name || this.translate.instant('studentPages.classes.generalGroup'),
+      subtitleBottomLabel: this.translate.instant('studentPages.classes.teacherLabel'),
+      subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || this.translate.instant('studentPages.classes.loadingTeacher'),
+      actionLabel: this.translate.instant('studentPages.common.access')
     }));
     this.asignaturasCards.set(cards);
   }

@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="mb-10 text-center relative">
       <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">
-        Mis Evaluaciones
+        {{ 'studentPages.grades.title' | translate }}
       </h1>
-      <p class="text-gray-500 text-lg font-medium">Consulta tus notas de cada trimestre</p>
+      <p class="text-gray-500 text-lg font-medium">{{ 'studentPages.grades.subtitle' | translate }}</p>
     </div>
 
     <!-- Error Message -->
@@ -20,7 +20,7 @@
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-slate-50 border-bottom border-slate-100">
-              <th class="p-4 font-semibold text-slate-700 border-r border-slate-100 sticky left-0 bg-slate-50 z-10">Asignatura</th>
+              <th class="p-4 font-semibold text-slate-700 border-r border-slate-100 sticky left-0 bg-slate-50 z-10">{{ 'studentPages.grades.subjectColumn' | translate }}</th>
               <th *ngFor="let period of periods" class="p-4 font-semibold text-slate-700 text-center">
                 {{ period | translate }}
               </th>
@@ -48,7 +48,7 @@
           <tfoot>
             <tr class="bg-indigo-50/50 border-t-2 border-indigo-100">
               <td class="p-4 font-bold text-indigo-700 border-r border-slate-100 sticky left-0 bg-indigo-50/50 z-10">
-                Nota Media
+                {{ 'studentPages.grades.averageRow' | translate }}
               </td>
               <td *ngFor="let period of periods" class="p-4 text-center">
                 <span class="text-lg font-extrabold text-indigo-700">
@@ -64,7 +64,7 @@
     <!-- Loading State -->
     <div *ngIf="loading()" class="flex flex-col items-center justify-center py-20">
       <div class="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin mb-4"></div>
-      <p class="text-slate-500 font-medium">Cargando tus calificaciones...</p>
+      <p class="text-slate-500 font-medium">{{ 'studentPages.grades.loading' | translate }}</p>
     </div>
 
     <!-- Empty State -->
@@ -72,7 +72,7 @@
       <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
         <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
       </div>
-      <p class="text-slate-500 font-medium">Aún no tienes calificaciones registradas</p>
+      <p class="text-slate-500 font-medium">{{ 'studentPages.grades.empty' | translate }}</p>
     </div>
 
     <div class="mt-8 flex justify-start pb-8">

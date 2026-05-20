@@ -512,6 +512,185 @@
     "subtitle": "Important school events and dates",
     "iframeTitle": "Google Calendar"
   },
+  "studentPages": {
+    "common": {
+      "access": "Access"
+    },
+    "classes": {
+      "title": "Subjects",
+      "loading": "Loading your classes...",
+      "empty": "You are not enrolled in any subject.",
+      "subjectFallback": "Subject",
+      "levelLabel": "Level/Course",
+      "generalGroup": "General",
+      "teacherLabel": "Teacher",
+      "loadingTeacher": "Loading..."
+    },
+    "dashboard": {
+      "title": "My Space",
+      "subtitle": "What would you like to do today?",
+      "cards": {
+        "classes": {
+          "title": "Classes",
+          "description": "Access your subjects"
+        },
+        "management": {
+          "title": "Management",
+          "description": "Manage your academic record"
+        }
+      }
+    },
+    "management": {
+      "title": "Academic Management",
+      "subtitle": "Manage your profile and activities",
+      "cards": {
+        "record": {
+          "title": "User Record",
+          "cta": "View Profile"
+        },
+        "schedule": {
+          "title": "Timetable",
+          "cta": "Check"
+        },
+        "calendar": {
+          "title": "Calendar",
+          "cta": "View Events"
+        },
+        "board": {
+          "title": "Board",
+          "cta": "View Notices"
+        }
+      }
+    },
+    "record": {
+      "title": "User Record",
+      "subtitle": "Here you can check your attendance absence history.",
+      "empty": "You have no absences registered on the server.",
+      "unknownSubject": "Unknown",
+      "attendanceLabel": "Attendance",
+      "justificationLabel": "Justification",
+      "status": {
+        "absent": "ABSENT",
+        "late": "LATE",
+        "excused": "EXCUSED"
+      },
+      "justification": {
+        "pending": "PENDING",
+        "rejected": "REJECTED",
+        "accepted": "ACCEPTED",
+        "notSent": "NOT SENT"
+      }
+    },
+    "justificationModal": {
+      "title": "Justify Absence",
+      "selectDocument": "Select document",
+      "allowedFormats": "PNG, JPG, PDF (Max. 1MB)",
+      "submit": "Upload Justification",
+      "sending": "Sending...",
+      "successTitle": "Justification sent!",
+      "successMessage": "The teacher will review the document to justify your absence."
+    },
+    "grades": {
+      "title": "My Evaluations",
+      "subtitle": "Check your grades by trimester",
+      "subjectColumn": "Subject",
+      "averageRow": "Average Grade",
+      "loading": "Loading your grades...",
+      "empty": "You do not have registered grades yet"
+    },
+    "tasks": {
+      "loading": "Loading tasks...",
+      "empty": "You have no assigned tasks.",
+      "noGroup": "No group",
+      "item": {
+        "due": "Due",
+        "submitted": "Submitted",
+        "score": "Score"
+      },
+      "status": {
+        "pending": "Pending",
+        "submitted": "Submitted",
+        "late": "Submitted late",
+        "lateShort": "Late",
+        "graded": "Graded",
+        "notSubmitted": "Not submitted",
+        "pendingUpper": "PENDING",
+        "submittedUpper": "SUBMITTED",
+        "gradedUpper": "GRADED",
+        "expiredUpper": "EXPIRED"
+      }
+    },
+    "taskDetail": {
+      "errorTitle": "Issue detected",
+      "deadline": "Deadline",
+      "noDescription": "The teacher did not provide a description.",
+      "supportMaterial": "Support Material",
+      "openDownload": "View / Download",
+      "teacherEvaluation": "Teacher Evaluation",
+      "finalScore": "Final Score",
+      "comments": "Attached Comments",
+      "noComments": "Your grade was processed without comments.",
+      "deliveryArea": "Submission Area",
+      "importantNotice": "Important Notice",
+      "deadlinePassed": "You have passed the deadline ({{date}}). If you submit now, it will be marked as",
+      "lateTag": "Late Submission (LATE)",
+      "sentOk": "Sent successfully",
+      "savedAt": "Your submission has been successfully saved in our database on",
+      "deleteDelivery": "Delete Submission",
+      "openOriginalLink": "Open Original Link",
+      "dropzone": "Dropzone",
+      "uploadLink": "Upload link",
+      "dragHint": "Click or drag your document here",
+      "zipHint": "If your submission is a folder with several files, we cannot accept it directly. You must create a compressed .ZIP and upload it here.",
+      "maxSize": "Maximum file size: 50MB",
+      "localUploadOk": "Local upload secured",
+      "linkResourceLabel": "Link Web Resource URL",
+      "linkPlaceholder": "Ex: https://docs.google.com/document/d/my-work1/",
+      "invalidUrl": "Please enter a valid web link that starts with http:// or https://",
+      "processing": "Processing file/link...",
+      "confirmSend": "Confirm Server Submission",
+      "confirmDeleteDelivery": "Are you sure you want to delete your current submission? You will need to upload it again.",
+      "success": {
+        "deliveryRegistered": "Your task upload and submission were successfully registered."
+      },
+      "errors": {
+        "missingTaskId": "Task ID not provided.",
+        "cannotLoadTask": "Could not load the task.",
+        "loadTaskDetail": "Error loading task detail.",
+        "foldersNotAllowedZip": "Entire folders are not allowed. Please compress it to .ZIP by right-clicking and selecting Compress.",
+        "folderBlockedSecurity": "Entire folders are not allowed for security reasons. Please compress it to a single .ZIP file.",
+        "maxFileSize": "The file exceeds the maximum allowed size of 50 MB.",
+        "urlRequired": "You must provide a URL.",
+        "fileRequired": "You must select or drag a file / ZIP.",
+        "serverNoLink": "The server processed the file but did not return a valid link.",
+        "uploadServerError": "There was an internal error uploading the file to the server.",
+        "deliveryNotifyFailed": "Your file was uploaded but delivery notification to the database failed.",
+        "deleteDeliveryError": "Error deleting submission."
+      }
+    },
+    "subject": {
+      "idLabel": "ID"
+    },
+    "syllabus": {
+      "title": "Syllabus",
+      "subtitle": "Class material, unit documents, exercises and tasks.",
+      "items": "Items",
+      "due": "Due",
+      "emptyTitle": "The syllabus is empty",
+      "emptyDescription": "Your teacher has not uploaded material or activated tasks for this block yet.",
+      "blocks": {
+        "theory": "Theory Material and Documents",
+        "exam": "Exams and Tests",
+        "project": "Evaluable Projects",
+        "practice": "Practical Exercises",
+        "homework": "General Homework"
+      },
+      "errors": {
+        "cannotFetchTasks": "Could not fetch tasks.",
+        "serverTasksError": "Server error while fetching tasks."
+      }
+    }
+  },
   "INITIAL": "Initial Evaluation",
   "FIRST_TRIMESTER": "1st Trimester",
   "SECOND_TRIMESTER": "2nd Trimester",

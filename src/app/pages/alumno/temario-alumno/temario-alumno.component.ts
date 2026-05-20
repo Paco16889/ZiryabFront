@@ -5,6 +5,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 import { StudentTaskService } from '../../../core/services/alumno/student-task.service';
 import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask';
 import { TaskType } from '../../../core/models/task';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Interfaz que define la estructura agrupada de un bloque tem?tico en el acorde?n del Temario.
@@ -29,13 +30,14 @@ interface BloqueTemario {
 @Component({
   selector: 'app-temario-alumno',
   standalone: true,
-  imports: [CommonModule, RouterModule, BotonAtrasComponent],
+  imports: [CommonModule, RouterModule, BotonAtrasComponent, TranslateModule],
   templateUrl: './temario-alumno.component.html',
   styleUrls: ['./temario-alumno.component.scss']
 })
 export class TemarioAlumnoComponent implements OnInit {
   private studentTaskService = inject(StudentTaskService);
   private route = inject(ActivatedRoute);
+  private translate = inject(TranslateService);
 
   loading = signal<boolean>(true);
   error = signal<string>('');
@@ -63,12 +65,12 @@ export class TemarioAlumnoComponent implements OnInit {
           );
           this.groupTasksByType(filteredTasks);
         } else {
-          this.error.set('No se pudieron obtener las tareas.');
+          this.error.set(this.translate.instant('studentPages.syllabus.errors.cannotFetchTasks'));
         }
         this.loading.set(false);
       },
       error: (err) => {
-        this.error.set(err.error?.message || 'Error del servidor al obtener tareas.');
+        this.error.set(err.error?.message || this.translate.instant('studentPages.syllabus.errors.serverTasksError'));
         this.loading.set(false);
       }
     });
@@ -81,11 +83,11 @@ export class TemarioAlumnoComponent implements OnInit {
    */
   groupTasksByType(tasks: StudentTask[]) {
     const configBloques = [
-      { tipo: TaskType.THEORY, titulo: 'Material Te?rico y Documentos', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
-      { tipo: TaskType.EXAM, titulo: 'Ex?menes y Pruebas', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
-      { tipo: TaskType.PROJECT, titulo: 'Proyectos Evaluables', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
-      { tipo: TaskType.PRACTICE, titulo: 'Ejercicios Pr?cticos', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
-      { tipo: TaskType.HOMEWORK, titulo: 'Deberes Generales', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+      { tipo: TaskType.THEORY, titulo: this.translate.instant('studentPages.syllabus.blocks.theory'), icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+      { tipo: TaskType.EXAM, titulo: this.translate.instant('studentPages.syllabus.blocks.exam'), icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+      { tipo: TaskType.PROJECT, titulo: this.translate.instant('studentPages.syllabus.blocks.project'), icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+      { tipo: TaskType.PRACTICE, titulo: this.translate.instant('studentPages.syllabus.blocks.practice'), icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+      { tipo: TaskType.HOMEWORK, titulo: this.translate.instant('studentPages.syllabus.blocks.homework'), icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
     ];
 
     const nuevosBloques: BloqueTemario[] = [];

@@ -5,6 +5,7 @@ import { JustificarFaltaModalComponent } from './justificar-falta-modal/justific
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { AssistanceItem } from '../../../core/models/assistance';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que muestra la ficha de asistencia del estudiante.
@@ -13,7 +14,7 @@ import { AssistanceItem } from '../../../core/models/assistance';
 @Component({
   selector: 'app-ficha-usuario',
   standalone: true,
-  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent],
+  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent, TranslateModule],
   templateUrl: './ficha-usuario.component.html',
   styleUrl: './ficha-usuario.component.scss'
 })

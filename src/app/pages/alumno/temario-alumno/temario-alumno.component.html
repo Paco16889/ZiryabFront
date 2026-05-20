@@ -6,9 +6,9 @@
 
   <div class="text-center mb-10 relative">
     <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2 pb-2 leading-normal capitalize">
-      Temario: {{ claseEnCurso }}
+      {{ 'studentPages.syllabus.title' | translate }}: {{ claseEnCurso }}
     </h1>
-    <p class="text-slate-500">Material de clase, documentos de la unidad, ejercicios y tareas.</p>
+    <p class="text-slate-500">{{ 'studentPages.syllabus.subtitle' | translate }}</p>
   </div>
 
   @if (loading()) {
@@ -43,7 +43,7 @@
                             {{ bloque.titulo }}
                         </h3>
                         <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md mt-1 bg-slate-100 text-slate-500">
-                            {{ bloque.tareas.length }} Ítems
+                            {{ bloque.tareas.length }} {{ 'studentPages.syllabus.items' | translate }}
                         </span>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                               {{ st.task.title }}
                           </span>
                           <span class="text-xs text-slate-500 mt-1 line-clamp-1">
-                              Vence: {{ st.task.dueDate | date:'medium' }}
+                              {{ 'studentPages.syllabus.due' | translate }}: {{ st.task.dueDate | date:'medium' }}
                           </span>
                         </div>
 
@@ -79,24 +79,24 @@
                                 @case (SubmissionStatus.PENDING) {
                                     <span class="px-3 py-1 bg-white border border-amber-200 text-amber-700 rounded-full text-xs font-bold shadow-sm shadow-amber-50 flex items-center gap-2">
                                         <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></div>
-                                        PENDIENTE
+                                        {{ 'studentPages.tasks.status.pendingUpper' | translate }}
                                     </span>
                                 }
                                 @case (SubmissionStatus.SUBMITTED) {
                                     <span class="px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-bold shadow-sm shadow-emerald-50 flex items-center gap-1.5">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                        ENTREGADA
+                                        {{ 'studentPages.tasks.status.submittedUpper' | translate }}
                                     </span>
                                 }
                                 @case (SubmissionStatus.GRADED) {
                                     <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-full text-xs font-bold shadow-sm shadow-indigo-50 flex items-center gap-1.5">
                                         <span class="bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded mr-0.5">{{ st.score }}</span>
-                                        CALIFICADA
+                                        {{ 'studentPages.tasks.status.gradedUpper' | translate }}
                                     </span>
                                 }
                                 @default {
                                     <span class="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-full text-xs font-bold flex items-center gap-1.5 line-through decoration-slate-400 opacity-80">
-                                        VENCIDA
+                                        {{ 'studentPages.tasks.status.expiredUpper' | translate }}
                                     </span>
                                 }
                             }
@@ -114,8 +114,8 @@
             <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
             </div>
-            <h3 class="text-xl font-bold text-slate-700 mb-1">El temario está vacío</h3>
-            <p class="text-slate-500">Tu profesor todavía no ha subido material ni ha activado tareas para este bloque.</p>
+            <h3 class="text-xl font-bold text-slate-700 mb-1">{{ 'studentPages.syllabus.emptyTitle' | translate }}</h3>
+            <p class="text-slate-500">{{ 'studentPages.syllabus.emptyDescription' | translate }}</p>
             </div>
         }
     </div>

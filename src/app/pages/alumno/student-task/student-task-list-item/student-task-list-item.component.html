@@ -17,14 +17,14 @@
 
   <div class="flex flex-wrap gap-3 text-xs text-gray-500">
 
-    <span>📅 Entrega: {{ studentTask.task.dueDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+    <span>📅 {{ 'studentPages.tasks.item.due' | translate }}: {{ studentTask.task.dueDate | date: 'dd/MM/yyyy HH:mm' }}</span>
 
     @if (studentTask.submissionDate) {
-      <span>✅ Entregada: {{ studentTask.submissionDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <span>✅ {{ 'studentPages.tasks.item.submitted' | translate }}: {{ studentTask.submissionDate | date: 'dd/MM/yyyy HH:mm' }}</span>
     }
 
     @if (studentTask.score !== null) {
-      <span>⭐ Nota: {{ studentTask.score }}</span>
+      <span>⭐ {{ 'studentPages.tasks.item.score' | translate }}: {{ studentTask.score }}</span>
     }
 
     @if (studentTask.feedback) {

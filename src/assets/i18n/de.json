@@ -510,6 +510,185 @@
     "subtitle": "Wichtige Schultermine und Ereignisse",
     "iframeTitle": "Google Kalender"
   },
+  "studentPages": {
+    "common": {
+      "access": "Zugreifen"
+    },
+    "classes": {
+      "title": "Faecher",
+      "loading": "Deine Kurse werden geladen...",
+      "empty": "Du bist in keinem Fach eingeschrieben.",
+      "subjectFallback": "Fach",
+      "levelLabel": "Stufe/Kurs",
+      "generalGroup": "Allgemein",
+      "teacherLabel": "Lehrer",
+      "loadingTeacher": "Wird geladen..."
+    },
+    "dashboard": {
+      "title": "Mein Bereich",
+      "subtitle": "Was moechtest du heute tun?",
+      "cards": {
+        "classes": {
+          "title": "Klassen",
+          "description": "Greife auf deine Faecher zu"
+        },
+        "management": {
+          "title": "Verwaltung",
+          "description": "Verwalte deine Akte"
+        }
+      }
+    },
+    "management": {
+      "title": "Akademische Verwaltung",
+      "subtitle": "Verwalte dein Profil und deine Aktivitaeten",
+      "cards": {
+        "record": {
+          "title": "Benutzerakte",
+          "cta": "Profil ansehen"
+        },
+        "schedule": {
+          "title": "Stundenplan",
+          "cta": "Ansehen"
+        },
+        "calendar": {
+          "title": "Kalender",
+          "cta": "Ereignisse ansehen"
+        },
+        "board": {
+          "title": "Schwarzes Brett",
+          "cta": "Hinweise ansehen"
+        }
+      }
+    },
+    "record": {
+      "title": "Benutzerakte",
+      "subtitle": "Hier kannst du deinen Fehlzeitenverlauf sehen.",
+      "empty": "Du hast keine registrierten Fehlzeiten.",
+      "unknownSubject": "Unbekannt",
+      "attendanceLabel": "Anwesenheit",
+      "justificationLabel": "Beleg",
+      "status": {
+        "absent": "FEHLT",
+        "late": "VERSPAETET",
+        "excused": "ENTSCHULDIGT"
+      },
+      "justification": {
+        "pending": "AUSSTEHEND",
+        "rejected": "ABGELEHNT",
+        "accepted": "AKZEPTIERT",
+        "notSent": "NICHT GESENDET"
+      }
+    },
+    "justificationModal": {
+      "title": "Fehlzeit entschuldigen",
+      "selectDocument": "Dokument auswaehlen",
+      "allowedFormats": "PNG, JPG, PDF (Max. 1MB)",
+      "submit": "Beleg hochladen",
+      "sending": "Wird gesendet...",
+      "successTitle": "Beleg gesendet!",
+      "successMessage": "Der Lehrer prueft das Dokument zur Entschuldigung."
+    },
+    "grades": {
+      "title": "Meine Bewertungen",
+      "subtitle": "Sieh dir deine Noten pro Trimester an",
+      "subjectColumn": "Fach",
+      "averageRow": "Durchschnittsnote",
+      "loading": "Deine Noten werden geladen...",
+      "empty": "Du hast noch keine Noten"
+    },
+    "tasks": {
+      "loading": "Aufgaben werden geladen...",
+      "empty": "Du hast keine zugewiesenen Aufgaben.",
+      "noGroup": "Keine Gruppe",
+      "item": {
+        "due": "Abgabe",
+        "submitted": "Eingereicht",
+        "score": "Note"
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "submitted": "Eingereicht",
+        "late": "Verspaetet eingereicht",
+        "lateShort": "Verspaetet",
+        "graded": "Bewertet",
+        "notSubmitted": "Nicht eingereicht",
+        "pendingUpper": "AUSSTEHEND",
+        "submittedUpper": "EINGEREICHT",
+        "gradedUpper": "BEWERTET",
+        "expiredUpper": "ABGELAUFEN"
+      }
+    },
+    "taskDetail": {
+      "errorTitle": "Problem erkannt",
+      "deadline": "Abgabefrist",
+      "noDescription": "Der Lehrer hat keine Beschreibung angegeben.",
+      "supportMaterial": "Unterstuetzungsmaterial",
+      "openDownload": "Ansehen / Herunterladen",
+      "teacherEvaluation": "Bewertung des Lehrers",
+      "finalScore": "Endnote",
+      "comments": "Angehaengte Kommentare",
+      "noComments": "Deine Note wurde ohne Kommentare verarbeitet.",
+      "deliveryArea": "Abgabebereich",
+      "importantNotice": "Wichtiger Hinweis",
+      "deadlinePassed": "Du hast die Frist ueberschritten ({{date}}). Bei Abgabe wird markiert als",
+      "lateTag": "Verspaetet (LATE)",
+      "sentOk": "Erfolgreich gesendet",
+      "savedAt": "Deine Abgabe wurde erfolgreich gespeichert am",
+      "deleteDelivery": "Abgabe loeschen",
+      "openOriginalLink": "Original-Link oeffnen",
+      "dropzone": "Dropzone",
+      "uploadLink": "Link hochladen",
+      "dragHint": "Klicke oder ziehe dein Dokument hierher",
+      "zipHint": "Wenn deine Abgabe ein Ordner ist, akzeptieren wir ihn nicht direkt. Erstelle eine .ZIP und lade sie hoch.",
+      "maxSize": "Maximale Dateigroesse: 50MB",
+      "localUploadOk": "Lokaler Upload gesichert",
+      "linkResourceLabel": "Web-Ressource per URL verlinken",
+      "linkPlaceholder": "Bsp: https://docs.google.com/document/d/mein-dokument1/",
+      "invalidUrl": "Bitte gib einen gueltigen Link ein, der mit http:// oder https:// beginnt",
+      "processing": "Datei/Link wird verarbeitet...",
+      "confirmSend": "Senden an Server bestaetigen",
+      "confirmDeleteDelivery": "Moechtest du deine aktuelle Abgabe wirklich loeschen? Du musst sie erneut hochladen.",
+      "success": {
+        "deliveryRegistered": "Deine Abgabe wurde erfolgreich registriert."
+      },
+      "errors": {
+        "missingTaskId": "Aufgaben-ID fehlt.",
+        "cannotLoadTask": "Aufgabe konnte nicht geladen werden.",
+        "loadTaskDetail": "Fehler beim Laden der Aufgaben-Details.",
+        "foldersNotAllowedZip": "Komplette Ordner sind nicht erlaubt. Bitte als .ZIP komprimieren.",
+        "folderBlockedSecurity": "Komplette Ordner sind aus Sicherheitsgruenden nicht erlaubt. Bitte als einzelne .ZIP-Datei komprimieren.",
+        "maxFileSize": "Die Datei uebersteigt 50 MB.",
+        "urlRequired": "Du musst eine URL angeben.",
+        "fileRequired": "Du musst eine Datei / ZIP auswaehlen oder ziehen.",
+        "serverNoLink": "Der Server hat die Datei verarbeitet, aber keinen gueltigen Link zurueckgegeben.",
+        "uploadServerError": "Interner Fehler beim Hochladen der Datei.",
+        "deliveryNotifyFailed": "Datei hochgeladen, aber Benachrichtigung an die Datenbank fehlgeschlagen.",
+        "deleteDeliveryError": "Fehler beim Loeschen der Abgabe."
+      }
+    },
+    "subject": {
+      "idLabel": "ID"
+    },
+    "syllabus": {
+      "title": "Lehrplan",
+      "subtitle": "Klassenmaterial, Dokumente, Uebungen und Aufgaben.",
+      "items": "Elemente",
+      "due": "Faellig",
+      "emptyTitle": "Der Lehrplan ist leer",
+      "emptyDescription": "Dein Lehrer hat noch kein Material oder Aufgaben fuer diesen Block aktiviert.",
+      "blocks": {
+        "theory": "Theoriematerial und Dokumente",
+        "exam": "Pruefungen und Tests",
+        "project": "Bewertbare Projekte",
+        "practice": "Praktische Uebungen",
+        "homework": "Allgemeine Hausaufgaben"
+      },
+      "errors": {
+        "cannotFetchTasks": "Aufgaben konnten nicht geladen werden.",
+        "serverTasksError": "Serverfehler beim Laden der Aufgaben."
+      }
+    }
+  },
   "INITIAL": "Erste Bewertung",
   "FIRST_TRIMESTER": "1. Trimester",
   "SECOND_TRIMESTER": "2. Trimester",
