@@ -155,7 +155,8 @@
 
   "LANG": {
     "ES": "스페인어",
-    "EN": "영어"
+    "EN": "영어",
+    "DE": "독일어"
   },
 
   "footer": {
@@ -400,6 +401,37 @@
         "project": "평가 프로젝트",
         "practice": "실습 과제",
         "homework": "일반 숙제"
+      }
+    }
+  },
+  "sharedPages": {
+    "login": {
+      "platform": "교육 플랫폼"
+    },
+    "cardGrid": {
+      "empty": "표시할 항목이 없습니다."
+    },
+    "header": {
+      "defaultUser": "사용자"
+    },
+    "notifications": {
+      "title": "알림",
+      "markAllRead": "모두 읽음 처리",
+      "empty": "알림이 없습니다"
+    },
+    "about": {
+      "connectionAlt": "연결",
+      "angularAlt": "Angular",
+      "nodeAlt": "Node",
+      "tailwindAlt": "Tailwind",
+      "sqlAlt": "SQL",
+      "firebaseAlt": "Firebase",
+      "stack": {
+        "angular": "Angular 19 + Standalone",
+        "node": "Node.js Express",
+        "tailwind": "Tailwind CSS",
+        "prisma": "Prisma & PostgreSQL",
+        "firebase": "Firebase (Auth/Storage)"
       }
     }
   },

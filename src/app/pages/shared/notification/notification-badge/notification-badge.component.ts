@@ -10,7 +10,7 @@ import { Component, computed, input, output } from '@angular/core';
 export class NotificationBadgeComponent {
      count    = input<number>(0);
   max      = input<number>(99);
-  ariaLabel = input<string>('Notificaciones');
+  ariaLabel = input<string>('');
 
     badgeClick = output<void>();
 

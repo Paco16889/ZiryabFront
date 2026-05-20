@@ -1,6 +1,6 @@
 @if (loading) {
   <div class="flex justify-center items-center py-20 flex-grow">
-    <p class="text-xl text-violet-500 animate-pulse font-medium">{{ loadingMessage }}</p>
+    <p class="text-xl text-violet-500 animate-pulse font-medium">{{ loadingMessage | translate }}</p>
   </div>
 }
 
@@ -54,7 +54,7 @@
           (click)="onAction(item)"
           class="w-full py-2.5 text-white font-bold rounded-xl transition duration-200 shadow-sm hover:shadow-md active:scale-95 {{ theme.btn }}"
         >
-          {{ (item.actionLabel || 'Acceder') | translate }}
+          {{ (item.actionLabel || 'studentPages.common.access') | translate }}
         </button>
         @if (item.secondaryActionLabel) {
           <button
@@ -71,7 +71,7 @@
   } @empty {
     @if (!loading && !errorMessage) {
       <div class="col-span-full text-center py-12 bg-white rounded-3xl border border-slate-200 shadow-sm">
-        <p class="text-xl text-slate-400 font-medium">{{ emptyMessage }}</p>
+        <p class="text-xl text-slate-400 font-medium">{{ emptyMessage | translate }}</p>
       </div>
     }
   }

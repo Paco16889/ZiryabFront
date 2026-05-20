@@ -1,14 +1,14 @@
 
 <div class="flex flex-col  md:flex-row md:gap-3">
-  <button (click)="cambiarIdioma('es')" aria-label="Español">
-    <img src="/assets/flags/es.png" alt="Español" class="w-6 h-6  md:w-8 md:h-8" />
+  <button (click)="cambiarIdioma('es')" [attr.aria-label]="'LANG.ES' | translate">
+    <img src="/assets/flags/es.png" [attr.alt]="'LANG.ES' | translate" class="w-6 h-6  md:w-8 md:h-8" />
   </button>
 
-  <button (click)="cambiarIdioma('en')" aria-label="English">
-    <img class="w-6 h-6 md:w-8 md:h-8" src="/assets/flags/en.png" alt="English" />
+  <button (click)="cambiarIdioma('en')" [attr.aria-label]="'LANG.EN' | translate">
+    <img class="w-6 h-6 md:w-8 md:h-8" src="/assets/flags/en.png" [attr.alt]="'LANG.EN' | translate" />
   </button>
 
-  <button (click)="cambiarIdioma('de')" aria-label="Deutch">
-    <img class="w-6 h-6 md:w-8 md:h-8" src="/assets/flags/de.png" alt="Deutch" />
+  <button (click)="cambiarIdioma('de')" [attr.aria-label]="'LANG.DE' | translate">
+    <img class="w-6 h-6 md:w-8 md:h-8" src="/assets/flags/de.png" [attr.alt]="'LANG.DE' | translate" />
   </button>
 </div>

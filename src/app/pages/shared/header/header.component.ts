@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected readonly notificationService = inject(NotificationService);
   protected readonly notificationPanel = inject(NotificationToggleService);
 
-  userName = 'Nombre';
+  userName = '';
   userRoleKey = 'roles.user';
   toastNotification: AppNotification | null = null;
 
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.userRoleKey = this.getRoleKey(user.role);
           this.notificationService.load();
         } else {
-          this.userName = 'Nombre';
+          this.userName = '';
           this.userRoleKey = 'roles.user';
           this.dismissToast();
           this.notificationPanel.close();

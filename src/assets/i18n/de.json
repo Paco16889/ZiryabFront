@@ -390,7 +390,8 @@
 
   "LANG": {
     "ES": "Spanisch",
-    "EN": "Englisch"
+    "EN": "Englisch",
+    "DE": "Deutsch"
   },
 
   "footer": {
@@ -680,6 +681,37 @@
         "project": "Bewertbare Projekte",
         "practice": "Praktische Uebungen",
         "homework": "Allgemeine Hausaufgaben"
+      }
+    }
+  },
+  "sharedPages": {
+    "login": {
+      "platform": "Bildungsplattform"
+    },
+    "cardGrid": {
+      "empty": "Keine Elemente zum Anzeigen."
+    },
+    "header": {
+      "defaultUser": "Benutzer"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "markAllRead": "Alle als gelesen markieren",
+      "empty": "Keine Benachrichtigungen"
+    },
+    "about": {
+      "connectionAlt": "Verbindung",
+      "angularAlt": "Angular",
+      "nodeAlt": "Node",
+      "tailwindAlt": "Tailwind",
+      "sqlAlt": "SQL",
+      "firebaseAlt": "Firebase",
+      "stack": {
+        "angular": "Angular 19 + Standalone",
+        "node": "Node.js Express",
+        "tailwind": "Tailwind CSS",
+        "prisma": "Prisma & PostgreSQL",
+        "firebase": "Firebase (Auth/Storage)"
       }
     }
   },

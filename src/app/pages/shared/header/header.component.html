@@ -30,7 +30,7 @@
                     <div class="block text-right mr-1">
                         <h2
                             class="text-purple-900 font-bold text-sm leading-tight truncate max-w-[100px] md:max-w-[140px]">
-                            {{ userName }}
+                            {{ userName || ('sharedPages.header.defaultUser' | translate) }}
                         </h2>
                         <p class="text-purple-800 text-xs font-medium uppercase tracking-wider">
                             {{ userRoleKey | translate }}
