@@ -33,7 +33,7 @@ export interface UserResponse {
  * Interfaz genérica para las respuestas de la API.
  * @template T - Tipo del campo `data`, que varía según el endpoint
  */
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
   /** Mensaje descriptivo del resultado devuelto por el backend */
   message: string;
   /** Datos de la respuesta */

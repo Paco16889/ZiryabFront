@@ -63,10 +63,21 @@ export class HorarioProfesorComponent implements OnInit {
   }
 
   private groupByDay(schedules: WeekSchedule[]): Record<number, WeekSchedule[]> {
+    const dayMap: Record<string, number> = {
+      'MONDAY': 1, 'TUESDAY': 2, 'WEDNESDAY': 3, 'THURSDAY': 4, 'FRIDAY': 5, 'SATURDAY': 6, 'SUNDAY': 7
+    };
+
     return schedules
       .sort((left, right) => left.startTime.localeCompare(right.startTime))
       .reduce<Record<number, WeekSchedule[]>>((accumulator, schedule) => {
-        const day = schedule.weekDay;
+        let dayValue = schedule.weekDay;
+        
+        // mapeamos a numero los strings que vienen del backend
+        if (typeof dayValue === 'string') {
+          dayValue = dayMap[dayValue] || 1;
+        }
+
+        const day = dayValue as number;
         if (!accumulator[day]) {
           accumulator[day] = [];
         }

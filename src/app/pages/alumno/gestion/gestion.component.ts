@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que muestra el menú de gestión académica del estudiante.
@@ -14,7 +15,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 @Component({
   selector: 'app-gestion',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent],
+  imports: [CommonModule, BotonAtrasComponent, TranslateModule],
   templateUrl: './gestion.component.html',
   styleUrl: './gestion.component.scss'
 })
@@ -36,10 +37,16 @@ export class GestionComponent {
    */
   goToComponent(route: string) {
     if (route === 'ficha-usuario') {
-        this.router.navigate(['/ficha-usuario']); 
+        const userRole = this.authService.getUserRole();
+        const targetRoute = userRole === 'TEACHER' ? '/ficha-profesor' : '/ficha-usuario';
+        this.router.navigate([targetRoute]); 
     } else if (route === 'horario') {
         const userRole = this.authService.getUserRole();
         const targetRoute = userRole === 'TEACHER' ? '/horario-profesor' : '/horario-alumno';
+        this.router.navigate([targetRoute]);
+    } else if (route === 'evaluaciones') {
+        const userRole = this.authService.getUserRole();
+        const targetRoute = userRole === 'TEACHER' ? '/evaluaciones' : '/mis-evaluaciones';
         this.router.navigate([targetRoute]);
     } else {
         this.router.navigate([`/${route}`]);

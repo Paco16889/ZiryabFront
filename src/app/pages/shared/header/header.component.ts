@@ -14,10 +14,6 @@ import { NotificationToggleService } from '../../../core/services/notification/n
 
 /**
  * Componente que representa la cabecera de la aplicación.
- *
- * Muestra el nombre y rol del usuario autenticado (claves i18n bajo `roles.*`),
- * la campana de notificaciones (badge + panel vía {@link NotificationService} /
- * {@link NotificationRepository}), toasts en tiempo real (SSE) y el menú de perfil.
  */
 @Component({
   selector: 'app-header',
@@ -39,17 +35,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   protected readonly notificationService = inject(NotificationService);
   protected readonly notificationPanel = inject(NotificationToggleService);
 
-  /** Nombre del usuario autenticado a mostrar en la cabecera. */
   userName = 'Nombre';
-
-  /** Clave de traducción del rol del usuario (p. ej. `roles.student`) mostrada en la cabecera. */
   userRoleKey = 'roles.user';
-
-  /** Notificación recibida por SSE para mostrar un aviso rápido (toast) en pantalla. */
   toastNotification: AppNotification | null = null;
 
   private readonly subs = new Subscription();
-
   private toastClearHandle: ReturnType<typeof setTimeout> | null = null;
 
   ngOnInit(): void {
@@ -104,7 +94,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleProfileMenu(): void {
+    if (this.notificationPanel.isOpen()) {
+      this.notificationPanel.close();
+    }
     this.perfilService.toggleMenu();
+  }
+
+  toggleNotifications(): void {
+    if (this.perfilService.isMenuOpen()) {
+      this.perfilService.closeMenu();
+    }
+    this.notificationPanel.toggle();
   }
 
   private showToast(notification: AppNotification): void {

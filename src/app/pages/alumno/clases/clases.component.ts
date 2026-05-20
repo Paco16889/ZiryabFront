@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
 import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
+import { StudentSubjectEnrollmentRow } from '../../../core/models/teacher/subjectforteacher';
 
 interface StudentSubjectCardSource {
   subject: { id: number; name: string };
@@ -48,7 +49,7 @@ export class ClasesComponent implements OnInit {
 
   // Guardamos las raw asignaturas temporalmente por si hacen falta, 
   // o podemos simplemente construir los cards.
-  private asignaturasOriginales = signal<StudentSubjectCardSource[]>([]);
+  private asignaturasOriginales = signal<StudentSubjectEnrollmentRow[]>([]);
 
     /**
    * Indica si los datos están siendo cargados desde el backend.
@@ -89,20 +90,23 @@ export class ClasesComponent implements OnInit {
           this.construirCards();
           this.loading.set(false);
 
-          response.data.forEach((item: StudentSubjectCardSource) => {
-            const subjectId = item.subject.id;
+          response.data.forEach((item: StudentSubjectEnrollmentRow) => {
+            const subjectId = item.subject?.id;
+            if (!subjectId) return;
             
             this.clasesService.getNombreProfesorParaAsignatura(subjectId).subscribe({
               next: (responseDetail: GetSubjectDetailResponse) => {
                 const subjectData = responseDetail.data;
                 if (subjectData && subjectData.teacherAssignments && subjectData.teacherAssignments.length > 0) {
                   const profeData = subjectData.teacherAssignments[0].teacher;
-                  const nombreCompleto = `${profeData.name} ${profeData.surname}`;
-                  
-                  this.profesoresMap.update(mapaActual => ({
-                    ...mapaActual,
-                    [subjectId]: nombreCompleto
-                  }));
+                  if (profeData) {
+                    const nombreCompleto = `${profeData.name} ${profeData.surname}`;
+                    
+                    this.profesoresMap.update(mapaActual => ({
+                      ...mapaActual,
+                      [subjectId]: nombreCompleto
+                    }));
+                  }
                 } else {
                     this.profesoresMap.update(mapaActual => ({
                     ...mapaActual,
@@ -116,7 +120,7 @@ export class ClasesComponent implements OnInit {
           });
 
         },
-        error: (err: any) => {
+        error: (err) => {
           console.error('Error al cargar asignaturas:', err);
           this.errorMessage.set('Error de conexión con el servidor.');
           this.loading.set(false);
@@ -130,17 +134,14 @@ export class ClasesComponent implements OnInit {
     }
   }
   
-  /**
-   * Construye los elementos CardItem a partir de los datos sin procesar.
-   */
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
-      id: item.subject.id,
-      title: item.subject.name,
+      id: item.subject?.id || 0,
+      title: item.subject?.name || 'Asignatura',
       subtitleTopLabel: 'Grado/Curso',
       subtitleTopValue: item.group?.name || 'General',
       subtitleBottomLabel: 'Profesor',
-      subtitleBottomValue: this.profesoresMap()[item.subject.id] || 'Consultando...',
+      subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || 'Consultando...',
       actionLabel: 'Acceder'
     }));
     this.asignaturasCards.set(cards);

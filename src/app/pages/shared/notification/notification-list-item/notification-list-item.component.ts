@@ -19,3 +19,4 @@ export class NotificationListItemComponent {
     this.notificationClick.emit(this.notification().id);
   }
 }
+

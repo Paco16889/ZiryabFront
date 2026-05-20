@@ -1,0 +1,112 @@
+<div class="min-h-screen bg-slate-50 p-4 md:p-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-10 text-center relative">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">
+        Evaluaciones
+      </h1>
+      <p class="text-gray-500 text-lg font-medium">Introduce las notas de tus alumnos como tutor</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 mb-8">
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div *ngIf="selectedGroup()">
+          <label class="block text-sm font-medium text-slate-500 mb-1">Grupo tutorizado</label>
+          <h2 class="text-xl font-bold text-slate-800">{{ selectedGroup()?.name }}</h2>
+        </div>
+
+        <div class="flex-1 max-w-md">
+          <label class="block text-sm font-medium text-slate-700 mb-2">Periodo de Evaluación</label>
+          <select 
+            (change)="onPeriodChange($event)"
+            [value]="selectedPeriod()"
+            class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+          >
+            <option *ngFor="let period of periods" [value]="period">{{ period | translate }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="successMessage()" class="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl flex items-center gap-3 animate-fade-in">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+      {{ successMessage() }}
+    </div>
+
+    <div *ngIf="errorMessage()" class="mb-6 p-4 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl flex items-center gap-3 animate-fade-in">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      {{ errorMessage() }}
+    </div>
+
+    <div *ngIf="selectedGroup() && !loading()" class="space-y-6">
+      <div *ngFor="let student of students()" class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-fade-in">
+        <div class="bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between">
+          <h3 class="font-bold text-slate-800 flex items-center gap-2">
+            <div class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xs">
+              {{ student.name.charAt(0) }}{{ student.surname.charAt(0) }}
+            </div>
+            {{ student.name }} {{ student.surname }}
+          </h3>
+          <div class="flex items-center gap-4">
+            <div class="flex flex-col items-end">
+              <span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">Media</span>
+              <span class="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg border border-indigo-100">
+                {{ getAverage(student.id) }}
+              </span>
+            </div>
+            <span class="text-xs font-medium text-slate-500 bg-slate-200 px-2 py-1 rounded-full">
+              {{ student.subjects.length }} Asignaturas
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div *ngFor="let subject of student.subjects" class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between gap-4">
+              <span class="text-sm font-medium text-slate-700 truncate" [title]="subject.name">
+                {{ subject.name }}
+              </span>
+              <input 
+                type="number" 
+                min="1" 
+                max="10" 
+                step="1"
+                [value]="getGradeValue(student.id, subject.id)"
+                (input)="onGradeChange(student.id, subject.id, subject.enrollmentId, $event)"
+                placeholder="-"
+                class="w-16 p-2 text-center bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm font-bold"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading()" class="flex flex-col items-center justify-center py-20">
+      <div class="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin mb-4"></div>
+      <p class="text-slate-500 font-medium">Cargando datos del grupo...</p>
+    </div>
+
+    <div *ngIf="!selectedGroup() && !loading()" class="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200">
+      <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+      </div>
+      <p class="text-slate-500 font-medium">No se ha encontrado ningún grupo del que seas tutor</p>
+    </div>
+
+    <div class="mt-8 flex justify-between items-center pb-8">
+      <app-boton-atras></app-boton-atras>
+      
+      <button 
+        (click)="saveGrades()" 
+        [disabled]="saving() || !selectedGroup()"
+        class="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
+      >
+        <span *ngIf="saving()" class="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <svg *ngIf="!saving()" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+        </svg>
+        {{ saving() ? 'Guardando...' : 'Guardar Evaluaciones' }}
+      </button>
+    </div>
+  </div>
+</div>

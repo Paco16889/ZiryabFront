@@ -21,7 +21,7 @@ export class DashboardComponent {
   private navegador = inject(NavigationService);
 
   /** Servicio de autenticación para obtener el usuario y su rol actual */
-  private authService = inject(AuthService);
+  public authService = inject(AuthService);
 
   /**
    * Navega a la sección indicada.
@@ -36,16 +36,6 @@ export class DashboardComponent {
         this.navegador.toComponent('clases-profesor');
         return;
       }
-    }
-
-    if (str === 'horario') {
-      if (user && user.role === 'TEACHER') {
-        this.navegador.toComponent('horario-profesor');
-        return;
-      }
-
-      this.navegador.toComponent('horario-alumno');
-      return;
     }
 
     this.navegador.toComponent(str);

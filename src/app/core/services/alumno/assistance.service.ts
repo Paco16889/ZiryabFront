@@ -4,6 +4,12 @@ import { map, Observable } from 'rxjs';
 import { AssistanceResponse } from '../../models/assistance';
 import { environment } from '../../../../environments/environment';
 
+interface ApiSuccessResponse<T = unknown> {
+    success: boolean;
+    data?: T;
+    message?: string;
+}
+
 /**
  * Servicio encargado de gestionar las operaciones relacionadas con la asistencia de los alumnos.
  */
@@ -12,26 +18,14 @@ import { environment } from '../../../../environments/environment';
 })
 export class AssistanceService {
 
-    /** URL base de la API para el recurso de asistencias */
     private apiUrl = `${environment.apiUrl}/assistances`;
 
     constructor(private http: HttpClient) { }
 
-    /**
-     * Obtiene el listado de asistencias asociadas a un estudiante específico.
-     * @param studentId Identificador único del estudiante.
-     * @returns Un observable con la respuesta de la API que contiene la lista de asistencias.
-     */
     getAssistancesByStudentId(studentId: number): Observable<AssistanceResponse> {
         return this.http.get<AssistanceResponse>(`${this.apiUrl}/student/${studentId}`);
     }
 
-    /**
-     * Sube un documento de justificación para una falta de asistencia.
-     * @param assistanceId Identificador de la falta de asistencia que se desea justificar.
-     * @param file El archivo (PDF, JPG, PNG) que contiene el justificante.
-     * @returns Observable con la URI del justificante guardado en el servidor.
-     */
     submitJustification(assistanceId: number, file: File): Observable<{ justificationUri: string }> {
         const formData = new FormData();
         formData.append('document', file);
@@ -41,5 +35,25 @@ export class AssistanceService {
                 formData
             )
             .pipe(map((res) => res.data));
+    }
+
+    getAllAssistances(): Observable<AssistanceResponse> {
+        return this.http.get<AssistanceResponse>(this.apiUrl);
+    }
+
+    justifyAbsence(assistanceId: number): Observable<ApiSuccessResponse> {
+        return this.http.patch<ApiSuccessResponse>(`${this.apiUrl}/justify/${assistanceId}`, {});
+    }
+
+    rejectJustification(assistanceId: number): Observable<ApiSuccessResponse> {
+        return this.http.patch<ApiSuccessResponse>(`${this.apiUrl}/assistancestatus/${assistanceId}`, { status: 'ABSENT' });
+    }
+
+    getJustificationStatus(assistanceId: number): Observable<ApiSuccessResponse> {
+        return this.http.get<ApiSuccessResponse>(`${this.apiUrl}/${assistanceId}/justification-status`);
+    }
+
+    getStudentsAbsences<T = unknown>(): Observable<ApiSuccessResponse<T>> {
+        return this.http.get<ApiSuccessResponse<T>>(`${environment.apiUrl}/teachers/my-students-absences`);
     }
 }

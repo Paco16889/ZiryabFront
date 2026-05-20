@@ -117,8 +117,9 @@ export class LoginComponent {
         }
       });
 
-    } catch (error: any) {
-      console.error('❌ Error:', error.message);
+    } catch (error) {
+      const err = error as Error;
+      console.error('❌ Error:', err.message);
       this.error.set(true);
       this.loading.set(false);
     }

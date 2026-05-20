@@ -485,7 +485,7 @@
   "horario": {
     "titleStudent": "Mi horario",
     "titleTeacher": "Horario docente",
-    "subtitle": "Consulta tu planificación semanal de clases",
+    "subtitle": "Consulta tu horario semanal de clases",
     "noData": "No hay clases asignadas",
     "group": "Grupo",
     "days": {
@@ -505,5 +505,15 @@
     "title": "Calendario académico",
     "subtitle": "Eventos y fechas importantes del centro",
     "iframeTitle": "Calendario de Google"
+  },
+  "INITIAL": "Evaluación Inicial",
+  "FIRST_TRIMESTER": "1º Trimestre",
+  "SECOND_TRIMESTER": "2º Trimestre",
+  "THIRD_TRIMESTER": "3º Trimestre",
+  "FINAL": "Nota Final",
+  "evaluaciones": {
+    "title": "Evaluaciones",
+    "subtitle": "Gestión de notas por trimestres",
+    "description": "Consulta y gestiona las calificaciones académicas"
   }
 }

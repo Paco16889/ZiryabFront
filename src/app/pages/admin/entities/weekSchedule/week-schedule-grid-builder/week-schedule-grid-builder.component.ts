@@ -19,6 +19,7 @@ import {
   hoursBetween,
   timeRangesOverlap,
 } from '../../../../../core/utils/time-range';
+import { prismaDayOfWeekToNumber } from '../../../../../core/utils/week-day';
 import { WeekScheduleAssignmentPickerComponent } from '../week-schedule-assignment-picker/week-schedule-assignment-picker.component';
 import { WeekScheduleDayCardComponent } from '../week-schedule-day-card/week-schedule-day-card.component';
 import { WeekScheduleHourCardComponent } from '../week-schedule-hour-card/week-schedule-hour-card.component';
@@ -171,14 +172,15 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     const m = new Map<string, GridCellState>();
     for (const ws of list) {
       const ta = ws.teacherAssignment;
-      const key = weekScheduleCellKey(ws.weekDay, ws.startTime);
+      const weekDay = prismaDayOfWeekToNumber(ws.weekDay as string | number);
+      const key = weekScheduleCellKey(weekDay, ws.startTime);
       m.set(key, {
         idTeacherAssignment: ta.id,
         serverId: ws.id,
         label: this.cellLabelFromAssignment(ta),
         idTeacher: ta.idTeacher,
         idSubject: ta.idSubject,
-        weekDay: ws.weekDay,
+        weekDay,
         startTime: ws.startTime,
         finishTime: ws.finishTime,
       });
@@ -405,7 +407,8 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     const initial = this.initialServerSchedules();
     const byKeyInitial = new Map<string, WeekSchedule>();
     for (const ws of initial) {
-      byKeyInitial.set(weekScheduleCellKey(ws.weekDay, ws.startTime), ws);
+      const weekDay = prismaDayOfWeekToNumber(ws.weekDay as string | number);
+      byKeyInitial.set(weekScheduleCellKey(weekDay, ws.startTime), ws);
     }
     const current = this.cells();
     const ops: Observable<unknown>[] = [];

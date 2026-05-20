@@ -38,9 +38,10 @@ export class JustificarFaltaModalComponent {
    * Valida que el archivo no supere 1MB y que sea de un formato permitido (PDF, JPG, PNG).
    * @param event Evento de cambio del input file.
    */
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+    const file = input.files[0];
       // 1. Validar tamaño (max 1MB)
       const maxSizeInBytes = 1 * 1024 * 1024;
       if (file.size > maxSizeInBytes) {
@@ -60,7 +61,6 @@ export class JustificarFaltaModalComponent {
       // Archivo válido
       this.selectedFile.set(file);
       this.errorMessage.set('');
-    }
   }
 
   /**

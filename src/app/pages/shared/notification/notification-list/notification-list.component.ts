@@ -22,3 +22,4 @@ export class NotificationListComponent {
     this.service.markAllAsRead();
   }
 }
+

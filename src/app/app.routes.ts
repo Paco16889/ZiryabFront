@@ -8,6 +8,7 @@ import { GestionComponent } from './pages/alumno/gestion/gestion.component';
 import { TemarioAlumnoComponent } from './pages/alumno/temario-alumno/temario-alumno.component';
 import { TemarioProfesorComponent } from './pages/profesor/temario-profesor/temario-profesor.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
+import { FichaProfesorComponent } from './pages/profesor/ficha-profesor/ficha-profesor.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
@@ -15,8 +16,10 @@ import { AboutComponent } from './pages/shared/about/about.component';
 import { MenuClaseComponent } from './pages/profesor/menu-clase/menu-clase.component';
 import { TaskListComponent } from './pages/profesor/tareas/task-list/task-list.component';
 import { HorarioAlumnoComponent } from './pages/alumno/horario/horario-alumno.component';
+import { MisNotasComponent } from './pages/alumno/mis-notas/mis-notas.component';
 import { HorarioProfesorComponent } from './pages/profesor/horario/horario-profesor.component';
 import { CalendarioComponent } from './pages/shared/calendario/calendario.component';
+import { GestionNotasComponent } from './pages/profesor/gestion-notas/gestion-notas.component';
 
 /**
  * Definición de rutas de la aplicación.
@@ -55,8 +58,13 @@ export const routes: Routes = [
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
         canActivate: [AuthGuard],
-        data: { roles: ['STUDENT', 'TEACHER'] },
-
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'ficha-profesor',
+        component: FichaProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
     },
 
     {
@@ -95,11 +103,8 @@ export const routes: Routes = [
         data: { roles: ['TEACHER'] },
     },
     {
-        path: 'justificaciones/:idTeacherAssignment',
-        loadComponent: () =>
-            import('./pages/profesor/justificaciones-falta/justificaciones-falta.component').then(
-                (m) => m.JustificacionesFaltaComponent
-            ),
+        path: 'evaluaciones',
+        component: GestionNotasComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
@@ -160,12 +165,7 @@ export const routes: Routes = [
         data: { roles: ['TEACHER', 'STUDENT'] },
     },
 
-    {
-        path: 'ficha-usuario',
-        component: FichaUsuarioComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['TEACHER', 'STUDENT'] },
-    },
+
     // ============================================
     // RUTAS DE ESTUDIANTE (STUDENT)
     // ============================================
@@ -179,6 +179,17 @@ export const routes: Routes = [
     {
         path: 'horario-alumno',
         component: HorarioAlumnoComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'mis-notas',
+        redirectTo: 'mis-evaluaciones',
+        pathMatch: 'full'
+    },
+    {
+        path: 'mis-evaluaciones',
+        component: MisNotasComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT'] },
     },

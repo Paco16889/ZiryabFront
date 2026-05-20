@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from '../../../core/services/profesor/task.service';
-import { CreateTaskResponse } from '../../../core/models/teacher/tasks';
+import { CreateTaskResponse, Task } from '../../../core/models/teacher/tasks';
 
 @Component({
   selector: 'app-task-form',
@@ -13,10 +13,10 @@ import { CreateTaskResponse } from '../../../core/models/teacher/tasks';
 })
 export class TaskFormComponent implements OnInit {
 
-  @Input() idTeacherAssignment!: number; // Necesario para crear la tarea en la asignatura correcta
-  @Input() schoolYear: string = '2024-2025'; // Año escolar actual
+  @Input() idTeacherAssignment!: number;
+  @Input() schoolYear: string = '2024-2025';
 
-  @Output() taskCreated = new EventEmitter<any>();
+  @Output() taskCreated = new EventEmitter<Task>();
   @Output() cancel = new EventEmitter<void>();
 
   taskForm!: FormGroup;
@@ -38,14 +38,15 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+    const file: File = input.files[0];
     if (file) {
-      // Validar límite (10MB)
       if (file.size > 10 * 1024 * 1024) {
         this.errorMessage = 'El archivo supera el límite de 10 MB.';
         this.selectedFile = null;
-        event.target.value = '';
+        input.value = '';
         return;
       }
       this.errorMessage = '';
@@ -62,12 +63,9 @@ export class TaskFormComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
 
-    // ¡CRUCIAL! Cuando enviamos archivos, no podemos usar JSON normal ({ key: value })
-    // Tenemos que usar 'FormData', que es la forma nativa de HTML para mandar paquetes con ficheros.
     const formData = new FormData();
     const formValues = this.taskForm.value;
 
-    // Empaquetamos los datos de texto
     formData.append('title', formValues.title);
     formData.append('description', formValues.description);
     formData.append('type', formValues.type);
@@ -77,8 +75,6 @@ export class TaskFormComponent implements OnInit {
     formData.append('idTeacherAssignment', this.idTeacherAssignment.toString());
     formData.append('isPublished', 'true');
 
-    // Y aquí viene la magia: Si el profe seleccionó un archivo, lo empaquetamos bajo el nombre 'file'
-    // Este nombre 'file' ES EL MISMO que espera multer en Node: uploadTaskAttachment.single('file')
     if (this.selectedFile) {
       formData.append('file', this.selectedFile);
     }

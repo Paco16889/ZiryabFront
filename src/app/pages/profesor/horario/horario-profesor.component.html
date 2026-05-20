@@ -1,25 +1,44 @@
-<div class="w-full min-h-screen bg-gray-50 p-6 pt-10 pb-24">
-  <div class="max-w-6xl mx-auto">
-    <h1 class="text-4xl font-extrabold text-gray-800 mb-2">{{ 'horario.titleTeacher' | translate }}</h1>
-    <p class="text-gray-500 mb-8">{{ 'horario.subtitle' | translate }}</p>
+<div class="schedule-wrapper">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="title-main">{{ 'horario.titleTeacher' | translate }}</h1>
+      <p class="subtitle-main">{{ 'horario.subtitle' | translate }}</p>
+    </header>
 
-    <div *ngIf="isLoading" class="text-gray-500">{{ 'common.messages.loading' | translate }}...</div>
-
-    <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-      <section *ngFor="let day of weekDays" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-        <h2 class="text-lg font-bold text-violet-700 mb-4">{{ ('horario.days.' + day) | translate }}</h2>
-
-        <div *ngIf="getDaySchedules(day).length === 0" class="text-sm text-gray-500">
-          {{ 'horario.noData' | translate }}
-        </div>
-
-        <div *ngFor="let schedule of getDaySchedules(day)" class="rounded-xl border border-violet-100 bg-violet-50/60 p-3 mb-3">
-          <p class="text-sm font-semibold text-gray-800">{{ getSubjectName(schedule) }}</p>
-          <p class="text-xs text-gray-600">{{ schedule.startTime }} - {{ schedule.finishTime }}</p>
-          <p class="text-xs text-gray-500">{{ 'horario.group' | translate }}: {{ getGroupName(schedule) }}</p>
-        </div>
-      </section>
-    </div>
+    @if (isLoading) {
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+      </div>
+    } @else {
+      <div class="schedule-grid">
+        @for (day of weekDays; track day) {
+          <div class="day-column">
+            <div class="day-title">
+              {{ ('horario.days.' + day) | translate }}
+            </div>
+            
+            <div class="day-entries">
+              @if (getDaySchedules(day).length === 0) {
+                <div class="no-classes">
+                  {{ 'horario.noData' | translate }}
+                </div>
+              } @else {
+                @for (schedule of getDaySchedules(day); track schedule.id) {
+                  <div class="class-item">
+                    <div class="class-time">
+                      {{ schedule.startTime }} - {{ schedule.finishTime }}
+                    </div>
+                    <div class="class-name">
+                      {{ getSubjectName(schedule) }}
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
   </div>
 </div>
 

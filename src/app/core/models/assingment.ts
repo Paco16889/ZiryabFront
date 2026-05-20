@@ -16,6 +16,10 @@ export enum AssignmentStatus {
   STANDBY = 'STANDBY'
 }
 
+import { Teacher } from './teacher';
+import { Subject } from './subject';
+import { Group } from './group';
+
 /**
  * Representa la asignación de un profesor a una asignatura y grupo en un año académico concreto.
  */
@@ -32,6 +36,13 @@ export interface Assignment {
   schoolYear: string;
   /** Estado actual de la asignación */
   status: AssignmentStatus;
+
+  /** Datos del profesor */
+  teacher?: Teacher;
+  /** Datos de la asignatura */
+  subject?: Subject;
+  /** Datos del grupo */
+  group?: Group;
 }
 
 /**
@@ -47,7 +58,7 @@ export interface AssignmentsAllResponse {
 }
 
 /** Asignación con `teacher`, `subject` y `group` incluidos (`GET /api/assignments`). */
-export interface AssignmentWithIncludes extends Assignment {
+export interface AssignmentWithIncludes extends Omit<Assignment, 'teacher' | 'subject' | 'group'> {
   teacher?: { id: number; name: string; surname?: string; email?: string };
   subject?: {
     id: number;

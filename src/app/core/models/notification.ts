@@ -14,15 +14,12 @@ export type NotificationAction =
   | 'JUSTIFICATION_REVIEWED';
 
 export interface Notification {
-  id:           number;
-  idStudent:    number | null;
-  idTeacher:    number | null;
-  isRead:       boolean;
-  entityType:   NotificationEntityType;
-  entityId:     number;
-  action:       NotificationAction;
-  title:        string | null;
-  body:         string | null;
-  scheduledFor: Date;
-  createdAt:    Date;
-}
+  id: number;
+  recipientFirebaseUID: string;
+  title: string;
+  message: string;
+  type: string;
+  isRead: boolean;
+  readAt: string | Date | null;
+  createdAt: string | Date;
+}
