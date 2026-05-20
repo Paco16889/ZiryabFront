@@ -1,14 +1,13 @@
 <div class="ficha-container container mx-auto px-4 py-8 max-w-4xl min-h-screen">
   
-    <!-- Encabezado con Botón Atrás -->
-    <div class="header-section flex items-center justify-between mb-8">
-      <div class="flex items-center gap-4">
-        <app-boton-atras class="hidden md:block"></app-boton-atras>
-        <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-          Justificaciones Pendientes
-        </h1>
-      </div>
-      <div class="flex items-center gap-4">
+    <!-- Encabezado -->
+    <div class="mb-10 text-center relative">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">
+        Justificaciones
+      </h1>
+      <p class="text-gray-500 text-lg font-medium">Revisa y gestiona las faltas de tus alumnos</p>
+      
+      <div class="absolute right-0 top-1/2 -translate-y-1/2">
         <button 
           (click)="isAbsencesModalOpen.set(true)"
           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors shadow-sm">
@@ -17,7 +16,6 @@
           </svg>
           Ver Faltas por Alumno
         </button>
-        <app-boton-atras class="md:hidden"></app-boton-atras>
       </div>
     </div>
   
@@ -116,6 +114,10 @@
         </div>
       }
     }
+
+    <div class="mt-8 flex justify-start pb-8">
+      <app-boton-atras></app-boton-atras>
+    </div>
   </div>
 
   @if (isAbsencesModalOpen()) {
@@ -123,3 +125,4 @@
       (closeModal)="isAbsencesModalOpen.set(false)">
     </app-student-absences-modal>
   }
+

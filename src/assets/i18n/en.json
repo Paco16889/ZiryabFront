@@ -222,5 +222,15 @@
       "4": "Thursday",
       "5": "Friday"
     }
+  },
+  "INITIAL": "Initial Evaluation",
+  "FIRST_TRIMESTER": "1st Trimester",
+  "SECOND_TRIMESTER": "2nd Trimester",
+  "THIRD_TRIMESTER": "3rd Trimester",
+  "FINAL": "Final Grade",
+  "evaluaciones": {
+    "title": "Evaluations",
+    "subtitle": "Quarterly grade management",
+    "description": "View and manage academic grades"
   }
 }

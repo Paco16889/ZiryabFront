@@ -16,7 +16,9 @@ import { AboutComponent } from './pages/shared/about/about.component';
 import { MenuClaseComponent } from './pages/profesor/menu-clase/menu-clase.component';
 import { TaskListComponent } from './pages/profesor/tareas/task-list/task-list.component';
 import { HorarioAlumnoComponent } from './pages/alumno/horario/horario-alumno.component';
+import { MisNotasComponent } from './pages/alumno/mis-notas/mis-notas.component';
 import { HorarioProfesorComponent } from './pages/profesor/horario/horario-profesor.component';
+import { GestionNotasComponent } from './pages/profesor/gestion-notas/gestion-notas.component';
 
 /**
  * Definición de rutas de la aplicación.
@@ -99,6 +101,12 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
+    {
+        path: 'evaluaciones',
+        component: GestionNotasComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
     // ===================================================
     // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
     // ===================================================
@@ -164,6 +172,17 @@ export const routes: Routes = [
     {
         path: 'horario-alumno',
         component: HorarioAlumnoComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'mis-notas',
+        redirectTo: 'mis-evaluaciones',
+        pathMatch: 'full'
+    },
+    {
+        path: 'mis-evaluaciones',
+        component: MisNotasComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT'] },
     },

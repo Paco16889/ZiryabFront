@@ -21,7 +21,7 @@ export class DashboardComponent {
   private navegador = inject(NavigationService);
 
   /** Servicio de autenticación para obtener el usuario y su rol actual */
-  private authService = inject(AuthService);
+  public authService = inject(AuthService);
 
   /**
    * Navega a la sección indicada.
@@ -37,6 +37,7 @@ export class DashboardComponent {
         return;
       }
     }
+
     this.navegador.toComponent(str);
   }
 }

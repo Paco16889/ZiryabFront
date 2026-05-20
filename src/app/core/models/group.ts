@@ -1,5 +1,6 @@
 // models/group.model.ts
 
+import { Enrollment } from './enrollment';
 /**
  * Representa un grupo del sistema.
  * Un grupo identifica una división dentro de un ciclo académico,
@@ -18,6 +19,8 @@ export interface Group {
   name: string;
   /** Capacidad máxima de alumnos del grupo */
   capacity: number;
+  /** matruculas de los alumnos en este grupo */
+  studentEnrollments?: Enrollment[];
 }
 
 /**

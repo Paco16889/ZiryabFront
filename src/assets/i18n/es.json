@@ -216,5 +216,15 @@
       "4": "Jueves",
       "5": "Viernes"
     }
+  },
+  "INITIAL": "Evaluación Inicial",
+  "FIRST_TRIMESTER": "1º Trimestre",
+  "SECOND_TRIMESTER": "2º Trimestre",
+  "THIRD_TRIMESTER": "3º Trimestre",
+  "FINAL": "Nota Final",
+  "evaluaciones": {
+    "title": "Evaluaciones",
+    "subtitle": "Gestión de notas por trimestres",
+    "description": "Consulta y gestiona las calificaciones académicas"
   }
 }

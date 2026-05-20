@@ -88,6 +88,27 @@
                 </span>
             </div>
         </div>
+
+        <!-- card de evaluaciones -->
+        <div (click)="goToComponent('evaluaciones')"
+            class="group relative flex flex-col items-center justify-center p-8 h-72 rounded-3xl shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:-translate-y-2
+                    bg-gradient-to-br from-blue-50 via-cyan-50 to-cyan-100 border-2 border-cyan-200 overflow-hidden">
+            
+            <div class="flex flex-col items-center text-center space-y-4 transition-transform duration-300 group-hover:-translate-y-6">
+                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-extrabold text-gray-800 group-hover:text-cyan-700 transition-colors">{{ 'evaluaciones.title' | translate }}</h2>
+            </div>
+
+            <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                <span class="text-cyan-600 font-bold text-base flex items-center gap-2 bg-white/60 px-4 py-2 rounded-full border border-cyan-200 backdrop-blur-sm">
+                    {{ 'evaluaciones.subtitle' | translate }}
+                </span>
+            </div>
+        </div>
     </div>
 </div>
 <app-boton-atras></app-boton-atras>
