@@ -5,6 +5,7 @@ import { ClassSessionService } from '../../../../../core/services/admin/entities
 import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { BotonCreateComponent } from '../../../botones/boton-create/boton-create.component';
+import { ClassSessionCancelDialogComponent } from '../class-session-cancel-dialog/class-session-cancel-dialog.component';
 import { ClassSessionCreateFormComponent } from '../class-session-create-form/class-session-create-form.component';
 import { ClassSessionListItemComponent } from '../class-session-list-item/class-session-list-item.component';
 
@@ -14,6 +15,7 @@ import { ClassSessionListItemComponent } from '../class-session-list-item/class-
     ClassSessionListItemComponent,
     ClassSessionCreateFormComponent,
     BotonCreateComponent,
+    ClassSessionCancelDialogComponent,
     TranslateModule,
   ],
   templateUrl: './class-session-list.component.html',
@@ -26,6 +28,8 @@ export class ClassSessionListComponent implements OnInit {
 
   classSessions: ClassSession[] = [];
   showCreateForm = false;
+  showCancelDialog = false;
+  suspendSuccessCount: number | null = null;
 
   constructor() {
     effect(() => {
@@ -59,6 +63,21 @@ export class ClassSessionListComponent implements OnInit {
 
   onSessionCreated(): void {
     this.closeCreateForm();
+    this.sessionService.loadSessions();
+  }
+
+  openCancelDialog(): void {
+    this.suspendSuccessCount = null;
+    this.showCancelDialog = true;
+  }
+
+  closeCancelDialog(): void {
+    this.showCancelDialog = false;
+  }
+
+  onSessionsSuspended(count: number): void {
+    this.showCancelDialog = false;
+    this.suspendSuccessCount = count;
     this.sessionService.loadSessions();
   }
 }

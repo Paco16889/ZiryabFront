@@ -8,6 +8,8 @@ import {
   ClassSessionsAllResponse,
   ClassSessionUpdateRequest,
   ClassSessionUpdateResponse,
+  SessionSuspendCountResponse,
+  SessionSuspendFilters,
 } from '../../../models/class-sessions';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -115,5 +117,29 @@ export class ClassSessionService {
       })
     );
   }
- 
+
+  /**
+   * Previsualiza cuántas sesiones se suspenderían con los filtros indicados.
+   * POST /api/sessions/suspend-preview (CURSO-110).
+   */
+  previewSuspend(filters: SessionSuspendFilters): Observable<SessionSuspendCountResponse> {
+    return this.http
+      .post<SessionSuspendCountResponse>(`${this.apiUrl}/suspend-preview`, filters)
+      .pipe(catchError(() => of({ success: false, count: 0 })));
+  }
+
+  /**
+   * Suspende en bloque las sesiones que coinciden con los filtros.
+   * POST /api/sessions/bulk-suspend (CURSO-110).
+   */
+  suspendByPeriod(filters: SessionSuspendFilters): Observable<SessionSuspendCountResponse> {
+    return this.http
+      .post<SessionSuspendCountResponse>(`${this.apiUrl}/bulk-suspend`, filters)
+      .pipe(
+        catchError((error) => {
+          console.error('Error bulk suspend sessions:', error);
+          throw error;
+        }),
+      );
+  }
 }
