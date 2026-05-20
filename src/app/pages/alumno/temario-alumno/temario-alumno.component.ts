@@ -61,9 +61,6 @@ export class TemarioAlumnoComponent implements OnInit {
           const filteredTasks = res.data.filter(t => 
              (t.task.teacherAssignment as any)?.subject?.name.toLowerCase() === this.claseEnCurso.toLowerCase()
           );
-          // #region agent log
-          fetch('http://127.0.0.1:7267/ingest/f50d56cc-b2b4-4418-8246-7068a7efecd0',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'7c22e9'},body:JSON.stringify({sessionId:'7c22e9',location:'temario-alumno.component.ts:loadTasks',message:'temario filter',data:{claseEnCurso:this.claseEnCurso,apiCount:res.data.length,filteredCount:filteredTasks.length,task18:res.data.filter((t:any)=>t.idTask===18).length,subjects:res.data.map((t:any)=>t.task?.teacherAssignment?.subject?.name)},timestamp:Date.now(),hypothesisId:'H2-H4'})}).catch(()=>{});
-          // #endregion
           this.groupTasksByType(filteredTasks);
         } else {
           this.error.set('No se pudieron obtener las tareas.');
@@ -93,15 +90,6 @@ export class TemarioAlumnoComponent implements OnInit {
 
     const nuevosBloques: BloqueTemario[] = [];
     const now = new Date();
-    const typeCounts: Record<string, number> = {};
-    for (const t of tasks) {
-      const ty = t.task?.type ?? 'MISSING';
-      typeCounts[ty] = (typeCounts[ty] ?? 0) + 1;
-    }
-    // #region agent log
-    fetch('http://127.0.0.1:7267/ingest/f50d56cc-b2b4-4418-8246-7068a7efecd0',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'7c22e9'},body:JSON.stringify({sessionId:'7c22e9',location:'temario-alumno.component.ts:groupTasksByType',message:'group by task type',data:{typeCounts,enumProject:TaskType.PROJECT,totalInput:tasks.length},timestamp:Date.now(),hypothesisId:'H4-H7'})}).catch(()=>{});
-    // #endregion
-
     for (const conf of configBloques) {
       const tareasDeTipo = tasks.filter(t => t.task.type === conf.tipo);
       
