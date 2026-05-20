@@ -8,7 +8,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
  * Componente que muestra el menú de gestión académica del estudiante.
  * Presenta las opciones de navegación disponibles: ficha de usuario,
  * horario, calendario y tablón de anuncios.
- * ATENCIÓN: las rutas calendario y tablon-anuncio no están implementadas.
+ * ATENCIÓN: la ruta tablon-anuncio no está implementada.
  * ATENCIÓN: candidato a simplificarse extrayendo las opciones a un array de configuración.
  */
 @Component({

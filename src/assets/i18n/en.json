@@ -222,5 +222,10 @@
       "4": "Thursday",
       "5": "Friday"
     }
+  },
+  "calendario": {
+    "title": "Academic calendar",
+    "subtitle": "Important school events and dates",
+    "iframeTitle": "Google Calendar"
   }
 }

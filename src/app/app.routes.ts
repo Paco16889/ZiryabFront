@@ -16,6 +16,7 @@ import { MenuClaseComponent } from './pages/profesor/menu-clase/menu-clase.compo
 import { TaskListComponent } from './pages/profesor/tareas/task-list/task-list.component';
 import { HorarioAlumnoComponent } from './pages/alumno/horario/horario-alumno.component';
 import { HorarioProfesorComponent } from './pages/profesor/horario/horario-profesor.component';
+import { CalendarioComponent } from './pages/shared/calendario/calendario.component';
 
 /**
  * Definición de rutas de la aplicación.
@@ -140,6 +141,12 @@ export const routes: Routes = [
     {
         path: 'gestion',
         component: GestionComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER', 'STUDENT'] },
+    },
+    {
+        path: 'calendario',
+        component: CalendarioComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER', 'STUDENT'] },
     },

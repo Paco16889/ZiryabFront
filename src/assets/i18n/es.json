@@ -216,5 +216,10 @@
       "4": "Jueves",
       "5": "Viernes"
     }
+  },
+  "calendario": {
+    "title": "Calendario académico",
+    "subtitle": "Eventos y fechas importantes del centro",
+    "iframeTitle": "Calendario de Google"
   }
 }
