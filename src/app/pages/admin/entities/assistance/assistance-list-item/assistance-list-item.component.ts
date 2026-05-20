@@ -13,13 +13,7 @@ import {
   AssistanceService,
   AssistanceUpdatePayload,
 } from '../../../../../core/services/admin/entities/assistance.service';
-
-const STATUS_LABELS: Record<AssistanceStatus, string> = {
-  [AssistanceStatus.PRESENT]: 'Presente',
-  [AssistanceStatus.ABSENT]: 'Ausente',
-  [AssistanceStatus.LATE]: 'Tarde',
-  [AssistanceStatus.EXCUSED]: 'Justificado',
-};
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-assistance-list-item',
@@ -29,6 +23,7 @@ const STATUS_LABELS: Record<AssistanceStatus, string> = {
 })
 export class AssistanceListItemComponent {
   private readonly assistanceService = inject(AssistanceService);
+  private readonly translate = inject(TranslateService);
 
   @Input({ required: true }) assistance!: Assistance;
 
@@ -41,25 +36,27 @@ export class AssistanceListItemComponent {
     fields: [
       {
         key: 'session',
-        label: 'Sesión',
+        label: this.translate.instant('lists.assistances.fields.session'),
         order: 1,
         format: (s: { date?: string }) => (s?.date ? s.date.split('T')[0] : '—'),
       },
       {
         key: 'studentEnrollment',
-        label: 'Matrícula',
+        label: this.translate.instant('lists.assistances.fields.enrollment'),
         order: 2,
         format: (e: { id?: number; student?: { name?: string; surname?: string } }) => {
           if (e?.student) {
             return [e.student.name, e.student.surname].filter(Boolean).join(' ');
           }
-          return e?.id != null ? `#${e.id}` : '—';
+          return e?.id != null
+            ? this.translate.instant('adminPages.assistance.enrollmentFallback', { id: e.id })
+            : '—';
         },
       },
       {
         key: 'status',
         order: 3,
-        format: (s: AssistanceStatus) => STATUS_LABELS[s] ?? s,
+        format: (s: AssistanceStatus) => this.getStatusLabel(s),
       },
     ],
     actions: { edit: true, delete: true, detail: true },
@@ -67,16 +64,16 @@ export class AssistanceListItemComponent {
     editFields: [
       {
         name: 'status',
-        label: 'Estado',
+        label: this.translate.instant('lists.assistances.fields.status'),
         fieldType: 'select',
         validators: [Validators.required],
         options: Object.values(AssistanceStatus).map((s) => ({
           value: s,
-          label: STATUS_LABELS[s],
+          label: this.getStatusLabel(s),
         })),
       },
     ],
-    entityType: 'el registro de asistencia',
+    entityType: this.translate.instant('entities.assistance.singular'),
     entityNameFormat: (a: Assistance) =>
       `Asistencia ${a.session?.date?.split('T')[0] ?? a.id}`,
     getByIdFn: (id: number) => this.assistanceService.getAssistanceById(id),
@@ -89,11 +86,29 @@ export class AssistanceListItemComponent {
       {
         key: 'status',
         type: 'text',
-        label: 'Estado: ',
-        format: (s: AssistanceStatus) => STATUS_LABELS[s] ?? String(s),
+        label: this.translate.instant('lists.assistances.fields.status'),
+        format: (s: AssistanceStatus) => this.getStatusLabel(s) ?? String(s),
       },
-      { key: 'session.date', type: 'text', label: 'Sesión: ' },
-      { key: 'studentEnrollment.id', type: 'text', label: 'Matrícula ID: ' },
+      {
+        key: 'session.date',
+        type: 'text',
+        label: this.translate.instant('lists.assistances.fields.session'),
+      },
+      {
+        key: 'studentEnrollment.id',
+        type: 'text',
+        label: this.translate.instant('adminPages.assistance.enrollmentId'),
+      },
     ],
   };
+
+  private getStatusLabel(status: AssistanceStatus): string {
+    const keyByStatus: Record<AssistanceStatus, string> = {
+      [AssistanceStatus.PRESENT]: 'teacherPages.attendance.status.present',
+      [AssistanceStatus.ABSENT]: 'teacherPages.attendance.status.absent',
+      [AssistanceStatus.LATE]: 'teacherPages.attendance.status.late',
+      [AssistanceStatus.EXCUSED]: 'teacherPages.attendance.status.excused',
+    };
+    return this.translate.instant(keyByStatus[status] ?? status);
+  }
 }

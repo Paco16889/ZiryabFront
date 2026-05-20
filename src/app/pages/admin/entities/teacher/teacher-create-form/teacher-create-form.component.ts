@@ -7,6 +7,7 @@ import { Observable, from } from 'rxjs';
 import { switchMap, finalize } from 'rxjs/operators';
 import { TeacherCreateResponse } from '../../../../../core/models/teacher';
 import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo profesor.
@@ -16,7 +17,7 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
  */
 @Component({
   selector: 'app-teacher-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './teacher-create-form.component.html',
   styleUrl: './teacher-create-form.component.scss'
 })
@@ -49,7 +50,8 @@ export class TeacherCreateFormComponent {
     private fb: FormBuilder,
     private teacherService: TeachersService,
     private fireBaseAuth: Auth,
-    private passwordGen: PasswordService
+    private passwordGen: PasswordService,
+    private translate: TranslateService
   ) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -110,7 +112,10 @@ export class TeacherCreateFormComponent {
         },
         error: (err) => {
           console.error('❌ Error guardando teacher:', err);
-          this.errorMessage = err.error?.message || err.message || 'Error al crear el profesor';
+          this.errorMessage =
+            err.error?.message ||
+            err.message ||
+            this.translate.instant('adminPages.forms.teacher.createError');
         }
       });
     }

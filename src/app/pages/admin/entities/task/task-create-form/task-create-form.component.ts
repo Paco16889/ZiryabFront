@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TaskType } from '../../../../../core/models/task';
 import { AssignmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/teacher-assignment-http.service';
 import { AdminTaskService } from '../../../../../core/services/admin/entities/task.service';
@@ -19,6 +19,7 @@ export class TaskCreateFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly taskService = inject(AdminTaskService);
   private readonly assignmentHttp = inject(AssignmentHttpService);
+  private readonly translate = inject(TranslateService);
 
   readonly cancelCreate = output<void>();
   readonly taskCreated = output<void>();
@@ -63,11 +64,11 @@ export class TaskCreateFormComponent implements OnInit {
 
   typeLabel(type: TaskType): string {
     const labels: Record<TaskType, string> = {
-      [TaskType.PRACTICE]: 'Práctica',
-      [TaskType.THEORY]: 'Teoría',
-      [TaskType.EXAM]: 'Examen',
-      [TaskType.PROJECT]: 'Proyecto',
-      [TaskType.HOMEWORK]: 'Deberes',
+      [TaskType.PRACTICE]: this.translate.instant('teacherPages.taskTypes.practice'),
+      [TaskType.THEORY]: this.translate.instant('teacherPages.taskTypes.theory'),
+      [TaskType.EXAM]: this.translate.instant('teacherPages.taskTypes.exam'),
+      [TaskType.PROJECT]: this.translate.instant('teacherPages.taskTypes.project'),
+      [TaskType.HOMEWORK]: this.translate.instant('teacherPages.taskTypes.homework'),
     };
     return labels[type];
   }
@@ -98,7 +99,9 @@ export class TaskCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la tarea';
+          this.errorMessage =
+            err.error?.message ??
+            this.translate.instant('adminPages.errors.taskCreate');
         },
       });
   }

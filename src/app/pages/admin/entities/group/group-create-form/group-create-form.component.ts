@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GroupService } from '../../../../../core/services/admin/entities/group.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo grupo.
@@ -8,7 +9,7 @@ import { GroupService } from '../../../../../core/services/admin/entities/group.
  */
 @Component({
   selector: 'app-group-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './group-create-form.component.html',
   styleUrl: './group-create-form.component.scss'
 })
@@ -46,7 +47,8 @@ export class GroupCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private translate: TranslateService
   ){
     this.createForm = this.fb.group({
       name: ['', Validators.required]
@@ -68,7 +70,9 @@ onSubmit() {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message || 'Error al crear el grupo';
+          this.errorMessage =
+            err.error?.message ||
+            this.translate.instant('adminPages.forms.group.createError');
         }
       });
     }

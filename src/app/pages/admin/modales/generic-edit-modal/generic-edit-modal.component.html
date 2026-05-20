@@ -13,12 +13,12 @@
               <!-- 🆕 SELECT -->
               @if(field.fieldType === 'select'){
                 @if(loadingOptions[field.name]){
-                  <div class="text-gray-500">Cargando opciones...</div>
+                  <div class="text-gray-500">{{ 'common.messages.loadingOptions' | translate }}</div>
                 } @else {
                   <select
                     [formControlName]="field.name"
                     class="w-full px-3 py-2 border rounded">
-                    <option value="">{{ field.placeholder || 'Selecciona una opción' }}</option>
+                    <option value="">{{ field.placeholder || ('common.placeholders.selectOption' | translate) }}</option>
                     @for(option of fieldOptions[field.name]; track option.value){
                       <option [ngValue]="option.value">{{ option.label }}</option>
                     }

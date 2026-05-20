@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SubmissionStatus } from '../../../../../core/models/studentTask';
 import { AdminTaskService } from '../../../../../core/services/admin/entities/task.service';
 import { StudentTaskService } from '../../../../../core/services/admin/entities/student-task.service';
@@ -22,6 +22,7 @@ export class StudentTaskCreateFormComponent implements OnInit {
   private readonly groupService = inject(GroupService);
   private readonly subjectService = inject(SubjectService);
   private readonly enrollmentHttp = inject(EnrollmentHttpService);
+  private readonly translate = inject(TranslateService);
 
   readonly cancelCreate = output<void>();
   readonly studentTaskCreated = output<void>();
@@ -111,7 +112,9 @@ export class StudentTaskCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la entrega';
+          this.errorMessage =
+            err.error?.message ??
+            this.translate.instant('adminPages.errors.studentTaskCreate');
         },
       });
   }

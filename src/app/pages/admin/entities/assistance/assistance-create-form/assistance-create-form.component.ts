@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AssistanceStatus } from '../../../../../core/models/assistance';
 import { AssistanceService } from '../../../../../core/services/admin/entities/assistance.service';
 import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
@@ -22,6 +22,7 @@ export class AssistanceCreateFormComponent implements OnInit {
   private readonly groupService = inject(GroupService);
   private readonly subjectService = inject(SubjectService);
   private readonly enrollmentHttp = inject(EnrollmentHttpService);
+  private readonly translate = inject(TranslateService);
 
   readonly cancelCreate = output<void>();
   readonly assistanceCreated = output<void>();
@@ -82,7 +83,9 @@ export class AssistanceCreateFormComponent implements OnInit {
         res.success
           ? res.data.map((e) => ({
               value: e.id,
-              label: [e.student?.name, e.student?.surname].filter(Boolean).join(' ') || `Matrícula ${e.id}`,
+              label:
+                [e.student?.name, e.student?.surname].filter(Boolean).join(' ') ||
+                this.translate.instant('adminPages.assistance.enrollmentFallback', { id: e.id }),
             }))
           : [],
       );
@@ -112,7 +115,9 @@ export class AssistanceCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la asistencia';
+          this.errorMessage =
+            err.error?.message ??
+            this.translate.instant('adminPages.errors.assistanceCreate');
         },
       });
   }

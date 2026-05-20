@@ -5,6 +5,7 @@ import { Student } from '../../../../../core/models/student';
 import { SelectedStudentService } from '../../../../../core/services/admin/selected-student.service';
 import { SetRegistrationComponent } from "../set-registration/set-registration.component";
 import { StudentModeSelectorComponent } from "../student-mode-selector/student-mode-selector.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente orquestador del proceso de matriculación de un estudiante.
@@ -14,7 +15,7 @@ import { StudentModeSelectorComponent } from "../student-mode-selector/student-m
  */
 @Component({
   selector: 'app-student-enrollment',
-  imports: [StudentCreateFormComponent, SetRegistrationComponent, StudentSelectorComponent, StudentModeSelectorComponent],
+  imports: [StudentCreateFormComponent, SetRegistrationComponent, StudentSelectorComponent, StudentModeSelectorComponent, TranslateModule],
   templateUrl: './student-enrollment.component.html',
   styleUrl: './student-enrollment.component.scss'
 })

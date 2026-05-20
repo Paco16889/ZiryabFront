@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
 import { WeekScheduleService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 
@@ -14,6 +14,7 @@ export class ClassSessionCreateFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly sessionService = inject(ClassSessionService);
   private readonly scheduleService = inject(WeekScheduleService);
+  private readonly translate = inject(TranslateService);
 
   readonly cancelCreate = output<void>();
   readonly sessionCreated = output<void>();
@@ -41,7 +42,12 @@ export class ClassSessionCreateFormComponent implements OnInit {
       this.scheduleOptions.set(
         res.data.map((ws) => ({
           value: ws.id,
-          label: `Día ${ws.weekDay} · ${ws.startTime}-${ws.finishTime} (#${ws.id})`,
+          label: this.translate.instant('adminPages.classSessions.scheduleOption', {
+            day: ws.weekDay,
+            start: ws.startTime,
+            end: ws.finishTime,
+            id: ws.id,
+          }),
         })),
       );
     });
@@ -70,7 +76,9 @@ export class ClassSessionCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la sesión';
+          this.errorMessage =
+            err.error?.message ??
+            this.translate.instant('adminPages.errors.classSessionCreate');
         },
       });
   }

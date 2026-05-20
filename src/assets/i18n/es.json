@@ -680,6 +680,87 @@
       }
     }
   },
+  "adminPages": {
+    "dashboard": {
+      "menu": "Menú"
+    },
+    "filters": {
+      "title": "Filtros:"
+    },
+    "forms": {
+      "common": {
+        "optional": "opcional",
+        "creating": "Creando...",
+        "dniNie": "DNI / NIE",
+        "dniNiePlaceholder": "12345678A o X1234567A",
+        "dniNieInvalid": "DNI/NIE inválido (ej: 12345678A o X1234567A)"
+      },
+      "teacher": {
+        "title": "Crear Nuevo Profesor",
+        "submit": "Crear Profesor",
+        "createError": "Error al crear el profesor"
+      },
+      "student": {
+        "alreadyExists": "Estudiante existente. Matricular desde estudiante existente.",
+        "createError": "Error al crear el estudiante"
+      },
+      "subject": {
+        "title": "Crear Nueva Asignatura",
+        "nameLabel": "Nombre de la asignatura",
+        "namePlaceholder": "Ej: Programación",
+        "gradeLabel": "Curso",
+        "gradePlaceholder": "Selecciona un curso",
+        "gradeRequired": "Debes seleccionar un curso",
+        "hoursLabel": "Horas semanales",
+        "hoursPlaceholder": "Ej: 6",
+        "hoursInvalid": "Las horas deben estar entre 1 y 30",
+        "descriptionPlaceholder": "Descripción breve de la asignatura",
+        "descriptionInvalid": "La descripción no puede superar los 255 caracteres",
+        "courseLabel": "Ciclo al que pertenece",
+        "loadingCourses": "Cargando ciclos...",
+        "coursePlaceholder": "Selecciona un ciclo",
+        "courseRequired": "Debes seleccionar un ciclo",
+        "submit": "Crear Asignatura",
+        "loadCoursesError": "No se pudieron cargar los ciclos",
+        "createError": "Error al crear la asignatura"
+      },
+      "group": {
+        "title": "Crear Nuevo Grupo",
+        "nameLabel": "Nombre del Grupo",
+        "namePlaceholder": "Ej: 2º DAM Mañana",
+        "submit": "Crear Grupo",
+        "createError": "Error al crear el grupo"
+      },
+      "course": {
+        "title": "Crear Nuevo Ciclo",
+        "nameLabel": "Nombre del ciclo",
+        "namePlaceholder": "Ej: Desarrollo de Aplicaciones Multiplataforma",
+        "submit": "Crear Ciclo",
+        "createError": "Error al crear el ciclo"
+      }
+    },
+    "errors": {
+      "taskCreate": "Error al crear la tarea",
+      "studentTaskCreate": "Error al crear la entrega",
+      "notificationCreate": "Error al crear la notificación",
+      "classSessionCreate": "Error al crear la sesión",
+      "assistanceCreate": "Error al crear la asistencia"
+    },
+    "classSessions": {
+      "scheduleOption": "Día {{day}} · {{start}}-{{end}} (#{{id}})"
+    },
+    "subjectDetail": {
+      "name": "Nombre de la Asignatura:",
+      "grade": "Curso en el que se imparte:",
+      "course": "Ciclo al que pertenece:",
+      "hours": "Horas semanales:",
+      "description": "Descripción:"
+    },
+    "assistance": {
+      "enrollmentFallback": "Matrícula {{id}}",
+      "enrollmentId": "Matrícula ID"
+    }
+  },
   "sharedPages": {
     "login": {
       "platform": "Plataforma Educativa"

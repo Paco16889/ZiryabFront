@@ -404,6 +404,87 @@
       }
     }
   },
+  "adminPages": {
+    "dashboard": {
+      "menu": "메뉴"
+    },
+    "filters": {
+      "title": "필터:"
+    },
+    "forms": {
+      "common": {
+        "optional": "선택",
+        "creating": "생성 중...",
+        "dniNie": "DNI / NIE",
+        "dniNiePlaceholder": "12345678A 또는 X1234567A",
+        "dniNieInvalid": "DNI/NIE 형식이 올바르지 않습니다 (예: 12345678A 또는 X1234567A)"
+      },
+      "teacher": {
+        "title": "새 교사 생성",
+        "submit": "교사 생성",
+        "createError": "교사를 생성하는 중 오류가 발생했습니다"
+      },
+      "student": {
+        "alreadyExists": "이미 존재하는 학생입니다. 기존 학생 등록 모드에서 등록하세요.",
+        "createError": "학생을 생성하는 중 오류가 발생했습니다"
+      },
+      "subject": {
+        "title": "새 과목 생성",
+        "nameLabel": "과목명",
+        "namePlaceholder": "예: 프로그래밍",
+        "gradeLabel": "학년",
+        "gradePlaceholder": "학년 선택",
+        "gradeRequired": "학년을 선택해야 합니다",
+        "hoursLabel": "주당 시간",
+        "hoursPlaceholder": "예: 6",
+        "hoursInvalid": "시간은 1에서 30 사이여야 합니다",
+        "descriptionPlaceholder": "과목에 대한 짧은 설명",
+        "descriptionInvalid": "설명은 255자를 초과할 수 없습니다",
+        "courseLabel": "소속 과정",
+        "loadingCourses": "과정 불러오는 중...",
+        "coursePlaceholder": "과정 선택",
+        "courseRequired": "과정을 선택해야 합니다",
+        "submit": "과목 생성",
+        "loadCoursesError": "과정을 불러오지 못했습니다",
+        "createError": "과목을 생성하는 중 오류가 발생했습니다"
+      },
+      "group": {
+        "title": "새 그룹 생성",
+        "nameLabel": "그룹명",
+        "namePlaceholder": "예: 2학년 DAM 오전반",
+        "submit": "그룹 생성",
+        "createError": "그룹을 생성하는 중 오류가 발생했습니다"
+      },
+      "course": {
+        "title": "새 과정 생성",
+        "nameLabel": "과정명",
+        "namePlaceholder": "예: 멀티플랫폼 애플리케이션 개발",
+        "submit": "과정 생성",
+        "createError": "과정을 생성하는 중 오류가 발생했습니다"
+      }
+    },
+    "errors": {
+      "taskCreate": "과제를 생성하는 중 오류가 발생했습니다",
+      "studentTaskCreate": "제출 항목을 생성하는 중 오류가 발생했습니다",
+      "notificationCreate": "알림을 생성하는 중 오류가 발생했습니다",
+      "classSessionCreate": "수업 세션을 생성하는 중 오류가 발생했습니다",
+      "assistanceCreate": "출석을 생성하는 중 오류가 발생했습니다"
+    },
+    "classSessions": {
+      "scheduleOption": "요일 {{day}} · {{start}}-{{end}} (#{{id}})"
+    },
+    "subjectDetail": {
+      "name": "과목명:",
+      "grade": "개설 학년:",
+      "course": "소속 과정:",
+      "hours": "주당 시간:",
+      "description": "설명:"
+    },
+    "assistance": {
+      "enrollmentFallback": "등록 {{id}}",
+      "enrollmentId": "등록 ID"
+    }
+  },
   "sharedPages": {
     "login": {
       "platform": "교육 플랫폼"

@@ -4,6 +4,7 @@ import { SubjectService } from '../../../../../core/services/admin/entities/subj
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 import { SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/models/subject';
 import { CoursesAllResponse } from '../../../../../core/models/course';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que gestiona el formulario de creación de una nueva asignatura.
@@ -12,7 +13,7 @@ import { CoursesAllResponse } from '../../../../../core/models/course';
  */
 @Component({
   selector: 'app-subject-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './subject-create-form.component.html',
   styleUrl: './subject-create-form.component.scss'
 })
@@ -62,7 +63,8 @@ export class SubjectCreateFormComponent {
   constructor(
     private fb: FormBuilder,
     private subjectService: SubjectService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private translate: TranslateService
   ) {
     this.createForm = this.fb.group({
   name:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
@@ -84,7 +86,7 @@ export class SubjectCreateFormComponent {
       },
       error: (err) => {
         console.error('Error cargando ciclos:', err);
-        this.errorMessage = 'No se pudieron cargar los ciclos';
+        this.errorMessage = this.translate.instant('adminPages.forms.subject.loadCoursesError');
         this.isLoadingCourses = false;
       }
     });
@@ -106,7 +108,9 @@ export class SubjectCreateFormComponent {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message || 'Error al crear la asignatura';
+          this.errorMessage =
+            err.error?.message ||
+            this.translate.instant('adminPages.forms.subject.createError');
         }
       });
     }

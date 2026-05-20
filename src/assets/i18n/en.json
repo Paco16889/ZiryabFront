@@ -686,6 +686,87 @@
       }
     }
   },
+  "adminPages": {
+    "dashboard": {
+      "menu": "Menu"
+    },
+    "filters": {
+      "title": "Filters:"
+    },
+    "forms": {
+      "common": {
+        "optional": "optional",
+        "creating": "Creating...",
+        "dniNie": "ID / NIE",
+        "dniNiePlaceholder": "12345678A or X1234567A",
+        "dniNieInvalid": "Invalid DNI/NIE (e.g. 12345678A or X1234567A)"
+      },
+      "teacher": {
+        "title": "Create New Teacher",
+        "submit": "Create Teacher",
+        "createError": "Error creating teacher"
+      },
+      "student": {
+        "alreadyExists": "Student already exists. Enroll from existing student mode.",
+        "createError": "Error creating student"
+      },
+      "subject": {
+        "title": "Create New Subject",
+        "nameLabel": "Subject name",
+        "namePlaceholder": "E.g.: Programming",
+        "gradeLabel": "Grade",
+        "gradePlaceholder": "Select a grade",
+        "gradeRequired": "You must select a grade",
+        "hoursLabel": "Weekly hours",
+        "hoursPlaceholder": "E.g.: 6",
+        "hoursInvalid": "Hours must be between 1 and 30",
+        "descriptionPlaceholder": "Brief subject description",
+        "descriptionInvalid": "Description cannot exceed 255 characters",
+        "courseLabel": "Course it belongs to",
+        "loadingCourses": "Loading courses...",
+        "coursePlaceholder": "Select a course",
+        "courseRequired": "You must select a course",
+        "submit": "Create Subject",
+        "loadCoursesError": "Could not load courses",
+        "createError": "Error creating subject"
+      },
+      "group": {
+        "title": "Create New Group",
+        "nameLabel": "Group name",
+        "namePlaceholder": "E.g.: 2nd DAM Morning",
+        "submit": "Create Group",
+        "createError": "Error creating group"
+      },
+      "course": {
+        "title": "Create New Course",
+        "nameLabel": "Course name",
+        "namePlaceholder": "E.g.: Multiplatform Application Development",
+        "submit": "Create Course",
+        "createError": "Error creating course"
+      }
+    },
+    "errors": {
+      "taskCreate": "Error creating task",
+      "studentTaskCreate": "Error creating submission",
+      "notificationCreate": "Error creating notification",
+      "classSessionCreate": "Error creating class session",
+      "assistanceCreate": "Error creating attendance record"
+    },
+    "classSessions": {
+      "scheduleOption": "Day {{day}} · {{start}}-{{end}} (#{{id}})"
+    },
+    "subjectDetail": {
+      "name": "Subject Name:",
+      "grade": "Grade where it is taught:",
+      "course": "Belonging course:",
+      "hours": "Weekly hours:",
+      "description": "Description:"
+    },
+    "assistance": {
+      "enrollmentFallback": "Enrollment {{id}}",
+      "enrollmentId": "Enrollment ID"
+    }
+  },
   "sharedPages": {
     "login": {
       "platform": "Educational Platform"

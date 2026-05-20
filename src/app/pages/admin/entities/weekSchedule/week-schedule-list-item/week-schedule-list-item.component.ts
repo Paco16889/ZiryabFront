@@ -5,6 +5,7 @@ import { Validators } from '@angular/forms';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 import { WeekScheduleService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que representa un elemento del listado de franjas horarias semanales.
@@ -40,7 +41,8 @@ export class WeekScheduleListItemComponent {
    * Evento emitido cuando la franja horaria ha sido eliminada, incluye su identificador.
    */
   constructor(
-    private weekScheduleService: WeekScheduleService
+    private weekScheduleService: WeekScheduleService,
+    private translate: TranslateService
   ){
 
   }
@@ -77,41 +79,41 @@ export class WeekScheduleListItemComponent {
       editFields: [
         {
           name: 'weekDay',
-          label: 'Día de la semana',
+          label: this.translate.instant('weekScheduleBuilder.weekDay'),
           fieldType: 'select',
-          placeholder: 'Selecciona un día',
+          placeholder: this.translate.instant('common.placeholders.selectOption'),
           validators: [Validators.required],
-          errorMessage: 'El día de la semana es requerido',
+          errorMessage: this.translate.instant('common.validation.required'),
           options: [
-            { label: 'Lunes', value: 1 },
-            { label: 'Martes', value: 2 },
-            { label: 'Miércoles', value: 3 },
-            { label: 'Jueves', value: 4 },
-            { label: 'Viernes', value: 5 },
-            { label: 'Sábado', value: 6 },
-            { label: 'Domingo', value: 7 }
+            { label: this.translate.instant('weekScheduleBuilder.days.1'), value: 1 },
+            { label: this.translate.instant('weekScheduleBuilder.days.2'), value: 2 },
+            { label: this.translate.instant('weekScheduleBuilder.days.3'), value: 3 },
+            { label: this.translate.instant('weekScheduleBuilder.days.4'), value: 4 },
+            { label: this.translate.instant('weekScheduleBuilder.days.5'), value: 5 },
+            { label: this.translate.instant('weekScheduleBuilder.days.6'), value: 6 },
+            { label: this.translate.instant('weekScheduleBuilder.days.7'), value: 7 }
           ],
           optionValueKey: 'value',
           optionLabelKey: 'label'
         },
         {
           name: 'startTime',
-          label: 'Hora de Inicio',
+          label: this.translate.instant('weekScheduleBuilder.startTime'),
           type: 'time',
-          placeholder: 'Ej: 09:00',
+          placeholder: '09:00',
           validators: [Validators.required],
-          errorMessage: 'La hora de inicio es requerida'
+          errorMessage: this.translate.instant('common.validation.required')
         },
         {
           name: 'finishTime',
-          label: 'Hora de Finalización',
+          label: this.translate.instant('weekScheduleBuilder.endTime'),
           type: 'time',
-          placeholder: 'Ej: 10:00',
+          placeholder: '10:00',
           validators: [Validators.required],
-          errorMessage: 'La hora de finalización es requerida'
+          errorMessage: this.translate.instant('common.validation.required')
         }
       ],
-      entityType: 'El Horario Semanal',
+      entityType: this.translate.instant('entities.weekSchedule.singular'),
       entityNameFormat: (schedule: WeekSchedule) => schedule.startTime,
       getByIdFn: (id: number) => this.weekScheduleService.getWeekSchedulebyId(id),
       updateFn: (data: WeekScheduleUpdateRequest) => this.weekScheduleService.updateSchedule(data.id, data),
@@ -130,21 +132,21 @@ export class WeekScheduleListItemComponent {
               type: 'text',
               format: (value: string) => `${value}`,
               className: 'text-xl font-bold',
-              label: 'Día de la semana:'
+              label: this.translate.instant('weekScheduleBuilder.weekDay')
             },
               {
               key: 'startTime',
               type: 'text',
               format: (value: string) => `${value}`,
               className: 'text-xl font-bold',
-              label: 'Hora de Inicio: '
+              label: this.translate.instant('weekScheduleBuilder.startTime')
             },
             {
               key: 'finishTime',
               type: 'text',
               format: (value: string) => `${value}`,
               className: 'text-xl font-bold',
-              label: 'Hora de Finalización:'
+              label: this.translate.instant('weekScheduleBuilder.endTime')
             }
         ]
         };

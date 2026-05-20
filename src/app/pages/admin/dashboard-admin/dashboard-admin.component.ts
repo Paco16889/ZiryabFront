@@ -4,6 +4,7 @@ import { AdminMenuComponent } from '../admin-menu/admin-menu.component';
 import { FilterSectionComponent } from '../filter-section/filter-section.component';
 import { BotonHamburguesaComponent } from "../botones/boton-hamburguesa/boton-hamburguesa.component";
 import { BotonAtrasComponent } from "../../shared/boton-atras/boton-atras.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente contenedor del panel de administración.
@@ -14,7 +15,7 @@ import { BotonAtrasComponent } from "../../shared/boton-atras/boton-atras.compon
  */
 @Component({
   selector: 'app-dashboard-admin',
-  imports: [AdminMenuComponent, DesplegableAdminComponent, FilterSectionComponent, BotonHamburguesaComponent, BotonAtrasComponent],
+  imports: [AdminMenuComponent, DesplegableAdminComponent, FilterSectionComponent, BotonHamburguesaComponent, BotonAtrasComponent, TranslateModule],
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.scss'
 })

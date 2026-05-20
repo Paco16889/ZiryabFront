@@ -684,6 +684,87 @@
       }
     }
   },
+  "adminPages": {
+    "dashboard": {
+      "menu": "Menü"
+    },
+    "filters": {
+      "title": "Filter:"
+    },
+    "forms": {
+      "common": {
+        "optional": "optional",
+        "creating": "Wird erstellt...",
+        "dniNie": "DNI / NIE",
+        "dniNiePlaceholder": "12345678A oder X1234567A",
+        "dniNieInvalid": "Ungueltige DNI/NIE (z. B. 12345678A oder X1234567A)"
+      },
+      "teacher": {
+        "title": "Neuen Lehrer erstellen",
+        "submit": "Lehrer erstellen",
+        "createError": "Fehler beim Erstellen des Lehrers"
+      },
+      "student": {
+        "alreadyExists": "Der Schueler existiert bereits. Bitte ueber den Modus fuer bestehende Schueler einschreiben.",
+        "createError": "Fehler beim Erstellen des Schuelers"
+      },
+      "subject": {
+        "title": "Neues Fach erstellen",
+        "nameLabel": "Fachname",
+        "namePlaceholder": "z. B. Programmierung",
+        "gradeLabel": "Stufe",
+        "gradePlaceholder": "Stufe auswaehlen",
+        "gradeRequired": "Du musst eine Stufe auswaehlen",
+        "hoursLabel": "Wochenstunden",
+        "hoursPlaceholder": "z. B. 6",
+        "hoursInvalid": "Die Stunden muessen zwischen 1 und 30 liegen",
+        "descriptionPlaceholder": "Kurze Beschreibung des Fachs",
+        "descriptionInvalid": "Die Beschreibung darf maximal 255 Zeichen haben",
+        "courseLabel": "Zugehoeriger Bildungsgang",
+        "loadingCourses": "Bildungsgaenge werden geladen...",
+        "coursePlaceholder": "Bildungsgang auswaehlen",
+        "courseRequired": "Du musst einen Bildungsgang auswaehlen",
+        "submit": "Fach erstellen",
+        "loadCoursesError": "Bildungsgaenge konnten nicht geladen werden",
+        "createError": "Fehler beim Erstellen des Fachs"
+      },
+      "group": {
+        "title": "Neue Gruppe erstellen",
+        "nameLabel": "Gruppenname",
+        "namePlaceholder": "z. B. 2. DAM Morgen",
+        "submit": "Gruppe erstellen",
+        "createError": "Fehler beim Erstellen der Gruppe"
+      },
+      "course": {
+        "title": "Neuen Bildungsgang erstellen",
+        "nameLabel": "Name des Bildungsgangs",
+        "namePlaceholder": "z. B. Entwicklung von plattformuebergreifenden Anwendungen",
+        "submit": "Bildungsgang erstellen",
+        "createError": "Fehler beim Erstellen des Bildungsgangs"
+      }
+    },
+    "errors": {
+      "taskCreate": "Fehler beim Erstellen der Aufgabe",
+      "studentTaskCreate": "Fehler beim Erstellen der Abgabe",
+      "notificationCreate": "Fehler beim Erstellen der Benachrichtigung",
+      "classSessionCreate": "Fehler beim Erstellen der Unterrichtsstunde",
+      "assistanceCreate": "Fehler beim Erstellen der Anwesenheit"
+    },
+    "classSessions": {
+      "scheduleOption": "Tag {{day}} · {{start}}-{{end}} (#{{id}})"
+    },
+    "subjectDetail": {
+      "name": "Fachname:",
+      "grade": "Unterrichtsstufe:",
+      "course": "Zugehoeriger Bildungsgang:",
+      "hours": "Wochenstunden:",
+      "description": "Beschreibung:"
+    },
+    "assistance": {
+      "enrollmentFallback": "Einschreibung {{id}}",
+      "enrollmentId": "Einschreibungs-ID"
+    }
+  },
   "sharedPages": {
     "login": {
       "platform": "Bildungsplattform"

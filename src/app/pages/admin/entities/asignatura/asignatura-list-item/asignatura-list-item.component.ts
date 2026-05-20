@@ -10,6 +10,7 @@ import { SubjectService } from '../../../../../core/services/admin/entities/subj
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 import { Validators } from '@angular/forms';
 import { map } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
@@ -51,7 +52,8 @@ export class AsignaturaListItemComponent {
    */
   constructor(
     private subjectService: SubjectService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private translate: TranslateService
   ) {}
 
     /**
@@ -81,19 +83,19 @@ export class AsignaturaListItemComponent {
       editFields: [
         {
           name: 'name',
-          label: 'Nombre de la asignatura',
+          label: this.translate.instant('adminPages.forms.subject.nameLabel'),
           type: 'text',
-          placeholder: 'Nombre de la asignatura',
+          placeholder: this.translate.instant('adminPages.forms.subject.nameLabel'),
           validators: [Validators.required],
-          errorMessage: 'El nombre es requerido'
+          errorMessage: this.translate.instant('common.validation.nameRequired')
         },
         {
           name: 'idCourse',
-          label: 'Ciclo',
+          label: this.translate.instant('adminPages.forms.subject.courseLabel'),
           fieldType: 'select',
-          placeholder: 'Selecciona un ciclo',
+          placeholder: this.translate.instant('adminPages.forms.subject.coursePlaceholder'),
           validators: [Validators.required],
-          errorMessage: 'Debes seleccionar un ciclo',
+          errorMessage: this.translate.instant('adminPages.forms.subject.courseRequired'),
           optionsObservable: this.courseService.getAllCourses().pipe(
             map(res => res.data)
           ),
@@ -102,11 +104,11 @@ export class AsignaturaListItemComponent {
         },
         {
   name: 'grade',
-  label: 'Curso',
+  label: this.translate.instant('adminPages.forms.subject.gradeLabel'),
   fieldType: 'select',
-  placeholder: 'Selecciona un curso',
+  placeholder: this.translate.instant('adminPages.forms.subject.gradePlaceholder'),
   validators: [Validators.required],
-  errorMessage: 'Debes seleccionar un curso',
+  errorMessage: this.translate.instant('adminPages.forms.subject.gradeRequired'),
   options: [
     { value: '1', label: '1º' },
     { value: '2', label: '2º' }
@@ -114,22 +116,22 @@ export class AsignaturaListItemComponent {
 },
 {
   name: 'hours',
-  label: 'Horas semanales',
+  label: this.translate.instant('adminPages.forms.subject.hoursLabel'),
   type: 'number',
-  placeholder: 'Ej: 6',
+  placeholder: this.translate.instant('adminPages.forms.subject.hoursPlaceholder'),
   validators: [Validators.min(1), Validators.max(30)],
-  errorMessage: 'Las horas deben estar entre 1 y 30'
+  errorMessage: this.translate.instant('adminPages.forms.subject.hoursInvalid')
 },
 {
   name: 'description',
-  label: 'Descripción',
+  label: this.translate.instant('lists.tasks.fields.description'),
   type: 'text',
-  placeholder: 'Descripción breve de la asignatura',
+  placeholder: this.translate.instant('adminPages.forms.subject.descriptionPlaceholder'),
   validators: [Validators.maxLength(255)],
-  errorMessage: 'La descripción no puede superar los 255 caracteres'
+  errorMessage: this.translate.instant('adminPages.forms.subject.descriptionInvalid')
 }
       ],
-      entityType: 'la asignatura',
+      entityType: this.translate.instant('entities.subject.singularArticle'),
       entityNameFormat: (subject: Subject) => subject.name,
       getByIdFn: (id: number) => this.subjectService.getSubjectbyId(id),
       updateFn: (data: SubjectUpdateRequest) => this.subjectService.updateSubject(data.id, data),
@@ -149,35 +151,35 @@ export class AsignaturaListItemComponent {
             type: 'text',
             format: (value) => `${value}`,
             className: 'text-xl font-bold',
-            label: 'Nombre de la Asignatura:'
+            label: this.translate.instant('adminPages.subjectDetail.name')
           },
           {
             key: 'grade',
             type: 'text',
             format: (value) => `${value}`,
             className: 'text-xl font-bold',
-            label: 'Curso en el que se imparte: '
+            label: this.translate.instant('adminPages.subjectDetail.grade')
           },
           {
             key: 'course.name',
             type: 'text',
             format: (value) => `${value}`,
             className: 'text-xl font-bold',
-            label: 'Ciclo al que pertenece:'
+            label: this.translate.instant('adminPages.subjectDetail.course')
           },
           {
   key: 'hours',
   type: 'text',
   format: (value) => `${value}`,
   className: 'text-xl font-bold',
-  label: 'Horas semanales:'
+  label: this.translate.instant('adminPages.subjectDetail.hours')
 },
 {
   key: 'description',
   type: 'text',
   format: (value) => `${value}`,
   className: 'text-xl font-bold',
-  label: 'Descripción:'
+  label: this.translate.instant('adminPages.subjectDetail.description')
 }
       ]
       };

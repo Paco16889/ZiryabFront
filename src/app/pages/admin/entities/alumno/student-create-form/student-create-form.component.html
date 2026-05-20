@@ -8,17 +8,17 @@
   <!-- DNI -->
    <!-- Email -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Email</label>
+        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.email' | translate }}</label>
         <input 
           formControlName="email"
           type="email"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="profesor@ziryab.es"
+          placeholder="{{ 'common.placeholders.email' | translate }}"
         />
         @if(createForm.get('email')?.invalid && createForm.get('email')?.touched){
             <span 
               class="text-red-500 text-sm mt-1 block">
-          Email inválido
+          {{ 'common.validation.emailInvalid' | translate }}
         </span>
         }
         
@@ -26,17 +26,17 @@
 
       <!-- Nombre -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Nombre</label>
+        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.name' | translate }}</label>
         <input 
           formControlName="name"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="Nombre"
+          placeholder="{{ 'common.placeholders.name' | translate }}"
         />
         @if(createForm.get('name')?.invalid && createForm.get('name')?.touched){
             <span 
               class="text-red-500 text-sm mt-1 block">
-          El nombre es requerido
+          {{ 'common.validation.nameRequired' | translate }}
         </span>
         }
         
@@ -44,17 +44,17 @@
 
       <!-- Primer apellido -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Primer apellido</label>
+        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.surname' | translate }}</label>
         <input 
           formControlName="surname"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="Primer apellido"
+          placeholder="{{ 'common.placeholders.surname' | translate }}"
         />
         @if(createForm.get('surname')?.invalid && createForm.get('surname')?.touched){
             <span 
               class="text-red-500 text-sm mt-1 block">
-          El primer apellido es requerido
+          {{ 'common.validation.surnameRequired' | translate }}
         </span>
         }
         
@@ -62,17 +62,17 @@
 
       <!-- Segundo apellido -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Segundo apellido</label>
+        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.ndSurname' | translate }}</label>
         <input 
           formControlName="ndSurname"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="Segundo apellido"
+          placeholder="{{ 'common.placeholders.ndSurname' | translate }}"
         />
         @if(createForm.get('ndSurname')?.invalid && createForm.get('ndSurname')?.touched){
              <span 
               class="text-red-500 text-sm mt-1 block">
-          El segundo apellido es requerido
+          {{ 'common.validation.ndSurnameRequired' | translate }}
         </span>
         }
        
@@ -80,7 +80,7 @@
 
       <!-- Fecha de nacimiento -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>
+        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.birthDate' | translate }}</label>
         <input 
           formControlName="birthDate"
           type="date"
@@ -89,7 +89,7 @@
         @if(createForm.get('birthDate')?.invalid && createForm.get('birthDate')?.touched){
              <span
               class="text-red-500 text-sm mt-1 block">
-          La fecha de nacimiento es requerida
+          {{ 'common.validation.birthDateRequired' | translate }}
         </span>
         }
        
@@ -97,18 +97,18 @@
 
       <!-- DNI -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">DNI / NIE</label>
+        <label class="block text-gray-700 font-medium mb-2">{{ 'adminPages.forms.common.dniNie' | translate }}</label>
         <input 
           formControlName="dni"
           type="text"
           maxlength="9"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="12345678A o X1234567A"
+          placeholder="{{ 'adminPages.forms.common.dniNiePlaceholder' | translate }}"
         />
         @if(createForm.get('dni')?.invalid && createForm.get('dni')?.touched){
             <span 
               class="text-red-500 text-sm mt-1 block">
-          DNI/NIE inválido (ej: 12345678A o X1234567A)
+          {{ 'adminPages.forms.common.dniNieInvalid' | translate }}
         </span>
         }
         
@@ -129,7 +129,7 @@
     (click)="onCancel()"
     [disabled]="isCreating"
     class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">
-    Cancelar
+    {{ 'common.buttons.cancel' | translate }}
   </button>
   <app-boton-confirmar-student
   [disabled]="createForm.invalid"

@@ -9,6 +9,7 @@ import { SelectedStudentService } from '../../../../../core/services/admin/selec
 import { Observable, from } from 'rxjs';
 import { switchMap, map, finalize } from 'rxjs/operators';
 import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo estudiante.
@@ -18,7 +19,7 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
  */
 @Component({
   selector: 'app-student-create-form',
-  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
+  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent, TranslateModule],
   templateUrl: './student-create-form.component.html',
   styleUrl: './student-create-form.component.scss'
 })
@@ -67,7 +68,8 @@ export class StudentCreateFormComponent {
     private studentService: StudentsService,
     private fireBaseAuth: Auth,
     private passwordGen: PasswordService,
-    private selectedStudentService: SelectedStudentService
+    private selectedStudentService: SelectedStudentService,
+    private translate: TranslateService
   ) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -134,7 +136,7 @@ export class StudentCreateFormComponent {
     // 2️⃣ si existe → avisar y return
     if (exists) {
       console.log('estudiante existente');
-      this.errorMessage = 'Estudiante existente. Matricular desde estudiante existente.';
+      this.errorMessage = this.translate.instant('adminPages.forms.student.alreadyExists');
       return;
     }
 
@@ -150,7 +152,7 @@ export class StudentCreateFormComponent {
       },
       error: (err) => {
         console.error('❌ Error al crear estudiante:', err);
-        this.errorMessage = 'Error al crear el estudiante';
+        this.errorMessage = this.translate.instant('adminPages.forms.student.createError');
       }
     });
   }

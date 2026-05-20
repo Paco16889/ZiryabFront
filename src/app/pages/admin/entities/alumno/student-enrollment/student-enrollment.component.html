@@ -3,9 +3,9 @@
     <button 
       (click)="onCancel()"
       class="mr-4 text-gray-600 hover:text-gray-900">
-      ← Volver
+      ← {{ 'common.buttons.back' | translate }}
     </button>
-    <h1 class="text-2xl font-bold">Matricular Alumno</h1>
+    <h1 class="text-2xl font-bold">{{ 'studentEnrollment.title' | translate }}</h1>
   </div>
 
   <div class="bg-white p-6 rounded-lg shadow">
@@ -24,7 +24,7 @@
       <div class="border-t pt-6">
         <!-- aquí irá tu student-create-form real -->
         <p class="text-gray-600 mb-4">
-          Introduce los datos del nuevo alumno
+          {{ 'studentEnrollment.newStudentForm.instructions' | translate }}
         </p>
         <app-student-create-form
         (cancelCreate)="onCancelStudentCreate()"
@@ -41,7 +41,7 @@
     @if(mode === 'existing'){
       <div class="border-t pt-6">
         <p class="text-gray-600 mb-4">
-          Selecciona un alumno existente para matricular
+          {{ 'studentEnrollment.existingStudentForm.instructions' | translate }}
         </p>
         <app-student-selector
          [students]="students"

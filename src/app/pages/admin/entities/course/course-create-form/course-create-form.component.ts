@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo ciclo académico.
@@ -8,7 +9,7 @@ import { CourseService } from '../../../../../core/services/admin/entities/cours
  */
 @Component({
   selector: 'app-course-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './course-create-form.component.html',
   styleUrl: './course-create-form.component.scss'
 })
@@ -46,7 +47,8 @@ export class CourseCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private translate: TranslateService
   ) {
     this.createForm = this.fb.group({
       name: ['', Validators.required]
@@ -68,7 +70,9 @@ export class CourseCreateFormComponent {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message || 'Error al crear el ciclo';
+          this.errorMessage =
+            err.error?.message ||
+            this.translate.instant('adminPages.forms.course.createError');
         }
       });
     }
