@@ -6,7 +6,7 @@ import { TaskService } from '../../../core/services/admin/entities/task.service'
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss'
 })
@@ -76,6 +76,7 @@ export class TaskFormComponent implements OnInit {
     formData.append('dueDate', new Date(formValues.dueDate).toISOString());
     formData.append('schoolYear', this.schoolYear);
     formData.append('idTeacherAssignment', this.idTeacherAssignment.toString());
+    formData.append('isPublished', 'true');
 
     // Y aquí viene la magia: Si el profe seleccionó un archivo, lo empaquetamos bajo el nombre 'file'
     // Este nombre 'file' ES EL MISMO que espera multer en Node: uploadTaskAttachment.single('file')

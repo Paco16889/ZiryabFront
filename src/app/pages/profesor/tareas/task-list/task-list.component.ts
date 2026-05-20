@@ -1,9 +1,12 @@
-import { Component, OnInit, OnDestroy, inject, computed } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, computed, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { TaskService } from '../../../../core/services/profesor/task.service';
 import { TaskGroupUiService } from '../../../../core/services/profesor/task-group-ui.service';
 import { TaskGroupItemComponent } from '../task-group-item/task-group-item.component';
+import { TaskFormComponent } from '../../task-form/task-form.component';
+import { BotonAtrasComponent } from '../../../shared/boton-atras/boton-atras.component';
 import { Task, TaskGroup } from '../../../../core/models/teacher/tasks';
 
 /** Paleta de colores para asignar aleatoriamente a cada grupo */
@@ -45,7 +48,7 @@ export interface TaskGroupView {
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, TaskGroupItemComponent],
+  imports: [CommonModule, TranslateModule, TaskGroupItemComponent, TaskFormComponent, BotonAtrasComponent],
   templateUrl: './task-list.component.html',
 })
 export class TaskListComponent implements OnInit, OnDestroy {
@@ -53,10 +56,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
   private readonly taskService    = inject(TaskService);
   private readonly taskGroupUiSvc = inject(TaskGroupUiService);
 
+  readonly showTaskForm = signal(false);
+
   /** ID de la asignación del profesor cuyos tareas se cargarán */
 private readonly route = inject(ActivatedRoute);
 
-private get idTeacherAssignment(): number {
+get idTeacherAssignment(): number {
   return Number(this.route.snapshot.paramMap.get('idTeacherAssignment'));
 }
 
@@ -108,9 +113,20 @@ private get idTeacherAssignment(): number {
   });
 
   ngOnInit(): void {
-   this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
-    // Expandir todos los grupos al cargar
-    
+    this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
+  }
+
+  openTaskForm(): void {
+    this.showTaskForm.set(true);
+  }
+
+  closeTaskForm(): void {
+    this.showTaskForm.set(false);
+  }
+
+  onTaskCreated(): void {
+    this.showTaskForm.set(false);
+    this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
   }
 
   ngOnDestroy(): void {

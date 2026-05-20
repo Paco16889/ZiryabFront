@@ -250,6 +250,11 @@
       "5": "Viernes"
     }
   },
+  "tareas": {
+    "countLabel": "tareas",
+    "createButton": "Crear tarea",
+    "empty": "No hay tareas en esta asignación"
+  },
   "calendario": {
     "title": "Calendario académico",
     "subtitle": "Eventos y fechas importantes del centro",

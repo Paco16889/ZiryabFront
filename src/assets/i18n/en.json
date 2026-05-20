@@ -256,6 +256,11 @@
       "5": "Friday"
     }
   },
+  "tareas": {
+    "countLabel": "tasks",
+    "createButton": "Create task",
+    "empty": "There are no tasks in this assignment"
+  },
   "calendario": {
     "title": "Academic calendar",
     "subtitle": "Important school events and dates",
