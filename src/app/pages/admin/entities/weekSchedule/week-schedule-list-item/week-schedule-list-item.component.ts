@@ -125,30 +125,32 @@ export class WeekScheduleListItemComponent {
    * Configuración de la vista de detalle de la franja horaria semanal.
    * Muestra el día de la semana, hora de inicio y hora de finalización.
    */
-   scheduleDetailConfig: ViewDetailConfig<WeekSchedule> = {
-          fields: [
-            {
-              key: 'weekDay',
-              type: 'text',
-              format: (value: string) => `${value}`,
-              className: 'text-xl font-bold',
-              label: this.translate.instant('weekScheduleBuilder.weekDay')
-            },
-              {
-              key: 'startTime',
-              type: 'text',
-              format: (value: string) => `${value}`,
-              className: 'text-xl font-bold',
-              label: this.translate.instant('weekScheduleBuilder.startTime')
-            },
-            {
-              key: 'finishTime',
-              type: 'text',
-              format: (value: string) => `${value}`,
-              className: 'text-xl font-bold',
-              label: this.translate.instant('weekScheduleBuilder.endTime')
-            }
-        ]
-        };
+  get scheduleDetailConfig(): ViewDetailConfig<WeekSchedule> {
+    return {
+      fields: [
+        {
+          key: 'weekDay',
+          type: 'text',
+          format: (value: string) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('weekScheduleBuilder.weekDay')
+        },
+        {
+          key: 'startTime',
+          type: 'text',
+          format: (value: string) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('weekScheduleBuilder.startTime')
+        },
+        {
+          key: 'finishTime',
+          type: 'text',
+          format: (value: string) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('weekScheduleBuilder.endTime')
+        }
+      ]
+    };
+  }
         
 }

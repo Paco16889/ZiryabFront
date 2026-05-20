@@ -144,47 +144,45 @@ export class AsignaturaListItemComponent {
    * Configuración de la vista de detalle de la asignatura.
    * Define los campos nombre, curso y ciclo al que pertenece.
    */
-  subjectDetailConfig: ViewDetailConfig<Subject> = {
-        fields: [
-          {
-            key: 'name',
-            type: 'text',
-            format: (value) => `${value}`,
-            className: 'text-xl font-bold',
-            label: this.translate.instant('adminPages.subjectDetail.name')
-          },
-          {
-            key: 'grade',
-            type: 'text',
-            format: (value) => `${value}`,
-            className: 'text-xl font-bold',
-            label: this.translate.instant('adminPages.subjectDetail.grade')
-          },
-          {
-            key: 'course.name',
-            type: 'text',
-            format: (value) => `${value}`,
-            className: 'text-xl font-bold',
-            label: this.translate.instant('adminPages.subjectDetail.course')
-          },
-          {
-  key: 'hours',
-  type: 'text',
-  format: (value) => `${value}`,
-  className: 'text-xl font-bold',
-  label: this.translate.instant('adminPages.subjectDetail.hours')
-},
-{
-  key: 'description',
-  type: 'text',
-  format: (value) => `${value}`,
-  className: 'text-xl font-bold',
-  label: this.translate.instant('adminPages.subjectDetail.description')
-}
+  get subjectDetailConfig(): ViewDetailConfig<Subject> {
+    return {
+      fields: [
+        {
+          key: 'name',
+          type: 'text',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('adminPages.subjectDetail.name')
+        },
+        {
+          key: 'grade',
+          type: 'text',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('adminPages.subjectDetail.grade')
+        },
+        {
+          key: 'course.name',
+          type: 'text',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('adminPages.subjectDetail.course')
+        },
+        {
+          key: 'hours',
+          type: 'text',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('adminPages.subjectDetail.hours')
+        },
+        {
+          key: 'description',
+          type: 'text',
+          format: (value) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('adminPages.subjectDetail.description')
+        }
       ]
-      };
-      
- 
-
- 
+    };
+  }
 }
