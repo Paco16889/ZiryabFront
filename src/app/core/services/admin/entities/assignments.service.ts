@@ -1,42 +1,31 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import {
+  AssignmentBulkCreateItem,
+  AssignmentBulkCreateResponse,
+  CourseAssignmentsByOfferResponse,
+  CourseGradesResponse,
+  CourseSubjectsByGradeResponse,
+} from '../../../models/course-assignments/course-assignments-api.model';
+import {
+  AssignmentCreateRequest,
+  AssignmentCreateResponse,
+  AssignmentWithIncludes,
+} from '../../../models/assingment';
 import { environment } from '../../../../../environments/environment';
-import { AssignmentWithIncludes } from '../../../models/assingment';
 import { CourseService } from './course.service';
 
-export type CourseGradesResponse = {
-  success: boolean;
-  data: string[];
-  count?: number;
-};
-
-export type CourseSubjectsByGradeResponse = {
-  success: boolean;
-  data: Array<{
-    id: number;
-    name: string;
-    grade: string;
-    hours?: number;
-    description?: string;
-    idCourse: number;
-  }>;
-  count?: number;
-};
-
-export type CourseAssignmentsByOfferResponse = {
-  success: boolean;
-  data: AssignmentWithIncludes[];
-  count?: number;
-};
-
 /**
- * Endpoints de asignaciones docentes ligados a Course (CURSO-93 / CURSO-95).
+ * Servicio admin de asignaciones docentes desde Course (CURSO-93 / CURSO-99).
+ *
+ * `getGradesByCourse` devuelve los valores **distinct** de `Subject.grade`
+ * del catálogo de asignaturas de ese ciclo (no confundir con grupos ni turnos).
  */
 @Injectable({
   providedIn: 'root',
 })
-export class CourseAssignmentsHttpService {
+export class AssignmentsService {
   private readonly http = inject(HttpClient);
   private readonly courseService = inject(CourseService);
 
@@ -50,24 +39,7 @@ export class CourseAssignmentsHttpService {
     return this.http
       .get<CourseGradesResponse>(`${this.coursesBaseUrl}/${idCourse}/grades`)
       .pipe(
-        catchError(() =>
-          this.courseService.getCourseById(idCourse).pipe(
-            map((res) => {
-              if (!res.success || !res.data?.subjects?.length) {
-                return { success: false, data: [] as string[] };
-              }
-              const grades = [
-                ...new Set(
-                  res.data.subjects
-                    .map((s) => String(s.grade ?? '').trim())
-                    .filter((g) => g.length > 0),
-                ),
-              ].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-              return { success: true, data: grades, count: grades.length };
-            }),
-            catchError(() => of({ success: false, data: [] as string[] })),
-          ),
-        ),
+        catchError(() => this.gradesFromCourseSubjects(idCourse)),
         switchMap((apiRes) => {
           if (apiRes.success && apiRes.data.length > 0) {
             return of(apiRes);
@@ -77,17 +49,13 @@ export class CourseAssignmentsHttpService {
       );
   }
 
-  /**
-   * Asignaturas de un ciclo + grade (`GET /api/courses/:id/subjects?grade=` o fallback).
-   */
   getSubjectsByCourseAndGrade(
     idCourse: number,
     grade: string,
   ): Observable<CourseSubjectsByGradeResponse> {
-    const params = new HttpParams().set('grade', grade);
     return this.http
       .get<CourseSubjectsByGradeResponse>(`${this.coursesBaseUrl}/${idCourse}/subjects`, {
-        params,
+        params: { grade },
       })
       .pipe(
         catchError(() => this.subjectsFromCourse(idCourse, grade)),
@@ -100,9 +68,14 @@ export class CourseAssignmentsHttpService {
       );
   }
 
-  /**
-   * Asignaciones existentes para ciclo + grade + año (filtro cliente si el back no expone ruta dedicada).
-   */
+  getAssignmentsByCourseAndGrade(
+    idCourse: number,
+    grade: string,
+    schoolYear: string,
+  ): Observable<CourseAssignmentsByOfferResponse> {
+    return this.getAssignmentsByCourseGradeAndYear(idCourse, grade, schoolYear);
+  }
+
   getAssignmentsByCourseGradeAndYear(
     idCourse: number,
     grade: string,
@@ -131,6 +104,42 @@ export class CourseAssignmentsHttpService {
       }),
       catchError(() => of({ success: false, data: [] as AssignmentWithIncludes[] })),
     );
+  }
+
+  createAssignment(payload: AssignmentCreateRequest): Observable<AssignmentCreateResponse> {
+    return this.http.post<AssignmentCreateResponse>(this.assignmentsBaseUrl, payload).pipe(
+      catchError((error) => {
+        console.error('AssignmentsService.createAssignment', error);
+        throw error;
+      }),
+    );
+  }
+
+  /**
+   * Alta masiva (`POST /api/assignments/bulk`). Si el back aún no expone la ruta, devuelve `success: false`.
+   */
+  createAssignmentsBulk(
+    items: AssignmentBulkCreateItem[],
+  ): Observable<AssignmentBulkCreateResponse> {
+    return this.http
+      .post<AssignmentBulkCreateResponse>(`${this.assignmentsBaseUrl}/bulk`, { items })
+      .pipe(
+        catchError(() =>
+          of({
+            success: false,
+            message: 'Bulk endpoint not available',
+            data: {
+              created: 0,
+              duplicates: 0,
+              skipped: items.length,
+              errors: items.map((i) => ({
+                idSubject: i.idSubject,
+                message: 'API bulk pendiente (CURSO-94)',
+              })),
+            },
+          }),
+        ),
+      );
   }
 
   private subjectsFromCourse(

@@ -6,7 +6,7 @@ import { CourseAssignmentsContext } from '../../../../../core/models/course-assi
 import { CourseAssignmentGridRow } from '../../../../../core/models/course-assignments/course-assignment-grid-row.model';
 import { Group } from '../../../../../core/models/group';
 import { Teacher } from '../../../../../core/models/teacher';
-import { CourseAssignmentsHttpService } from '../../../../../core/services/admin/entities/course-assignments-http.service';
+import { AssignmentsService } from '../../../../../core/services/admin/entities/assignments.service';
 import { GroupService } from '../../../../../core/services/admin/entities/group.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 import { environment } from '../../../../../../environments/environment';
@@ -22,7 +22,7 @@ import { environment } from '../../../../../../environments/environment';
   styleUrl: './course-assignments-grid.component.scss',
 })
 export class CourseAssignmentsGridComponent implements OnInit {
-  private readonly assignmentsHttp = inject(CourseAssignmentsHttpService);
+  private readonly assignmentsService = inject(AssignmentsService);
   private readonly teachersService = inject(TeachersService);
   private readonly groupService = inject(GroupService);
 
@@ -43,8 +43,8 @@ export class CourseAssignmentsGridComponent implements OnInit {
     this.loadError.set(false);
 
     forkJoin({
-      subjects: this.assignmentsHttp.getSubjectsByCourseAndGrade(ctx.idCourse, ctx.grade),
-      existing: this.assignmentsHttp.getAssignmentsByCourseGradeAndYear(
+      subjects: this.assignmentsService.getSubjectsByCourseAndGrade(ctx.idCourse, ctx.grade),
+      existing: this.assignmentsService.getAssignmentsByCourseAndGrade(
         ctx.idCourse,
         ctx.grade,
         this.schoolYear(),

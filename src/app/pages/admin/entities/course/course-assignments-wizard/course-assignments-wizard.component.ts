@@ -2,7 +2,7 @@ import { Component, inject, input, OnInit, output, signal } from '@angular/core'
 import { TranslateModule } from '@ngx-translate/core';
 import { Course } from '../../../../../core/models/course';
 import { CourseAssignmentsContext } from '../../../../../core/models/course-assignments/course-assignments-context.model';
-import { CourseAssignmentsHttpService } from '../../../../../core/services/admin/entities/course-assignments-http.service';
+import { AssignmentsService } from '../../../../../core/services/admin/entities/assignments.service';
 
 type WizardStep = 1 | 2;
 
@@ -17,7 +17,7 @@ type WizardStep = 1 | 2;
   styleUrl: './course-assignments-wizard.component.scss',
 })
 export class CourseAssignmentsWizardComponent implements OnInit {
-  private readonly assignmentsHttp = inject(CourseAssignmentsHttpService);
+  private readonly assignmentsService = inject(AssignmentsService);
 
   readonly courses = input.required<Course[]>();
 
@@ -69,7 +69,7 @@ export class CourseAssignmentsWizardComponent implements OnInit {
     this.showValidation.set(false);
     this.loadingGrades.set(true);
 
-    this.assignmentsHttp.getGradesByCourse(idCourse).subscribe((res) => {
+    this.assignmentsService.getGradesByCourse(idCourse).subscribe((res) => {
       this.loadingGrades.set(false);
       if (!res.success || res.data.length === 0) {
         this.gradesError.set(true);
