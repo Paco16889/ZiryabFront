@@ -114,7 +114,7 @@ export class TaskService {
    * @param data - Datos necesarios para crear la tarea
    * @returns Observable con la respuesta que contiene la tarea creada
    */
-  createTask(data: CreateTaskRequest): Observable<CreateTaskResponse> {
+  createTask(data: CreateTaskRequest | FormData): Observable<CreateTaskResponse> {
     return this.http.post<CreateTaskResponse>(this.apiUrl, data).pipe(
       catchError((error) => {
         console.error('Error:', error);

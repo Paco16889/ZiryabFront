@@ -56,7 +56,7 @@ export class TemarioProfesorComponent implements OnInit {
             this.loadAlumnos();
         }
         this.loadTasks();
-    }
+    }//comentario
 
     loadTasks() {
       this.taskService.getAllTasks().subscribe({

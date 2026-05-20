@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { WeekSchedule } from '../../../core/models/week-schedule';
 import { AuthService } from '../../../core/services/auth.service';
-import { WeekScheduleService } from '../../../core/services/admin/entities/week-schedule.service';
+import { WeekScheduleService } from '../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 import { prismaDayOfWeekToNumber } from '../../../core/utils/week-day';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 

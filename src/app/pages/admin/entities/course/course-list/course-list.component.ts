@@ -1,12 +1,17 @@
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, effect, OnInit, signal } from '@angular/core';
 import { CourseListItemComponent } from '../course-list-item/course-list-item.component';
-import { Course, CourseByIdResponse } from '../../../../../core/models/course';
+import { Course } from '../../../../../core/models/course';
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { CourseCreateFormComponent } from '../course-create-form/course-create-form.component';
 import { BotonCreateComponent } from "../../../botones/boton-create/boton-create.component";
 import { TranslateModule } from '@ngx-translate/core';
+import { CourseAssignmentsWizardComponent } from '../course-assignments-wizard/course-assignments-wizard.component';
+import { CourseAssignmentsGridComponent } from '../course-assignments-grid/course-assignments-grid.component';
+import { CourseAssignmentsContext } from '../../../../../core/models/course-assignments/course-assignments-context.model';
+
+type CourseListView = 'list' | 'create' | 'assignments-wizard' | 'assignments-grid';
 
 /**
  * Componente que muestra el listado de ciclos académicos del sistema.
@@ -15,7 +20,14 @@ import { TranslateModule } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-course-list',
-  imports: [CourseListItemComponent, CourseCreateFormComponent, BotonCreateComponent, TranslateModule],
+  imports: [
+    CourseListItemComponent,
+    CourseCreateFormComponent,
+    BotonCreateComponent,
+    TranslateModule,
+    CourseAssignmentsWizardComponent,
+    CourseAssignmentsGridComponent,
+  ],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })
@@ -25,11 +37,9 @@ export class CourseListComponent implements OnInit {
    * Listado de ciclos académicos a mostrar, sincronizado con la signal del servicio.
    */
     courses: Course[] = [];
-    
- /**
-   * Controla la visibilidad del formulario de creación de ciclos académicos.
-   */
-  showCreateForm = false;  
+
+  readonly view = signal<CourseListView>('list');
+  readonly assignmentsContext = signal<CourseAssignmentsContext | null>(null);
 
    /**
    * @param courseService - Servicio que gestiona las operaciones con ciclos académicos
@@ -48,57 +58,53 @@ export class CourseListComponent implements OnInit {
         effect(() => {
       const deleteModalState = this.modalDeleteService.modalState();
       const updateModalState = this.modalUpdateService.modalState();
-      
-    
-      
-      // Si el modal se cerró (después de haber estado abierto con éxito)
+
       if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
-        console.log('✅ Eliminado con éxito, recargando lista...');
         this.courseService.loadCourses();
       }
 
       if(!updateModalState.isOpen && updateModalState.showSuccess) {
-        console.log('✅ Actualizado con éxito, recargando lista...');
         this.courseService.loadCourses();
       }
     });
       }
-    
+
        /**
    * Carga el listado de ciclos académicos al inicializar el componente.
    */
       ngOnInit():void {
-
         this.courseService.loadCourses();
-       
       }
-     
 
-
-
-  
-/**
-   * Muestra el formulario de creación de ciclos académicos.
-   */
   openCreateForm() {
-    this.showCreateForm = true;
+    this.view.set('create');
   }
 
-
-  /**
-   * Oculta el formulario de creación de ciclos académicos.
-   */
   closeCreateForm() {
-    this.showCreateForm = false;
+    this.view.set('list');
   }
 
-   /**
-   * Cierra el formulario de creación y recarga el listado de ciclos académicos.
-   * Se llama cuando el formulario de creación notifica que se ha creado un ciclo.
-   */
   onCourseCreated() {
     this.closeCreateForm();
-    this.courseService.loadCourses(); // Recarga la lista
+    this.courseService.loadCourses();
   }
 
+  openAssignmentsWizard() {
+    this.assignmentsContext.set(null);
+    this.view.set('assignments-wizard');
+  }
+
+  onAssignmentsWizardCancel() {
+    this.view.set('list');
+  }
+
+  onAssignmentsWizardComplete(ctx: CourseAssignmentsContext) {
+    this.assignmentsContext.set(ctx);
+    this.view.set('assignments-grid');
+  }
+
+  onAssignmentsGridBack() {
+    this.assignmentsContext.set(null);
+    this.view.set('list');
+  }
 }

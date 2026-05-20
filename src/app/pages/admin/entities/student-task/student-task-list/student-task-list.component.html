@@ -1,1 +1,17 @@
-<p>student-task-list works!</p>
+<div class="p-4">
+  @if (!showCreateForm) {
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold">{{ 'entities.studentTask.title' | translate }}</h1>
+      <app-boton-create [label]="'lists.studentTasks.createButton' | translate" (clickAction)="openCreateForm()" />
+    </div>
+    @for (st of studentTasks; track st.id) {
+      <app-student-task-list-item [studentTask]="st" />
+    }
+  }
+  @if (showCreateForm) {
+    <app-student-task-create-form
+      (cancelCreate)="closeCreateForm()"
+      (studentTaskCreated)="onStudentTaskCreated()"
+    />
+  }
+</div>

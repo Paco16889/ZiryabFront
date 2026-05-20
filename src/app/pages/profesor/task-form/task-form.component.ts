@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { TaskService } from '../../../core/services/admin/entities/task.service';
+import { TaskService } from '../../../core/services/profesor/task.service';
+import { CreateTaskResponse } from '../../../core/models/teacher/tasks';
 
 @Component({
   selector: 'app-task-form',
@@ -24,10 +25,8 @@ export class TaskFormComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private taskService: TaskService
-  ) {}
+  private readonly fb = inject(FormBuilder);
+  private readonly taskService = inject(TaskService);
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
@@ -84,15 +83,15 @@ export class TaskFormComponent implements OnInit {
       formData.append('file', this.selectedFile);
     }
 
-    this.taskService.createTask(formData as any).subscribe({
-      next: (response) => {
+    this.taskService.createTask(formData).subscribe({
+      next: (response: CreateTaskResponse) => {
         this.loading = false;
         this.successMessage = 'Tarea creada con éxito con su fichero adjunto.';
         this.taskForm.reset({ type: 'HOMEWORK' });
         this.selectedFile = null;
         this.taskCreated.emit(response.data);
       },
-      error: (err) => {
+      error: (err: { error?: { message?: string } }) => {
         this.loading = false;
         this.errorMessage = err.error?.message || 'Error al crear la tarea.';
       }

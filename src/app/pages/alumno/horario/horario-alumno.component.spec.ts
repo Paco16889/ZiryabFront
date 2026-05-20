@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { WeekScheduleService } from '../../../core/services/admin/entities/week-schedule.service';
+import { WeekScheduleService } from '../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 import { HorarioAlumnoComponent } from './horario-alumno.component';
 
 describe('HorarioAlumnoComponent', () => {

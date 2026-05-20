@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { GetAsignaturasAlumnoResponse, GetAsignaturasProfesorResponse, GetSubjectDetailResponse } from '../models/teacher/subjectforteacher';
 import { Subject } from '../models/subject';
+import { environment } from '../../../environments/environment';
 
 
 /**
@@ -20,7 +21,7 @@ export class ClasesService {
   /**
    * URL base de la API.
    */
-  private apiUrl = 'http://localhost:3000/api'; 
+  private readonly apiUrl = environment.apiUrl; 
 
     /**
    * Obtiene las asignaturas en las que está matriculado un estudiante.

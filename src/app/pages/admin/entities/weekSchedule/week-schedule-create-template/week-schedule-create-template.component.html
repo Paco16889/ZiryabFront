@@ -1,0 +1,36 @@
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
+  <app-week-schedule-create-class-select
+    [selectedClassKey]="selectedClassKey()"
+    [showValidation]="showValidation()"
+    (classChange)="onClassChange($event)"
+  />
+
+  <app-week-schedule-create-weekdays
+    [selectedWeekDays]="weekDays()"
+    [showValidation]="showValidation()"
+    (weekDaysChange)="onWeekDaysChange($event)"
+  />
+
+  <app-week-schedule-create-slots
+    [slots]="slots()"
+    [showValidation]="showValidation()"
+    (slotsChange)="onSlotsChange($event)"
+  />
+
+  <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+    {{ 'weekScheduleBuilder.create.pendingApi' | translate }}
+  </p>
+
+  <div class="pt-2">
+    <button
+      type="button"
+      class="px-4 py-2 bg-purple-600 text-white rounded-md"
+      (click)="onSubmit()"
+    >
+      {{ 'weekScheduleBuilder.create.validate' | translate }}
+    </button>
+    <p class="text-xs text-gray-500 mt-2">
+      {{ 'weekScheduleBuilder.create.submitHint' | translate }}
+    </p>
+  </div>
+</div>

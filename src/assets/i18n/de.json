@@ -71,10 +71,36 @@
       "plural": "Gruppen",
       "title": "Gruppen"
     },
+    "task": {
+      "singular": "Aufgabe",
+      "plural": "Aufgaben",
+      "singularArticle": "die Aufgabe",
+      "title": "Aufgaben"
+    },
     "classSession": {
       "singular": "Unterrichtsstunde",
       "plural": "Unterrichtsstunden",
       "title": "Unterrichtsstunden"
+    },
+    "studentTask": {
+      "singular": "Abgabe",
+      "plural": "Abgaben",
+      "title": "Schülerabgaben"
+    },
+    "assistance": {
+      "singular": "Anwesenheit",
+      "plural": "Anwesenheiten",
+      "title": "Anwesenheit"
+    },
+    "notification": {
+      "singular": "Benachrichtigung",
+      "plural": "Benachrichtigungen",
+      "title": "Benachrichtigungen"
+    },
+    "weekSchedule": {
+      "singular": "Zeitslot",
+      "plural": "Zeitslots",
+      "title": "Stundenpläne"
     }
   },
 
@@ -104,6 +130,102 @@
     "confirmButton": "Auswahl bestätigen"
   },
 
+  "weekScheduleBuilder": {
+    "title": "Stundenplan anlegen",
+    "modeLabel": "Erstellungsmodus",
+    "modeCreate": "Vorlage anlegen",
+    "modeGrid": "Wochenraster",
+    "create": {
+      "daysLabel": "Wochentage (Mo–Fr)",
+      "validationNoDay": "Wähle mindestens einen Tag.",
+      "loadingClasses": "Klassen werden geladen…",
+      "emptyEligibleClasses": "Keine Klassen mit Fächern und ohne Wochenstundenplan für dieses Schuljahr.",
+      "validationNoClass": "Wähle eine Klasse.",
+      "slotCount": "Anzahl der Unterrichtseinheiten",
+      "slotsTitle": "Zeiten je Einheit",
+      "slotRow": "Einheit {{n}}",
+      "validationMinSlots": "Mindestens eine Einheit angeben.",
+      "timeFormatHint": "Pflichtformat HH:mm mit zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
+      "validationTimeFormat": "Ungültiges Format. Zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
+      "pendingApi": "Das Speichern der Vorlage ist verfügbar, sobald das Backend den Materialisierungs-Endpunkt bereitstellt.",
+      "submit": "Wochenstundenplan-Vorlage erstellen",
+      "validate": "Formular prüfen",
+      "submitHint": "Speichern wird freigeschaltet, sobald das Backend den Endpunkt bereitstellt (CURSO-71)."
+    },
+    "placeholder": "Hier wird der Editor für Wochenstundenpläne eingerichtet.",
+    "selectGroup": "Gruppe (noch keine Einheiten)",
+    "selectTeacher": "Lehrer",
+    "selectAssignment": "Lehrzuordnung in der Gruppe",
+    "professorSlot": "Lehrer für diese Einheit",
+    "weekDay": "Wochentag",
+    "startTime": "Beginn",
+    "endTime": "Ende",
+    "submit": "Zeitslot speichern",
+    "saving": "Speichern...",
+    "saveError": "Zeitslot konnte nicht gespeichert werden.",
+    "emptyEligibleGroups": "Keine berechtigte Gruppe: alle haben mindestens eine Einheit oder Gruppen nicht ladbar.",
+    "loadEligibleGroupsError": "Berechtigte Gruppen konnten nicht geladen werden.",
+    "emptyTeachers": "Keine Lehrer geladen. API prüfen oder neu laden.",
+    "emptyAssignments": "Dieser Lehrer hat keine sichtbaren Zuordnungen.",
+    "emptyAssignmentsForGroup": "Keine Lehrzuordnungen für diese Gruppe. Einschreibungen oder API prüfen.",
+    "emptyPeers": "Keine passenden Lehrer für Fach/Gruppe/J Schuljahr.",
+    "loadAssignmentsError": "Zuordnungen der Gruppe konnten nicht geladen werden.",
+    "loadPeersError": "Lehrer der Fachzuordnung konnten nicht geladen werden.",
+    "timeOrderError": "Ende muss nach Beginn liegen.",
+    "days": {
+      "1": "Montag",
+      "2": "Dienstag",
+      "3": "Mittwoch",
+      "4": "Donnerstag",
+      "5": "Freitag",
+      "6": "Samstag",
+      "7": "Sonntag"
+    },
+    "grid": {
+      "title": "Wochenraster (Mo–Fr)",
+      "intro": "Zyklus, Jahrgang und Schicht wählen; pro Slot Lehrkraft–Fach wählen.",
+      "introClass": "Die Klasse umfasst Fächer desselben Bildungsgangs (course) und Jahrgangs (grade) in einer Schicht (Group, z. B. Vormittag/Nachmittag). Jede Zelle listet Lehrkräfte mit Zuordnung zu diesem Fach, Gruppe und Schuljahr.",
+      "selectClass": "Klasse",
+      "classPlaceholder": "— Klasse wählen —",
+      "loadClassesError": "Klassen konnten nicht geladen werden.",
+      "emptyClasses": "Keine Klassen mit Lehrzuordnungen für dieses Schuljahr.",
+      "schoolYearLabel": "Schuljahr",
+      "selectCourse": "Bildungsgang (course)",
+      "coursePlaceholder": "— Bildungsgang —",
+      "loadCoursesError": "Bildungsgänge konnten nicht geladen werden.",
+      "selectGrade": "Jahrgang (grade)",
+      "gradePlaceholder": "— Jahrgang —",
+      "selectShiftGroup": "Schicht (Gruppe)",
+      "shiftGroupHint": "Entspricht Group in der DB; nur Schichten mit Unterricht für Zyklus+Jahrgang+Jahr.",
+      "shiftPlaceholder": "— Schicht —",
+      "loadContextError": "Kontext des Stundenplans konnte nicht geladen werden.",
+      "cellSelectPlaceholder": "— Frei —",
+      "emptyClassAssignments": "Keine Lehrzuordnungen für diese Klasse im Schuljahr. Gruppe–Fach prüfen.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Gruppe",
+      "groupPlaceholder": "— Gruppe wählen —",
+      "loadError": "Gruppen konnten nicht geladen werden.",
+      "emptyGroups": "Keine Gruppen verfügbar.",
+      "loading": "Lehrzuordnungen werden geladen…",
+      "paletteTitle": "Fächer dieser Gruppe",
+      "paletteHint": "Klick zum Auswählen; Enter oder Zelle klicken zum Setzen. Ins Raster ziehen.",
+      "slotColumn": "Zeitslot",
+      "dropHint": "Hier ablegen",
+      "clearCell": "Entfernen",
+      "save": "Stundenplan speichern",
+      "saving": "Speichern…",
+      "saveError": "Stundenplan konnte nicht gespeichert werden.",
+      "keyboardHint": "Tastatur: Tab durch Zellen; Fach wählen und Enter in leerer Zelle.",
+      "peerResolveError": "Lehrzuordnung für diese Gruppe und dieses Fach konnte nicht ermittelt werden.",
+      "validationNoGroup": "Bitte eine Gruppe wählen.",
+      "validationNoClass": "Bitte eine Klasse wählen.",
+      "validationIncompleteClass": "Bitte Bildungsgang, Jahrgang und Schicht (Gruppe) wählen.",
+      "validationGroupOverlap": "Überschneidung in derselben Gruppe: «{{a}}» und «{{b}}» am Tag {{day}}.",
+      "validationSubjectHours": "Fach «{{subject}}» übersteigt die Wochenstunden (max. {{max}} h, aktuell {{current}} h).",
+      "validationTeacherOverlap": "Mögliche Überschneidung: «{{label}}» am Tag {{day}} mit einer anderen Gruppe."
+    }
+  },
+
   "adminMenu": {
     "students": "Schüler",
     "teachers": "Lehrer",
@@ -111,7 +233,11 @@
     "groups": "Gruppen",
     "courses": "Bildungsgänge",
     "schedules": "Stundenpläne",
-    "sessions": "Unterrichtsstunden"
+    "tasks": "Aufgaben",
+    "classSessions": "Stunden",
+    "studentTasks": "Abgaben",
+    "assistances": "Anwesenheit",
+    "notifications": "Benachrichtigungen"
   },
 
   "deleteModal": {
@@ -156,32 +282,110 @@
     "title": "Gruppen",
     "createButton": "Neue Gruppe"
   },
-  "classSessions": {
-    "title": "Unterrichtsstunden",
-    "createButton": "Neue Stunde"
-  }
+  "schedules": {
+    "createButton": "Stundenplan anlegen",
+    "createPlaceholder": "Das Formular zur Erstellung des Stundenplans wird hier angezeigt."
   },
-  "classSessionCreateForm": {
-    "title": "Neue Stunde anlegen",
-    "back": "Zurück",
-    "date": "Datum",
-    "dateRequired": "Datum ist erforderlich",
-    "schedule": "Zeitfenster",
-    "schedulePlaceholder": "Zeitfenster auswählen",
-    "scheduleRequired": "Bitte ein Zeitfenster auswählen",
-    "scheduleLoading": "Zeitpläne werden geladen...",
-    "status": "Status",
-    "statusScheduled": "Geplant",
-    "statusCompleted": "Abgeschlossen",
-    "statusCancelled": "Abgesagt",
-    "appointments": "Anmerkungen",
-    "appointmentsOptional": "(optional)",
-    "appointmentsPlaceholder": "Anmerkungen zur Stunde",
-    "cancel": "Abbrechen",
-    "submit": "Stunde anlegen",
-    "creating": "Wird erstellt...",
-    "errorSchedules": "Zeitpläne konnten nicht geladen werden",
-    "errorCreate": "Fehler beim Erstellen der Stunde"
+  "tasks": {
+    "title": "Aufgaben",
+    "createButton": "Neue Aufgabe",
+    "createTitle": "Aufgabe anlegen",
+    "creating": "Wird erstellt…",
+    "fields": {
+      "assignment": "Lehrerzuordnung",
+      "assignmentPlaceholder": "Zuordnung auswählen",
+      "title": "Titel",
+      "type": "Typ",
+      "startDate": "Startdatum",
+      "dueDate": "Abgabedatum",
+      "schoolYear": "Schuljahr",
+      "description": "Beschreibung"
+    },
+    "validation": {
+      "assignment": "Bitte eine Zuordnung wählen",
+      "title": "Titel ist erforderlich"
+    }
+  },
+  "classSessions": {
+    "title": "Stunden",
+    "createButton": "Neue Stunde",
+    "createTitle": "Unterrichtsstunde anlegen",
+    "creating": "Wird erstellt…",
+    "cancelClassesButton": "Stunden absagen",
+    "cancelDialog": {
+      "title": "Stunden massenhaft absagen",
+      "dateFrom": "Von Datum",
+      "dateTo": "Bis Datum",
+      "invalidDates": "Das Enddatum muss am oder nach dem Startdatum liegen.",
+      "filtersHint": "Optionale Filter (keine Auswahl = alle Stunden im Zeitraum):",
+      "filterCourse": "Zyklus",
+      "filterSubject": "Fach",
+      "filterGroup": "Gruppe",
+      "filterTeacher": "Lehrkraft",
+      "filterAll": "Alle",
+      "previewLoading": "Betroffene Stunden werden berechnet…",
+      "previewError": "Vorschau nicht möglich. Daten und API prüfen.",
+      "previewCount": "Es werden {{count}} Stunden ausgesetzt.",
+      "previewWaiting": "Gültige Daten eingeben für die Vorschau.",
+      "previewNeedDates": "Von- und Bis-Datum angeben.",
+      "cancel": "Abbrechen",
+      "confirm": "Aussetzung bestätigen",
+      "confirming": "Wird ausgesetzt…",
+      "success": "{{count}} Stunden wurden erfolgreich ausgesetzt.",
+      "error": "Fehler beim Aussetzen. Bitte erneut versuchen."
+    },
+    "fields": {
+      "schedule": "Zeitslot",
+      "schedulePlaceholder": "Zeitslot wählen",
+      "date": "Datum",
+      "status": "Status",
+      "appointments": "Notizen"
+    }
+  },
+  "studentTasks": {
+    "title": "Abgaben",
+    "createButton": "Neue Abgabe",
+    "createTitle": "Abgabe anlegen",
+    "fields": {
+      "task": "Aufgabe",
+      "enrollmentHint": "Einschreibungen nach Gruppe, Fach und Jahr filtern",
+      "group": "Gruppe",
+      "subject": "Fach",
+      "loadEnrollments": "Einschreibungen laden",
+      "enrollment": "Schülereinschreibung"
+    }
+  },
+  "assistances": {
+    "title": "Anwesenheit",
+    "createButton": "Neue Anwesenheit",
+    "createTitle": "Anwesenheit erfassen",
+    "fields": {
+      "session": "Unterrichtsstunde",
+      "enrollmentHint": "Einschreibungen nach Gruppe, Fach und Jahr filtern",
+      "group": "Gruppe",
+      "subject": "Fach",
+      "loadEnrollments": "Einschreibungen laden",
+      "enrollment": "Schülereinschreibung",
+      "status": "Status"
+    }
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "createButton": "Neue Benachrichtigung",
+    "createTitle": "Benachrichtigung anlegen",
+      "fields": {
+        "recipientHint": "Schüler oder Lehrer wählen; das System sendet die Benachrichtigung an dessen Konto.",
+        "recipientRole": "Empfängertyp",
+        "roleStudent": "Schüler",
+        "roleTeacher": "Lehrer",
+        "recipient": "Empfänger",
+        "recipientPlaceholder": "Benutzer auswählen",
+        "noRecipients": "Keine Benutzer mit verknüpftem Firebase-Konto in dieser Liste.",
+        "title": "Titel",
+        "message": "Nachricht",
+        "type": "Typ"
+      }
+  }
   },
 
   "LANG": {
@@ -242,6 +446,46 @@
     "admin": "Administrator",
     "user": "Aktiver Benutzer"
   },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Zuweisungen erstellen",
+      "title": "Lehrerzuweisungen erstellen",
+      "stepLabel": "Schritt {{step}} von 2",
+      "courseLabel": "Ausbildungszyklus",
+      "coursePlaceholder": "Zyklus waehlen",
+      "courseSelected": "Zyklus: {{name}}",
+      "gradeLabel": "Welches Jahr?",
+      "loadingGrades": "Verfuegbare Jahre werden geladen…",
+      "emptyGrades": "Keine Jahre (grades) fuer diesen Zyklus. Pruefen Sie die Faecher des Zyklus.",
+      "validationCourse": "Waehlen Sie einen Ausbildungszyklus.",
+      "validationGrade": "Waehlen Sie das Jahr (1. oder 2.).",
+      "next": "Weiter",
+      "continueToGrid": "Weiter zum Datagrid"
+    },
+    "grid": {
+      "title": "Lehrerzuweisungen",
+      "subtitle": "{{course}} — {{grade}}",
+      "schoolYear": "Schuljahr",
+      "loading": "Faecher und Zuweisungen werden geladen…",
+      "loadError": "Datagrid konnte nicht geladen werden.",
+      "existingTitle": "Bestehende Zuweisungen",
+      "existingEmpty": "Keine Zuweisungen fuer dieses Angebot.",
+      "newTitle": "Neue Zuweisungen (eine Zeile pro Fach)",
+      "rowsEmpty": "Keine Faecher fuer diesen Zyklus und dieses Jahr.",
+      "colSubject": "Fach",
+      "colTeacher": "Lehrer",
+      "colGroup": "Gruppe",
+      "selectTeacher": "Lehrer waehlen",
+      "selectGroup": "Gruppe waehlen",
+      "saveButton": "Zuweisungen speichern",
+      "saving": "Speichern…",
+      "saveNone": "Mindestens eine Zeile mit Lehrer und Gruppe ausfuellen.",
+      "saveCreated": "{{count}} Zuweisung(en) erstellt.",
+      "saveDuplicates": "{{count}} Duplikat(e) (bereits vorhanden).",
+      "saveIncomplete": "{{count}} unvollstaendige Zeile(n) uebersprungen.",
+      "saveError": "Zuweisungen konnten nicht gespeichert werden."
+    }
+  },
   "horario": {
     "titleStudent": "Mein Stundenplan",
     "titleTeacher": "Lehrerstundenplan",
@@ -265,30 +509,5 @@
     "title": "Akademischer Kalender",
     "subtitle": "Wichtige Schultermine und Ereignisse",
     "iframeTitle": "Google Kalender"
-  },
-  "teacherClasses": {
-    "title": "Meine Klassen",
-    "loading": "Klassen werden geladen...",
-    "empty": "Du bist keiner Klasse als Lehrkraft zugewiesen.",
-    "manageSyllabus": "Klasse verwalten",
-    "classMenu": "Klassenmenü"
-  },
-  "teacherJustifications": {
-    "title": "Ausstehende Entschuldigungen",
-    "subtitle": "Prüfe die von deinen Schülern eingereichten Nachweise",
-    "empty": "Keine Entschuldigungen zur Prüfung vorhanden.",
-    "viewDocument": "Dokument ansehen",
-    "accept": "Annehmen",
-    "reject": "Ablehnen",
-    "status": {
-      "absent": "Abwesend",
-      "late": "Verspätet",
-      "present": "Anwesend",
-      "excused": "Entschuldigt"
-    },
-    "errors": {
-      "load": "Entschuldigungen konnten nicht geladen werden.",
-      "action": "Aktion fehlgeschlagen. Bitte erneut versuchen."
-    }
   }
 }

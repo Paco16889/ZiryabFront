@@ -72,10 +72,36 @@
       "plural": "grupos",
       "title": "Grupos"
     },
+    "task": {
+      "singular": "tarea",
+      "plural": "tareas",
+      "singularArticle": "la tarea",
+      "title": "Tareas"
+    },
     "classSession": {
-      "singular": "sesión de clase",
-      "plural": "sesiones de clase",
+      "singular": "sesión",
+      "plural": "sesiones",
       "title": "Sesiones de clase"
+    },
+    "studentTask": {
+      "singular": "entrega",
+      "plural": "entregas",
+      "title": "Entregas de alumnos"
+    },
+    "assistance": {
+      "singular": "asistencia",
+      "plural": "asistencias",
+      "title": "Asistencias"
+    },
+    "notification": {
+      "singular": "notificación",
+      "plural": "notificaciones",
+      "title": "Notificaciones"
+    },
+    "weekSchedule": {
+      "singular": "franja horaria",
+      "plural": "franjas horarias",
+      "title": "Horarios"
     }
   },
 
@@ -105,6 +131,104 @@
     "confirmButton": "Confirmar selección"
   },
 
+  "weekScheduleBuilder": {
+    "title": "Crear horario",
+    "modeLabel": "Modo de creación",
+    "modeCreate": "Crear plantilla",
+    "modeGrid": "Rejilla semanal",
+    "create": {
+      "daysLabel": "Días de la semana (L–V)",
+      "validationNoDay": "Selecciona al menos un día.",
+      "loadingClasses": "Cargando clases…",
+      "emptyEligibleClasses": "No hay clases con asignaturas y sin horario semanal para este año escolar.",
+      "validationNoClass": "Selecciona una clase.",
+      "slotCount": "Número de franjas horarias",
+      "slotsTitle": "Horario de cada franja",
+      "slotRow": "Franja {{n}}",
+      "validationMinSlots": "Indica al menos una franja.",
+      "timeFormatHint": "Formato obligatorio HH:mm con dos dígitos en hora y minutos (ej. 08:15, 09:00, 14:45). No uses 8:15.",
+      "validationTimeFormat": "Formato inválido. Usa dos cifras en hora y minutos (ej. 08:15, no 8:15).",
+      "pendingApi": "El guardado de la plantilla estará disponible cuando el backend exponga el endpoint de materialización.",
+      "submit": "Crear plantilla horaria",
+      "validate": "Comprobar formulario",
+      "submitHint": "El guardado se habilitará cuando el backend exponga el endpoint (CURSO-71)."
+    },
+    "placeholder": "Aquí se configurará el constructor de franjas horarias.",
+    "selectGroup": "Grupo (sin franjas todavía)",
+    "selectTeacher": "Profesor",
+    "selectAssignment": "Asignatura docente en el grupo",
+    "professorSlot": "Profesor asignado a la franja",
+    "weekDay": "Día de la semana",
+    "startTime": "Hora inicio",
+    "endTime": "Hora fin",
+    "submit": "Guardar franja",
+    "saving": "Guardando...",
+    "saveError": "No se pudo guardar la franja.",
+    "emptyEligibleGroups": "No hay grupos sin horario: todos tienen al menos una franja, o no se pudieron cargar grupos.",
+    "loadEligibleGroupsError": "No se pudieron cargar grupos elegibles.",
+    "emptyTeachers": "No hay profesores cargados. Comprueba la API o recarga.",
+    "emptyAssignments": "Este profesor no tiene asignaciones para este periodo.",
+    "emptyAssignmentsForGroup": "No hay asignaciones docentes para este grupo. Comprueba matrículas o la API.",
+    "emptyPeers": "No hay profesores en esa asignatura/grupo/año para elegir la franja.",
+    "loadAssignmentsError": "No se pudieron cargar las asignaciones del grupo.",
+    "loadPeersError": "No se pudieron cargar los profesores de la asignatura.",
+    "timeOrderError": "La hora de fin debe ser posterior a la de inicio.",
+    "days": {
+      "1": "Lunes",
+      "2": "Martes",
+      "3": "Miércoles",
+      "4": "Jueves",
+      "5": "Viernes",
+      "6": "Sábado",
+      "7": "Domingo"
+    },
+    "grid": {
+      "title": "Rejilla semanal (L–V)",
+      "intro": "Elige un grupo y asigna cada franja a un docente–asignatura (Assignment).",
+      "introClass": "La clase son las asignaturas del mismo ciclo (course) y curso (grade), impartidas en un turno concreto (entidad Group: Mañana, Tarde…). El desplegable de cada celda lista los docentes dados de alta en esa asignatura para ese grupo y año escolar.",
+      "introSingleGroup": "Un único listado: el **grupo** (tabla `Group`, ej. Mañana o Tarde) determina el conjunto de assignments (`TeacherOnSubjectOnGroup`) del año escolar. Cada día muestra las franjas del centro; en cada una eliges qué assignment ocupa esa hora.",
+      "selectGroupAssignmentSet": "Grupo (conjunto de assignments)",
+      "selectClass": "Clase",
+      "classPlaceholder": "— Selecciona clase —",
+      "loadClassesError": "No se pudieron cargar las clases.",
+      "emptyClasses": "No hay clases con oferta docente para este año escolar.",
+      "schoolYearLabel": "Año escolar",
+      "selectCourse": "Ciclo formativo",
+      "coursePlaceholder": "— Ciclo —",
+      "loadCoursesError": "No se pudieron cargar los ciclos.",
+      "selectGrade": "Curso (grade)",
+      "gradePlaceholder": "— Curso —",
+      "selectShiftGroup": "Turno (grupo)",
+      "shiftGroupHint": "Coincide con Group en BD; solo aparecen turnos con oferta docente para ciclo+grade+año.",
+      "shiftPlaceholder": "— Turno —",
+      "loadContextError": "No se pudo cargar el horario de este grupo.",
+      "cellSelectPlaceholder": "— Libre —",
+      "emptyClassAssignments": "No hay docentes asignados a esta clase en el año escolar. Revisa asignaciones grupo–asignatura.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Grupo",
+      "groupPlaceholder": "— Selecciona grupo —",
+      "loadError": "No se pudieron cargar los grupos.",
+      "emptyGroups": "No hay grupos disponibles.",
+      "loading": "Cargando oferta docente…",
+      "paletteTitle": "Asignaturas del grupo",
+      "paletteHint": "Clic para seleccionar; Enter o clic en celda para colocar. Arrastra al calendario.",
+      "slotColumn": "Franja",
+      "dropHint": "Soltar aquí",
+      "clearCell": "Quitar",
+      "save": "Guardar horario",
+      "saving": "Guardando…",
+      "saveError": "No se pudo guardar el horario.",
+      "keyboardHint": "Accesible: Tab por celdas; selecciona una asignatura y pulsa Enter en una celda vacía.",
+      "peerResolveError": "No se pudo resolver la asignación docente para este grupo y asignatura.",
+      "validationNoGroup": "Selecciona un grupo.",
+      "validationNoClass": "Selecciona una clase.",
+      "validationIncompleteClass": "Selecciona ciclo, curso (grade) y turno (grupo).",
+      "validationGroupOverlap": "Solape en el mismo grupo: «{{a}}» y «{{b}}» el día {{day}}.",
+      "validationSubjectHours": "La asignatura «{{subject}}» supera sus horas semanales (máx. {{max}} h, actual {{current}} h).",
+      "validationTeacherOverlap": "Posible solape: «{{label}}» el día {{day}} con otro grupo."
+    }
+  },
+
   "adminMenu": {
     "students": "Alumnos",
     "teachers": "Profesores",
@@ -112,7 +236,11 @@
     "groups": "Grupos",
     "courses": "Ciclos",
     "schedules": "Horarios",
-    "sessions": "Sesiones de clase"
+    "tasks": "Tareas",
+    "classSessions": "Sesiones",
+    "studentTasks": "Entregas",
+    "assistances": "Asistencias",
+    "notifications": "Notificaciones"
   },
 
   "deleteModal": {
@@ -157,32 +285,110 @@
       "title": "Grupos",
       "createButton": "Nuevo Grupo"
     },
+    "schedules": {
+      "createButton": "Crear horario",
+      "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
+    },
+    "tasks": {
+      "title": "Tareas",
+      "createButton": "Nueva tarea",
+      "createTitle": "Crear tarea",
+      "creating": "Creando…",
+      "fields": {
+        "assignment": "Asignación docente",
+        "assignmentPlaceholder": "Selecciona una asignación",
+        "title": "Título",
+        "type": "Tipo",
+        "startDate": "Fecha de inicio",
+        "dueDate": "Fecha de entrega",
+        "schoolYear": "Año escolar",
+        "description": "Descripción"
+      },
+      "validation": {
+        "assignment": "Selecciona una asignación",
+        "title": "El título es obligatorio"
+      }
+    },
     "classSessions": {
-      "title": "Sesiones de clase",
-      "createButton": "Nueva sesión"
+      "title": "Sesiones",
+      "createButton": "Nueva sesión",
+      "createTitle": "Crear sesión de clase",
+      "creating": "Creando…",
+      "cancelClassesButton": "Cancelar clases",
+      "cancelDialog": {
+        "title": "Cancelar clases en bloque",
+        "dateFrom": "Fecha desde",
+        "dateTo": "Fecha hasta",
+        "invalidDates": "La fecha hasta debe ser igual o posterior a la fecha desde.",
+        "filtersHint": "Filtros opcionales (sin selección = todas las sesiones del periodo):",
+        "filterCourse": "Ciclo",
+        "filterSubject": "Asignatura",
+        "filterGroup": "Grupo",
+        "filterTeacher": "Profesor",
+        "filterAll": "Todos",
+        "previewLoading": "Calculando sesiones afectadas…",
+        "previewError": "No se pudo obtener la vista previa. Comprueba fechas y API.",
+        "previewCount": "Se suspenderán {{count}} sesiones.",
+        "previewWaiting": "Introduce fechas válidas para ver la vista previa.",
+        "previewNeedDates": "Indica fecha desde y hasta.",
+        "cancel": "Cancelar",
+        "confirm": "Confirmar suspensión",
+        "confirming": "Suspendiendo…",
+        "success": "Se han suspendido {{count}} sesiones correctamente.",
+        "error": "Error al suspender las sesiones. Inténtalo de nuevo."
+      },
+      "fields": {
+        "schedule": "Franja horaria",
+        "schedulePlaceholder": "Selecciona horario",
+        "date": "Fecha",
+        "status": "Estado",
+        "appointments": "Anotaciones"
+      }
+    },
+    "studentTasks": {
+      "title": "Entregas",
+      "createButton": "Nueva entrega",
+      "createTitle": "Crear entrega",
+      "fields": {
+        "task": "Tarea",
+        "enrollmentHint": "Filtra matrículas por grupo, asignatura y año",
+        "group": "Grupo",
+        "subject": "Asignatura",
+        "loadEnrollments": "Cargar matrículas",
+        "enrollment": "Matrícula del alumno"
+      }
+    },
+    "assistances": {
+      "title": "Asistencias",
+      "createButton": "Nueva asistencia",
+      "createTitle": "Registrar asistencia",
+      "fields": {
+        "session": "Sesión de clase",
+        "enrollmentHint": "Filtra matrículas por grupo, asignatura y año",
+        "group": "Grupo",
+        "subject": "Asignatura",
+        "loadEnrollments": "Cargar matrículas",
+        "enrollment": "Matrícula del alumno",
+        "status": "Estado"
+      }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "createButton": "Nueva notificación",
+      "createTitle": "Crear notificación",
+      "fields": {
+        "recipientHint": "Elige alumno o profesor; el POST usa recipientFirebaseUID del contrato API.",
+        "recipientRole": "Tipo de destinatario",
+        "roleStudent": "Alumno",
+        "roleTeacher": "Profesor",
+        "recipient": "Destinatario",
+        "recipientPlaceholder": "Selecciona un usuario",
+        "noRecipients": "No hay usuarios en esta lista.",
+        "title": "Título",
+        "message": "Mensaje",
+        "type": "Tipo"
+      }
     }
-  },
-  "classSessionCreateForm": {
-    "title": "Crear nueva sesión",
-    "back": "Volver",
-    "date": "Fecha",
-    "dateRequired": "La fecha es obligatoria",
-    "schedule": "Franja horaria",
-    "schedulePlaceholder": "Selecciona una franja horaria",
-    "scheduleRequired": "Debes seleccionar una franja horaria",
-    "scheduleLoading": "Cargando horarios...",
-    "status": "Estado",
-    "statusScheduled": "Programada",
-    "statusCompleted": "Completada",
-    "statusCancelled": "Cancelada",
-    "appointments": "Observaciones",
-    "appointmentsOptional": "(opcional)",
-    "appointmentsPlaceholder": "Anotaciones sobre la sesión",
-    "cancel": "Cancelar",
-    "submit": "Crear sesión",
-    "creating": "Creando...",
-    "errorSchedules": "No se pudieron cargar los horarios",
-    "errorCreate": "Error al crear la sesión"
   },
   "LANG": {
     "ES": "Español",
@@ -236,6 +442,46 @@
     "admin": "Administrador",
     "user": "Usuario activo"
   },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Crear asignaciones",
+      "title": "Crear asignaciones docentes",
+      "stepLabel": "Paso {{step}} de 2",
+      "courseLabel": "Ciclo formativo",
+      "coursePlaceholder": "Selecciona un ciclo",
+      "courseSelected": "Ciclo: {{name}}",
+      "gradeLabel": "¿Qué curso?",
+      "loadingGrades": "Cargando cursos disponibles…",
+      "emptyGrades": "No hay cursos (grades) definidos para este ciclo. Revisa las asignaturas del ciclo.",
+      "validationCourse": "Selecciona un ciclo formativo.",
+      "validationGrade": "Selecciona el curso (1º o 2º).",
+      "next": "Siguiente",
+      "continueToGrid": "Continuar al datagrid"
+    },
+    "grid": {
+      "title": "Asignaciones docentes",
+      "subtitle": "{{course}} — {{grade}}",
+      "schoolYear": "Año escolar",
+      "loading": "Cargando asignaturas y asignaciones…",
+      "loadError": "No se pudo cargar el datagrid.",
+      "existingTitle": "Asignaciones ya creadas",
+      "existingEmpty": "No hay asignaciones para esta oferta.",
+      "newTitle": "Nuevas asignaciones (una fila por asignatura)",
+      "rowsEmpty": "No hay asignaturas para este ciclo y curso.",
+      "colSubject": "Asignatura",
+      "colTeacher": "Profesor",
+      "colGroup": "Grupo",
+      "selectTeacher": "Seleccionar profesor",
+      "selectGroup": "Seleccionar grupo",
+      "saveButton": "Guardar asignaciones",
+      "saving": "Guardando…",
+      "saveNone": "Selecciona al menos una fila con profesor y grupo.",
+      "saveCreated": "{{count}} asignación(es) creada(s).",
+      "saveDuplicates": "{{count}} duplicada(s) (ya existían).",
+      "saveIncomplete": "{{count}} fila(s) incompleta(s) omitida(s).",
+      "saveError": "No se pudieron guardar las asignaciones."
+    }
+  },
   "horario": {
     "titleStudent": "Mi horario",
     "titleTeacher": "Horario docente",
@@ -259,30 +505,5 @@
     "title": "Calendario académico",
     "subtitle": "Eventos y fechas importantes del centro",
     "iframeTitle": "Calendario de Google"
-  },
-  "teacherClasses": {
-    "title": "Mis Clases",
-    "loading": "Cargando tus clases...",
-    "empty": "No estás asignado a impartir ninguna clase.",
-    "manageSyllabus": "Gestionar Clase",
-    "classMenu": "Menú de clase"
-  },
-  "teacherJustifications": {
-    "title": "Justificaciones pendientes",
-    "subtitle": "Revisa los justificantes enviados por tus alumnos",
-    "empty": "No hay justificaciones pendientes de revisión.",
-    "viewDocument": "Ver documento",
-    "accept": "Aceptar",
-    "reject": "Rechazar",
-    "status": {
-      "absent": "Ausente",
-      "late": "Retraso",
-      "present": "Presente",
-      "excused": "Justificado"
-    },
-    "errors": {
-      "load": "No se pudieron cargar las justificaciones.",
-      "action": "No se pudo completar la acción. Inténtalo de nuevo."
-    }
   }
 }

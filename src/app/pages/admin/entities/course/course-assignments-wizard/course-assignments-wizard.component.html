@@ -1,0 +1,104 @@
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
+  <div class="flex items-center gap-3">
+    <button
+      type="button"
+      class="text-gray-600 hover:text-gray-900"
+      (click)="onBack()"
+    >
+      ← {{ 'common.buttons.back' | translate }}
+    </button>
+    <h2 class="text-xl font-bold text-gray-900">
+      {{ 'courseAssignments.wizard.title' | translate }}
+    </h2>
+  </div>
+
+  <p class="text-sm text-gray-600">
+    {{ 'courseAssignments.wizard.stepLabel' | translate: { step: step() } }}
+  </p>
+
+  @if (step() === 1) {
+    <div class="space-y-2">
+      <label class="block text-sm font-medium text-gray-700" for="course-select">
+        {{ 'courseAssignments.wizard.courseLabel' | translate }}
+      </label>
+      <select
+        id="course-select"
+        class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+        [value]="selectedCourseId() ?? ''"
+        (change)="selectCourse(+$any($event.target).value)"
+      >
+        <option value="" disabled>
+          {{ 'courseAssignments.wizard.coursePlaceholder' | translate }}
+        </option>
+        @for (course of courses(); track course.id) {
+          <option [value]="course.id">{{ course.name }}</option>
+        }
+      </select>
+      @if (showValidation() && selectedCourseId() == null) {
+        <p class="text-sm text-red-600">
+          {{ 'courseAssignments.wizard.validationCourse' | translate }}
+        </p>
+      }
+    </div>
+
+    @if (loadingGrades()) {
+      <p class="text-sm text-gray-500">{{ 'courseAssignments.wizard.loadingGrades' | translate }}</p>
+    }
+    @if (gradesError()) {
+      <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+        {{ 'courseAssignments.wizard.emptyGrades' | translate }}
+      </p>
+    }
+
+    <button
+      type="button"
+      class="px-4 py-2 bg-purple-600 text-white rounded-md text-sm font-medium disabled:opacity-50"
+      [disabled]="loadingGrades()"
+      (click)="goToGradeStep()"
+    >
+      {{ 'courseAssignments.wizard.next' | translate }}
+    </button>
+  }
+
+  @if (step() === 2) {
+    <p class="text-sm text-gray-700">
+      {{ 'courseAssignments.wizard.courseSelected' | translate: { name: selectedCourseName() } }}
+    </p>
+
+    <div class="space-y-2">
+      <span class="block text-sm font-medium text-gray-700">
+        {{ 'courseAssignments.wizard.gradeLabel' | translate }}
+      </span>
+      <div class="flex flex-wrap gap-2" role="group" [attr.aria-label]="'courseAssignments.wizard.gradeLabel' | translate">
+        @for (grade of grades(); track grade) {
+          <button
+            type="button"
+            class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"
+            [class.bg-purple-600]="selectedGrade() === grade"
+            [class.text-white]="selectedGrade() === grade"
+            [class.border-purple-600]="selectedGrade() === grade"
+            [class.bg-white]="selectedGrade() !== grade"
+            [class.text-gray-800]="selectedGrade() !== grade"
+            [class.border-gray-300]="selectedGrade() !== grade"
+            (click)="selectGrade(grade)"
+          >
+            {{ gradeLabel(grade) }}
+          </button>
+        }
+      </div>
+      @if (showValidation() && !selectedGrade()) {
+        <p class="text-sm text-red-600">
+          {{ 'courseAssignments.wizard.validationGrade' | translate }}
+        </p>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="px-4 py-2 bg-purple-600 text-white rounded-md text-sm font-medium"
+      (click)="confirmGrade()"
+    >
+      {{ 'courseAssignments.wizard.continueToGrid' | translate }}
+    </button>
+  }
+</div>

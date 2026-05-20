@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 import { catchError, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 import { Group, GroupByIdResponse, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../../models/group';
 
 /**
@@ -17,7 +18,7 @@ export class GroupService {
   /**
    * URL base del endpoint de grupos.
    */
-  private apiUrl = 'http://localhost:3000/api/groups';
+  private readonly apiUrl = `${environment.apiUrl}/groups`;
 
     /**
    * Inicializa el servicio.

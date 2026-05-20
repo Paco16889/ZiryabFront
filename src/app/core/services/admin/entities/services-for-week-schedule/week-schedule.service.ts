@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { WeekSchedule, WeekScheduleByIdResponse, WeekScheduleCreateRequest, WeekScheduleCreateResponse, WeekScheduleDeleteResponse, WeekSchedulesAllResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../models/week-schedule';
-import { catchError, Observable, of } from 'rxjs';
+import { WeekSchedule, WeekScheduleByIdResponse, WeekScheduleCreateRequest, WeekScheduleCreateResponse, WeekScheduleDeleteResponse, WeekSchedulesAllResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../../models/week-schedule';
+import { catchError, map, Observable, of } from 'rxjs';
+import { environment } from '../../../../../../environments/environment';
+import { numberToPrismaDayOfWeek, prismaDayOfWeekToNumber } from '../../../../utils/week-day';
 
 /**
  * Servicio encargado de gestionar las operaciones con franjas horarias semanales.
@@ -11,12 +13,12 @@ import { catchError, Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class WeekScheduleService {
-  
+
 
    /**
     * URL base del endpoint de franjas horarias semanales.
     */
-  private apiUrl = 'http://localhost:3000/api/horarios-semanales';
+  private readonly apiUrl = `${environment.apiUrl}/horarios-semanales`;
 
   /**
    * Signal que almacena el listado completo de franjas horarias en memoria.
@@ -29,7 +31,23 @@ export class WeekScheduleService {
    */
   constructor(private http: HttpClient) { }
 
-  
+  /** Normaliza `weekDay` del API (string enum) al 1–7 interno del front. */
+  private normalizeSchedule(ws: WeekSchedule): WeekSchedule {
+    return {
+      ...ws,
+      weekDay: prismaDayOfWeekToNumber(ws.weekDay as unknown as string | number),
+    };
+  }
+
+  private normalizeList(res: WeekSchedulesAllResponse): WeekSchedulesAllResponse {
+    if (!res.success || !res.data?.length) {
+      return res;
+    }
+    return {
+      ...res,
+      data: res.data.map((s) => this.normalizeSchedule(s)),
+    };
+  }
 
     /**
    * Carga todas las franjas horarias e inicializa la signal schedules.
@@ -49,8 +67,9 @@ export class WeekScheduleService {
    * Obtiene todas las franjas horarias semanales.
    * @returns Observable con la respuesta que contiene el listado de franjas horarias
    */
-  getAllSchedules(): Observable<WeekSchedulesAllResponse>{
+   getAllSchedules(): Observable<WeekSchedulesAllResponse>{
     return this.http.get<WeekSchedulesAllResponse>(this.apiUrl).pipe(
+      map((res) => this.normalizeList(res)),
       catchError(() => of({success: false, data: [], count: 0}))
     );
   }
@@ -62,6 +81,7 @@ export class WeekScheduleService {
    */
   getSchedulesByStudent(idStudent: number): Observable<WeekSchedulesAllResponse> {
     return this.http.get<WeekSchedulesAllResponse>(`${this.apiUrl}/student/${idStudent}`).pipe(
+      map((res) => this.normalizeList(res)),
       catchError(() => of({ success: false, data: [], count: 0 }))
     );
   }
@@ -73,6 +93,7 @@ export class WeekScheduleService {
    */
   getSchedulesByTeacher(idTeacher: number): Observable<WeekSchedulesAllResponse> {
     return this.http.get<WeekSchedulesAllResponse>(`${this.apiUrl}/teacher/${idTeacher}`).pipe(
+      map((res) => this.normalizeList(res)),
       catchError(() => of({ success: false, data: [], count: 0 }))
     );
   }
@@ -84,6 +105,11 @@ export class WeekScheduleService {
    */
   getWeekSchedulebyId(id: number): Observable<WeekScheduleByIdResponse> {
     return this.http.get<WeekScheduleByIdResponse>(`${this.apiUrl}/${id}`).pipe(
+      map((r) =>
+        r.success && r.data
+          ? { ...r, data: this.normalizeSchedule(r.data) }
+          : r,
+      ),
       catchError((error) => {
         console.error('Error:', error);
         throw error;
@@ -96,15 +122,24 @@ export class WeekScheduleService {
    * @param data - Datos necesarios para crear la franja horaria
    * @returns Observable con la respuesta que contiene la franja horaria creada
    */
-  createSchedule(data: WeekScheduleCreateRequest): Observable<WeekScheduleCreateResponse> {
-    return this.http.post<WeekScheduleCreateResponse>(this.apiUrl, data).pipe(
+   createSchedule(data: WeekScheduleCreateRequest): Observable<WeekScheduleCreateResponse> {
+    const body = {
+      ...data,
+      weekDay: numberToPrismaDayOfWeek(data.weekDay),
+    };
+    return this.http.post<WeekScheduleCreateResponse>(this.apiUrl, body).pipe(
+      map((r) =>
+        r.success && r.data
+          ? { ...r, data: this.normalizeSchedule(r.data) }
+          : r,
+      ),
       catchError((error) => {
         console.error('Error creating schedule:', error);
         throw error;
       })
     );
   }
-  
+
    /**
    * Actualiza una franja horaria semanal existente.
    * @param id - Identificador único de la franja horaria a actualizar
@@ -112,14 +147,29 @@ export class WeekScheduleService {
    * @returns Observable con la respuesta que contiene la franja horaria actualizada
    */
   updateSchedule(id: number, data: WeekScheduleUpdateRequest): Observable<WeekScheduleUpdateResponse> {
-    return this.http.patch<WeekScheduleUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+    const body: Record<string, string | number | undefined> = { id: data.id };
+    if (data.weekDay !== undefined) {
+      body['weekDay'] = numberToPrismaDayOfWeek(data.weekDay);
+    }
+    if (data.startTime !== undefined) {
+      body['startTime'] = data.startTime;
+    }
+    if (data.finishTime !== undefined) {
+      body['finishTime'] = data.finishTime;
+    }
+    return this.http.patch<WeekScheduleUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
+      map((r) =>
+        r.success && r.data
+          ? { ...r, data: this.normalizeSchedule(r.data) }
+          : r,
+      ),
       catchError((error) => {
         console.error('Error updating schedule:', error);
         throw error;
       })
     );
   }
- 
+
     /**
    * Elimina una franja horaria semanal por su identificador.
    * @param id - Identificador único de la franja horaria a eliminar

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { Teacher, TeacherByIdResponse, TeacherCreateRequest, TeacherCreateResponse, TeacherDeleteResponse, TeachersAllResponse, TeacherUpdateRequest, TeacherUpdateResponse } from '../../../models/teacher';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Servicio encargado de gestionar las operaciones con profesores.
@@ -14,7 +15,7 @@ export class TeachersService {
   /**
    * URL base del endpoint de profesores.
    */
-  private apiUrl = 'http://localhost:3000/api/teachers';
+  private readonly apiUrl = `${environment.apiUrl}/teachers`;
 
   /**
    * Signal que almacena el listado completo de profesores en memoria.

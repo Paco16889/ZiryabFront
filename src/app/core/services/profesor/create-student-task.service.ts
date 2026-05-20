@@ -1,14 +1,10 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
-import {
-  StudentTaskCreateBulkRequest,
-  StudentTaskCreateBulkResponse,
-} from '../../models/studentTask';
-import {
-  StudentByFiltersRequest,
-  EnrollmentByFiltersResponse,
-} from '../../models/enrollment';
+import { environment } from '../../../../environments/environment';
+import { StudentTaskCreateBulkResponse } from '../../models/studentTask';
+import { StudentByFiltersRequest } from '../../models/enrollment';
+import { EnrollmentHttpService } from '../admin/entities/services-for-week-schedule/enrollment-http.service';
 
 /**
  * Servicio responsable de orquestar la creación de StudentTasks en bulk.
@@ -19,10 +15,9 @@ import {
 })
 export class CreateStudentTaskService {
 
-  private enrollmentsUrl = 'http://localhost:3000/api/enrollments';
-  private studentTasksUrl = 'http://localhost:3000/api/student-tasks';
-
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
+  private readonly enrollments = inject(EnrollmentHttpService);
+  private readonly studentTasksUrl = `${environment.apiUrl}/student-tasks`;
 
   /**
    * Obtiene los enrollments del grupo y crea las StudentTasks en bulk.
@@ -34,17 +29,9 @@ export class CreateStudentTaskService {
     filters: StudentByFiltersRequest
   ): Observable<StudentTaskCreateBulkResponse> {
 
-    const params = new HttpParams()
-      .set('idSubject', filters.idSubject)
-      .set('idGroup', filters.idGroup)
-      .set('schoolYear', filters.schoolYear);
-
-    return this.http.get<EnrollmentByFiltersResponse>(
-      `${this.enrollmentsUrl}/by-filters`,
-      { params }
-    ).pipe(
+    return this.enrollments.getByFilters(filters).pipe(
       switchMap(enrollmentRes => {
-        const enrollmentIds = enrollmentRes.data.map((e: { id: any; }) => e.id);
+        const enrollmentIds = enrollmentRes.data.map((e) => e.id);
 
         return this.http.post<StudentTaskCreateBulkResponse>(
           `${this.studentTasksUrl}/bulk`,

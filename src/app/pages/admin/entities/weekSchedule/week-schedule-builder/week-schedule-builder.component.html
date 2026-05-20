@@ -1,0 +1,59 @@
+<div class="max-w-7xl mx-auto">
+  <div class="flex items-center mb-6">
+    <button
+      type="button"
+      (click)="onCancel()"
+      class="mr-4 text-gray-600 hover:text-gray-900"
+    >
+      ← {{ 'common.buttons.back' | translate }}
+    </button>
+    <h1 class="text-2xl font-bold">{{ 'weekScheduleBuilder.title' | translate }}</h1>
+  </div>
+
+  <div
+    class="flex flex-wrap gap-2 mb-6"
+    role="tablist"
+    [attr.aria-label]="'weekScheduleBuilder.modeLabel' | translate"
+  >
+    <button
+      type="button"
+      role="tab"
+      [attr.aria-selected]="builderMode() === 'create'"
+      (click)="setBuilderMode('create')"
+      class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"
+      [class.bg-purple-600]="builderMode() === 'create'"
+      [class.text-white]="builderMode() === 'create'"
+      [class.border-purple-600]="builderMode() === 'create'"
+      [class.bg-white]="builderMode() !== 'create'"
+      [class.text-gray-800]="builderMode() !== 'create'"
+      [class.border-gray-300]="builderMode() !== 'create'"
+    >
+      {{ 'weekScheduleBuilder.modeCreate' | translate }}
+    </button>
+    <button
+      type="button"
+      role="tab"
+      [attr.aria-selected]="builderMode() === 'grid'"
+      (click)="setBuilderMode('grid')"
+      class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"
+      [class.bg-purple-600]="builderMode() === 'grid'"
+      [class.text-white]="builderMode() === 'grid'"
+      [class.border-purple-600]="builderMode() === 'grid'"
+      [class.bg-white]="builderMode() !== 'grid'"
+      [class.text-gray-800]="builderMode() !== 'grid'"
+      [class.border-gray-300]="builderMode() !== 'grid'"
+    >
+      {{ 'weekScheduleBuilder.modeGrid' | translate }}
+    </button>
+  </div>
+
+  @if (builderMode() === 'create') {
+    <app-week-schedule-create-template />
+  } @else {
+    <app-week-schedule-grid-builder
+      [embedded]="true"
+      (cancelCreate)="onCancel()"
+      (scheduleSaved)="onGridScheduleSaved()"
+    />
+  }
+</div>

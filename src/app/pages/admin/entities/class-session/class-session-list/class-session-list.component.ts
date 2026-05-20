@@ -1,57 +1,56 @@
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { ClassSessionListItemComponent } from '../class-session-list-item/class-session-list-item.component';
-import { BotonCreateComponent } from '../../../botones/boton-create/boton-create.component';
-import { ClassSessionCreateFormComponent } from '../class-session-create-form/class-session-create-form.component';
 import { ClassSession } from '../../../../../core/models/class-sessions';
 import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
-import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
+import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
+import { BotonCreateComponent } from '../../../botones/boton-create/boton-create.component';
+import { ClassSessionCancelDialogComponent } from '../class-session-cancel-dialog/class-session-cancel-dialog.component';
+import { ClassSessionCreateFormComponent } from '../class-session-create-form/class-session-create-form.component';
+import { ClassSessionListItemComponent } from '../class-session-list-item/class-session-list-item.component';
 
-/**
- * Componente que muestra el listado de sesiones de clase del sistema.
- * Gestiona la visualización del listado, la apertura del formulario de creación
- * y la recarga automática de la lista tras operaciones de eliminación o actualización.
- */
 @Component({
   selector: 'app-class-session-list',
   imports: [
     ClassSessionListItemComponent,
     ClassSessionCreateFormComponent,
     BotonCreateComponent,
+    ClassSessionCancelDialogComponent,
     TranslateModule,
   ],
   templateUrl: './class-session-list.component.html',
   styleUrl: './class-session-list.component.scss',
 })
 export class ClassSessionListComponent implements OnInit {
+  private readonly sessionService = inject(ClassSessionService);
+  private readonly modalDeleteService = inject(ModalDeleteService);
+  private readonly modalUpdateService = inject(ModalEditService);
+
   classSessions: ClassSession[] = [];
   showCreateForm = false;
+  showCancelDialog = false;
+  suspendSuccessCount: number | null = null;
 
-  constructor(
-    private classSessionService: ClassSessionService,
-    private modalUpdateService: ModalEditService,
-    private modalDeleteService: ModalDeleteService
-  ) {
+  constructor() {
     effect(() => {
-      this.classSessions = this.classSessionService.classSessions();
+      this.classSessions = this.sessionService.classSessions();
     });
     effect(() => {
       const deleteModalState = this.modalDeleteService.modalState();
-      const updateModalState = this.modalUpdateService.modalState();
-
       if (!deleteModalState.isOpen && deleteModalState.showSuccess) {
-        this.classSessionService.loadSessions();
+        this.sessionService.loadSessions();
       }
-
+    });
+    effect(() => {
+      const updateModalState = this.modalUpdateService.modalState();
       if (!updateModalState.isOpen && updateModalState.showSuccess) {
-        this.classSessionService.loadSessions();
+        this.sessionService.loadSessions();
       }
     });
   }
 
   ngOnInit(): void {
-    this.classSessionService.loadSessions();
+    this.sessionService.loadSessions();
   }
 
   openCreateForm(): void {
@@ -62,9 +61,23 @@ export class ClassSessionListComponent implements OnInit {
     this.showCreateForm = false;
   }
 
-  /** Cierra el formulario y recarga el listado tras crear una sesión. */
   onSessionCreated(): void {
     this.closeCreateForm();
-    this.classSessionService.loadSessions();
+    this.sessionService.loadSessions();
+  }
+
+  openCancelDialog(): void {
+    this.suspendSuccessCount = null;
+    this.showCancelDialog = true;
+  }
+
+  closeCancelDialog(): void {
+    this.showCancelDialog = false;
+  }
+
+  onSessionsSuspended(count: number): void {
+    this.showCancelDialog = false;
+    this.suspendSuccessCount = count;
+    this.sessionService.loadSessions();
   }
 }

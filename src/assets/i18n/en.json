@@ -71,10 +71,36 @@
       "plural": "groups",
       "title": "Groups"
     },
+    "task": {
+      "singular": "task",
+      "plural": "tasks",
+      "singularArticle": "the task",
+      "title": "Tasks"
+    },
     "classSession": {
-      "singular": "class session",
-      "plural": "class sessions",
+      "singular": "session",
+      "plural": "sessions",
       "title": "Class sessions"
+    },
+    "studentTask": {
+      "singular": "submission",
+      "plural": "submissions",
+      "title": "Student submissions"
+    },
+    "assistance": {
+      "singular": "attendance",
+      "plural": "attendance records",
+      "title": "Attendance"
+    },
+    "notification": {
+      "singular": "notification",
+      "plural": "notifications",
+      "title": "Notifications"
+    },
+    "weekSchedule": {
+      "singular": "time slot",
+      "plural": "time slots",
+      "title": "Schedules"
     }
   },
 
@@ -104,6 +130,104 @@
     "confirmButton": "Confirm selection"
   },
 
+  "weekScheduleBuilder": {
+    "title": "Create schedule",
+    "modeLabel": "Creation mode",
+    "modeCreate": "Create template",
+    "modeGrid": "Weekly grid",
+    "create": {
+      "daysLabel": "Weekdays (Mon–Fri)",
+      "validationNoDay": "Select at least one day.",
+      "loadingClasses": "Loading classes…",
+      "emptyEligibleClasses": "No classes with subjects and without a weekly schedule for this school year.",
+      "validationNoClass": "Select a class.",
+      "slotCount": "Number of time slots",
+      "slotsTitle": "Time for each slot",
+      "slotRow": "Slot {{n}}",
+      "validationMinSlots": "Enter at least one slot.",
+      "timeFormatHint": "Required format HH:mm with two digits for hours and minutes (e.g. 08:15, not 8:15).",
+      "validationTimeFormat": "Invalid format. Use two digits for hours and minutes (e.g. 08:15, not 8:15).",
+      "pendingApi": "Saving the template will be available once the backend exposes the materialization endpoint.",
+      "submit": "Create weekly schedule template",
+      "validate": "Check form",
+      "submitHint": "Saving will be enabled once the backend exposes the endpoint (CURSO-71)."
+    },
+    "placeholder": "The weekly schedule builder will be configured here.",
+    "selectGroup": "Group (no slots yet)",
+    "selectTeacher": "Teacher",
+    "selectAssignment": "Teaching assignment in the group",
+    "professorSlot": "Teacher for this slot's assignment",
+    "weekDay": "Weekday",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "submit": "Save time slot",
+    "saving": "Saving...",
+    "saveError": "Could not save the time slot.",
+    "emptyEligibleGroups": "No groups are eligible: all already have at least one slot, or groups could not be loaded.",
+    "loadEligibleGroupsError": "Could not load eligible groups.",
+    "emptyTeachers": "No teachers loaded. Check the API or reload.",
+    "emptyAssignments": "This teacher has no assignments to display.",
+    "emptyAssignmentsForGroup": "No teaching assignments for this group. Check enrollments or the API.",
+    "emptyPeers": "No teachers match that subject/group/year for this slot.",
+    "loadAssignmentsError": "Could not load assignments for the group.",
+    "loadPeersError": "Could not load teachers for the subject.",
+    "timeOrderError": "End time must be after start time.",
+    "days": {
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday",
+      "7": "Sunday"
+    },
+    "grid": {
+      "title": "Weekly grid (Mon–Fri)",
+      "intro": "Choose a group and assign each slot to a teacher–subject (Assignment).",
+      "introClass": "The class is the set of subjects sharing the same programme (course) and grade, taught in one shift (Group entity, e.g. Morning/Afternoon). Each cell lists teachers assigned to that subject for that group and school year.",
+      "introSingleGroup": "Single list: the **group** (`Group`, e.g. Morning/Afternoon) defines the set of assignments (`TeacherOnSubjectOnGroup`) for the school year. Each day lists the centre’s time slots; pick which assignment fills each slot.",
+      "selectGroupAssignmentSet": "Group (assignment set)",
+      "selectClass": "Class",
+      "classPlaceholder": "— Select class —",
+      "loadClassesError": "Could not load classes.",
+      "emptyClasses": "No classes with teaching assignments for this school year.",
+      "schoolYearLabel": "School year",
+      "selectCourse": "Programme (course)",
+      "coursePlaceholder": "— Programme —",
+      "loadCoursesError": "Could not load programmes.",
+      "selectGrade": "Grade (class year)",
+      "gradePlaceholder": "— Grade —",
+      "selectShiftGroup": "Shift (group)",
+      "shiftGroupHint": "Same Group as in the DB; only shifts with teaching for cycle+grade+year are listed.",
+      "shiftPlaceholder": "— Shift —",
+      "loadContextError": "Could not load this group's timetable context.",
+      "cellSelectPlaceholder": "— Empty —",
+      "emptyClassAssignments": "No teacher assignments for this class and school year. Check group–subject assignments.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Group",
+      "groupPlaceholder": "— Select group —",
+      "loadError": "Could not load groups.",
+      "emptyGroups": "No groups available.",
+      "loading": "Loading teaching assignments…",
+      "paletteTitle": "Subjects in this group",
+      "paletteHint": "Click to select; Enter or cell click to place. Drag to the grid.",
+      "slotColumn": "Slot",
+      "dropHint": "Drop here",
+      "clearCell": "Remove",
+      "save": "Save timetable",
+      "saving": "Saving…",
+      "saveError": "Could not save the timetable.",
+      "keyboardHint": "Keyboard: Tab through cells; select a subject and press Enter on an empty cell.",
+      "peerResolveError": "Could not resolve the teacher assignment for this group and subject.",
+      "validationNoGroup": "Select a group.",
+      "validationNoClass": "Select a class.",
+      "validationIncompleteClass": "Select programme, grade and shift (group).",
+      "validationGroupOverlap": "Same-group overlap: «{{a}}» and «{{b}}» on day {{day}}.",
+      "validationSubjectHours": "Subject «{{subject}}» exceeds weekly hours (max {{max}} h, current {{current}} h).",
+      "validationTeacherOverlap": "Possible overlap: «{{label}}» on day {{day}} with another group."
+    }
+  },
+
   "adminMenu": {
     "students": "Students",
     "teachers": "Teachers",
@@ -111,7 +235,11 @@
     "groups": "Groups",
     "courses": "Courses",
     "schedules": "Schedules",
-    "sessions": "Class sessions"
+    "tasks": "Tasks",
+    "classSessions": "Sessions",
+    "studentTasks": "Submissions",
+    "assistances": "Attendance",
+    "notifications": "Notifications"
   },
 
   "deleteModal": {
@@ -156,32 +284,110 @@
     "title": "Groups",
     "createButton": "New Group"
   },
-  "classSessions": {
-    "title": "Class sessions",
-    "createButton": "New session"
-  }
+  "schedules": {
+    "createButton": "Create schedule",
+    "createPlaceholder": "The schedule creation form will appear here."
   },
-  "classSessionCreateForm": {
-    "title": "Create new session",
-    "back": "Back",
-    "date": "Date",
-    "dateRequired": "Date is required",
-    "schedule": "Time slot",
-    "schedulePlaceholder": "Select a time slot",
-    "scheduleRequired": "You must select a time slot",
-    "scheduleLoading": "Loading schedules...",
-    "status": "Status",
-    "statusScheduled": "Scheduled",
-    "statusCompleted": "Completed",
-    "statusCancelled": "Cancelled",
-    "appointments": "Notes",
-    "appointmentsOptional": "(optional)",
-    "appointmentsPlaceholder": "Session notes",
-    "cancel": "Cancel",
-    "submit": "Create session",
-    "creating": "Creating...",
-    "errorSchedules": "Could not load schedules",
-    "errorCreate": "Error creating session"
+  "tasks": {
+    "title": "Tasks",
+    "createButton": "New task",
+    "createTitle": "Create task",
+    "creating": "Creating…",
+    "fields": {
+      "assignment": "Teacher assignment",
+      "assignmentPlaceholder": "Select an assignment",
+      "title": "Title",
+      "type": "Type",
+      "startDate": "Start date",
+      "dueDate": "Due date",
+      "schoolYear": "School year",
+      "description": "Description"
+    },
+    "validation": {
+      "assignment": "Select an assignment",
+      "title": "Title is required"
+    }
+  },
+  "classSessions": {
+    "title": "Sessions",
+    "createButton": "New session",
+    "createTitle": "Create class session",
+    "creating": "Creating…",
+    "cancelClassesButton": "Cancel classes",
+    "cancelDialog": {
+      "title": "Bulk cancel class sessions",
+      "dateFrom": "From date",
+      "dateTo": "To date",
+      "invalidDates": "End date must be on or after start date.",
+      "filtersHint": "Optional filters (none selected = all sessions in the period):",
+      "filterCourse": "Cycle",
+      "filterSubject": "Subject",
+      "filterGroup": "Group",
+      "filterTeacher": "Teacher",
+      "filterAll": "All",
+      "previewLoading": "Calculating affected sessions…",
+      "previewError": "Could not load preview. Check dates and API.",
+      "previewCount": "{{count}} sessions will be suspended.",
+      "previewWaiting": "Enter valid dates to see preview.",
+      "previewNeedDates": "Enter from and to dates.",
+      "cancel": "Cancel",
+      "confirm": "Confirm suspension",
+      "confirming": "Suspending…",
+      "success": "{{count}} sessions were suspended successfully.",
+      "error": "Failed to suspend sessions. Please try again."
+    },
+    "fields": {
+      "schedule": "Time slot",
+      "schedulePlaceholder": "Select schedule",
+      "date": "Date",
+      "status": "Status",
+      "appointments": "Notes"
+    }
+  },
+  "studentTasks": {
+    "title": "Submissions",
+    "createButton": "New submission",
+    "createTitle": "Create submission",
+    "fields": {
+      "task": "Task",
+      "enrollmentHint": "Filter enrollments by group, subject and year",
+      "group": "Group",
+      "subject": "Subject",
+      "loadEnrollments": "Load enrollments",
+      "enrollment": "Student enrollment"
+    }
+  },
+  "assistances": {
+    "title": "Attendance",
+    "createButton": "New attendance",
+    "createTitle": "Record attendance",
+    "fields": {
+      "session": "Class session",
+      "enrollmentHint": "Filter enrollments by group, subject and year",
+      "group": "Group",
+      "subject": "Subject",
+      "loadEnrollments": "Load enrollments",
+      "enrollment": "Student enrollment",
+      "status": "Status"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "createButton": "New notification",
+    "createTitle": "Create notification",
+      "fields": {
+        "recipientHint": "Pick a student or teacher; the system delivers the notification to their account.",
+        "recipientRole": "Recipient type",
+        "roleStudent": "Student",
+        "roleTeacher": "Teacher",
+        "recipient": "Recipient",
+        "recipientPlaceholder": "Select a user",
+        "noRecipients": "No users with a linked Firebase account in this list.",
+        "title": "Title",
+        "message": "Message",
+        "type": "Type"
+      }
+  }
   },
 
   "LANG": {
@@ -242,6 +448,46 @@
     "admin": "Administrator",
     "user": "Active user"
   },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Create assignments",
+      "title": "Create teacher assignments",
+      "stepLabel": "Step {{step}} of 2",
+      "courseLabel": "Training cycle",
+      "coursePlaceholder": "Select a cycle",
+      "courseSelected": "Cycle: {{name}}",
+      "gradeLabel": "Which year?",
+      "loadingGrades": "Loading available years…",
+      "emptyGrades": "No years (grades) defined for this cycle. Check cycle subjects.",
+      "validationCourse": "Select a training cycle.",
+      "validationGrade": "Select the year (1st or 2nd).",
+      "next": "Next",
+      "continueToGrid": "Continue to datagrid"
+    },
+    "grid": {
+      "title": "Teacher assignments",
+      "subtitle": "{{course}} — {{grade}}",
+      "schoolYear": "School year",
+      "loading": "Loading subjects and assignments…",
+      "loadError": "Could not load the datagrid.",
+      "existingTitle": "Existing assignments",
+      "existingEmpty": "No assignments for this offer yet.",
+      "newTitle": "New assignments (one row per subject)",
+      "rowsEmpty": "No subjects for this cycle and year.",
+      "colSubject": "Subject",
+      "colTeacher": "Teacher",
+      "colGroup": "Group",
+      "selectTeacher": "Select teacher",
+      "selectGroup": "Select group",
+      "saveButton": "Save assignments",
+      "saving": "Saving…",
+      "saveNone": "Select at least one row with both teacher and group.",
+      "saveCreated": "{{count}} assignment(s) created.",
+      "saveDuplicates": "{{count}} duplicate(s) (already existed).",
+      "saveIncomplete": "{{count}} incomplete row(s) skipped.",
+      "saveError": "Could not save assignments."
+    }
+  },
   "horario": {
     "titleStudent": "My timetable",
     "titleTeacher": "Teacher timetable",
@@ -265,30 +511,5 @@
     "title": "Academic calendar",
     "subtitle": "Important school events and dates",
     "iframeTitle": "Google Calendar"
-  },
-  "teacherClasses": {
-    "title": "My Classes",
-    "loading": "Loading your classes...",
-    "empty": "You are not assigned to teach any class.",
-    "manageSyllabus": "Manage class",
-    "classMenu": "Class menu"
-  },
-  "teacherJustifications": {
-    "title": "Pending justifications",
-    "subtitle": "Review documents submitted by your students",
-    "empty": "There are no justifications pending review.",
-    "viewDocument": "View document",
-    "accept": "Accept",
-    "reject": "Reject",
-    "status": {
-      "absent": "Absent",
-      "late": "Late",
-      "present": "Present",
-      "excused": "Excused"
-    },
-    "errors": {
-      "load": "Could not load justifications.",
-      "action": "Action failed. Please try again."
-    }
   }
 }
