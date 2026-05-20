@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from '../../../core/services/profesor/task.service';
 import { CreateTaskResponse, Task } from '../../../core/models/teacher/tasks';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss'
 })
@@ -27,6 +28,7 @@ export class TaskFormComponent implements OnInit {
 
   private readonly fb = inject(FormBuilder);
   private readonly taskService = inject(TaskService);
+  private readonly translate = inject(TranslateService);
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
@@ -44,7 +46,7 @@ export class TaskFormComponent implements OnInit {
     const file: File = input.files[0];
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
-        this.errorMessage = 'El archivo supera el límite de 10 MB.';
+        this.errorMessage = this.translate.instant('teacherPages.taskForm.errorMaxSize');
         this.selectedFile = null;
         input.value = '';
         return;
@@ -82,14 +84,14 @@ export class TaskFormComponent implements OnInit {
     this.taskService.createTask(formData).subscribe({
       next: (response: CreateTaskResponse) => {
         this.loading = false;
-        this.successMessage = 'Tarea creada con éxito con su fichero adjunto.';
+        this.successMessage = this.translate.instant('teacherPages.taskForm.successCreated');
         this.taskForm.reset({ type: 'HOMEWORK' });
         this.selectedFile = null;
         this.taskCreated.emit(response.data);
       },
       error: (err: { error?: { message?: string } }) => {
         this.loading = false;
-        this.errorMessage = err.error?.message || 'Error al crear la tarea.';
+        this.errorMessage = err.error?.message || this.translate.instant('teacherPages.taskForm.errorCreate');
       }
     });
   }

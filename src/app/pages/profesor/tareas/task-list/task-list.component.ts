@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, inject, computed, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TaskService } from '../../../../core/services/profesor/task.service';
 import { TaskGroupUiService } from '../../../../core/services/profesor/task-group-ui.service';
 import { TaskGroupItemComponent } from '../task-group-item/task-group-item.component';
@@ -55,6 +55,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   private readonly taskService    = inject(TaskService);
   private readonly taskGroupUiSvc = inject(TaskGroupUiService);
+  private readonly translate = inject(TranslateService);
 
   readonly showTaskForm = signal(false);
 
@@ -103,7 +104,7 @@ get idTeacherAssignment(): number {
     if (ungrouped.length > 0) {
       groupMap.set(UNGROUPED_KEY, {
         key: UNGROUPED_KEY,
-        name: 'Sin agrupar',
+        name: this.translate.instant('teacherPages.tasks.ungrouped'),
         color: '#aaa',
         tasks: ungrouped,
       });

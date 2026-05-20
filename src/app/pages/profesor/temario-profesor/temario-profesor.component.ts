@@ -9,6 +9,7 @@ import { TaskService } from '../../../core/services/task.service';
 import { Task, TaskType } from '../../../core/models/task';
 import { Router } from '@angular/router';
 import { StudentBySubject } from '../../../core/models/student-by-subject';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 export interface BloqueTemario {
   id: number;
@@ -26,7 +27,7 @@ export interface BloqueTemario {
 @Component({
     selector: 'app-temario-profesor',
     standalone: true,
-    imports: [CommonModule, BotonAtrasComponent],
+    imports: [CommonModule, BotonAtrasComponent, TranslateModule],
     templateUrl: './temario-profesor.component.html',
     styleUrls: ['./temario-profesor.component.scss']
 })
@@ -38,6 +39,7 @@ export class TemarioProfesorComponent implements OnInit {
     private attendanceSvc = inject(AttendanceService);
     private taskService = inject(TaskService);
     private router = inject(Router);
+    private translate = inject(TranslateService);
 
     bloques = signal<BloqueTemario[]>([]);
     claseEnCurso = decodeURIComponent(this.route.snapshot.paramMap.get('claseId') || '');
@@ -53,10 +55,10 @@ export class TemarioProfesorComponent implements OnInit {
     showAttendanceModal = signal(false);
 
     readonly statusOptions: { value: AttendanceStatus; label: string; color: string }[] = [
-        { value: 'PRESENT', label: 'Presente', color: 'emerald' },
-        { value: 'ABSENT', label: 'Ausente', color: 'red' },
-        { value: 'LATE', label: 'Retraso', color: 'amber' },
-        { value: 'EXCUSED', label: 'Justificado', color: 'blue' },
+        { value: 'PRESENT', label: this.translate.instant('teacherPages.attendance.status.present'), color: 'emerald' },
+        { value: 'ABSENT', label: this.translate.instant('teacherPages.attendance.status.absent'), color: 'red' },
+        { value: 'LATE', label: this.translate.instant('teacherPages.attendance.status.late'), color: 'amber' },
+        { value: 'EXCUSED', label: this.translate.instant('teacherPages.attendance.status.excused'), color: 'blue' },
     ];
 
     ngOnInit(): void {
@@ -87,11 +89,11 @@ export class TemarioProfesorComponent implements OnInit {
 
     groupTasksByType(tasks: Task[]) {
       const configBloques = [
-        { tipo: TaskType.THEORY, titulo: 'Material Teórico y Documentos', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
-        { tipo: TaskType.EXAM, titulo: 'Exámenes y Pruebas', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
-        { tipo: TaskType.PROJECT, titulo: 'Proyectos Evaluables', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
-        { tipo: TaskType.PRACTICE, titulo: 'Ejercicios Prácticos', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
-        { tipo: TaskType.HOMEWORK, titulo: 'Deberes Generales', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+        { tipo: TaskType.THEORY, titulo: this.translate.instant('teacherPages.syllabus.blocks.theory'), icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+        { tipo: TaskType.EXAM, titulo: this.translate.instant('teacherPages.syllabus.blocks.exam'), icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+        { tipo: TaskType.PROJECT, titulo: this.translate.instant('teacherPages.syllabus.blocks.project'), icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+        { tipo: TaskType.PRACTICE, titulo: this.translate.instant('teacherPages.syllabus.blocks.practice'), icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+        { tipo: TaskType.HOMEWORK, titulo: this.translate.instant('teacherPages.syllabus.blocks.homework'), icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
       ];
 
       const nuevosBloques: BloqueTemario[] = [];
@@ -166,7 +168,7 @@ export class TemarioProfesorComponent implements OnInit {
                     next: () => {
                         this.saving.set(false);
                         this.saveError.set(false);
-                        this.saveMessage.set('Asistencia guardada correctamente');
+                        this.saveMessage.set(this.translate.instant('teacherPages.syllabus.attendanceSaved'));
                         setTimeout(() => {
                             this.closeAttendanceModal();
                         }, 1500);
@@ -174,14 +176,14 @@ export class TemarioProfesorComponent implements OnInit {
                     error: () => {
                         this.saving.set(false);
                         this.saveError.set(true);
-                        this.saveMessage.set('Error al guardar la asistencia');
+                        this.saveMessage.set(this.translate.instant('teacherPages.syllabus.attendanceSaveError'));
                     }
                 });
             },
             error: (err) => {
                 this.saving.set(false);
                 this.saveError.set(true);
-                this.saveMessage.set(`❌ ${err?.error?.message ?? 'Error al obtener la sesión'}`);
+                this.saveMessage.set(`❌ ${err?.error?.message ?? this.translate.instant('teacherPages.syllabus.sessionError')}`);
             }
         });
     }

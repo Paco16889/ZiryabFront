@@ -506,6 +506,179 @@
     "subtitle": "Eventos y fechas importantes del centro",
     "iframeTitle": "Calendario de Google"
   },
+  "teacherPages": {
+    "grades": {
+      "title": "Evaluaciones",
+      "subtitle": "Introduce las notas de tus alumnos como tutor",
+      "tutoredGroup": "Grupo tutorizado",
+      "period": "Periodo de Evaluación",
+      "average": "Media",
+      "subjects": "Asignaturas",
+      "loading": "Cargando datos del grupo...",
+      "emptyGroup": "No se ha encontrado ningún grupo del que seas tutor",
+      "saving": "Guardando...",
+      "save": "Guardar Evaluaciones"
+    },
+    "classMenu": {
+      "youAreIn": "Estás en",
+      "tasksTitle": "Tareas",
+      "tasksSubtitle": "Gestiona las tareas de la clase",
+      "justificationsTitle": "Justificaciones",
+      "justificationsSubtitle": "Revisa justificantes de faltas"
+    },
+    "justifications": {
+      "title": "Justificaciones",
+      "subtitle": "Revisa y gestiona las faltas de tus alumnos",
+      "viewAbsencesByStudent": "Ver Faltas por Alumno",
+      "loading": "Cargando justificaciones...",
+      "viewFile": "Ver Archivo",
+      "accept": "Aceptar",
+      "reject": "Rechazar",
+      "allUpToDate": "Todo al día",
+      "noPending": "No hay nuevas justificaciones pendientes de revisar.",
+      "loadError": "Error al cargar las justificaciones pendientes.",
+      "successAccept": "Falta justificada correctamente.",
+      "errorAccept": "Hubo un error al intentar justificar la falta.",
+      "successReject": "Justificante rechazado.",
+      "errorReject": "Hubo un error al intentar rechazar el justificante."
+    },
+    "attendance": {
+      "noStudents": "No hay estudiantes cargados.",
+      "status": {
+        "present": "Presente",
+        "absent": "Ausente",
+        "late": "Retraso",
+        "excused": "Justificado"
+      }
+    },
+    "taskTypes": {
+      "homework": "Deberes",
+      "practice": "Práctica",
+      "theory": "Teoría/Material",
+      "project": "Proyecto",
+      "exam": "Examen"
+    },
+    "taskForm": {
+      "title": "Crear Nueva Tarea",
+      "taskTitle": "Título de la tarea",
+      "titlePlaceholder": "Ej: Entrega Práctica 1",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Añade instrucciones para los alumnos...",
+      "type": "Tipo",
+      "startDate": "Fecha de inicio",
+      "dueDate": "Fecha límite (Entrega)",
+      "attachment": "Fichero adjunto (opcional)",
+      "uploadFile": "Sube un archivo",
+      "dragDrop": "o arrástralo y suéltalo aquí",
+      "formats": "PDF, DOCX, ZIP, PNG, JPG hasta 10MB",
+      "selected": "Seleccionado",
+      "saving": "Guardando...",
+      "submit": "Crear Tarea",
+      "errorMaxSize": "El archivo supera el límite de 10 MB.",
+      "successCreated": "Tarea creada con éxito con su fichero adjunto.",
+      "errorCreate": "Error al crear la tarea."
+    },
+    "tasks": {
+      "delivery": "Entrega",
+      "students": "alumnos",
+      "ungrouped": "Sin agrupar"
+    },
+    "deliveries": {
+      "backToSyllabus": "Volver al Temario",
+      "loading": "Cargando entregas de los estudiantes...",
+      "deadline": "Fecha Límite",
+      "studentList": "Listado de Alumnos",
+      "empty": "No se encontraron entregas para esta tarea.",
+      "openAttachment": "Abrir archivo/enlace de la resolución",
+      "editScore": "Editar Nota",
+      "grade": "Calificar",
+      "errorInvalidTaskId": "No se proporcionó un ID de tarea válido.",
+      "errorLoad": "No se pudieron cargar las entregas",
+      "errorDownload": "Hubo un error al descargar el listado de entregas",
+      "columns": {
+        "student": "Alumno",
+        "status": "Estado",
+        "submissionDate": "Fecha Entrega",
+        "score": "Nota",
+        "actions": "Acciones"
+      }
+    },
+    "status": {
+      "submitted": "Entregada",
+      "late": "Retraso",
+      "lateLong": "Entregada tarde",
+      "notSubmitted": "No Entregado",
+      "pending": "Pendiente",
+      "graded": "Calificada"
+    },
+    "gradeDelivery": {
+      "title": "Calificar Entrega",
+      "loading": "Cargando detalles de la entrega...",
+      "backToDeliveries": "Volver a las entregas",
+      "student": "Alumno",
+      "taskToEvaluate": "Tarea a Evaluar",
+      "submissionMoment": "Momento de Entrega",
+      "noDate": "Sin fecha registrada",
+      "attachedFile": "Archivo Entregado",
+      "viewDownload": "Ver / Descargar Adjunto",
+      "notAttached": "Aún no adjuntado",
+      "correctionForm": "Formulario de Corrección",
+      "scoreLabel": "Calificación (0 - 10)",
+      "required": "Obligatorio",
+      "rangeError": "Debe estar entre 0 y 10",
+      "feedback": "Comentarios y Feedback",
+      "optional": "Opcional",
+      "feedbackPlaceholder": "Escribe aquí las correcciones o notas para el alumno...",
+      "saveScore": "Guardar Calificación",
+      "saving": "Guardando...",
+      "errorInvalidId": "No se ha proporcionado un ID de entrega válido",
+      "errorLoad": "No se pudo cargar la entrega",
+      "errorConnection": "Error de conexión al cargar la entrega",
+      "errorSubmit": "Error al calificar la entrega. Por favor, inténtalo de nuevo."
+    },
+    "taskDetail": {
+      "start": "Inicio",
+      "delivery": "Entrega",
+      "allowLate": "Permite entrega tardía",
+      "submittedAt": "Entregada",
+      "gradeSubmission": "Calificar entrega",
+      "score": "Nota (0-10)",
+      "scoreError": "Introduce una nota entre 0 y 10",
+      "feedback": "Feedback (opcional)",
+      "selectTask": "Selecciona una tarea para ver el detalle.",
+      "stats": {
+        "total": "Total",
+        "submitted": "Entregadas",
+        "graded": "Calificadas",
+        "notSubmitted": "No entregadas"
+      }
+    },
+    "syllabus": {
+      "title": "Programación",
+      "takeAttendance": "Pasar Lista",
+      "tasksLoadError": "No se pudieron cargar las tareas para esta asignatura.",
+      "empty": "Aún no has creado material para esta asignatura.",
+      "tasks": "Tareas",
+      "noDescription": "Sin descripción",
+      "viewBaseFile": "Ver Archivo Base",
+      "viewDeliveries": "Ver Entregas",
+      "attendanceHelp": "Selecciona el estado de cada alumno y guarda la asistencia.",
+      "loadingStudents": "Cargando alumnos...",
+      "noStudents": "No hay alumnos matriculados en esta asignatura.",
+      "savingAttendance": "Guardando...",
+      "saveAttendance": "Guardar asistencia",
+      "attendanceSaved": "Asistencia guardada correctamente",
+      "attendanceSaveError": "Error al guardar la asistencia",
+      "sessionError": "Error al obtener la sesión",
+      "blocks": {
+        "theory": "Material Teórico y Documentos",
+        "exam": "Exámenes y Pruebas",
+        "project": "Proyectos Evaluables",
+        "practice": "Ejercicios Prácticos",
+        "homework": "Deberes Generales"
+      }
+    }
+  },
   "studentPages": {
     "common": {
       "access": "Acceder"

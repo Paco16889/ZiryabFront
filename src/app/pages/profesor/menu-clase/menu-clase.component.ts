@@ -1,9 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu-clase',
   standalone: true,
+  imports: [TranslateModule],
   templateUrl: './menu-clase.component.html',
 })
 export class MenuClaseComponent implements OnInit {

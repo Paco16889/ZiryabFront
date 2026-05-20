@@ -15,10 +15,10 @@
     }
 
     <div class="flex flex-wrap gap-4 text-xs text-gray-500">
-      <span>📅 Inicio: {{ task()!.startDate | date: 'dd/MM/yyyy HH:mm' }}</span>
-      <span>⏰ Entrega: {{ task()!.dueDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <span>📅 {{ 'teacherPages.taskDetail.start' | translate }}: {{ task()!.startDate | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <span>⏰ {{ 'teacherPages.taskDetail.delivery' | translate }}: {{ task()!.dueDate | date: 'dd/MM/yyyy HH:mm' }}</span>
       @if (task()!.allowLateSubmission) {
-        <span class="text-orange-500">⚠️ Permite entrega tardía</span>
+        <span class="text-orange-500">⚠️ {{ 'teacherPages.taskDetail.allowLate' | translate }}</span>
       }
     </div>
 
@@ -29,19 +29,19 @@
 
     <div class="text-center">
       <p class="text-xl font-bold text-gray-700">{{ stats().total }}</p>
-      <p class="text-xs text-gray-400">Total</p>
+      <p class="text-xs text-gray-400">{{ 'teacherPages.taskDetail.stats.total' | translate }}</p>
     </div>
     <div class="text-center">
       <p class="text-xl font-bold text-green-600">{{ stats().submitted }}</p>
-      <p class="text-xs text-gray-400">Entregadas</p>
+      <p class="text-xs text-gray-400">{{ 'teacherPages.taskDetail.stats.submitted' | translate }}</p>
     </div>
     <div class="text-center">
       <p class="text-xl font-bold text-blue-600">{{ stats().graded }}</p>
-      <p class="text-xs text-gray-400">Calificadas</p>
+      <p class="text-xs text-gray-400">{{ 'teacherPages.taskDetail.stats.graded' | translate }}</p>
     </div>
     <div class="text-center">
       <p class="text-xl font-bold text-red-500">{{ stats().notSubmitted }}</p>
-      <p class="text-xs text-gray-400">No entregadas</p>
+      <p class="text-xs text-gray-400">{{ 'teacherPages.taskDetail.stats.notSubmitted' | translate }}</p>
     </div>
 
   </div>
@@ -60,7 +60,7 @@
           </span>
           @if (st.submissionDate) {
             <span class="text-xs text-gray-400">
-              Entregada: {{ st.submissionDate | date: 'dd/MM/yyyy HH:mm' }}
+              {{ 'teacherPages.taskDetail.submittedAt' | translate }}: {{ st.submissionDate | date: 'dd/MM/yyyy HH:mm' }}
             </span>
           }
         </div>
@@ -91,7 +91,7 @@
     <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
 
-        <h3 class="text-base font-semibold text-gray-800 mb-1">Calificar entrega</h3>
+        <h3 class="text-base font-semibold text-gray-800 mb-1">{{ 'teacherPages.taskDetail.gradeSubmission' | translate }}</h3>
         <p class="text-sm text-gray-500 mb-4">
           {{ selectedStudentTask()!.studentEnrollment.student.surname }},
           {{ selectedStudentTask()!.studentEnrollment.student.name }}
@@ -100,7 +100,7 @@
         <form [formGroup]="gradeForm" class="flex flex-col gap-4">
 
           <div class="flex flex-col gap-1">
-            <label class="text-xs font-medium text-gray-600">Nota (0-10)</label>
+            <label class="text-xs font-medium text-gray-600">{{ 'teacherPages.taskDetail.score' | translate }}</label>
             <input
               type="number"
               formControlName="score"
@@ -110,12 +110,12 @@
               class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
             @if (gradeForm.get('score')?.invalid && gradeForm.get('score')?.touched) {
-              <span class="text-xs text-red-500">Introduce una nota entre 0 y 10</span>
+              <span class="text-xs text-red-500">{{ 'teacherPages.taskDetail.scoreError' | translate }}</span>
             }
           </div>
 
           <div class="flex flex-col gap-1">
-            <label class="text-xs font-medium text-gray-600">Feedback (opcional)</label>
+            <label class="text-xs font-medium text-gray-600">{{ 'teacherPages.taskDetail.feedback' | translate }}</label>
             <textarea
               formControlName="feedback"
               rows="3"
@@ -128,14 +128,14 @@
               type="button"
               (click)="closeGradeForm()"
               class="px-4 py-2 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50">
-              Cancelar
+              {{ 'common.buttons.cancel' | translate }}
             </button>
             <button
               type="button"
               (click)="submitGrade()"
               [disabled]="gradeForm.invalid"
               class="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50">
-              Guardar
+              {{ 'common.buttons.save' | translate }}
             </button>
           </div>
 
@@ -147,6 +147,6 @@
 
 } @else {
   <div class="flex items-center justify-center h-full text-gray-400 text-sm p-6">
-    Selecciona una tarea para ver el detalle.
+    {{ 'teacherPages.taskDetail.selectTask' | translate }}
   </div>
 }

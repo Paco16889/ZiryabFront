@@ -1,17 +1,8 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task, TaskType } from '../../../../core/models/teacher/tasks';
 import { output } from '@angular/core';
-
-
-/** Etiquetas legibles por tipo de tarea */
-const TASK_TYPE_LABELS: Record<TaskType, string> = {
-  PRACTICE: 'Práctica',
-  THEORY:   'Teoría',
-  EXAM:     'Examen',
-  PROJECT:  'Proyecto',
-  HOMEWORK: 'Deberes',
-};
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que representa una tarjeta individual de tarea.
@@ -33,10 +24,11 @@ const TASK_TYPE_LABELS: Record<TaskType, string> = {
 @Component({
   selector: 'app-task-list-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './task-list-item.component.html',
 })
 export class TaskListItemComponent {
+  private translate = inject(TranslateService);
 
   /** Tarea a mostrar */
   readonly task    = input.required<Task>();
@@ -46,7 +38,16 @@ export class TaskListItemComponent {
   readonly chipBg  = input.required<string>();
 
   /** Etiqueta legible del tipo de tarea */
-  readonly typeLabel = computed(() => TASK_TYPE_LABELS[this.task().type]);
+  readonly typeLabel = computed(() => {
+    const map: Record<TaskType, string> = {
+      PRACTICE: 'teacherPages.taskTypes.practice',
+      THEORY: 'teacherPages.taskTypes.theory',
+      EXAM: 'teacherPages.taskTypes.exam',
+      PROJECT: 'teacherPages.taskTypes.project',
+      HOMEWORK: 'teacherPages.taskTypes.homework',
+    };
+    return this.translate.instant(map[this.task().type]);
+  });
 
   /** Fecha de entrega formateada */
   readonly formattedDueDate = computed(() => {

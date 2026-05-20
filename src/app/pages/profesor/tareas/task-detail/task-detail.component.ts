@@ -6,6 +6,7 @@ import { StudentTaskStatus } from '../../../../core/models/teacher/tasks';
 import { SubmissionStatus } from '../../../../core/models/studentTask';
 import { DatePipe, NgClass } from '@angular/common';
 import { StudentTask } from '../../../../core/models/teacher/tasks';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 /**
@@ -16,7 +17,7 @@ import { StudentTask } from '../../../../core/models/teacher/tasks';
  */
 @Component({
   selector: 'app-task-detail',
-  imports: [ NgClass, DatePipe, ReactiveFormsModule],
+  imports: [ NgClass, DatePipe, ReactiveFormsModule, TranslateModule],
   templateUrl: './task-detail.component.html',
   styleUrl: './task-detail.component.scss'
 })
@@ -24,6 +25,7 @@ export class TaskDetailComponent {
    taskService       = inject(TaskService);
   studentTaskService = inject(StudentTaskService);
   private fb        = inject(FormBuilder);
+  private translate = inject(TranslateService);
 
   /** StudentTask seleccionada para calificar, null si no hay ninguna abierta */
   selectedStudentTask = signal<StudentTask | null>(null);
@@ -108,11 +110,11 @@ export class TaskDetailComponent {
    */
  statusLabel(status: StudentTaskStatus): string {
   const labels: Record<StudentTaskStatus, string> = {
-    [SubmissionStatus.PENDING]:       'Pendiente',
-    [SubmissionStatus.SUBMITTED]:     'Entregada',
-    [SubmissionStatus.LATE]:          'Entregada tarde',
-    [SubmissionStatus.GRADED]:        'Calificada',
-    [SubmissionStatus.NOT_SUBMITTED]: 'No entregada',
+    [SubmissionStatus.PENDING]:       this.translate.instant('teacherPages.status.pending'),
+    [SubmissionStatus.SUBMITTED]:     this.translate.instant('teacherPages.status.submitted'),
+    [SubmissionStatus.LATE]:          this.translate.instant('teacherPages.status.lateLong'),
+    [SubmissionStatus.GRADED]:        this.translate.instant('teacherPages.status.graded'),
+    [SubmissionStatus.NOT_SUBMITTED]: this.translate.instant('teacherPages.status.notSubmitted'),
   };
   return labels[status];
 }

@@ -512,6 +512,179 @@
     "subtitle": "Important school events and dates",
     "iframeTitle": "Google Calendar"
   },
+  "teacherPages": {
+    "grades": {
+      "title": "Evaluations",
+      "subtitle": "Enter your students' grades as tutor",
+      "tutoredGroup": "Tutored group",
+      "period": "Evaluation period",
+      "average": "Average",
+      "subjects": "Subjects",
+      "loading": "Loading group data...",
+      "emptyGroup": "No group found where you are the tutor",
+      "saving": "Saving...",
+      "save": "Save Evaluations"
+    },
+    "classMenu": {
+      "youAreIn": "You are in",
+      "tasksTitle": "Tasks",
+      "tasksSubtitle": "Manage class tasks",
+      "justificationsTitle": "Justifications",
+      "justificationsSubtitle": "Review absence justifications"
+    },
+    "justifications": {
+      "title": "Justifications",
+      "subtitle": "Review and manage your students' absences",
+      "viewAbsencesByStudent": "View Absences by Student",
+      "loading": "Loading justifications...",
+      "viewFile": "View File",
+      "accept": "Accept",
+      "reject": "Reject",
+      "allUpToDate": "All up to date",
+      "noPending": "There are no pending justifications to review.",
+      "loadError": "Error loading pending justifications.",
+      "successAccept": "Absence justified successfully.",
+      "errorAccept": "There was an error justifying the absence.",
+      "successReject": "Justification rejected.",
+      "errorReject": "There was an error rejecting the justification."
+    },
+    "attendance": {
+      "noStudents": "No students loaded.",
+      "status": {
+        "present": "Present",
+        "absent": "Absent",
+        "late": "Late",
+        "excused": "Excused"
+      }
+    },
+    "taskTypes": {
+      "homework": "Homework",
+      "practice": "Practice",
+      "theory": "Theory/Material",
+      "project": "Project",
+      "exam": "Exam"
+    },
+    "taskForm": {
+      "title": "Create New Task",
+      "taskTitle": "Task title",
+      "titlePlaceholder": "Ex: Practice Submission 1",
+      "description": "Description",
+      "descriptionPlaceholder": "Add instructions for students...",
+      "type": "Type",
+      "startDate": "Start date",
+      "dueDate": "Due date (Submission)",
+      "attachment": "Attached file (optional)",
+      "uploadFile": "Upload a file",
+      "dragDrop": "or drag and drop it here",
+      "formats": "PDF, DOCX, ZIP, PNG, JPG up to 10MB",
+      "selected": "Selected",
+      "saving": "Saving...",
+      "submit": "Create Task",
+      "errorMaxSize": "The file exceeds the 10 MB limit.",
+      "successCreated": "Task created successfully with its attached file.",
+      "errorCreate": "Error creating task."
+    },
+    "tasks": {
+      "delivery": "Due",
+      "students": "students",
+      "ungrouped": "Ungrouped"
+    },
+    "deliveries": {
+      "backToSyllabus": "Back to Syllabus",
+      "loading": "Loading student submissions...",
+      "deadline": "Deadline",
+      "studentList": "Student List",
+      "empty": "No submissions were found for this task.",
+      "openAttachment": "Open submission file/link",
+      "editScore": "Edit Score",
+      "grade": "Grade",
+      "errorInvalidTaskId": "A valid task ID was not provided.",
+      "errorLoad": "Could not load submissions",
+      "errorDownload": "There was an error downloading the submissions list",
+      "columns": {
+        "student": "Student",
+        "status": "Status",
+        "submissionDate": "Submission date",
+        "score": "Score",
+        "actions": "Actions"
+      }
+    },
+    "status": {
+      "submitted": "Submitted",
+      "late": "Late",
+      "lateLong": "Submitted late",
+      "notSubmitted": "Not submitted",
+      "pending": "Pending",
+      "graded": "Graded"
+    },
+    "gradeDelivery": {
+      "title": "Grade Submission",
+      "loading": "Loading submission details...",
+      "backToDeliveries": "Back to submissions",
+      "student": "Student",
+      "taskToEvaluate": "Task to evaluate",
+      "submissionMoment": "Submission moment",
+      "noDate": "No date recorded",
+      "attachedFile": "Submitted file",
+      "viewDownload": "View / Download attachment",
+      "notAttached": "Not attached yet",
+      "correctionForm": "Correction form",
+      "scoreLabel": "Score (0 - 10)",
+      "required": "Required",
+      "rangeError": "Must be between 0 and 10",
+      "feedback": "Comments and feedback",
+      "optional": "Optional",
+      "feedbackPlaceholder": "Write corrections or notes for the student...",
+      "saveScore": "Save Score",
+      "saving": "Saving...",
+      "errorInvalidId": "A valid submission ID was not provided",
+      "errorLoad": "Could not load submission",
+      "errorConnection": "Connection error loading submission",
+      "errorSubmit": "Error grading submission. Please try again."
+    },
+    "taskDetail": {
+      "start": "Start",
+      "delivery": "Due",
+      "allowLate": "Late submission allowed",
+      "submittedAt": "Submitted",
+      "gradeSubmission": "Grade submission",
+      "score": "Score (0-10)",
+      "scoreError": "Enter a score between 0 and 10",
+      "feedback": "Feedback (optional)",
+      "selectTask": "Select a task to see details.",
+      "stats": {
+        "total": "Total",
+        "submitted": "Submitted",
+        "graded": "Graded",
+        "notSubmitted": "Not submitted"
+      }
+    },
+    "syllabus": {
+      "title": "Syllabus",
+      "takeAttendance": "Take Attendance",
+      "tasksLoadError": "Could not load tasks for this subject.",
+      "empty": "You have not created material for this subject yet.",
+      "tasks": "Tasks",
+      "noDescription": "No description",
+      "viewBaseFile": "View Base File",
+      "viewDeliveries": "View Submissions",
+      "attendanceHelp": "Select each student's status and save attendance.",
+      "loadingStudents": "Loading students...",
+      "noStudents": "There are no students enrolled in this subject.",
+      "savingAttendance": "Saving...",
+      "saveAttendance": "Save attendance",
+      "attendanceSaved": "Attendance saved successfully",
+      "attendanceSaveError": "Error saving attendance",
+      "sessionError": "Error obtaining session",
+      "blocks": {
+        "theory": "Theory Material and Documents",
+        "exam": "Exams and Tests",
+        "project": "Evaluable Projects",
+        "practice": "Practical Exercises",
+        "homework": "General Homework"
+      }
+    }
+  },
   "studentPages": {
     "common": {
       "access": "Access"

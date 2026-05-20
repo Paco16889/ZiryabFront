@@ -2,11 +2,11 @@
     <div class="text-center mb-10 mt-2 relative">
         <h1
             class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-5 pb-3 leading-normal">
-            Programación
+            {{ 'teacherPages.syllabus.title' | translate }}
         </h1>
         <button (click)="openAttendanceModal()" 
             class="absolute top-0 right-0 p-3 bg-indigo-50 text-indigo-600 rounded-2xl hover:bg-indigo-100 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 flex items-center gap-2 group">
-            <span class="text-sm font-bold hidden md:block">Pasar Lista</span>
+            <span class="text-sm font-bold hidden md:block">{{ 'teacherPages.syllabus.takeAttendance' | translate }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>
@@ -16,10 +16,10 @@
     <div class="flex flex-col gap-5 pb-6">
         
         <div *ngIf="tasksLoadError()" class="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200 mt-4">
-            No se pudieron cargar las tareas para esta asignatura.
+            {{ 'teacherPages.syllabus.tasksLoadError' | translate }}
         </div>
         <div *ngIf="bloques().length === 0 && !tasksLoadError()" class="bg-white/60 text-slate-500 p-8 text-center rounded-3xl border border-slate-200 mt-4 shadow-sm">
-            Aún no has creado material para esta asignatura.
+            {{ 'teacherPages.syllabus.empty' | translate }}
         </div>
 
         @for (bloque of bloques(); track bloque.id; let i = $index) {
@@ -46,7 +46,7 @@
                         </h3>
                         <span
                             class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md mt-1 bg-white/60 text-slate-500">
-                            {{ bloque.tareas.length }} Tareas
+                            {{ bloque.tareas.length }} {{ 'teacherPages.syllabus.tasks' | translate }}
                         </span>
                     </div>
                 </div>
@@ -71,18 +71,18 @@
                             </span>
                             <div>
                                 <h4 class="text-slate-700 font-bold text-sm">{{ tarea.title }}</h4>
-                                <p class="text-xs text-slate-500 mt-1 line-clamp-1" [title]="tarea.description">{{ tarea.description || 'Sin descripción' }}</p>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-1" [title]="tarea.description">{{ tarea.description || ('teacherPages.syllabus.noDescription' | translate) }}</p>
                             </div>
                         </div>
 
                         <div class="flex items-center gap-3 self-end sm:self-auto shrink-0 mt-2 sm:mt-0">
                             <a *ngIf="tarea.attachmentUrl" [href]="tarea.attachmentUrl" target="_blank"
                                class="text-xs font-bold uppercase px-3 py-1.5 rounded-lg text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">
-                                Ver Archivo Base
+                                {{ 'teacherPages.syllabus.viewBaseFile' | translate }}
                             </a>
                             <button (click)="goToEntregas(tarea.id)"
                                class="text-xs font-bold uppercase px-4 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm transition-all active:scale-95">
-                                Ver Entregas
+                                {{ 'teacherPages.syllabus.viewDeliveries' | translate }}
                             </button>
                         </div>
 
@@ -113,20 +113,20 @@
 
         <div class="mb-6">
             <h2 class="text-2xl font-bold text-indigo-700 mb-1 flex items-center gap-2">
-                📋 Pasar lista
+                📋 {{ 'teacherPages.syllabus.takeAttendance' | translate }}
             </h2>
-            <p class="text-sm text-slate-500">Selecciona el estado de cada alumno y guarda la asistencia.</p>
+            <p class="text-sm text-slate-500">{{ 'teacherPages.syllabus.attendanceHelp' | translate }}</p>
         </div>
 
         @if (loadingAlumnos()) {
         <div class="py-10 text-center">
-            <p class="text-indigo-400 animate-pulse font-medium">Cargando alumnos...</p>
+            <p class="text-indigo-400 animate-pulse font-medium">{{ 'teacherPages.syllabus.loadingStudents' | translate }}</p>
         </div>
         }
 
         @if (!loadingAlumnos() && alumnos().length === 0) {
         <div class="py-10 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-            <p class="text-slate-400 text-sm">No hay alumnos matriculados en esta asignatura.</p>
+            <p class="text-slate-400 text-sm">{{ 'teacherPages.syllabus.noStudents' | translate }}</p>
         </div>
         }
 
@@ -171,9 +171,9 @@
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Guardando... 
+                        {{ 'teacherPages.syllabus.savingAttendance' | translate }} 
                     } @else { 
-                        Guardar asistencia 
+                        {{ 'teacherPages.syllabus.saveAttendance' | translate }} 
                     }
                 </button>
             </div>

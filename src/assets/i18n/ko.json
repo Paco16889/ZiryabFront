@@ -230,6 +230,179 @@
       "action": "작업에 실패했습니다. 다시 시도하세요."
     }
   },
+  "teacherPages": {
+    "grades": {
+      "title": "평가",
+      "subtitle": "튜터로서 학생 성적을 입력하세요",
+      "tutoredGroup": "담당 그룹",
+      "period": "평가 기간",
+      "average": "평균",
+      "subjects": "과목",
+      "loading": "그룹 데이터를 불러오는 중...",
+      "emptyGroup": "담당 튜터 그룹을 찾을 수 없습니다",
+      "saving": "저장 중...",
+      "save": "평가 저장"
+    },
+    "classMenu": {
+      "youAreIn": "현재 위치",
+      "tasksTitle": "과제",
+      "tasksSubtitle": "수업 과제 관리",
+      "justificationsTitle": "사유서",
+      "justificationsSubtitle": "결석 사유서 검토"
+    },
+    "justifications": {
+      "title": "사유서",
+      "subtitle": "학생 결석을 검토하고 관리하세요",
+      "viewAbsencesByStudent": "학생별 결석 보기",
+      "loading": "사유서를 불러오는 중...",
+      "viewFile": "파일 보기",
+      "accept": "승인",
+      "reject": "거절",
+      "allUpToDate": "모두 처리됨",
+      "noPending": "검토할 사유서가 없습니다.",
+      "loadError": "대기 중인 사유서를 불러오는 중 오류가 발생했습니다.",
+      "successAccept": "결석이 정상 처리되었습니다.",
+      "errorAccept": "결석 처리 중 오류가 발생했습니다.",
+      "successReject": "사유서를 거절했습니다.",
+      "errorReject": "사유서 거절 중 오류가 발생했습니다."
+    },
+    "attendance": {
+      "noStudents": "불러온 학생이 없습니다.",
+      "status": {
+        "present": "출석",
+        "absent": "결석",
+        "late": "지각",
+        "excused": "사유 인정"
+      }
+    },
+    "taskTypes": {
+      "homework": "숙제",
+      "practice": "실습",
+      "theory": "이론/자료",
+      "project": "프로젝트",
+      "exam": "시험"
+    },
+    "taskForm": {
+      "title": "새 과제 만들기",
+      "taskTitle": "과제 제목",
+      "titlePlaceholder": "예: 실습 제출 1",
+      "description": "설명",
+      "descriptionPlaceholder": "학생에게 줄 안내를 입력하세요...",
+      "type": "유형",
+      "startDate": "시작일",
+      "dueDate": "마감일",
+      "attachment": "첨부 파일 (선택)",
+      "uploadFile": "파일 업로드",
+      "dragDrop": "또는 여기로 끌어다 놓기",
+      "formats": "PDF, DOCX, ZIP, PNG, JPG 최대 10MB",
+      "selected": "선택됨",
+      "saving": "저장 중...",
+      "submit": "과제 생성",
+      "errorMaxSize": "파일이 10MB 제한을 초과했습니다.",
+      "successCreated": "첨부 파일과 함께 과제가 생성되었습니다.",
+      "errorCreate": "과제 생성 중 오류가 발생했습니다."
+    },
+    "tasks": {
+      "delivery": "마감",
+      "students": "학생",
+      "ungrouped": "미그룹"
+    },
+    "deliveries": {
+      "backToSyllabus": "강의 계획으로 돌아가기",
+      "loading": "학생 제출물을 불러오는 중...",
+      "deadline": "마감일",
+      "studentList": "학생 목록",
+      "empty": "이 과제의 제출물이 없습니다.",
+      "openAttachment": "제출 파일/링크 열기",
+      "editScore": "점수 수정",
+      "grade": "채점",
+      "errorInvalidTaskId": "유효한 과제 ID가 제공되지 않았습니다.",
+      "errorLoad": "제출물을 불러올 수 없습니다",
+      "errorDownload": "제출물 목록 다운로드 중 오류가 발생했습니다",
+      "columns": {
+        "student": "학생",
+        "status": "상태",
+        "submissionDate": "제출일",
+        "score": "점수",
+        "actions": "작업"
+      }
+    },
+    "status": {
+      "submitted": "제출됨",
+      "late": "지각",
+      "lateLong": "지각 제출",
+      "notSubmitted": "미제출",
+      "pending": "대기",
+      "graded": "채점됨"
+    },
+    "gradeDelivery": {
+      "title": "제출 채점",
+      "loading": "제출 상세를 불러오는 중...",
+      "backToDeliveries": "제출 목록으로 돌아가기",
+      "student": "학생",
+      "taskToEvaluate": "평가할 과제",
+      "submissionMoment": "제출 시각",
+      "noDate": "등록된 날짜 없음",
+      "attachedFile": "제출 파일",
+      "viewDownload": "보기 / 다운로드",
+      "notAttached": "아직 첨부되지 않음",
+      "correctionForm": "채점 폼",
+      "scoreLabel": "점수 (0 - 10)",
+      "required": "필수",
+      "rangeError": "0에서 10 사이여야 합니다",
+      "feedback": "코멘트 및 피드백",
+      "optional": "선택",
+      "feedbackPlaceholder": "학생에게 줄 코멘트를 입력하세요...",
+      "saveScore": "점수 저장",
+      "saving": "저장 중...",
+      "errorInvalidId": "유효한 제출 ID가 제공되지 않았습니다",
+      "errorLoad": "제출을 불러올 수 없습니다",
+      "errorConnection": "제출 로딩 중 연결 오류",
+      "errorSubmit": "채점 중 오류가 발생했습니다. 다시 시도하세요."
+    },
+    "taskDetail": {
+      "start": "시작",
+      "delivery": "마감",
+      "allowLate": "지각 제출 허용",
+      "submittedAt": "제출됨",
+      "gradeSubmission": "제출 채점",
+      "score": "점수 (0-10)",
+      "scoreError": "0에서 10 사이 점수를 입력하세요",
+      "feedback": "피드백 (선택)",
+      "selectTask": "상세를 보려면 과제를 선택하세요.",
+      "stats": {
+        "total": "전체",
+        "submitted": "제출",
+        "graded": "채점",
+        "notSubmitted": "미제출"
+      }
+    },
+    "syllabus": {
+      "title": "수업 계획",
+      "takeAttendance": "출석 체크",
+      "tasksLoadError": "이 과목의 과제를 불러오지 못했습니다.",
+      "empty": "이 과목에 아직 자료를 만들지 않았습니다.",
+      "tasks": "과제",
+      "noDescription": "설명 없음",
+      "viewBaseFile": "기본 파일 보기",
+      "viewDeliveries": "제출 보기",
+      "attendanceHelp": "각 학생의 상태를 선택하고 출석을 저장하세요.",
+      "loadingStudents": "학생을 불러오는 중...",
+      "noStudents": "이 과목에 등록된 학생이 없습니다.",
+      "savingAttendance": "저장 중...",
+      "saveAttendance": "출석 저장",
+      "attendanceSaved": "출석이 저장되었습니다",
+      "attendanceSaveError": "출석 저장 중 오류가 발생했습니다",
+      "sessionError": "세션을 가져오는 중 오류가 발생했습니다",
+      "blocks": {
+        "theory": "이론 자료 및 문서",
+        "exam": "시험 및 평가",
+        "project": "평가 프로젝트",
+        "practice": "실습 과제",
+        "homework": "일반 숙제"
+      }
+    }
+  },
   "studentPages": {
     "common": {
       "access": "접속"

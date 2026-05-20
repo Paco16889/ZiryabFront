@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StudentTaskService } from '../../../core/services/alumno/student-task.service';
 import { StudentTask } from '../../../core/models/studentTask';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que permite al profesor calificar la entrega de una tarea.
@@ -12,7 +13,7 @@ import { StudentTask } from '../../../core/models/studentTask';
 @Component({
   selector: 'app-calificar-tarea',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslateModule],
   templateUrl: './calificar-tarea.component.html',
   styleUrls: ['./calificar-tarea.component.scss']
 })
@@ -21,6 +22,7 @@ export class CalificarTareaComponent implements OnInit {
   private router = inject(Router);
   private studentTaskService = inject(StudentTaskService);
   private fb = inject(FormBuilder);
+  private translate = inject(TranslateService);
 
   taskDelivery: StudentTask | null = null;
   loading = true;
@@ -37,7 +39,7 @@ export class CalificarTareaComponent implements OnInit {
     if (id) {
       this.loadStudentTask(Number(id));
     } else {
-      this.error = 'No se ha proporcionado un ID de entrega válido';
+      this.error = this.translate.instant('teacherPages.gradeDelivery.errorInvalidId');
       this.loading = false;
     }
   }
@@ -61,12 +63,12 @@ export class CalificarTareaComponent implements OnInit {
             });
           }
         } else {
-          this.error = 'No se pudo cargar la entrega';
+          this.error = this.translate.instant('teacherPages.gradeDelivery.errorLoad');
         }
         this.loading = false;
       },
       error: (err) => {
-        this.error = 'Error de conexión al cargar la entrega';
+        this.error = this.translate.instant('teacherPages.gradeDelivery.errorConnection');
         this.loading = false;
         console.error(err);
       }
@@ -96,7 +98,7 @@ export class CalificarTareaComponent implements OnInit {
       },
       error: (err) => {
         console.error(err);
-        this.error = 'Error al calificar la entrega. Por favor, inténtalo de nuevo.';
+        this.error = this.translate.instant('teacherPages.gradeDelivery.errorSubmit');
         this.submitting = false;
       }
     });

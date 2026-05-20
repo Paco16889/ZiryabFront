@@ -510,6 +510,179 @@
     "subtitle": "Wichtige Schultermine und Ereignisse",
     "iframeTitle": "Google Kalender"
   },
+  "teacherPages": {
+    "grades": {
+      "title": "Bewertungen",
+      "subtitle": "Gib als Tutor die Noten deiner Schueler ein",
+      "tutoredGroup": "Tutorisierte Gruppe",
+      "period": "Bewertungszeitraum",
+      "average": "Durchschnitt",
+      "subjects": "Faecher",
+      "loading": "Gruppendaten werden geladen...",
+      "emptyGroup": "Keine Gruppe gefunden, bei der du Tutor bist",
+      "saving": "Speichern...",
+      "save": "Bewertungen speichern"
+    },
+    "classMenu": {
+      "youAreIn": "Du bist in",
+      "tasksTitle": "Aufgaben",
+      "tasksSubtitle": "Klassenaufgaben verwalten",
+      "justificationsTitle": "Begruendungen",
+      "justificationsSubtitle": "Fehlzeitenbelege pruefen"
+    },
+    "justifications": {
+      "title": "Begruendungen",
+      "subtitle": "Fehlzeiten deiner Schueler pruefen und verwalten",
+      "viewAbsencesByStudent": "Fehlzeiten nach Schueler anzeigen",
+      "loading": "Begruendungen werden geladen...",
+      "viewFile": "Datei ansehen",
+      "accept": "Akzeptieren",
+      "reject": "Ablehnen",
+      "allUpToDate": "Alles erledigt",
+      "noPending": "Es gibt keine offenen Begruendungen.",
+      "loadError": "Fehler beim Laden der offenen Begruendungen.",
+      "successAccept": "Fehlzeit erfolgreich entschuldigt.",
+      "errorAccept": "Fehler beim Entschuldigen der Fehlzeit.",
+      "successReject": "Begruendung abgelehnt.",
+      "errorReject": "Fehler beim Ablehnen der Begruendung."
+    },
+    "attendance": {
+      "noStudents": "Keine Schueler geladen.",
+      "status": {
+        "present": "Anwesend",
+        "absent": "Abwesend",
+        "late": "Verspaetet",
+        "excused": "Entschuldigt"
+      }
+    },
+    "taskTypes": {
+      "homework": "Hausaufgabe",
+      "practice": "Praxis",
+      "theory": "Theorie/Material",
+      "project": "Projekt",
+      "exam": "Pruefung"
+    },
+    "taskForm": {
+      "title": "Neue Aufgabe erstellen",
+      "taskTitle": "Aufgabentitel",
+      "titlePlaceholder": "Bsp: Praxisabgabe 1",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Anweisungen fuer Schueler...",
+      "type": "Typ",
+      "startDate": "Startdatum",
+      "dueDate": "Abgabedatum",
+      "attachment": "Anhang (optional)",
+      "uploadFile": "Datei hochladen",
+      "dragDrop": "oder hierher ziehen",
+      "formats": "PDF, DOCX, ZIP, PNG, JPG bis 10MB",
+      "selected": "Ausgewaehlt",
+      "saving": "Speichern...",
+      "submit": "Aufgabe erstellen",
+      "errorMaxSize": "Die Datei ueberschreitet 10 MB.",
+      "successCreated": "Aufgabe mit Anhang erfolgreich erstellt.",
+      "errorCreate": "Fehler beim Erstellen der Aufgabe."
+    },
+    "tasks": {
+      "delivery": "Abgabe",
+      "students": "Schueler",
+      "ungrouped": "Nicht gruppiert"
+    },
+    "deliveries": {
+      "backToSyllabus": "Zurueck zum Lehrplan",
+      "loading": "Abgaben werden geladen...",
+      "deadline": "Abgabefrist",
+      "studentList": "Schuelerliste",
+      "empty": "Keine Abgaben fuer diese Aufgabe gefunden.",
+      "openAttachment": "Abgabe-Datei/Link oeffnen",
+      "editScore": "Note bearbeiten",
+      "grade": "Bewerten",
+      "errorInvalidTaskId": "Keine gueltige Aufgaben-ID angegeben.",
+      "errorLoad": "Abgaben konnten nicht geladen werden",
+      "errorDownload": "Fehler beim Laden der Abgabeliste",
+      "columns": {
+        "student": "Schueler",
+        "status": "Status",
+        "submissionDate": "Abgabedatum",
+        "score": "Note",
+        "actions": "Aktionen"
+      }
+    },
+    "status": {
+      "submitted": "Abgegeben",
+      "late": "Verspaetet",
+      "lateLong": "Verspaetet abgegeben",
+      "notSubmitted": "Nicht abgegeben",
+      "pending": "Ausstehend",
+      "graded": "Bewertet"
+    },
+    "gradeDelivery": {
+      "title": "Abgabe bewerten",
+      "loading": "Abgabedetails werden geladen...",
+      "backToDeliveries": "Zurueck zu den Abgaben",
+      "student": "Schueler",
+      "taskToEvaluate": "Aufgabe zur Bewertung",
+      "submissionMoment": "Abgabezeitpunkt",
+      "noDate": "Kein Datum vorhanden",
+      "attachedFile": "Abgegebene Datei",
+      "viewDownload": "Anhang ansehen / herunterladen",
+      "notAttached": "Noch nichts angehaengt",
+      "correctionForm": "Korrekturformular",
+      "scoreLabel": "Note (0 - 10)",
+      "required": "Pflichtfeld",
+      "rangeError": "Muss zwischen 0 und 10 liegen",
+      "feedback": "Kommentare und Feedback",
+      "optional": "Optional",
+      "feedbackPlaceholder": "Korrekturen oder Notizen fuer den Schueler...",
+      "saveScore": "Note speichern",
+      "saving": "Speichern...",
+      "errorInvalidId": "Keine gueltige Abgabe-ID angegeben",
+      "errorLoad": "Abgabe konnte nicht geladen werden",
+      "errorConnection": "Verbindungsfehler beim Laden der Abgabe",
+      "errorSubmit": "Fehler beim Bewerten der Abgabe."
+    },
+    "taskDetail": {
+      "start": "Start",
+      "delivery": "Abgabe",
+      "allowLate": "Verspaetete Abgabe erlaubt",
+      "submittedAt": "Abgegeben",
+      "gradeSubmission": "Abgabe bewerten",
+      "score": "Note (0-10)",
+      "scoreError": "Bitte eine Note zwischen 0 und 10 eingeben",
+      "feedback": "Feedback (optional)",
+      "selectTask": "Waehle eine Aufgabe, um Details zu sehen.",
+      "stats": {
+        "total": "Gesamt",
+        "submitted": "Abgegeben",
+        "graded": "Bewertet",
+        "notSubmitted": "Nicht abgegeben"
+      }
+    },
+    "syllabus": {
+      "title": "Planung",
+      "takeAttendance": "Anwesenheit erfassen",
+      "tasksLoadError": "Aufgaben fuer dieses Fach konnten nicht geladen werden.",
+      "empty": "Fuer dieses Fach wurde noch kein Material erstellt.",
+      "tasks": "Aufgaben",
+      "noDescription": "Keine Beschreibung",
+      "viewBaseFile": "Basisdatei ansehen",
+      "viewDeliveries": "Abgaben ansehen",
+      "attendanceHelp": "Status jedes Schuelers waehlen und Anwesenheit speichern.",
+      "loadingStudents": "Schueler werden geladen...",
+      "noStudents": "Keine Schueler in diesem Fach eingeschrieben.",
+      "savingAttendance": "Speichern...",
+      "saveAttendance": "Anwesenheit speichern",
+      "attendanceSaved": "Anwesenheit erfolgreich gespeichert",
+      "attendanceSaveError": "Fehler beim Speichern der Anwesenheit",
+      "sessionError": "Fehler beim Abrufen der Sitzung",
+      "blocks": {
+        "theory": "Theoriematerial und Dokumente",
+        "exam": "Pruefungen und Tests",
+        "project": "Bewertbare Projekte",
+        "practice": "Praktische Uebungen",
+        "homework": "Allgemeine Hausaufgaben"
+      }
+    }
+  },
   "studentPages": {
     "common": {
       "access": "Zugreifen"
