@@ -334,7 +334,19 @@
     "grid": {
       "title": "Lehrerzuweisungen",
       "subtitle": "{{course}} — {{grade}}",
-      "pendingImplementation": "Das Faecher-Datagrid (Lehrer + Gruppe) folgt in CURSO-98."
+      "schoolYear": "Schuljahr",
+      "loading": "Faecher und Zuweisungen werden geladen…",
+      "loadError": "Datagrid konnte nicht geladen werden.",
+      "existingTitle": "Bestehende Zuweisungen",
+      "existingEmpty": "Keine Zuweisungen fuer dieses Angebot.",
+      "newTitle": "Neue Zuweisungen (eine Zeile pro Fach)",
+      "rowsEmpty": "Keine Faecher fuer diesen Zyklus und dieses Jahr.",
+      "colSubject": "Fach",
+      "colTeacher": "Lehrer",
+      "colGroup": "Gruppe",
+      "selectTeacher": "Lehrer waehlen",
+      "selectGroup": "Gruppe waehlen",
+      "saveHint": "Massenspeicherung folgt in CURSO-100."
     }
   },
   "horario": {

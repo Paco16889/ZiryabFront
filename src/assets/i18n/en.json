@@ -336,7 +336,19 @@
     "grid": {
       "title": "Teacher assignments",
       "subtitle": "{{course}} — {{grade}}",
-      "pendingImplementation": "The subject datagrid (teacher + group) will be implemented in CURSO-98."
+      "schoolYear": "School year",
+      "loading": "Loading subjects and assignments…",
+      "loadError": "Could not load the datagrid.",
+      "existingTitle": "Existing assignments",
+      "existingEmpty": "No assignments for this offer yet.",
+      "newTitle": "New assignments (one row per subject)",
+      "rowsEmpty": "No subjects for this cycle and year.",
+      "colSubject": "Subject",
+      "colTeacher": "Teacher",
+      "colGroup": "Group",
+      "selectTeacher": "Select teacher",
+      "selectGroup": "Select group",
+      "saveHint": "Bulk save will be available in CURSO-100."
     }
   },
   "horario": {

@@ -12,18 +12,117 @@
     </h1>
   </div>
 
-  <p class="text-sm text-gray-700 mb-4">
+  <p class="text-sm text-gray-700 mb-2">
     {{
       'courseAssignments.grid.subtitle'
-        | translate
-          : {
-              course: context().courseName,
-              grade: gradeDisplay()
-            }
+        | translate: { course: context().courseName, grade: gradeDisplay() }
     }}
   </p>
-
-  <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
-    {{ 'courseAssignments.grid.pendingImplementation' | translate }}
+  <p class="text-sm text-gray-600 mb-6">
+    {{ 'courseAssignments.grid.schoolYear' | translate }}:
+    <span class="font-medium">{{ schoolYear() }}</span>
   </p>
+
+  @if (loading()) {
+    <p class="text-sm text-gray-500">{{ 'courseAssignments.grid.loading' | translate }}</p>
+  } @else if (loadError()) {
+    <p class="text-sm text-red-600">{{ 'courseAssignments.grid.loadError' | translate }}</p>
+  } @else {
+  <section class="mb-8">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">
+      {{ 'courseAssignments.grid.existingTitle' | translate }}
+    </h2>
+    @if (existingAssignments().length === 0) {
+      <p class="text-sm text-gray-500">{{ 'courseAssignments.grid.existingEmpty' | translate }}</p>
+    } @else {
+      <div class="overflow-x-auto border border-gray-200 rounded-lg">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-left">
+            <tr>
+              <th class="px-3 py-2 font-medium text-gray-700">
+                {{ 'courseAssignments.grid.colSubject' | translate }}
+              </th>
+              <th class="px-3 py-2 font-medium text-gray-700">
+                {{ 'courseAssignments.grid.colTeacher' | translate }}
+              </th>
+              <th class="px-3 py-2 font-medium text-gray-700">
+                {{ 'courseAssignments.grid.colGroup' | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (a of existingAssignments(); track a.id) {
+              <tr class="border-t border-gray-100">
+                <td class="px-3 py-2">{{ a.subject?.name ?? '—' }}</td>
+                <td class="px-3 py-2">{{ assignmentTeacherLabel(a) }}</td>
+                <td class="px-3 py-2">{{ a.group?.name ?? '—' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+
+  <section>
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">
+      {{ 'courseAssignments.grid.newTitle' | translate }}
+    </h2>
+    @if (rows().length === 0) {
+      <p class="text-sm text-gray-500">{{ 'courseAssignments.grid.rowsEmpty' | translate }}</p>
+    } @else {
+      <div class="overflow-x-auto border border-gray-200 rounded-lg">
+        <table class="min-w-full text-sm">
+          <thead class="bg-purple-50 text-left">
+            <tr>
+              <th class="px-3 py-2 font-medium text-gray-700">
+                {{ 'courseAssignments.grid.colSubject' | translate }}
+              </th>
+              <th class="px-3 py-2 font-medium text-gray-700">
+                {{ 'courseAssignments.grid.colTeacher' | translate }}
+              </th>
+              <th class="px-3 py-2 font-medium text-gray-700">
+                {{ 'courseAssignments.grid.colGroup' | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of rows(); track row.idSubject) {
+              <tr class="border-t border-gray-100">
+                <td class="px-3 py-2 font-medium text-gray-900">{{ row.subjectName }}</td>
+                <td class="px-3 py-2">
+                  <select
+                    class="w-full border border-gray-300 rounded-md px-2 py-1.5"
+                    [value]="row.idTeacher ?? ''"
+                    (change)="onTeacherChange(row, $any($event.target).value)"
+                  >
+                    <option value="">{{ 'courseAssignments.grid.selectTeacher' | translate }}</option>
+                    @for (t of teachers(); track t.id) {
+                      <option [value]="t.id">{{ teacherLabel(t) }}</option>
+                    }
+                  </select>
+                </td>
+                <td class="px-3 py-2">
+                  <select
+                    class="w-full border border-gray-300 rounded-md px-2 py-1.5"
+                    [value]="row.idGroup ?? ''"
+                    (change)="onGroupChange(row, $any($event.target).value)"
+                  >
+                    <option value="">{{ 'courseAssignments.grid.selectGroup' | translate }}</option>
+                    @for (g of groups(); track g.id) {
+                      <option [value]="g.id">{{ g.name }}</option>
+                    }
+                  </select>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-500 mt-2">
+        {{ 'courseAssignments.grid.saveHint' | translate }}
+      </p>
+    }
+  </section>
+  }
 </div>

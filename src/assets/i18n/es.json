@@ -330,7 +330,19 @@
     "grid": {
       "title": "Asignaciones docentes",
       "subtitle": "{{course}} — {{grade}}",
-      "pendingImplementation": "El datagrid de asignaturas (profesor + grupo) se implementará en CURSO-98."
+      "schoolYear": "Año escolar",
+      "loading": "Cargando asignaturas y asignaciones…",
+      "loadError": "No se pudo cargar el datagrid.",
+      "existingTitle": "Asignaciones ya creadas",
+      "existingEmpty": "No hay asignaciones para esta oferta.",
+      "newTitle": "Nuevas asignaciones (una fila por asignatura)",
+      "rowsEmpty": "No hay asignaturas para este ciclo y curso.",
+      "colSubject": "Asignatura",
+      "colTeacher": "Profesor",
+      "colGroup": "Grupo",
+      "selectTeacher": "Seleccionar profesor",
+      "selectGroup": "Seleccionar grupo",
+      "saveHint": "El guardado bulk estará disponible en CURSO-100."
     }
   },
   "horario": {
