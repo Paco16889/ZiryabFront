@@ -119,9 +119,55 @@
           </tbody>
         </table>
       </div>
-      <p class="text-xs text-gray-500 mt-2">
-        {{ 'courseAssignments.grid.saveHint' | translate }}
-      </p>
+      @if (saveValidation() === 'noneToSave') {
+        <p class="text-sm text-amber-700 mt-4" role="alert">
+          {{ 'courseAssignments.grid.saveNone' | translate }}
+        </p>
+      }
+
+      @if (saveFeedback(); as feedback) {
+        <div
+          class="mt-4 rounded-lg border px-4 py-3 text-sm"
+          role="status"
+          [class.border-green-200]="feedbackIsSuccess()"
+          [class.bg-green-50]="feedbackIsSuccess()"
+          [class.text-green-800]="feedbackIsSuccess()"
+          [class.border-amber-200]="feedbackIsWarning() && !feedbackIsSuccess()"
+          [class.bg-amber-50]="feedbackIsWarning() && !feedbackIsSuccess()"
+          [class.text-amber-900]="feedbackIsWarning() && !feedbackIsSuccess()"
+          [class.border-red-200]="feedback.hasErrors"
+          [class.bg-red-50]="feedback.hasErrors"
+          [class.text-red-800]="feedback.hasErrors"
+        >
+          @if (feedback.created > 0) {
+            <p>{{ 'courseAssignments.grid.saveCreated' | translate: { count: feedback.created } }}</p>
+          }
+          @if (feedback.duplicates > 0) {
+            <p>{{ 'courseAssignments.grid.saveDuplicates' | translate: { count: feedback.duplicates } }}</p>
+          }
+          @if (feedback.incomplete > 0) {
+            <p>{{ 'courseAssignments.grid.saveIncomplete' | translate: { count: feedback.incomplete } }}</p>
+          }
+          @if (feedback.hasErrors && feedback.created === 0) {
+            <p>{{ 'courseAssignments.grid.saveError' | translate }}</p>
+          }
+        </div>
+      }
+
+      <div class="mt-4 flex flex-wrap gap-3">
+        <button
+          type="button"
+          class="px-4 py-2 rounded-md bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="saving()"
+          (click)="onSave()"
+        >
+          @if (saving()) {
+            {{ 'courseAssignments.grid.saving' | translate }}
+          } @else {
+            {{ 'courseAssignments.grid.saveButton' | translate }}
+          }
+        </button>
+      </div>
     }
   </section>
   }

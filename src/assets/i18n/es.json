@@ -342,7 +342,13 @@
       "colGroup": "Grupo",
       "selectTeacher": "Seleccionar profesor",
       "selectGroup": "Seleccionar grupo",
-      "saveHint": "El guardado bulk estará disponible en CURSO-100."
+      "saveButton": "Guardar asignaciones",
+      "saving": "Guardando…",
+      "saveNone": "Selecciona al menos una fila con profesor y grupo.",
+      "saveCreated": "{{count}} asignación(es) creada(s).",
+      "saveDuplicates": "{{count}} duplicada(s) (ya existían).",
+      "saveIncomplete": "{{count}} fila(s) incompleta(s) omitida(s).",
+      "saveError": "No se pudieron guardar las asignaciones."
     }
   },
   "horario": {

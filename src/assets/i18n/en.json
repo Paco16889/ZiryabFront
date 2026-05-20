@@ -348,7 +348,13 @@
       "colGroup": "Group",
       "selectTeacher": "Select teacher",
       "selectGroup": "Select group",
-      "saveHint": "Bulk save will be available in CURSO-100."
+      "saveButton": "Save assignments",
+      "saving": "Saving…",
+      "saveNone": "Select at least one row with both teacher and group.",
+      "saveCreated": "{{count}} assignment(s) created.",
+      "saveDuplicates": "{{count}} duplicate(s) (already existed).",
+      "saveIncomplete": "{{count}} incomplete row(s) skipped.",
+      "saveError": "Could not save assignments."
     }
   },
   "horario": {

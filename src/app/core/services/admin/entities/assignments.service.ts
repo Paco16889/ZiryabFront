@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import {
   AssignmentBulkCreateItem,
   AssignmentBulkCreateResponse,
@@ -121,25 +121,70 @@ export class AssignmentsService {
   createAssignmentsBulk(
     items: AssignmentBulkCreateItem[],
   ): Observable<AssignmentBulkCreateResponse> {
+    if (items.length === 0) {
+      return of({
+        success: true,
+        data: { created: 0, duplicates: 0, skipped: 0, errors: [] },
+      });
+    }
+
     return this.http
       .post<AssignmentBulkCreateResponse>(`${this.assignmentsBaseUrl}/bulk`, { items })
       .pipe(
-        catchError(() =>
-          of({
-            success: false,
-            message: 'Bulk endpoint not available',
-            data: {
-              created: 0,
-              duplicates: 0,
-              skipped: items.length,
-              errors: items.map((i) => ({
-                idSubject: i.idSubject,
-                message: 'API bulk pendiente (CURSO-94)',
-              })),
-            },
-          }),
-        ),
+        switchMap((res) => {
+          if (res.success && res.data) {
+            return of(res);
+          }
+          return this.createAssignmentsSequential(items);
+        }),
+        catchError(() => this.createAssignmentsSequential(items)),
       );
+  }
+
+  /** Fallback cuando `POST /bulk` no existe: altas unitarias en paralelo. */
+  private createAssignmentsSequential(
+    items: AssignmentBulkCreateItem[],
+  ): Observable<AssignmentBulkCreateResponse> {
+    return forkJoin(
+      items.map((item) =>
+        this.createAssignment({
+          idTeacher: item.idTeacher,
+          idSubject: item.idSubject,
+          idGroup: item.idGroup,
+          schoolYear: item.schoolYear,
+        }).pipe(
+          map(() => ({ ok: true as const, idSubject: item.idSubject })),
+          catchError((err: { status?: number }) =>
+            of({
+              ok: false as const,
+              idSubject: item.idSubject,
+              duplicate: err?.status === 409,
+            }),
+          ),
+        ),
+      ),
+    ).pipe(
+      map((results) => {
+        let created = 0;
+        let duplicates = 0;
+        const errors: Array<{ idSubject: number; message: string }> = [];
+
+        for (const r of results) {
+          if (r.ok) {
+            created++;
+          } else if (r.duplicate) {
+            duplicates++;
+          } else {
+            errors.push({ idSubject: r.idSubject, message: 'Error al crear' });
+          }
+        }
+
+        return {
+          success: created > 0 || duplicates > 0,
+          data: { created, duplicates, skipped: 0, errors },
+        };
+      }),
+    );
   }
 
   private subjectsFromCourse(

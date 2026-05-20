@@ -346,7 +346,13 @@
       "colGroup": "Gruppe",
       "selectTeacher": "Lehrer waehlen",
       "selectGroup": "Gruppe waehlen",
-      "saveHint": "Massenspeicherung folgt in CURSO-100."
+      "saveButton": "Zuweisungen speichern",
+      "saving": "Speichern…",
+      "saveNone": "Mindestens eine Zeile mit Lehrer und Gruppe ausfuellen.",
+      "saveCreated": "{{count}} Zuweisung(en) erstellt.",
+      "saveDuplicates": "{{count}} Duplikat(e) (bereits vorhanden).",
+      "saveIncomplete": "{{count}} unvollstaendige Zeile(n) uebersprungen.",
+      "saveError": "Zuweisungen konnten nicht gespeichert werden."
     }
   },
   "horario": {
