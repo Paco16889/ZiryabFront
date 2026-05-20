@@ -311,6 +311,28 @@
     "admin": "Administrador",
     "user": "Usuario activo"
   },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Crear asignaciones",
+      "title": "Crear asignaciones docentes",
+      "stepLabel": "Paso {{step}} de 2",
+      "courseLabel": "Ciclo formativo",
+      "coursePlaceholder": "Selecciona un ciclo",
+      "courseSelected": "Ciclo: {{name}}",
+      "gradeLabel": "¿Qué curso?",
+      "loadingGrades": "Cargando cursos disponibles…",
+      "emptyGrades": "No hay cursos (grades) definidos para este ciclo. Revisa las asignaturas del ciclo.",
+      "validationCourse": "Selecciona un ciclo formativo.",
+      "validationGrade": "Selecciona el curso (1º o 2º).",
+      "next": "Siguiente",
+      "continueToGrid": "Continuar al datagrid"
+    },
+    "grid": {
+      "title": "Asignaciones docentes",
+      "subtitle": "{{course}} — {{grade}}",
+      "pendingImplementation": "El datagrid de asignaturas (profesor + grupo) se implementará en CURSO-98."
+    }
+  },
   "horario": {
     "titleStudent": "Mi horario",
     "titleTeacher": "Horario docente",

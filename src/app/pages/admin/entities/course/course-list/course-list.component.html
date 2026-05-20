@@ -1,26 +1,49 @@
 
 
 <div class="p-4">
-  @if(!showCreateForm){
-    <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">{{'entities.course.title' | translate }}</h1>
-      <app-boton-create 
-      label="{{'lists.courses.createButton' | translate}}"
-      (clickAction)="openCreateForm()"> 
-      </app-boton-create>
+  @if (view() === 'list') {
+    <div class="flex flex-wrap justify-between items-center gap-3 mb-4">
+      <h1 class="text-2xl font-bold">{{ 'entities.course.title' | translate }}</h1>
+      <div class="flex flex-wrap gap-2">
+        <button
+          type="button"
+          class="px-4 py-2 border border-purple-600 text-purple-700 rounded-md text-sm font-medium hover:bg-purple-50"
+          (click)="openAssignmentsWizard()"
+        >
+          {{ 'courseAssignments.wizard.openButton' | translate }}
+        </button>
+        <app-boton-create
+          label="{{ 'lists.courses.createButton' | translate }}"
+          (clickAction)="openCreateForm()"
+        >
+        </app-boton-create>
+      </div>
     </div>
-    @for (cou of courses; track cou.id){
-    <app-course-list-item [course]="cou"></app-course-list-item>
+    @for (cou of courses; track cou.id) {
+      <app-course-list-item [course]="cou"></app-course-list-item>
     }
+  }
 
-}
-@if(showCreateForm){
-    <app-course-create-form 
-      (cancelCreate)="closeCreateForm()" 
-      (courseCreated)="onCourseCreated()">
+  @if (view() === 'create') {
+    <app-course-create-form
+      (cancelCreate)="closeCreateForm()"
+      (courseCreated)="onCourseCreated()"
+    >
     </app-course-create-form>
   }
 
+  @if (view() === 'assignments-wizard') {
+    <app-course-assignments-wizard
+      [courses]="courses"
+      (cancel)="onAssignmentsWizardCancel()"
+      (completed)="onAssignmentsWizardComplete($event)"
+    />
+  }
 
+  @if (view() === 'assignments-grid' && assignmentsContext(); as ctx) {
+    <app-course-assignments-grid
+      [context]="ctx"
+      (back)="onAssignmentsGridBack()"
+    />
+  }
 </div>
-

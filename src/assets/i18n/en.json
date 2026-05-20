@@ -317,6 +317,28 @@
     "admin": "Administrator",
     "user": "Active user"
   },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Create assignments",
+      "title": "Create teacher assignments",
+      "stepLabel": "Step {{step}} of 2",
+      "courseLabel": "Training cycle",
+      "coursePlaceholder": "Select a cycle",
+      "courseSelected": "Cycle: {{name}}",
+      "gradeLabel": "Which year?",
+      "loadingGrades": "Loading available years…",
+      "emptyGrades": "No years (grades) defined for this cycle. Check cycle subjects.",
+      "validationCourse": "Select a training cycle.",
+      "validationGrade": "Select the year (1st or 2nd).",
+      "next": "Next",
+      "continueToGrid": "Continue to datagrid"
+    },
+    "grid": {
+      "title": "Teacher assignments",
+      "subtitle": "{{course}} — {{grade}}",
+      "pendingImplementation": "The subject datagrid (teacher + group) will be implemented in CURSO-98."
+    }
+  },
   "horario": {
     "titleStudent": "My timetable",
     "titleTeacher": "Teacher timetable",

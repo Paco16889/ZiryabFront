@@ -315,6 +315,28 @@
     "admin": "Administrator",
     "user": "Aktiver Benutzer"
   },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Zuweisungen erstellen",
+      "title": "Lehrerzuweisungen erstellen",
+      "stepLabel": "Schritt {{step}} von 2",
+      "courseLabel": "Ausbildungszyklus",
+      "coursePlaceholder": "Zyklus waehlen",
+      "courseSelected": "Zyklus: {{name}}",
+      "gradeLabel": "Welches Jahr?",
+      "loadingGrades": "Verfuegbare Jahre werden geladen…",
+      "emptyGrades": "Keine Jahre (grades) fuer diesen Zyklus. Pruefen Sie die Faecher des Zyklus.",
+      "validationCourse": "Waehlen Sie einen Ausbildungszyklus.",
+      "validationGrade": "Waehlen Sie das Jahr (1. oder 2.).",
+      "next": "Weiter",
+      "continueToGrid": "Weiter zum Datagrid"
+    },
+    "grid": {
+      "title": "Lehrerzuweisungen",
+      "subtitle": "{{course}} — {{grade}}",
+      "pendingImplementation": "Das Faecher-Datagrid (Lehrer + Gruppe) folgt in CURSO-98."
+    }
+  },
   "horario": {
     "titleStudent": "Mein Stundenplan",
     "titleTeacher": "Lehrerstundenplan",
