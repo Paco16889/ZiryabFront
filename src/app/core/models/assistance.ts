@@ -140,6 +140,24 @@ export interface AssistanceItem {
   }
 }
 
+/** Justificación pendiente de revisión (vista profesor). */
+export interface PendingJustification {
+  id: number;
+  status: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+  justificationUri: string;
+  justificationStatus: 'PENDING' | 'VIEWED' | 'REJECTED';
+  subjectName: string;
+  sessionDate: string;
+  startTime: string;
+  studentName: string;
+}
+
+export interface PendingJustificationsResponse {
+  success: boolean;
+  data: PendingJustification[];
+  count: number;
+}
+
 /**
  * Estructura de respuesta de la API para listados de asistencias.
  */

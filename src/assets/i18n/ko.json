@@ -204,5 +204,30 @@
     "teacher": "교사",
     "admin": "관리자",
     "user": "활성 사용자"
+  },
+  "teacherClasses": {
+    "title": "내 수업",
+    "loading": "수업을 불러오는 중...",
+    "empty": "담당 수업이 없습니다.",
+    "manageSyllabus": "수업 관리",
+    "classMenu": "수업 메뉴"
+  },
+  "teacherJustifications": {
+    "title": "대기 중인 사유서",
+    "subtitle": "학생이 제출한 사유서를 검토하세요",
+    "empty": "검토할 사유서가 없습니다.",
+    "viewDocument": "문서 보기",
+    "accept": "승인",
+    "reject": "거절",
+    "status": {
+      "absent": "결석",
+      "late": "지각",
+      "present": "출석",
+      "excused": "사유 인정"
+    },
+    "errors": {
+      "load": "사유서를 불러오지 못했습니다.",
+      "action": "작업에 실패했습니다. 다시 시도하세요."
+    }
   }
 }

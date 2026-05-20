@@ -8,9 +8,7 @@ import { AssistanceItem } from '../../../core/models/assistance';
 
 /**
  * Componente que muestra la ficha de asistencia del estudiante.
- * Actualmente contiene datos mockeados a la espera de integrarse con el backend.
- * Permite alternar entre la vista de faltas y la vista de justificación.
- * componente pendiente de implementación real, ver issues.
+ * Carga las faltas desde el backend y permite enviar justificantes mediante el modal.
  */
 @Component({
   selector: 'app-ficha-usuario',
@@ -88,7 +86,9 @@ export class FichaUsuarioComponent implements OnInit {
    * Callback ejecutado cuando un justificante se envía con éxito desde el modal.
    * @param assistanceId Identificador de la falta justificada.
    */
-  onJustifySuccess(assistanceId: number): void {
-    console.log(`Justificante enviado para la falta ${assistanceId}. A la espera del profesor.`);
+  onJustifySuccess(_assistanceId: number): void {
+    this.isJustificarModalOpen.set(false);
+    this.faltaSeleccionada.set(null);
+    this.cargarFaltas();
   }
 }

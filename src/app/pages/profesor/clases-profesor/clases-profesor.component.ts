@@ -6,11 +6,8 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
-
-interface TeacherSubjectCardSource {
-  subject: { id: number; name: string; course?: { name: string } | null };
-  group?: { name: string } | null;
-}
+import { TeacherSubjectAssignmentRow } from '../../../core/models/teacher/subjectforteacher';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que muestra las asignaturas asignadas al profesor autenticado.
@@ -21,7 +18,7 @@ interface TeacherSubjectCardSource {
 @Component({
   selector: 'app-clases-profesor',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent, CardGridComponent],
+  imports: [CommonModule, BotonAtrasComponent, CardGridComponent, TranslateModule],
   templateUrl: './clases-profesor.component.html',
   styleUrl: './clases-profesor.component.scss'
 })
@@ -51,7 +48,7 @@ export class ClasesProfesorComponent implements OnInit {
  * 
  */
   public asignaturasCards = signal<CardItem[]>([]);
-  private asignaturasOriginales = signal<TeacherSubjectCardSource[]>([]);
+  private asignaturasOriginales = signal<TeacherSubjectAssignmentRow[]>([]);
 
   /**
   * Indica si los datos están siendo cargados desde el backend.
@@ -99,27 +96,34 @@ export class ClasesProfesorComponent implements OnInit {
   }
 
   private construirCards(): void {
-    const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
+    const cards: CardItem[] = this.asignaturasOriginales().map((item) => ({
       id: item.subject.id,
+      assignmentId: item.id,
       title: item.subject.name,
       subtitleTopLabel: 'Curso',
       subtitleTopValue: item.subject.course?.name || 'General',
       subtitleBottomLabel: 'Grado/Grupo',
       subtitleBottomValue: item.group?.name || 'Varios',
-      actionLabel: 'Gestionar Clase'
+      actionLabel: 'teacherClasses.manageSyllabus',
+      secondaryActionLabel: 'teacherClasses.classMenu',
     }));
     this.asignaturasCards.set(cards);
   }
 
-  /**
- * Navega a la vista de temario de la asignatura indicada usando el actionClicked event.
- */
+  /** Navega al temario (pasar lista, tareas del día). */
   handleCardAction(item: CardItem): void {
     if (item.title) {
       this.router.navigate(
         [`temario-profesor/${item.title.toLowerCase()}`],
         { queryParams: { subjectId: item.id } }
       );
+    }
+  }
+
+  /** Navega al menú de clase (tareas, justificaciones). */
+  handleSecondaryCardAction(item: CardItem): void {
+    if (item.assignmentId) {
+      this.router.navigate(['/menu-clase', item.assignmentId]);
     }
   }
 }

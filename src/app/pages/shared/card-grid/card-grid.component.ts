@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Estructura de datos para los elementos que se muestran en el grid de tarjetas.
@@ -19,6 +20,10 @@ export interface CardItem {
   subtitleBottomValue?: string;
   /** Texto del botón de acción, si aplica */
   actionLabel?: string;
+  /** Texto del segundo botón (debajo del principal), si aplica */
+  secondaryActionLabel?: string;
+  /** ID de TeacherOnSubjectOnGroup (menu-clase, tareas, justificaciones) */
+  assignmentId?: number;
 }
 
 /**
@@ -28,7 +33,7 @@ export interface CardItem {
 @Component({
   selector: 'app-card-grid',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './card-grid.component.html',
   styleUrls: []
 })
@@ -48,6 +53,8 @@ export class CardGridComponent {
 
   /** Evento emitido cuando se pulsa el botón de acción de una tarjeta */
   @Output() actionClicked = new EventEmitter<CardItem>();
+  /** Evento emitido cuando se pulsa el botón secundario de una tarjeta */
+  @Output() secondaryActionClicked = new EventEmitter<CardItem>();
 
   /** 
    * Definición de temas de colores para las tarjetas (ciclo automático en la plantilla).
@@ -68,5 +75,9 @@ export class CardGridComponent {
    */
   onAction(item: CardItem): void {
     this.actionClicked.emit(item);
+  }
+
+  onSecondaryAction(item: CardItem): void {
+    this.secondaryActionClicked.emit(item);
   }
 }

@@ -94,6 +94,15 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },
+    {
+        path: 'justificaciones/:idTeacherAssignment',
+        loadComponent: () =>
+            import('./pages/profesor/justificaciones-falta/justificaciones-falta.component').then(
+                (m) => m.JustificacionesFaltaComponent
+            ),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
     // ===================================================
     // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
     // ===================================================

@@ -77,7 +77,6 @@ export class JustificarFaltaModalComponent {
     this.isSubmitting.set(true);
     this.errorMessage.set('');
 
-    // Simulando envio
     this.assistanceService.submitJustification(this.falta.id, this.selectedFile()!).subscribe({
       next: () => {
         this.isSubmitting.set(false);

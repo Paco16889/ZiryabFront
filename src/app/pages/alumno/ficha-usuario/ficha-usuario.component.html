@@ -113,7 +113,7 @@
                                     </span>
                                 }
                                 
-                                @if (!falta.justificationStatus && falta.status !== 'EXCUSED') {
+                                @if (!falta.justificationStatus && !falta.justificationUri && falta.status !== 'EXCUSED') {
                                     <span class="px-3 py-1.5 rounded-md font-bold text-xs tracking-widest text-gray-400 bg-gray-50 border border-gray-100">
                                         NO ENVIADO
                                     </span>

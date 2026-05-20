@@ -25,6 +25,6 @@ export class MenuClaseComponent implements OnInit {
   }
 
   navigateToAsistencias(): void {
-    // TODO
+    this.router.navigate(['/justificaciones', this.idTeacherAssignment()]);
   }
 }

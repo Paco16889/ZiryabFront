@@ -48,9 +48,24 @@
         }
       </div>
       
-      <button (click)="onAction(item)" class="w-full mt-6 py-2.5 text-white font-bold rounded-xl transition duration-200 shadow-sm hover:shadow-md active:scale-95 {{ theme.btn }}">
-        {{ item.actionLabel || 'Acceder' }}
-      </button>
+      <div class="mt-6 space-y-2">
+        <button
+          type="button"
+          (click)="onAction(item)"
+          class="w-full py-2.5 text-white font-bold rounded-xl transition duration-200 shadow-sm hover:shadow-md active:scale-95 {{ theme.btn }}"
+        >
+          {{ (item.actionLabel || 'Acceder') | translate }}
+        </button>
+        @if (item.secondaryActionLabel) {
+          <button
+            type="button"
+            (click)="onSecondaryAction(item)"
+            class="w-full py-2.5 font-bold rounded-xl transition duration-200 border-2 bg-white/80 active:scale-95 {{ theme.line }} {{ theme.text }} hover:bg-white"
+          >
+            {{ item.secondaryActionLabel | translate }}
+          </button>
+        }
+      </div>
     </div>
 
   } @empty {

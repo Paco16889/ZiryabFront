@@ -254,5 +254,30 @@
     "title": "Calendario académico",
     "subtitle": "Eventos y fechas importantes del centro",
     "iframeTitle": "Calendario de Google"
+  },
+  "teacherClasses": {
+    "title": "Mis Clases",
+    "loading": "Cargando tus clases...",
+    "empty": "No estás asignado a impartir ninguna clase.",
+    "manageSyllabus": "Gestionar Clase",
+    "classMenu": "Menú de clase"
+  },
+  "teacherJustifications": {
+    "title": "Justificaciones pendientes",
+    "subtitle": "Revisa los justificantes enviados por tus alumnos",
+    "empty": "No hay justificaciones pendientes de revisión.",
+    "viewDocument": "Ver documento",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "status": {
+      "absent": "Ausente",
+      "late": "Retraso",
+      "present": "Presente",
+      "excused": "Justificado"
+    },
+    "errors": {
+      "load": "No se pudieron cargar las justificaciones.",
+      "action": "No se pudo completar la acción. Inténtalo de nuevo."
+    }
   }
 }

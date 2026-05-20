@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AssistanceResponse } from '../../models/assistance';
 import { environment } from '../../../../environments/environment';
 
@@ -27,19 +27,19 @@ export class AssistanceService {
     }
 
     /**
-     * Simula la subida de un documento de justificación para una falta de asistencia.
-     * Actualmente es una implementación simulada (mock) que emite éxito tras un retraso.
+     * Sube un documento de justificación para una falta de asistencia.
      * @param assistanceId Identificador de la falta de asistencia que se desea justificar.
-     * @param file El archivo (PDF, JPG, PNG) que contiene el justificante médico o personal.
-     * @returns Un observable que emite true cuando la operación simulada se completa con éxito.
+     * @param file El archivo (PDF, JPG, PNG) que contiene el justificante.
+     * @returns Observable con la URI del justificante guardado en el servidor.
      */
-    submitJustification(assistanceId: number, file: File): Observable<boolean> {
-        return new Observable<boolean>(observer => {
-            setTimeout(() => {
-                console.log(`[Mock] Justificante '${file.name}' subido para la falta con ID ${assistanceId}`);
-                observer.next(true);
-                observer.complete();
-            }, 1500);
-        });
+    submitJustification(assistanceId: number, file: File): Observable<{ justificationUri: string }> {
+        const formData = new FormData();
+        formData.append('document', file);
+        return this.http
+            .post<{ success: boolean; data: { justificationUri: string } }>(
+                `${this.apiUrl}/${assistanceId}/justification-document`,
+                formData
+            )
+            .pipe(map((res) => res.data));
     }
 }

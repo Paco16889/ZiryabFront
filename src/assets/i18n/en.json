@@ -260,5 +260,30 @@
     "title": "Academic calendar",
     "subtitle": "Important school events and dates",
     "iframeTitle": "Google Calendar"
+  },
+  "teacherClasses": {
+    "title": "My Classes",
+    "loading": "Loading your classes...",
+    "empty": "You are not assigned to teach any class.",
+    "manageSyllabus": "Manage class",
+    "classMenu": "Class menu"
+  },
+  "teacherJustifications": {
+    "title": "Pending justifications",
+    "subtitle": "Review documents submitted by your students",
+    "empty": "There are no justifications pending review.",
+    "viewDocument": "View document",
+    "accept": "Accept",
+    "reject": "Reject",
+    "status": {
+      "absent": "Absent",
+      "late": "Late",
+      "present": "Present",
+      "excused": "Excused"
+    },
+    "errors": {
+      "load": "Could not load justifications.",
+      "action": "Action failed. Please try again."
+    }
   }
 }
