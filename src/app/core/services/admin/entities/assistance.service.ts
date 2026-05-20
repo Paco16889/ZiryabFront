@@ -1,7 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Assistance, AssistanceByIdResponse, AssistancesAllResponse, AssistanceCreateRequest, AssistanceCreateResponse, AssistanceDeleteResponse, AssistanceUpdateRequest, AssistanceUpdateResponse } from '../../../models/assistance';
+import {
+  Assistance,
+  AssistanceByIdResponse,
+  AssistancesAllResponse,
+  AssistanceCreateRequest,
+  AssistanceCreateResponse,
+  AssistanceDeleteResponse,
+  AssistanceUpdateRequest,
+  AssistanceUpdateResponse,
+} from '../../../models/assistance';
+import { environment } from '../../../../../environments/environment';
+
+export type AssistanceUpdatePayload = AssistanceUpdateRequest & { id: number };
 
 /**
  * Servicio encargado de gestionar las operaciones con registros de asistencia.
@@ -14,18 +26,10 @@ export class AssistanceService {
   /**
    * URL base del endpoint de registros de asistencia.
    */
-  private apiUrl = 'http://localhost:3000/api/assistances'; // aquí el código }
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environment.apiUrl}/assistances`;
 
-  /**
-   * Signal que almacena el listado completo de registros de asistencia en memoria.
-   */
-  assistances = signal<Assistance[]>([]); // aquí el código }
-
-  /**
-   * Inicializa el servicio.
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
-   */
-  constructor(private http: HttpClient) { } // aquí el código }
+  assistances = signal<Assistance[]>([]);
 
   /**
    * Carga todos los registros de asistencia e inicializa la signal assistances.
@@ -85,8 +89,9 @@ export class AssistanceService {
    * @param data - Datos del registro a actualizar
    * @returns Observable con la respuesta que contiene el registro actualizado
    */
-  updateAssistance(id: number, data: AssistanceUpdateRequest): Observable<AssistanceUpdateResponse> {
-    return this.http.patch<AssistanceUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+  updateAssistance(payload: AssistanceUpdatePayload): Observable<AssistanceUpdateResponse> {
+    const { id, ...body } = payload;
+    return this.http.patch<AssistanceUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
       catchError((error) => {
         console.error('Error updating assistance:', error);
         throw error;

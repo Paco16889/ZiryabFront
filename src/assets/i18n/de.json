@@ -71,6 +71,32 @@
       "plural": "Gruppen",
       "title": "Gruppen"
     },
+    "task": {
+      "singular": "Aufgabe",
+      "plural": "Aufgaben",
+      "singularArticle": "die Aufgabe",
+      "title": "Aufgaben"
+    },
+    "classSession": {
+      "singular": "Unterrichtsstunde",
+      "plural": "Unterrichtsstunden",
+      "title": "Unterrichtsstunden"
+    },
+    "studentTask": {
+      "singular": "Abgabe",
+      "plural": "Abgaben",
+      "title": "Schülerabgaben"
+    },
+    "assistance": {
+      "singular": "Anwesenheit",
+      "plural": "Anwesenheiten",
+      "title": "Anwesenheit"
+    },
+    "notification": {
+      "singular": "Benachrichtigung",
+      "plural": "Benachrichtigungen",
+      "title": "Benachrichtigungen"
+    },
     "weekSchedule": {
       "singular": "Zeitslot",
       "plural": "Zeitslots",
@@ -206,7 +232,12 @@
     "subjects": "Fächer",
     "groups": "Gruppen",
     "courses": "Bildungsgänge",
-    "schedules": "Stundenpläne"
+    "schedules": "Stundenpläne",
+    "tasks": "Aufgaben",
+    "classSessions": "Stunden",
+    "studentTasks": "Abgaben",
+    "assistances": "Anwesenheit",
+    "notifications": "Benachrichtigungen"
   },
 
   "deleteModal": {
@@ -254,6 +285,83 @@
   "schedules": {
     "createButton": "Stundenplan anlegen",
     "createPlaceholder": "Das Formular zur Erstellung des Stundenplans wird hier angezeigt."
+  },
+  "tasks": {
+    "title": "Aufgaben",
+    "createButton": "Neue Aufgabe",
+    "createTitle": "Aufgabe anlegen",
+    "creating": "Wird erstellt…",
+    "fields": {
+      "assignment": "Lehrerzuordnung",
+      "assignmentPlaceholder": "Zuordnung auswählen",
+      "title": "Titel",
+      "type": "Typ",
+      "startDate": "Startdatum",
+      "dueDate": "Abgabedatum",
+      "schoolYear": "Schuljahr",
+      "description": "Beschreibung"
+    },
+    "validation": {
+      "assignment": "Bitte eine Zuordnung wählen",
+      "title": "Titel ist erforderlich"
+    }
+  },
+  "classSessions": {
+    "title": "Stunden",
+    "createButton": "Neue Stunde",
+    "createTitle": "Unterrichtsstunde anlegen",
+    "creating": "Wird erstellt…",
+    "fields": {
+      "schedule": "Zeitslot",
+      "schedulePlaceholder": "Zeitslot wählen",
+      "date": "Datum",
+      "status": "Status",
+      "appointments": "Notizen"
+    }
+  },
+  "studentTasks": {
+    "title": "Abgaben",
+    "createButton": "Neue Abgabe",
+    "createTitle": "Abgabe anlegen",
+    "fields": {
+      "task": "Aufgabe",
+      "enrollmentHint": "Einschreibungen nach Gruppe, Fach und Jahr filtern",
+      "group": "Gruppe",
+      "subject": "Fach",
+      "loadEnrollments": "Einschreibungen laden",
+      "enrollment": "Schülereinschreibung"
+    }
+  },
+  "assistances": {
+    "title": "Anwesenheit",
+    "createButton": "Neue Anwesenheit",
+    "createTitle": "Anwesenheit erfassen",
+    "fields": {
+      "session": "Unterrichtsstunde",
+      "enrollmentHint": "Einschreibungen nach Gruppe, Fach und Jahr filtern",
+      "group": "Gruppe",
+      "subject": "Fach",
+      "loadEnrollments": "Einschreibungen laden",
+      "enrollment": "Schülereinschreibung",
+      "status": "Status"
+    }
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "createButton": "Neue Benachrichtigung",
+    "createTitle": "Benachrichtigung anlegen",
+      "fields": {
+        "recipientHint": "Schüler oder Lehrer wählen; das System sendet die Benachrichtigung an dessen Konto.",
+        "recipientRole": "Empfängertyp",
+        "roleStudent": "Schüler",
+        "roleTeacher": "Lehrer",
+        "recipient": "Empfänger",
+        "recipientPlaceholder": "Benutzer auswählen",
+        "noRecipients": "Keine Benutzer mit verknüpftem Firebase-Konto in dieser Liste.",
+        "title": "Titel",
+        "message": "Nachricht",
+        "type": "Typ"
+      }
   }
   },
 

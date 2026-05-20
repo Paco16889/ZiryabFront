@@ -1,7 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { StudentTask, StudentTaskByIdResponse, StudentTasksAllResponse, StudentTaskCreateRequest, StudentTaskCreateResponse, StudentTaskDeleteResponse, StudentTaskUpdateRequest, StudentTaskUpdateResponse } from '../../../models/studentTask';
+import {
+  StudentTask,
+  StudentTaskByIdResponse,
+  StudentTasksAllResponse,
+  StudentTaskCreateRequest,
+  StudentTaskCreateResponse,
+  StudentTaskDeleteResponse,
+  StudentTaskUpdateRequest,
+  StudentTaskUpdateResponse,
+} from '../../../models/studentTask';
+import { environment } from '../../../../../environments/environment';
+
+export type StudentTaskUpdatePayload = StudentTaskUpdateRequest & { id: number };
 
 /**
  * Servicio encargado de gestionar las operaciones con entregas de tareas de estudiantes.
@@ -14,18 +26,10 @@ export class StudentTaskService {
    /**
    * URL base del endpoint de entregas de tareas.
    */
-  private apiUrl = 'http://localhost:3000/api/student-tasks'; // aquí el código }
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environment.apiUrl}/student-tasks`;
 
-  /**
-   * Signal que almacena el listado completo de entregas de tareas en memoria.
-   */
-  studentTasks = signal<StudentTask[]>([]); // aquí el código }
-
-    /**
-   * Inicializa el servicio.
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
-   */
-  constructor(private http: HttpClient) { } // aquí el código }
+  studentTasks = signal<StudentTask[]>([]);
 
   /**
    * Carga todas las entregas de tareas e inicializa la signal studentTasks.
@@ -85,8 +89,9 @@ export class StudentTaskService {
    * @param data - Datos de la entrega a actualizar
    * @returns Observable con la respuesta que contiene la entrega actualizada
    */
-  updateStudentTask(id: number, data: StudentTaskUpdateRequest): Observable<StudentTaskUpdateResponse> {
-    return this.http.patch<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+  updateStudentTask(payload: StudentTaskUpdatePayload): Observable<StudentTaskUpdateResponse> {
+    const { id, ...body } = payload;
+    return this.http.patch<StudentTaskUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
       catchError((error) => {
         console.error('Error updating student task:', error);
         throw error;

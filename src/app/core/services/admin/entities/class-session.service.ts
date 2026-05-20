@@ -1,7 +1,19 @@
-import { Injectable, signal } from '@angular/core';
-import { ClassSession, ClassSessionByIdResponse, ClassSessionCreateRequest, ClassSessionCreateResponse, ClassSessionDeleteResponse, ClassSessionsAllResponse, ClassSessionUpdateRequest, ClassSessionUpdateResponse } from '../../../models/class-sessions';
+import { inject, Injectable, signal } from '@angular/core';
+import {
+  ClassSession,
+  ClassSessionByIdResponse,
+  ClassSessionCreateRequest,
+  ClassSessionCreateResponse,
+  ClassSessionDeleteResponse,
+  ClassSessionsAllResponse,
+  ClassSessionUpdateRequest,
+  ClassSessionUpdateResponse,
+} from '../../../models/class-sessions';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
+
+export type ClassSessionUpdatePayload = ClassSessionUpdateRequest & { id: number };
 
 /**
  * Servicio encargado de gestionar las operaciones con sesiones de clase.
@@ -19,13 +31,8 @@ export class ClassSessionService {
    /**
    * URL base del endpoint de sesiones de clase.
    */
-  private apiUrl = 'http://localhost:3000/api/sessions';
-
-    /**
-   * Inicializa el servicio.
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
-   */
-  constructor(private http: HttpClient) { }
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environment.apiUrl}/sessions`;
 
   /**
    * Carga todas las sesiones de clase e inicializa la signal classSessions.
@@ -85,8 +92,9 @@ export class ClassSessionService {
    * @param data - Datos de la sesión a actualizar
    * @returns Observable con la respuesta que contiene la sesión actualizada
    */
-  updateSession(id: number, data: ClassSessionUpdateRequest): Observable<ClassSessionUpdateResponse> {
-    return this.http.patch<ClassSessionUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+  updateSession(payload: ClassSessionUpdatePayload): Observable<ClassSessionUpdateResponse> {
+    const { id, ...body } = payload;
+    return this.http.patch<ClassSessionUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
       catchError((error) => {
         console.error('Error updating session:', error);
         throw error;

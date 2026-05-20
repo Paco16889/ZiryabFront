@@ -1,0 +1,58 @@
+<div class="max-w-2xl mx-auto">
+  <div class="flex items-center mb-6">
+    <button type="button" class="mr-4 text-gray-600 hover:text-gray-900" (click)="onCancel()">
+      ← {{ 'common.buttons.back' | translate }}
+    </button>
+    <h1 class="text-2xl font-bold">{{ 'lists.studentTasks.createTitle' | translate }}</h1>
+  </div>
+  <div class="bg-white p-6 rounded-lg shadow">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.studentTasks.fields.task' | translate }}</label>
+        <select formControlName="idTask" class="w-full border rounded-lg px-4 py-2" [disabled]="loadingTasks()">
+          <option [ngValue]="null">—</option>
+          @for (o of taskOptions(); track o.value) {
+            <option [ngValue]="o.value">{{ o.label }}</option>
+          }
+        </select>
+      </div>
+      <p class="text-sm text-gray-600 mb-2">{{ 'lists.studentTasks.fields.enrollmentHint' | translate }}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-2">
+        <select formControlName="filterGroup" class="border rounded-lg px-3 py-2">
+          <option [ngValue]="null">{{ 'lists.studentTasks.fields.group' | translate }}</option>
+          @for (o of groupOptions(); track o.value) {
+            <option [ngValue]="o.value">{{ o.label }}</option>
+          }
+        </select>
+        <select formControlName="filterSubject" class="border rounded-lg px-3 py-2">
+          <option [ngValue]="null">{{ 'lists.studentTasks.fields.subject' | translate }}</option>
+          @for (o of subjectOptions(); track o.value) {
+            <option [ngValue]="o.value">{{ o.label }}</option>
+          }
+        </select>
+        <input formControlName="schoolYear" type="text" class="border rounded-lg px-3 py-2" />
+      </div>
+      <button type="button" class="mb-4 text-sm text-purple-700 underline" (click)="loadEnrollments()">
+        {{ 'lists.studentTasks.fields.loadEnrollments' | translate }}
+      </button>
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.studentTasks.fields.enrollment' | translate }}</label>
+        <select formControlName="idStudentEnrollment" class="w-full border rounded-lg px-4 py-2" [disabled]="loadingEnrollments()">
+          <option [ngValue]="null">—</option>
+          @for (o of enrollmentOptions(); track o.value) {
+            <option [ngValue]="o.value">{{ o.label }}</option>
+          }
+        </select>
+      </div>
+      @if (errorMessage) {
+        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">{{ errorMessage }}</div>
+      }
+      <div class="flex justify-end gap-3">
+        <button type="button" (click)="onCancel()" class="px-6 py-2 bg-gray-300 rounded-lg">{{ 'common.buttons.cancel' | translate }}</button>
+        <button type="submit" [disabled]="createForm.invalid || isCreating" class="px-6 py-2 bg-green-500 text-white rounded-lg disabled:bg-gray-300">
+          {{ 'lists.studentTasks.createButton' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

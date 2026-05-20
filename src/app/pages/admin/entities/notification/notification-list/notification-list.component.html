@@ -1,0 +1,17 @@
+<div class="p-4">
+  @if (!showCreateForm) {
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold">{{ 'entities.notification.title' | translate }}</h1>
+      <app-boton-create [label]="'lists.notifications.createButton' | translate" (clickAction)="openCreateForm()" />
+    </div>
+    @for (n of notifications; track n.id) {
+      <app-notification-list-item [notification]="n" />
+    }
+  }
+  @if (showCreateForm) {
+    <app-notification-create-form
+      (cancelCreate)="closeCreateForm()"
+      (notificationCreated)="onNotificationCreated()"
+    />
+  }
+</div>

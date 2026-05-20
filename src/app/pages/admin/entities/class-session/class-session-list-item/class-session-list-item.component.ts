@@ -1,135 +1,71 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { GenericListItemComponent } from "../../../generic-list-item/generic-list-item.component";
-import { ClassSession, ClassSessionUpdateRequest } from '../../../../../core/models/class-sessions';
-import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
-import { ListItemConfig } from '../../../../../core/configs/list-item-config';
+import { Component, inject, Input } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { map } from 'rxjs';
+import {
+  ClassSession,
+  ClassSessionDeleteResponse,
+  ClassSessionUpdateResponse,
+} from '../../../../../core/models/class-sessions';
+import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
+import { GenericListItemComponent } from '../../../generic-list-item/generic-list-item.component';
+import {
+  ClassSessionService,
+  ClassSessionUpdatePayload,
+} from '../../../../../core/services/admin/entities/class-session.service';
 
-/**
- * Componente que representa un elemento del listado de sesiones de clase.
- * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
- * para el componente genérico GenericListItemComponent.
- * ATENCIÓN: varios nombres de métodos y propiedades hacen referencia a Subject
- * en lugar de ClassSession, pendiente de corregir.
- */
 @Component({
   selector: 'app-class-session-list-item',
   imports: [GenericListItemComponent],
   templateUrl: './class-session-list-item.component.html',
-  styleUrl: './class-session-list-item.component.scss'
+  styleUrl: './class-session-list-item.component.scss',
 })
 export class ClassSessionListItemComponent {
+  private readonly sessionService = inject(ClassSessionService);
 
-   /**
-   * Sesión de clase a mostrar en el elemento de lista.
-   */
-  @Input() classSession!: ClassSession;
+  @Input({ required: true }) classSession!: ClassSession;
 
-    /**
-   * Evento emitido cuando la sesión ha sido actualizada.
-   */
-  @Output() sessionUpdated = new EventEmitter<ClassSessionUpdateRequest>();
-
-  /**
-   * Evento emitido cuando la sesión ha sido eliminada, incluye su identificador.
-   */
-  @Output() sessionDeleted = new EventEmitter<number>();
-
-
-   /**
-   * @param classSessionService - Servicio que gestiona las operaciones con sesiones de clase,
-   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
-   */
-  constructor(
-    private classSessionService: ClassSessionService
-  ) {}
-
-  
-  /**
-   * Configuración del elemento de lista de la sesión de clase.
-   * Definida como getter para garantizar que las referencias a this sean correctas.
-   * ATENCIÓN: el getter está mal nombrado como subjectConfig, el HTML lo referencia
-   * como classSessionConfig por lo que el componente está roto, pendiente de corregir.
-   * ATENCIÓN: los editFields y métodos del servicio están copiados de AsignaturaListItemComponent
-   * y no corresponden a ClassSession, pendiente de corregir.
-   */
-  get classSessionConfig(): ListItemConfig<ClassSession> {
-    return {
-      fields: [
-        { 
-          key: 'name',
-          className: 'font-medium'
-        }
-      ],
-      actions: {
-        edit: true,
-        delete: true,
-        detail: true
+  readonly classSessionConfig: ListItemConfig<
+    ClassSession,
+    ClassSessionUpdatePayload,
+    ClassSessionUpdateResponse,
+    ClassSessionDeleteResponse
+  > = {
+    fields: [
+      {
+        key: 'date',
+        className: 'font-medium',
+        order: 1,
+        format: (v: string) => (v ? v.split('T')[0] : '—'),
       },
-      layout: {
-        responsive: false
+      { key: 'status', label: 'Estado', order: 2 },
+      { key: 'schedule.startTime', label: 'Inicio', order: 3 },
+      { key: 'schedule.finishTime', label: 'Fin', order: 4 },
+    ],
+    actions: { edit: true, delete: true, detail: true },
+    layout: { responsive: false },
+    editFields: [
+      {
+        name: 'date',
+        label: 'Fecha',
+        type: 'date',
+        validators: [Validators.required],
       },
-      editFields: [
-        {
-          name: 'date',
-          label: 'Fecha',
-          type: 'text',
-          placeholder: 'Nombre de la asignatura',
-          validators: [Validators.required],
-          errorMessage: 'La fecha es requerida'
-        },
-        {
-          name: 'idCourse',
-          label: 'Ciclo',
-          fieldType: 'select',
-          placeholder: 'Selecciona un ciclo',
-          validators: [Validators.required],
-          errorMessage: 'Debes seleccionar un ciclo',
-          optionsObservable: this.classSessionService.getAllSessions().pipe(
-            map(res => res.data)
-          ),
-          optionValueKey: 'id',
-          optionLabelKey: 'name'
-        }
-      ],
-      entityType: 'la Sesión',
-      entityNameFormat: (classSession: ClassSession) => classSession.date,
-      getByIdFn: (id: number) => this.classSessionService.getSessionById(id),
-      updateFn: (data: any) => this.classSessionService.updateSession(data.id, data),
-      deleteFn: (id: number) => this.classSessionService.deleteSession(id)
-    };
-  }
+      { name: 'status', label: 'Estado', type: 'text' },
+      { name: 'appointments', label: 'Anotaciones', type: 'text' },
+    ],
+    entityType: 'la sesión',
+    entityNameFormat: (s: ClassSession) => s.date?.split('T')[0] ?? `Sesión ${s.id}`,
+    getByIdFn: (id: number) => this.sessionService.getSessionById(id),
+    updateFn: (data: ClassSessionUpdatePayload) => this.sessionService.updateSession(data),
+    deleteFn: (id: number) => this.sessionService.deleteSession(id),
+  };
 
-    /**
-   * Configuración de la vista de detalle de la sesión de clase.
-   * Muestra el identificador, la fecha y el horario asociado.
-   * ATENCIÓN: mal nombrada como subjectDetailConfig, debería ser classSessionDetailConfig.
-   */
-  classSessionDetailConfig: ViewDetailConfig<ClassSession> = {
-        fields: [
-          {
-            key: 'id',
-            type: 'text',
-            format: (value) => `${value}`,
-            className: 'text-xl font-bold',
-            label: 'Id de la Sesión:'
-          },
-          {
-            key: 'date',
-            type: 'text',
-            format: (value) => `${value}`,
-            className: 'text-xl font-bold',
-            label: 'Fecha: '
-          },
-          {
-            key: 'schedule.id',
-            type: 'text',
-            format: (value) => `${value}`,
-            className: 'text-xl font-bold',
-            label: 'Horario:'
-          }
-      ]
-      };
+  readonly classSessionDetailConfig: ViewDetailConfig<ClassSession> = {
+    fields: [
+      { key: 'date', type: 'text', label: 'Fecha: ', className: 'text-xl font-bold' },
+      { key: 'status', type: 'text', label: 'Estado: ' },
+      { key: 'appointments', type: 'text', label: 'Anotaciones: ' },
+      { key: 'createdAt', type: 'text', label: 'Creada: ' },
+    ],
+  };
 }

@@ -1,112 +1,79 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Task, TaskByIdResponse, TasksAllResponse, TaskCreateRequest, TaskCreateResponse, TaskDeleteResponse, TaskUpdateRequest, TaskUpdateResponse } from '../../../models/task';
+import { environment } from '../../../../../environments/environment';
+import {
+  Task,
+  TaskByIdResponse,
+  TaskCreateRequest,
+  TaskCreateResponse,
+  TaskDeleteResponse,
+  TasksAllResponse,
+  TaskUpdateRequest,
+  TaskUpdateResponse,
+} from '../../../models/task';
+
+/** Payload de actualización incluye `id` (lo añade el modal genérico). */
+export type TaskUpdatePayload = TaskUpdateRequest & { id: number };
 
 /**
- * Servicio encargado de gestionar las operaciones con tareas.
- * Incluye una signal para mantener el estado de las tareas en memoria.
+ * Servicio admin de tareas (`/api/tasks`). Patrón de referencia CURSO-103.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class TaskService {
-   /**
-   * URL base del endpoint de tareas.
-   */
-  private apiUrl = 'http://localhost:3000/api/tasks'; // aquí el código }
+export class AdminTaskService {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environment.apiUrl}/tasks`;
 
-  /**
-   * Signal que almacena el listado completo de tareas en memoria.
-   */
-  tasks = signal<Task[]>([]); // aquí el código }
+  readonly tasks = signal<Task[]>([]);
 
-    /**
-   * Inicializa el servicio.
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
-   */
-  constructor(private http: HttpClient) { } 
+  getAllTasks(): Observable<TasksAllResponse> {
+    return this.http.get<TasksAllResponse>(this.apiUrl).pipe(
+      catchError(() => of({ success: false, data: [], count: 0 })),
+    );
+  }
 
-  /**
-   * Carga todas las tareas e inicializa la signal tasks.
-   * Si la petición falla, la signal se establece como array vacío.
-   */
-  loadTasks() {
-    this.getAllTasks().subscribe(res => {
-      if (res.success) {
-        this.tasks.set(res.data);
-      } else {
-        this.tasks.set([]);
-      }
+  loadTasks(): void {
+    this.getAllTasks().subscribe((res) => {
+      this.tasks.set(res.success ? res.data : []);
     });
   }
 
-  /**
-   * Obtiene todas las tareas.
-   * @returns Observable con la respuesta que contiene el listado de tareas
-   */
-  getAllTasks(): Observable<TasksAllResponse> {
-    return this.http.get<TasksAllResponse>(this.apiUrl).pipe(
-      catchError(() => of({ success: false, data: [], count: 0 }))
-    );
-  }
-
-  /**
-   * Obtiene una tarea por su identificador.
-   * @param id - Identificador único de la tarea
-   * @returns Observable con la respuesta que contiene la tarea encontrada
-   */
   getTaskById(id: number): Observable<TaskByIdResponse> {
     return this.http.get<TaskByIdResponse>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {
-        console.error('Error:', error);
+        console.error('AdminTaskService.getTaskById', error);
         throw error;
-      })
+      }),
     );
   }
 
-  /**
-   * Crea una nueva tarea.
-   * @param data - Datos necesarios para crear la tarea
-   * @returns Observable con la respuesta que contiene la tarea creada
-   */
-  createTask(data: TaskCreateRequest | FormData): Observable<TaskCreateResponse> {
-    return this.http.post<TaskCreateResponse>(this.apiUrl, data).pipe(
+  createTask(payload: TaskCreateRequest): Observable<TaskCreateResponse> {
+    return this.http.post<TaskCreateResponse>(this.apiUrl, payload).pipe(
       catchError((error) => {
-        console.error('Error creating task:', error);
+        console.error('AdminTaskService.createTask', error);
         throw error;
-      })
+      }),
     );
   }
 
-  /**
-   * Actualiza una tarea existente.
-   * @param id - Identificador único de la tarea a actualizar
-   * @param data - Datos de la tarea a actualizar
-   * @returns Observable con la respuesta que contiene la tarea actualizada
-   */
-  updateTask(id: number, data: TaskUpdateRequest | FormData): Observable<TaskUpdateResponse> {
-    return this.http.patch<TaskUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+  updateTask(payload: TaskUpdatePayload): Observable<TaskUpdateResponse> {
+    const { id, ...body } = payload;
+    return this.http.patch<TaskUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
       catchError((error) => {
-        console.error('Error updating task:', error);
+        console.error('AdminTaskService.updateTask', error);
         throw error;
-      })
+      }),
     );
   }
 
-  /**
-   * Elimina una tarea por su identificador.
-   * @param id - Identificador único de la tarea a eliminar
-   * @returns Observable con la respuesta de confirmación de eliminación
-   */
   deleteTask(id: number): Observable<TaskDeleteResponse> {
     return this.http.delete<TaskDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {
-        console.error('Error deleting task:', error);
+        console.error('AdminTaskService.deleteTask', error);
         throw error;
-      })
+      }),
     );
   }
-  }
-
- 
+}

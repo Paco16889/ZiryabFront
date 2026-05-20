@@ -71,6 +71,32 @@
       "plural": "groups",
       "title": "Groups"
     },
+    "task": {
+      "singular": "task",
+      "plural": "tasks",
+      "singularArticle": "the task",
+      "title": "Tasks"
+    },
+    "classSession": {
+      "singular": "session",
+      "plural": "sessions",
+      "title": "Class sessions"
+    },
+    "studentTask": {
+      "singular": "submission",
+      "plural": "submissions",
+      "title": "Student submissions"
+    },
+    "assistance": {
+      "singular": "attendance",
+      "plural": "attendance records",
+      "title": "Attendance"
+    },
+    "notification": {
+      "singular": "notification",
+      "plural": "notifications",
+      "title": "Notifications"
+    },
     "weekSchedule": {
       "singular": "time slot",
       "plural": "time slots",
@@ -208,7 +234,12 @@
     "subjects": "Subjects",
     "groups": "Groups",
     "courses": "Courses",
-    "schedules": "Schedules"
+    "schedules": "Schedules",
+    "tasks": "Tasks",
+    "classSessions": "Sessions",
+    "studentTasks": "Submissions",
+    "assistances": "Attendance",
+    "notifications": "Notifications"
   },
 
   "deleteModal": {
@@ -256,6 +287,83 @@
   "schedules": {
     "createButton": "Create schedule",
     "createPlaceholder": "The schedule creation form will appear here."
+  },
+  "tasks": {
+    "title": "Tasks",
+    "createButton": "New task",
+    "createTitle": "Create task",
+    "creating": "Creating…",
+    "fields": {
+      "assignment": "Teacher assignment",
+      "assignmentPlaceholder": "Select an assignment",
+      "title": "Title",
+      "type": "Type",
+      "startDate": "Start date",
+      "dueDate": "Due date",
+      "schoolYear": "School year",
+      "description": "Description"
+    },
+    "validation": {
+      "assignment": "Select an assignment",
+      "title": "Title is required"
+    }
+  },
+  "classSessions": {
+    "title": "Sessions",
+    "createButton": "New session",
+    "createTitle": "Create class session",
+    "creating": "Creating…",
+    "fields": {
+      "schedule": "Time slot",
+      "schedulePlaceholder": "Select schedule",
+      "date": "Date",
+      "status": "Status",
+      "appointments": "Notes"
+    }
+  },
+  "studentTasks": {
+    "title": "Submissions",
+    "createButton": "New submission",
+    "createTitle": "Create submission",
+    "fields": {
+      "task": "Task",
+      "enrollmentHint": "Filter enrollments by group, subject and year",
+      "group": "Group",
+      "subject": "Subject",
+      "loadEnrollments": "Load enrollments",
+      "enrollment": "Student enrollment"
+    }
+  },
+  "assistances": {
+    "title": "Attendance",
+    "createButton": "New attendance",
+    "createTitle": "Record attendance",
+    "fields": {
+      "session": "Class session",
+      "enrollmentHint": "Filter enrollments by group, subject and year",
+      "group": "Group",
+      "subject": "Subject",
+      "loadEnrollments": "Load enrollments",
+      "enrollment": "Student enrollment",
+      "status": "Status"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "createButton": "New notification",
+    "createTitle": "Create notification",
+      "fields": {
+        "recipientHint": "Pick a student or teacher; the system delivers the notification to their account.",
+        "recipientRole": "Recipient type",
+        "roleStudent": "Student",
+        "roleTeacher": "Teacher",
+        "recipient": "Recipient",
+        "recipientPlaceholder": "Select a user",
+        "noRecipients": "No users with a linked Firebase account in this list.",
+        "title": "Title",
+        "message": "Message",
+        "type": "Type"
+      }
   }
   },
 

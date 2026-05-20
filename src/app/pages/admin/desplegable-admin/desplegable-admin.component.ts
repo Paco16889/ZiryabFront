@@ -9,6 +9,11 @@ import { CourseListComponent } from '../entities/course/course-list/course-list.
 import { GroupListComponent } from '../entities/group/group-list/group-list.component';
 import { ListComponent } from '../entities/alumno/list/list.component';
 import { WeekScheduleListComponent } from '../entities/weekSchedule/week-schedule-list/week-schedule-list.component';
+import { TaskListComponent } from '../entities/task/task-list/task-list.component';
+import { ClassSessionListComponent } from '../entities/class-session/class-session-list/class-session-list.component';
+import { StudentTaskListComponent } from '../entities/student-task/student-task-list/student-task-list.component';
+import { AssistanceListComponent } from '../entities/assistance/assistance-list/assistance-list.component';
+import { NotificationListComponent } from '../entities/notification/notification-list/notification-list.component';
 
 /**
  * Componente que actúa como área de contenido principal del panel de administración.
@@ -18,7 +23,19 @@ import { WeekScheduleListComponent } from '../entities/weekSchedule/week-schedul
  */
 @Component({
   selector: 'app-desplegable-admin',
-  imports: [ListComponent, AsignaturaListComponent, TeacherListComponent, CourseListComponent, GroupListComponent, WeekScheduleListComponent],
+  imports: [
+    ListComponent,
+    AsignaturaListComponent,
+    TeacherListComponent,
+    CourseListComponent,
+    GroupListComponent,
+    WeekScheduleListComponent,
+    TaskListComponent,
+    ClassSessionListComponent,
+    StudentTaskListComponent,
+    AssistanceListComponent,
+    NotificationListComponent,
+  ],
   templateUrl: './desplegable-admin.component.html',
   styleUrl: './desplegable-admin.component.scss'
 })

@@ -23,3 +23,18 @@
 
     <app-week-schedule-list></app-week-schedule-list>
 }
+@if (toggleservice.openedMenu() === 'tasks') {
+    <app-task-list></app-task-list>
+}
+@if (toggleservice.openedMenu() === 'classSessions') {
+    <app-class-session-list></app-class-session-list>
+}
+@if (toggleservice.openedMenu() === 'studentTasks') {
+    <app-student-task-list></app-student-task-list>
+}
+@if (toggleservice.openedMenu() === 'assistances') {
+    <app-assistance-list></app-assistance-list>
+}
+@if (toggleservice.openedMenu() === 'notifications') {
+    <app-notification-list></app-notification-list>
+}

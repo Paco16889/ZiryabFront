@@ -72,6 +72,32 @@
       "plural": "grupos",
       "title": "Grupos"
     },
+    "task": {
+      "singular": "tarea",
+      "plural": "tareas",
+      "singularArticle": "la tarea",
+      "title": "Tareas"
+    },
+    "classSession": {
+      "singular": "sesión",
+      "plural": "sesiones",
+      "title": "Sesiones de clase"
+    },
+    "studentTask": {
+      "singular": "entrega",
+      "plural": "entregas",
+      "title": "Entregas de alumnos"
+    },
+    "assistance": {
+      "singular": "asistencia",
+      "plural": "asistencias",
+      "title": "Asistencias"
+    },
+    "notification": {
+      "singular": "notificación",
+      "plural": "notificaciones",
+      "title": "Notificaciones"
+    },
     "weekSchedule": {
       "singular": "franja horaria",
       "plural": "franjas horarias",
@@ -209,7 +235,12 @@
     "subjects": "Asignaturas",
     "groups": "Grupos",
     "courses": "Ciclos",
-    "schedules": "Horarios"
+    "schedules": "Horarios",
+    "tasks": "Tareas",
+    "classSessions": "Sesiones",
+    "studentTasks": "Entregas",
+    "assistances": "Asistencias",
+    "notifications": "Notificaciones"
   },
 
   "deleteModal": {
@@ -257,6 +288,83 @@
     "schedules": {
       "createButton": "Crear horario",
       "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
+    },
+    "tasks": {
+      "title": "Tareas",
+      "createButton": "Nueva tarea",
+      "createTitle": "Crear tarea",
+      "creating": "Creando…",
+      "fields": {
+        "assignment": "Asignación docente",
+        "assignmentPlaceholder": "Selecciona una asignación",
+        "title": "Título",
+        "type": "Tipo",
+        "startDate": "Fecha de inicio",
+        "dueDate": "Fecha de entrega",
+        "schoolYear": "Año escolar",
+        "description": "Descripción"
+      },
+      "validation": {
+        "assignment": "Selecciona una asignación",
+        "title": "El título es obligatorio"
+      }
+    },
+    "classSessions": {
+      "title": "Sesiones",
+      "createButton": "Nueva sesión",
+      "createTitle": "Crear sesión de clase",
+      "creating": "Creando…",
+      "fields": {
+        "schedule": "Franja horaria",
+        "schedulePlaceholder": "Selecciona horario",
+        "date": "Fecha",
+        "status": "Estado",
+        "appointments": "Anotaciones"
+      }
+    },
+    "studentTasks": {
+      "title": "Entregas",
+      "createButton": "Nueva entrega",
+      "createTitle": "Crear entrega",
+      "fields": {
+        "task": "Tarea",
+        "enrollmentHint": "Filtra matrículas por grupo, asignatura y año",
+        "group": "Grupo",
+        "subject": "Asignatura",
+        "loadEnrollments": "Cargar matrículas",
+        "enrollment": "Matrícula del alumno"
+      }
+    },
+    "assistances": {
+      "title": "Asistencias",
+      "createButton": "Nueva asistencia",
+      "createTitle": "Registrar asistencia",
+      "fields": {
+        "session": "Sesión de clase",
+        "enrollmentHint": "Filtra matrículas por grupo, asignatura y año",
+        "group": "Grupo",
+        "subject": "Asignatura",
+        "loadEnrollments": "Cargar matrículas",
+        "enrollment": "Matrícula del alumno",
+        "status": "Estado"
+      }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "createButton": "Nueva notificación",
+      "createTitle": "Crear notificación",
+      "fields": {
+        "recipientHint": "Elige alumno o profesor; el POST usa recipientFirebaseUID del contrato API.",
+        "recipientRole": "Tipo de destinatario",
+        "roleStudent": "Alumno",
+        "roleTeacher": "Profesor",
+        "recipient": "Destinatario",
+        "recipientPlaceholder": "Selecciona un usuario",
+        "noRecipients": "No hay usuarios en esta lista.",
+        "title": "Título",
+        "message": "Mensaje",
+        "type": "Tipo"
+      }
     }
   },
   "LANG": {
