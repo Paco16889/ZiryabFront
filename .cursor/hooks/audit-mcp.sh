@@ -1,4 +1,4 @@
-s#!/usr/bin/env bash
+#!/usr/bin/env bash
 # ------------------------------------------------------------------
 # Hook: afterMCPExecution
 # Registra todas las llamadas MCP en .cursor/hooks/mcp-audit.log
