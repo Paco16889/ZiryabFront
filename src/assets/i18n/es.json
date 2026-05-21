@@ -426,7 +426,8 @@
     "emailPlaceholder": "tu@email",
     "password": "Contraseña",
     "passwordPlaceholder": "tu contraseña",
-    "submit": "Acceder"
+    "submit": "Acceder",
+    "error": "Correo o contraseña incorrectos. Inténtalo de nuevo."
   },
   "notifications": {
     "bellAria": "Notificaciones",
@@ -507,6 +508,18 @@
     "subtitle": "Eventos y fechas importantes del centro",
     "iframeTitle": "Calendario de Google"
   },
+  "teacherClasses": {
+    "title": "Mis Clases",
+    "loading": "Cargando tus clases...",
+    "empty": "No tienes clases asignadas.",
+    "manageSyllabus": "Gestionar Temario",
+    "classMenu": "Menú de Clase",
+    "courseLabel": "Ciclo",
+    "groupLabel": "Grado/Grupo",
+    "noAssigned": "No tienes asignaturas asignadas.",
+    "errorConnection": "Error de conexión con el servidor.",
+    "errorUser": "Usuario no identificado. Por favor, inicia sesión."
+  },
   "teacherPages": {
     "grades": {
       "title": "Evaluaciones",
@@ -521,7 +534,7 @@
       "save": "Guardar Evaluaciones"
     },
     "classMenu": {
-      "youAreIn": "Estás en",
+      "title": "Menú de Clase",
       "tasksTitle": "Tareas",
       "tasksSubtitle": "Gestiona las tareas de la clase",
       "justificationsTitle": "Justificaciones",

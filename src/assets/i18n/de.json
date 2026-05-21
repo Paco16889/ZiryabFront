@@ -427,7 +427,8 @@
     "emailPlaceholder": "deine@email",
     "password": "Passwort",
     "passwordPlaceholder": "dein Passwort",
-    "submit": "Anmelden"
+    "submit": "Anmelden",
+    "error": "Falsche E-Mail oder falsches Passwort. Bitte erneut versuchen."
   },
 
   "notifications": {
@@ -442,7 +443,7 @@
   },
 
   "roles": {
-    "student": "Student",
+    "student": "Schüler",
     "teacher": "Lehrer",
     "admin": "Administrator",
     "user": "Aktiver Benutzer"
@@ -511,6 +512,18 @@
     "subtitle": "Wichtige Schultermine und Ereignisse",
     "iframeTitle": "Google Kalender"
   },
+  "teacherClasses": {
+    "title": "Meine Klassen",
+    "loading": "Klassen werden geladen...",
+    "empty": "Keine Klassen zugewiesen.",
+    "manageSyllabus": "Lehrplan verwalten",
+    "classMenu": "Klassenmenue",
+    "courseLabel": "Kurs",
+    "groupLabel": "Stufe/Gruppe",
+    "noAssigned": "Keine Faecher zugewiesen.",
+    "errorConnection": "Verbindungsfehler mit dem Server.",
+    "errorUser": "Benutzer nicht erkannt. Bitte melde dich an."
+  },
   "teacherPages": {
     "grades": {
       "title": "Bewertungen",
@@ -525,7 +538,7 @@
       "save": "Bewertungen speichern"
     },
     "classMenu": {
-      "youAreIn": "Du bist in",
+      "title": "Klassenmenue",
       "tasksTitle": "Aufgaben",
       "tasksSubtitle": "Klassenaufgaben verwalten",
       "justificationsTitle": "Begruendungen",

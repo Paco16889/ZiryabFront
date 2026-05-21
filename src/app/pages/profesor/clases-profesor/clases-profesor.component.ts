@@ -7,7 +7,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
 import { TeacherSubjectAssignmentRow } from '../../../core/models/teacher/subjectforteacher';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que muestra las asignaturas asignadas al profesor autenticado.
@@ -25,6 +25,7 @@ export class ClasesProfesorComponent implements OnInit {
   private router = inject(Router);
   private clasesService = inject(ClasesService);
   private authService = inject(AuthService);
+  private translate = inject(TranslateService);
 
   public asignaturasCards = signal<CardItem[]>([]);
   private asignaturasOriginales = signal<TeacherSubjectAssignmentRow[]>([]);
@@ -38,19 +39,19 @@ export class ClasesProfesorComponent implements OnInit {
       this.clasesService.getAsignaturasProfesor(user.id).subscribe({
         next: (response) => {
           if (response.data.length === 0) {
-            this.errorMessage.set('No tienes asignaturas asignadas.');
+            this.errorMessage.set(this.translate.instant('teacherClasses.noAssigned'));
           }
           this.asignaturasOriginales.set(response.data);
           this.construirCards();
           this.loading.set(false);
         },
         error: () => {
-          this.errorMessage.set('Error de conexión con el servidor.');
+          this.errorMessage.set(this.translate.instant('teacherClasses.errorConnection'));
           this.loading.set(false);
         }
       });
     } else {
-      this.errorMessage.set('Usuario no identificado. Por favor, inicia sesión.');
+      this.errorMessage.set(this.translate.instant('teacherClasses.errorUser'));
       this.loading.set(false);
       this.navegador.toComponent('login');
     }
@@ -61,10 +62,10 @@ export class ClasesProfesorComponent implements OnInit {
       id: item.subject.id,
       assignmentId: item.id,
       title: item.subject.name,
-      subtitleTopLabel: 'Curso',
-      subtitleTopValue: item.subject?.course?.name || 'General',
-      subtitleBottomLabel: 'Grado/Grupo',
-      subtitleBottomValue: item.group?.name || 'Varios',
+      subtitleTopLabel: 'teacherClasses.courseLabel',
+      subtitleTopValue: item.subject?.course?.name || '-',
+      subtitleBottomLabel: 'teacherClasses.groupLabel',
+      subtitleBottomValue: item.group?.name || '-',
       actionLabel: 'teacherClasses.manageSyllabus',
       secondaryActionLabel: 'teacherClasses.classMenu',
     }));

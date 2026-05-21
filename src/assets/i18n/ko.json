@@ -192,7 +192,8 @@
     "emailPlaceholder": "your@email",
     "password": "비밀번호",
     "passwordPlaceholder": "비밀번호",
-    "submit": "액세스"
+    "submit": "액세스",
+    "error": "이메일 또는 비밀번호가 올바르지 않습니다. 다시 시도해 주세요."
   },
 
   "perfil": {
@@ -245,7 +246,7 @@
       "save": "평가 저장"
     },
     "classMenu": {
-      "youAreIn": "현재 위치",
+      "title": "수업 메뉴",
       "tasksTitle": "과제",
       "tasksSubtitle": "수업 과제 관리",
       "justificationsTitle": "사유서",

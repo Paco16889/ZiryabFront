@@ -140,9 +140,9 @@ export class ClasesComponent implements OnInit {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
       id: item.subject?.id || 0,
       title: item.subject?.name || this.translate.instant('studentPages.classes.subjectFallback'),
-      subtitleTopLabel: this.translate.instant('studentPages.classes.levelLabel'),
-      subtitleTopValue: item.group?.name || this.translate.instant('studentPages.classes.generalGroup'),
-      subtitleBottomLabel: this.translate.instant('studentPages.classes.teacherLabel'),
+      subtitleTopLabel: 'studentPages.classes.levelLabel',
+      subtitleTopValue: item.group?.name || '-',
+      subtitleBottomLabel: 'studentPages.classes.teacherLabel',
       subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || this.translate.instant('studentPages.classes.loadingTeacher'),
       actionLabel: this.translate.instant('studentPages.common.access')
     }));

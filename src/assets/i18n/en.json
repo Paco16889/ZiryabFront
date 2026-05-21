@@ -429,7 +429,8 @@
     "emailPlaceholder": "your@email",
     "password": "Password",
     "passwordPlaceholder": "your password",
-    "submit": "Access"
+    "submit": "Access",
+    "error": "Incorrect email or password. Please try again."
   },
 
   "notifications": {
@@ -513,6 +514,18 @@
     "subtitle": "Important school events and dates",
     "iframeTitle": "Google Calendar"
   },
+  "teacherClasses": {
+    "title": "My Classes",
+    "loading": "Loading your classes...",
+    "empty": "You have no assigned classes.",
+    "manageSyllabus": "Manage Syllabus",
+    "classMenu": "Class Menu",
+    "courseLabel": "Course",
+    "groupLabel": "Level/Group",
+    "noAssigned": "You have no assigned subjects.",
+    "errorConnection": "Connection error with the server.",
+    "errorUser": "User not identified. Please log in."
+  },
   "teacherPages": {
     "grades": {
       "title": "Evaluations",
@@ -527,7 +540,7 @@
       "save": "Save Evaluations"
     },
     "classMenu": {
-      "youAreIn": "You are in",
+      "title": "Class Menu",
       "tasksTitle": "Tasks",
       "tasksSubtitle": "Manage class tasks",
       "justificationsTitle": "Justifications",
