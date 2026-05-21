@@ -3,8 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../auth.service';
-import { Grade, CreateGradeRequest, BulkCreateGradesRequest, EvaluationPeriod, MyGradesResponse } from '../../models/grade';
-import { Group } from '../../models/group';
+import {
+  Grade,
+  CreateGradeRequest,
+  BulkCreateGradesRequest,
+  EvaluationPeriod,
+  MyGradesResponse,
+  TutoredCourseGroup,
+} from '../../models/grade';
 
 @Injectable({
   providedIn: 'root',
@@ -17,19 +23,30 @@ export class GradeService {
     return this.http.get<ApiResponse<MyGradesResponse[]>>(`${this.apiUrl}/my`);
   }
 
-  getTutoredGroups(): Observable<ApiResponse<Group[]>> {
-    return this.http.get<ApiResponse<Group[]>>(`${this.apiUrl}/tutored-groups`);
+  /** Devuelve las clases (CourseGroup) de las que el profesor autenticado es tutor */
+  getTutoredGroups(): Observable<ApiResponse<TutoredCourseGroup[]>> {
+    return this.http.get<ApiResponse<TutoredCourseGroup[]>>(
+      `${this.apiUrl}/tutored-groups`
+    );
   }
 
-  getGradesByGroupAndPeriod(idGroup: number, period: EvaluationPeriod): Observable<ApiResponse<Grade[]>> {
-    return this.http.get<ApiResponse<Grade[]>>(`${this.apiUrl}/group/${idGroup}/period/${period}`);
+  /** Notas de una clase (CourseGroup) para un periodo */
+  getGradesByCourseGroupAndPeriod(
+    courseGroupId: number,
+    period: EvaluationPeriod
+  ): Observable<ApiResponse<Grade[]>> {
+    return this.http.get<ApiResponse<Grade[]>>(
+      `${this.apiUrl}/course-group/${courseGroupId}/period/${period}`
+    );
   }
 
   upsertGrade(grade: CreateGradeRequest): Observable<ApiResponse<Grade>> {
     return this.http.post<ApiResponse<Grade>>(this.apiUrl, grade);
   }
 
-  bulkUpsertGrades(request: BulkCreateGradesRequest): Observable<ApiResponse<Grade[]>> {
+  bulkUpsertGrades(
+    request: BulkCreateGradesRequest
+  ): Observable<ApiResponse<Grade[]>> {
     return this.http.post<ApiResponse<Grade[]>>(`${this.apiUrl}/bulk`, request);
   }
 }

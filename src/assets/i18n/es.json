@@ -240,7 +240,8 @@
     "classSessions": "Sesiones",
     "studentTasks": "Entregas",
     "assistances": "Asistencias",
-    "notifications": "Notificaciones"
+    "notifications": "Notificaciones",
+    "tutors": "Tutores"
   },
 
   "deleteModal": {
@@ -694,6 +695,29 @@
     }
   },
   "adminPages": {
+    "tutors": {
+      "title": "Asignación de tutores",
+      "subtitle": "Define las clases (Ciclo + Grupo) y asigna un tutor a cada una",
+      "colCourse": "Ciclo",
+      "colGroup": "Grupo (turno)",
+      "colCurrentTutor": "Tutor actual",
+      "colAssign": "Asignar tutor",
+      "noTutor": "Sin tutor",
+      "save": "Guardar",
+      "saved": "Guardado",
+      "addClass": "Añadir clase",
+      "addClassBtn": "Añadir",
+      "colGrade": "Curso",
+      "selectCourse": "Seleccionar ciclo",
+      "selectGroup": "Seleccionar grupo",
+      "selectGrade": "Seleccionar curso",
+      "deleteClass": "Eliminar clase",
+      "empty": "No hay clases definidas aún. Añade una arriba.",
+      "errorLoading": "Error al cargar los datos",
+      "errorSaving": "Error al guardar",
+      "errorCreating": "Error al crear la clase",
+      "noEligibleTutors": "Ningún profesor imparte en esta clase"
+    },
     "dashboard": {
       "menu": "Menú"
     },

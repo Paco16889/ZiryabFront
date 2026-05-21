@@ -237,7 +237,8 @@
     "classSessions": "Stunden",
     "studentTasks": "Abgaben",
     "assistances": "Anwesenheit",
-    "notifications": "Benachrichtigungen"
+    "notifications": "Benachrichtigungen",
+    "tutors": "Tutoren"
   },
 
   "deleteModal": {
@@ -698,6 +699,28 @@
     }
   },
   "adminPages": {
+    "tutors": {
+      "title": "Tutorenvergebung",
+      "subtitle": "Klassen (Zyklus + Gruppe) definieren und jeweils einen Tutor zuweisen",
+      "colCourse": "Zyklus",
+      "colGroup": "Gruppe (Schicht)",
+      "colCurrentTutor": "Aktueller Tutor",
+      "colAssign": "Tutor zuweisen",
+      "noTutor": "Kein Tutor",
+      "save": "Speichern",
+      "saved": "Gespeichert",
+      "addClass": "Klasse hinzufügen",
+      "addClassBtn": "Hinzufügen",
+      "colGrade": "Jahrgang",
+      "selectCourse": "Zyklus auswählen",
+      "selectGroup": "Gruppe auswählen",
+      "selectGrade": "Jahrgang auswählen",
+      "deleteClass": "Klasse löschen",
+      "empty": "Noch keine Klassen definiert. Fügen Sie oben eine hinzu.",
+      "errorLoading": "Fehler beim Laden",
+      "errorSaving": "Fehler beim Speichern",
+      "errorCreating": "Fehler beim Erstellen"
+    },
     "dashboard": {
       "menu": "Menü"
     },

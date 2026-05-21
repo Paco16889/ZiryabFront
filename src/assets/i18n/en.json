@@ -239,7 +239,8 @@
     "classSessions": "Sessions",
     "studentTasks": "Submissions",
     "assistances": "Attendance",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "tutors": "Tutors"
   },
 
   "deleteModal": {
@@ -700,6 +701,29 @@
     }
   },
   "adminPages": {
+    "tutors": {
+      "title": "Tutor assignment",
+      "subtitle": "Define classes (Cycle + Group) and assign a tutor to each one",
+      "colCourse": "Cycle",
+      "colGroup": "Group (shift)",
+      "colCurrentTutor": "Current tutor",
+      "colAssign": "Assign tutor",
+      "noTutor": "No tutor",
+      "save": "Save",
+      "saved": "Saved",
+      "addClass": "Add class",
+      "addClassBtn": "Add",
+      "colGrade": "Year",
+      "selectCourse": "Select cycle",
+      "selectGroup": "Select group",
+      "selectGrade": "Select year",
+      "deleteClass": "Delete class",
+      "empty": "No classes defined yet. Add one above.",
+      "errorLoading": "Error loading data",
+      "errorSaving": "Error saving",
+      "errorCreating": "Error creating class",
+      "noEligibleTutors": "No teacher is assigned to this class"
+    },
     "dashboard": {
       "menu": "Menu"
     },
