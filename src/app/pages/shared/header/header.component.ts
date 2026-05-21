@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -29,6 +30,7 @@ import { NotificationToggleService } from '../../../core/services/notification/n
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
   private readonly perfilService = inject(PerfilMenuService);
   private readonly authService = inject(AuthService);
   private readonly notificationsService = inject(NotificationsService);
@@ -91,6 +93,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       ADMIN: 'roles.admin',
     };
     return map[role] ?? 'roles.user';
+  }
+
+  navigateToDashboard(): void {
+    this.router.navigate(['/dashboard']);
   }
 
   toggleProfileMenu(): void {

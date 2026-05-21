@@ -991,7 +991,7 @@
   "FINAL": "Nota Final",
   "evaluaciones": {
     "title": "Evaluaciones",
-    "subtitle": "Gestión de notas por trimestres",
+    "subtitle": "Ver notas",
     "description": "Consulta y gestiona las calificaciones académicas"
   }
 }

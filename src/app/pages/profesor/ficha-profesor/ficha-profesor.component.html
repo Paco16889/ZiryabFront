@@ -1,17 +1,20 @@
-<div class="ficha-container container mx-auto px-4 py-8 max-w-4xl min-h-screen">
-  
+<div class="w-full bg-gray-50 flex flex-col items-center p-4 sm:p-6 lg:p-8 pt-8 sm:pt-12 pb-16">
+  <div class="w-full max-w-4xl">
+
     <!-- Encabezado -->
-    <div class="mb-10 text-center relative">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">
-        {{ 'teacherPages.justifications.title' | translate }}
-      </h1>
-      <p class="text-gray-500 text-lg font-medium">{{ 'teacherPages.justifications.subtitle' | translate }}</p>
-      
-      <div class="absolute right-0 top-1/2 -translate-y-1/2">
-        <button 
+    <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-center sm:text-left">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2">
+          {{ 'teacherPages.justifications.title' | translate }}
+        </h1>
+        <p class="text-gray-500 text-lg font-medium">{{ 'teacherPages.justifications.subtitle' | translate }}</p>
+      </div>
+
+      <div class="flex justify-center sm:justify-end flex-shrink-0">
+        <button
           (click)="isAbsencesModalOpen.set(true)"
           class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
           {{ 'teacherPages.justifications.viewAbsencesByStudent' | translate }}
@@ -115,12 +118,11 @@
       }
     }
 
-    <div class="mt-8 flex justify-start pb-8">
-      <app-boton-atras></app-boton-atras>
-    </div>
+    <app-boton-atras></app-boton-atras>
   </div>
+</div>
 
-  @if (isAbsencesModalOpen()) {
+@if (isAbsencesModalOpen()) {
     <app-student-absences-modal
       (closeModal)="isAbsencesModalOpen.set(false)">
     </app-student-absences-modal>
