@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
@@ -8,13 +9,13 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
  * Componente que muestra el menú de gestión académica del estudiante.
  * Presenta las opciones de navegación disponibles: ficha de usuario,
  * horario, calendario y tablón de anuncios.
- * ATENCIÓN: las rutas calendario y tablon-anuncio no están implementadas.
+ * ATENCIÓN: la ruta calendario no está implementada.
  * ATENCIÓN: candidato a simplificarse extrayendo las opciones a un array de configuración.
  */
 @Component({
   selector: 'app-gestion',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent],
+  imports: [CommonModule, TranslateModule, BotonAtrasComponent],
   templateUrl: './gestion.component.html',
   styleUrl: './gestion.component.scss'
 })
@@ -24,10 +25,8 @@ export class GestionComponent {
    * @param router - Router de Angular para gestionar las navegaciones.
    * ATENCIÓN: debería usarse NavigationService para ser consistente con el resto del proyecto.
    */
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
   
     /**
    * Navega a la ruta indicada.

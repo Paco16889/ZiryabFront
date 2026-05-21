@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { DesplegableAdminComponent } from '../desplegable-admin/desplegable-admin.component';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToggleService } from '../../../core/services/toggle.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -30,15 +30,20 @@ export class AdminMenuComponent {
    * Inicializa el componente.
    * @param toggle - Servicio que notifica qué sección debe mostrarse en el área de contenido principal
    */
-  constructor(private toggle: ToggleService){}
+  private readonly toggle = inject(ToggleService);
+  private readonly router = inject(Router);
 
    /**
    * Alterna la sección del menú correspondiente y emite el evento de clic.
    * @param str - Nombre identificador de la sección del menú pulsada
    */
   onClick(str: string){
+    if (str === 'issues') {
+      this.router.navigate(['/issues']);
+      this.optionClicked.emit();
+      return;
+    }
     this.toggle.toggle(str);
-    console.log(`Has pinchado en ${str}`);
     this.optionClicked.emit();
   }
 

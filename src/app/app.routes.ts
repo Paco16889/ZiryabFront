@@ -65,6 +65,15 @@ export const routes: Routes = [
 
     },
 
+    {
+        path: 'issues',
+        loadComponent: () =>
+            import('./pages/shared/issues/issue-list/issue-list.component').then(
+                (m) => m.IssueListComponent,
+            ),
+        canActivate: [AuthGuard],
+    },
+
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
     // ============================================

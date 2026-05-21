@@ -101,6 +101,34 @@
       "singular": "time slot",
       "plural": "time slots",
       "title": "Schedules"
+    },
+    "issue": {
+      "singular": "announcement",
+      "plural": "announcements",
+      "singularArticle": "the announcement",
+      "title": "Notice board"
+    }
+  },
+
+  "gestion": {
+    "title": "Academic Management",
+    "subtitle": "Manage your profile and activities",
+    "cards": {
+      "profile": {
+        "title": "User Profile",
+        "action": "View Profile"
+      },
+      "schedule": {
+        "title": "Schedule",
+        "action": "View"
+      },
+      "calendar": {
+        "title": "Calendar",
+        "action": "View Events"
+      },
+      "issues": {
+        "action": "View Announcements"
+      }
     }
   },
 
@@ -228,6 +256,10 @@
     }
   },
 
+  "nav": {
+    "issues": "Notice board"
+  },
+
   "adminMenu": {
     "students": "Students",
     "teachers": "Teachers",
@@ -239,7 +271,8 @@
     "classSessions": "Sessions",
     "studentTasks": "Submissions",
     "assistances": "Attendance",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "issues": "Notice board"
   },
 
   "deleteModal": {
@@ -287,6 +320,56 @@
   "schedules": {
     "createButton": "Create schedule",
     "createPlaceholder": "The schedule creation form will appear here."
+  },
+  "issues": {
+    "title": "Notice board",
+    "createButton": "New announcement",
+    "loading": "Loading announcements…",
+    "empty": "No announcements published.",
+    "emitter": "Publisher",
+    "emitterTeacher": "Teacher #{{id}}",
+    "emitterAdmin": "Admin #{{id}}",
+    "audience": {
+      "CENTER": "Whole center",
+      "ALL_TEACHERS": "All teachers",
+      "ALL_STUDENTS": "All students",
+      "GROUP": "Group",
+      "COURSE": "Course",
+      "SUBJECT_GROUP": "Subject and group"
+    },
+    "dialog": {
+      "createTitle": "New announcement",
+      "editTitle": "Edit announcement",
+      "close": "Close"
+    },
+    "form": {
+      "title": "Title",
+      "body": "Body",
+      "audience": "Audience",
+      "idGroup": "Group",
+      "idCourse": "Course",
+      "idSubject": "Subject",
+      "attachmentUrl": "Attachment URL",
+      "attachmentPlaceholder": "https://…",
+      "isPublished": "Publish now",
+      "publishAt": "Publish date",
+      "expiresAt": "Expiry date",
+      "selectPlaceholder": "Select an option",
+      "save": "Save",
+      "saving": "Saving…",
+      "validation": {
+        "title": "Title is required (max 120 characters)",
+        "body": "Body is required (max 2000 characters)",
+        "idGroup": "Select a group",
+        "idCourse": "Select a course",
+        "idSubject": "Select a subject",
+        "attachmentUrl": "URL must start with http:// or https://"
+      },
+      "errors": {
+        "create": "Error creating announcement",
+        "update": "Error updating announcement"
+      }
+    }
   },
   "tasks": {
     "title": "Tasks",

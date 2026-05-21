@@ -102,6 +102,34 @@
       "singular": "franja horaria",
       "plural": "franjas horarias",
       "title": "Horarios"
+    },
+    "issue": {
+      "singular": "anuncio",
+      "plural": "anuncios",
+      "singularArticle": "el anuncio",
+      "title": "Tablón de anuncios"
+    }
+  },
+
+  "gestion": {
+    "title": "Gestión Académica",
+    "subtitle": "Administra tu perfil y actividades",
+    "cards": {
+      "profile": {
+        "title": "Ficha Usuario",
+        "action": "Ver Perfil"
+      },
+      "schedule": {
+        "title": "Horario",
+        "action": "Consultar"
+      },
+      "calendar": {
+        "title": "Calendario",
+        "action": "Ver Eventos"
+      },
+      "issues": {
+        "action": "Ver Avisos"
+      }
     }
   },
 
@@ -229,6 +257,10 @@
     }
   },
 
+  "nav": {
+    "issues": "Tablón"
+  },
+
   "adminMenu": {
     "students": "Alumnos",
     "teachers": "Profesores",
@@ -240,7 +272,8 @@
     "classSessions": "Sesiones",
     "studentTasks": "Entregas",
     "assistances": "Asistencias",
-    "notifications": "Notificaciones"
+    "notifications": "Notificaciones",
+    "issues": "Tablón de anuncios"
   },
 
   "deleteModal": {
@@ -288,6 +321,56 @@
     "schedules": {
       "createButton": "Crear horario",
       "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
+    },
+    "issues": {
+      "title": "Tablón de anuncios",
+      "createButton": "Nuevo anuncio",
+      "loading": "Cargando anuncios…",
+      "empty": "No hay anuncios publicados.",
+      "emitter": "Emisor",
+      "emitterTeacher": "Profesor #{{id}}",
+      "emitterAdmin": "Administración #{{id}}",
+      "audience": {
+        "CENTER": "Todo el centro",
+        "ALL_TEACHERS": "Todos los profesores",
+        "ALL_STUDENTS": "Todos los alumnos",
+        "GROUP": "Grupo",
+        "COURSE": "Ciclo",
+        "SUBJECT_GROUP": "Asignatura y grupo"
+      },
+      "dialog": {
+        "createTitle": "Nuevo anuncio",
+        "editTitle": "Editar anuncio",
+        "close": "Cerrar"
+      },
+      "form": {
+        "title": "Título",
+        "body": "Cuerpo",
+        "audience": "Audiencia",
+        "idGroup": "Grupo",
+        "idCourse": "Ciclo",
+        "idSubject": "Asignatura",
+        "attachmentUrl": "URL del adjunto",
+        "attachmentPlaceholder": "https://…",
+        "isPublished": "Publicar ahora",
+        "publishAt": "Fecha de publicación",
+        "expiresAt": "Fecha de expiración",
+        "selectPlaceholder": "Selecciona una opción",
+        "save": "Guardar",
+        "saving": "Guardando…",
+        "validation": {
+          "title": "El título es obligatorio (máx. 120 caracteres)",
+          "body": "El cuerpo es obligatorio (máx. 2000 caracteres)",
+          "idGroup": "Selecciona un grupo",
+          "idCourse": "Selecciona un ciclo",
+          "idSubject": "Selecciona una asignatura",
+          "attachmentUrl": "La URL debe comenzar por http:// o https://"
+        },
+        "errors": {
+          "create": "Error al crear el anuncio",
+          "update": "Error al actualizar el anuncio"
+        }
+      }
     },
     "tasks": {
       "title": "Tareas",

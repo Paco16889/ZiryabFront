@@ -101,6 +101,34 @@
       "singular": "Zeitslot",
       "plural": "Zeitslots",
       "title": "Stundenpläne"
+    },
+    "issue": {
+      "singular": "Ankündigung",
+      "plural": "Ankündigungen",
+      "singularArticle": "die Ankündigung",
+      "title": "Anschlagtafel"
+    }
+  },
+
+  "gestion": {
+    "title": "Akademische Verwaltung",
+    "subtitle": "Verwalte dein Profil und deine Aktivitäten",
+    "cards": {
+      "profile": {
+        "title": "Benutzerprofil",
+        "action": "Profil anzeigen"
+      },
+      "schedule": {
+        "title": "Stundenplan",
+        "action": "Anzeigen"
+      },
+      "calendar": {
+        "title": "Kalender",
+        "action": "Termine anzeigen"
+      },
+      "issues": {
+        "action": "Ankündigungen anzeigen"
+      }
     }
   },
 
@@ -226,6 +254,10 @@
     }
   },
 
+  "nav": {
+    "issues": "Anschlagtafel"
+  },
+
   "adminMenu": {
     "students": "Schüler",
     "teachers": "Lehrer",
@@ -237,7 +269,8 @@
     "classSessions": "Stunden",
     "studentTasks": "Abgaben",
     "assistances": "Anwesenheit",
-    "notifications": "Benachrichtigungen"
+    "notifications": "Benachrichtigungen",
+    "issues": "Anschlagtafel"
   },
 
   "deleteModal": {
@@ -285,6 +318,56 @@
   "schedules": {
     "createButton": "Stundenplan anlegen",
     "createPlaceholder": "Das Formular zur Erstellung des Stundenplans wird hier angezeigt."
+  },
+  "issues": {
+    "title": "Anschlagtafel",
+    "createButton": "Neue Ankündigung",
+    "loading": "Ankündigungen werden geladen…",
+    "empty": "Keine veröffentlichten Ankündigungen.",
+    "emitter": "Absender",
+    "emitterTeacher": "Lehrer #{{id}}",
+    "emitterAdmin": "Verwaltung #{{id}}",
+    "audience": {
+      "CENTER": "Gesamtes Zentrum",
+      "ALL_TEACHERS": "Alle Lehrer",
+      "ALL_STUDENTS": "Alle Schüler",
+      "GROUP": "Gruppe",
+      "COURSE": "Bildungsgang",
+      "SUBJECT_GROUP": "Fach und Gruppe"
+    },
+    "dialog": {
+      "createTitle": "Neue Ankündigung",
+      "editTitle": "Ankündigung bearbeiten",
+      "close": "Schließen"
+    },
+    "form": {
+      "title": "Titel",
+      "body": "Text",
+      "audience": "Zielgruppe",
+      "idGroup": "Gruppe",
+      "idCourse": "Bildungsgang",
+      "idSubject": "Fach",
+      "attachmentUrl": "Anhang-URL",
+      "attachmentPlaceholder": "https://…",
+      "isPublished": "Jetzt veröffentlichen",
+      "publishAt": "Veröffentlichungsdatum",
+      "expiresAt": "Ablaufdatum",
+      "selectPlaceholder": "Option auswählen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert…",
+      "validation": {
+        "title": "Titel ist erforderlich (max. 120 Zeichen)",
+        "body": "Text ist erforderlich (max. 2000 Zeichen)",
+        "idGroup": "Gruppe auswählen",
+        "idCourse": "Bildungsgang auswählen",
+        "idSubject": "Fach auswählen",
+        "attachmentUrl": "URL muss mit http:// oder https:// beginnen"
+      },
+      "errors": {
+        "create": "Fehler beim Erstellen der Ankündigung",
+        "update": "Fehler beim Aktualisieren der Ankündigung"
+      }
+    }
   },
   "tasks": {
     "title": "Aufgaben",
