@@ -47,10 +47,4 @@ describe('WeekScheduleBuilderComponent', () => {
     expect(fixture.debugElement.query(By.css('app-week-schedule-grid-builder'))).not.toBeNull();
   });
 
-  it('emits cancelCreate when back is clicked', () => {
-    const spy = jasmine.createSpy('cancelCreate');
-    component.cancelCreate.subscribe(spy);
-    fixture.debugElement.query(By.css('button')).nativeElement.click();
-    expect(spy).toHaveBeenCalled();
-  });
 });

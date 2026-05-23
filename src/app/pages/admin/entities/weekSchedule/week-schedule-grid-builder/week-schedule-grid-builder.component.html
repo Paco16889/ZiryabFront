@@ -24,6 +24,7 @@
     </label>
     <select
       class="w-full max-w-lg border border-gray-300 rounded-md px-3 py-2 bg-white"
+      [value]="selectedClassKey()"
       (change)="onClassSelected($any($event.target).value)"
     >
       <option value="">{{ 'weekScheduleBuilder.grid.classPlaceholder' | translate }}</option>
@@ -44,11 +45,11 @@
 
   @if (loading()) {
     <p class="text-gray-600">{{ 'weekScheduleBuilder.grid.loading' | translate }}</p>
-  } @else if (selectedClass() != null && assignments().length === 0) {
+  } @else if (selectedClass() != null && !canShowGrid()) {
     <p class="text-sm text-amber-700 mb-4">{{ 'weekScheduleBuilder.grid.emptyClassAssignments' | translate }}</p>
-  } @else if (selectedClass() != null) {
+  } @else if (canShowGrid()) {
     <div class="space-y-6 hidden lg:block">
-      @for (d of weekdays; track d) {
+      @for (d of gridWeekdays(); track d) {
         <section
           class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden"
         >
@@ -56,7 +57,7 @@
             {{ weekdayLabel(d) }}
           </h2>
           <ul class="divide-y divide-gray-100">
-            @for (slot of slots; track slot.startTime) {
+            @for (slot of gridSlots(); track slot.startTime) {
               <li class="px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3">
                 <span
                   class="shrink-0 text-sm font-medium text-gray-700 w-40 tabular-nums"
@@ -69,9 +70,10 @@
                   }}</label>
                   <app-week-schedule-assignment-picker
                     [selectId]="'slot-desk-' + d + '-' + slot.startTime"
-                    [options]="sortedAssignmentOptions()"
+                    [options]="optionsForCell(d, slot)"
                     [teacherNameById]="teacherNameById()"
                     [selectedId]="cellAssignmentSelectValue(d, slot)"
+                    labelMode="subject"
                     selectClass="w-full max-w-xl text-sm border border-gray-300 rounded-md px-2 py-2 bg-white"
                     (assignmentChange)="onCellAssignmentChange(d, slot, $event)"
                   />
@@ -84,18 +86,19 @@
     </div>
 
     <div class="space-y-4 lg:hidden">
-      @for (d of weekdays; track d) {
+      @for (d of gridWeekdays(); track d) {
         <app-week-schedule-day-card [weekDay]="d" [cardSuffix]="'mobile-' + d">
-          @for (slot of slots; track slot.startTime) {
+          @for (slot of gridSlots(); track slot.startTime) {
             <app-week-schedule-hour-card [startTime]="slot.startTime" [finishTime]="slot.finishTime">
               <label class="sr-only" [attr.for]="'slot-mob-' + d + '-' + slot.startTime">{{
                 weekdayLabel(d) + ', ' + slot.startTime
               }}</label>
               <app-week-schedule-assignment-picker
                 [selectId]="'slot-mob-' + d + '-' + slot.startTime"
-                [options]="sortedAssignmentOptions()"
+                [options]="optionsForCell(d, slot)"
                 [teacherNameById]="teacherNameById()"
                 [selectedId]="cellAssignmentSelectValue(d, slot)"
+                labelMode="subject"
                 (assignmentChange)="onCellAssignmentChange(d, slot, $event)"
               />
             </app-week-schedule-hour-card>

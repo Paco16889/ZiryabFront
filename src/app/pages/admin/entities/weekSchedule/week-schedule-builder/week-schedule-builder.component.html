@@ -1,14 +1,5 @@
 <div class="max-w-7xl mx-auto">
-  <div class="flex items-center mb-6">
-    <button
-      type="button"
-      (click)="onCancel()"
-      class="mr-4 text-gray-600 hover:text-gray-900"
-    >
-      ← {{ 'common.buttons.back' | translate }}
-    </button>
-    <h1 class="text-2xl font-bold">{{ 'weekScheduleBuilder.title' | translate }}</h1>
-  </div>
+  <h1 class="text-2xl font-bold mb-6">{{ 'weekScheduleBuilder.title' | translate }}</h1>
 
   <div
     class="flex flex-wrap gap-2 mb-6"
@@ -48,11 +39,11 @@
   </div>
 
   @if (builderMode() === 'create') {
-    <app-week-schedule-create-template />
+    <app-week-schedule-create-template (templateCreated)="onTemplateCreated($event)" />
   } @else {
     <app-week-schedule-grid-builder
       [embedded]="true"
-      (cancelCreate)="onCancel()"
+      [preselectClassKey]="gridPreselectClassKey()"
       (scheduleSaved)="onGridScheduleSaved()"
     />
   }

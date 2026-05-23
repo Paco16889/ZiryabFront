@@ -44,9 +44,38 @@ describe('WeekScheduleCreateTemplateComponent', () => {
     expect(component.buildMaterializeRequest()).toBeNull();
   });
 
-  it('shows validation after comprobar click', () => {
+  it('shows validation after submit when form invalid', () => {
     component.onSubmit();
     expect(component.submitted()).toBeTrue();
     expect(component.showValidation()).toBeTrue();
+  });
+
+  it('posts materialize when form is valid', () => {
+    component.onClassChange({
+      label: '1º DAM — Mañana',
+      grade: '1',
+      course: { id: 1, name: 'DAM' },
+      group: { id: 1, name: 'Mañana' },
+      schoolYear: '2024-2025',
+      subjectCount: 8,
+      hasWeekSchedule: false,
+    });
+    component.onWeekDaysChange([1, 2, 3, 4, 5]);
+    component.onSubmit();
+
+    const req = httpMock.expectOne((r) => r.url.includes('/horarios-semanales/materialize'));
+    expect(req.request.method).toBe('POST');
+    req.flush({
+      success: true,
+      data: {
+        label: '1º DAM — Mañana',
+        schoolYear: '2024-2025',
+        created: 30,
+        weekDays: [1, 2, 3, 4, 5],
+        slotCount: 6,
+      },
+    });
+
+    expect(component.saveSuccess()).toBeTrue();
   });
 });

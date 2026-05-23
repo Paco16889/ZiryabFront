@@ -14,6 +14,7 @@ import { ClassSessionListComponent } from '../entities/class-session/class-sessi
 import { StudentTaskListComponent } from '../entities/student-task/student-task-list/student-task-list.component';
 import { AssistanceListComponent } from '../entities/assistance/assistance-list/assistance-list.component';
 import { NotificationListComponent } from '../entities/notification/notification-list/notification-list.component';
+import { IssueListComponent } from '../entities/issue/issue-list/issue-list.component';
 
 /**
  * Componente que actúa como área de contenido principal del panel de administración.
@@ -35,6 +36,7 @@ import { NotificationListComponent } from '../entities/notification/notification
     StudentTaskListComponent,
     AssistanceListComponent,
     NotificationListComponent,
+    IssueListComponent,
   ],
   templateUrl: './desplegable-admin.component.html',
   styleUrl: './desplegable-admin.component.scss'

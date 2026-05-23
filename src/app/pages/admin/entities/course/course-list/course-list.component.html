@@ -27,9 +27,36 @@
   @if (view() === 'create') {
     <app-course-create-form
       (cancelCreate)="closeCreateForm()"
-      (courseCreated)="onCourseCreated()"
+      (courseCreated)="onCourseCreated($event)"
     >
     </app-course-create-form>
+  }
+
+  @if (view() === 'post-create' && lastCreatedCourse(); as created) {
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-4">
+      <p class="text-green-800 bg-green-50 border border-green-200 rounded-md px-4 py-3 text-sm">
+        {{ 'lists.courses.createSuccess' | translate: { name: created.name } }}
+      </p>
+      <p class="text-sm text-gray-700">
+        {{ 'lists.courses.createSubjectsPrompt' | translate }}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <button
+          type="button"
+          class="px-4 py-2 bg-purple-600 text-white rounded-md text-sm font-medium hover:bg-purple-700"
+          (click)="goToCreateSubjectsForLastCourse()"
+        >
+          {{ 'lists.courses.createSubjectsCta' | translate }}
+        </button>
+        <button
+          type="button"
+          class="px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50"
+          (click)="closePostCreate()"
+        >
+          {{ 'lists.courses.backToList' | translate }}
+        </button>
+      </div>
+    </div>
   }
 
   @if (view() === 'assignments-wizard') {

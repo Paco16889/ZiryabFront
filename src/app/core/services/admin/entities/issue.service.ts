@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 import {
   Issue,
   IssueByIdResponse,
@@ -11,23 +11,22 @@ import {
   IssuesAllResponse,
   IssueUpdateRequest,
   IssueUpdateResponse,
-} from '../models/issue';
+} from '../../../models/issue';
 
-/** Payload de actualización incluye `id`. */
+/** Payload de actualización incluye `id` (lo añade el modal genérico). */
 export type IssueUpdatePayload = IssueUpdateRequest & { id: number };
 
 /**
- * Servicio del tablón de anuncios (`/api/issues`). CURSO-126 / historia CURSO-125.
+ * Servicio admin del tablón de anuncios (`/api/issues`). CURSO-126 / historia CURSO-125.
  */
 @Injectable({
   providedIn: 'root',
 })
-export class IssueService {
+export class AdminIssueService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = `${environment.apiUrl}/issues`;
 
   readonly issues = signal<Issue[]>([]);
-  readonly loading = signal(false);
 
   getAllIssues(): Observable<IssuesAllResponse> {
     return this.http.get<IssuesAllResponse>(this.apiUrl).pipe(
@@ -36,17 +35,15 @@ export class IssueService {
   }
 
   loadIssues(): void {
-    this.loading.set(true);
     this.getAllIssues().subscribe((res) => {
       this.issues.set(res.success ? res.data : []);
-      this.loading.set(false);
     });
   }
 
   getIssueById(id: number): Observable<IssueByIdResponse> {
     return this.http.get<IssueByIdResponse>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {
-        console.error('IssueService.getIssueById', error);
+        console.error('AdminIssueService.getIssueById', error);
         throw error;
       }),
     );
@@ -55,7 +52,7 @@ export class IssueService {
   createIssue(payload: IssueCreateRequest): Observable<IssueCreateResponse> {
     return this.http.post<IssueCreateResponse>(this.apiUrl, payload).pipe(
       catchError((error) => {
-        console.error('IssueService.createIssue', error);
+        console.error('AdminIssueService.createIssue', error);
         throw error;
       }),
     );
@@ -65,7 +62,7 @@ export class IssueService {
     const { id, ...body } = payload;
     return this.http.patch<IssueUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
       catchError((error) => {
-        console.error('IssueService.updateIssue', error);
+        console.error('AdminIssueService.updateIssue', error);
         throw error;
       }),
     );
@@ -74,7 +71,7 @@ export class IssueService {
   deleteIssue(id: number): Observable<IssueDeleteResponse> {
     return this.http.delete<IssueDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {
-        console.error('IssueService.deleteIssue', error);
+        console.error('AdminIssueService.deleteIssue', error);
         throw error;
       }),
     );

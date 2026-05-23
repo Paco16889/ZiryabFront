@@ -4,9 +4,10 @@ import { environment } from '../../../../../../environments/environment';
 import { WeekSchedule } from '../../../../models/week-schedule';
 import { TeacherSubjectAssignmentRow } from '../../../../models/teacher/subjectforteacher';
 import {
+  dedupeAssignmentRowsById,
   filterTeacherAssignmentsForClass,
-  filterTeacherAssignmentsForSchoolYear,
 } from '../../../../utils/week-schedule-assignment-filters';
+import { assignmentWithIncludesToTeacherRow } from '../../../../utils/week-schedule-assignment-mapper';
 import { AssignmentHttpService } from './teacher-assignment-http.service';
 import { WeekScheduleService } from './week-schedule.service';
 
@@ -22,27 +23,41 @@ export class WeekScheduleAssignmentDataService {
   private readonly schedules = inject(WeekScheduleService);
 
   /**
-   * Filas de asignación docente para un grupo y año (`GET /api/assignments` + filtro local).
+   * Asignaciones docente de una clase agregada (mismo criterio que el wizard de ciclos).
    */
-  private fetchAssignmentRowsForGroup(
+  private fetchAssignmentRowsForClass(
+    courseId: number,
+    grade: string,
     groupId: number,
     schoolYear: string = environment.currentSchoolYear,
   ): Observable<TeacherSubjectAssignmentRow[]> {
     return this.fetchAllAssignmentRowsForGroupRaw(groupId).pipe(
-      map((rows) => filterTeacherAssignmentsForSchoolYear(rows, schoolYear)),
+      map((rows) =>
+        dedupeAssignmentRowsById(
+          filterTeacherAssignmentsForClass(rows, courseId, grade, groupId, schoolYear),
+        ),
+      ),
     );
   }
 
   /**
-   * `WeekSchedule` del listado global cuyo `teacherAssignment` pertenece al grupo.
+   * Franjas del listado global: por grupo (con assignment) o por `label` (plantilla vacía).
    */
-  private fetchWeekSchedulesForGroup(groupId: number): Observable<WeekSchedule[]> {
+  private fetchWeekSchedulesForClass(
+    groupId: number,
+    classLabel: string,
+  ): Observable<WeekSchedule[]> {
     return this.schedules.getAllSchedules().pipe(
       map((res) => {
         if (!res.success || !res.data?.length) {
           return [];
         }
-        return res.data.filter((s) => s.teacherAssignment?.idGroup === groupId);
+        return res.data.filter((s) => {
+          if (s.label === classLabel) {
+            return true;
+          }
+          return s.teacherAssignment?.idGroup === groupId;
+        });
       }),
       catchError(() => of([])),
     );
@@ -56,25 +71,36 @@ export class WeekScheduleAssignmentDataService {
     grade: string,
     groupId: number,
     schoolYear: string = environment.currentSchoolYear,
+    classLabel: string,
+    cachedWeekSchedules?: WeekSchedule[],
   ): Observable<{
     assignments: TeacherSubjectAssignmentRow[];
     weekSchedules: WeekSchedule[];
   }> {
+    const schedules$ =
+      cachedWeekSchedules != null
+        ? of(cachedWeekSchedules)
+        : this.fetchWeekSchedulesForClass(groupId, classLabel);
+
     return forkJoin({
-      assignments: this.fetchAssignmentRowsForGroup(groupId, schoolYear).pipe(
-        map((rows) =>
-          filterTeacherAssignmentsForClass(rows, courseId, grade, groupId, schoolYear),
-        ),
+      assignments: this.fetchAssignmentRowsForClass(
+        courseId,
+        grade,
+        groupId,
+        schoolYear,
       ),
-      weekSchedules: this.fetchWeekSchedulesForGroup(groupId),
+      weekSchedules: schedules$,
     }).pipe(
       map(({ assignments, weekSchedules }) => {
         const assignmentIds = new Set(assignments.map((a) => a.id));
         return {
           assignments,
-          weekSchedules: weekSchedules.filter((ws) =>
-            assignmentIds.has(ws.teacherAssignment.id),
-          ),
+          weekSchedules: weekSchedules.filter((ws) => {
+            if (ws.teacherAssignment == null) {
+              return ws.label === classLabel;
+            }
+            return assignmentIds.has(ws.teacherAssignment.id);
+          }),
         };
       }),
       catchError(() => of({ assignments: [], weekSchedules: [] })),
@@ -92,7 +118,9 @@ export class WeekScheduleAssignmentDataService {
         if (!res.success || !res.data?.length) {
           return [];
         }
-        return res.data.filter((r) => r.idGroup === groupId) as TeacherSubjectAssignmentRow[];
+        return res.data
+          .filter((r) => r.idGroup === groupId)
+          .map((r) => assignmentWithIncludesToTeacherRow(r));
       }),
       catchError(() => of([])),
     );

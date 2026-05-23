@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 import {
+  AssignmentBulkApiResponse,
   AssignmentBulkCreateItem,
   AssignmentBulkCreateResponse,
   CourseAssignmentsByOfferResponse,
@@ -14,6 +15,7 @@ import {
   AssignmentWithIncludes,
 } from '../../../models/assingment';
 import { environment } from '../../../../../environments/environment';
+import { normalizeGradeValue } from '../../../utils/week-schedule-assignment-filters';
 import { CourseService } from './course.service';
 
 /**
@@ -86,17 +88,16 @@ export class AssignmentsService {
         if (!res.success) {
           return { success: false, data: [] as AssignmentWithIncludes[] };
         }
-        const gradeNorm = String(grade).trim();
+        const gradeNorm = normalizeGradeValue(grade);
         const filtered = res.data.filter((a) => {
           const sub = a.subject;
           if (!sub) {
             return false;
           }
           const courseId = sub.course?.id ?? (sub as { idCourse?: number }).idCourse;
-          const subGrade = String(sub.grade ?? '').trim();
           return (
             courseId === idCourse &&
-            subGrade === gradeNorm &&
+            normalizeGradeValue(sub.grade ?? '') === gradeNorm &&
             a.schoolYear === schoolYear
           );
         });
@@ -129,16 +130,46 @@ export class AssignmentsService {
     }
 
     return this.http
-      .post<AssignmentBulkCreateResponse>(`${this.assignmentsBaseUrl}/bulk`, { items })
+      .post<AssignmentBulkApiResponse>(`${this.assignmentsBaseUrl}/bulk`, {
+        assignments: items,
+      })
       .pipe(
-        switchMap((res) => {
-          if (res.success && res.data) {
-            return of(res);
+        map((res) => this.mapBulkApiResponse(res, items)),
+        switchMap((mapped) => {
+          if (mapped.success && mapped.data && mapped.data.created + mapped.data.duplicates > 0) {
+            return of(mapped);
           }
           return this.createAssignmentsSequential(items);
         }),
         catchError(() => this.createAssignmentsSequential(items)),
       );
+  }
+
+  /** Respuesta cruda del back (`POST /assignments/bulk`). */
+  private mapBulkApiResponse(
+    res: AssignmentBulkApiResponse,
+    items: AssignmentBulkCreateItem[],
+  ): AssignmentBulkCreateResponse {
+    if (!res.success || !res.data) {
+      return {
+        success: false,
+        data: { created: 0, duplicates: 0, skipped: 0, errors: [] },
+        message: res.message,
+      };
+    }
+
+    const created = Array.isArray(res.data.created) ? res.data.created.length : 0;
+    const duplicates = Array.isArray(res.data.duplicates) ? res.data.duplicates.length : 0;
+    const errors = (res.data.errors ?? []).map((e) => ({
+      idSubject: e.input?.idSubject ?? items[e.index]?.idSubject ?? 0,
+      message: e.message,
+    }));
+
+    return {
+      success: created > 0 || duplicates > 0,
+      message: res.message,
+      data: { created, duplicates, skipped: 0, errors },
+    };
   }
 
   /** Fallback cuando `POST /bulk` no existe: altas unitarias en paralelo. */

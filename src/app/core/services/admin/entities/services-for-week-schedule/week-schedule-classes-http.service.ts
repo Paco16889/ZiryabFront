@@ -22,8 +22,12 @@ export class WeekScheduleClassesHttpService {
    */
   getAllClasses(
     schoolYear: string = environment.currentSchoolYear,
+    withoutScheduleOnly = false,
   ): Observable<WeekScheduleClassesResponse> {
-    const params = new HttpParams().set('schoolYear', schoolYear);
+    let params = new HttpParams().set('schoolYear', schoolYear);
+    if (withoutScheduleOnly) {
+      params = params.set('hasWeekSchedule', 'false');
+    }
 
     return this.http.get<WeekScheduleClassesResponse>(this.apiUrl, { params }).pipe(
       catchError(() => of({ success: false, count: 0, data: [] })),

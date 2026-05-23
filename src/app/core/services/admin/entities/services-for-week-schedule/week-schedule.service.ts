@@ -157,6 +157,9 @@ export class WeekScheduleService {
     if (data.finishTime !== undefined) {
       body['finishTime'] = data.finishTime;
     }
+    if (data.idTeacherAssignment !== undefined) {
+      body['idTeacherAssignment'] = data.idTeacherAssignment;
+    }
     return this.http.patch<WeekScheduleUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
       map((r) =>
         r.success && r.data

@@ -1,6 +1,9 @@
 import { AssignmentStatus } from '../models/assingment';
 import { TeacherSubjectAssignmentRow } from '../models/teacher/subjectforteacher';
 import {
+  dedupeAssignmentRowsBySubject,
+  filterAssignmentOptionsForCellBySubjectHours,
+  filterTeacherAssignmentsForClass,
   filterTeacherAssignmentsForSchoolYear,
   isTeacherAssignmentRowSchedulable,
 } from './week-schedule-assignment-filters';
@@ -29,10 +32,78 @@ describe('week-schedule-assignment-filters', () => {
     ).toBeTrue();
   });
 
-  it('isTeacherAssignmentRowSchedulable rejects non-ACTIVE', () => {
+  it('isTeacherAssignmentRowSchedulable accepts STANDBY (seed / admin alta)', () => {
     expect(
       isTeacherAssignmentRowSchedulable(base({ status: AssignmentStatus.STANDBY })),
+    ).toBeTrue();
+  });
+
+  it('isTeacherAssignmentRowSchedulable rejects SUSPENDED', () => {
+    expect(
+      isTeacherAssignmentRowSchedulable(base({ status: AssignmentStatus.SUSPENDED })),
     ).toBeFalse();
+  });
+
+  it('filterAssignmentOptionsForCellBySubjectHours allows same subject until hours exhausted', () => {
+    const rows = [
+      base({ id: 1, idSubject: 20, subject: { id: 20, name: 'Prog', hours: 2 } }),
+      base({ id: 2, idSubject: 21, subject: { id: 21, name: 'BBDD', hours: 1 } }),
+    ];
+    const options = dedupeAssignmentRowsBySubject(rows);
+    const cells = new Map([
+      [
+        '1|08:00',
+        {
+          idSubject: 20,
+          idTeacherAssignment: 1,
+          startTime: '08:00',
+          finishTime: '09:00',
+        },
+      ],
+    ]);
+    const forSecondSlot = filterAssignmentOptionsForCellBySubjectHours(
+      options,
+      cells,
+      '1|09:00',
+    );
+    expect(forSecondSlot.some((r) => r.idSubject === 20)).toBeTrue();
+    expect(forSecondSlot.some((r) => r.idSubject === 21)).toBeTrue();
+
+    cells.set('1|09:00', {
+      idSubject: 20,
+      idTeacherAssignment: 1,
+      startTime: '09:00',
+      finishTime: '10:00',
+    });
+    const forThird = filterAssignmentOptionsForCellBySubjectHours(options, cells, '1|10:00');
+    expect(forThird.some((r) => r.idSubject === 20)).toBeFalse();
+    expect(forThird.some((r) => r.idSubject === 21)).toBeTrue();
+  });
+
+  it('dedupeAssignmentRowsBySubject keeps one row per idSubject', () => {
+    const rows = [
+      base({ id: 1, idSubject: 20, subject: { id: 20, name: 'Prog' } }),
+      base({ id: 2, idSubject: 20, subject: { id: 20, name: 'Prog' } }),
+      base({ id: 3, idSubject: 21, subject: { id: 21, name: 'BBDD' } }),
+    ];
+    const out = dedupeAssignmentRowsBySubject(rows);
+    expect(out.length).toBe(2);
+    expect(out.map((r) => r.idSubject).sort()).toEqual([20, 21]);
+  });
+
+  it('filterTeacherAssignmentsForClass matches idCourse when course include is missing', () => {
+    const rows = [
+      base({
+        id: 1,
+        subject: { id: 20, name: 'Base de datos', grade: '1º', idCourse: 5 } as TeacherSubjectAssignmentRow['subject'],
+      }),
+      base({
+        id: 2,
+        subject: { id: 21, name: 'Otra', grade: '1º', course: { id: 99, name: 'X' } },
+      }),
+    ];
+    const out = filterTeacherAssignmentsForClass(rows, 5, '1', 30, '2024-2025');
+    expect(out.map((r) => r.id)).toEqual([1]);
   });
 
   it('filterTeacherAssignmentsForSchoolYear filters year and status', () => {
@@ -40,8 +111,9 @@ describe('week-schedule-assignment-filters', () => {
       base({ id: 1, schoolYear: '2024-2025', status: AssignmentStatus.ACTIVE }),
       base({ id: 2, schoolYear: '2023-2024', status: AssignmentStatus.ACTIVE }),
       base({ id: 3, schoolYear: '2024-2025', status: AssignmentStatus.STANDBY }),
+      base({ id: 4, schoolYear: '2024-2025', status: AssignmentStatus.ILLNESS }),
     ];
     const out = filterTeacherAssignmentsForSchoolYear(rows, '2024-2025');
-    expect(out.map((r) => r.id)).toEqual([1]);
+    expect(out.map((r) => r.id)).toEqual([1, 3]);
   });
 });

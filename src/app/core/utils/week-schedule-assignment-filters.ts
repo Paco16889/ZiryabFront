@@ -1,5 +1,14 @@
 import { AssignmentStatus } from '../models/assingment';
 import { TeacherSubjectAssignmentRow } from '../models/teacher/subjectforteacher';
+import { hoursBetween } from './time-range';
+
+/** Celda mínima para contar horas ya asignadas a una asignatura en la rejilla. */
+export interface WeekScheduleGridCellHoursSlice {
+  idSubject?: number;
+  idTeacherAssignment?: number;
+  startTime: string;
+  finishTime: string;
+}
 
 /**
  * @file Filtros sobre filas **TeacherOnSubjectOnGroup** (`TeacherSubjectAssignmentRow`) para el builder de horarios.
@@ -12,7 +21,7 @@ import { TeacherSubjectAssignmentRow } from '../models/teacher/subjectforteacher
  * Comprueba si una fila de asignación docente puede usarse al **montar horarios** (está “schedulable”).
  *
  * - Si `status` viene vacío o `null` (API antigua o sin campo), se considera **válida** (`true`).
- * - Solo se acepta explícitamente estado **`ACTIVE`** como impartible.
+ * - Se aceptan **`ACTIVE`** y **`STANDBY`** (el seed y el alta en admin usan STANDBY hasta activar).
  *
  * @param row - Fila `TeacherSubjectAssignmentRow` devuelta por el API.
  * @returns `true` si se puede ofrecer en el constructor de horarios; si no, `false`.
@@ -35,7 +44,9 @@ export function isTeacherAssignmentRowSchedulable(
   if (row.status == null || row.status === '') {
     return true;
   }
-  return row.status === AssignmentStatus.ACTIVE;
+  return (
+    row.status === AssignmentStatus.ACTIVE || row.status === AssignmentStatus.STANDBY
+  );
 }
 
 /**
@@ -77,8 +88,25 @@ export function filterTeacherAssignmentsForSchoolYear(
 }
 
 /** Normaliza curso académico para comparar (`1º` ↔ `1`). */
-function normalizeGradeValue(grade: string): string {
+export function normalizeGradeValue(grade: string): string {
   return grade.replace(/º/g, '').trim();
+}
+
+/** Ciclo y curso (grade) de la asignatura anidada; el API puede enviar `course.id` o `idCourse`. */
+export function subjectMatchesClass(
+  row: TeacherSubjectAssignmentRow,
+  courseId: number,
+  grade: string,
+): boolean {
+  const sub = row.subject;
+  if (!sub) {
+    return false;
+  }
+  const cid = sub.course?.id ?? (sub as { idCourse?: number }).idCourse;
+  if (cid !== courseId) {
+    return false;
+  }
+  return normalizeGradeValue(sub.grade ?? '') === normalizeGradeValue(grade);
 }
 
 /**
@@ -91,11 +119,82 @@ export function filterTeacherAssignmentsForClass(
   groupId: number,
   schoolYear: string,
 ): TeacherSubjectAssignmentRow[] {
-  const targetGrade = normalizeGradeValue(grade);
   return filterTeacherAssignmentsForSchoolYear(rows, schoolYear).filter(
-    (r) =>
-      r.idGroup === groupId &&
-      r.subject?.course?.id === courseId &&
-      normalizeGradeValue(r.subject?.grade ?? '') === targetGrade,
+    (r) => r.idGroup === groupId && subjectMatchesClass(r, courseId, grade),
   );
+}
+
+/** Elimina filas duplicadas por `id` de assignment. */
+export function dedupeAssignmentRowsById(
+  rows: TeacherSubjectAssignmentRow[],
+): TeacherSubjectAssignmentRow[] {
+  const seen = new Map<number, TeacherSubjectAssignmentRow>();
+  for (const row of rows) {
+    if (!seen.has(row.id)) {
+      seen.set(row.id, row);
+    }
+  }
+  return [...seen.values()];
+}
+
+/**
+ * Una sola opción por asignatura (`idSubject`) en cada desplegable.
+ * Si hay varios assignments para el mismo Fach, conserva `preferAssignmentId` o el de menor `id`.
+ */
+export function dedupeAssignmentRowsBySubject(
+  rows: TeacherSubjectAssignmentRow[],
+  preferAssignmentId: number | null = null,
+): TeacherSubjectAssignmentRow[] {
+  const bySubject = new Map<number, TeacherSubjectAssignmentRow>();
+  for (const row of rows) {
+    const sid = row.idSubject;
+    const existing = bySubject.get(sid);
+    if (!existing) {
+      bySubject.set(sid, row);
+      continue;
+    }
+    if (row.id === preferAssignmentId) {
+      bySubject.set(sid, row);
+    } else if (
+      preferAssignmentId == null &&
+      existing.id !== preferAssignmentId &&
+      row.id < existing.id
+    ) {
+      bySubject.set(sid, row);
+    }
+  }
+  return [...bySubject.values()];
+}
+
+/**
+ * Opciones del desplegable de una celda: todas las asignaturas del ciclo+grade de la clase
+ * que aún tienen horas libres (`subject.hours` menos franjas ya asignadas).
+ */
+export function filterAssignmentOptionsForCellBySubjectHours(
+  options: TeacherSubjectAssignmentRow[],
+  cells: Map<string, WeekScheduleGridCellHoursSlice>,
+  cellKey: string,
+): TeacherSubjectAssignmentRow[] {
+  const current = cells.get(cellKey);
+  const currentSubjectId = current?.idSubject ?? null;
+
+  return options.filter((row) => {
+    if (currentSubjectId != null && row.idSubject === currentSubjectId) {
+      return true;
+    }
+    const declared = row.subject?.hours;
+    if (declared == null || declared <= 0) {
+      return true;
+    }
+    let used = 0;
+    for (const [key, cell] of cells) {
+      if (key === cellKey) {
+        continue;
+      }
+      if (cell.idSubject === row.idSubject && cell.idTeacherAssignment != null) {
+        used += hoursBetween(cell.startTime, cell.finishTime);
+      }
+    }
+    return used < declared - 1e-6;
+  });
 }

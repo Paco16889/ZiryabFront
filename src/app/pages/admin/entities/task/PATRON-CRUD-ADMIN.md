@@ -11,6 +11,7 @@ Referencia para clonar nuevas entidades admin. **No es un framework**: copiar ca
 | CURSO-106 | StudentTask | `studentTasks` |
 | CURSO-107 | Assistance | `assistances` |
 | CURSO-108 | Notification | `notifications` |
+| CURSO-125/127 | Issue (tablón) | `issues` |
 
 ## Archivos por entidad
 

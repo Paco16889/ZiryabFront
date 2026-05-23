@@ -2,6 +2,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
 
+/** Payload emitido tras crear ciclo (CURSO-139). */
+export interface CourseCreatedPayload {
+  id: number;
+  name: string;
+}
+
 /**
  * Componente que gestiona el formulario de creación de un nuevo ciclo académico.
  * Valida el formulario y envía los datos al backend para crear el ciclo.
@@ -22,7 +28,7 @@ export class CourseCreateFormComponent {
     /**
    * Evento emitido cuando el ciclo se ha creado correctamente.
    */
-  @Output() courseCreated = new EventEmitter<void>();
+  @Output() courseCreated = new EventEmitter<CourseCreatedPayload>();
 
    /**
    * Formulario reactivo con el campo nombre del ciclo académico.
@@ -63,8 +69,9 @@ export class CourseCreateFormComponent {
       this.errorMessage = '';
 
       this.courseService.createCourse(this.createForm.value).subscribe({
-        next: () => {
-          this.courseCreated.emit();
+        next: (res) => {
+          this.isCreating = false;
+          this.courseCreated.emit({ id: res.data.id, name: res.data.name });
         },
         error: (err) => {
           this.isCreating = false;

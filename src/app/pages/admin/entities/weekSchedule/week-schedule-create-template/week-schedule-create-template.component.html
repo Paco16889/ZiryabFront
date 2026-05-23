@@ -1,6 +1,7 @@
 <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
   <app-week-schedule-create-class-select
     [selectedClassKey]="selectedClassKey()"
+    [refreshToken]="classListRefresh()"
     [showValidation]="showValidation()"
     (classChange)="onClassChange($event)"
   />
@@ -17,20 +18,45 @@
     (slotsChange)="onSlotsChange($event)"
   />
 
-  <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
-    {{ 'weekScheduleBuilder.create.pendingApi' | translate }}
-  </p>
+  @if (saveSuccess()) {
+    <p class="text-sm text-green-800 bg-green-50 border border-green-200 rounded-md px-3 py-2">
+      {{ 'weekScheduleBuilder.create.saveSuccess' | translate }}
+    </p>
+  }
+
+  @if (saveError()) {
+    <p class="text-sm text-red-800 bg-red-50 border border-red-200 rounded-md px-3 py-2">
+      {{ saveError() }}
+    </p>
+  }
 
   <div class="pt-2">
     <button
       type="button"
-      class="px-4 py-2 bg-purple-600 text-white rounded-md"
+      class="px-4 py-2 bg-purple-600 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+      [disabled]="!canSubmit()"
       (click)="onSubmit()"
     >
-      {{ 'weekScheduleBuilder.create.validate' | translate }}
+      @if (saving()) {
+        {{ 'weekScheduleBuilder.create.saving' | translate }}
+      } @else {
+        {{ 'weekScheduleBuilder.create.submit' | translate }}
+      }
     </button>
     <p class="text-xs text-gray-500 mt-2">
       {{ 'weekScheduleBuilder.create.submitHint' | translate }}
     </p>
   </div>
+
+  @if (bulkGenerating()) {
+    <p class="mt-3 text-xs text-gray-500 animate-pulse">
+      {{ 'weekScheduleBuilder.create.bulkGenerating' | translate }}
+    </p>
+  }
+
+  @if (bulkResult()) {
+    <div class="mt-3 rounded-md bg-green-50 border border-green-200 px-4 py-2 text-sm text-green-800">
+      {{ bulkResult() }}
+    </div>
+  }
 </div>

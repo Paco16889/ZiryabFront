@@ -6,8 +6,19 @@ export type IssueAudience =
   | 'ALL_TEACHERS'
   | 'ALL_STUDENTS'
   | 'GROUP'
+  /** Ciclo formativo + curso (1º / 2º). Legacy / API. */
   | 'COURSE'
-  | 'SUBJECT_GROUP';
+  /** Ciclo + curso + grupo + asignatura. Legacy / API. */
+  | 'SUBJECT_GROUP'
+  /** Profesor concreto (comunicación al docente). */
+  | 'TEACHER'
+  /** Asignación docente concreta. Legacy / API. */
+  | 'ASSIGNMENT'
+  /**
+   * Audiencia acotada con filtros combinables (ciclo y/o curso y/o grupo…).
+   * En alta se mapea al valor legacy más cercano para el API.
+   */
+  | 'TARGETED';
 
 /**
  * Tipo de emisor del anuncio.
@@ -38,6 +49,12 @@ export interface Issue {
   idCourse?: number | null;
   /** Asignatura destino (si audience = SUBJECT_GROUP) */
   idSubject?: number | null;
+  /** Curso académico 1º / 2º (si audience = COURSE o SUBJECT_GROUP) */
+  grade?: string | null;
+  /** Profesor destino (si audience = TEACHER o ASSIGNMENT) */
+  idTeacher?: number | null;
+  /** Asignación docente destino (si audience = ASSIGNMENT) */
+  idTeacherAssignment?: number | null;
   /** Si está publicado */
   isPublished: boolean;
   /** Fecha de publicación programada */
@@ -86,6 +103,12 @@ export interface IssueCreateRequest {
   idCourse?: number;
   /** Asignatura destino, opcional */
   idSubject?: number;
+  /** Curso académico (1 / 2), opcional */
+  grade?: string;
+  /** Profesor destino, opcional */
+  idTeacher?: number;
+  /** Asignación docente destino, opcional */
+  idTeacherAssignment?: number;
   /** URL de adjunto, opcional */
   attachmentUrl?: string;
   /** Publicar de inmediato */
@@ -123,6 +146,12 @@ export interface IssueUpdateRequest {
   idCourse?: number;
   /** Nueva asignatura destino */
   idSubject?: number;
+  /** Nuevo curso académico */
+  grade?: string;
+  /** Nuevo profesor destino */
+  idTeacher?: number;
+  /** Nueva asignación docente destino */
+  idTeacherAssignment?: number;
   /** Nueva URL de adjunto */
   attachmentUrl?: string;
   /** Estado de publicación */

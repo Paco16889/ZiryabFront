@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, effect, EventEmitter, input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
@@ -17,6 +17,9 @@ import { CoursesAllResponse } from '../../../../../core/models/course';
   styleUrl: './subject-create-form.component.scss'
 })
 export class SubjectCreateFormComponent {
+  /** Ciclo preseleccionado al llegar desde ciclos o wizard (CURSO-140). */
+  readonly preselectedIdCourse = input<number | null>(null);
+
     /**
    * Evento emitido cuando el usuario cancela la creación.
    */
@@ -71,6 +74,18 @@ export class SubjectCreateFormComponent {
   description: ['', Validators.maxLength(255)],
   idCourse:    ['', Validators.required]
 });
+    effect(() => {
+      this.applyPreselectedCourse(this.preselectedIdCourse());
+    });
+  }
+
+  private applyPreselectedCourse(idCourse: number | null): void {
+    if (idCourse == null || this.isLoadingCourses || this.courses.length === 0) {
+      return;
+    }
+    if (this.courses.some((c) => c.id === idCourse)) {
+      this.createForm.patchValue({ idCourse });
+    }
   }
 
   /**
@@ -81,6 +96,7 @@ export class SubjectCreateFormComponent {
       next: (response) => {
         this.courses = response.data;
         this.isLoadingCourses = false;
+        this.applyPreselectedCourse(this.preselectedIdCourse());
       },
       error: (err) => {
         console.error('Error cargando ciclos:', err);

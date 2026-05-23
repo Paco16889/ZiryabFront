@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -25,8 +24,6 @@ import { NotificationToggleService } from '../../../core/services/notification/n
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
-    RouterLinkActive,
     SelectorIdiomaComponent,
     TranslateModule,
     NotificationBadgeComponent,
@@ -48,9 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   /** Clave de traducción del rol del usuario (p. ej. `roles.student`) mostrada en la cabecera. */
   userRoleKey = 'roles.user';
 
-  /** Si hay sesión activa (enlace Tablón visible). */
-  isAuthenticated = false;
-
   /** Notificación recibida por SSE para mostrar un aviso rápido (toast) en pantalla. */
   toastNotification: AppNotification | null = null;
 
@@ -66,12 +60,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (user) {
           this.userName = user.name;
           this.userRoleKey = this.getRoleKey(user.role);
-          this.isAuthenticated = true;
           this.notificationService.load();
         } else {
           this.userName = 'Nombre';
           this.userRoleKey = 'roles.user';
-          this.isAuthenticated = false;
           this.dismissToast();
           this.notificationPanel.close();
         }
@@ -98,7 +90,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (currentUser) {
       this.userName = currentUser.name;
       this.userRoleKey = this.getRoleKey(currentUser.role);
-      this.isAuthenticated = true;
       this.notificationService.load();
     }
   }
