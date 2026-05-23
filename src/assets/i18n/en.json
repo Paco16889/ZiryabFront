@@ -239,7 +239,43 @@
     "classSessions": "Sessions",
     "studentTasks": "Submissions",
     "assistances": "Attendance",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "reports": "Reports"
+  },
+
+  "informe": {
+    "title": "Center analytics — Ziryab",
+    "subtitle": "Global academic report (enrollments, teachers, attendance and tasks)",
+    "backToAdmin": "Back to admin panel",
+    "filters": "Filters",
+    "filterYear": "School year",
+    "filterCourse": "Course cycle",
+    "filterGroup": "Group",
+    "allCourses": "All cycles",
+    "allGroups": "All groups",
+    "includeInactive": "Include inactive enrollments and assignments",
+    "applyFilters": "Apply filters",
+    "loading": "Loading…",
+    "exports": "Export data",
+    "exportCsvFull": "Export full CSV",
+    "exportXlsxFull": "Export full XLSX",
+    "exportCsvFiltered": "Export filtered CSV",
+    "exportXlsxFiltered": "Export filtered XLSX",
+    "topGroups": "Top groups by students",
+    "enrollments": "Enrollments",
+    "powerBiTitle": "Power BI report",
+    "powerBiHint": "Download the predefined Power BI Desktop report (same file regardless of filters).",
+    "downloadPbix": "Download Power BI report",
+    "menu": "Menu",
+    "kpi": {
+      "matriculas": "Enrollments",
+      "alumnos": "Unique students",
+      "profesores": "Teachers",
+      "ciclos": "Cycles",
+      "grupos": "Groups",
+      "asistencia": "Attendance rate",
+      "sesionesCanceladas": "Cancelled sessions"
+    }
   },
 
   "deleteModal": {

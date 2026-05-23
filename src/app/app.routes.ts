@@ -205,6 +205,15 @@ export const routes: Routes = [
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['ADMIN'] },
     },
+    {
+        path: 'informe',
+        loadComponent: () =>
+            import('./pages/admin/informe-admin/informe-admin.component').then(
+                (m) => m.InformeAdminComponent,
+            ),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['ADMIN'] },
+    },
     // ============================================
     // CATCH-ALL (rutas no encontradas)
     // ============================================

@@ -1,0 +1,178 @@
+<div class="min-h-screen bg-sky-50">
+  <div class="flex">
+    <aside class="hidden md:block bg-purple-100 min-h-screen shrink-0">
+      <app-admin-menu></app-admin-menu>
+      <a
+        routerLink="/dashboard-admin"
+        class="block mx-2 mb-4 px-4 py-2 text-center text-sm bg-purple-600 text-white rounded hover:bg-purple-700"
+      >
+        {{ 'informe.backToAdmin' | translate }}
+      </a>
+    </aside>
+
+    <main class="flex-1 p-4 md:p-8 max-w-6xl mx-auto w-full">
+      <header class="mb-6">
+        <h1 class="text-3xl font-bold text-blue-700">{{ 'informe.title' | translate }}</h1>
+        <p class="text-gray-600 mt-1">{{ 'informe.subtitle' | translate }}</p>
+      </header>
+
+      @if (errorMessage()) {
+        <div class="mb-4 p-3 rounded bg-red-100 text-red-800 text-sm" role="alert">
+          {{ errorMessage() }}
+        </div>
+      }
+
+      <!-- Filtros -->
+      <section class="bg-white rounded-xl shadow p-5 mb-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">{{ 'informe.filters' | translate }}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <label class="flex flex-col gap-1 text-sm">
+            <span class="font-medium text-gray-700">{{ 'informe.filterYear' | translate }}</span>
+            <input
+              type="text"
+              class="border rounded-lg px-3 py-2"
+              [(ngModel)]="anyo"
+              placeholder="2024-2025"
+            />
+          </label>
+          <label class="flex flex-col gap-1 text-sm">
+            <span class="font-medium text-gray-700">{{ 'informe.filterCourse' | translate }}</span>
+            <select class="border rounded-lg px-3 py-2" [(ngModel)]="ciclo">
+              <option value="todos">{{ 'informe.allCourses' | translate }}</option>
+              @for (c of courses(); track c.id) {
+                <option [value]="c.name">{{ c.name }}</option>
+              }
+            </select>
+          </label>
+          <label class="flex flex-col gap-1 text-sm">
+            <span class="font-medium text-gray-700">{{ 'informe.filterGroup' | translate }}</span>
+            <select class="border rounded-lg px-3 py-2" [(ngModel)]="grupo">
+              <option value="todos">{{ 'informe.allGroups' | translate }}</option>
+              @for (g of groups(); track g.id) {
+                <option [value]="g.name">{{ g.name }}</option>
+              }
+            </select>
+          </label>
+          <label class="flex items-center gap-2 text-sm mt-6">
+            <input type="checkbox" [(ngModel)]="incluirInactivos" class="rounded" />
+            <span>{{ 'informe.includeInactive' | translate }}</span>
+          </label>
+        </div>
+        <button
+          type="button"
+          class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          [disabled]="loading()"
+          (click)="refreshSummary()"
+        >
+          {{ loading() ? ('informe.loading' | translate) : ('informe.applyFilters' | translate) }}
+        </button>
+      </section>
+
+      <!-- KPIs -->
+      <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-6">
+        @for (card of kpiCards(); track card.key) {
+          <div class="bg-white rounded-xl shadow p-4 text-center">
+            <p class="text-xs uppercase text-gray-500 font-medium">{{ card.key | translate }}</p>
+            <p class="text-xl font-bold text-blue-800 mt-1">{{ card.value }}</p>
+          </div>
+        }
+      </section>
+
+      <!-- Exportaciones -->
+      <section class="bg-white rounded-xl shadow p-5 mb-6">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">{{ 'informe.exports' | translate }}</h2>
+        <div class="flex flex-wrap gap-3">
+          <button
+            type="button"
+            class="px-4 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600 disabled:opacity-50"
+            [disabled]="exporting()"
+            (click)="exportFile('csv', true)"
+          >
+            {{ 'informe.exportCsvFull' | translate }}
+          </button>
+          <button
+            type="button"
+            class="px-4 py-2 rounded-lg text-white bg-violet-600 hover:bg-violet-700 disabled:opacity-50"
+            [disabled]="exporting()"
+            (click)="exportFile('xlsx', true)"
+          >
+            {{ 'informe.exportXlsxFull' | translate }}
+          </button>
+          <button
+            type="button"
+            class="px-4 py-2 rounded-lg text-white bg-teal-600 hover:bg-teal-700 disabled:opacity-50"
+            [disabled]="exporting()"
+            (click)="exportFile('csv', false)"
+          >
+            {{ 'informe.exportCsvFiltered' | translate }}
+          </button>
+          <button
+            type="button"
+            class="px-4 py-2 rounded-lg text-white bg-violet-600 hover:bg-violet-700 disabled:opacity-50"
+            [disabled]="exporting()"
+            (click)="exportFile('xlsx', false)"
+          >
+            {{ 'informe.exportXlsxFiltered' | translate }}
+          </button>
+        </div>
+      </section>
+
+      <!-- Top grupos -->
+      @if (topGrupos().length > 0) {
+        <section class="bg-white rounded-xl shadow p-5 mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-4">{{ 'informe.topGroups' | translate }}</h2>
+          <ul class="divide-y">
+            @for (row of topGrupos(); track row.group_name + row.course_name; let i = $index) {
+              <li class="flex items-center justify-between py-3">
+                <div class="flex items-center gap-3">
+                  <span
+                    class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-800 font-bold text-sm"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  <div>
+                    <p class="font-semibold">{{ row.group_name }} — {{ row.course_name }}</p>
+                    <p class="text-sm text-gray-500">
+                      {{ 'informe.enrollments' | translate }}: {{ row.matriculas }}
+                    </p>
+                  </div>
+                </div>
+                <span class="font-bold text-blue-700">{{ row.alumnos_unicos }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      <!-- Power BI -->
+      <section class="bg-white rounded-xl shadow p-5">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ 'informe.powerBiTitle' | translate }}</h2>
+        <p class="text-sm text-gray-600 mb-4">{{ 'informe.powerBiHint' | translate }}</p>
+        <button
+          type="button"
+          class="px-5 py-2 rounded-lg text-white bg-indigo-700 hover:bg-indigo-800 disabled:opacity-50"
+          [disabled]="exporting()"
+          (click)="downloadPowerBi()"
+        >
+          {{ 'informe.downloadPbix' | translate }}
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <div class="fixed bottom-44 left-6 z-50 md:hidden">
+    <app-boton-hamburguesa (menuToggled)="abrirMenuMobile()"></app-boton-hamburguesa>
+  </div>
+
+  @if (menuMobileOpen) {
+    <div class="fixed inset-0 z-50 bg-white flex flex-col md:hidden">
+      <div class="flex items-center p-4 bg-purple-200 shadow-md">
+        <app-boton-atras></app-boton-atras>
+        <h2 class="ml-4 text-xl font-bold">{{ 'informe.menu' | translate }}</h2>
+      </div>
+      <div class="flex-1 overflow-auto p-4">
+        <app-admin-menu (optionClicked)="cerrarMenuMobile()"></app-admin-menu>
+      </div>
+    </div>
+  }
+</div>
