@@ -105,10 +105,24 @@
             Área de Entrega
           </h2>
 
-          @if (isPastDueDate() && t.status === SubmissionStatus.PENDING) {
-            <div class="bg-red-50 border border-red-100 px-5 py-4 mb-6 rounded-2xl shadow-sm text-sm">
-              <span class="font-bold text-red-800 uppercase tracking-widest text-xs">Aviso Importante</span>
-              <p class="text-red-700 mt-1 font-medium">Has superado la fecha límite ({{ t.task.dueDate | date:'medium' }}). Si haces una entrega quedará marcada como <span class="font-bold">Fuera de Plazo (LATE)</span>.</p>
+          @if (submissionBlocked()) {
+            <div class="bg-red-50 border border-red-200 px-5 py-5 mb-6 rounded-2xl shadow-sm text-sm">
+              <span class="font-bold text-red-800 uppercase tracking-widest text-xs">Plazo de entrega cerrado</span>
+              <p class="text-red-700 mt-2 font-medium leading-relaxed">
+                La fecha límite era el <strong>{{ t.task.dueDate | date:'medium' }}</strong> y el profesor
+                <strong>no permite entregas tardías</strong> en esta tarea. No puedes enviar archivos ni enlaces.
+              </p>
+              <p class="text-red-600/90 mt-2 text-xs font-medium">
+                Si crees que es un error, contacta con tu profesor para que amplíe el plazo o habilite entregas fuera de fecha.
+              </p>
+            </div>
+          } @else if (showLateSubmissionWarning()) {
+            <div class="bg-amber-50 border border-amber-200 px-5 py-4 mb-6 rounded-2xl shadow-sm text-sm">
+              <span class="font-bold text-amber-800 uppercase tracking-widest text-xs">Fuera de plazo</span>
+              <p class="text-amber-800 mt-1 font-medium">
+                Has superado la fecha límite ({{ t.task.dueDate | date:'medium' }}). Aún puedes entregar:
+                quedará marcada como <span class="font-bold">Fuera de plazo (LATE)</span>.
+              </p>
             </div>
           }
 
@@ -147,7 +161,7 @@
               </div>
             }
 
-            @if (t.status === SubmissionStatus.PENDING) {
+            @if (t.status === SubmissionStatus.PENDING && !submissionBlocked()) {
               
               <!-- Tabs para elegir subida -->
               <div class="flex gap-2 p-1.5 bg-slate-100 rounded-xl drop-shadow-sm w-full sm:w-fit mb-8 overflow-x-auto">

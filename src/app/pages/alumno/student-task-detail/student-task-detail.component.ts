@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -37,6 +37,20 @@ export class StudentTaskDetailComponent implements OnInit {
 
   submitForm: FormGroup;
   isPastDueDate = signal<boolean>(false);
+
+  /** Plazo vencido y el profesor no permite entregas tardías (coincide con 403 del backend). */
+  submissionBlocked = computed(() => {
+    const t = this.task();
+    if (!t || t.status !== SubmissionStatus.PENDING) return false;
+    return this.isPastDueDate() && !t.task.allowLateSubmission;
+  });
+
+  /** Plazo vencido pero sí se puede entregar (quedará como LATE). */
+  showLateSubmissionWarning = computed(() => {
+    const t = this.task();
+    if (!t || t.status !== SubmissionStatus.PENDING) return false;
+    return this.isPastDueDate() && t.task.allowLateSubmission;
+  });
 
   SubmissionStatus = SubmissionStatus;
 
@@ -90,11 +104,20 @@ export class StudentTaskDetailComponent implements OnInit {
     const now = new Date();
     this.isPastDueDate.set(now > dueDate);
 
-    if (studentTask.status !== SubmissionStatus.PENDING) {
-      this.submitForm.disable(); 
+    const blocked =
+      studentTask.status === SubmissionStatus.PENDING &&
+      now > dueDate &&
+      !studentTask.task.allowLateSubmission;
+
+    if (studentTask.status !== SubmissionStatus.PENDING || blocked) {
+      this.submitForm.disable();
     } else {
-      this.submitForm.enable(); 
+      this.submitForm.enable();
     }
+  }
+
+  private extractApiError(err: { error?: { error?: string; message?: string } }): string {
+    return err.error?.error || err.error?.message || '';
   }
 
   /**
@@ -111,7 +134,7 @@ export class StudentTaskDetailComponent implements OnInit {
    */
   onDragOver(event: DragEvent): void {
     event.preventDefault();
-    if (this.task()?.status === SubmissionStatus.PENDING) {
+    if (this.task()?.status === SubmissionStatus.PENDING && !this.submissionBlocked()) {
       this.isDragging.set(true);
     }
   }
@@ -129,7 +152,7 @@ export class StudentTaskDetailComponent implements OnInit {
     this.isDragging.set(false);
     this.errorMessage.set('');
 
-    if (this.task()?.status !== SubmissionStatus.PENDING) return;
+    if (this.task()?.status !== SubmissionStatus.PENDING || this.submissionBlocked()) return;
 
     if (event.dataTransfer && event.dataTransfer.items.length > 0) {
       this.processDataTransferItems(event.dataTransfer.items);
@@ -167,6 +190,8 @@ export class StudentTaskDetailComponent implements OnInit {
    * @param file Archivo local.
    */
   processFile(file: File): void {
+    if (this.submissionBlocked()) return;
+
     // Si pesa 0 (o no tiene punto) es muy probable que sea una carpeta en file system OS antiguos
     if (file.size === 0 || (!file.type && file.name.indexOf('.') === -1)) {
       this.errorMessage.set('Las carpetas enteras no están permitidas por seguridad. Por favor, comprímela a un solo archivo .ZIP');
@@ -195,6 +220,13 @@ export class StudentTaskDetailComponent implements OnInit {
   onSubmit(): void {
     const t = this.task();
     if (!t) return;
+
+    if (this.submissionBlocked()) {
+      this.errorMessage.set(
+        'El plazo de entrega ha expirado y el profesor no permite entregas tardías.',
+      );
+      return;
+    }
 
     this.errorMessage.set('');
     this.successMessage.set('');
@@ -250,7 +282,10 @@ export class StudentTaskDetailComponent implements OnInit {
         this.submitting.set(false);
       },
       error: (err) => {
-        this.errorMessage.set(err.error?.message || 'Tu archivo fue subido pero falló la notificación de entrega a la BBDD.');
+        const detail = this.extractApiError(err);
+        this.errorMessage.set(
+          detail || 'Tu archivo fue subido pero falló la notificación de entrega a la BBDD.',
+        );
         this.submitting.set(false);
       }
     });
@@ -269,11 +304,11 @@ export class StudentTaskDetailComponent implements OnInit {
         next: (res) => {
           if (res.success && res.data) {
             this.task.set(res.data);
+            this.checkDueDate(res.data);
             this.successMessage.set('');
             this.errorMessage.set('');
             this.submitForm.reset();
             this.selectedFile.set(null);
-            this.submitForm.enable();
           }
           this.submitting.set(false);
         },

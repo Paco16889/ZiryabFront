@@ -5,6 +5,7 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
 import { StudentSubjectEnrollmentRow } from '../../../core/models/teacher/subjectforteacher';
 
@@ -22,7 +23,7 @@ interface StudentSubjectCardSource {
 @Component({
   selector: 'app-clases',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent, CardGridComponent],
+  imports: [CommonModule, BotonAtrasComponent, CardGridComponent, TranslateModule],
   templateUrl: './clases.component.html',
   styleUrls: ['./clases.component.scss'] 
 })
@@ -138,11 +139,11 @@ export class ClasesComponent implements OnInit {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
       id: item.subject?.id || 0,
       title: item.subject?.name || 'Asignatura',
-      subtitleTopLabel: 'Grado/Curso',
+      subtitleTopLabel: 'studentClasses.labels.grade',
       subtitleTopValue: item.group?.name || 'General',
-      subtitleBottomLabel: 'Profesor',
+      subtitleBottomLabel: 'studentClasses.labels.teacher',
       subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || 'Consultando...',
-      actionLabel: 'Acceder'
+      actionLabel: 'studentClasses.access',
     }));
     this.asignaturasCards.set(cards);
   }

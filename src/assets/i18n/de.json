@@ -446,6 +446,27 @@
     "admin": "Administrator",
     "user": "Aktiver Benutzer"
   },
+  "teacherClasses": {
+    "title": "Meine Klassen",
+    "loading": "Klassen werden geladen...",
+    "empty": "Keine zugewiesenen Faecher.",
+    "manageSyllabus": "Lehrplan verwalten",
+    "classMenu": "Klassenmenue",
+    "labels": {
+      "course": "Kurs",
+      "group": "Jahrgang/Gruppe"
+    }
+  },
+  "studentClasses": {
+    "title": "Meine Faecher",
+    "loading": "Klassen werden geladen...",
+    "empty": "In keinem Fach eingeschrieben.",
+    "access": "Oeffnen",
+    "labels": {
+      "grade": "Jahrgang/Kurs",
+      "teacher": "Lehrer"
+    }
+  },
   "courseAssignments": {
     "wizard": {
       "openButton": "Zuweisungen erstellen",

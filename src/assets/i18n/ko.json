@@ -210,7 +210,21 @@
     "loading": "수업을 불러오는 중...",
     "empty": "담당 수업이 없습니다.",
     "manageSyllabus": "수업 관리",
-    "classMenu": "수업 메뉴"
+    "classMenu": "수업 메뉴",
+    "labels": {
+      "course": "과정",
+      "group": "학년/그룹"
+    }
+  },
+  "studentClasses": {
+    "title": "내 과목",
+    "loading": "수업을 불러오는 중...",
+    "empty": "등록된 과목이 없습니다.",
+    "access": "접속",
+    "labels": {
+      "grade": "학년/과정",
+      "teacher": "교사"
+    }
   },
   "teacherJustifications": {
     "title": "대기 중인 사유서",

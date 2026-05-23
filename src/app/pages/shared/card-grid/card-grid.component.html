@@ -28,7 +28,11 @@
         @if (item.subtitleTopLabel) {
           <div>
             <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">
-              {{ item.subtitleTopLabel }}
+              @if (isTranslationKey(item.subtitleTopLabel)) {
+                {{ item.subtitleTopLabel | translate }}
+              } @else {
+                {{ item.subtitleTopLabel }}
+              }
             </p>
             <div class="inline-block px-3 py-1 rounded-full bg-white/60 text-gray-700 text-sm font-medium shadow-sm">
               {{ item.subtitleTopValue || '-' }}
@@ -39,7 +43,11 @@
         @if (item.subtitleBottomLabel) {
           <div>
             <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-0.5">
-              {{ item.subtitleBottomLabel }}
+              @if (isTranslationKey(item.subtitleBottomLabel)) {
+                {{ item.subtitleBottomLabel | translate }}
+              } @else {
+                {{ item.subtitleBottomLabel }}
+              }
             </p>
             <div class="inline-block px-3 py-1 rounded-full bg-white/60 text-gray-700 text-sm font-medium shadow-sm">
               {{ item.subtitleBottomValue || '-' }}
@@ -54,7 +62,13 @@
           (click)="onAction(item)"
           class="w-full py-2.5 text-white font-bold rounded-xl transition duration-200 shadow-sm hover:shadow-md active:scale-95 {{ theme.btn }}"
         >
-          {{ (item.actionLabel || 'Acceder') | translate }}
+          @if (isTranslationKey(item.actionLabel)) {
+            {{ item.actionLabel | translate }}
+          } @else if (item.actionLabel) {
+            {{ item.actionLabel }}
+          } @else {
+            {{ 'studentClasses.access' | translate }}
+          }
         </button>
         @if (item.secondaryActionLabel) {
           <button
@@ -62,7 +76,11 @@
             (click)="onSecondaryAction(item)"
             class="w-full py-2.5 font-bold rounded-xl transition duration-200 border-2 bg-white/80 active:scale-95 {{ theme.line }} {{ theme.text }} hover:bg-white"
           >
-            {{ item.secondaryActionLabel | translate }}
+            @if (isTranslationKey(item.secondaryActionLabel)) {
+              {{ item.secondaryActionLabel | translate }}
+            } @else {
+              {{ item.secondaryActionLabel }}
+            }
           </button>
         }
       </div>

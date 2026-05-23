@@ -442,6 +442,27 @@
     "admin": "Administrador",
     "user": "Usuario activo"
   },
+  "teacherClasses": {
+    "title": "Mis clases",
+    "loading": "Cargando tus clases...",
+    "empty": "No tienes asignaturas asignadas.",
+    "manageSyllabus": "Gestionar temario",
+    "classMenu": "Menú de clase",
+    "labels": {
+      "course": "Curso",
+      "group": "Grado/Grupo"
+    }
+  },
+  "studentClasses": {
+    "title": "Mis asignaturas",
+    "loading": "Cargando tus clases...",
+    "empty": "No estás matriculado en ninguna asignatura.",
+    "access": "Acceder",
+    "labels": {
+      "grade": "Grado/Curso",
+      "teacher": "Profesor"
+    }
+  },
   "courseAssignments": {
     "wizard": {
       "openButton": "Crear asignaciones",

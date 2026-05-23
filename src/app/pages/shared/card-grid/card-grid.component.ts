@@ -80,4 +80,9 @@ export class CardGridComponent {
   onSecondaryAction(item: CardItem): void {
     this.secondaryActionClicked.emit(item);
   }
+
+  /** Solo traduce cadenas con formato de clave i18n (p. ej. teacherClasses.access). */
+  isTranslationKey(value: string | undefined): boolean {
+    return typeof value === 'string' && value.includes('.');
+  }
 }

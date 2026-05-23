@@ -1,8 +1,8 @@
 <div class="w-full min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8 flex flex-col">
     <app-card-grid 
-        [title]="'Asignaturas'"
-        [loadingMessage]="'Cargando tus clases...'"
-        [emptyMessage]="'No estás matriculado en ninguna asignatura.'"
+        [title]="'studentClasses.title' | translate"
+        [loadingMessage]="'studentClasses.loading' | translate"
+        [emptyMessage]="'studentClasses.empty' | translate"
         [loading]="loading()"
         [errorMessage]="errorMessage()"
         [items]="asignaturasCards()"

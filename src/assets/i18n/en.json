@@ -448,6 +448,27 @@
     "admin": "Administrator",
     "user": "Active user"
   },
+  "teacherClasses": {
+    "title": "My classes",
+    "loading": "Loading your classes...",
+    "empty": "You have no assigned subjects.",
+    "manageSyllabus": "Manage syllabus",
+    "classMenu": "Class menu",
+    "labels": {
+      "course": "Course",
+      "group": "Grade/Group"
+    }
+  },
+  "studentClasses": {
+    "title": "My subjects",
+    "loading": "Loading your classes...",
+    "empty": "You are not enrolled in any subject.",
+    "access": "Open",
+    "labels": {
+      "grade": "Grade/Course",
+      "teacher": "Teacher"
+    }
+  },
   "courseAssignments": {
     "wizard": {
       "openButton": "Create assignments",
