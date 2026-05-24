@@ -33,6 +33,7 @@ import {
 } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
 
 import { WeekScheduleClassesHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-classes-http.service';
+import { weekScheduleClassKeyFromParts } from '../../../../../core/utils/week-schedule-class-key';
 
 
 
@@ -100,6 +101,8 @@ export class WeekScheduleCreateClassSelectComponent {
 
   );
 
+  private readonly preselectApplied = signal('');
+
 
 
   readonly schoolYearLabel = computed(() => this.schoolYear());
@@ -115,6 +118,12 @@ export class WeekScheduleCreateClassSelectComponent {
       this.refreshToken();
 
       this.loadClasses();
+
+    });
+
+    effect(() => {
+
+      this.tryApplyPreselect(this.selectedClassKey(), this.classesWithoutSchedule());
 
     });
 
@@ -148,6 +157,8 @@ export class WeekScheduleCreateClassSelectComponent {
 
         }
 
+        this.tryApplyPreselect(this.selectedClassKey(), this.classesWithoutSchedule());
+
       },
 
       error: () => {
@@ -178,9 +189,51 @@ export class WeekScheduleCreateClassSelectComponent {
 
     const found =
 
-      this.classesWithoutSchedule().find((c) => weekScheduleClassKey(c) === raw) ?? null;
+      this.classesWithoutSchedule().find((c) => this.classKeysMatch(c, raw)) ?? null;
 
     this.classChange.emit(found);
+
+  }
+
+  private tryApplyPreselect(key: string, classes: WeekScheduleClassItem[]): void {
+
+    if (!key || classes.length === 0 || this.preselectApplied() === key) {
+
+      return;
+
+    }
+
+    const found = classes.find((c) => this.classKeysMatch(c, key)) ?? null;
+
+    if (found) {
+
+      this.preselectApplied.set(key);
+
+      this.classChange.emit(found);
+
+    }
+
+  }
+
+  private classKeysMatch(item: WeekScheduleClassItem, key: string): boolean {
+
+    return (
+
+      weekScheduleClassKey(item) === key ||
+
+      weekScheduleClassKeyFromParts(
+
+        item.course.id,
+
+        item.grade,
+
+        item.group.id,
+
+        item.schoolYear,
+
+      ) === key
+
+    );
 
   }
 

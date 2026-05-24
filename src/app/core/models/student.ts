@@ -97,6 +97,16 @@ export interface StudentsAllResponse {
  *   dni: 'DNI_ESTUDIANTE'
  * };
  */
+/** Datos del paso 2 del wizard, solo en memoria hasta confirmar matrícula (EQ-311-A). */
+export interface PendingStudentDraft {
+  email: string;
+  name: string;
+  surname: string;
+  ndSurname: string;
+  birthDate: string;
+  dni: string;
+}
+
 export interface StudentCreateRequest {
   /** Correo electrónico del estudiante */
   email: string;
@@ -110,6 +120,8 @@ export interface StudentCreateRequest {
   birthDate: string;
   /** DNI o NIE del estudiante */
   dni: string;
+  /** UID de Firebase, requerido al persistir en backend */
+  firebaseUID?: string;
   /** Rol del estudiante, por defecto STUDENT si no se indica */
   role?: string;
 }

@@ -31,6 +31,7 @@ import { WeekScheduleService } from '../../../../../core/services/admin/entities
 import {
   dedupeAssignmentRowsBySubject,
   filterAssignmentOptionsForCellBySubjectHours,
+  wouldExceedSubjectHoursInCell,
 } from '../../../../../core/utils/week-schedule-assignment-filters';
 import {
   hoursBetween,
@@ -316,6 +317,31 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
       return;
     }
     const key = this.cellKey(day, slot);
+    if (
+      wouldExceedSubjectHoursInCell(
+        row,
+        this.cells(),
+        key,
+        slot.startTime,
+        slot.finishTime,
+      )
+    ) {
+      const declared = row.subject?.hours ?? 0;
+      let used = 0;
+      for (const [, cell] of this.cells()) {
+        if (cell.idSubject === row.idSubject && cell.idTeacherAssignment != null) {
+          used += hoursBetween(cell.startTime, cell.finishTime);
+        }
+      }
+      this.validationMessages.set([
+        this.translate.instant('weekScheduleBuilder.grid.validationSubjectHours', {
+          subject: this.assignmentOptionLabel(row),
+          max: declared,
+          current: String(used + hoursBetween(slot.startTime, slot.finishTime)),
+        }),
+      ]);
+      return;
+    }
     const prev = this.cells().get(key);
     const next = new Map(this.cells());
     next.set(key, {

@@ -1,9 +1,9 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  WeekScheduleClassItem,
-  weekScheduleClassKey,
-} from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
+import { environment } from '../../../../../../environments/environment';
+import { WeekScheduleClassItem, weekScheduleClassKey } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
+import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
+import { weekScheduleClassKeyFromParts } from '../../../../../core/utils/week-schedule-class-key';
 import { WeekScheduleCreateTemplateComponent } from '../week-schedule-create-template/week-schedule-create-template.component';
 import { WeekScheduleGridBuilderComponent } from '../week-schedule-grid-builder/week-schedule-grid-builder.component';
 
@@ -24,7 +24,9 @@ export type WeekScheduleBuilderMode = 'create' | 'grid';
   templateUrl: './week-schedule-builder.component.html',
   styleUrl: './week-schedule-builder.component.scss',
 })
-export class WeekScheduleBuilderComponent {
+export class WeekScheduleBuilderComponent implements OnInit {
+  private readonly scheduleNav = inject(WeekScheduleNavigationService);
+
   readonly scheduleCreated = output<void>();
 
   /** Pestaña por defecto: crear plantilla (CURSO-90). */
@@ -32,6 +34,25 @@ export class WeekScheduleBuilderComponent {
 
   /** Clase a preseleccionar en rejilla tras materializar (CURSO-145). */
   readonly gridPreselectClassKey = signal<string | null>(null);
+
+  /** Clase a preseleccionar en crear plantilla (EQ-309). */
+  readonly createPreselectClassKey = signal('');
+
+  ngOnInit(): void {
+    const pending = this.scheduleNav.takePendingCreate();
+    if (pending == null) {
+      return;
+    }
+    this.setBuilderMode('create');
+    this.createPreselectClassKey.set(
+      weekScheduleClassKeyFromParts(
+        pending.idCourse,
+        pending.grade,
+        pending.idGroup,
+        environment.currentSchoolYear,
+      ),
+    );
+  }
 
   setBuilderMode(mode: WeekScheduleBuilderMode): void {
     this.builderMode.set(mode);

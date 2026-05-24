@@ -152,11 +152,23 @@
     "courseSelection": {
       "label": "¿Qué ciclo quieres matricular al alumno?"
     },
+    "groupSelection": {
+      "label": "Selecciona el grupo / turno",
+      "placeholder": "Elige un grupo"
+    },
     "subjectSelection": {
       "label": "Selecciona las asignaturas",
-      "fullOffer": "Oferta Completa de 1º"
+      "fullOfferGrade": "Oferta Completa de {{grade}}º"
     },
-    "confirmButton": "Confirmar selección"
+    "confirmButton": "Confirmar selección",
+    "setRegistration": {
+      "studentLabel": "Alumno",
+      "studentPending": "(pendiente de confirmar)",
+      "saving": "Guardando matrículas…",
+      "saveErrorRegistration": "No se pudieron guardar las matrículas. Inténtalo de nuevo.",
+      "saveErrorStudent": "No se pudo crear el alumno. Revisa los datos e inténtalo de nuevo.",
+      "saveErrorGeneric": "No se pudo completar la matriculación. Inténtalo de nuevo."
+    }
   },
 
   "weekScheduleBuilder": {
@@ -177,6 +189,9 @@
       "slotsTitle": "Horario de cada franja",
       "slotRow": "Franja {{n}}",
       "validationMinSlots": "Indica al menos una franja.",
+      "slotCountProgress": "{{current}} / {{max}} franjas por día ({{total}} h en {{days}} día(s))",
+      "slotCountMaxReached": "Máximo {{max}} franjas por día ({{total}} h semanales ÷ {{days}} día(s)).",
+      "slotLimitHint": "Cada franja se repite en los {{days}} día(s) elegidos. Con {{total}} h semanales puedes definir hasta {{max}} franjas (si no divide exacto, la última cubre el resto en un día).",
       "timeFormatHint": "Formato obligatorio HH:mm con dos dígitos en hora y minutos (ej. 08:15, 09:00, 14:45). No uses 8:15.",
       "validationTimeFormat": "Formato inválido. Usa dos cifras en hora y minutos (ej. 08:15, no 8:15).",
       "submit": "Crear plantilla horaria",
@@ -308,7 +323,8 @@
   "lists": {
     "students": {
       "title": "Alumnos",
-      "createButton": "Matricular Alumno"
+      "createButton": "Matricular Alumno",
+      "emptyList": "No hay alumnos registrados."
     },
     "subjects": {
       "title": "Asignaturas",
@@ -594,7 +610,11 @@
       "saveCreated": "{{count}} asignación(es) creada(s).",
       "saveDuplicates": "{{count}} duplicada(s) (ya existían).",
       "saveIncomplete": "{{count}} fila(s) incompleta(s) omitida(s).",
-      "saveError": "No se pudieron guardar las asignaciones."
+      "saveError": "No se pudieron guardar las asignaciones.",
+      "schedulePromptTitle": "¿Crear horario semanal?",
+      "schedulePromptBody": "Las asignaciones se guardaron correctamente. ¿Quieres ir ahora a crear la plantilla horaria para este grupo?",
+      "schedulePromptGo": "Ir a crear horario",
+      "schedulePromptStay": "Quedarme aquí"
     }
   },
   "horario": {

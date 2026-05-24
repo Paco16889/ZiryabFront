@@ -135,9 +135,11 @@ getSubjectbyId(id: number): Observable<SubjectByIdResponse> {
    * Establece las asignaturas seleccionadas en la signal selectedSubjects.
    * @param subjects - Array de asignaturas a establecer como seleccionadas
    */
-   setSelectedSubjects(subjects: Subject[]){
-    
+   setSelectedSubjects(subjects: Subject[]): void {
     this.selectedSubjects.set(subjects);
-    console.log('aqui tenemos las selected subjects del setSelectedsubjects');
-   }
+  }
+
+  clearSelectedSubjects(): void {
+    this.selectedSubjects.set([]);
+  }
 }

@@ -39,7 +39,10 @@
   </div>
 
   @if (builderMode() === 'create') {
-    <app-week-schedule-create-template (templateCreated)="onTemplateCreated($event)" />
+    <app-week-schedule-create-template
+      [preselectClassKey]="createPreselectClassKey()"
+      (templateCreated)="onTemplateCreated($event)"
+    />
   } @else {
     <app-week-schedule-grid-builder
       [embedded]="true"

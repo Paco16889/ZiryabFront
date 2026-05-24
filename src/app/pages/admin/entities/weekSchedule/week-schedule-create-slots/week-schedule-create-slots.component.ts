@@ -1,23 +1,17 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { environment } from '../../../../../../environments/environment';
+import { isValidHhMmTime, normalizeHhMmTime, timeToMinutes } from '../../../../../core/utils/time-range';
 import {
-  isValidHhMmTime,
-  normalizeHhMmTime,
-  timeToMinutes,
-} from '../../../../../core/utils/time-range';
+  defaultWeekScheduleSlotRow,
+  nextWeekScheduleSlotRow,
+  weekScheduleSlotStartPlaceholder,
+} from './week-schedule-create-slots.util';
 
 /** Una franja horaria de la plantilla (inicio–fin en `HH:mm`). */
 export interface WeekScheduleCreateSlotRow {
   startTime: string;
   finishTime: string;
 }
-
-const firstCenterSlot = environment.timetableSlots[0];
-const DEFAULT_SLOT_ROW: WeekScheduleCreateSlotRow = {
-  startTime: firstCenterSlot?.startTime ?? '08:15',
-  finishTime: firstCenterSlot?.finishTime ?? '09:15',
-};
 
 /**
  * Número de franjas y filas dinámicas inicio/fin para la plantilla horaria.
@@ -32,26 +26,46 @@ const DEFAULT_SLOT_ROW: WeekScheduleCreateSlotRow = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleCreateSlotsComponent {
-  readonly slots = input<WeekScheduleCreateSlotRow[]>([{ ...DEFAULT_SLOT_ROW }]);
+  readonly slots = input<WeekScheduleCreateSlotRow[]>([defaultWeekScheduleSlotRow()]);
   readonly showValidation = input(false);
   readonly disabled = input(false);
+  /** Máximo de filas de franja (horas semanales ÷ días seleccionados). */
+  readonly maxSlots = input<number | null>(null);
+  readonly weeklyHoursTotal = input<number | null>(null);
+  readonly selectedDayCount = input(0);
 
   readonly slotsChange = output<WeekScheduleCreateSlotRow[]>();
 
-  readonly timePlaceholder = '08:15';
-
   slotCount(): number {
     return this.slots().length;
+  }
+
+  effectiveMaxSlots(): number | null {
+    const max = this.maxSlots();
+    return max != null && max > 0 ? max : null;
+  }
+
+  isAtMaxSlots(): boolean {
+    const max = this.effectiveMaxSlots();
+    return max != null && this.slots().length >= max;
+  }
+
+  startPlaceholder(index: number): string {
+    return weekScheduleSlotStartPlaceholder(this.slots(), index);
   }
 
   onSlotCountChange(raw: string): void {
     if (this.disabled()) {
       return;
     }
-    const count = Math.max(1, Math.floor(Number(raw)) || 1);
+    let count = Math.max(1, Math.floor(Number(raw)) || 1);
+    const max = this.effectiveMaxSlots();
+    if (max != null) {
+      count = Math.min(count, max);
+    }
     const next = [...this.slots()];
     while (next.length < count) {
-      next.push({ ...DEFAULT_SLOT_ROW });
+      next.push(nextWeekScheduleSlotRow(next));
     }
     while (next.length > count) {
       next.pop();

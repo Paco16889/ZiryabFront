@@ -10,8 +10,8 @@ import { Teacher } from '../../../../../core/models/teacher';
 import { AssignmentsService } from '../../../../../core/services/admin/entities/assignments.service';
 import { GroupService } from '../../../../../core/services/admin/entities/group.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
+import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
 import { environment } from '../../../../../../environments/environment';
-
 export type CourseAssignmentsSaveFeedback = {
   created: number;
   duplicates: number;
@@ -33,6 +33,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
   private readonly assignmentsService = inject(AssignmentsService);
   private readonly teachersService = inject(TeachersService);
   private readonly groupService = inject(GroupService);
+  private readonly scheduleNav = inject(WeekScheduleNavigationService);
 
   readonly context = input.required<CourseAssignmentsContext>();
   readonly back = output<void>();
@@ -47,6 +48,8 @@ export class CourseAssignmentsGridComponent implements OnInit {
   readonly rows = signal<CourseAssignmentGridRow[]>([]);
   readonly teachers = signal<Teacher[]>([]);
   readonly groups = signal<Group[]>([]);
+  readonly showSchedulePrompt = signal(false);
+  private readonly lastSavedGroupId = signal<number | null>(null);
 
   ngOnInit(): void {
     this.loadGrid();
@@ -80,7 +83,12 @@ export class CourseAssignmentsGridComponent implements OnInit {
 
   onGroupChange(row: CourseAssignmentGridRow, value: string): void {
     const id = value === '' ? null : Number(value);
-    this.updateRow(row.idSubject, { idGroup: id });
+    const isFirstRow = this.rows()[0]?.idSubject === row.idSubject;
+    if (isFirstRow && id != null) {
+      this.rows.update((list) => list.map((r) => ({ ...r, idGroup: id })));
+    } else {
+      this.updateRow(row.idSubject, { idGroup: id });
+    }
     this.clearSaveMessages();
   }
 
@@ -125,6 +133,8 @@ export class CourseAssignmentsGridComponent implements OnInit {
         });
 
         if (data.created > 0) {
+          this.lastSavedGroupId.set(completeRows[0]?.idGroup ?? null);
+          this.showSchedulePrompt.set(true);
           this.clearRows(savedSubjectIds);
           this.refreshExistingAssignments();
         } else if (data.duplicates > 0) {
@@ -228,6 +238,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
   private clearSaveMessages(): void {
     this.saveFeedback.set(null);
     this.saveValidation.set(null);
+    this.showSchedulePrompt.set(false);
   }
 
   private updateRow(
@@ -240,6 +251,25 @@ export class CourseAssignmentsGridComponent implements OnInit {
   }
 
   onBack(): void {
+    this.back.emit();
+  }
+
+  dismissSchedulePrompt(): void {
+    this.showSchedulePrompt.set(false);
+  }
+
+  goToCreateSchedule(): void {
+    const idGroup = this.lastSavedGroupId();
+    if (idGroup == null) {
+      return;
+    }
+    const ctx = this.context();
+    this.scheduleNav.goToCreateTemplate({
+      idCourse: ctx.idCourse,
+      grade: ctx.grade,
+      idGroup,
+    });
+    this.showSchedulePrompt.set(false);
     this.back.emit();
   }
 }

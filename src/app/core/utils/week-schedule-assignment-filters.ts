@@ -184,7 +184,7 @@ export function filterAssignmentOptionsForCellBySubjectHours(
     }
     const declared = row.subject?.hours;
     if (declared == null || declared <= 0) {
-      return true;
+      return false;
     }
     let used = 0;
     for (const [key, cell] of cells) {
@@ -197,4 +197,28 @@ export function filterAssignmentOptionsForCellBySubjectHours(
     }
     return used < declared - 1e-6;
   });
+}
+
+/** Comprueba si colocar `row` en la celda superaría las horas semanales de la asignatura. */
+export function wouldExceedSubjectHoursInCell(
+  row: TeacherSubjectAssignmentRow,
+  cells: Map<string, WeekScheduleGridCellHoursSlice>,
+  cellKey: string,
+  slotStart: string,
+  slotFinish: string,
+): boolean {
+  const declared = row.subject?.hours;
+  if (declared == null || declared <= 0) {
+    return false;
+  }
+  let used = 0;
+  for (const [key, cell] of cells) {
+    if (key === cellKey) {
+      continue;
+    }
+    if (cell.idSubject === row.idSubject && cell.idTeacherAssignment != null) {
+      used += hoursBetween(cell.startTime, cell.finishTime);
+    }
+  }
+  return used + hoursBetween(slotStart, slotFinish) > declared + 1e-6;
 }

@@ -1,6 +1,6 @@
 <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
   <app-week-schedule-create-class-select
-    [selectedClassKey]="selectedClassKey()"
+    [selectedClassKey]="classSelectKey()"
     [refreshToken]="classListRefresh()"
     [showValidation]="showValidation()"
     (classChange)="onClassChange($event)"
@@ -14,9 +14,26 @@
 
   <app-week-schedule-create-slots
     [slots]="slots()"
+    [maxSlots]="maxSlots()"
+    [weeklyHoursTotal]="weeklyHoursTotal()"
+    [selectedDayCount]="weekDays().length"
     [showValidation]="showValidation()"
     (slotsChange)="onSlotsChange($event)"
   />
+
+  @if (weeklyHoursTotal() != null && weekDays().length > 0 && maxSlots() != null) {
+    <p class="text-xs text-gray-600 -mt-2">
+      {{
+        'weekScheduleBuilder.create.slotLimitHint'
+          | translate
+            : {
+                total: weeklyHoursTotal(),
+                days: weekDays().length,
+                max: maxSlots()
+              }
+      }}
+    </p>
+  }
 
   @if (saveSuccess()) {
     <p class="text-sm text-green-800 bg-green-50 border border-green-200 rounded-md px-3 py-2">

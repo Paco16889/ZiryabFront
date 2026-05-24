@@ -6,6 +6,7 @@ import {
   filterTeacherAssignmentsForClass,
   filterTeacherAssignmentsForSchoolYear,
   isTeacherAssignmentRowSchedulable,
+  wouldExceedSubjectHoursInCell,
 } from './week-schedule-assignment-filters';
 
 describe('week-schedule-assignment-filters', () => {
@@ -104,6 +105,52 @@ describe('week-schedule-assignment-filters', () => {
     ];
     const out = filterTeacherAssignmentsForClass(rows, 5, '1', 30, '2024-2025');
     expect(out.map((r) => r.id)).toEqual([1]);
+  });
+
+  it('wouldExceedSubjectHoursInCell blocks placement beyond declared weekly hours', () => {
+    const row = base({ idSubject: 20, subject: { id: 20, name: 'Prog', hours: 2 } });
+    const cells = new Map([
+      [
+        '1|08:00',
+        {
+          idSubject: 20,
+          idTeacherAssignment: 1,
+          startTime: '08:00',
+          finishTime: '09:00',
+        },
+      ],
+      [
+        '1|09:00',
+        {
+          idSubject: 20,
+          idTeacherAssignment: 1,
+          startTime: '09:00',
+          finishTime: '10:00',
+        },
+      ],
+    ]);
+
+    expect(wouldExceedSubjectHoursInCell(row, cells, '1|10:00', '10:00', '11:00')).toBeTrue();
+
+    const oneSlot = new Map([
+      [
+        '1|08:00',
+        {
+          idSubject: 20,
+          idTeacherAssignment: 1,
+          startTime: '08:00',
+          finishTime: '09:00',
+        },
+      ],
+    ]);
+    expect(wouldExceedSubjectHoursInCell(row, oneSlot, '1|09:00', '09:00', '10:00')).toBeFalse();
+  });
+
+  it('dedupeAssignmentRowsBySubject does not truncate options below three subjects', () => {
+    const rows = [1, 2, 3, 4, 5].map((id) =>
+      base({ id, idSubject: id, subject: { id, name: `Asig ${id}` } }),
+    );
+    expect(dedupeAssignmentRowsBySubject(rows).length).toBe(5);
   });
 
   it('filterTeacherAssignmentsForSchoolYear filters year and status', () => {

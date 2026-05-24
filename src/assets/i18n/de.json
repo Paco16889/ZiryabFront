@@ -151,11 +151,23 @@
     "courseSelection": {
       "label": "Für welchen Bildungsgang möchten Sie den Schüler einschreiben?"
     },
+    "groupSelection": {
+      "label": "Gruppe / Unterrichtszeit wählen",
+      "placeholder": "Gruppe auswählen"
+    },
     "subjectSelection": {
       "label": "Fächer auswählen",
-      "fullOffer": "Vollständiges Angebot des 1. Jahres"
+      "fullOfferGrade": "Vollständiges Angebot des {{grade}}. Jahres"
     },
-    "confirmButton": "Auswahl bestätigen"
+    "confirmButton": "Auswahl bestätigen",
+    "setRegistration": {
+      "studentLabel": "Schüler",
+      "studentPending": "(Bestätigung ausstehend)",
+      "saving": "Einschreibungen werden gespeichert…",
+      "saveErrorRegistration": "Die Einschreibungen konnten nicht gespeichert werden. Bitte erneut versuchen.",
+      "saveErrorStudent": "Der Schüler konnte nicht angelegt werden. Daten prüfen und erneut versuchen.",
+      "saveErrorGeneric": "Die Einschreibung konnte nicht abgeschlossen werden. Bitte erneut versuchen."
+    }
   },
 
   "weekScheduleBuilder": {
@@ -176,6 +188,9 @@
       "slotsTitle": "Zeiten je Einheit",
       "slotRow": "Einheit {{n}}",
       "validationMinSlots": "Mindestens eine Einheit angeben.",
+      "slotCountProgress": "{{current}} / {{max}} Einheiten pro Tag ({{total}} h auf {{days}} Tag(e))",
+      "slotCountMaxReached": "Maximal {{max}} Einheiten pro Tag ({{total}} Wochenstunden ÷ {{days}} Tag(e)).",
+      "slotLimitHint": "Jede Einheit gilt an allen {{days}} gewaehlten Tagen. Bei {{total}} Wochenstunden maximal {{max}} Einheiten (Reststunde ggf. nur an einem Tag).",
       "timeFormatHint": "Pflichtformat HH:mm mit zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
       "validationTimeFormat": "Ungültiges Format. Zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
       "submit": "Wochenstundenplan-Vorlage erstellen",
@@ -305,7 +320,8 @@
   "lists": {
     "students": {
       "title": "Schüler",
-      "createButton": "Schüler einschreiben"
+      "createButton": "Schüler einschreiben",
+      "emptyList": "Keine Schüler registriert."
     },
     "subjects": {
       "title": "Fächer",
@@ -598,7 +614,11 @@
       "saveCreated": "{{count}} Zuweisung(en) erstellt.",
       "saveDuplicates": "{{count}} Duplikat(e) (bereits vorhanden).",
       "saveIncomplete": "{{count}} unvollstaendige Zeile(n) uebersprungen.",
-      "saveError": "Zuweisungen konnten nicht gespeichert werden."
+      "saveError": "Zuweisungen konnten nicht gespeichert werden.",
+      "schedulePromptTitle": "Wochenplan erstellen?",
+      "schedulePromptBody": "Zuweisungen gespeichert. Moechten Sie jetzt die Stundenplanvorlage fuer diese Gruppe erstellen?",
+      "schedulePromptGo": "Zur Planerstellung",
+      "schedulePromptStay": "Hier bleiben"
     }
   },
   "horario": {

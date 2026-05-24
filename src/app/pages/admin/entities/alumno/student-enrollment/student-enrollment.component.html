@@ -1,11 +1,13 @@
 <div class="max-w-2xl mx-auto">
   <div class="flex items-center mb-6">
-    <button 
+    <button
+      type="button"
       (click)="onCancel()"
-      class="mr-4 text-gray-600 hover:text-gray-900">
+      [disabled]="selectedStudentService.enrollmentInProgress()"
+      class="mr-4 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed">
       ← Volver
     </button>
-    <h1 class="text-2xl font-bold">Matricular Alumno</h1>
+    <h1 class="text-2xl font-bold">{{ 'studentEnrollment.title' | translate }}</h1>
   </div>
 
   <div class="bg-white p-6 rounded-lg shadow">
@@ -28,7 +30,7 @@
         </p>
         <app-student-create-form
         (cancelCreate)="onCancelStudentCreate()"
-        (studentCreated)="onStudentCreated($event)">
+        (studentCreated)="onStudentCreated()">
 
         </app-student-create-form>
 

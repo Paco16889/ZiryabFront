@@ -5,9 +5,13 @@ import { WeekSchedule } from '../../../../models/week-schedule';
 import { TeacherSubjectAssignmentRow } from '../../../../models/teacher/subjectforteacher';
 import {
   dedupeAssignmentRowsById,
+  dedupeAssignmentRowsBySubject,
   filterTeacherAssignmentsForClass,
+  filterTeacherAssignmentsForSchoolYear,
+  subjectMatchesClass,
 } from '../../../../utils/week-schedule-assignment-filters';
 import { assignmentWithIncludesToTeacherRow } from '../../../../utils/week-schedule-assignment-mapper';
+import { AssignmentsService } from '../assignments.service';
 import { AssignmentHttpService } from './teacher-assignment-http.service';
 import { WeekScheduleService } from './week-schedule.service';
 
@@ -21,6 +25,7 @@ import { WeekScheduleService } from './week-schedule.service';
 export class WeekScheduleAssignmentDataService {
   private readonly assignments = inject(AssignmentHttpService);
   private readonly schedules = inject(WeekScheduleService);
+  private readonly courseAssignments = inject(AssignmentsService);
 
   /**
    * Asignaciones docente de una clase agregada (mismo criterio que el wizard de ciclos).
@@ -31,12 +36,28 @@ export class WeekScheduleAssignmentDataService {
     groupId: number,
     schoolYear: string = environment.currentSchoolYear,
   ): Observable<TeacherSubjectAssignmentRow[]> {
-    return this.fetchAllAssignmentRowsForGroupRaw(groupId).pipe(
-      map((rows) =>
-        dedupeAssignmentRowsById(
-          filterTeacherAssignmentsForClass(rows, courseId, grade, groupId, schoolYear),
-        ),
-      ),
+    return forkJoin({
+      catalog: this.courseAssignments.getSubjectsByCourseAndGrade(courseId, grade),
+      raw: this.fetchAllAssignmentRowsForGroupRaw(groupId),
+    }).pipe(
+      map(({ catalog, raw }) => {
+        const schedulable = filterTeacherAssignmentsForSchoolYear(raw, schoolYear).filter(
+          (r) => r.idGroup === groupId,
+        );
+        const catalogIds =
+          catalog.success && catalog.data.length > 0
+            ? new Set(catalog.data.map((s) => s.id))
+            : null;
+        const filtered =
+          catalogIds != null
+            ? schedulable.filter(
+                (r) =>
+                  catalogIds.has(r.idSubject) &&
+                  subjectMatchesClass(r, courseId, grade),
+              )
+            : filterTeacherAssignmentsForClass(raw, courseId, grade, groupId, schoolYear);
+        return dedupeAssignmentRowsById(dedupeAssignmentRowsBySubject(filtered));
+      }),
     );
   }
 

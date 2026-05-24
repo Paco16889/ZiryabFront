@@ -151,11 +151,23 @@
     "courseSelection": {
       "label": "Which course do you want to enroll the student in?"
     },
+    "groupSelection": {
+      "label": "Select group / shift",
+      "placeholder": "Choose a group"
+    },
     "subjectSelection": {
       "label": "Select subjects",
-      "fullOffer": "Full 1st Year Offer"
+      "fullOfferGrade": "Full {{grade}} year offer"
     },
-    "confirmButton": "Confirm selection"
+    "confirmButton": "Confirm selection",
+    "setRegistration": {
+      "studentLabel": "Student",
+      "studentPending": "(pending confirmation)",
+      "saving": "Saving enrollments…",
+      "saveErrorRegistration": "Enrollments could not be saved. Please try again.",
+      "saveErrorStudent": "The student could not be created. Check the data and try again.",
+      "saveErrorGeneric": "Enrollment could not be completed. Please try again."
+    }
   },
 
   "weekScheduleBuilder": {
@@ -176,6 +188,9 @@
       "slotsTitle": "Time for each slot",
       "slotRow": "Slot {{n}}",
       "validationMinSlots": "Enter at least one slot.",
+      "slotCountProgress": "{{current}} / {{max}} slots per day ({{total}} h across {{days}} day(s))",
+      "slotCountMaxReached": "Maximum {{max}} slots per day ({{total}} weekly h ÷ {{days}} day(s)).",
+      "slotLimitHint": "Each slot repeats on all {{days}} selected day(s). With {{total}} weekly hours you can define up to {{max}} slots (if it does not divide evenly, the last slot covers the remainder on one day).",
       "timeFormatHint": "Required format HH:mm with two digits for hours and minutes (e.g. 08:15, not 8:15).",
       "validationTimeFormat": "Invalid format. Use two digits for hours and minutes (e.g. 08:15, not 8:15).",
       "submit": "Create weekly schedule template",
@@ -307,7 +322,8 @@
   "lists": {
     "students": {
       "title": "Students",
-      "createButton": "Enroll Student"
+      "createButton": "Enroll Student",
+      "emptyList": "No students registered."
     },
     "subjects": {
       "title": "Subjects",
@@ -600,7 +616,11 @@
       "saveCreated": "{{count}} assignment(s) created.",
       "saveDuplicates": "{{count}} duplicate(s) (already existed).",
       "saveIncomplete": "{{count}} incomplete row(s) skipped.",
-      "saveError": "Could not save assignments."
+      "saveError": "Could not save assignments.",
+      "schedulePromptTitle": "Create weekly schedule?",
+      "schedulePromptBody": "Assignments saved successfully. Do you want to create the timetable template for this group now?",
+      "schedulePromptGo": "Go to create schedule",
+      "schedulePromptStay": "Stay here"
     }
   },
   "horario": {
