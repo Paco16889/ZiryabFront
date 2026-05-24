@@ -13,12 +13,16 @@ import { WeekScheduleClassesResponse } from '../../../../models/week-schedule-fl
   providedIn: 'root',
 })
 export class WeekScheduleClassesHttpService {
+  /** Cliente HTTP usado exclusivamente para consultar clases agregadas de horarios. */
   private readonly http = inject(HttpClient);
 
+  /** Endpoint que agrupa curso, nivel, grupo y año escolar para el selector del builder. */
   private readonly apiUrl = `${environment.apiUrl}/horarios-semanales/classes`;
 
   /**
    * `GET /api/horarios-semanales/classes` — listado de clases del año indicado.
+   *
+   * @param schoolYear - Curso escolar usado por el backend para filtrar clases y horarios existentes
    */
   getAllClasses(
     schoolYear: string = environment.currentSchoolYear,

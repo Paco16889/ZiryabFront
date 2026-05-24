@@ -1,0 +1,2773 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  StudentTaskDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/alumno/student-task-detail/student-task-detail.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente StudentTaskDetail
+Gestiona la visualización del detalle de una tarea específica para el alumno.
+Proporciona la interfaz para adjuntar archivos (vía drop o selector) o URLs
+para realizar la entrega de la tarea, respetando las restricciones de bloqueo por fecha límite.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-student-task-detail</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                <code><a href="../components/BotonAtrasComponent.html" target="_self" >BotonAtrasComponent</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./student-task-detail.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./student-task-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <a href="#isDragging" >isDragging</a>
+                            </li>
+                            <li>
+                                <a href="#isPastDueDate" >isPastDueDate</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFile" >selectedFile</a>
+                            </li>
+                            <li>
+                                <a href="#showLateSubmissionWarning" >showLateSubmissionWarning</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#studentTaskService" >studentTaskService</a>
+                            </li>
+                            <li>
+                                <a href="#submissionBlocked" >submissionBlocked</a>
+                            </li>
+                            <li>
+                                <a href="#submissionMode" >submissionMode</a>
+                            </li>
+                            <li>
+                                <a href="#SubmissionStatus" >SubmissionStatus</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm" >submitForm</a>
+                            </li>
+                            <li>
+                                <a href="#submitting" >submitting</a>
+                            </li>
+                            <li>
+                                <a href="#successMessage" >successMessage</a>
+                            </li>
+                            <li>
+                                <a href="#task" >task</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkDueDate" >checkDueDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#extractApiError" >extractApiError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#finalizeSubmission" >finalizeSubmission</a>
+                            </li>
+                            <li>
+                                <a href="#loadTask" >loadTask</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDragLeave" >onDragLeave</a>
+                            </li>
+                            <li>
+                                <a href="#onDragOver" >onDragOver</a>
+                            </li>
+                            <li>
+                                <a href="#onDrop" >onDrop</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#processDataTransferItems" >processDataTransferItems</a>
+                            </li>
+                            <li>
+                                <a href="#processFile" >processFile</a>
+                            </li>
+                            <li>
+                                <a href="#removeFile" >removeFile</a>
+                            </li>
+                            <li>
+                                <a href="#setSubmissionMode" >setSubmissionMode</a>
+                            </li>
+                            <li>
+                                <a href="#unsubmitTask" >unsubmitTask</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:74</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Inicializa el formulario de URL con validación básica.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkDueDate"></a>
+                    <span class="name">
+                        <span ><b>checkDueDate</b></span>
+                        <a href="#checkDueDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkDueDate(studentTask: <a href="../interfaces/StudentTask.html" target="_self">StudentTask</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Comprueba si la fecha actual sobrepasa la fecha límite (<code>dueDate</code>) impuesta por el profesor.
+Si es así, bloquea el formulario de entrega si este aún pendía de envío.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentTask</td>
+                                            <td>
+                                                            <code><a href="../interfaces/StudentTask.html" target="_self" >StudentTask</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Tarea asignada a evaluar.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="extractApiError"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>extractApiError</b></span>
+                        <a href="#extractApiError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>extractApiError(err: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Extrae mensajes específicos del backend en errores de entrega.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finalizeSubmission"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>finalizeSubmission</b></span>
+                        <a href="#finalizeSubmission"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>finalizeSubmission(taskId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="297"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:297</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Registra a nivel de base de datos la confirmación en firme de una entrega subida.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>taskId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>ID de la tarea a marcar.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>URL resultante del adjunto o introducida por teclado.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadTask"></a>
+                    <span class="name">
+                        <span ><b>loadTask</b></span>
+                        <a href="#loadTask"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadTask(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga los detalles de una tarea asignada basada en su ID.
+Valida además si se ha excedido la fecha límite calculada con <code>checkDueDate</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Identificador de la tarea (StudentTask).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Lee el id de ruta y carga el detalle de entrega.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDragLeave"></a>
+                    <span class="name">
+                        <span ><b>onDragLeave</b></span>
+                        <a href="#onDragLeave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDragLeave(event: DragEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:167</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Limpia el estado visual cuando el archivo sale de la zona de drop.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>DragEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDragOver"></a>
+                    <span class="name">
+                        <span ><b>onDragOver</b></span>
+                        <a href="#onDragOver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDragOver(event: DragEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Manejador para el evento drag over.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>DragEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDrop"></a>
+                    <span class="name">
+                        <span ><b>onDrop</b></span>
+                        <a href="#onDrop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDrop(event: DragEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Manejadr para el evento drop. Procesa el archivo arrastrado y soltado.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>DragEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Manejador de selección clásica de archivos vía input type file.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="247"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:247</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Ejecuta la subida final del archivo o URL de entrega asociándolo a la tarea.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processDataTransferItems"></a>
+                    <span class="name">
+                        <span ><b>processDataTransferItems</b></span>
+                        <a href="#processDataTransferItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>processDataTransferItems(items: DataTransferItemList)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Procesa elementos arrastrados y rechaza directorios antes de convertirlos en archivo.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>items</td>
+                                            <td>
+                                                        <code>DataTransferItemList</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processFile"></a>
+                    <span class="name">
+                        <span ><b>processFile</b></span>
+                        <a href="#processFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>processFile(file: File)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida formato lógico y peso de un archivo candidato antes de habilitar su subida.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Archivo local.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFile"></a>
+                    <span class="name">
+                        <span ><b>removeFile</b></span>
+                        <a href="#removeFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeFile()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="239"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:239</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Elimina el archivo seleccionado y limpia errores de validación.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setSubmissionMode"></a>
+                    <span class="name">
+                        <span ><b>setSubmissionMode</b></span>
+                        <a href="#setSubmissionMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setSubmissionMode(mode: "url" | "file")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cambia la modalidad de entrega en la UI.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>mode</td>
+                                            <td>
+                                                        <code>&quot;url&quot; | &quot;file&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Modalidad, &#39;url&#39; externa o &#39;file&#39; físico local.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubmitTask"></a>
+                    <span class="name">
+                        <span ><b>unsubmitTask</b></span>
+                        <a href="#unsubmitTask"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unsubmitTask()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="322"
+                                    class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:322</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Permite que el estudiante anule su propia entrega para volver a mandarla.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error visible.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constructor del formulario de URL.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDragging"></a>
+                    <span class="name">
+                        <span ><b>isDragging</b></span>
+                        <a href="#isDragging"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado visual del área de arrastre.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isPastDueDate"></a>
+                    <span class="name">
+                        <span ><b>isPastDueDate</b></span>
+                        <a href="#isPastDueDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si la fecha límite ya venció.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga del detalle.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ruta activa para leer el id de la StudentTask.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Router usado para futuras navegaciones del detalle.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile"></a>
+                    <span class="name">
+                        <span ><b>selectedFile</b></span>
+                        <a href="#selectedFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;File | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Archivo seleccionado para subir.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showLateSubmissionWarning"></a>
+                    <span class="name">
+                        <span ><b>showLateSubmissionWarning</b></span>
+                        <a href="#showLateSubmissionWarning"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const t &#x3D; this.task();
+    if (!t || t.status !&#x3D;&#x3D; SubmissionStatus.PENDING) return false;
+    return this.isPastDueDate() &amp;&amp; t.task.allowLateSubmission;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Plazo vencido pero sí se puede entregar (quedará como LATE).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentTaskService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>studentTaskService</b></span>
+                        <a href="#studentTaskService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StudentTaskService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de entregas del alumno.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submissionBlocked"></a>
+                    <span class="name">
+                        <span ><b>submissionBlocked</b></span>
+                        <a href="#submissionBlocked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+    const t &#x3D; this.task();
+    if (!t || t.status !&#x3D;&#x3D; SubmissionStatus.PENDING) return false;
+    return this.isPastDueDate() &amp;&amp; !t.task.allowLateSubmission;
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Plazo vencido y el profesor no permite entregas tardías (coincide con 403 del backend).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submissionMode"></a>
+                    <span class="name">
+                        <span ><b>submissionMode</b></span>
+                        <a href="#submissionMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;&#x27;url&#x27; | &#x27;file&#x27;&gt;(&#x27;file&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Modo de entrega elegido por el alumno.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SubmissionStatus"></a>
+                    <span class="name">
+                        <span ><b>SubmissionStatus</b></span>
+                        <a href="#SubmissionStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SubmissionStatus</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Enum expuesto al template para comparar estados de entrega.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <span ><b>submitForm</b></span>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Group.html" target="_self" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario para entrega por URL externa.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitting"></a>
+                    <span class="name">
+                        <span ><b>submitting</b></span>
+                        <a href="#submitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de envío/subida.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMessage"></a>
+                    <span class="name">
+                        <span ><b>successMessage</b></span>
+                        <a href="#successMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de éxito visible.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="task"></a>
+                    <span class="name">
+                        <span ><b>task</b></span>
+                        <a href="#task"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;StudentTask | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Entrega cargada en el detalle.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/alumno/student-task-detail/student-task-detail.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de mensajes y errores.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, computed, inject, signal } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { StudentTaskService } from &#x27;../../../core/services/alumno/student-task.service&#x27;;
+import { StudentTask, SubmissionStatus } from &#x27;../../../core/models/studentTask&#x27;;
+import { BotonAtrasComponent } from &#x27;../../shared/boton-atras/boton-atras.component&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { resolveApiError } from &#x27;../../../core/i18n/api-error.util&#x27;;
+
+/**
+ * Componente StudentTaskDetail
+ * Gestiona la visualización del detalle de una tarea específica para el alumno.
+ * Proporciona la interfaz para adjuntar archivos (vía drop o selector) o URLs
+ * para realizar la entrega de la tarea, respetando las restricciones de bloqueo por fecha límite.
+ */
+@Component({
+  selector: &#x27;app-student-task-detail&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, BotonAtrasComponent, TranslateModule],
+  templateUrl: &#x27;./student-task-detail.component.html&#x27;,
+  styleUrls: [&#x27;./student-task-detail.component.scss&#x27;]
+})
+export class StudentTaskDetailComponent implements OnInit {
+  /** Ruta activa para leer el id de la StudentTask. */
+  private route &#x3D; inject(ActivatedRoute);
+  /** Router usado para futuras navegaciones del detalle. */
+  private router &#x3D; inject(Router);
+  /** Servicio de entregas del alumno. */
+  private studentTaskService &#x3D; inject(StudentTaskService);
+  /** Constructor del formulario de URL. */
+  private fb &#x3D; inject(FormBuilder);
+  /** Traducciones de mensajes y errores. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Entrega cargada en el detalle. */
+  task &#x3D; signal&lt;StudentTask | null&gt;(null);
+  /** Estado de carga del detalle. */
+  loading &#x3D; signal&lt;boolean&gt;(true);
+  /** Estado de envío/subida. */
+  submitting &#x3D; signal&lt;boolean&gt;(false);
+  /** Mensaje de error visible. */
+  errorMessage &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+  /** Mensaje de éxito visible. */
+  successMessage &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+  
+  /** Modo de entrega elegido por el alumno. */
+  submissionMode &#x3D; signal&lt;&#x27;url&#x27; | &#x27;file&#x27;&gt;(&#x27;file&#x27;);
+  /** Archivo seleccionado para subir. */
+  selectedFile &#x3D; signal&lt;File | null&gt;(null);
+  /** Estado visual del área de arrastre. */
+  isDragging &#x3D; signal&lt;boolean&gt;(false);
+
+  /** Formulario para entrega por URL externa. */
+  submitForm: FormGroup;
+  /** Indica si la fecha límite ya venció. */
+  isPastDueDate &#x3D; signal&lt;boolean&gt;(false);
+
+  /** Plazo vencido y el profesor no permite entregas tardías (coincide con 403 del backend). */
+  submissionBlocked &#x3D; computed(() &#x3D;&gt; {
+    const t &#x3D; this.task();
+    if (!t || t.status !&#x3D;&#x3D; SubmissionStatus.PENDING) return false;
+    return this.isPastDueDate() &amp;&amp; !t.task.allowLateSubmission;
+  });
+
+  /** Plazo vencido pero sí se puede entregar (quedará como LATE). */
+  showLateSubmissionWarning &#x3D; computed(() &#x3D;&gt; {
+    const t &#x3D; this.task();
+    if (!t || t.status !&#x3D;&#x3D; SubmissionStatus.PENDING) return false;
+    return this.isPastDueDate() &amp;&amp; t.task.allowLateSubmission;
+  });
+
+  /** Enum expuesto al template para comparar estados de entrega. */
+  SubmissionStatus &#x3D; SubmissionStatus;
+
+  /** Inicializa el formulario de URL con validación básica. */
+  constructor() {
+    const urlRegex &#x3D; /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/i;
+    this.submitForm &#x3D; this.fb.group({
+      attachmentUrl: [&#x27;&#x27;, [Validators.pattern(urlRegex)]]
+    });
+  }
+
+  /** Lee el id de ruta y carga el detalle de entrega. */
+  ngOnInit(): void {
+    const idParam &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;);
+    if (idParam) {
+      this.loadTask(parseInt(idParam, 10));
+    } else {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.taskIdMissing&#x27;));
+      this.loading.set(false);
+    }
+  }
+
+  /**
+   * Carga los detalles de una tarea asignada basada en su ID.
+   * Valida además si se ha excedido la fecha límite calculada con &#x60;checkDueDate&#x60;.
+   * @param id Identificador de la tarea (StudentTask).
+   */
+  loadTask(id: number): void {
+    this.studentTaskService.getStudentTaskById(id).subscribe({
+      next: (res) &#x3D;&gt; {
+        if (res.success &amp;&amp; res.data) {
+          this.task.set(res.data);
+          this.checkDueDate(res.data);
+        } else {
+          this.errorMessage.set(this.translate.instant(&#x27;common.errors.couldNotLoadTask&#x27;));
+        }
+        this.loading.set(false);
+      },
+      error: (err) &#x3D;&gt; {
+        this.errorMessage.set(
+          resolveApiError(this.translate, err, &#x27;common.errors.loadTaskDetail&#x27;),
+        );
+        this.loading.set(false);
+      }
+    });
+  }
+
+  /**
+   * Comprueba si la fecha actual sobrepasa la fecha límite (&#x60;dueDate&#x60;) impuesta por el profesor.
+   * Si es así, bloquea el formulario de entrega si este aún pendía de envío.
+   * @param studentTask Tarea asignada a evaluar.
+   */
+  checkDueDate(studentTask: StudentTask): void {
+    const dueDate &#x3D; new Date(studentTask.task.dueDate);
+    const now &#x3D; new Date();
+    this.isPastDueDate.set(now &gt; dueDate);
+
+    const blocked &#x3D;
+      studentTask.status &#x3D;&#x3D;&#x3D; SubmissionStatus.PENDING &amp;&amp;
+      now &gt; dueDate &amp;&amp;
+      !studentTask.task.allowLateSubmission;
+
+    if (studentTask.status !&#x3D;&#x3D; SubmissionStatus.PENDING || blocked) {
+      this.submitForm.disable();
+    } else {
+      this.submitForm.enable();
+    }
+  }
+
+  /** Extrae mensajes específicos del backend en errores de entrega. */
+  private extractApiError(err: { error?: { error?: string; message?: string } }): string {
+    return err.error?.error || err.error?.message || &#x27;&#x27;;
+  }
+
+  /**
+   * Cambia la modalidad de entrega en la UI.
+   * @param mode Modalidad, &#x27;url&#x27; externa o &#x27;file&#x27; físico local.
+   */
+  setSubmissionMode(mode: &#x27;url&#x27; | &#x27;file&#x27;): void {
+    this.submissionMode.set(mode);
+    this.errorMessage.set(&#x27;&#x27;);
+  }
+
+  /**
+   * Manejador para el evento drag over.
+   */
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    if (this.task()?.status &#x3D;&#x3D;&#x3D; SubmissionStatus.PENDING &amp;&amp; !this.submissionBlocked()) {
+      this.isDragging.set(true);
+    }
+  }
+
+  /** Limpia el estado visual cuando el archivo sale de la zona de drop. */
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging.set(false);
+  }
+
+  /**
+   * Manejadr para el evento drop. Procesa el archivo arrastrado y soltado.
+   */
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging.set(false);
+    this.errorMessage.set(&#x27;&#x27;);
+
+    if (this.task()?.status !&#x3D;&#x3D; SubmissionStatus.PENDING || this.submissionBlocked()) return;
+
+    if (event.dataTransfer &amp;&amp; event.dataTransfer.items.length &gt; 0) {
+      this.processDataTransferItems(event.dataTransfer.items);
+    } else if (event.dataTransfer &amp;&amp; event.dataTransfer.files.length &gt; 0) {
+      this.processFile(event.dataTransfer.files[0]);
+    }
+  }
+
+  /**
+   * Manejador de selección clásica de archivos vía input type file.
+   */
+  onFileSelected(event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (input.files &amp;&amp; input.files.length &gt; 0) {
+      this.processFile(input.files[0]);
+    }
+  }
+
+  /** Procesa elementos arrastrados y rechaza directorios antes de convertirlos en archivo. */
+  processDataTransferItems(items: DataTransferItemList): void {
+    const item &#x3D; items[0];
+    if (item.kind &#x3D;&#x3D;&#x3D; &#x27;file&#x27;) {
+      const entry &#x3D; item.webkitGetAsEntry();
+      if (entry &amp;&amp; entry.isDirectory) {
+        this.errorMessage.set(this.translate.instant(&#x27;common.errors.folderNotAllowedDetail&#x27;));
+        this.selectedFile.set(null);
+      } else {
+        const file &#x3D; item.getAsFile();
+        if (file) this.processFile(file);
+      }
+    }
+  }
+
+  /**
+   * Valida formato lógico y peso de un archivo candidato antes de habilitar su subida.
+   * @param file Archivo local.
+   */
+  processFile(file: File): void {
+    if (this.submissionBlocked()) return;
+
+    // Si pesa 0 (o no tiene punto) es muy probable que sea una carpeta en file system OS antiguos
+    if (file.size &#x3D;&#x3D;&#x3D; 0 || (!file.type &amp;&amp; file.name.indexOf(&#x27;.&#x27;) &#x3D;&#x3D;&#x3D; -1)) {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.folderNotAllowed&#x27;));
+      this.selectedFile.set(null);
+      return;
+    }
+    
+    if (file.size &gt; 50 * 1024 * 1024) {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.fileTooLarge50&#x27;));
+      this.selectedFile.set(null);
+      return;
+    }
+
+    this.selectedFile.set(file);
+    this.errorMessage.set(&#x27;&#x27;);
+  }
+
+  /** Elimina el archivo seleccionado y limpia errores de validación. */
+  removeFile(): void {
+    this.selectedFile.set(null);
+    this.errorMessage.set(&#x27;&#x27;);
+  }
+
+  /**
+   * Ejecuta la subida final del archivo o URL de entrega asociándolo a la tarea.
+   */
+  onSubmit(): void {
+    const t &#x3D; this.task();
+    if (!t) return;
+
+    if (this.submissionBlocked()) {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.deadlineExpiredNoLate&#x27;));
+      return;
+    }
+
+    this.errorMessage.set(&#x27;&#x27;);
+    this.successMessage.set(&#x27;&#x27;);
+
+    const mode &#x3D; this.submissionMode();
+    const formValue &#x3D; this.submitForm.value;
+
+    if (mode &#x3D;&#x3D;&#x3D; &#x27;url&#x27;) {
+      if (!formValue.attachmentUrl || formValue.attachmentUrl.trim() &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+        this.errorMessage.set(this.translate.instant(&#x27;common.errors.provideUrl&#x27;));
+        return;
+      }
+      this.finalizeSubmission(t.id, formValue.attachmentUrl);
+    } else {
+      if (!this.selectedFile()) {
+        this.errorMessage.set(this.translate.instant(&#x27;common.errors.provideFile&#x27;));
+        return;
+      }
+      
+      this.submitting.set(true);
+      this.studentTaskService.uploadSubmissionFile(this.selectedFile()!).subscribe({
+        next: (res) &#x3D;&gt; {
+          if (res.success &amp;&amp; res.data?.attachmentUrl) {
+            this.finalizeSubmission(t.id, res.data.attachmentUrl);
+          } else {
+            this.errorMessage.set(this.translate.instant(&#x27;common.errors.invalidUploadLink&#x27;));
+            this.submitting.set(false);
+          }
+        },
+        error: (err) &#x3D;&gt; {
+          this.errorMessage.set(resolveApiError(this.translate, err, &#x27;common.errors.uploadFailed&#x27;));
+          this.submitting.set(false);
+        }
+      });
+    }
+  }
+
+  /**
+   * Registra a nivel de base de datos la confirmación en firme de una entrega subida.
+   * @param taskId ID de la tarea a marcar.
+   * @param url URL resultante del adjunto o introducida por teclado.
+   */
+  private finalizeSubmission(taskId: number, url: string): void {
+    this.submitting.set(true);
+    this.studentTaskService.submitStudentTask(taskId, { attachmentUrl: url }).subscribe({
+      next: (res) &#x3D;&gt; {
+        if (res.success) {
+          this.successMessage.set(this.translate.instant(&#x27;studentTaskDetail.submitSuccess&#x27;));
+          this.task.set(res.data);
+          this.submitForm.disable();
+          this.selectedFile.set(null);
+        }
+        this.submitting.set(false);
+      },
+      error: (err) &#x3D;&gt; {
+        const detail &#x3D; this.extractApiError(err);
+        this.errorMessage.set(
+          detail || this.translate.instant(&#x27;common.errors.submitNotifyFailed&#x27;),
+        );
+        this.submitting.set(false);
+      }
+    });
+  }
+
+  /**
+   * Permite que el estudiante anule su propia entrega para volver a mandarla.
+   */
+  unsubmitTask(): void {
+    const t &#x3D; this.task();
+    if (!t) return;
+    
+    if (confirm(this.translate.instant(&#x27;studentTaskDetail.unsubmitConfirm&#x27;))) {
+      this.submitting.set(true);
+      this.studentTaskService.unsubmitStudentTask(t.id).subscribe({
+        next: (res) &#x3D;&gt; {
+          if (res.success &amp;&amp; res.data) {
+            this.task.set(res.data);
+            this.checkDueDate(res.data);
+            this.successMessage.set(&#x27;&#x27;);
+            this.errorMessage.set(&#x27;&#x27;);
+            this.submitForm.reset();
+            this.selectedFile.set(null);
+          }
+          this.submitting.set(false);
+        },
+        error: (err) &#x3D;&gt; {
+          this.errorMessage.set(resolveApiError(this.translate, err, &#x27;common.errors.deleteSubmission&#x27;));
+          this.submitting.set(false);
+        }
+      });
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;min-h-screen w-full font-sans text-slate-800 bg-slate-50 flex flex-col items-center selection:bg-indigo-500/30&quot;&gt;
+  &lt;div class&#x3D;&quot;w-full h-full max-w-4xl p-4 sm:p-8 relative overflow-y-auto overflow-x-hidden&quot;&gt;
+
+    &lt;div class&#x3D;&quot;mb-6 relative z-10 flex&quot;&gt;
+      &lt;app-boton-atras&gt;&lt;/app-boton-atras&gt;
+    &lt;/div&gt;
+
+    @if (loading()) {
+      &lt;div class&#x3D;&quot;flex justify-center items-center h-64 w-full&quot;&gt;
+        &lt;div class&#x3D;&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    }
+
+    @if (errorMessage()) {
+      &lt;div class&#x3D;&quot;bg-red-50 border border-red-200 p-4 mb-6 rounded-2xl shadow-sm flex items-start gap-4&quot;&gt;
+        &lt;div class&#x3D;&quot;p-2 bg-red-100 rounded-full text-red-500 flex-shrink-0&quot;&gt;
+          &lt;svg class&#x3D;&quot;h-6 w-6&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;p class&#x3D;&quot;font-bold text-red-800 text-sm mb-1&quot;&gt;{{ &#x27;studentTaskDetail.problemDetected&#x27; | translate }}&lt;/p&gt;
+          &lt;p class&#x3D;&quot;text-sm font-medium text-red-600&quot;&gt;{{ errorMessage() }}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    }
+
+    @if (task(); as t) {
+      &lt;div class&#x3D;&quot;bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden w-full mb-8&quot;&gt;
+
+        &lt;div class&#x3D;&quot;p-6 md:p-8 bg-gradient-to-br from-indigo-50/50 to-white relative&quot;&gt;
+          &lt;div class&#x3D;&quot;flex justify-between items-start gap-4 flex-wrap mb-4 relative z-10&quot;&gt;
+            &lt;h1 class&#x3D;&quot;text-3xl sm:text-4xl font-extrabold text-slate-800 leading-tight&quot;&gt;{{ t.task.title }}&lt;/h1&gt;
+
+            &lt;span class&#x3D;&quot;inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border&quot;
+                  [ngClass]&#x3D;&quot;{
+                    &#x27;bg-amber-50 text-amber-700 border-amber-200&#x27;: t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.PENDING,
+                    &#x27;bg-emerald-50 text-emerald-700 border-emerald-200&#x27;: t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.SUBMITTED,
+                    &#x27;bg-blue-50 text-blue-700 border-blue-200&#x27;: t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.GRADED,
+                    &#x27;bg-red-50 text-red-700 border-red-200&#x27;: t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.LATE || t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.NOT_SUBMITTED
+                  }&quot;&gt;
+              {{ (&#x27;studentTaskDetail.status.&#x27; + t.status) | translate }}
+            &lt;/span&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;flex flex-wrap gap-4 text-sm text-slate-500 mb-6 font-medium relative z-10&quot;&gt;
+            &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+              &lt;svg class&#x3D;&quot;w-4 h-4 text-slate-400&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+              {{ &#x27;studentTaskDetail.dueDate&#x27; | translate }}: &lt;span class&#x3D;&quot;text-slate-700 font-bold&quot; [ngClass]&#x3D;&quot;{&#x27;text-red-600&#x27;: isPastDueDate()}&quot;&gt;{{ t.task.dueDate | date:&#x27;medium&#x27; }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;w-px h-4 bg-slate-300 hidden sm:block mt-0.5&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;flex items-center gap-1&quot;&gt;
+              &lt;span class&#x3D;&quot;font-bold px-2 py-0.5 border border-slate-200 text-slate-500 rounded text-xs uppercase tracking-wider&quot;&gt;{{ (&#x27;taskTypes.&#x27; + t.task.type) | translate }}&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;p class&#x3D;&quot;text-slate-600 text-base leading-relaxed mb-6 font-medium relative z-10&quot;&gt;
+            {{ t.task.description || (&#x27;studentTaskDetail.noDescription&#x27; | translate) }}
+          &lt;/p&gt;
+
+          @if (t.task.attachmentUrl) {
+            &lt;div class&#x3D;&quot;mt-2 p-4 bg-white/80 backdrop-blur-md rounded-2xl border border-indigo-100 flex items-center justify-between shadow-sm relative z-10 transition-transform hover:-translate-y-0.5&quot;&gt;
+              &lt;div class&#x3D;&quot;flex items-center gap-4&quot;&gt;
+                &lt;div class&#x3D;&quot;p-3 bg-indigo-50 text-indigo-600 rounded-xl&quot;&gt;
+                  &lt;svg class&#x3D;&quot;w-6 h-6&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;p class&#x3D;&quot;font-bold text-slate-700 text-sm uppercase tracking-widest mb-0.5&quot;&gt;{{ &#x27;studentTaskDetail.consultMaterial&#x27; | translate }}&lt;/p&gt;
+                  &lt;p class&#x3D;&quot;text-xs text-slate-500 max-w-[200px] sm:max-w-xs truncate&quot;&gt;{{ t.task.attachmentUrl }}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;a [href]&#x3D;&quot;t.task.attachmentUrl&quot; target&#x3D;&quot;_blank&quot; class&#x3D;&quot;px-5 py-2.5 bg-indigo-600 text-white font-bold text-sm rounded-xl hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-600/20 whitespace-nowrap&quot;&gt;
+                {{ &#x27;studentTaskDetail.viewDownload&#x27; | translate }}
+              &lt;/a&gt;
+            &lt;/div&gt;
+          }
+        &lt;/div&gt;
+
+        @if (t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.GRADED) {
+          &lt;div class&#x3D;&quot;px-6 md:px-8 py-8 bg-slate-50 border-t border-slate-100&quot;&gt;
+            &lt;h2 class&#x3D;&quot;text-xl font-extrabold text-slate-800 mb-6 flex items-center&quot;&gt;
+              &lt;svg class&#x3D;&quot;w-6 h-6 text-indigo-500 mr-2&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+              {{ &#x27;studentTaskDetail.teacherEvaluation&#x27; | translate }}
+            &lt;/h2&gt;
+            &lt;div class&#x3D;&quot;flex flex-col md:flex-row gap-6&quot;&gt;
+
+              &lt;div class&#x3D;&quot;bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center min-w-[160px]&quot;&gt;
+                &lt;span class&#x3D;&quot;text-xs font-bold uppercase tracking-widest text-slate-400 mb-2&quot;&gt;{{ &#x27;studentTaskDetail.finalGrade&#x27; | translate }}&lt;/span&gt;
+                &lt;span class&#x3D;&quot;text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-indigo-700&quot;&gt;{{ t.score }}&lt;/span&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex-1&quot;&gt;
+                &lt;span class&#x3D;&quot;text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 block&quot;&gt;{{ &#x27;studentTaskDetail.attachedComments&#x27; | translate }}&lt;/span&gt;
+                &lt;p class&#x3D;&quot;text-slate-700 font-medium leading-relaxed&quot;&gt;{{ t.feedback || (&#x27;studentTaskDetail.noFeedback&#x27; | translate) }}&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        }
+
+        &lt;div class&#x3D;&quot;px-6 md:px-8 py-8 border-t border-slate-100&quot;&gt;
+          &lt;h2 class&#x3D;&quot;text-xl font-extrabold text-slate-800 mb-6 flex items-center&quot;&gt;
+            &lt;svg class&#x3D;&quot;w-6 h-6 text-slate-400 mr-2&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+            {{ &#x27;studentTaskDetail.submissionArea&#x27; | translate }}
+          &lt;/h2&gt;
+
+          @if (submissionBlocked()) {
+            &lt;div class&#x3D;&quot;bg-red-50 border border-red-200 px-5 py-5 mb-6 rounded-2xl shadow-sm text-sm&quot;&gt;
+              &lt;span class&#x3D;&quot;font-bold text-red-800 uppercase tracking-widest text-xs&quot;&gt;{{ &#x27;studentTaskDetail.deadlineClosed&#x27; | translate }}&lt;/span&gt;
+              &lt;p class&#x3D;&quot;text-red-700 mt-2 font-medium leading-relaxed&quot;
+                 [innerHTML]&#x3D;&quot;&#x27;studentTaskDetail.deadlineClosedBody&#x27; | translate: { date: (t.task.dueDate | date:&#x27;medium&#x27;) }&quot;&gt;&lt;/p&gt;
+              &lt;p class&#x3D;&quot;text-red-600/90 mt-2 text-xs font-medium&quot;&gt;
+                {{ &#x27;studentTaskDetail.deadlineClosedHint&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          } @else if (showLateSubmissionWarning()) {
+            &lt;div class&#x3D;&quot;bg-amber-50 border border-amber-200 px-5 py-4 mb-6 rounded-2xl shadow-sm text-sm&quot;&gt;
+              &lt;span class&#x3D;&quot;font-bold text-amber-800 uppercase tracking-widest text-xs&quot;&gt;{{ &#x27;studentTaskDetail.lateWarning&#x27; | translate }}&lt;/span&gt;
+              &lt;p class&#x3D;&quot;text-amber-800 mt-1 font-medium&quot;
+                 [innerHTML]&#x3D;&quot;&#x27;studentTaskDetail.lateWarningBody&#x27; | translate: { date: (t.task.dueDate | date:&#x27;medium&#x27;) }&quot;&gt;&lt;/p&gt;
+            &lt;/div&gt;
+          }
+
+          @if (successMessage()) {
+            &lt;div class&#x3D;&quot;bg-emerald-50 border border-emerald-100 px-5 py-4 mb-6 rounded-2xl shadow-sm animate-fade-in text-sm&quot;&gt;
+               &lt;span class&#x3D;&quot;font-bold text-emerald-800 uppercase tracking-widest text-xs&quot;&gt;{{ &#x27;studentTaskDetail.sentOk&#x27; | translate }}&lt;/span&gt;
+               &lt;p class&#x3D;&quot;text-emerald-700 mt-1 font-medium&quot;&gt;{{ successMessage() }}&lt;/p&gt;
+            &lt;/div&gt;
+          }
+
+          &lt;form [formGroup]&#x3D;&quot;submitForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+
+            @if (t.status !&#x3D;&#x3D; SubmissionStatus.PENDING) {
+              &lt;div class&#x3D;&quot;pt-2 mb-8 animate-fade-in&quot;&gt;
+                &lt;div class&#x3D;&quot;p-6 bg-slate-50 rounded-3xl border border-slate-200 text-slate-700 font-medium shadow-inner&quot;&gt;
+                  &lt;div class&#x3D;&quot;flex justify-between items-start flex-wrap gap-4 mb-4&quot;&gt;
+                    &lt;p [innerHTML]&#x3D;&quot;&#x27;studentTaskDetail.savedOn&#x27; | translate: { date: (t.submissionDate | date:&#x27;medium&#x27;) }&quot;&gt;&lt;/p&gt;
+
+                    @if (t.status !&#x3D;&#x3D; SubmissionStatus.GRADED) {
+                      &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;unsubmitTask()&quot; class&#x3D;&quot;px-4 py-2 bg-rose-50 text-rose-600 font-bold text-sm rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors border border-rose-200 shadow-sm flex items-center gap-2 shadow-sm active:scale-95&quot;&gt;
+                        &lt;svg class&#x3D;&quot;w-4 h-4&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                        {{ &#x27;studentTaskDetail.deleteSubmission&#x27; | translate }}
+                      &lt;/button&gt;
+                    }
+                  &lt;/div&gt;
+                  @if (t.attachmentUrl) {
+                    &lt;div class&#x3D;&quot;p-4 bg-white border border-slate-200 rounded-xl flex items-center justify-between&quot;&gt;
+                      &lt;div class&#x3D;&quot;flex items-center gap-3 overflow-hidden pr-4&quot;&gt;
+                        &lt;svg class&#x3D;&quot;w-6 h-6 text-indigo-500 flex-shrink-0&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                        &lt;a [href]&#x3D;&quot;t.attachmentUrl&quot; target&#x3D;&quot;_blank&quot; class&#x3D;&quot;text-indigo-600 hover:text-indigo-800 font-extrabold truncate text-sm hover:underline&quot;&gt;{{ t.attachmentUrl.split(&#x27;/&#x27;).pop() || t.attachmentUrl }}&lt;/a&gt;
+                      &lt;/div&gt;
+                      &lt;a [href]&#x3D;&quot;t.attachmentUrl&quot; target&#x3D;&quot;_blank&quot; class&#x3D;&quot;text-xs font-bold bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 whitespace-nowrap hidden sm:block&quot;&gt;{{ &#x27;studentTaskDetail.openOriginalLink&#x27; | translate }}&lt;/a&gt;
+                    &lt;/div&gt;
+                  }
+                &lt;/div&gt;
+              &lt;/div&gt;
+            }
+
+            @if (t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.PENDING &amp;&amp; !submissionBlocked()) {
+
+              &lt;div class&#x3D;&quot;flex gap-2 p-1.5 bg-slate-100 rounded-xl drop-shadow-sm w-full sm:w-fit mb-8 overflow-x-auto&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;setSubmissionMode(&#x27;file&#x27;)&quot;
+                        class&#x3D;&quot;flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap&quot;
+                        [ngClass]&#x3D;&quot;submissionMode() &#x3D;&#x3D;&#x3D; &#x27;file&#x27; ? &#x27;bg-white text-indigo-700 shadow-sm border border-slate-200/50&#x27; : &#x27;text-slate-500 hover:text-slate-700&#x27;&quot;&gt;
+                  {{ &#x27;studentTaskDetail.tabDropzone&#x27; | translate }}
+                &lt;/button&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;setSubmissionMode(&#x27;url&#x27;)&quot;
+                        class&#x3D;&quot;flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap&quot;
+                        [ngClass]&#x3D;&quot;submissionMode() &#x3D;&#x3D;&#x3D; &#x27;url&#x27; ? &#x27;bg-white text-indigo-700 shadow-sm border border-slate-200/50&#x27; : &#x27;text-slate-500 hover:text-slate-700&#x27;&quot;&gt;
+                  {{ &#x27;studentTaskDetail.tabUrl&#x27; | translate }}
+                &lt;/button&gt;
+              &lt;/div&gt;
+
+              @if (submissionMode() &#x3D;&#x3D;&#x3D; &#x27;file&#x27;) {
+                &lt;div class&#x3D;&quot;animate-fade-in&quot;&gt;
+                  @if (!selectedFile()) {
+                    &lt;div class&#x3D;&quot;relative border-2 border-dashed rounded-3xl p-10 md:p-14 transition-all cursor-pointer group flex flex-col items-center justify-center bg-slate-50 overflow-hidden&quot;
+                         [ngClass]&#x3D;&quot;isDragging() ? &#x27;border-indigo-500 bg-indigo-50/70 scale-[1.01]&#x27; : &#x27;border-slate-300 hover:border-indigo-400 hover:bg-slate-100/50&#x27;&quot;
+                         (dragover)&#x3D;&quot;onDragOver($event)&quot; (dragleave)&#x3D;&quot;onDragLeave($event)&quot; (drop)&#x3D;&quot;onDrop($event)&quot;&gt;
+
+                      &lt;input type&#x3D;&quot;file&quot; class&#x3D;&quot;absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20&quot; title&#x3D;&quot;&quot; (change)&#x3D;&quot;onFileSelected($event)&quot;&gt;
+
+                      &lt;div class&#x3D;&quot;p-5 bg-indigo-100 text-indigo-600 rounded-full mb-5 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 ease-out shadow-sm origin-center&quot;&gt;
+                        &lt;svg class&#x3D;&quot;w-10 h-10&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                      &lt;/div&gt;
+                      &lt;p class&#x3D;&quot;text-base sm:text-lg font-bold text-slate-700 mb-2 pointer-events-none text-center&quot;&gt;{{ &#x27;studentTaskDetail.dropHint&#x27; | translate }}&lt;/p&gt;
+                      &lt;p class&#x3D;&quot;text-xs sm:text-sm font-medium text-slate-400 pointer-events-none text-center max-w-sm&quot;&gt;{{ &#x27;studentTaskDetail.dropZipHint&#x27; | translate }}&lt;/p&gt;
+                      &lt;p class&#x3D;&quot;text-xs font-bold text-slate-400 pointer-events-none mt-6 border border-slate-200 bg-white px-3 py-1 rounded-full shadow-sm&quot;&gt;{{ &#x27;studentTaskDetail.maxWeight&#x27; | translate }}&lt;/p&gt;
+                    &lt;/div&gt;
+                  } @else {
+                    &lt;div class&#x3D;&quot;flex items-center justify-between p-5 bg-emerald-50 border border-emerald-200 rounded-2xl shadow-sm&quot;&gt;
+                      &lt;div class&#x3D;&quot;flex items-center flex-1 overflow-hidden pr-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;p-3 bg-emerald-100 text-emerald-600 rounded-xl mr-4 flex-shrink-0&quot;&gt;
+                          &lt;svg class&#x3D;&quot;w-7 h-7&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;truncate text-left border-l border-emerald-200 pl-4 py-1&quot;&gt;
+                          &lt;p class&#x3D;&quot;text-xs font-bold uppercase tracking-widest text-emerald-600 mb-1&quot;&gt;{{ &#x27;studentTaskDetail.localUploadOk&#x27; | translate }}&lt;/p&gt;
+                          &lt;p class&#x3D;&quot;text-base font-extrabold text-emerald-900 truncate tracking-tight&quot;&gt;{{ selectedFile()!.name }}&lt;/p&gt;
+                          &lt;p class&#x3D;&quot;text-xs text-emerald-700 font-semibold font-mono mt-0.5 opacity-80&quot;&gt;{{ (selectedFile()!.size / 1024 / 1024).toFixed(2) }} MB&lt;/p&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+                      &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;removeFile()&quot; class&#x3D;&quot;p-3 bg-white text-rose-500 hover:bg-rose-50 border border-rose-100 rounded-xl transition-all shadow-sm flex-shrink-0 active:scale-95 group&quot; [attr.title]&#x3D;&quot;&#x27;studentTaskDetail.removeFileTitle&#x27; | translate&quot;&gt;
+                        &lt;svg class&#x3D;&quot;w-5 h-5 group-hover:rotate-90 transition-transform&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M6 18L18 6M6 6l12 12&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                      &lt;/button&gt;
+                    &lt;/div&gt;
+                  }
+                &lt;/div&gt;
+              }
+
+              @if (submissionMode() &#x3D;&#x3D;&#x3D; &#x27;url&#x27;) {
+                &lt;div class&#x3D;&quot;animate-fade-in relative&quot;&gt;
+                  &lt;label class&#x3D;&quot;block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 ml-1&quot;&gt;{{ &#x27;studentTaskDetail.urlLabel&#x27; | translate }}&lt;/label&gt;
+                  &lt;input type&#x3D;&quot;url&quot; formControlName&#x3D;&quot;attachmentUrl&quot;
+                         [class.border-red-400]&#x3D;&quot;submitForm.get(&#x27;attachmentUrl&#x27;)?.invalid &amp;&amp; (submitForm.get(&#x27;attachmentUrl&#x27;)?.dirty || submitForm.get(&#x27;attachmentUrl&#x27;)?.touched)&quot;
+                         [placeholder]&#x3D;&quot;&#x27;studentTaskDetail.urlPlaceholder&#x27; | translate&quot;
+                         class&#x3D;&quot;w-full p-4 rounded-2xl border-2 border-slate-200 text-slate-700 font-medium focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all&quot;&gt;
+
+                  @if (submitForm.get(&#x27;attachmentUrl&#x27;)?.invalid &amp;&amp; (submitForm.get(&#x27;attachmentUrl&#x27;)?.dirty || submitForm.get(&#x27;attachmentUrl&#x27;)?.touched)) {
+                    &lt;p class&#x3D;&quot;text-xs font-bold text-red-500 mt-2 ml-1 flex items-center&quot;&gt;
+                      &lt;svg class&#x3D;&quot;w-4 h-4 mr-1 inline&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                      {{ &#x27;studentTaskDetail.urlInvalid&#x27; | translate }}
+                    &lt;/p&gt;
+                  }
+                &lt;/div&gt;
+              }
+
+              &lt;div class&#x3D;&quot;pt-8 flex justify-end&quot;&gt;
+                &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;submitting() || (submissionMode() &#x3D;&#x3D;&#x3D; &#x27;file&#x27; &amp;&amp; !selectedFile()) || (submissionMode() &#x3D;&#x3D;&#x3D; &#x27;url&#x27; &amp;&amp; (submitForm.get(&#x27;attachmentUrl&#x27;)?.value.trim() &#x3D;&#x3D;&#x3D; &#x27;&#x27; || submitForm.get(&#x27;attachmentUrl&#x27;)?.invalid))&quot;
+                        class&#x3D;&quot;w-full sm:w-auto px-10 py-4 bg-indigo-600 text-white font-extrabold text-sm rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-200 focus:ring-4 focus:ring-indigo-100 transition-all disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed hover:-translate-y-1 active:translate-y-0 active:scale-95 flex justify-center items-center min-w-[240px]&quot;&gt;
+                  @if (submitting()) {
+                    &lt;svg class&#x3D;&quot;animate-spin -ml-1 mr-3 h-5 w-5 text-white&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
+                      &lt;circle class&#x3D;&quot;opacity-25&quot; cx&#x3D;&quot;12&quot; cy&#x3D;&quot;12&quot; r&#x3D;&quot;10&quot; stroke&#x3D;&quot;currentColor&quot; stroke-width&#x3D;&quot;4&quot;&gt;&lt;/circle&gt;
+                      &lt;path class&#x3D;&quot;opacity-75&quot; fill&#x3D;&quot;currentColor&quot; d&#x3D;&quot;M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z&quot;&gt;&lt;/path&gt;
+                    &lt;/svg&gt;
+                    {{ &#x27;studentTaskDetail.processing&#x27; | translate }}
+                  } @else {
+                    {{ &#x27;studentTaskDetail.confirmSubmit&#x27; | translate }}
+                  }
+                &lt;/button&gt;
+              &lt;/div&gt;
+            }
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./student-task-detail.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="min-h-screen w-full font-sans text-slate-800 bg-slate-50 flex flex-col items-center selection:bg-indigo-500/30">  <div class="w-full h-full max-w-4xl p-4 sm:p-8 relative overflow-y-auto overflow-x-hidden">    <div class="mb-6 relative z-10 flex">      <app-boton-atras></app-boton-atras>    </div>    @if (loading()) {      <div class="flex justify-center items-center h-64 w-full">        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>      </div>    }    @if (errorMessage()) {      <div class="bg-red-50 border border-red-200 p-4 mb-6 rounded-2xl shadow-sm flex items-start gap-4">        <div class="p-2 bg-red-100 rounded-full text-red-500 flex-shrink-0">          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>        </div>        <div>          <p class="font-bold text-red-800 text-sm mb-1">{{ \'studentTaskDetail.problemDetected\' | translate }}</p>          <p class="text-sm font-medium text-red-600">{{ errorMessage() }}</p>        </div>      </div>    }    @if (task(); as t) {      <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden w-full mb-8">        <div class="p-6 md:p-8 bg-gradient-to-br from-indigo-50/50 to-white relative">          <div class="flex justify-between items-start gap-4 flex-wrap mb-4 relative z-10">            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 leading-tight">{{ t.task.title }}</h1>            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border"                  [ngClass]="{                    \'bg-amber-50 text-amber-700 border-amber-200\': t.status === SubmissionStatus.PENDING,                    \'bg-emerald-50 text-emerald-700 border-emerald-200\': t.status === SubmissionStatus.SUBMITTED,                    \'bg-blue-50 text-blue-700 border-blue-200\': t.status === SubmissionStatus.GRADED,                    \'bg-red-50 text-red-700 border-red-200\': t.status === SubmissionStatus.LATE || t.status === SubmissionStatus.NOT_SUBMITTED                  }">              {{ (\'studentTaskDetail.status.\' + t.status) | translate }}            </span>          </div>          <div class="flex flex-wrap gap-4 text-sm text-slate-500 mb-6 font-medium relative z-10">            <div class="flex items-center gap-2">              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>              {{ \'studentTaskDetail.dueDate\' | translate }}: <span class="text-slate-700 font-bold" [ngClass]="{\'text-red-600\': isPastDueDate()}">{{ t.task.dueDate | date:\'medium\' }}</span>            </div>            <div class="w-px h-4 bg-slate-300 hidden sm:block mt-0.5"></div>            <div class="flex items-center gap-1">              <span class="font-bold px-2 py-0.5 border border-slate-200 text-slate-500 rounded text-xs uppercase tracking-wider">{{ (\'taskTypes.\' + t.task.type) | translate }}</span>            </div>          </div>          <p class="text-slate-600 text-base leading-relaxed mb-6 font-medium relative z-10">            {{ t.task.description || (\'studentTaskDetail.noDescription\' | translate) }}          </p>          @if (t.task.attachmentUrl) {            <div class="mt-2 p-4 bg-white/80 backdrop-blur-md rounded-2xl border border-indigo-100 flex items-center justify-between shadow-sm relative z-10 transition-transform hover:-translate-y-0.5">              <div class="flex items-center gap-4">                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>                </div>                <div>                  <p class="font-bold text-slate-700 text-sm uppercase tracking-widest mb-0.5">{{ \'studentTaskDetail.consultMaterial\' | translate }}</p>                  <p class="text-xs text-slate-500 max-w-[200px] sm:max-w-xs truncate">{{ t.task.attachmentUrl }}</p>                </div>              </div>              <a [href]="t.task.attachmentUrl" target="_blank" class="px-5 py-2.5 bg-indigo-600 text-white font-bold text-sm rounded-xl hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-600/20 whitespace-nowrap">                {{ \'studentTaskDetail.viewDownload\' | translate }}              </a>            </div>          }        </div>        @if (t.status === SubmissionStatus.GRADED) {          <div class="px-6 md:px-8 py-8 bg-slate-50 border-t border-slate-100">            <h2 class="text-xl font-extrabold text-slate-800 mb-6 flex items-center">              <svg class="w-6 h-6 text-indigo-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>              {{ \'studentTaskDetail.teacherEvaluation\' | translate }}            </h2>            <div class="flex flex-col md:flex-row gap-6">              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center min-w-[160px]">                <span class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">{{ \'studentTaskDetail.finalGrade\' | translate }}</span>                <span class="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-indigo-700">{{ t.score }}</span>              </div>              <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex-1">                <span class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 block">{{ \'studentTaskDetail.attachedComments\' | translate }}</span>                <p class="text-slate-700 font-medium leading-relaxed">{{ t.feedback || (\'studentTaskDetail.noFeedback\' | translate) }}</p>              </div>            </div>          </div>        }        <div class="px-6 md:px-8 py-8 border-t border-slate-100">          <h2 class="text-xl font-extrabold text-slate-800 mb-6 flex items-center">            <svg class="w-6 h-6 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>            {{ \'studentTaskDetail.submissionArea\' | translate }}          </h2>          @if (submissionBlocked()) {            <div class="bg-red-50 border border-red-200 px-5 py-5 mb-6 rounded-2xl shadow-sm text-sm">              <span class="font-bold text-red-800 uppercase tracking-widest text-xs">{{ \'studentTaskDetail.deadlineClosed\' | translate }}</span>              <p class="text-red-700 mt-2 font-medium leading-relaxed"                 [innerHTML]="\'studentTaskDetail.deadlineClosedBody\' | translate: { date: (t.task.dueDate | date:\'medium\') }"></p>              <p class="text-red-600/90 mt-2 text-xs font-medium">                {{ \'studentTaskDetail.deadlineClosedHint\' | translate }}              </p>            </div>          } @else if (showLateSubmissionWarning()) {            <div class="bg-amber-50 border border-amber-200 px-5 py-4 mb-6 rounded-2xl shadow-sm text-sm">              <span class="font-bold text-amber-800 uppercase tracking-widest text-xs">{{ \'studentTaskDetail.lateWarning\' | translate }}</span>              <p class="text-amber-800 mt-1 font-medium"                 [innerHTML]="\'studentTaskDetail.lateWarningBody\' | translate: { date: (t.task.dueDate | date:\'medium\') }"></p>            </div>          }          @if (successMessage()) {            <div class="bg-emerald-50 border border-emerald-100 px-5 py-4 mb-6 rounded-2xl shadow-sm animate-fade-in text-sm">               <span class="font-bold text-emerald-800 uppercase tracking-widest text-xs">{{ \'studentTaskDetail.sentOk\' | translate }}</span>               <p class="text-emerald-700 mt-1 font-medium">{{ successMessage() }}</p>            </div>          }          <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">            @if (t.status !== SubmissionStatus.PENDING) {              <div class="pt-2 mb-8 animate-fade-in">                <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200 text-slate-700 font-medium shadow-inner">                  <div class="flex justify-between items-start flex-wrap gap-4 mb-4">                    <p [innerHTML]="\'studentTaskDetail.savedOn\' | translate: { date: (t.submissionDate | date:\'medium\') }"></p>                    @if (t.status !== SubmissionStatus.GRADED) {                      <button type="button" (click)="unsubmitTask()" class="px-4 py-2 bg-rose-50 text-rose-600 font-bold text-sm rounded-xl hover:bg-rose-100 hover:text-rose-700 transition-colors border border-rose-200 shadow-sm flex items-center gap-2 shadow-sm active:scale-95">                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>                        {{ \'studentTaskDetail.deleteSubmission\' | translate }}                      </button>                    }                  </div>                  @if (t.attachmentUrl) {                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-center justify-between">                      <div class="flex items-center gap-3 overflow-hidden pr-4">                        <svg class="w-6 h-6 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>                        <a [href]="t.attachmentUrl" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-extrabold truncate text-sm hover:underline">{{ t.attachmentUrl.split(\'/\').pop() || t.attachmentUrl }}</a>                      </div>                      <a [href]="t.attachmentUrl" target="_blank" class="text-xs font-bold bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 whitespace-nowrap hidden sm:block">{{ \'studentTaskDetail.openOriginalLink\' | translate }}</a>                    </div>                  }                </div>              </div>            }            @if (t.status === SubmissionStatus.PENDING && !submissionBlocked()) {              <div class="flex gap-2 p-1.5 bg-slate-100 rounded-xl drop-shadow-sm w-full sm:w-fit mb-8 overflow-x-auto">                <button type="button" (click)="setSubmissionMode(\'file\')"                        class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap"                        [ngClass]="submissionMode() === \'file\' ? \'bg-white text-indigo-700 shadow-sm border border-slate-200/50\' : \'text-slate-500 hover:text-slate-700\'">                  {{ \'studentTaskDetail.tabDropzone\' | translate }}                </button>                <button type="button" (click)="setSubmissionMode(\'url\')"                        class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap"                        [ngClass]="submissionMode() === \'url\' ? \'bg-white text-indigo-700 shadow-sm border border-slate-200/50\' : \'text-slate-500 hover:text-slate-700\'">                  {{ \'studentTaskDetail.tabUrl\' | translate }}                </button>              </div>              @if (submissionMode() === \'file\') {                <div class="animate-fade-in">                  @if (!selectedFile()) {                    <div class="relative border-2 border-dashed rounded-3xl p-10 md:p-14 transition-all cursor-pointer group flex flex-col items-center justify-center bg-slate-50 overflow-hidden"                         [ngClass]="isDragging() ? \'border-indigo-500 bg-indigo-50/70 scale-[1.01]\' : \'border-slate-300 hover:border-indigo-400 hover:bg-slate-100/50\'"                         (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">                      <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" title="" (change)="onFileSelected($event)">                      <div class="p-5 bg-indigo-100 text-indigo-600 rounded-full mb-5 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 ease-out shadow-sm origin-center">                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>                      </div>                      <p class="text-base sm:text-lg font-bold text-slate-700 mb-2 pointer-events-none text-center">{{ \'studentTaskDetail.dropHint\' | translate }}</p>                      <p class="text-xs sm:text-sm font-medium text-slate-400 pointer-events-none text-center max-w-sm">{{ \'studentTaskDetail.dropZipHint\' | translate }}</p>                      <p class="text-xs font-bold text-slate-400 pointer-events-none mt-6 border border-slate-200 bg-white px-3 py-1 rounded-full shadow-sm">{{ \'studentTaskDetail.maxWeight\' | translate }}</p>                    </div>                  } @else {                    <div class="flex items-center justify-between p-5 bg-emerald-50 border border-emerald-200 rounded-2xl shadow-sm">                      <div class="flex items-center flex-1 overflow-hidden pr-4">                        <div class="p-3 bg-emerald-100 text-emerald-600 rounded-xl mr-4 flex-shrink-0">                          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>                        </div>                        <div class="truncate text-left border-l border-emerald-200 pl-4 py-1">                          <p class="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-1">{{ \'studentTaskDetail.localUploadOk\' | translate }}</p>                          <p class="text-base font-extrabold text-emerald-900 truncate tracking-tight">{{ selectedFile()!.name }}</p>                          <p class="text-xs text-emerald-700 font-semibold font-mono mt-0.5 opacity-80">{{ (selectedFile()!.size / 1024 / 1024).toFixed(2) }} MB</p>                        </div>                      </div>                      <button type="button" (click)="removeFile()" class="p-3 bg-white text-rose-500 hover:bg-rose-50 border border-rose-100 rounded-xl transition-all shadow-sm flex-shrink-0 active:scale-95 group" [attr.title]="\'studentTaskDetail.removeFileTitle\' | translate">                        <svg class="w-5 h-5 group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>                      </button>                    </div>                  }                </div>              }              @if (submissionMode() === \'url\') {                <div class="animate-fade-in relative">                  <label class="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 ml-1">{{ \'studentTaskDetail.urlLabel\' | translate }}</label>                  <input type="url" formControlName="attachmentUrl"                         [class.border-red-400]="submitForm.get(\'attachmentUrl\')?.invalid && (submitForm.get(\'attachmentUrl\')?.dirty || submitForm.get(\'attachmentUrl\')?.touched)"                         [placeholder]="\'studentTaskDetail.urlPlaceholder\' | translate"                         class="w-full p-4 rounded-2xl border-2 border-slate-200 text-slate-700 font-medium focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all">                  @if (submitForm.get(\'attachmentUrl\')?.invalid && (submitForm.get(\'attachmentUrl\')?.dirty || submitForm.get(\'attachmentUrl\')?.touched)) {                    <p class="text-xs font-bold text-red-500 mt-2 ml-1 flex items-center">                      <svg class="w-4 h-4 mr-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>                      {{ \'studentTaskDetail.urlInvalid\' | translate }}                    </p>                  }                </div>              }              <div class="pt-8 flex justify-end">                <button type="submit" [disabled]="submitting() || (submissionMode() === \'file\' && !selectedFile()) || (submissionMode() === \'url\' && (submitForm.get(\'attachmentUrl\')?.value.trim() === \'\' || submitForm.get(\'attachmentUrl\')?.invalid))"                        class="w-full sm:w-auto px-10 py-4 bg-indigo-600 text-white font-extrabold text-sm rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-200 focus:ring-4 focus:ring-indigo-100 transition-all disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed hover:-translate-y-1 active:translate-y-0 active:scale-95 flex justify-center items-center min-w-[240px]">                  @if (submitting()) {                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>                    </svg>                    {{ \'studentTaskDetail.processing\' | translate }}                  } @else {                    {{ \'studentTaskDetail.confirmSubmit\' | translate }}                  }                </button>              </div>            }          </form>        </div>      </div>    }  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'StudentTaskDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'StudentTaskDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

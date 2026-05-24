@@ -10,6 +10,7 @@ import { SubjectService } from '../../../../../core/services/admin/entities/subj
 import { EnrollmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/enrollment-http.service';
 import { environment } from '../../../../../../environments/environment';
 
+/** Formulario admin para crear registros de asistencia manuales. */
 @Component({
   selector: 'app-assistance-create-form',
   imports: [ReactiveFormsModule, TranslateModule],
@@ -17,24 +18,40 @@ import { environment } from '../../../../../../environments/environment';
   styleUrl: './assistance-create-form.component.scss',
 })
 export class AssistanceCreateFormComponent implements OnInit {
+  /** Constructor de formularios reactivos. */
   private readonly fb = inject(FormBuilder);
+  /** Servicio CRUD de asistencias. */
   private readonly assistanceService = inject(AssistanceService);
+  /** Servicio de sesiones para elegir la clase asociada. */
   private readonly sessionService = inject(ClassSessionService);
+  /** Catálogo de grupos para filtrar matrículas. */
   private readonly groupService = inject(GroupService);
+  /** Catálogo de asignaturas para filtrar matrículas. */
   private readonly subjectService = inject(SubjectService);
+  /** Cliente de matrículas por filtros para elegir alumno. */
   private readonly enrollmentHttp = inject(EnrollmentHttpService);
+  /** Traducciones de mensajes de error. */
   private readonly translate = inject(TranslateService);
 
+  /** Cancela la creación y vuelve al listado. */
   readonly cancelCreate = output<void>();
+  /** Notifica que se creó la asistencia para recargar el listado. */
   readonly assistanceCreated = output<void>();
 
+  /** Sesiones disponibles para asociar la asistencia. */
   readonly sessionOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Grupos disponibles para filtrar alumnos. */
   readonly groupOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Asignaturas disponibles para filtrar alumnos. */
   readonly subjectOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Matrículas que coinciden con grupo, asignatura y año escolar. */
   readonly enrollmentOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Estado de carga del selector de sesiones. */
   readonly loadingSessions = signal(true);
+  /** Estado de carga del selector de matrículas. */
   readonly loadingEnrollments = signal(false);
 
+  /** Formulario que recoge sesión, filtros de matrícula y estado inicial. */
   createForm = this.fb.group({
     idSession: [null as number | null, Validators.required],
     filterGroup: [null as number | null, Validators.required],
@@ -44,9 +61,12 @@ export class AssistanceCreateFormComponent implements OnInit {
     status: [AssistanceStatus.PRESENT],
   });
 
+  /** Evita doble envío durante la creación. */
   isCreating = false;
+  /** Error traducido mostrado en el formulario. */
   errorMessage = '';
 
+  /** Carga sesiones, grupos y asignaturas necesarios para el formulario. */
   ngOnInit(): void {
     this.sessionService.getAllSessions().subscribe((res) => {
       this.loadingSessions.set(false);
@@ -71,6 +91,7 @@ export class AssistanceCreateFormComponent implements OnInit {
     });
   }
 
+  /** Carga matrículas tras elegir grupo, asignatura y curso escolar. */
   loadEnrollments(): void {
     const g = this.createForm.get('filterGroup')?.value;
     const s = this.createForm.get('filterSubject')?.value;
@@ -92,6 +113,7 @@ export class AssistanceCreateFormComponent implements OnInit {
     });
   }
 
+  /** Valida y crea el registro de asistencia. */
   onSubmit(): void {
     if (this.createForm.invalid) {
       this.createForm.markAllAsTouched();
@@ -119,6 +141,7 @@ export class AssistanceCreateFormComponent implements OnInit {
       });
   }
 
+  /** Cancela el formulario sin crear asistencia. */
   onCancel(): void {
     this.cancelCreate.emit();
   }

@@ -22,9 +22,12 @@ import { StudentTask } from '../../../../core/models/teacher/tasks';
   styleUrl: './task-detail.component.scss'
 })
 export class TaskDetailComponent {
-   taskService       = inject(TaskService);
+  /** Servicio de tareas del profesor; aporta la tarea seleccionada y su detalle. */
+  taskService = inject(TaskService);
+  /** Servicio de entregas de alumnos para calificar y actualizar StudentTasks. */
   studentTaskService = inject(StudentTaskService);
-  private fb        = inject(FormBuilder);
+  /** Constructor de formularios para el panel de calificación. */
+  private fb = inject(FormBuilder);
 
   /** StudentTask seleccionada para calificar, null si no hay ninguna abierta */
   selectedStudentTask = signal<StudentTask | null>(null);

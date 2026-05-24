@@ -142,11 +142,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Componente que representa un elemento del listado de sesiones de clase.
-Configura los campos a mostrar, las acciones disponibles y la vista de detalle
-para el componente genérico GenericListItemComponent.
-ATENCIÓN: varios nombres de métodos y propiedades hacen referencia a Subject
-en lugar de ClassSession, pendiente de corregir.</p>
+        <p>Fila del listado admin de sesiones basada en el componente genérico.</p>
 
     </p>
 
@@ -218,7 +214,17 @@ en lugar de ClassSession, pendiente de corregir.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#subjectDetailConfig" >subjectDetailConfig</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#classSessionConfig" >classSessionConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#classSessionDetailConfig" >classSessionDetailConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sessionService" >sessionService</a>
                             </li>
                         </ul>
                     </td>
@@ -240,102 +246,13 @@ en lugar de ClassSession, pendiente de corregir.</p>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#sessionDeleted" >sessionDeleted</a>
-                            </li>
-                            <li>
-                                <a href="#sessionUpdated" >sessionUpdated</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#subjectConfig" >subjectConfig</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(classSessionService: <a href="../injectables/ClassSessionServiceService.html" target="_self">ClassSessionServiceService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:39</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>classSessionService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ClassSessionServiceService.html" target="_self" >ClassSessionServiceService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que gestiona las operaciones con sesiones de clase,
-usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -353,77 +270,26 @@ usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</li
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:28</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Sesión de clase a mostrar en el elemento de lista.</p>
+                        <div class="io-description"><p>Sesión que se renderiza en esta fila.</p>
 </div>
                     </td>
                 </tr>
             </tbody>
         </table>
 </section>
-    <section data-compodoc="block-outputs">
-    <h3 id="outputs">Outputs</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="sessionDeleted"></a>
-                        <b>sessionDeleted</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
 
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:39</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando la sesión ha sido eliminada, incluye su identificador.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="sessionUpdated"></a>
-                        <b>sessionUpdated</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:34</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando la sesión ha sido actualizada.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -436,10 +302,78 @@ usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</li
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="subjectDetailConfig"></a>
+                    <a name="classSessionConfig"></a>
                     <span class="name">
-                        <span ><b>subjectDetailConfig</b></span>
-                        <a href="#subjectDetailConfig"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>classSessionConfig</b></span>
+                        <a href="#classSessionConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ClassSessionUpdatePayload" target="_self" >ListItemConfig&lt;ClassSession | ClassSessionUpdatePayload | ClassSessionUpdateResponse | ClassSessionDeleteResponse&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    fields: [
+      {
+        key: &#x27;date&#x27;,
+        className: &#x27;font-medium&#x27;,
+        order: 1,
+        format: (v: string) &#x3D;&gt; (v ? v.split(&#x27;T&#x27;)[0] : &#x27;—&#x27;),
+      },
+      { key: &#x27;status&#x27;, label: &#x27;Estado&#x27;, order: 2 },
+      { key: &#x27;schedule.startTime&#x27;, label: &#x27;Inicio&#x27;, order: 3 },
+      { key: &#x27;schedule.finishTime&#x27;, label: &#x27;Fin&#x27;, order: 4 },
+    ],
+    actions: { edit: true, delete: true, detail: true },
+    layout: { responsive: false },
+    editFields: [
+      {
+        name: &#x27;date&#x27;,
+        label: &#x27;Fecha&#x27;,
+        type: &#x27;date&#x27;,
+        validators: [Validators.required],
+      },
+      { name: &#x27;status&#x27;, label: &#x27;Estado&#x27;, type: &#x27;text&#x27; },
+      { name: &#x27;appointments&#x27;, label: &#x27;Anotaciones&#x27;, type: &#x27;text&#x27; },
+    ],
+    entityType: &#x27;la sesión&#x27;,
+    entityNameFormat: (s: ClassSession) &#x3D;&gt; s.date?.split(&#x27;T&#x27;)[0] ?? &#x60;Sesión ${s.id}&#x60;,
+    getByIdFn: (id: number) &#x3D;&gt; this.sessionService.getSessionById(id),
+    updateFn: (data: ClassSessionUpdatePayload) &#x3D;&gt; this.sessionService.updateSession(data),
+    deleteFn: (id: number) &#x3D;&gt; this.sessionService.deleteSession(id),
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración del item genérico: campos visibles, edición y acciones CRUD.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classSessionDetailConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>classSessionDetailConfig</b></span>
+                        <a href="#classSessionDetailConfig"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -452,43 +386,63 @@ usado para las funciones getByIdFn, updateFn y deleteFn de la configuración</li
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-        fields: [
-          {
-            key: &#x27;id&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Id de la Sesión:&#x27;
-          },
-          {
-            key: &#x27;date&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Fecha: &#x27;
-          },
-          {
-            key: &#x27;schedule.id&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Horario:&#x27;
-          }
-      ]
-      }</code>
+    fields: [
+      { key: &#x27;date&#x27;, type: &#x27;text&#x27;, label: &#x27;Fecha: &#x27;, className: &#x27;text-xl font-bold&#x27; },
+      { key: &#x27;status&#x27;, type: &#x27;text&#x27;, label: &#x27;Estado: &#x27; },
+      { key: &#x27;appointments&#x27;, type: &#x27;text&#x27;, label: &#x27;Anotaciones: &#x27; },
+      { key: &#x27;createdAt&#x27;, type: &#x27;text&#x27;, label: &#x27;Creada: &#x27; },
+    ],
+  }</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:111</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:68</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Configuración de la vista de detalle de la sesión de clase.
-Muestra el identificador, la fecha y el horario asociado.
-ATENCIÓN: mal nombrada como subjectDetailConfig, debería ser classSessionDetailConfig.</p>
+                    <div class="io-description"><p>Configuración de detalle para mostrar datos completos de la sesión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sessionService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sessionService</b></span>
+                        <a href="#sessionService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ClassSessionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio usado por el componente genérico para detalle, edición y borrado.</p>
 </div>
                 </td>
             </tr>
@@ -497,188 +451,85 @@ ATENCIÓN: mal nombrada como subjectDetailConfig, debería ser classSessionDetai
     </table>
 </section>
 
-    <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="subjectConfig"></a>
-                        <span class="name"><b>subjectConfig</b><a href="#subjectConfig"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>subjectConfig()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list-item/class-session-list-item.component.ts:59</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Configuración del elemento de lista de la sesión de clase.
-Definida como getter para garantizar que las referencias a this sean correctas.
-ATENCIÓN: el getter está mal nombrado como subjectConfig, el HTML lo referencia
-como classSessionConfig por lo que el componente está roto, pendiente de corregir.
-ATENCIÓN: los editFields y métodos del servicio están copiados de AsignaturaListItemComponent
-y no corresponden a ClassSession, pendiente de corregir.</p>
-</div>
-
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code>ListItemConfig&lt;ClassSession&gt;</code>
-
-                                </div>
-                        </td>
-                    </tr>
-
-            </tbody>
-        </table>
-</section>
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
-import { GenericListItemComponent } from &quot;../../../generic-list-item/generic-list-item.component&quot;;
-import { ClassSession, ClassSessionUpdateRequest } from &#x27;../../../../../core/models/class-sessions&#x27;;
-import { ClassSessionServiceService } from &#x27;../../../../../core/services/admin/entities/class-session-service.service&#x27;;
-import { ListItemConfig } from &#x27;../../../../../core/configs/list-item-config&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, Input } from &#x27;@angular/core&#x27;;
 import { Validators } from &#x27;@angular/forms&#x27;;
-import { map } from &#x27;rxjs&#x27;;
+import {
+  ClassSession,
+  ClassSessionDeleteResponse,
+  ClassSessionUpdateResponse,
+} from &#x27;../../../../../core/models/class-sessions&#x27;;
+import { ListItemConfig } from &#x27;../../../../../core/configs/list-item-config&#x27;;
 import { ViewDetailConfig } from &#x27;../../../../../core/configs/view-detail-config&#x27;;
+import { GenericListItemComponent } from &#x27;../../../generic-list-item/generic-list-item.component&#x27;;
+import {
+  ClassSessionService,
+  ClassSessionUpdatePayload,
+} from &#x27;../../../../../core/services/admin/entities/class-session.service&#x27;;
 
-
-/**
- * Componente que representa un elemento del listado de sesiones de clase.
- * Configura los campos a mostrar, las acciones disponibles y la vista de detalle
- * para el componente genérico GenericListItemComponent.
- * ATENCIÓN: varios nombres de métodos y propiedades hacen referencia a Subject
- * en lugar de ClassSession, pendiente de corregir.
- */
+/** Fila del listado admin de sesiones basada en el componente genérico. */
 @Component({
   selector: &#x27;app-class-session-list-item&#x27;,
   imports: [GenericListItemComponent],
   templateUrl: &#x27;./class-session-list-item.component.html&#x27;,
-  styleUrl: &#x27;./class-session-list-item.component.scss&#x27;
+  styleUrl: &#x27;./class-session-list-item.component.scss&#x27;,
 })
 export class ClassSessionListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
+  private readonly sessionService &#x3D; inject(ClassSessionService);
 
-   /**
-   * Sesión de clase a mostrar en el elemento de lista.
-   */
-  @Input() classSession!: ClassSession;
+  /** Sesión que se renderiza en esta fila. */
+  @Input({ required: true }) classSession!: ClassSession;
 
-    /**
-   * Evento emitido cuando la sesión ha sido actualizada.
-   */
-  @Output() sessionUpdated &#x3D; new EventEmitter&lt;ClassSessionUpdateRequest&gt;();
-
-  /**
-   * Evento emitido cuando la sesión ha sido eliminada, incluye su identificador.
-   */
-  @Output() sessionDeleted &#x3D; new EventEmitter&lt;number&gt;();
-
-
-   /**
-   * @param classSessionService - Servicio que gestiona las operaciones con sesiones de clase,
-   * usado para las funciones getByIdFn, updateFn y deleteFn de la configuración
-   */
-  constructor(
-    private classSessionService: ClassSessionServiceService
-  ) {}
-
-  
-  /**
-   * Configuración del elemento de lista de la sesión de clase.
-   * Definida como getter para garantizar que las referencias a this sean correctas.
-   * ATENCIÓN: el getter está mal nombrado como subjectConfig, el HTML lo referencia
-   * como classSessionConfig por lo que el componente está roto, pendiente de corregir.
-   * ATENCIÓN: los editFields y métodos del servicio están copiados de AsignaturaListItemComponent
-   * y no corresponden a ClassSession, pendiente de corregir.
-   */
-  get subjectConfig(): ListItemConfig&lt;ClassSession&gt; {
-    return {
-      fields: [
-        { 
-          key: &#x27;name&#x27;,
-          className: &#x27;font-medium&#x27;
-        }
-      ],
-      actions: {
-        edit: true,
-        delete: true,
-        detail: true
+  /** Configuración del item genérico: campos visibles, edición y acciones CRUD. */
+  readonly classSessionConfig: ListItemConfig&lt;
+    ClassSession,
+    ClassSessionUpdatePayload,
+    ClassSessionUpdateResponse,
+    ClassSessionDeleteResponse
+  &gt; &#x3D; {
+    fields: [
+      {
+        key: &#x27;date&#x27;,
+        className: &#x27;font-medium&#x27;,
+        order: 1,
+        format: (v: string) &#x3D;&gt; (v ? v.split(&#x27;T&#x27;)[0] : &#x27;—&#x27;),
       },
-      layout: {
-        responsive: false
+      { key: &#x27;status&#x27;, label: &#x27;Estado&#x27;, order: 2 },
+      { key: &#x27;schedule.startTime&#x27;, label: &#x27;Inicio&#x27;, order: 3 },
+      { key: &#x27;schedule.finishTime&#x27;, label: &#x27;Fin&#x27;, order: 4 },
+    ],
+    actions: { edit: true, delete: true, detail: true },
+    layout: { responsive: false },
+    editFields: [
+      {
+        name: &#x27;date&#x27;,
+        label: &#x27;Fecha&#x27;,
+        type: &#x27;date&#x27;,
+        validators: [Validators.required],
       },
-      editFields: [
-        {
-          name: &#x27;date&#x27;,
-          label: &#x27;Fecha&#x27;,
-          type: &#x27;text&#x27;,
-          placeholder: &#x27;Nombre de la asignatura&#x27;,
-          validators: [Validators.required],
-          errorMessage: &#x27;La fecha es requerida&#x27;
-        },
-        {
-          name: &#x27;idCourse&#x27;,
-          label: &#x27;Ciclo&#x27;,
-          fieldType: &#x27;select&#x27;,
-          placeholder: &#x27;Selecciona un ciclo&#x27;,
-          validators: [Validators.required],
-          errorMessage: &#x27;Debes seleccionar un ciclo&#x27;,
-          optionsObservable: this.classSessionService.getAllSessions().pipe(
-            map(res &#x3D;&gt; res.data)
-          ),
-          optionValueKey: &#x27;id&#x27;,
-          optionLabelKey: &#x27;name&#x27;
-        }
-      ],
-      entityType: &#x27;la Sesión&#x27;,
-      entityNameFormat: (classSession: ClassSession) &#x3D;&gt; classSession.date,
-      getByIdFn: (id: number) &#x3D;&gt; this.classSessionService.getSubjectbyId(id),
-      updateFn: (data: any) &#x3D;&gt; this.classSessionService.updateSubject(data.id, data),
-      deleteFn: (id: number) &#x3D;&gt; this.classSessionService.deleteSubject(id)
-    };
-  }
+      { name: &#x27;status&#x27;, label: &#x27;Estado&#x27;, type: &#x27;text&#x27; },
+      { name: &#x27;appointments&#x27;, label: &#x27;Anotaciones&#x27;, type: &#x27;text&#x27; },
+    ],
+    entityType: &#x27;la sesión&#x27;,
+    entityNameFormat: (s: ClassSession) &#x3D;&gt; s.date?.split(&#x27;T&#x27;)[0] ?? &#x60;Sesión ${s.id}&#x60;,
+    getByIdFn: (id: number) &#x3D;&gt; this.sessionService.getSessionById(id),
+    updateFn: (data: ClassSessionUpdatePayload) &#x3D;&gt; this.sessionService.updateSession(data),
+    deleteFn: (id: number) &#x3D;&gt; this.sessionService.deleteSession(id),
+  };
 
-    /**
-   * Configuración de la vista de detalle de la sesión de clase.
-   * Muestra el identificador, la fecha y el horario asociado.
-   * ATENCIÓN: mal nombrada como subjectDetailConfig, debería ser classSessionDetailConfig.
-   */
-  subjectDetailConfig: ViewDetailConfig&lt;ClassSession&gt; &#x3D; {
-        fields: [
-          {
-            key: &#x27;id&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Id de la Sesión:&#x27;
-          },
-          {
-            key: &#x27;date&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Fecha: &#x27;
-          },
-          {
-            key: &#x27;schedule.id&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Horario:&#x27;
-          }
-      ]
-      };
+  /** Configuración de detalle para mostrar datos completos de la sesión. */
+  readonly classSessionDetailConfig: ViewDetailConfig&lt;ClassSession&gt; &#x3D; {
+    fields: [
+      { key: &#x27;date&#x27;, type: &#x27;text&#x27;, label: &#x27;Fecha: &#x27;, className: &#x27;text-xl font-bold&#x27; },
+      { key: &#x27;status&#x27;, type: &#x27;text&#x27;, label: &#x27;Estado: &#x27; },
+      { key: &#x27;appointments&#x27;, type: &#x27;text&#x27;, label: &#x27;Anotaciones: &#x27; },
+      { key: &#x27;createdAt&#x27;, type: &#x27;text&#x27;, label: &#x27;Creada: &#x27; },
+    ],
+  };
 }
 </code></pre>
     </div>
@@ -719,7 +570,7 @@ export class ClassSessionListItemComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><app-generic-list-item  [item]="classSession"  [config]="classSessionConfig"  [detailConfig]="classSessionDetailConfig">  </app-generic-list-item></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ClassSessionListItemComponent'};
 </script>

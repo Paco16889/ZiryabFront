@@ -1,0 +1,1529 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  StudentTaskCreateFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Formulario admin para crear una entrega individual asociada a una tarea y matrícula.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-student-task-create-form</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./student-task-create-form.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./student-task-create-form.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createForm" >createForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#enrollmentHttp" >enrollmentHttp</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#enrollmentOptions" >enrollmentOptions</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groupOptions" >groupOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groupService" >groupService</a>
+                            </li>
+                            <li>
+                                <a href="#isCreating" >isCreating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loadingEnrollments" >loadingEnrollments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loadingTasks" >loadingTasks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#studentTaskService" >studentTaskService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subjectOptions" >subjectOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subjectService" >subjectService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#taskOptions" >taskOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#taskService" >taskService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#loadEnrollments" >loadEnrollments</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelCreate" >cancelCreate</a>
+                            </li>
+                            <li>
+                                <a href="#studentTaskCreated" >studentTaskCreated</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelCreate"></a>
+                        <b>cancelCreate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:37</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Cancela la creación y vuelve al listado.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="studentTaskCreated"></a>
+                        <b>studentTaskCreated</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:39</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Notifica al listado que debe recargar tras crear.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadEnrollments"></a>
+                    <span class="name">
+                        <span ><b>loadEnrollments</b></span>
+                        <a href="#loadEnrollments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadEnrollments()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga matrículas que coinciden con grupo, asignatura y curso escolar.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga tareas, grupos y asignaturas para montar el formulario.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cancela el formulario sin crear entrega.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida y crea la StudentTask individual.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createForm"></a>
+                    <span class="name">
+                        <span ><b>createForm</b></span>
+                        <a href="#createForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    idTask: [null as number | null, Validators.required],
+    filterGroup: [null as number | null, Validators.required],
+    filterSubject: [null as number | null, Validators.required],
+    schoolYear: [environment.currentSchoolYear, Validators.required],
+    idStudentEnrollment: [null as number | null, Validators.required],
+    status: [SubmissionStatus.PENDING],
+    isEnabled: [true],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario de creación con tarea, matrícula, estado inicial y habilitación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enrollmentHttp"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>enrollmentHttp</b></span>
+                        <a href="#enrollmentHttp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EnrollmentHttpService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cliente de matrículas por filtros.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enrollmentOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>enrollmentOptions</b></span>
+                        <a href="#enrollmentOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Matrículas filtradas para elegir alumno destinatario.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error traducido mostrado en el formulario.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constructor de formularios reactivos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groupOptions</b></span>
+                        <a href="#groupOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Grupos disponibles para filtrar alumnos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groupService</b></span>
+                        <a href="#groupService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(GroupService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de grupos para filtrar matrículas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCreating"></a>
+                    <span class="name">
+                        <span ><b>isCreating</b></span>
+                        <a href="#isCreating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Evita doble envío durante la creación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingEnrollments"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loadingEnrollments</b></span>
+                        <a href="#loadingEnrollments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga de matrículas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingTasks"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loadingTasks</b></span>
+                        <a href="#loadingTasks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga de tareas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentTaskService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>studentTaskService</b></span>
+                        <a href="#studentTaskService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StudentTaskService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio CRUD admin de StudentTasks.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subjectOptions</b></span>
+                        <a href="#subjectOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asignaturas disponibles para filtrar alumnos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subjectService</b></span>
+                        <a href="#subjectService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SubjectService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de asignaturas para filtrar matrículas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taskOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>taskOptions</b></span>
+                        <a href="#taskOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tareas disponibles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taskService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>taskService</b></span>
+                        <a href="#taskService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AdminTaskService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de tareas para poblar el selector de tarea.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-create-form/student-task-create-form.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de errores del backend.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit, output, signal } from &#x27;@angular/core&#x27;;
+import { FormBuilder, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { resolveApiError } from &#x27;../../../../../core/i18n/api-error.util&#x27;;
+import { SubmissionStatus } from &#x27;../../../../../core/models/studentTask&#x27;;
+import { AdminTaskService } from &#x27;../../../../../core/services/admin/entities/task.service&#x27;;
+import { StudentTaskService } from &#x27;../../../../../core/services/admin/entities/student-task.service&#x27;;
+import { GroupService } from &#x27;../../../../../core/services/admin/entities/group.service&#x27;;
+import { SubjectService } from &#x27;../../../../../core/services/admin/entities/subject.service&#x27;;
+import { EnrollmentHttpService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/enrollment-http.service&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+
+/** Formulario admin para crear una entrega individual asociada a una tarea y matrícula. */
+@Component({
+  selector: &#x27;app-student-task-create-form&#x27;,
+  imports: [ReactiveFormsModule, TranslateModule],
+  templateUrl: &#x27;./student-task-create-form.component.html&#x27;,
+  styleUrl: &#x27;./student-task-create-form.component.scss&#x27;,
+})
+export class StudentTaskCreateFormComponent implements OnInit {
+  /** Constructor de formularios reactivos. */
+  private readonly fb &#x3D; inject(FormBuilder);
+  /** Servicio CRUD admin de StudentTasks. */
+  private readonly studentTaskService &#x3D; inject(StudentTaskService);
+  /** Traducciones de errores del backend. */
+  private readonly translate &#x3D; inject(TranslateService);
+  /** Servicio de tareas para poblar el selector de tarea. */
+  private readonly taskService &#x3D; inject(AdminTaskService);
+  /** Catálogo de grupos para filtrar matrículas. */
+  private readonly groupService &#x3D; inject(GroupService);
+  /** Catálogo de asignaturas para filtrar matrículas. */
+  private readonly subjectService &#x3D; inject(SubjectService);
+  /** Cliente de matrículas por filtros. */
+  private readonly enrollmentHttp &#x3D; inject(EnrollmentHttpService);
+
+  /** Cancela la creación y vuelve al listado. */
+  readonly cancelCreate &#x3D; output&lt;void&gt;();
+  /** Notifica al listado que debe recargar tras crear. */
+  readonly studentTaskCreated &#x3D; output&lt;void&gt;();
+
+  /** Tareas disponibles. */
+  readonly taskOptions &#x3D; signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([]);
+  /** Grupos disponibles para filtrar alumnos. */
+  readonly groupOptions &#x3D; signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([]);
+  /** Asignaturas disponibles para filtrar alumnos. */
+  readonly subjectOptions &#x3D; signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([]);
+  /** Matrículas filtradas para elegir alumno destinatario. */
+  readonly enrollmentOptions &#x3D; signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([]);
+  /** Estado de carga de tareas. */
+  readonly loadingTasks &#x3D; signal(true);
+  /** Estado de carga de matrículas. */
+  readonly loadingEnrollments &#x3D; signal(false);
+
+  /** Formulario de creación con tarea, matrícula, estado inicial y habilitación. */
+  createForm &#x3D; this.fb.group({
+    idTask: [null as number | null, Validators.required],
+    filterGroup: [null as number | null, Validators.required],
+    filterSubject: [null as number | null, Validators.required],
+    schoolYear: [environment.currentSchoolYear, Validators.required],
+    idStudentEnrollment: [null as number | null, Validators.required],
+    status: [SubmissionStatus.PENDING],
+    isEnabled: [true],
+  });
+
+  /** Evita doble envío durante la creación. */
+  isCreating &#x3D; false;
+  /** Error traducido mostrado en el formulario. */
+  errorMessage &#x3D; &#x27;&#x27;;
+
+  /** Carga tareas, grupos y asignaturas para montar el formulario. */
+  ngOnInit(): void {
+    this.taskService.getAllTasks().subscribe((res) &#x3D;&gt; {
+      this.loadingTasks.set(false);
+      this.taskOptions.set(
+        res.success
+          ? res.data.map((t) &#x3D;&gt; ({ value: t.id, label: t.title }))
+          : [],
+      );
+    });
+    this.groupService.getAllGroups().subscribe((res) &#x3D;&gt; {
+      this.groupOptions.set(
+        res.success ? res.data.map((g) &#x3D;&gt; ({ value: g.id, label: g.name })) : [],
+      );
+    });
+    this.subjectService.getAllSubjects().subscribe((res) &#x3D;&gt; {
+      this.subjectOptions.set(
+        res.success ? res.data.map((s) &#x3D;&gt; ({ value: s.id, label: s.name })) : [],
+      );
+    });
+  }
+
+  /** Carga matrículas que coinciden con grupo, asignatura y curso escolar. */
+  loadEnrollments(): void {
+    const g &#x3D; this.createForm.get(&#x27;filterGroup&#x27;)?.value;
+    const s &#x3D; this.createForm.get(&#x27;filterSubject&#x27;)?.value;
+    const y &#x3D; this.createForm.get(&#x27;schoolYear&#x27;)?.value;
+    if (g &#x3D;&#x3D; null || s &#x3D;&#x3D; null || !y) return;
+
+    this.loadingEnrollments.set(true);
+    this.enrollmentHttp.getByFilters({ idGroup: g, idSubject: s, schoolYear: y }).subscribe((res) &#x3D;&gt; {
+      this.loadingEnrollments.set(false);
+      this.enrollmentOptions.set(
+        res.success
+          ? res.data.map((e) &#x3D;&gt; ({
+              value: e.id,
+              label: [e.student?.name, e.student?.surname].filter(Boolean).join(&#x27; &#x27;) || &#x60;Matrícula ${e.id}&#x60;,
+            }))
+          : [],
+      );
+      this.createForm.patchValue({ idStudentEnrollment: null });
+    });
+  }
+
+  /** Valida y crea la StudentTask individual. */
+  onSubmit(): void {
+    if (this.createForm.invalid) {
+      this.createForm.markAllAsTouched();
+      return;
+    }
+    const raw &#x3D; this.createForm.getRawValue();
+    this.isCreating &#x3D; true;
+    this.errorMessage &#x3D; &#x27;&#x27;;
+
+    this.studentTaskService
+      .createStudentTask({
+        idTask: raw.idTask as number,
+        idStudentEnrollment: raw.idStudentEnrollment as number,
+        isEnabled: raw.isEnabled ?? true,
+        status: raw.status as SubmissionStatus,
+      })
+      .subscribe({
+        next: () &#x3D;&gt; {
+          this.isCreating &#x3D; false;
+          this.studentTaskCreated.emit();
+        },
+        error: (err) &#x3D;&gt; {
+          this.isCreating &#x3D; false;
+          this.errorMessage &#x3D; resolveApiError(this.translate, err, &#x27;common.errors.createEnrollment&#x27;);
+        },
+      });
+  }
+
+  /** Cancela el formulario sin crear entrega. */
+  onCancel(): void {
+    this.cancelCreate.emit();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;max-w-2xl mx-auto&quot;&gt;
+  &lt;div class&#x3D;&quot;flex items-center mb-6&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;
+      ← {{ &#x27;common.buttons.back&#x27; | translate }}
+    &lt;/button&gt;
+    &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;lists.studentTasks.createTitle&#x27; | translate }}&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;createForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block font-medium mb-2&quot;&gt;{{ &#x27;lists.studentTasks.fields.task&#x27; | translate }}&lt;/label&gt;
+        &lt;select formControlName&#x3D;&quot;idTask&quot; class&#x3D;&quot;w-full border rounded-lg px-4 py-2&quot; [disabled]&#x3D;&quot;loadingTasks()&quot;&gt;
+          &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;—&lt;/option&gt;
+          @for (o of taskOptions(); track o.value) {
+            &lt;option [ngValue]&#x3D;&quot;o.value&quot;&gt;{{ o.label }}&lt;/option&gt;
+          }
+        &lt;/select&gt;
+      &lt;/div&gt;
+      &lt;p class&#x3D;&quot;text-sm text-gray-600 mb-2&quot;&gt;{{ &#x27;lists.studentTasks.fields.enrollmentHint&#x27; | translate }}&lt;/p&gt;
+      &lt;div class&#x3D;&quot;grid grid-cols-1 sm:grid-cols-3 gap-3 mb-2&quot;&gt;
+        &lt;select formControlName&#x3D;&quot;filterGroup&quot; class&#x3D;&quot;border rounded-lg px-3 py-2&quot;&gt;
+          &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.studentTasks.fields.group&#x27; | translate }}&lt;/option&gt;
+          @for (o of groupOptions(); track o.value) {
+            &lt;option [ngValue]&#x3D;&quot;o.value&quot;&gt;{{ o.label }}&lt;/option&gt;
+          }
+        &lt;/select&gt;
+        &lt;select formControlName&#x3D;&quot;filterSubject&quot; class&#x3D;&quot;border rounded-lg px-3 py-2&quot;&gt;
+          &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.studentTasks.fields.subject&#x27; | translate }}&lt;/option&gt;
+          @for (o of subjectOptions(); track o.value) {
+            &lt;option [ngValue]&#x3D;&quot;o.value&quot;&gt;{{ o.label }}&lt;/option&gt;
+          }
+        &lt;/select&gt;
+        &lt;input formControlName&#x3D;&quot;schoolYear&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;border rounded-lg px-3 py-2&quot; /&gt;
+      &lt;/div&gt;
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;mb-4 text-sm text-purple-700 underline&quot; (click)&#x3D;&quot;loadEnrollments()&quot;&gt;
+        {{ &#x27;lists.studentTasks.fields.loadEnrollments&#x27; | translate }}
+      &lt;/button&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block font-medium mb-2&quot;&gt;{{ &#x27;lists.studentTasks.fields.enrollment&#x27; | translate }}&lt;/label&gt;
+        &lt;select formControlName&#x3D;&quot;idStudentEnrollment&quot; class&#x3D;&quot;w-full border rounded-lg px-4 py-2&quot; [disabled]&#x3D;&quot;loadingEnrollments()&quot;&gt;
+          &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;—&lt;/option&gt;
+          @for (o of enrollmentOptions(); track o.value) {
+            &lt;option [ngValue]&#x3D;&quot;o.value&quot;&gt;{{ o.label }}&lt;/option&gt;
+          }
+        &lt;/select&gt;
+      &lt;/div&gt;
+      @if (errorMessage) {
+        &lt;div class&#x3D;&quot;mb-4 p-3 bg-red-100 text-red-700 rounded&quot;&gt;{{ errorMessage }}&lt;/div&gt;
+      }
+      &lt;div class&#x3D;&quot;flex justify-end gap-3&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;onCancel()&quot; class&#x3D;&quot;px-6 py-2 bg-gray-300 rounded-lg&quot;&gt;{{ &#x27;common.buttons.cancel&#x27; | translate }}&lt;/button&gt;
+        &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;createForm.invalid || isCreating&quot; class&#x3D;&quot;px-6 py-2 bg-green-500 text-white rounded-lg disabled:bg-gray-300&quot;&gt;
+          {{ &#x27;lists.studentTasks.createButton&#x27; | translate }}
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="max-w-2xl mx-auto">  <div class="flex items-center mb-6">    <button type="button" class="mr-4 text-gray-600 hover:text-gray-900" (click)="onCancel()">      ← {{ \'common.buttons.back\' | translate }}    </button>    <h1 class="text-2xl font-bold">{{ \'lists.studentTasks.createTitle\' | translate }}</h1>  </div>  <div class="bg-white p-6 rounded-lg shadow">    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">      <div class="mb-4">        <label class="block font-medium mb-2">{{ \'lists.studentTasks.fields.task\' | translate }}</label>        <select formControlName="idTask" class="w-full border rounded-lg px-4 py-2" [disabled]="loadingTasks()">          <option [ngValue]="null">—</option>          @for (o of taskOptions(); track o.value) {            <option [ngValue]="o.value">{{ o.label }}</option>          }        </select>      </div>      <p class="text-sm text-gray-600 mb-2">{{ \'lists.studentTasks.fields.enrollmentHint\' | translate }}</p>      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-2">        <select formControlName="filterGroup" class="border rounded-lg px-3 py-2">          <option [ngValue]="null">{{ \'lists.studentTasks.fields.group\' | translate }}</option>          @for (o of groupOptions(); track o.value) {            <option [ngValue]="o.value">{{ o.label }}</option>          }        </select>        <select formControlName="filterSubject" class="border rounded-lg px-3 py-2">          <option [ngValue]="null">{{ \'lists.studentTasks.fields.subject\' | translate }}</option>          @for (o of subjectOptions(); track o.value) {            <option [ngValue]="o.value">{{ o.label }}</option>          }        </select>        <input formControlName="schoolYear" type="text" class="border rounded-lg px-3 py-2" />      </div>      <button type="button" class="mb-4 text-sm text-purple-700 underline" (click)="loadEnrollments()">        {{ \'lists.studentTasks.fields.loadEnrollments\' | translate }}      </button>      <div class="mb-4">        <label class="block font-medium mb-2">{{ \'lists.studentTasks.fields.enrollment\' | translate }}</label>        <select formControlName="idStudentEnrollment" class="w-full border rounded-lg px-4 py-2" [disabled]="loadingEnrollments()">          <option [ngValue]="null">—</option>          @for (o of enrollmentOptions(); track o.value) {            <option [ngValue]="o.value">{{ o.label }}</option>          }        </select>      </div>      @if (errorMessage) {        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">{{ errorMessage }}</div>      }      <div class="flex justify-end gap-3">        <button type="button" (click)="onCancel()" class="px-6 py-2 bg-gray-300 rounded-lg">{{ \'common.buttons.cancel\' | translate }}</button>        <button type="submit" [disabled]="createForm.invalid || isCreating" class="px-6 py-2 bg-green-500 text-white rounded-lg disabled:bg-gray-300">          {{ \'lists.studentTasks.createButton\' | translate }}        </button>      </div>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'StudentTaskCreateFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'StudentTaskCreateFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

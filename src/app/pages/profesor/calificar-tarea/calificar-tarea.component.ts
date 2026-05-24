@@ -19,22 +19,33 @@ import { StudentTask } from '../../../core/models/studentTask';
   styleUrls: ['./calificar-tarea.component.scss']
 })
 export class CalificarTareaComponent implements OnInit {
+  /** Ruta activa para leer el id de la entrega. */
   private route = inject(ActivatedRoute);
+  /** Router reservado para navegación de la vista. */
   private router = inject(Router);
+  /** Servicio de entregas para cargar y calificar. */
   private studentTaskService = inject(StudentTaskService);
+  /** Constructor del formulario de calificación. */
   private fb = inject(FormBuilder);
+  /** Traducciones de errores. */
   private readonly translate = inject(TranslateService);
 
+  /** Entrega que se está calificando. */
   taskDelivery: StudentTask | null = null;
+  /** Estado de carga inicial. */
   loading = true;
+  /** Mensaje de error visible. */
   error = '';
+  /** Estado de envío de la nota. */
   submitting = false;
 
+  /** Formulario de nota y feedback con rango permitido 0-10. */
   gradeForm: FormGroup = this.fb.group({
     score: [null, [Validators.required, Validators.min(0), Validators.max(10)]],
     feedback: ['']
   });
 
+  /** Lee el id de ruta y carga la entrega. */
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {

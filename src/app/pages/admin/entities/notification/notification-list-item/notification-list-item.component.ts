@@ -10,6 +10,7 @@ import {
   NotificationUpdatePayload,
 } from '../../../../../core/services/admin/entities/admin-notification.service';
 
+/** Fila del CRUD admin de notificaciones basada en el componente genérico de lista. */
 @Component({
   selector: 'app-notification-list-item',
   imports: [GenericListItemComponent],
@@ -17,10 +18,13 @@ import {
   styleUrl: './notification-list-item.component.scss',
 })
 export class NotificationListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
   private readonly notificationService = inject(AdminNotificationService);
 
+  /** Notificación que se renderiza en esta fila. */
   @Input({ required: true }) notification!: AppNotification;
 
+  /** Configuración del listado: título, estado de lectura, tipo y acciones CRUD. */
   readonly notificationConfig: ListItemConfig<
     AppNotification,
     NotificationUpdatePayload,
@@ -59,6 +63,7 @@ export class NotificationListItemComponent {
     deleteFn: (id: number) => this.notificationService.delete(id),
   };
 
+  /** Configuración de la vista de detalle de una notificación administrativa. */
   readonly notificationDetailConfig: ViewDetailConfig<AppNotification> = {
     fields: [
       { key: 'title', type: 'text', label: 'Título: ', className: 'text-xl font-bold' },

@@ -24,19 +24,35 @@ import { WeekScheduleAssignmentPickerComponent } from '../week-schedule-assignme
 import { WeekScheduleDayCardComponent } from '../week-schedule-day-card/week-schedule-day-card.component';
 import { WeekScheduleHourCardComponent } from '../week-schedule-hour-card/week-schedule-hour-card.component';
 
-/** Clave estable: día 1–7 + inicio de franja */
+/** Clave estable para identificar una celda del grid por día y hora de inicio. */
 export function weekScheduleCellKey(weekDay: number, startTime: string): string {
   return `${weekDay}|${startTime}`;
 }
 
+/** Estado editable de una celda del horario semanal antes de persistir cambios. */
 export interface GridCellState {
+  /** Asignación profesor-asignatura-grupo seleccionada para la celda. */
   idTeacherAssignment: number;
+
+  /** Identificador del WeekSchedule existente, si la celda venía del backend. */
   serverId?: number;
+
+  /** Texto mostrado en el selector: asignatura y, si está disponible, profesor. */
   label: string;
+
+  /** Profesor usado para comprobar solapes contra horarios de otros grupos. */
   idTeacher: number;
+
+  /** Asignatura usada para sumar horas y compararlas con las horas declaradas. */
   idSubject: number;
+
+  /** Día de la semana en formato UI (`1` lunes, `5` viernes). */
   weekDay: number;
+
+  /** Hora de inicio de la celda, heredada de `environment.timetableSlots`. */
   startTime: string;
+
+  /** Hora de fin de la celda, heredada de `environment.timetableSlots`. */
   finishTime: string;
 }
 
@@ -58,41 +74,79 @@ export interface GridCellState {
   styleUrl: './week-schedule-grid-builder.component.scss',
 })
 export class WeekScheduleGridBuilderComponent implements OnInit {
+  /** Servicio que agrupa asignaciones docentes y horarios existentes para una clase. */
   private readonly assignmentData = inject(WeekScheduleAssignmentDataService);
+
+  /** API que lista clases agregadas por curso, nivel, grupo y año escolar. */
   private readonly classesApi = inject(WeekScheduleClassesHttpService);
+
+  /** API usada para resolver nombres de profesor a partir de `idTeacher`. */
   private readonly teachersApi = inject(TeachersService);
+
+  /** Servicio CRUD de WeekSchedule usado para crear, actualizar y borrar celdas. */
   private readonly schedules = inject(WeekScheduleService);
+
+  /** Traducciones de etiquetas de días y mensajes de validación del grid. */
   private readonly translate = inject(TranslateService);
 
+  /** Solicita al shell padre salir del flujo de creación/edición de horarios. */
   readonly cancelCreate = output<void>();
+
+  /** Notifica que se han persistido cambios para refrescar listados externos. */
   readonly scheduleSaved = output<void>();
 
   /** En pestaña grid del shell: oculta cabecera propia (atrás / título). @see CURSO-91 */
   readonly embedded = input(false);
 
+  /** Días laborables renderizados como columnas del grid. */
   readonly weekdays = [1, 2, 3, 4, 5] as const;
+
+  /** Franjas horarias oficiales del centro renderizadas como filas. */
   readonly slots: TimetableSlot[] = [...environment.timetableSlots];
 
+  /** Clases disponibles para seleccionar el contexto del horario. */
   readonly classes = signal<WeekScheduleClassItem[]>([]);
+
+  /** Error al cargar la lista inicial de clases. */
   readonly classesLoadError = signal(false);
+
+  /** Clase seleccionada; define curso, grupo y año escolar del horario editado. */
   readonly selectedClass = signal<WeekScheduleClassItem | null>(null);
 
+  /** Grupo de la clase seleccionada, usado en validaciones de solapes. */
   readonly selectedGroupId = computed(() => this.selectedClass()?.group.id ?? null);
 
+  /** Curso escolar activo usado para filtrar clases y horarios. */
   readonly schoolYear = signal<string>(environment.currentSchoolYear);
 
+  /** Asignaciones docente-asignatura-grupo válidas para la clase seleccionada. */
   readonly assignments = signal<TeacherSubjectAssignmentRow[]>([]);
+
+  /** Mapa auxiliar para pintar nombres de profesor sin repetir búsquedas. */
   readonly teacherNameById = signal<Map<number, string>>(new Map());
+
+  /** Celdas actualmente editadas por el usuario, indexadas por `weekScheduleCellKey`. */
   readonly cells = signal<Map<string, GridCellState>>(new Map());
 
+  /** Snapshot de horarios tal como llegaron del backend para calcular el diff de guardado. */
   private initialServerSchedules = signal<WeekSchedule[]>([]);
 
+  /** Indica que se está cargando contexto de asignaciones/horarios de una clase. */
   readonly loading = signal(false);
+
+  /** Error al cargar contexto de la clase seleccionada. */
   readonly loadError = signal(false);
+
+  /** Indica que hay operaciones de persistencia en curso. */
   readonly saving = signal(false);
+
+  /** Error general durante la persistencia del diff. */
   readonly saveError = signal(false);
+
+  /** Mensajes de validación que bloquean el guardado del grid. */
   readonly validationMessages = signal<string[]>([]);
 
+  /** Opciones del selector ordenadas por asignatura y profesor para facilitar la edición. */
   readonly sortedAssignmentOptions = computed(() => {
     const rows = this.assignments();
     const names = this.teacherNameById();
@@ -105,12 +159,15 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   });
 
+  /** Helper expuesto al template para serializar la clase seleccionada. */
   readonly classKey = weekScheduleClassKey;
 
+  /** Carga las clases del curso escolar al montar el grid. */
   ngOnInit(): void {
     this.loadClasses();
   }
 
+  /** Consulta las clases disponibles y las ordena por etiqueta legible. */
   loadClasses(): void {
     this.classesLoadError.set(false);
     this.classesApi.getAllClasses(this.schoolYear()).subscribe({
@@ -123,6 +180,10 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   }
 
+  /**
+   * Cambia el contexto del grid: limpia celdas anteriores, carga asignaciones,
+   * nombres de profesores y horarios existentes para la clase seleccionada.
+   */
   onClassSelected(key: string): void {
     const cls = key
       ? (this.classes().find((c) => weekScheduleClassKey(c) === key) ?? null)
@@ -168,6 +229,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   }
 
+  /** Convierte WeekSchedule persistidos en celdas editables del grid. */
   private mapServerToCells(list: WeekSchedule[]): Map<string, GridCellState> {
     const m = new Map<string, GridCellState>();
     for (const ws of list) {
@@ -188,6 +250,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return m;
   }
 
+  /** Reconstruye la etiqueta de una celda persistida a partir de su assignment. */
   private cellLabelFromAssignment(ta: Assignment): string {
     const rows = this.assignments();
     const row = rows.find((r) => r.id === ta.id);
@@ -197,6 +260,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return `Assignment ${ta.id}`;
   }
 
+  /** Etiqueta visible para una opción del selector de celda. */
   assignmentOptionLabel(row: TeacherSubjectAssignmentRow): string {
     const t = this.teacherNameById().get(row.idTeacher);
     const sub = row.subject.name;
@@ -209,19 +273,23 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return sub;
   }
 
+  /** Genera la clave de mapa para una celda concreta del grid. */
   cellKey(day: number, slot: TimetableSlot): string {
     return weekScheduleCellKey(day, slot.startTime);
   }
 
+  /** Devuelve la celda editada o persistida para un día y franja. */
   cellAt(day: number, slot: TimetableSlot): GridCellState | undefined {
     return this.cells().get(this.cellKey(day, slot));
   }
 
+  /** Valor que debe aparecer seleccionado en el `<select>` de una celda. */
   cellAssignmentSelectValue(day: number, slot: TimetableSlot): string {
     const c = this.cellAt(day, slot);
     return c ? String(c.idTeacherAssignment) : '';
   }
 
+  /** Añade o sustituye la asignación de una celda del grid. */
   onCellAssignmentChange(day: number, slot: TimetableSlot, assignmentId: number | null): void {
     if (assignmentId == null) {
       this.clearCell(day, slot);
@@ -246,6 +314,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     this.validationMessages.set([]);
   }
 
+  /** Vacía una celda y la marca como eliminación si existía en backend. */
   clearCell(day: number, slot: TimetableSlot): void {
     const key = this.cellKey(day, slot);
     const next = new Map(this.cells());
@@ -254,10 +323,15 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     this.validationMessages.set([]);
   }
 
+  /** Traduce el nombre del día mostrado como cabecera de columna. */
   weekdayLabel(day: number): string {
     return this.translate.instant(`weekScheduleBuilder.days.${day}`);
   }
 
+  /**
+   * Ejecuta validaciones locales: clase seleccionada, solapes dentro del grupo
+   * y exceso de horas por asignatura respecto a las horas declaradas.
+   */
   runValidation(): boolean {
     const msgs: string[] = [];
     const groupId = this.selectedGroupId();
@@ -318,6 +392,10 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return msgs.length === 0;
   }
 
+  /**
+   * Consulta los horarios de cada profesor implicado para detectar solapes con
+   * otros grupos antes de persistir el horario actual.
+   */
   validateTeachers$(groupId: number): Observable<string[]> {
     const cells = [...this.cells().values()];
     const teacherIds = [...new Set(cells.map((c) => c.idTeacher))];
@@ -367,6 +445,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     );
   }
 
+  /** Valida el grid, comprueba solapes externos y persiste el diff resultante. */
   save(): void {
     if (!this.runValidation()) {
       return;
@@ -403,6 +482,10 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   }
 
+  /**
+   * Calcula operaciones mínimas comparando el snapshot inicial con las celdas actuales:
+   * borra celdas eliminadas, crea nuevas y recrea las que cambiaron de assignment.
+   */
   private persistDiff$(_groupId: number): Observable<unknown> {
     const initial = this.initialServerSchedules();
     const byKeyInitial = new Map<string, WeekSchedule>();
@@ -480,6 +563,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return concat(...ops).pipe(last());
   }
 
+  /** Cierra el builder sin guardar cambios. */
   onCancel(): void {
     this.cancelCreate.emit();
   }

@@ -14,6 +14,7 @@ import {
   AssistanceUpdatePayload,
 } from '../../../../../core/services/admin/entities/assistance.service';
 
+/** Etiquetas en castellano para estados de asistencia usados por el CRUD admin. */
 const STATUS_LABELS: Record<AssistanceStatus, string> = {
   [AssistanceStatus.PRESENT]: 'Presente',
   [AssistanceStatus.ABSENT]: 'Ausente',
@@ -21,6 +22,7 @@ const STATUS_LABELS: Record<AssistanceStatus, string> = {
   [AssistanceStatus.EXCUSED]: 'Justificado',
 };
 
+/** Fila del listado admin de asistencias basada en el componente genérico. */
 @Component({
   selector: 'app-assistance-list-item',
   imports: [GenericListItemComponent],
@@ -28,10 +30,13 @@ const STATUS_LABELS: Record<AssistanceStatus, string> = {
   styleUrl: './assistance-list-item.component.scss',
 })
 export class AssistanceListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
   private readonly assistanceService = inject(AssistanceService);
 
+  /** Registro de asistencia que se muestra en esta fila. */
   @Input({ required: true }) assistance!: Assistance;
 
+  /** Configuración del item genérico: campos, edición de estado y acciones CRUD. */
   readonly assistanceConfig: ListItemConfig<
     Assistance,
     AssistanceUpdatePayload,
@@ -84,6 +89,7 @@ export class AssistanceListItemComponent {
     deleteFn: (id: number) => this.assistanceService.deleteAssistance(id),
   };
 
+  /** Configuración de la vista de detalle de asistencia. */
   readonly assistanceDetailConfig: ViewDetailConfig<Assistance> = {
     fields: [
       {

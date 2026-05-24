@@ -183,6 +183,11 @@ Si no hay ninguna sección activa el área de contenido queda vacía.</p>
                                 <code><a href="../components/CourseListComponent.html" target="_self" >CourseListComponent</a></code>
                                 <code><a href="../components/GroupListComponent.html" target="_self" >GroupListComponent</a></code>
                                 <code><a href="../components/WeekScheduleListComponent.html" target="_self" >WeekScheduleListComponent</a></code>
+                                <code><a href="../components/TaskListComponent.html" target="_self" >TaskListComponent</a></code>
+                                <code><a href="../components/ClassSessionListComponent.html" target="_self" >ClassSessionListComponent</a></code>
+                                <code><a href="../components/StudentTaskListComponent.html" target="_self" >StudentTaskListComponent</a></code>
+                                <code><a href="../components/AssistanceListComponent.html" target="_self" >AssistanceListComponent</a></code>
+                                <code><a href="../components/NotificationListComponent.html" target="_self" >NotificationListComponent</a></code>
                 </td>
             </tr>
 
@@ -249,7 +254,7 @@ Si no hay ninguna sección activa el área de contenido queda vacía.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/admin/desplegable-admin/desplegable-admin.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/desplegable-admin/desplegable-admin.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -326,7 +331,7 @@ Si no hay ninguna sección activa el área de contenido queda vacía.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/desplegable-admin/desplegable-admin.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/desplegable-admin/desplegable-admin.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -355,6 +360,11 @@ import { CourseListComponent } from &#x27;../entities/course/course-list/course-
 import { GroupListComponent } from &#x27;../entities/group/group-list/group-list.component&#x27;;
 import { ListComponent } from &#x27;../entities/alumno/list/list.component&#x27;;
 import { WeekScheduleListComponent } from &#x27;../entities/weekSchedule/week-schedule-list/week-schedule-list.component&#x27;;
+import { TaskListComponent } from &#x27;../entities/task/task-list/task-list.component&#x27;;
+import { ClassSessionListComponent } from &#x27;../entities/class-session/class-session-list/class-session-list.component&#x27;;
+import { StudentTaskListComponent } from &#x27;../entities/student-task/student-task-list/student-task-list.component&#x27;;
+import { AssistanceListComponent } from &#x27;../entities/assistance/assistance-list/assistance-list.component&#x27;;
+import { NotificationListComponent } from &#x27;../entities/notification/notification-list/notification-list.component&#x27;;
 
 /**
  * Componente que actúa como área de contenido principal del panel de administración.
@@ -364,7 +374,19 @@ import { WeekScheduleListComponent } from &#x27;../entities/weekSchedule/week-sc
  */
 @Component({
   selector: &#x27;app-desplegable-admin&#x27;,
-  imports: [ListComponent, AsignaturaListComponent, TeacherListComponent, CourseListComponent, GroupListComponent, WeekScheduleListComponent],
+  imports: [
+    ListComponent,
+    AsignaturaListComponent,
+    TeacherListComponent,
+    CourseListComponent,
+    GroupListComponent,
+    WeekScheduleListComponent,
+    TaskListComponent,
+    ClassSessionListComponent,
+    StudentTaskListComponent,
+    AssistanceListComponent,
+    NotificationListComponent,
+  ],
   templateUrl: &#x27;./desplegable-admin.component.html&#x27;,
   styleUrl: &#x27;./desplegable-admin.component.scss&#x27;
 })
@@ -377,7 +399,6 @@ export class DesplegableAdminComponent {
   constructor(public toggleservice: ToggleService){
 
   }
-  //openedMenu &#x3D; this.toggleservice.openedMenu();
   
   
 }
@@ -410,11 +431,21 @@ export class DesplegableAdminComponent {
 
     &lt;app-week-schedule-list&gt;&lt;/app-week-schedule-list&gt;
 }
-@if(toggleservice.openedMenu() &#x3D;&#x3D;&#x3D; null){
-   &lt;p&gt;&lt;/p&gt;
+@if (toggleservice.openedMenu() &#x3D;&#x3D;&#x3D; &#x27;tasks&#x27;) {
+    &lt;app-task-list&gt;&lt;/app-task-list&gt;
 }
-
-
+@if (toggleservice.openedMenu() &#x3D;&#x3D;&#x3D; &#x27;classSessions&#x27;) {
+    &lt;app-class-session-list&gt;&lt;/app-class-session-list&gt;
+}
+@if (toggleservice.openedMenu() &#x3D;&#x3D;&#x3D; &#x27;studentTasks&#x27;) {
+    &lt;app-student-task-list&gt;&lt;/app-student-task-list&gt;
+}
+@if (toggleservice.openedMenu() &#x3D;&#x3D;&#x3D; &#x27;assistances&#x27;) {
+    &lt;app-assistance-list&gt;&lt;/app-assistance-list&gt;
+}
+@if (toggleservice.openedMenu() &#x3D;&#x3D;&#x3D; &#x27;notifications&#x27;) {
+    &lt;app-notification-list&gt;&lt;/app-notification-list&gt;
+}
 </code></pre>
     </div>
 
@@ -444,8 +475,8 @@ export class DesplegableAdminComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if(toggleservice.openedMenu()===\'students\'){        <app-list></app-list>}@if(toggleservice.openedMenu()=== \'teachers\'){        <app-teacher-list></app-teacher-list>}@if(toggleservice.openedMenu() === \'subjects\') {        <app-asignatura-list></app-asignatura-list>}@if(toggleservice.openedMenu() === \'groups\'){        <app-group-list></app-group-list>}@if (toggleservice.openedMenu() === \'ciclos\') {    <app-course-list></app-course-list>}@if (toggleservice.openedMenu() === \'schedules\') {    <app-week-schedule-list></app-week-schedule-list>}@if(toggleservice.openedMenu() === null){   <p></p>}</div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div>@if(toggleservice.openedMenu()===\'students\'){        <app-list></app-list>}@if(toggleservice.openedMenu()=== \'teachers\'){        <app-teacher-list></app-teacher-list>}@if(toggleservice.openedMenu() === \'subjects\') {        <app-asignatura-list></app-asignatura-list>}@if(toggleservice.openedMenu() === \'groups\'){        <app-group-list></app-group-list>}@if (toggleservice.openedMenu() === \'ciclos\') {    <app-course-list></app-course-list>}@if (toggleservice.openedMenu() === \'schedules\') {    <app-week-schedule-list></app-week-schedule-list>}@if (toggleservice.openedMenu() === \'tasks\') {    <app-task-list></app-task-list>}@if (toggleservice.openedMenu() === \'classSessions\') {    <app-class-session-list></app-class-session-list>}@if (toggleservice.openedMenu() === \'studentTasks\') {    <app-student-task-list></app-student-task-list>}@if (toggleservice.openedMenu() === \'assistances\') {    <app-assistance-list></app-assistance-list>}@if (toggleservice.openedMenu() === \'notifications\') {    <app-notification-list></app-notification-list>}</div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DesplegableAdminComponent'};
 </script>

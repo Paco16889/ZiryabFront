@@ -328,9 +328,9 @@ import { Enrollment } from &quot;./enrollment&quot;;
  */
 export enum AssistanceStatus {
   PRESENT &#x3D; &#x27;PRESENT&#x27;,
-  MISSING &#x3D; &#x27;MISSING&#x27;,
-  LAG &#x3D; &#x27;LAG&#x27;,
-  JUSTIFY &#x3D; &#x27;JUSTIFY&#x27;
+  ABSENT &#x3D; &#x27;ABSENT&#x27;,
+  LATE &#x3D; &#x27;LATE&#x27;,
+  EXCUSED &#x3D; &#x27;EXCUSED&#x27;
 }
 
 /**
@@ -345,6 +345,10 @@ export interface Assistance {
   session: ClassSession;
   /** Matrícula del estudiante asociada al registro de asistencia */
   studentEnrollment: Enrollment;
+  /** URI de la justificación enviada */
+  justificationUri?: string;
+  /** Estado de la justificación (PENDING, VIEWED, etc.) */
+  justificationStatus?: &#x27;PENDING&#x27; | &#x27;VIEWED&#x27; | &#x27;REJECTED&#x27; | null;
 }
 
 /**
@@ -420,7 +424,98 @@ export interface AssistanceDeleteResponse {
   message: string;
   /** Identificador del registro de asistencia eliminado */
   deletedId: number;
-}</code></pre>
+}
+/**
+ * Representa un elemento individual de asistencia simplificado para su visualización en listas.
+ * Incluye información sobre el estado, el justificante y datos básicos de la sesión y asignatura.
+ */
+export interface AssistanceItem {
+  /** Identificador único de la asistencia */
+  id: number;
+  /** Estado de asistencia: PRESENTE, AUSENTE, TARDE o EXCUSADO (justificado) */
+  status: &#x27;PRESENT&#x27; | &#x27;ABSENT&#x27; | &#x27;LATE&#x27; | &#x27;EXCUSED&#x27;;
+  /** URL o path del archivo justificante subido, si existe */
+  justificationUri?: string;
+  /** Estado de revisión de la justificación enviada */
+  justificationStatus?: &#x27;PENDING&#x27; | &#x27;VIEWED&#x27; | &#x27;REJECTED&#x27; | null;
+  /** Información detallada de la sesión de clase */
+  session: {
+    /** Fecha de la sesión en formato string (ej: ISO) */
+    date: string;
+    /** Información del horario y la asignatura */
+    schedule: {
+      /** Hora de inicio de la clase */
+      startTime: string;
+      /** Información del profesor y asignatura asignada */
+      teacherAssignment: {
+        /** Información de la asignatura */
+        subject: {
+          /** Nombre de la asignatura */
+          name: string;
+        }
+      }
+    }
+  },
+  /** Información del alumno (devuelta por getAllByTeacher) */
+  studentEnrollment?: {
+    student: {
+      name: string;
+      surname: string;
+    }
+  }
+}
+
+/** Justificación pendiente de revisión (vista profesor). */
+export interface PendingJustification {
+  /** Identificador del registro de asistencia pendiente. */
+  id: number;
+
+  /** Estado actual de asistencia asociado a la justificación. */
+  status: &#x27;PRESENT&#x27; | &#x27;ABSENT&#x27; | &#x27;LATE&#x27; | &#x27;EXCUSED&#x27;;
+
+  /** Ruta del documento justificante subido por el alumno. */
+  justificationUri: string;
+
+  /** Estado de revisión de la justificación. */
+  justificationStatus: &#x27;PENDING&#x27; | &#x27;VIEWED&#x27; | &#x27;REJECTED&#x27;;
+
+  /** Nombre de la asignatura donde se produjo la ausencia. */
+  subjectName: string;
+
+  /** Fecha de la sesión asociada. */
+  sessionDate: string;
+
+  /** Hora de inicio de la sesión. */
+  startTime: string;
+
+  /** Nombre completo del alumno que justificó la falta. */
+  studentName: string;
+}
+
+/** Respuesta del backend con justificaciones pendientes para el profesor. */
+export interface PendingJustificationsResponse {
+  /** Indica si la consulta se completó correctamente. */
+  success: boolean;
+
+  /** Justificaciones pendientes de revisar. */
+  data: PendingJustification[];
+
+  /** Número total de justificaciones devueltas. */
+  count: number;
+}
+
+/**
+ * Estructura de respuesta de la API para listados de asistencias.
+ */
+export interface AssistanceResponse {
+  /** Indica si la petición se procesó correctamente */
+  success: boolean;
+  /** Array de elementos de asistencia encontrados */
+  data: AssistanceItem[];
+  /** Número total de asistencias devueltas */
+  count: number;
+}
+</code></pre>
     </div>
 </div>
 

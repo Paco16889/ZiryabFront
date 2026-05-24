@@ -1,13 +1,7 @@
 /**
- * @file Utilidades para comparar **franjas horarias** en formato `HH:mm` (mismo día).
- *
- * Sirve para validar solapes entre celdas del horario o entre el horario del grupo y el de otro grupo.
- */
-
-/**
  * Pasa una hora `"HH:mm"` a minutos desde medianoche (entero).
  *
- * @param t - Cadena con hora y minutos, p. ej. `"09:30"`.
+ * @param t Cadena con hora y minutos, p. ej. `"09:30"`.
  * @returns Minutos desde las 00:00. Si el formato no es válido (NaN), devuelve **0**.
  *
  * @example
@@ -33,10 +27,10 @@ export function timeToMinutes(t: string): number {
  * Cada intervalo es `[inicio, fin]` en minutos derivados de `HH:mm`. Dos clases consecutivas
  * `09:00–10:00` y `10:00–11:00` **no** solapan (el fin de una es el inicio de la otra).
  *
- * @param aStart - Inicio del primer intervalo `HH:mm`.
- * @param aEnd - Fin del primer intervalo `HH:mm`.
- * @param bStart - Inicio del segundo intervalo `HH:mm`.
- * @param bEnd - Fin del segundo intervalo `HH:mm`.
+ * @param aStart Inicio del primer intervalo `HH:mm`.
+ * @param aEnd Fin del primer intervalo `HH:mm`.
+ * @param bStart Inicio del segundo intervalo `HH:mm`.
+ * @param bEnd Fin del segundo intervalo `HH:mm`.
  * @returns `true` si hay solape; si no, `false`.
  *
  * @example
@@ -69,8 +63,8 @@ export function timeRangesOverlap(
  *
  * Si `end` es anterior o igual a `start`, el resultado es **0** (no hay duración negativa).
  *
- * @param start - Hora de inicio `HH:mm`.
- * @param end - Hora de fin `HH:mm`.
+ * @param start Hora de inicio `HH:mm`.
+ * @param end Hora de fin `HH:mm`.
  * @returns Horas transcurridas (p. ej. 1.5 = una hora y media).
  *
  * @example
@@ -92,7 +86,12 @@ export function hoursBetween(start: string, end: string): number {
  */
 export const HH_MM_TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
 
-/** Comprueba `HH:mm` con hora y minutos siempre a dos cifras. */
+/**
+ * Comprueba `HH:mm` con hora y minutos siempre a dos cifras.
+ *
+ * @param value Texto introducido por el usuario.
+ * @returns `true` si cumple el patrón horario estricto.
+ */
 export function isValidHhMmTime(value: string): boolean {
   const trimmed = value.trim();
   return trimmed.length > 0 && HH_MM_TIME_PATTERN.test(trimmed);
@@ -101,6 +100,9 @@ export function isValidHhMmTime(value: string): boolean {
 /**
  * Si el valor cumple `HH:mm` estricto, lo devuelve recortado; si no, `null`.
  * No rellena un solo dígito (`8:15` → inválido; debe escribirse `08:15`).
+ *
+ * @param value Texto de hora que puede contener espacios alrededor.
+ * @returns Hora normalizada o `null` si no es válida.
  */
 export function normalizeHhMmTime(value: string): string | null {
   const trimmed = value.trim();

@@ -143,13 +143,18 @@
     </p>
     <p class="comment">
         <p>Componente que muestra el listado de franjas horarias semanales del sistema.
-Gestiona la visualización del listado, la apertura del formulario de creación
-y la recarga automática de la lista tras operaciones de eliminación o actualización.
-ATENCIÓN: el formulario de creación no está implementado todavía.</p>
+Gestiona la visualización del listado, la apertura del constructor de creación
+y la recarga automática de la lista tras operaciones de eliminación, actualización o alta.</p>
 
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -179,6 +184,8 @@ ATENCIÓN: el formulario de creación no está implementado todavía.</p>
                 <td class="col-md-9">
                                 <code><a href="../components/BotonCreateComponent.html" target="_self" >BotonCreateComponent</a></code>
                                 <code><a href="../components/WeekScheduleListItemComponent.html" target="_self" >WeekScheduleListItemComponent</a></code>
+                            <code>TranslateModule</code>
+                                <code><a href="../components/WeekScheduleBuilderComponent.html" target="_self" >WeekScheduleBuilderComponent</a></code>
                 </td>
             </tr>
 
@@ -265,12 +272,12 @@ ATENCIÓN: el formulario de creación no está implementado todavía.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(weekScheduleService: <a href="../injectables/WeekScheduleServiceService.html" target="_self">WeekScheduleServiceService</a>, modalUpdateService: <a href="../injectables/ModalEditServiceService.html" target="_self">ModalEditServiceService</a>, modalDeleteService: <a href="../injectables/ModalDeleteServiceService.html" target="_self">ModalDeleteServiceService</a>)</code>
+<code>constructor(weekScheduleService: <a href="../injectables/WeekScheduleService.html" target="_self">WeekScheduleService</a>, modalUpdateService: <a href="../injectables/ModalEditService.html" target="_self">ModalEditService</a>, modalDeleteService: <a href="../injectables/ModalDeleteService.html" target="_self">ModalDeleteService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -295,7 +302,7 @@ cuando una eliminación se completa y recargar la lista</p>
                                                         <td>weekScheduleService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/WeekScheduleServiceService.html" target="_self" >WeekScheduleServiceService</a></code>
+                                                                        <code><a href="../injectables/WeekScheduleService.html" target="_self" >WeekScheduleService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -313,7 +320,7 @@ cuando una eliminación se completa y recargar la lista</p>
                                                         <td>modalUpdateService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ModalEditServiceService.html" target="_self" >ModalEditServiceService</a></code>
+                                                                        <code><a href="../injectables/ModalEditService.html" target="_self" >ModalEditService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -332,7 +339,7 @@ cuando una actualización se completa y recargar la lista</li>
                                                         <td>modalDeleteService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ModalDeleteServiceService.html" target="_self" >ModalDeleteServiceService</a></code>
+                                                                        <code><a href="../injectables/ModalDeleteService.html" target="_self" >ModalDeleteService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -385,15 +392,15 @@ cuando una eliminación se completa y recargar la lista</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:89</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Oculta el formulario de creación de franjas horarias.</p>
+                        <div class="io-description"><p>Cierra el constructor de horarios sin forzar recarga.</p>
 </div>
 
                         <div class="io-description">
@@ -424,8 +431,8 @@ cuando una eliminación se completa y recargar la lista</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -463,16 +470,15 @@ cuando una eliminación se completa y recargar la lista</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:96</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Cierra el formulario de creación y recarga el listado de franjas horarias.
-Se llama cuando el formulario de creación notifica que se ha creado una franja horaria.</p>
+                        <div class="io-description"><p>Cierra el constructor y recarga el listado tras guardar desde el builder/grid.</p>
 </div>
 
                         <div class="io-description">
@@ -503,15 +509,15 @@ Se llama cuando el formulario de creación notifica que se ha creado una franja 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:82</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Muestra el formulario de creación de franjas horarias.</p>
+                        <div class="io-description"><p>Abre el constructor de horarios para crear o editar el horario semanal desde el shell.</p>
 </div>
 
                         <div class="io-description">
@@ -552,13 +558,14 @@ Se llama cuando el formulario de creación notifica que se ha creado una franja 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:29</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Listado de franjas horarias semanales a mostrar, sincronizado con la signal del servicio.</p>
+                    <div class="io-description"><p>Listado de franjas horarias semanales sincronizado desde la signal del servicio.
+Se copia a una propiedad simple porque el template actual todavía trabaja con arrays clásicos.</p>
 </div>
                 </td>
             </tr>
@@ -589,7 +596,7 @@ Se llama cuando el formulario de creación notifica que se ha creado una franja 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-list/week-schedule-list.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -608,32 +615,33 @@ Se llama cuando el formulario de creación notifica que se ha creado una franja 
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 import { WeekSchedule, WeekScheduleUpdateRequest } from &#x27;../../../../../core/models/week-schedule&#x27;;
-import { WeekScheduleServiceService } from &#x27;../../../../../core/services/admin/entities/week-schedule-service.service&#x27;;
-import { ModalEditServiceService } from &#x27;../../../../../core/services/UI/modal-edit-service.service&#x27;;
-import { ModalDeleteServiceService } from &#x27;../../../../../core/services/UI/modal-delete-service.service&#x27;;
+import { WeekScheduleService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service&#x27;;
+import { ModalEditService } from &#x27;../../../../../core/services/UI/modal-edit.service&#x27;;
+import { ModalDeleteService } from &#x27;../../../../../core/services/UI/modal-delete.service&#x27;;
 import { BotonCreateComponent } from &quot;../../../botones/boton-create/boton-create.component&quot;;
 import { WeekScheduleListItemComponent } from &quot;../week-schedule-list-item/week-schedule-list-item.component&quot;;
-
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { WeekScheduleBuilderComponent } from &#x27;../week-schedule-builder/week-schedule-builder.component&#x27;;
 
 /**
  * Componente que muestra el listado de franjas horarias semanales del sistema.
- * Gestiona la visualización del listado, la apertura del formulario de creación
- * y la recarga automática de la lista tras operaciones de eliminación o actualización.
- * ATENCIÓN: el formulario de creación no está implementado todavía.
+ * Gestiona la visualización del listado, la apertura del constructor de creación
+ * y la recarga automática de la lista tras operaciones de eliminación, actualización o alta.
  */
 @Component({
   selector: &#x27;app-week-schedule-list&#x27;,
-  imports: [BotonCreateComponent, WeekScheduleListItemComponent],
+  imports: [BotonCreateComponent, WeekScheduleListItemComponent, TranslateModule, WeekScheduleBuilderComponent],
   templateUrl: &#x27;./week-schedule-list.component.html&#x27;,
   styleUrl: &#x27;./week-schedule-list.component.scss&#x27;
 })
-export class WeekScheduleListComponent {
+export class WeekScheduleListComponent implements OnInit {
 
 
   /**
-   * Listado de franjas horarias semanales a mostrar, sincronizado con la signal del servicio.
+   * Listado de franjas horarias semanales sincronizado desde la signal del servicio.
+   * Se copia a una propiedad simple porque el template actual todavía trabaja con arrays clásicos.
    */
    schedules: WeekSchedule[] &#x3D; []
 
@@ -642,20 +650,21 @@ export class WeekScheduleListComponent {
    */
   showCreateForm &#x3D; false;
 
-    /**
+     /**
    * @param weekScheduleService - Servicio que gestiona las operaciones con franjas horarias
    * @param modalUpdateService - Servicio del modal de edición, usado para detectar
    * cuando una actualización se completa y recargar la lista
    * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
    * cuando una eliminación se completa y recargar la lista
    */
-  constructor(private weekScheduleService: WeekScheduleServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+  constructor(private weekScheduleService: WeekScheduleService,
+    private modalUpdateService: ModalEditService,
+    private modalDeleteService: ModalDeleteService) {
 
-      effect(() &#x3D;&gt; {this.schedules &#x3D; weekScheduleService.schedules()
-          console.log(&#x27;📦 Schedules actualizados:&#x27;, this.schedules);
-      console.log(&#x27;📦 Cantidad:&#x27;, this.schedules.length);
+      effect(() &#x3D;&gt; {
+        this.schedules &#x3D; this.weekScheduleService.schedules();
+        console.log(&#x27;📦 Schedules actualizados:&#x27;, this.schedules);
+        console.log(&#x27;📦 Cantidad:&#x27;, this.schedules.length);
       })
     effect(() &#x3D;&gt; {
       const deleteModalState &#x3D; this.modalDeleteService.modalState();
@@ -684,23 +693,22 @@ export class WeekScheduleListComponent {
 
 
 
-/**
-   * Muestra el formulario de creación de franjas horarias.
+  /**
+   * Abre el constructor de horarios para crear o editar el horario semanal desde el shell.
    */
   openCreateForm() {
     this.showCreateForm &#x3D; true;
   }
 
-   /**
-   * Oculta el formulario de creación de franjas horarias.
+  /**
+   * Cierra el constructor de horarios sin forzar recarga.
    */
   closeCreateForm() {
     this.showCreateForm &#x3D; false;
   }
   
   /**
-   * Cierra el formulario de creación y recarga el listado de franjas horarias.
-   * Se llama cuando el formulario de creación notifica que se ha creado una franja horaria.
+   * Cierra el constructor y recarga el listado tras guardar desde el builder/grid.
    */
   onScheduleCreated() {
     this.closeCreateForm();
@@ -717,9 +725,9 @@ export class WeekScheduleListComponent {
   
 @if(!showCreateForm){
     &lt;div class&#x3D;&quot;flex justify-between items-center mb-4&quot;&gt;
-      &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;Horario&lt;/h1&gt;
+      &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;entities.weekSchedule.title&#x27; | translate }}&lt;/h1&gt;
       &lt;app-boton-create 
-      label&#x3D;&quot;Crear Horario&quot;
+      label&#x3D;&quot;{{ &#x27;lists.schedules.createButton&#x27; | translate }}&quot;
       (clickAction)&#x3D;&quot;openCreateForm()&quot;&gt; 
       &lt;/app-boton-create&gt;
     &lt;/div&gt;
@@ -731,7 +739,10 @@ export class WeekScheduleListComponent {
 
 
   @if(showCreateForm){
-   &lt;p&gt;aquí iria el formulario de horario???&lt;/p&gt;
+    &lt;app-week-schedule-builder
+      (cancelCreate)&#x3D;&quot;closeCreateForm()&quot;
+      (scheduleCreated)&#x3D;&quot;onScheduleCreated()&quot;&gt;
+    &lt;/app-week-schedule-builder&gt;
   }
 
 
@@ -766,8 +777,8 @@ export class WeekScheduleListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="p-4">  @if(!showCreateForm){    <div class="flex justify-between items-center mb-4">      <h1 class="text-2xl font-bold">Horario</h1>      <app-boton-create       label="Crear Horario"      (clickAction)="openCreateForm()">       </app-boton-create>    </div>    @for (sch of schedules; track sch.id){        <app-week-schedule-list-item [schedule]="sch"></app-week-schedule-list-item>    }}  @if(showCreateForm){   <p>aquí iria el formulario de horario???</p>  }</div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="p-4">  @if(!showCreateForm){    <div class="flex justify-between items-center mb-4">      <h1 class="text-2xl font-bold">{{ \'entities.weekSchedule.title\' | translate }}</h1>      <app-boton-create       label="{{ \'lists.schedules.createButton\' | translate }}"      (clickAction)="openCreateForm()">       </app-boton-create>    </div>    @for (sch of schedules; track sch.id){        <app-week-schedule-list-item [schedule]="sch"></app-week-schedule-list-item>    }}  @if(showCreateForm){    <app-week-schedule-builder      (cancelCreate)="closeCreateForm()"      (scheduleCreated)="onScheduleCreated()">    </app-week-schedule-builder>  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WeekScheduleListComponent'};
 </script>

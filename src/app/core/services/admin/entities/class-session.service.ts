@@ -15,6 +15,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 
+/** Payload de actualización de sesión con id añadido por el modal genérico. */
 export type ClassSessionUpdatePayload = ClassSessionUpdateRequest & { id: number };
 
 /**
@@ -25,15 +26,13 @@ export type ClassSessionUpdatePayload = ClassSessionUpdateRequest & { id: number
   providedIn: 'root'
 })
 export class ClassSessionService {
-   /**
-   * Signal que almacena el listado completo de sesiones de clase en memoria.
-   */
+  /** Signal que almacena el listado completo de sesiones de clase en memoria. */
   classSessions= signal<ClassSession[]>([]);
   
-   /**
-   * URL base del endpoint de sesiones de clase.
-   */
+  /** Cliente HTTP para el módulo de sesiones de clase. */
   private readonly http = inject(HttpClient);
+
+  /** URL base del endpoint de sesiones de clase. */
   private readonly apiUrl = `${environment.apiUrl}/sessions`;
 
   /**
@@ -62,7 +61,7 @@ export class ClassSessionService {
 
    /**
    * Obtiene una sesión de clase por su identificador.
-   * @param id - Identificador único de la sesión
+   * @param id Identificador único de la sesión
    * @returns Observable con la respuesta que contiene la sesión encontrada
    */
   getSessionById(id: number): Observable<ClassSessionByIdResponse> {
@@ -76,7 +75,7 @@ export class ClassSessionService {
 
    /**
    * Crea una nueva sesión de clase.
-   * @param data - Datos necesarios para crear la sesión
+   * @param data Datos necesarios para crear la sesión
    * @returns Observable con la respuesta que contiene la sesión creada
    */
   createSession(data: ClassSessionCreateRequest): Observable<ClassSessionCreateResponse> {
@@ -94,9 +93,8 @@ export class ClassSessionService {
   }
 
   /**
-   * Actualiza una sesión de clase existente.
-   * @param id - Identificador único de la sesión a actualizar
-   * @param data - Datos de la sesión a actualizar
+   * Actualiza una sesión de clase existente desde el modal genérico.
+   * @param payload Datos de la sesión a actualizar, incluido su identificador
    * @returns Observable con la respuesta que contiene la sesión actualizada
    */
   updateSession(payload: ClassSessionUpdatePayload): Observable<ClassSessionUpdateResponse> {
@@ -111,7 +109,7 @@ export class ClassSessionService {
 
   /**
    * Elimina una sesión de clase por su identificador.
-   * @param id - Identificador único de la sesión a eliminar
+   * @param id Identificador único de la sesión a eliminar
    * @returns Observable con la respuesta de confirmación de eliminación
    */
   deleteSession(id: number): Observable<ClassSessionDeleteResponse> {
@@ -126,6 +124,8 @@ export class ClassSessionService {
   /**
    * Previsualiza cuántas sesiones se suspenderían con los filtros indicados.
    * POST /api/sessions/suspend-preview (CURSO-110).
+   *
+   * @param filters Rango y filtros académicos aplicados al preview.
    */
   previewSuspend(filters: SessionSuspendFilters): Observable<SessionSuspendCountResponse> {
     return this.http
@@ -136,6 +136,8 @@ export class ClassSessionService {
   /**
    * Suspende en bloque las sesiones que coinciden con los filtros.
    * POST /api/sessions/bulk-suspend (CURSO-110).
+   *
+   * @param filters Rango y filtros académicos que delimitan la suspensión.
    */
   suspendByPeriod(filters: SessionSuspendFilters): Observable<SessionSuspendCountResponse> {
     return this.http

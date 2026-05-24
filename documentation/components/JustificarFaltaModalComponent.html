@@ -1,0 +1,1130 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  JustificarFaltaModalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente de modal para que el alumno pueda justificar una falta de asistencia.
+Permite seleccionar un archivo (PDF, JPG, PNG) y enviarlo mediante el AssistanceService.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-justificar-falta-modal</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./justificar-falta-modal.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#assistanceService" >assistanceService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isSubmitting" >isSubmitting</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isSuccess" >isSuccess</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#selectedFile" >selectedFile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onClose" >onClose</a>
+                            </li>
+                            <li>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#falta" >falta</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeModal" >closeModal</a>
+                            </li>
+                            <li>
+                                <a href="#justifySuccess" >justifySuccess</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="falta"></a>
+                        <b>falta</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>AssistanceItem | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:20</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Objeto de asistencia que se desea justificar</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closeModal"></a>
+                        <b>closeModal</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:22</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Evento emitido para cerrar el modal sin guardar cambios</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="justifySuccess"></a>
+                        <b>justifySuccess</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:24</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Evento emitido cuando el justificante se ha enviado correctamente</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClose"></a>
+                    <span class="name">
+                        <span ><b>onClose</b></span>
+                        <a href="#onClose"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClose()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cierra el modal emitiendo el evento closeModal, siempre que no se esté realizando un envío.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gestiona la selección de un archivo desde el input de tipo file.
+Valida que el archivo no supere 1MB y que sea de un formato permitido (PDF, JPG, PNG).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Evento de cambio del input file.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Envía el justificante seleccionado mediante el servicio de asistencia.
+Tras un envío exitoso, muestra un mensaje de éxito y cierra el modal tras un retraso.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assistanceService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>assistanceService</b></span>
+                        <a href="#assistanceService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AssistanceService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio para gestionar las operaciones de asistencia</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal para almacenar mensajes de error durante el proceso</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSubmitting"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isSubmitting</b></span>
+                        <a href="#isSubmitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que indica si se está realizando la petición de envío</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSuccess"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isSuccess</b></span>
+                        <a href="#isSuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que indica si el envío ha sido exitoso</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>selectedFile</b></span>
+                        <a href="#selectedFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;File | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que almacena el archivo seleccionado por el usuario</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/alumno/ficha-usuario/justificar-falta-modal/justificar-falta-modal.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de validaciones y errores al subir el justificante.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output, signal, inject } from &#x27;@angular/core&#x27;;
+import { DatePipe } from &#x27;@angular/common&#x27;;
+import { AssistanceItem } from &#x27;../../../../core/models/assistance&#x27;;
+import { AssistanceService } from &#x27;../../../../core/services/alumno/assistance.service&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { resolveApiError } from &#x27;../../../../core/i18n/api-error.util&#x27;;
+
+/**
+ * Componente de modal para que el alumno pueda justificar una falta de asistencia.
+ * Permite seleccionar un archivo (PDF, JPG, PNG) y enviarlo mediante el AssistanceService.
+ */
+@Component({
+  selector: &#x27;app-justificar-falta-modal&#x27;,
+  standalone: true,
+  imports: [DatePipe, TranslateModule],
+  templateUrl: &#x27;./justificar-falta-modal.component.html&#x27;
+})
+export class JustificarFaltaModalComponent {
+  /** Objeto de asistencia que se desea justificar */
+  @Input() falta: AssistanceItem | null &#x3D; null;
+  /** Evento emitido para cerrar el modal sin guardar cambios */
+  @Output() closeModal &#x3D; new EventEmitter&lt;void&gt;();
+  /** Evento emitido cuando el justificante se ha enviado correctamente */
+  @Output() justifySuccess &#x3D; new EventEmitter&lt;number&gt;();
+
+  /** Servicio para gestionar las operaciones de asistencia */
+  private assistanceService &#x3D; inject(AssistanceService);
+  /** Traducciones de validaciones y errores al subir el justificante. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Signal que almacena el archivo seleccionado por el usuario */
+  public selectedFile &#x3D; signal&lt;File | null&gt;(null);
+  /** Signal que indica si se está realizando la petición de envío */
+  public isSubmitting &#x3D; signal&lt;boolean&gt;(false);
+  /** Signal que indica si el envío ha sido exitoso */
+  public isSuccess &#x3D; signal&lt;boolean&gt;(false);
+  /** Signal para almacenar mensajes de error durante el proceso */
+  public errorMessage &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /**
+   * Gestiona la selección de un archivo desde el input de tipo file.
+   * Valida que el archivo no supere 1MB y que sea de un formato permitido (PDF, JPG, PNG).
+   * @param event Evento de cambio del input file.
+   */
+  onFileSelected(event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (!input.files || input.files.length &#x3D;&#x3D;&#x3D; 0) return;
+    const file &#x3D; input.files[0];
+      // 1. Validar tamaño (max 1MB)
+      const maxSizeInBytes &#x3D; 1 * 1024 * 1024;
+      if (file.size &gt; maxSizeInBytes) {
+        this.errorMessage.set(this.translate.instant(&#x27;common.errors.fileTooLarge1&#x27;));
+        this.selectedFile.set(null);
+        return;
+      }
+
+      // 2. Validar formato (PDF o imagenes)
+      const allowedTypes &#x3D; [&#x27;application/pdf&#x27;, &#x27;image/jpeg&#x27;, &#x27;image/png&#x27;, &#x27;image/jpg&#x27;];
+      if (!allowedTypes.includes(file.type)) {
+        this.errorMessage.set(this.translate.instant(&#x27;common.errors.invalidFileFormat&#x27;));
+        this.selectedFile.set(null);
+        return;
+      }
+
+      // Archivo válido
+      this.selectedFile.set(file);
+      this.errorMessage.set(&#x27;&#x27;);
+  }
+
+  /**
+   * Envía el justificante seleccionado mediante el servicio de asistencia.
+   * Tras un envío exitoso, muestra un mensaje de éxito y cierra el modal tras un retraso.
+   */
+  onSubmit(): void {
+    if (!this.falta) return;
+    if (!this.selectedFile()) {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.selectValidJustification&#x27;));
+      return;
+    }
+
+    this.isSubmitting.set(true);
+    this.errorMessage.set(&#x27;&#x27;);
+
+    this.assistanceService.submitJustification(this.falta.id, this.selectedFile()!).subscribe({
+      next: () &#x3D;&gt; {
+        this.isSubmitting.set(false);
+        this.isSuccess.set(true);
+        setTimeout(() &#x3D;&gt; {
+          this.justifySuccess.emit(this.falta!.id);
+          this.closeModal.emit();
+        }, 2000);
+      },
+      error: (err) &#x3D;&gt; {
+        this.isSubmitting.set(false);
+        this.errorMessage.set(resolveApiError(this.translate, err, &#x27;common.errors.uploadJustification&#x27;));
+        console.error(err);
+      }
+    });
+  }
+
+  /**
+   * Cierra el modal emitiendo el evento closeModal, siempre que no se esté realizando un envío.
+   */
+  onClose(): void {
+    if (!this.isSubmitting()) {
+      this.closeModal.emit();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@if (falta) {
+    &lt;div class&#x3D;&quot;fixed inset-0 z-50 flex items-center justify-center p-4&quot;&gt;
+        &lt;div class&#x3D;&quot;absolute inset-0 bg-gray-900/40 backdrop-blur-sm&quot; (click)&#x3D;&quot;onClose()&quot;&gt;&lt;/div&gt;
+        
+        &lt;div class&#x3D;&quot;relative bg-white rounded-3xl shadow-xl w-full max-w-md p-8 transform transition-all animate-fade-in-up&quot;&gt;
+            @if (!isSuccess()) {
+                &lt;button (click)&#x3D;&quot;onClose()&quot; [disabled]&#x3D;&quot;isSubmitting()&quot;
+                    class&#x3D;&quot;absolute top-5 right-5 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50&quot;&gt;
+                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-6 w-6&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                        &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M6 18L18 6M6 6l12 12&quot; /&gt;
+                    &lt;/svg&gt;
+                &lt;/button&gt;
+            }
+    
+            @if (!isSuccess()) {
+                &lt;div&gt;
+                    &lt;div class&#x3D;&quot;text-center mb-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600&quot;&gt;
+                            &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-8 w-8&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z&quot; /&gt;
+                            &lt;/svg&gt;
+                        &lt;/div&gt;
+                        &lt;h3 class&#x3D;&quot;text-2xl font-bold text-gray-800&quot;&gt;{{ &#x27;justifyAbsence.title&#x27; | translate }}&lt;/h3&gt;
+                        &lt;p class&#x3D;&quot;text-sm text-gray-500 mt-2 font-medium break-words&quot;&gt;
+                            {{ falta.session.schedule.teacherAssignment.subject.name }} el {{ falta.session.date | date:&#x27;dd MMM yyyy&#x27;:&#x27;UTC&#x27; }}
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+    
+                    &lt;div class&#x3D;&quot;space-y-4&quot;&gt;
+                        &lt;div class&#x3D;&quot;border-2 border-dashed border-gray-200 rounded-2xl p-6 text-center hover:bg-gray-50 transition-colors&quot;&gt;
+                            &lt;input type&#x3D;&quot;file&quot; id&#x3D;&quot;file&quot; class&#x3D;&quot;hidden&quot; (change)&#x3D;&quot;onFileSelected($event)&quot; accept&#x3D;&quot;.pdf,image/*&quot; [disabled]&#x3D;&quot;isSubmitting()&quot;&gt;
+                            &lt;label for&#x3D;&quot;file&quot; class&#x3D;&quot;cursor-pointer flex flex-col items-center&quot;&gt;
+                                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-10 w-10 text-gray-400 mb-2&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                    &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12&quot; /&gt;
+                                &lt;/svg&gt;
+                                &lt;span class&#x3D;&quot;text-indigo-600 font-semibold text-sm hover:text-indigo-700&quot;&gt;{{ &#x27;justifyAbsence.selectDocument&#x27; | translate }}&lt;/span&gt;
+                                &lt;span class&#x3D;&quot;text-xs text-gray-400 mt-1&quot;&gt;{{ &#x27;justifyAbsence.fileHint&#x27; | translate }}&lt;/span&gt;
+                            &lt;/label&gt;
+                        &lt;/div&gt;
+    
+                        @if (selectedFile()) {
+                            &lt;div class&#x3D;&quot;flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100&quot;&gt;
+                                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-6 w-6 text-green-500&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                    &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z&quot; /&gt;
+                                &lt;/svg&gt;
+                                &lt;div class&#x3D;&quot;flex flex-col flex-1 overflow-hidden&quot;&gt;
+                                    &lt;span class&#x3D;&quot;text-sm font-semibold text-gray-700 truncate&quot;&gt;{{ selectedFile()?.name }}&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;text-xs text-gray-400&quot;&gt;{{ (selectedFile()!.size / 1024 / 1024).toFixed(2) }} MB&lt;/span&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        }
+    
+                        @if (errorMessage()) {
+                            &lt;div class&#x3D;&quot;text-sm text-red-600 bg-red-50 p-3 rounded-lg flex items-center gap-2&quot;&gt;
+                                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-5 w-5&quot; viewBox&#x3D;&quot;0 0 20 20&quot; fill&#x3D;&quot;currentColor&quot;&gt;
+                                    &lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z&quot; clip-rule&#x3D;&quot;evenodd&quot; /&gt;
+                                &lt;/svg&gt;
+                                {{ errorMessage() }}
+                            &lt;/div&gt;
+                        }
+    
+                        &lt;button (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;isSubmitting() || !selectedFile()&quot;
+                            class&#x3D;&quot;w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center&quot;&gt;
+                            @if (!isSubmitting()) {
+                                &lt;span&gt;{{ &#x27;justifyAbsence.upload&#x27; | translate }}&lt;/span&gt;
+                            } @else {
+                                &lt;span class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+                                    &lt;svg class&#x3D;&quot;animate-spin h-5 w-5 text-white&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;
+                                        &lt;circle class&#x3D;&quot;opacity-25&quot; cx&#x3D;&quot;12&quot; cy&#x3D;&quot;12&quot; r&#x3D;&quot;10&quot; stroke&#x3D;&quot;currentColor&quot; stroke-width&#x3D;&quot;4&quot;&gt;&lt;/circle&gt;
+                                        &lt;path class&#x3D;&quot;opacity-75&quot; fill&#x3D;&quot;currentColor&quot; d&#x3D;&quot;M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z&quot;&gt;&lt;/path&gt;
+                                    &lt;/svg&gt;
+                                    {{ &#x27;justifyAbsence.uploading&#x27; | translate }}
+                                &lt;/span&gt;
+                            }
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            }
+    
+            @if (isSuccess()) {
+                &lt;div class&#x3D;&quot;text-center py-8 animate-fade-in-up&quot;&gt;
+                    &lt;div class&#x3D;&quot;w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 animate-bounce&quot;&gt;
+                        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-10 w-10&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                            &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;3&quot; d&#x3D;&quot;M5 13l4 4L19 7&quot; /&gt;
+                        &lt;/svg&gt;
+                    &lt;/div&gt;
+                    &lt;h3 class&#x3D;&quot;text-2xl font-bold text-gray-800&quot;&gt;{{ &#x27;justifyAbsence.successTitle&#x27; | translate }}&lt;/h3&gt;
+                    &lt;p class&#x3D;&quot;text-gray-500 mt-2 font-medium&quot;&gt;{{ &#x27;justifyAbsence.successHint&#x27; | translate }}&lt;/p&gt;
+                &lt;/div&gt;
+            }
+        &lt;/div&gt;
+    &lt;/div&gt;
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@if (falta) {    <div class="fixed inset-0 z-50 flex items-center justify-center p-4">        <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" (click)="onClose()"></div>                <div class="relative bg-white rounded-3xl shadow-xl w-full max-w-md p-8 transform transition-all animate-fade-in-up">            @if (!isSuccess()) {                <button (click)="onClose()" [disabled]="isSubmitting()"                    class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50">                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />                    </svg>                </button>            }                @if (!isSuccess()) {                <div>                    <div class="text-center mb-6">                        <div class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600">                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />                            </svg>                        </div>                        <h3 class="text-2xl font-bold text-gray-800">{{ \'justifyAbsence.title\' | translate }}</h3>                        <p class="text-sm text-gray-500 mt-2 font-medium break-words">                            {{ falta.session.schedule.teacherAssignment.subject.name }} el {{ falta.session.date | date:\'dd MMM yyyy\':\'UTC\' }}                        </p>                    </div>                        <div class="space-y-4">                        <div class="border-2 border-dashed border-gray-200 rounded-2xl p-6 text-center hover:bg-gray-50 transition-colors">                            <input type="file" id="file" class="hidden" (change)="onFileSelected($event)" accept=".pdf,image/*" [disabled]="isSubmitting()">                            <label for="file" class="cursor-pointer flex flex-col items-center">                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />                                </svg>                                <span class="text-indigo-600 font-semibold text-sm hover:text-indigo-700">{{ \'justifyAbsence.selectDocument\' | translate }}</span>                                <span class="text-xs text-gray-400 mt-1">{{ \'justifyAbsence.fileHint\' | translate }}</span>                            </label>                        </div>                            @if (selectedFile()) {                            <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100">                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />                                </svg>                                <div class="flex flex-col flex-1 overflow-hidden">                                    <span class="text-sm font-semibold text-gray-700 truncate">{{ selectedFile()?.name }}</span>                                    <span class="text-xs text-gray-400">{{ (selectedFile()!.size / 1024 / 1024).toFixed(2) }} MB</span>                                </div>                            </div>                        }                            @if (errorMessage()) {                            <div class="text-sm text-red-600 bg-red-50 p-3 rounded-lg flex items-center gap-2">                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />                                </svg>                                {{ errorMessage() }}                            </div>                        }                            <button (click)="onSubmit()" [disabled]="isSubmitting() || !selectedFile()"                            class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">                            @if (!isSubmitting()) {                                <span>{{ \'justifyAbsence.upload\' | translate }}</span>                            } @else {                                <span class="flex items-center gap-2">                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>                                    </svg>                                    {{ \'justifyAbsence.uploading\' | translate }}                                </span>                            }                        </button>                    </div>                </div>            }                @if (isSuccess()) {                <div class="text-center py-8 animate-fade-in-up">                    <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 animate-bounce">                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />                        </svg>                    </div>                    <h3 class="text-2xl font-bold text-gray-800">{{ \'justifyAbsence.successTitle\' | translate }}</h3>                    <p class="text-gray-500 mt-2 font-medium">{{ \'justifyAbsence.successHint\' | translate }}</p>                </div>            }        </div>    </div>}</div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'JustificarFaltaModalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'JustificarFaltaModalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

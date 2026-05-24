@@ -17,12 +17,15 @@ import { GetAsignaturasProfesorResponse } from '../../../../models/teacher/subje
   providedIn: 'root',
 })
 export class AssignmentHttpService {
+  /** Cliente HTTP para el módulo backend de asignaciones docentes. */
   private readonly http = inject(HttpClient);
 
+  /** Endpoint base de asignaciones profesor-asignatura-grupo. */
   private readonly apiUrl = `${environment.apiUrl}/assignments`;
 
   /**
    * `GET /api/assignments` — listado global con `teacher`, `subject` y `group` incluidos.
+   * Lo usa el builder de horarios para componer las opciones de cada celda.
    */
   getAll(): Observable<AssignmentsWithIncludesResponse> {
     return this.http.get<AssignmentsWithIncludesResponse>(this.apiUrl).pipe(

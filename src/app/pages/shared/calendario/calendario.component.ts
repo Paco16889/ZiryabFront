@@ -17,8 +17,10 @@ import { BotonAtrasComponent } from '../boton-atras/boton-atras.component';
   styleUrl: './calendario.component.scss',
 })
 export class CalendarioComponent {
+  /** Sanitizador necesario para permitir el `iframe` de Google Calendar. */
   private sanitizer = inject(DomSanitizer);
 
+  /** URL segura del calendario público configurado en environment. */
   readonly calendarUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     environment.googleCalendar.embedUrl,
   );

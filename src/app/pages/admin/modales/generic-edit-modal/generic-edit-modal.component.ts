@@ -14,6 +14,10 @@ import { WithId } from '../../../../core/models/withId';
  * Muestra tres estados: formulario, actualizando y éxito.
  * Se sincroniza con el ModalEditService mediante un effect
  * para reflejar el estado actual del proceso de actualización.
+ *
+ * @typeParam T - Entidad en edición con `id` y campos mostrados en el formulario.
+ * @typeParam U - Payload enviado al backend en la actualización (incluye `id`).
+ * @typeParam R - Tipo de la respuesta HTTP de la función de actualización.
  */
 @Component({
   selector: 'app-generic-edit-modal',
@@ -22,30 +26,47 @@ import { WithId } from '../../../../core/models/withId';
   styleUrl: './generic-edit-modal.component.scss'
 })
 export class GenericEditModalComponent<T extends WithId & Record<string, unknown>, U, R> implements OnInit {
+  /** Nombre de tipo de entidad usado en títulos y mensajes del modal. */
   @Input() entityType!: string;
 
+  /** Nombre concreto de la entidad editada. */
   @Input() entityName!: string;
 
+  /** Datos actuales con los que se precarga el formulario. */
   @Input() entityData!: T;
 
+  /** Campos editables que definen controles, validadores y opciones. */
   @Input() fields!: EditFieldConfig[];
 
+  /** Función de actualización específica de la entidad. */
   @Input() updateFunction!: (data: U) => Observable<R>;
 
+  /** FormGroup generado dinámicamente desde `fields`. */
   editForm!: FormGroup;
 
+  /** Indica que se está ejecutando la actualización. */
   isUpdating = false;
 
+  /** Muestra estado de éxito antes del autocierre del modal. */
   showSuccess = false;
 
+  /** Mensaje de error devuelto por el servicio modal. */
   errorMessage = '';
 
+  /** Opciones cargadas para campos select. */
   fieldOptions: { [key: string]: { value: unknown; label: string }[] } = {};
 
+  /** Estado de carga por campo select con opciones asíncronas. */
   loadingOptions: { [key: string]: boolean } = {};
 
+  /** Ciclo de vida usado para cancelar suscripciones de opciones asíncronas. */
   private readonly destroyRef = inject(DestroyRef);
 
+  /**
+   * Crea el formulario y sincroniza el estado visual con ModalEditService.
+   * @param fb Constructor de formularios reactivos.
+   * @param editModalService Servicio que orquesta el estado global del modal.
+   */
   constructor(
     private fb: FormBuilder,
     private editModalService: ModalEditService
@@ -58,6 +79,7 @@ export class GenericEditModalComponent<T extends WithId & Record<string, unknown
     });
   }
 
+  /** Genera el formulario y carga opciones de selects al inicializar el modal. */
   ngOnInit() {
     const group: Record<string, unknown> = {};
     this.fields.forEach(f => {
@@ -70,6 +92,10 @@ export class GenericEditModalComponent<T extends WithId & Record<string, unknown
     this.editForm = this.fb.group(group);
   }
 
+  /**
+   * Resuelve opciones estáticas o asíncronas para un campo select.
+   * @param field Configuración del campo select cuyas opciones hay que cargar.
+   */
   private loadSelectOptions(field: EditFieldConfig) {
     if (field.options) {
       this.fieldOptions[field.name] = field.options;
@@ -95,6 +121,7 @@ export class GenericEditModalComponent<T extends WithId & Record<string, unknown
     }
   }
 
+  /** Valida el formulario y delega la actualización al servicio global. */
   onSubmit() {
     if (this.editForm.invalid) return;
     const updateData = {
@@ -105,6 +132,7 @@ export class GenericEditModalComponent<T extends WithId & Record<string, unknown
     this.editModalService.confirmUpdate(updateData);
   }
 
+  /** Cierra el modal descartando cambios pendientes. */
   onClose() {
     this.editModalService.closeModal();
   }

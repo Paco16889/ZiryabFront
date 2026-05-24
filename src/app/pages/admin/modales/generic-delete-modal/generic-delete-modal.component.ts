@@ -9,7 +9,7 @@ import { WithId } from '../../../../core/models/withId';
  * Muestra tres estados: confirmación, eliminando y éxito.
  * Se sincroniza con el ModalDeleteService mediante un effect
  * para reflejar el estado actual del proceso de eliminación.
- * @template T - Tipo de la entidad a eliminar, debe tener al menos un campo id
+ * @typeParam R - Tipo de la respuesta que devuelve la función de eliminación del backend.
  */
 @Component({
   selector: 'app-generic-delete-modal',
@@ -28,9 +28,10 @@ export class GenericDeleteModalComponent<R> {
    * Nombre concreto de la entidad a eliminar para mostrar en el mensaje de confirmación,
    * por ejemplo 'Juan Pérez'.
    */
-  @Input() entityName!: string; 
+  @Input() entityName!: string;
 
- @Input() entityId!: number;
+  /** Identificador numérico de la entidad que se va a eliminar. */
+  @Input() entityId!: number;
 
   
   /**

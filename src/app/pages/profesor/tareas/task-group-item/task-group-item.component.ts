@@ -29,6 +29,7 @@ import { Task } from '../../../../core/models/teacher/tasks';
 })
 export class TaskGroupItemComponent {
 
+  /** Estado compartido de grupos expandidos/colapsados en la lista de tareas. */
   private readonly taskGroupUiSvc = inject(TaskGroupUiService);
 
   /** Clave única del grupo — ID como string o `'ungrouped'` */
@@ -51,6 +52,12 @@ export class TaskGroupItemComponent {
     this.taskGroupUiSvc.toggle(this.groupKey());
   }
 
+  /**
+   * Convierte un color hexadecimal (#RRGGBB) a rgba para el fondo del chip del grupo.
+   * @param hex Código de color en formato hexadecimal con `#`.
+   * @param alpha Opacidad del canal alpha (0–1).
+   * @returns Cadena CSS `rgba(r, g, b, alpha)`.
+   */
   private hexToRgba(hex: string, alpha: number): string {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);

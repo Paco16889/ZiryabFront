@@ -15,6 +15,7 @@ import { resolveApiError } from '../../../../../core/i18n/api-error.util';
   styleUrl: './course-create-form.component.scss'
 })
 export class CourseCreateFormComponent {
+  /** Traducciones de mensajes de error al crear el ciclo académico. */
   private readonly translate = inject(TranslateService);
 
    /**

@@ -6,6 +6,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
 
+/** Pantalla del alumno para consultar sus calificaciones por asignatura y periodo. */
 @Component({
   selector: 'app-mis-evaluaciones',
   standalone: true,
@@ -14,18 +15,26 @@ import { resolveApiError } from '../../../core/i18n/api-error.util';
   styleUrl: './mis-notas.component.scss'
 })
 export class MisNotasComponent implements OnInit {
+  /** Servicio que consulta las notas del alumno autenticado. */
   private gradeService = inject(GradeService);
+  /** Traducciones de errores y etiquetas. */
   private readonly translate = inject(TranslateService);
 
+  /** Notas agrupadas por asignatura. */
   public subjectsGrades = signal<MyGradesResponse[]>([]);
+  /** Periodos evaluables que se muestran como columnas. */
   public periods = Object.values(EvaluationPeriod);
+  /** Estado de carga inicial. */
   public loading = signal<boolean>(true);
+  /** Mensaje de error traducido. */
   public errorMessage = signal<string>('');
 
+  /** Carga las notas al entrar en la pantalla. */
   ngOnInit(): void {
     this.loadMyGrades();
   }
 
+  /** Solicita las notas del alumno al backend y actualiza el estado de la tabla. */
   loadMyGrades(): void {
     this.loading.set(true);
     this.gradeService.getMyGrades().subscribe({
@@ -41,11 +50,13 @@ export class MisNotasComponent implements OnInit {
     });
   }
 
+  /** Devuelve la nota de una asignatura para un periodo, o `-` si no existe. */
   getGradeForPeriod(subject: MyGradesResponse, period: string): string {
     const grade = subject.grades.find((g) => g.period === period);
     return grade ? (grade.value?.toString() || '-') : '-';
   }
 
+  /** Calcula la media visible de todas las asignaturas para un periodo. */
   getAverageForPeriod(period: string): string {
     const subjects = this.subjectsGrades();
     if (subjects.length === 0) return '0';

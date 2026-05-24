@@ -59,14 +59,24 @@ export interface AssignmentsAllResponse {
 
 /** Asignación con `teacher`, `subject` y `group` incluidos (`GET /api/assignments`). */
 export interface AssignmentWithIncludes extends Omit<Assignment, 'teacher' | 'subject' | 'group'> {
+  /** Profesor asignado, incluido para pintar nombres sin llamadas adicionales. */
   teacher?: { id: number; name: string; surname?: string; email?: string };
+
+  /** Asignatura impartida, con datos suficientes para horarios e informes. */
   subject?: {
+    /** Identificador de la asignatura. */
     id: number;
+    /** Nombre visible de la asignatura. */
     name: string;
+    /** Nivel/curso de la asignatura. */
     grade?: string;
+    /** Horas semanales declaradas. */
     hours?: number;
+    /** Ciclo al que pertenece la asignatura. */
     course?: { id: number; name: string };
   };
+
+  /** Grupo en el que se imparte la asignatura. */
   group?: { id: number; name: string; capacity?: number };
 }
 
@@ -74,8 +84,13 @@ export interface AssignmentWithIncludes extends Omit<Assignment, 'teacher' | 'su
  * Respuesta de `GET /api/assignments` con relaciones anidadas.
  */
 export interface AssignmentsWithIncludesResponse {
+  /** Indica si la consulta se completó correctamente. */
   success: boolean;
+
+  /** Asignaciones con relaciones anidadas. */
   data: AssignmentWithIncludes[];
+
+  /** Número de asignaciones devueltas. */
   count: number;
 }
 

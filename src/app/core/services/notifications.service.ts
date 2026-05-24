@@ -9,24 +9,48 @@ import { environment } from '../../../environments/environment';
  * Se recibe por SSE y en listados REST; las fechas en JSON vienen como cadena ISO.
  */
 export interface AppNotification {
+  /** Identificador único de la notificación. */
   id: number;
+
+  /** UID de Firebase del destinatario. */
   recipientFirebaseUID: string;
+
+  /** Título o clave i18n. */
   title: string;
+
+  /** Mensaje o clave i18n. */
   message: string;
+
+  /** Categoría de la notificación. */
   type: string;
+
+  /** Indica si la notificación ya fue leída. */
   isRead: boolean;
+
+  /** Fecha de lectura serializada o `null`. */
   readAt: string | null;
+
+  /** Fecha de creación serializada. */
   createdAt: string;
 }
 
 /** Respuesta de `GET …/notifications` usada solo en este cliente. */
 interface NotificationsListResponse {
+  /** Mensaje informativo del backend. */
   message: string;
+
+  /** Notificaciones de la página solicitada. */
   data: AppNotification[];
+
+  /** Metadatos de paginación para el listado REST. */
   pagination: {
+    /** Página solicitada. */
     page: number;
+    /** Tamaño máximo de página. */
     limit: number;
+    /** Total de notificaciones del usuario. */
     total: number;
+    /** Número total de páginas. */
     totalPages: number;
   };
 }
@@ -43,8 +67,13 @@ interface NotificationsListResponse {
  */
 @Injectable({ providedIn: 'root' })
 export class NotificationsService implements OnDestroy {
+  /** Cliente HTTP usado para calcular el contador inicial de no leídas. */
   private readonly http = inject(HttpClient);
+
+  /** Servicio de sesión que indica cuándo abrir o cerrar SSE. */
   private readonly authService = inject(AuthService);
+
+  /** URL base del backend usada para REST y SSE. */
   private readonly apiUrl = environment.apiUrl;
 
   /** Instancia `EventSource` abierta hacia la API, o `null` si no hay conexión. */

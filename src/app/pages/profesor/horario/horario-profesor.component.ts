@@ -19,13 +19,19 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
   styleUrl: './horario-profesor.component.scss'
 })
 export class HorarioProfesorComponent implements OnInit {
+  /** Servicio de sesión para identificar al profesor. */
   private authService = inject(AuthService);
+  /** Servicio que devuelve horarios filtrados por profesor. */
   private weekScheduleService = inject(WeekScheduleService);
 
+  /** Días lectivos que se muestran en la vista. */
   readonly weekDays = [1, 2, 3, 4, 5];
+  /** Horarios agrupados por día. */
   schedulesByDay: Record<number, WeekSchedule[]> = {};
+  /** Estado de carga inicial. */
   isLoading = true;
 
+  /** Carga el horario del profesor autenticado. */
   ngOnInit(): void {
     const userId = this.authService.getUserId();
 
@@ -41,20 +47,24 @@ export class HorarioProfesorComponent implements OnInit {
     });
   }
 
+  /** Devuelve franjas de un día concreto. */
   getDaySchedules(day: number): WeekSchedule[] {
     return this.schedulesByDay[day] ?? [];
   }
 
+  /** Extrae el nombre de asignatura de la asignación de la franja. */
   getSubjectName(schedule: WeekSchedule): string {
     const assignment = schedule.teacherAssignment as unknown as { subject?: { name?: string } };
     return assignment.subject?.name ?? '-';
   }
 
+  /** Extrae el grupo de la asignación de la franja. */
   getGroupName(schedule: WeekSchedule): string {
     const assignment = schedule.teacherAssignment as unknown as { group?: { name?: string } };
     return assignment.group?.name ?? '-';
   }
 
+  /** Normaliza días Prisma a números para agrupar en la UI. */
   private normalizeSchedules(schedules: WeekSchedule[]): WeekSchedule[] {
     return schedules.map((s) => ({
       ...s,
@@ -62,6 +72,7 @@ export class HorarioProfesorComponent implements OnInit {
     }));
   }
 
+  /** Ordena las franjas por hora y las agrupa por día de la semana. */
   private groupByDay(schedules: WeekSchedule[]): Record<number, WeekSchedule[]> {
     const dayMap: Record<string, number> = {
       'MONDAY': 1, 'TUESDAY': 2, 'WEDNESDAY': 3, 'THURSDAY': 4, 'FRIDAY': 5, 'SATURDAY': 6, 'SUNDAY': 7

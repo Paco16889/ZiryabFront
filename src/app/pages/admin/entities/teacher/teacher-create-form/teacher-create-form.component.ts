@@ -23,6 +23,7 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
   styleUrl: './teacher-create-form.component.scss'
 })
 export class TeacherCreateFormComponent {
+  /** Traducciones de errores devueltos por Firebase o el backend. */
   private readonly translate = inject(TranslateService);
 
   /** Evento emitido cuando el usuario cancela la creación */

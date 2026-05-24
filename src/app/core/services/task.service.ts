@@ -11,7 +11,10 @@ import { TasksAllResponse, TaskByIdResponse } from '../models/task';
   providedIn: 'root'
 })
 export class TaskService {
+  /** Cliente HTTP para consultar tareas desde vistas compartidas. */
   private http = inject(HttpClient);
+
+  /** Endpoint base de tareas usado por este servicio legacy. */
   private apiUrl = 'http://localhost:3000/api/tasks';
 
   /**

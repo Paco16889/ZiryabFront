@@ -571,6 +571,39 @@ export interface ClassSessionDeleteResponse {
   message: string;
   /** Identificador de la sesión de clase eliminada */
   deletedId: number;
+}
+
+/** Filtros para preview y cancelación masiva de sesiones (CURSO-109/110). */
+export interface SessionSuspendFilters {
+  /** Fecha inicial del rango a suspender. */
+  dateFrom: string;
+
+  /** Fecha final del rango a suspender. */
+  dateTo: string;
+
+  /** Filtra por ciclo/curso si se cancela solo una parte del centro. */
+  idCourse?: number;
+
+  /** Filtra por asignatura concreta. */
+  idSubject?: number;
+
+  /** Filtra por grupo concreto. */
+  idGroup?: number;
+
+  /** Filtra por profesor concreto. */
+  idTeacher?: number;
+}
+
+/** Respuesta de preview o bulk-suspend de sesiones. */
+export interface SessionSuspendCountResponse {
+  /** Indica si el preview o la cancelación se completó correctamente. */
+  success: boolean;
+
+  /** Número de sesiones afectadas por los filtros. */
+  count: number;
+
+  /** Mensaje opcional de confirmación o aviso del backend. */
+  message?: string;
 }</code></pre>
     </div>
 </div>

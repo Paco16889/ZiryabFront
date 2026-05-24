@@ -15,4 +15,5 @@ export const PRISMA_WEEK_DAY = [
   'SUNDAY',
 ] as const;
 
+/** Unión TypeScript derivada de los literales Prisma válidos para `weekDay`. */
 export type PrismaWeekDay = (typeof PRISMA_WEEK_DAY)[number];

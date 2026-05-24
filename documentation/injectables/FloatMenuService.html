@@ -178,7 +178,7 @@
                                 <a href="#closeMenu" >closeMenu</a>
                             </li>
                             <li>
-                                <a href="#toggleMenu" >toggleMenu</a>
+                                <a href="#openMenu" >openMenu</a>
                             </li>
                         </ul>
                     </td>
@@ -242,8 +242,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/core/services/float-menu.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/core/services/float-menu.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -265,16 +265,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="toggleMenu"></a>
+                    <a name="openMenu"></a>
                     <span class="name">
-                        <span ><b>toggleMenu</b></span>
-                        <a href="#toggleMenu"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>openMenu</b></span>
+                        <a href="#openMenu"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>toggleMenu()</code>
+<code>openMenu()</code>
                 </td>
             </tr>
 
@@ -289,7 +289,7 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Abre o cierra el menú de perfil alternando el valor de la señal.</p>
+                        <div class="io-description"><p>Abre el menú de perfil estableciendo el valor de la señal a true.</p>
 </div>
 
                         <div class="io-description">
@@ -373,12 +373,10 @@ export class FloatMenuService {
   constructor() { }
 
   /**
-   * Abre o cierra el menú de perfil alternando el valor de la señal.
+   * Abre el menú de perfil estableciendo el valor de la señal a true.
    */
-  toggleMenu(): void {
-    
-      this.isMenuOpen.set(true);
- 
+  openMenu(): void {
+    this.isMenuOpen.set(true);
   }
 
   /**

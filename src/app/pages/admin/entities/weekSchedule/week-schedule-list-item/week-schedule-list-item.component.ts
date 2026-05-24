@@ -21,7 +21,10 @@ import { GenericListItemComponent } from "../../../generic-list-item/generic-lis
 })
 export class WeekScheduleListItemComponent {
 
+  /** Servicio CRUD usado por el item genérico para detalle, edición y borrado. */
   private readonly weekScheduleService = inject(WeekScheduleService);
+
+  /** Traduce campos visibles del listado y opciones de edición. */
   private readonly translate = inject(TranslateService);
 
   /**
@@ -39,6 +42,7 @@ export class WeekScheduleListItemComponent {
    */
   @Output() scheduleDeleted = new EventEmitter<number>();
 
+  /** Traduce un número de día al literal usado por el builder (`weekScheduleBuilder.days.*`). */
   private dayLabel(day: number): string {
     return this.translate.instant(`weekScheduleBuilder.days.${day}`);
   }

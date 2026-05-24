@@ -19,6 +19,7 @@ import { CoursesAllResponse } from '../../../../../core/models/course';
   styleUrl: './subject-create-form.component.scss'
 })
 export class SubjectCreateFormComponent {
+  /** Traducciones de errores al cargar ciclos o crear la asignatura. */
   private readonly translate = inject(TranslateService);
 
     /**

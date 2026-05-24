@@ -24,6 +24,7 @@ export class FichaUsuarioComponent implements OnInit {
   private assistanceService = inject(AssistanceService);
   /** Servicio para gestionar la autenticación y obtener el usuario actual */
   private authService = inject(AuthService);
+  /** Traducciones de errores al cargar faltas o identificar al alumno. */
   private translate = inject(TranslateService);
 
   /** Signal que indica si los datos están cargándose */

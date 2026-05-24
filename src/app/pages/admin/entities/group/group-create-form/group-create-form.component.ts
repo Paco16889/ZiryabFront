@@ -15,6 +15,7 @@ import { resolveApiError } from '../../../../../core/i18n/api-error.util';
   styleUrl: './group-create-form.component.scss'
 })
 export class GroupCreateFormComponent {
+  /** Traducciones de mensajes de error al crear el grupo. */
   private readonly translate = inject(TranslateService);
 
    /**

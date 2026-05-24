@@ -15,14 +15,19 @@ import { EnrollmentHttpService } from '../admin/entities/services-for-week-sched
 })
 export class CreateStudentTaskService {
 
+  /** Cliente HTTP usado para invocar el endpoint bulk de StudentTasks. */
   private readonly http = inject(HttpClient);
+
+  /** Cliente de matrículas para resolver alumnos por asignatura, grupo y año. */
   private readonly enrollments = inject(EnrollmentHttpService);
+
+  /** Endpoint base de entregas de alumno. */
   private readonly studentTasksUrl = `${environment.apiUrl}/student-tasks`;
 
   /**
    * Obtiene los enrollments del grupo y crea las StudentTasks en bulk.
-   * @param idTask - ID de la tarea recién creada
-   * @param filters - idSubject, idGroup y schoolYear extraídos del teacherAssignment
+   * @param idTask ID de la tarea recién creada.
+   * @param filters idSubject, idGroup y schoolYear extraídos del teacherAssignment.
    */
   createStudentTasks(
     idTask: number,

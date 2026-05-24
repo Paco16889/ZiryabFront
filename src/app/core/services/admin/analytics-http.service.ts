@@ -10,8 +10,12 @@ import {
   AnalyticsSummaryResponse,
 } from '../../models/analytics';
 
+/** Cuerpo JSON que el backend puede devolver dentro de un Blob cuando falla una descarga. */
 interface ApiMessage {
+  /** Mensaje legible incluido en un error JSON devuelto como Blob. */
   message: string;
+
+  /** Código opcional que se traduce contra `apiErrors.*`. */
   code?: string;
 }
 
@@ -20,12 +24,19 @@ interface ApiMessage {
  */
 @Injectable({ providedIn: 'root' })
 export class AnalyticsHttpService {
+  /** Cliente HTTP para consultar y descargar informes. */
   private readonly http = inject(HttpClient);
+
+  /** Servicio de traducción para códigos de error enviados por el backend. */
   private readonly translate = inject(TranslateService);
+
+  /** Endpoint base del módulo analytics del backend. */
   private readonly baseUrl = `${environment.apiUrl}/analytics`;
 
   /**
    * KPIs y tablas para el dashboard de informes (respeta filtros, no completo).
+   *
+   * @param params - Curso escolar, ciclo, grupo e inclusión de inactivos
    */
   getSummary(params: Omit<AnalyticsExportParams, 'formato' | 'completo'>): Observable<AnalyticsSummary> {
     const httpParams = this.buildParams({
@@ -40,6 +51,8 @@ export class AnalyticsHttpService {
 
   /**
    * Descarga CSV o XLSX (completo o filtrado según `completo`).
+   *
+   * @param params - Filtros y formato que el backend usará para generar el fichero
    */
   downloadExport(params: AnalyticsExportParams): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/export`, {
@@ -48,13 +61,14 @@ export class AnalyticsHttpService {
     });
   }
 
-  /** Informe Power BI estático (.pbix). */
+  /** Descarga el informe Power BI estático (`.pbix`) publicado por el backend. */
   downloadPbix(): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/report.pbix`, {
       responseType: 'blob',
     });
   }
 
+  /** Construye los query params que comparten resumen y exportaciones. */
   private buildParams(params: AnalyticsExportParams): HttpParams {
     let p = new HttpParams()
       .set('anyo', params.anyo)
@@ -71,7 +85,7 @@ export class AnalyticsHttpService {
     return p;
   }
 
-  /** Dispara la descarga en el navegador. */
+  /** Dispara la descarga en el navegador y libera la URL temporal del Blob. */
   saveBlob(blob: Blob, filename: string): void {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
@@ -81,7 +95,10 @@ export class AnalyticsHttpService {
     URL.revokeObjectURL(url);
   }
 
-  /** Muestra mensaje de error si el blob es JSON de error del API. */
+  /**
+   * Detecta respuestas de error descargadas como Blob y devuelve un mensaje traducido.
+   * Si el Blob no parece JSON de error, devuelve `null` para continuar con la descarga.
+   */
   async handleDownloadError(blob: Blob): Promise<string | null> {
     if (blob.type.includes('json') || blob.size < 5000) {
       try {

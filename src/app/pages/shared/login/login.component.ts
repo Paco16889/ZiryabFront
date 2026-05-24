@@ -35,9 +35,13 @@ export class LoginComponent {
    */
   showPassword = signal(false);
 
+  /** Navegación tras login exitoso o si la sesión ya estaba activa. */
   private router = inject(Router);
+  /** Constructor del formulario reactivo de login. */
   private fb = inject(FormBuilder);
+  /** Servicio que realiza login Firebase + backend. */
   private authService = inject(AuthService);
+  /** Traducciones de validaciones. */
   private translateService = inject(TranslateService);
 
   /**
@@ -63,7 +67,7 @@ export class LoginComponent {
   }
 
   /**
-   * Refresca la visibilidad de la contraseña.
+   * Alterna la visibilidad de la contraseña.
    */
   togglePasswordVisibility() {
     this.showPassword.set(!this.showPassword());
@@ -128,7 +132,7 @@ export class LoginComponent {
    /**
    * Devuelve el mensaje de error correspondiente al campo indicado.
    * Utiliza el sistema de traducciones para los textos.
-   * @param control - Nombre del campo del formulario a validar
+   * @param control Nombre del campo del formulario a validar
    * @returns Mensaje de error o cadena vacía si no hay error
    */
   getError(control: string) {

@@ -10,13 +10,19 @@ import { DeleteModalState, DeleteRequest } from '../../models/services/delete-mo
   providedIn: 'root'
 })
 export class ModalDeleteService {
+  /** Estado interno del modal de eliminación compartido. */
   private _modalState = signal<DeleteModalState>({ isOpen: false });
 
+  /** Estado público consumido por el componente modal. */
   modalState = this._modalState.asReadonly();
 
+  /** Configuración de la entidad que está pendiente de confirmación de borrado. */
   private currentConfig: DeleteRequest<unknown> | null = null;
+
+  /** Temporizador que cierra el modal tras mostrar éxito. */
   private autoCloseTimeout: ReturnType<typeof setTimeout> | null = null;
 
+  /** Abre el modal con la entidad y función de borrado proporcionadas por la fila. */
   openModal(request: DeleteRequest<unknown>) {
     this.currentConfig = request;
     this._modalState.set({
@@ -30,6 +36,7 @@ export class ModalDeleteService {
     });
   }
 
+  /** Ejecuta el `deleteFn`, muestra estado de carga y refleja éxito/error. */
   confirmDelete() {
     if (!this.currentConfig) return;
 
@@ -62,6 +69,7 @@ export class ModalDeleteService {
     });
   }
 
+  /** Cierra el modal y descarta la configuración actual. */
   closeModal() {
     this.clearAutoCloseTimeout();
     this._modalState.update(state => ({
@@ -71,6 +79,7 @@ export class ModalDeleteService {
     this.currentConfig = null;
   }
 
+  /** Cancela el cierre automático anterior para evitar cierres tardíos. */
   private clearAutoCloseTimeout(): void {
     if (this.autoCloseTimeout !== null) {
       clearTimeout(this.autoCloseTimeout);
@@ -78,6 +87,7 @@ export class ModalDeleteService {
     }
   }
 
+  /** Prioriza el mensaje del backend y si no existe crea uno contextual. */
   private getErrorMessage(err: unknown, action: 'eliminar'): string {
     const backendMessage = (err as { error?: { message?: string } })?.error?.message;
     return backendMessage || `Error al ${action} ${this.currentConfig?.type}.`;

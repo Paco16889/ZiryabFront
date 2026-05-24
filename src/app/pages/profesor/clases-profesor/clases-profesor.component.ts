@@ -21,17 +21,27 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class ClasesProfesorComponent implements OnInit {
 
+  /** Navegación común para volver a login si no hay sesión. */
   private navegador = inject(NavigationService);
+  /** Router usado para abrir temario o menú de clase. */
   private router = inject(Router);
+  /** Servicio que lista asignaciones del profesor. */
   private clasesService = inject(ClasesService);
+  /** Servicio de sesión para obtener el profesor autenticado. */
   private authService = inject(AuthService);
+  /** Traducciones de errores y etiquetas. */
   private readonly translate = inject(TranslateService);
 
+  /** Tarjetas de asignaturas que se muestran al profesor. */
   public asignaturasCards = signal<CardItem[]>([]);
+  /** Asignaciones originales usadas para reconstruir tarjetas. */
   private asignaturasOriginales = signal<TeacherSubjectAssignmentRow[]>([]);
+  /** Estado de carga inicial. */
   public loading = signal<boolean>(true);
+  /** Mensaje de error visible. */
   public errorMessage = signal<string>('');
 
+  /** Carga las asignaturas asignadas al profesor autenticado. */
   ngOnInit(): void {
     const user = this.authService.getCurrentUser();
 
@@ -57,6 +67,7 @@ export class ClasesProfesorComponent implements OnInit {
     }
   }
 
+  /** Convierte asignaciones docente-asignatura-grupo en tarjetas reutilizables. */
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map((item) => ({
       id: item.subject.id,
@@ -72,6 +83,7 @@ export class ClasesProfesorComponent implements OnInit {
     this.asignaturasCards.set(cards);
   }
 
+  /** Abre el temario de la asignatura seleccionada. */
   handleCardAction(item: CardItem): void {
     if (item.title) {
       this.router.navigate(
@@ -81,6 +93,7 @@ export class ClasesProfesorComponent implements OnInit {
     }
   }
 
+  /** Abre el menú de clase usando la asignación docente concreta. */
   handleSecondaryCardAction(item: CardItem): void {
     if (item.assignmentId) {
       this.router.navigate(['/menu-clase', item.assignmentId]);

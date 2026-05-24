@@ -9,7 +9,7 @@ import { TaskFormComponent } from '../../task-form/task-form.component';
 import { BotonAtrasComponent } from '../../../shared/boton-atras/boton-atras.component';
 import { Task, TaskGroup } from '../../../../core/models/teacher/tasks';
 
-/** Paleta de colores para asignar aleatoriamente a cada grupo */
+/** Paleta estable de colores para diferenciar visualmente grupos de tareas. */
 const GROUP_PALETTE = [
   '#ff6b6b', '#748ffc', '#51cf66', '#fcc419',
   '#cc5de8', '#20c997', '#f76707', '#339af0',
@@ -53,20 +53,25 @@ export interface TaskGroupView {
 })
 export class TaskListComponent implements OnInit, OnDestroy {
 
+  /** Servicio que carga tareas de la asignación docente. */
   private readonly taskService    = inject(TaskService);
+  /** Servicio UI que recuerda grupos plegados/desplegados. */
   private readonly taskGroupUiSvc = inject(TaskGroupUiService);
 
+  /** Controla la visibilidad del formulario de nueva tarea. */
   readonly showTaskForm = signal(false);
 
   /** ID de la asignación del profesor cuyos tareas se cargarán */
 private readonly route = inject(ActivatedRoute);
 
+/** Identificador de asignación docente tomado de la ruta. */
 get idTeacherAssignment(): number {
   return Number(this.route.snapshot.paramMap.get('idTeacherAssignment'));
 }
 
   /** Signal de tareas del servicio */
   readonly tasks   = this.taskService.tasks;
+  /** Estado de carga expuesto por el servicio de tareas. */
   readonly loading = this.taskService.loading;
 
   /**
@@ -112,23 +117,28 @@ get idTeacherAssignment(): number {
     return Array.from(groupMap.values());
   });
 
+  /** Carga tareas de la asignación docente actual. */
   ngOnInit(): void {
     this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
   }
 
+  /** Muestra el formulario de alta de tarea. */
   openTaskForm(): void {
     this.showTaskForm.set(true);
   }
 
+  /** Oculta el formulario de alta de tarea. */
   closeTaskForm(): void {
     this.showTaskForm.set(false);
   }
 
+  /** Recarga tareas tras crear una nueva. */
   onTaskCreated(): void {
     this.showTaskForm.set(false);
     this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
   }
 
+  /** Limpia estado de tareas y colapsa grupos al salir de la pantalla. */
   ngOnDestroy(): void {
     this.taskService.clearTasks();
     this.taskGroupUiSvc.collapseAll();

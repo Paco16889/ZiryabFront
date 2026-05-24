@@ -8,17 +8,26 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
 
+/** Alumno con sus asignaturas matriculadas para la tabla de notas del profesor. */
 interface StudentWithSubjects {
+  /** Identificador del alumno. */
   id: number;
+  /** Nombre del alumno. */
   name: string;
+  /** Apellido del alumno. */
   surname: string;
+  /** Asignaturas del alumno dentro del grupo tutorado. */
   subjects: {
+    /** Identificador de asignatura. */
     id: number;
+    /** Nombre de asignatura. */
     name: string;
+    /** Matrícula que recibirá la nota. */
     enrollmentId: number;
   }[];
 }
 
+/** Pantalla de profesor para introducir notas por grupo y periodo. */
 @Component({
   selector: 'app-gestion-notas',
   standalone: true,
@@ -27,27 +36,42 @@ interface StudentWithSubjects {
   styleUrl: './gestion-notas.component.scss'
 })
 export class GestionNotasComponent implements OnInit {
+  /** Servicio de calificaciones. */
   private gradeService = inject(GradeService);
+  /** Constructor de formularios, reservado para controles reactivos. */
   private fb = inject(FormBuilder);
+  /** Traducciones de mensajes. */
   private readonly translate = inject(TranslateService);
 
+  /** Grupos tutorizados por el profesor. */
   public groups = signal<Group[]>([]);
+  /** Grupo seleccionado para calificar. */
   public selectedGroup = signal<Group | null>(null);
+  /** Periodo de evaluación activo. */
   public selectedPeriod = signal<EvaluationPeriod>(EvaluationPeriod.FIRST_TRIMESTER);
+  /** Periodos disponibles para selector. */
   public periods = Object.values(EvaluationPeriod);
   
+  /** Alumnos agrupados con asignaturas del grupo. */
   public students = signal<StudentWithSubjects[]>([]);
+  /** Mapa editable de notas indexado por periodo, alumno y asignatura. */
   public gradesMap = new Map<string, Grade>(); 
 
+  /** Estado de carga de grupos/notas. */
   public loading = signal<boolean>(false);
+  /** Estado de guardado bulk. */
   public saving = signal<boolean>(false);
+  /** Mensaje de éxito temporal. */
   public successMessage = signal<string>('');
+  /** Mensaje de error visible. */
   public errorMessage = signal<string>('');
 
+  /** Carga grupos tutorizados al montar la pantalla. */
   ngOnInit(): void {
     this.loadGroups();
   }
 
+  /** Carga grupos donde el profesor actúa como tutor. */
   loadGroups(): void {
     this.loading.set(true);
     this.gradeService.getTutoredGroups().subscribe({
@@ -70,6 +94,7 @@ export class GestionNotasComponent implements OnInit {
     });
   }
 
+  /** Cambia el periodo y recarga notas del grupo seleccionado. */
   onPeriodChange(event: Event): void {
     const select = event.target as HTMLSelectElement;
     this.selectedPeriod.set(select.value as EvaluationPeriod);
@@ -78,10 +103,12 @@ export class GestionNotasComponent implements OnInit {
     }
   }
 
+  /** Genera una clave estable para localizar una nota en el mapa editable. */
   private getGradeKey(studentId: number, subjectId: number, period = this.selectedPeriod()): string {
     return `${period}-${studentId}-${subjectId}`;
   }
 
+  /** Carga notas del grupo/periodo y construye la tabla por alumno-asignatura. */
   loadGrades(): void {
     const group = this.selectedGroup();
     if (!group) return;
@@ -151,11 +178,13 @@ export class GestionNotasComponent implements OnInit {
     });
   }
 
+  /** Devuelve el valor visible de una nota en la tabla. */
   getGradeValue(studentId: number, subjectId: number): number | string {
     const key = this.getGradeKey(studentId, subjectId);
     return this.gradesMap.get(key)?.value || '';
   }
 
+  /** Actualiza localmente una nota, limitándola al rango 1-10. */
   onGradeChange(studentId: number, subjectId: number, enrollmentId: number, event: Event): void {
     const input = event.target as HTMLInputElement;
     let value = parseInt(input.value);
@@ -190,6 +219,7 @@ export class GestionNotasComponent implements OnInit {
     }
   }
 
+  /** Valida que todas las celdas tengan nota y guarda en lote. */
   saveGrades(): void {
     const studentsList = this.students();
     const gradesToSave: CreateGradeRequest[] = [];
@@ -241,6 +271,7 @@ export class GestionNotasComponent implements OnInit {
     });
   }
 
+  /** Calcula la media de un alumno en el periodo seleccionado. */
   getAverage(studentId: number): string {
     const student = this.students().find(s => s.id === studentId);
     if (!student || !student.subjects || student.subjects.length === 0) return '0';

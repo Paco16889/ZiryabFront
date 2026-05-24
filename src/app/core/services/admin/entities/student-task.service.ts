@@ -13,6 +13,7 @@ import {
 } from '../../../models/studentTask';
 import { environment } from '../../../../../environments/environment';
 
+/** Payload de actualización de StudentTask con id añadido por el modal genérico. */
 export type StudentTaskUpdatePayload = StudentTaskUpdateRequest & { id: number };
 
 /**
@@ -23,12 +24,13 @@ export type StudentTaskUpdatePayload = StudentTaskUpdateRequest & { id: number }
   providedIn: 'root'
 })
 export class StudentTaskService { 
-   /**
-   * URL base del endpoint de entregas de tareas.
-   */
+  /** Cliente HTTP para el módulo admin de entregas. */
   private readonly http = inject(HttpClient);
+
+  /** URL base del endpoint de entregas de tareas. */
   private readonly apiUrl = `${environment.apiUrl}/student-tasks`;
 
+  /** Cache reactiva de entregas para el listado admin. */
   studentTasks = signal<StudentTask[]>([]);
 
   /**
@@ -57,7 +59,7 @@ export class StudentTaskService {
 
   /**
    * Obtiene una entrega de tarea por su identificador.
-   * @param id - Identificador único de la entrega
+   * @param id Identificador único de la entrega
    * @returns Observable con la respuesta que contiene la entrega encontrada
    */
   getStudentTaskById(id: number): Observable<StudentTaskByIdResponse> {
@@ -71,7 +73,7 @@ export class StudentTaskService {
 
   /**
    * Crea una nueva entrega de tarea.
-   * @param data - Datos necesarios para crear la entrega
+   * @param data Datos necesarios para crear la entrega
    * @returns Observable con la respuesta que contiene la entrega creada
    */
   createStudentTask(data: StudentTaskCreateRequest): Observable<StudentTaskCreateResponse> {
@@ -84,9 +86,8 @@ export class StudentTaskService {
   }
 
   /**
-   * Actualiza una entrega de tarea existente.
-   * @param id - Identificador único de la entrega a actualizar
-   * @param data - Datos de la entrega a actualizar
+   * Actualiza una entrega de tarea existente desde el modal genérico.
+   * @param payload Datos de la entrega a actualizar, incluido su identificador
    * @returns Observable con la respuesta que contiene la entrega actualizada
    */
   updateStudentTask(payload: StudentTaskUpdatePayload): Observable<StudentTaskUpdateResponse> {
@@ -101,7 +102,7 @@ export class StudentTaskService {
 
   /**
    * Elimina una entrega de tarea por su identificador.
-   * @param id - Identificador único de la entrega a eliminar
+   * @param id Identificador único de la entrega a eliminar
    * @returns Observable con la respuesta de confirmación de eliminación
    */
   deleteStudentTask(id: number): Observable<StudentTaskDeleteResponse> {

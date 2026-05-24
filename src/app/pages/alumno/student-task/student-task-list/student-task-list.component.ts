@@ -17,8 +17,10 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './student-task-list.component.scss'
 })
 export class StudentTaskListComponent implements OnInit {
+  /** Servicio que carga las entregas del alumno. */
     studentTaskService = inject(StudentTaskService);
 
+  /** Carga inicial de entregas de la matrícula activa. */
   ngOnInit(): void {
     // TODO: sustituir por el idStudentEnrollment real del alumno autenticado
     this.studentTaskService.loadStudentTasksByEnrollment(1);

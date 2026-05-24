@@ -168,19 +168,7 @@ para construir y enviar la petición de matriculación al backend.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#cursoEscolar" >cursoEscolar</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#idGroup" >idGroup</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#idStudent" >idStudent</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#idSubject" >idSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -221,12 +209,12 @@ para construir y enviar la petición de matriculación al backend.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, selectedStudent: <a href="../injectables/SelectedStudentServiceService.html" target="_self">SelectedStudentServiceService</a>, subjectService: <a href="../injectables/SubjectServiceService.html" target="_self">SubjectServiceService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, selectedStudent: <a href="../injectables/SelectedStudentService.html" target="_self">SelectedStudentService</a>, subjectService: <a href="../injectables/SubjectService.html" target="_self">SubjectService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -268,7 +256,7 @@ para construir y enviar la petición de matriculación al backend.</p>
                                                         <td>selectedStudent</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/SelectedStudentServiceService.html" target="_self" >SelectedStudentServiceService</a></code>
+                                                                        <code><a href="../injectables/SelectedStudentService.html" target="_self" >SelectedStudentService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -282,7 +270,7 @@ para construir y enviar la petición de matriculación al backend.</p>
                                                         <td>subjectService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/SubjectServiceService.html" target="_self" >SubjectServiceService</a></code>
+                                                                        <code><a href="../injectables/SubjectService.html" target="_self" >SubjectService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -330,8 +318,8 @@ para construir y enviar la petición de matriculación al backend.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -407,8 +395,8 @@ para construir y enviar la petición de matriculación al backend.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -448,8 +436,8 @@ Llama a registerStudent con el grupo por defecto y gestiona la respuesta.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -538,89 +526,13 @@ Si no hay estudiante o asignaturas seleccionadas no realiza ninguna acción.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:29</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>URL base del endpoint de matriculaciones.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="cursoEscolar"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>cursoEscolar</b></span>
-                        <a href="#cursoEscolar"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;25/26&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:35</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Año académico para el que se realiza la matriculación.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="idGroup"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>idGroup</b></span>
-                        <a href="#idGroup"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>number | null</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:27</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Identificador del grupo en el que se matricula el estudiante.</p>
 </div>
                 </td>
             </tr>
@@ -665,44 +577,6 @@ Si no hay estudiante o asignaturas seleccionadas no realiza ninguna acción.</p>
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="idSubject"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>idSubject</b></span>
-                        <a href="#idSubject"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>number | null</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/core/services/admin/student-registration.service.ts:31</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Identificador de la asignatura en la que se matricula el estudiante.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 </section>
 
     </div>
@@ -713,10 +587,10 @@ Si no hay estudiante o asignaturas seleccionadas no realiza ninguna acción.</p>
 import { Injectable } from &#x27;@angular/core&#x27;;
 import { StudentRegistration, StudentRegistrationRequest, StudentRegistrationResponse } from &#x27;../../models/student-registration&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { SelectedStudentServiceService } from &#x27;./selected-student-service.service&#x27;;
+import { SelectedStudentService } from &#x27;./selected-student.service&#x27;;
 import { Student } from &#x27;../../models/student&#x27;;
 import { Subject } from &#x27;../../models/subject&#x27;;
-import { SubjectServiceService } from &#x27;./entities/subject-service.service&#x27;;
+import { SubjectService } from &#x27;./entities/subject.service&#x27;;
 
 /**
  * Servicio encargado de gestionar el proceso de matriculación de un estudiante
@@ -732,18 +606,7 @@ export class StudentRegistrationService {
    * Identificador del estudiante a matricular.
    */
   private idStudent:number | null &#x3D; null;
-   /**
-   * Identificador del grupo en el que se matricula el estudiante.
-   */
-  private idGroup: number | null &#x3D; null;
-   /**
-   * Identificador de la asignatura en la que se matricula el estudiante.
-   */
-  private idSubject: number | null &#x3D; null;
-    /**
-   * Año académico para el que se realiza la matriculación.
-   */
-  private cursoEscolar: string &#x3D; &#x27;25/26&#x27;;
+ 
 
   /**
    * URL base del endpoint de matriculaciones.
@@ -757,7 +620,7 @@ export class StudentRegistrationService {
    * @param subjectService - Servicio para obtener la asignaturas seleccionadas
    * @param studentSelectedService - Servicio para obtener el estudiante seleccionado
    */
-  constructor(private http: HttpClient, private selectedStudent: SelectedStudentServiceService, private subjectService: SubjectServiceService) {}
+  constructor(private http: HttpClient, private selectedStudent: SelectedStudentService, private subjectService: SubjectService) {}
 
    /**
    * Envía la petición de matriculación al backend.

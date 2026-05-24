@@ -22,23 +22,38 @@ import { resolveApiError } from '../../../core/i18n/api-error.util';
   styleUrls: ['./student-task-detail.component.scss']
 })
 export class StudentTaskDetailComponent implements OnInit {
+  /** Ruta activa para leer el id de la StudentTask. */
   private route = inject(ActivatedRoute);
+  /** Router usado para futuras navegaciones del detalle. */
   private router = inject(Router);
+  /** Servicio de entregas del alumno. */
   private studentTaskService = inject(StudentTaskService);
+  /** Constructor del formulario de URL. */
   private fb = inject(FormBuilder);
+  /** Traducciones de mensajes y errores. */
   private readonly translate = inject(TranslateService);
 
+  /** Entrega cargada en el detalle. */
   task = signal<StudentTask | null>(null);
+  /** Estado de carga del detalle. */
   loading = signal<boolean>(true);
+  /** Estado de envío/subida. */
   submitting = signal<boolean>(false);
+  /** Mensaje de error visible. */
   errorMessage = signal<string>('');
+  /** Mensaje de éxito visible. */
   successMessage = signal<string>('');
   
+  /** Modo de entrega elegido por el alumno. */
   submissionMode = signal<'url' | 'file'>('file');
+  /** Archivo seleccionado para subir. */
   selectedFile = signal<File | null>(null);
+  /** Estado visual del área de arrastre. */
   isDragging = signal<boolean>(false);
 
+  /** Formulario para entrega por URL externa. */
   submitForm: FormGroup;
+  /** Indica si la fecha límite ya venció. */
   isPastDueDate = signal<boolean>(false);
 
   /** Plazo vencido y el profesor no permite entregas tardías (coincide con 403 del backend). */
@@ -55,8 +70,10 @@ export class StudentTaskDetailComponent implements OnInit {
     return this.isPastDueDate() && t.task.allowLateSubmission;
   });
 
+  /** Enum expuesto al template para comparar estados de entrega. */
   SubmissionStatus = SubmissionStatus;
 
+  /** Inicializa el formulario de URL con validación básica. */
   constructor() {
     const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/i;
     this.submitForm = this.fb.group({
@@ -64,6 +81,7 @@ export class StudentTaskDetailComponent implements OnInit {
     });
   }
 
+  /** Lee el id de ruta y carga el detalle de entrega. */
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
@@ -121,6 +139,7 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /** Extrae mensajes específicos del backend en errores de entrega. */
   private extractApiError(err: { error?: { error?: string; message?: string } }): string {
     return err.error?.error || err.error?.message || '';
   }
@@ -144,6 +163,7 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /** Limpia el estado visual cuando el archivo sale de la zona de drop. */
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
     this.isDragging.set(false);
@@ -176,6 +196,7 @@ export class StudentTaskDetailComponent implements OnInit {
     }
   }
 
+  /** Procesa elementos arrastrados y rechaza directorios antes de convertirlos en archivo. */
   processDataTransferItems(items: DataTransferItemList): void {
     const item = items[0];
     if (item.kind === 'file') {
@@ -214,6 +235,7 @@ export class StudentTaskDetailComponent implements OnInit {
     this.errorMessage.set('');
   }
 
+  /** Elimina el archivo seleccionado y limpia errores de validación. */
   removeFile(): void {
     this.selectedFile.set(null);
     this.errorMessage.set('');

@@ -1,7 +1,11 @@
 import { TranslateService } from '@ngx-translate/core';
 
+/** Forma mínima de los errores HTTP que usan los componentes para mostrar mensajes. */
 type HttpErrorLike = {
+  /** Cuerpo opcional devuelto por el backend. */
   error?: { code?: string; message?: string };
+
+  /** Mensaje genérico del cliente HTTP cuando no hay cuerpo de backend. */
   message?: string;
 };
 

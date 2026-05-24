@@ -281,6 +281,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Assignment } from &quot;./assingment&quot;;
+import { WithId } from &quot;./withId&quot;;
 
 /**
  * Representa una franja horaria semanal asociada a la asignación de un profesor.
@@ -296,8 +297,8 @@
 export interface WeekSchedule {
   /** Identificador único de la franja horaria */
   id: number;
-  /** Día de la semana en formato numérico, donde 1 es lunes y 7 es domingo */
-  weekDay: number;
+  /** Día de la semana en formato numérico (1-7) o string (Enum de backend) */
+  weekDay: number | string;
   /** Hora de inicio de la franja horaria, por ejemplo &#x27;09:00&#x27; */
   startTime: string;
   /** Hora de fin de la franja horaria, por ejemplo &#x27;10:00&#x27; */
@@ -405,7 +406,7 @@ export interface WeekScheduleCreateResponse {
  *   finishTime: &#x27;HORA_FIN&#x27;
  * };
  */
-export interface WeekScheduleUpdateRequest {
+export interface WeekScheduleUpdateRequest extends WithId{
   /** Nuevo día de la semana en formato numérico */
   weekDay?: number;
   /** Nueva hora de inicio de la franja horaria */

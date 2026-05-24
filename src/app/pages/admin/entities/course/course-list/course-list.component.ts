@@ -11,6 +11,7 @@ import { CourseAssignmentsWizardComponent } from '../course-assignments-wizard/c
 import { CourseAssignmentsGridComponent } from '../course-assignments-grid/course-assignments-grid.component';
 import { CourseAssignmentsContext } from '../../../../../core/models/course-assignments/course-assignments-context.model';
 
+/** Vistas internas del listado de ciclos: listado, alta y flujo de asignaciones docentes. */
 type CourseListView = 'list' | 'create' | 'assignments-wizard' | 'assignments-grid';
 
 /**
@@ -33,12 +34,15 @@ type CourseListView = 'list' | 'create' | 'assignments-wizard' | 'assignments-gr
 })
 export class CourseListComponent implements OnInit {
 
-    /**
+  /**
    * Listado de ciclos académicos a mostrar, sincronizado con la signal del servicio.
    */
-    courses: Course[] = [];
+  courses: Course[] = [];
 
+  /** Vista activa dentro de la pantalla de ciclos. */
   readonly view = signal<CourseListView>('list');
+
+  /** Contexto ciclo+grade elegido en el wizard antes de abrir el grid de asignaciones. */
   readonly assignmentsContext = signal<CourseAssignmentsContext | null>(null);
 
    /**
@@ -76,33 +80,40 @@ export class CourseListComponent implements OnInit {
         this.courseService.loadCourses();
       }
 
+  /** Abre el formulario de creación de ciclo. */
   openCreateForm() {
     this.view.set('create');
   }
 
+  /** Vuelve al listado principal desde el formulario de creación. */
   closeCreateForm() {
     this.view.set('list');
   }
 
+  /** Cierra el formulario y recarga ciclos tras crear uno nuevo. */
   onCourseCreated() {
     this.closeCreateForm();
     this.courseService.loadCourses();
   }
 
+  /** Abre el asistente para seleccionar ciclo y grade antes de asignar docentes. */
   openAssignmentsWizard() {
     this.assignmentsContext.set(null);
     this.view.set('assignments-wizard');
   }
 
+  /** Cancela el asistente de asignaciones y vuelve al listado. */
   onAssignmentsWizardCancel() {
     this.view.set('list');
   }
 
+  /** Recibe el contexto del wizard y muestra el grid de asignaciones docentes. */
   onAssignmentsWizardComplete(ctx: CourseAssignmentsContext) {
     this.assignmentsContext.set(ctx);
     this.view.set('assignments-grid');
   }
 
+  /** Sale del grid de asignaciones limpiando el contexto seleccionado. */
   onAssignmentsGridBack() {
     this.assignmentsContext.set(null);
     this.view.set('list');

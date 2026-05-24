@@ -1,17 +1,11 @@
 /**
- * @file Utilidades para alinear el **día de la semana** entre el backend (Prisma / JSON) y la UI (1 = lunes … 7 = domingo).
- *
- * El API suele devolver strings `MONDAY`…`SUNDAY`; las pantallas y el grid de horarios trabajan con números 1–7.
- */
-
-/**
  * Convierte el valor de día que viene del API o de Prisma al número que usa el front.
  *
  * - Si ya es un número entre 1 y 7, se devuelve igual (no se modifica).
  * - Si es un string tipo `MONDAY`, se mapea a 1, etc.
  * - Si el string no es reconocido, se devuelve **1** (lunes) por defecto.
  *
- * @param day - Día como string Prisma (`MONDAY`…) o número 1–7.
+ * @param day Día como string Prisma (`MONDAY`…) o número 1–7.
  * @returns Entero 1–7 (lunes = 1, domingo = 7).
  *
  * @example
@@ -48,7 +42,7 @@ export function prismaDayOfWeekToNumber(day: string | number): number {
  * - 1 → `MONDAY`, …, 7 → `SUNDAY`.
  * - Valores fuera de 1–7 devuelven **`MONDAY`** por defecto.
  *
- * @param day - Día en formato numérico 1 = lunes … 7 = domingo.
+ * @param day Día en formato numérico 1 = lunes … 7 = domingo.
  * @returns String en mayúsculas compatible con Prisma / API.
  *
  * @example

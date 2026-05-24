@@ -1,0 +1,719 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  StudentTaskListItemComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Fila del listado admin de entregas basada en el componente genérico.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-student-task-list-item</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/GenericListItemComponent.html" target="_self" >GenericListItemComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./student-task-list-item.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./student-task-list-item.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#studentTaskConfig" >studentTaskConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#studentTaskDetailConfig" >studentTaskDetailConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#studentTaskService" >studentTaskService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#studentTask" >studentTask</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="studentTask"></a>
+                        <b>studentTask</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/StudentTask.html" target="_self" >StudentTask</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts:38</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Entrega renderizada por esta fila.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentTaskConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>studentTaskConfig</b></span>
+                        <a href="#studentTaskConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ListItemConfig&lt;StudentTask | StudentTaskUpdatePayload | StudentTaskUpdateResponse | StudentTaskDeleteResponse&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    fields: [
+      {
+        key: &#x27;task&#x27;,
+        label: &#x27;Tarea&#x27;,
+        order: 1,
+        format: (t: { title?: string }) &#x3D;&gt; t?.title ?? &#x27;—&#x27;,
+      },
+      {
+        key: &#x27;studentEnrollment&#x27;,
+        label: &#x27;Alumno&#x27;,
+        order: 2,
+        format: (e: { student?: { name?: string; surname?: string } }) &#x3D;&gt; {
+          if (!e?.student) return &#x27;—&#x27;;
+          return [e.student.name, e.student.surname].filter(Boolean).join(&#x27; &#x27;);
+        },
+      },
+      {
+        key: &#x27;status&#x27;,
+        order: 3,
+        format: (s: SubmissionStatus) &#x3D;&gt; STATUS_LABELS[s] ?? s,
+      },
+      { key: &#x27;score&#x27;, label: &#x27;Nota&#x27;, order: 4, format: (v) &#x3D;&gt; (v !&#x3D; null ? String(v) : &#x27;—&#x27;) },
+    ],
+    actions: { edit: true, delete: true, detail: true },
+    layout: { responsive: false },
+    editFields: [
+      {
+        name: &#x27;status&#x27;,
+        label: &#x27;Estado&#x27;,
+        fieldType: &#x27;select&#x27;,
+        validators: [Validators.required],
+        options: Object.values(SubmissionStatus).map((s) &#x3D;&gt; ({
+          value: s,
+          label: STATUS_LABELS[s],
+        })),
+      },
+      { name: &#x27;score&#x27;, label: &#x27;Nota&#x27;, type: &#x27;number&#x27; },
+      { name: &#x27;feedback&#x27;, label: &#x27;Feedback&#x27;, type: &#x27;text&#x27; },
+    ],
+    entityType: &#x27;la entrega&#x27;,
+    entityNameFormat: (st: StudentTask) &#x3D;&gt; st.task?.title ?? &#x60;Entrega ${st.id}&#x60;,
+    getByIdFn: (id: number) &#x3D;&gt; this.studentTaskService.getStudentTaskById(id),
+    updateFn: (data: StudentTaskUpdatePayload) &#x3D;&gt; this.studentTaskService.updateStudentTask(data),
+    deleteFn: (id: number) &#x3D;&gt; this.studentTaskService.deleteStudentTask(id),
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración del item genérico: campos, edición de estado/nota y acciones CRUD.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentTaskDetailConfig"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>studentTaskDetailConfig</b></span>
+                        <a href="#studentTaskDetailConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ViewDetailConfig&lt;StudentTask&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    fields: [
+      { key: &#x27;task.title&#x27;, type: &#x27;text&#x27;, label: &#x27;Tarea: &#x27;, className: &#x27;text-xl font-bold&#x27; },
+      {
+        key: &#x27;status&#x27;,
+        type: &#x27;text&#x27;,
+        label: &#x27;Estado: &#x27;,
+        format: (s: SubmissionStatus) &#x3D;&gt; STATUS_LABELS[s] ?? String(s),
+      },
+      { key: &#x27;score&#x27;, type: &#x27;text&#x27;, label: &#x27;Nota: &#x27; },
+      { key: &#x27;feedback&#x27;, type: &#x27;text&#x27;, label: &#x27;Feedback: &#x27; },
+      { key: &#x27;submissionDate&#x27;, type: &#x27;text&#x27;, label: &#x27;Entrega: &#x27; },
+    ],
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración de detalle de una entrega.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentTaskService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>studentTaskService</b></span>
+                        <a href="#studentTaskService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StudentTaskService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio usado por el componente genérico para detalle, edición y borrado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, Input } from &#x27;@angular/core&#x27;;
+import { Validators } from &#x27;@angular/forms&#x27;;
+import {
+  StudentTask,
+  StudentTaskDeleteResponse,
+  SubmissionStatus,
+  StudentTaskUpdateResponse,
+} from &#x27;../../../../../core/models/studentTask&#x27;;
+import { ListItemConfig } from &#x27;../../../../../core/configs/list-item-config&#x27;;
+import { ViewDetailConfig } from &#x27;../../../../../core/configs/view-detail-config&#x27;;
+import { GenericListItemComponent } from &#x27;../../../generic-list-item/generic-list-item.component&#x27;;
+import {
+  StudentTaskService,
+  StudentTaskUpdatePayload,
+} from &#x27;../../../../../core/services/admin/entities/student-task.service&#x27;;
+
+/** Etiquetas en castellano para estados de entrega. */
+const STATUS_LABELS: Record&lt;SubmissionStatus, string&gt; &#x3D; {
+  [SubmissionStatus.PENDING]: &#x27;Pendiente&#x27;,
+  [SubmissionStatus.SUBMITTED]: &#x27;Entregada&#x27;,
+  [SubmissionStatus.LATE]: &#x27;Tarde&#x27;,
+  [SubmissionStatus.GRADED]: &#x27;Calificada&#x27;,
+  [SubmissionStatus.NOT_SUBMITTED]: &#x27;No entregada&#x27;,
+};
+
+/** Fila del listado admin de entregas basada en el componente genérico. */
+@Component({
+  selector: &#x27;app-student-task-list-item&#x27;,
+  imports: [GenericListItemComponent],
+  templateUrl: &#x27;./student-task-list-item.component.html&#x27;,
+  styleUrl: &#x27;./student-task-list-item.component.scss&#x27;,
+})
+export class StudentTaskListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
+  private readonly studentTaskService &#x3D; inject(StudentTaskService);
+
+  /** Entrega renderizada por esta fila. */
+  @Input({ required: true }) studentTask!: StudentTask;
+
+  /** Configuración del item genérico: campos, edición de estado/nota y acciones CRUD. */
+  readonly studentTaskConfig: ListItemConfig&lt;
+    StudentTask,
+    StudentTaskUpdatePayload,
+    StudentTaskUpdateResponse,
+    StudentTaskDeleteResponse
+  &gt; &#x3D; {
+    fields: [
+      {
+        key: &#x27;task&#x27;,
+        label: &#x27;Tarea&#x27;,
+        order: 1,
+        format: (t: { title?: string }) &#x3D;&gt; t?.title ?? &#x27;—&#x27;,
+      },
+      {
+        key: &#x27;studentEnrollment&#x27;,
+        label: &#x27;Alumno&#x27;,
+        order: 2,
+        format: (e: { student?: { name?: string; surname?: string } }) &#x3D;&gt; {
+          if (!e?.student) return &#x27;—&#x27;;
+          return [e.student.name, e.student.surname].filter(Boolean).join(&#x27; &#x27;);
+        },
+      },
+      {
+        key: &#x27;status&#x27;,
+        order: 3,
+        format: (s: SubmissionStatus) &#x3D;&gt; STATUS_LABELS[s] ?? s,
+      },
+      { key: &#x27;score&#x27;, label: &#x27;Nota&#x27;, order: 4, format: (v) &#x3D;&gt; (v !&#x3D; null ? String(v) : &#x27;—&#x27;) },
+    ],
+    actions: { edit: true, delete: true, detail: true },
+    layout: { responsive: false },
+    editFields: [
+      {
+        name: &#x27;status&#x27;,
+        label: &#x27;Estado&#x27;,
+        fieldType: &#x27;select&#x27;,
+        validators: [Validators.required],
+        options: Object.values(SubmissionStatus).map((s) &#x3D;&gt; ({
+          value: s,
+          label: STATUS_LABELS[s],
+        })),
+      },
+      { name: &#x27;score&#x27;, label: &#x27;Nota&#x27;, type: &#x27;number&#x27; },
+      { name: &#x27;feedback&#x27;, label: &#x27;Feedback&#x27;, type: &#x27;text&#x27; },
+    ],
+    entityType: &#x27;la entrega&#x27;,
+    entityNameFormat: (st: StudentTask) &#x3D;&gt; st.task?.title ?? &#x60;Entrega ${st.id}&#x60;,
+    getByIdFn: (id: number) &#x3D;&gt; this.studentTaskService.getStudentTaskById(id),
+    updateFn: (data: StudentTaskUpdatePayload) &#x3D;&gt; this.studentTaskService.updateStudentTask(data),
+    deleteFn: (id: number) &#x3D;&gt; this.studentTaskService.deleteStudentTask(id),
+  };
+
+  /** Configuración de detalle de una entrega. */
+  readonly studentTaskDetailConfig: ViewDetailConfig&lt;StudentTask&gt; &#x3D; {
+    fields: [
+      { key: &#x27;task.title&#x27;, type: &#x27;text&#x27;, label: &#x27;Tarea: &#x27;, className: &#x27;text-xl font-bold&#x27; },
+      {
+        key: &#x27;status&#x27;,
+        type: &#x27;text&#x27;,
+        label: &#x27;Estado: &#x27;,
+        format: (s: SubmissionStatus) &#x3D;&gt; STATUS_LABELS[s] ?? String(s),
+      },
+      { key: &#x27;score&#x27;, type: &#x27;text&#x27;, label: &#x27;Nota: &#x27; },
+      { key: &#x27;feedback&#x27;, type: &#x27;text&#x27;, label: &#x27;Feedback: &#x27; },
+      { key: &#x27;submissionDate&#x27;, type: &#x27;text&#x27;, label: &#x27;Entrega: &#x27; },
+    ],
+  };
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-generic-list-item
+  [item]&#x3D;&quot;studentTask&quot;
+  [config]&#x3D;&quot;studentTaskConfig&quot;
+  [detailConfig]&#x3D;&quot;studentTaskDetailConfig&quot;
+/&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-generic-list-item  [item]="studentTask"  [config]="studentTaskConfig"  [detailConfig]="studentTaskDetailConfig"/></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'StudentTaskListItemComponent-1'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'StudentTaskListItemComponent-1.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

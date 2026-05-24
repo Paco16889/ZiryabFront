@@ -12,6 +12,10 @@ import { APP_INITIALIZER, inject } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
 import { Observable } from 'rxjs';
 
+/**
+ * Factory de `APP_INITIALIZER` que intenta recuperar la sesión antes de montar la app.
+ * Siempre completa, incluso si `/auth/verify-session` falla, para no bloquear la carga inicial.
+ */
 export function initializeAppAuth(authService: AuthService) {
   return () => {
     return new Observable((subscriber) => {

@@ -10,8 +10,11 @@ import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
 import { StudentSubjectEnrollmentRow } from '../../../core/models/teacher/subjectforteacher';
 
+/** Datos mínimos de matrícula que se transforman en tarjetas de asignatura del alumno. */
 interface StudentSubjectCardSource {
+  /** Asignatura matriculada que se mostrará como tarjeta. */
   subject: { id: number; name: string };
+  /** Grupo del alumno para mostrarlo como subtítulo. */
   group?: { name: string } | null;
 }
 
@@ -42,16 +45,19 @@ export class ClasesComponent implements OnInit {
    * Servicio de autenticación para obtener los datos del usuario actual.
    */
   private authService = inject(AuthService);
-  private readonly translate = inject(TranslateService); 
+  /** Traducciones de errores y textos de las tarjetas de asignatura. */
+  private readonly translate = inject(TranslateService);
 
-    /**
+  /**
    * Listado de asignaturas matriculadas del estudiante mapeadas al formato CardItem.
    * 
    */
   public asignaturasCards = signal<CardItem[]>([]);
 
-  // Guardamos las raw asignaturas temporalmente por si hacen falta, 
-  // o podemos simplemente construir los cards.
+  /**
+   * Matrículas crudas devueltas por el backend antes de mapearlas a {@link CardItem}.
+   * Se conservan para reconstruir las tarjetas cuando llega el nombre del profesor.
+   */
   private asignaturasOriginales = signal<StudentSubjectEnrollmentRow[]>([]);
 
     /**
@@ -137,6 +143,7 @@ export class ClasesComponent implements OnInit {
     }
   }
   
+  /** Reconstruye las tarjetas combinando matrículas y nombres de profesor ya resueltos. */
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
       id: item.subject?.id || 0,
@@ -152,6 +159,7 @@ export class ClasesComponent implements OnInit {
     this.asignaturasCards.set(cards);
   }
 
+  /** Navega al temario de la asignatura seleccionada en la tarjeta. */
   handleCardAction(item: CardItem): void {
     if (item.title) {
       this.navegador.toComponent(`temario/${item.title.toLowerCase()}`); 

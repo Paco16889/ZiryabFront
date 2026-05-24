@@ -1,0 +1,1969 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ClassSessionCancelDialogComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Diálogo para previsualizar y suspender sesiones de clase por rango y filtros.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-class-session-cancel-dialog</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./class-session-cancel-dialog.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./class-session-cancel-dialog.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#courseOptions" >courseOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#courseService" >courseService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#destroyRef" >destroyRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groupOptions" >groupOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groupService" >groupService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isSubmitting" >isSubmitting</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loadingOptions" >loadingOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#previewCount" >previewCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#previewError" >previewError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#previewLoading" >previewLoading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sessionService" >sessionService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subjectOptions" >subjectOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subjectService" >subjectService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#submitError" >submitError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#teacherOptions" >teacherOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#teachersService" >teachersService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#buildFilters" >buildFilters</a>
+                            </li>
+                            <li>
+                                <a href="#canConfirm" >canConfirm</a>
+                            </li>
+                            <li>
+                                <a href="#datesValid" >datesValid</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadFilterOptions" >loadFilterOptions</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClose" >onClose</a>
+                            </li>
+                            <li>
+                                <a href="#onConfirm" >onConfirm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupPreviewSubscription" >setupPreviewSubscription</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closed" >closed</a>
+                            </li>
+                            <li>
+                                <a href="#suspended" >suspended</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closed"></a>
+                        <b>closed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Cierra el diálogo sin aplicar cambios.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="suspended"></a>
+                        <b>suspended</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:48</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emite el número de sesiones suspendidas correctamente.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buildFilters"></a>
+                    <span class="name">
+                        <span ><b>buildFilters</b></span>
+                        <a href="#buildFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buildFilters()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Construye el DTO de filtros omitiendo selectores vacíos.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/SessionSuspendFilters.html" target="_self" >SessionSuspendFilters | null</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canConfirm"></a>
+                    <span class="name">
+                        <span ><b>canConfirm</b></span>
+                        <a href="#canConfirm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>canConfirm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:201</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Determina si el botón de confirmación debe estar habilitado.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="datesValid"></a>
+                    <span class="name">
+                        <span ><b>datesValid</b></span>
+                        <a href="#datesValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>datesValid()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Comprueba que el rango de fechas esté completo y ordenado.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadFilterOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadFilterOptions</b></span>
+                        <a href="#loadFilterOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadFilterOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga los catálogos necesarios para los filtros del diálogo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga catálogos y activa el preview reactivo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClose"></a>
+                    <span class="name">
+                        <span ><b>onClose</b></span>
+                        <a href="#onClose"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClose()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cierra el diálogo si no hay una suspensión en curso.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onConfirm"></a>
+                    <span class="name">
+                        <span ><b>onConfirm</b></span>
+                        <a href="#onConfirm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onConfirm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Ejecuta la suspensión masiva usando los filtros validados.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupPreviewSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setupPreviewSubscription</b></span>
+                        <a href="#setupPreviewSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupPreviewSubscription()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Configura el preview automático al cambiar filtros válidos.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="courseOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>courseOptions</b></span>
+                        <a href="#courseOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;SelectOption[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones de ciclo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="courseService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>courseService</b></span>
+                        <a href="#courseService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CourseService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de ciclos para filtrar la suspensión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>destroyRef</b></span>
+                        <a href="#destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ciclo de vida usado para cancelar la suscripción de preview.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constructor de formularios reactivos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    dateFrom: [&#x27;&#x27;, Validators.required],
+    dateTo: [&#x27;&#x27;, Validators.required],
+    idCourse: [null as number | null],
+    idSubject: [null as number | null],
+    idGroup: [null as number | null],
+    idTeacher: [null as number | null],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario de filtros: rango obligatorio y filtros académicos opcionales.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groupOptions</b></span>
+                        <a href="#groupOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;SelectOption[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones de grupo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groupService</b></span>
+                        <a href="#groupService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(GroupService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de grupos para filtrar la suspensión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSubmitting"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isSubmitting</b></span>
+                        <a href="#isSubmitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de envío de la suspensión masiva.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loadingOptions</b></span>
+                        <a href="#loadingOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga de catálogos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previewCount"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>previewCount</b></span>
+                        <a href="#previewCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;number | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Número de sesiones afectadas por los filtros actuales.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previewError"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>previewError</b></span>
+                        <a href="#previewError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error al calcular preview.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previewLoading"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>previewLoading</b></span>
+                        <a href="#previewLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga del preview.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sessionService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sessionService</b></span>
+                        <a href="#sessionService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ClassSessionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de sesiones para preview y suspensión masiva.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subjectOptions</b></span>
+                        <a href="#subjectOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;SelectOption[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones de asignatura.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subjectService</b></span>
+                        <a href="#subjectService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SubjectService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de asignaturas para filtrar la suspensión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitError"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>submitError</b></span>
+                        <a href="#submitError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clave i18n de error al suspender.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teacherOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>teacherOptions</b></span>
+                        <a href="#teacherOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;SelectOption[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones de profesor.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teachersService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>teachersService</b></span>
+                        <a href="#teachersService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TeachersService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-cancel-dialog/class-session-cancel-dialog.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de profesores para filtrar la suspensión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, DestroyRef, inject, OnInit, output, signal } from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
+import { FormBuilder, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { debounceTime, distinctUntilChanged, EMPTY, filter, switchMap } from &#x27;rxjs&#x27;;
+import { SessionSuspendFilters } from &#x27;../../../../../core/models/class-sessions&#x27;;
+import { ClassSessionService } from &#x27;../../../../../core/services/admin/entities/class-session.service&#x27;;
+import { CourseService } from &#x27;../../../../../core/services/admin/entities/course.service&#x27;;
+import { GroupService } from &#x27;../../../../../core/services/admin/entities/group.service&#x27;;
+import { SubjectService } from &#x27;../../../../../core/services/admin/entities/subject.service&#x27;;
+import { TeachersService } from &#x27;../../../../../core/services/admin/entities/teachers.service&#x27;;
+
+/** Opción de selector usada por los filtros de suspensión masiva. */
+interface SelectOption {
+  /** Identificador del recurso filtrable. */
+  value: number;
+  /** Etiqueta visible en el selector. */
+  label: string;
+}
+
+/** Diálogo para previsualizar y suspender sesiones de clase por rango y filtros. */
+@Component({
+  selector: &#x27;app-class-session-cancel-dialog&#x27;,
+  standalone: true,
+  imports: [ReactiveFormsModule, TranslateModule],
+  templateUrl: &#x27;./class-session-cancel-dialog.component.html&#x27;,
+  styleUrl: &#x27;./class-session-cancel-dialog.component.scss&#x27;,
+})
+export class ClassSessionCancelDialogComponent implements OnInit {
+  /** Constructor de formularios reactivos. */
+  private readonly fb &#x3D; inject(FormBuilder);
+  /** Ciclo de vida usado para cancelar la suscripción de preview. */
+  private readonly destroyRef &#x3D; inject(DestroyRef);
+  /** Servicio de sesiones para preview y suspensión masiva. */
+  private readonly sessionService &#x3D; inject(ClassSessionService);
+  /** Catálogo de ciclos para filtrar la suspensión. */
+  private readonly courseService &#x3D; inject(CourseService);
+  /** Catálogo de asignaturas para filtrar la suspensión. */
+  private readonly subjectService &#x3D; inject(SubjectService);
+  /** Catálogo de grupos para filtrar la suspensión. */
+  private readonly groupService &#x3D; inject(GroupService);
+  /** Catálogo de profesores para filtrar la suspensión. */
+  private readonly teachersService &#x3D; inject(TeachersService);
+
+  /** Cierra el diálogo sin aplicar cambios. */
+  readonly closed &#x3D; output&lt;void&gt;();
+  /** Emite el número de sesiones suspendidas correctamente. */
+  readonly suspended &#x3D; output&lt;number&gt;();
+
+  /** Opciones de ciclo. */
+  readonly courseOptions &#x3D; signal&lt;SelectOption[]&gt;([]);
+  /** Opciones de asignatura. */
+  readonly subjectOptions &#x3D; signal&lt;SelectOption[]&gt;([]);
+  /** Opciones de grupo. */
+  readonly groupOptions &#x3D; signal&lt;SelectOption[]&gt;([]);
+  /** Opciones de profesor. */
+  readonly teacherOptions &#x3D; signal&lt;SelectOption[]&gt;([]);
+  /** Estado de carga de catálogos. */
+  readonly loadingOptions &#x3D; signal(true);
+
+  /** Número de sesiones afectadas por los filtros actuales. */
+  readonly previewCount &#x3D; signal&lt;number | null&gt;(null);
+  /** Estado de carga del preview. */
+  readonly previewLoading &#x3D; signal(false);
+  /** Error al calcular preview. */
+  readonly previewError &#x3D; signal(false);
+
+  /** Estado de envío de la suspensión masiva. */
+  readonly isSubmitting &#x3D; signal(false);
+  /** Clave i18n de error al suspender. */
+  readonly submitError &#x3D; signal(&#x27;&#x27;);
+
+  /** Formulario de filtros: rango obligatorio y filtros académicos opcionales. */
+  form &#x3D; this.fb.group({
+    dateFrom: [&#x27;&#x27;, Validators.required],
+    dateTo: [&#x27;&#x27;, Validators.required],
+    idCourse: [null as number | null],
+    idSubject: [null as number | null],
+    idGroup: [null as number | null],
+    idTeacher: [null as number | null],
+  });
+
+  /** Carga catálogos y activa el preview reactivo. */
+  ngOnInit(): void {
+    this.loadFilterOptions();
+    this.setupPreviewSubscription();
+  }
+
+  /** Carga los catálogos necesarios para los filtros del diálogo. */
+  private loadFilterOptions(): void {
+    let pending &#x3D; 4;
+    const done &#x3D; () &#x3D;&gt; {
+      pending -&#x3D; 1;
+      if (pending &#x3D;&#x3D;&#x3D; 0) {
+        this.loadingOptions.set(false);
+      }
+    };
+
+    this.courseService.getAllCourses().subscribe((res) &#x3D;&gt; {
+      this.courseOptions.set(
+        res.success ? res.data.map((c) &#x3D;&gt; ({ value: c.id, label: c.name })) : [],
+      );
+      done();
+    });
+    this.subjectService.getAllSubjects().subscribe((res) &#x3D;&gt; {
+      this.subjectOptions.set(
+        res.success ? res.data.map((s) &#x3D;&gt; ({ value: s.id, label: s.name })) : [],
+      );
+      done();
+    });
+    this.groupService.getAllGroups().subscribe((res) &#x3D;&gt; {
+      this.groupOptions.set(
+        res.success ? res.data.map((g) &#x3D;&gt; ({ value: g.id, label: g.name })) : [],
+      );
+      done();
+    });
+    this.teachersService.getAllTeachers().subscribe((res) &#x3D;&gt; {
+      this.teacherOptions.set(
+        res.success
+          ? res.data.map((t) &#x3D;&gt; ({
+              value: t.id,
+              label: [t.name, t.surname, t.ndSurname].filter(Boolean).join(&#x27; &#x27;),
+            }))
+          : [],
+      );
+      done();
+    });
+  }
+
+  /** Configura el preview automático al cambiar filtros válidos. */
+  private setupPreviewSubscription(): void {
+    this.form.valueChanges
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged((a, b) &#x3D;&gt; JSON.stringify(a) &#x3D;&#x3D;&#x3D; JSON.stringify(b)),
+        filter(() &#x3D;&gt; this.datesValid()),
+        switchMap(() &#x3D;&gt; {
+          const filters &#x3D; this.buildFilters();
+          if (!filters) {
+            this.previewCount.set(null);
+            this.previewLoading.set(false);
+            return EMPTY;
+          }
+          this.previewLoading.set(true);
+          this.previewError.set(false);
+          return this.sessionService.previewSuspend(filters);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe({
+        next: (res) &#x3D;&gt; {
+          this.previewLoading.set(false);
+          if (res.success) {
+            this.previewCount.set(res.count);
+            this.previewError.set(false);
+          } else {
+            this.previewCount.set(null);
+            this.previewError.set(true);
+          }
+        },
+        error: () &#x3D;&gt; {
+          this.previewLoading.set(false);
+          this.previewCount.set(null);
+          this.previewError.set(true);
+        },
+      });
+  }
+
+  /** Comprueba que el rango de fechas esté completo y ordenado. */
+  datesValid(): boolean {
+    const { dateFrom, dateTo } &#x3D; this.form.getRawValue();
+    return Boolean(dateFrom &amp;&amp; dateTo &amp;&amp; dateFrom &lt;&#x3D; dateTo);
+  }
+
+  /** Construye el DTO de filtros omitiendo selectores vacíos. */
+  buildFilters(): SessionSuspendFilters | null {
+    if (!this.datesValid()) {
+      return null;
+    }
+    const raw &#x3D; this.form.getRawValue();
+    const filters: SessionSuspendFilters &#x3D; {
+      dateFrom: raw.dateFrom!,
+      dateTo: raw.dateTo!,
+    };
+    if (raw.idCourse !&#x3D; null) {
+      filters.idCourse &#x3D; raw.idCourse;
+    }
+    if (raw.idSubject !&#x3D; null) {
+      filters.idSubject &#x3D; raw.idSubject;
+    }
+    if (raw.idGroup !&#x3D; null) {
+      filters.idGroup &#x3D; raw.idGroup;
+    }
+    if (raw.idTeacher !&#x3D; null) {
+      filters.idTeacher &#x3D; raw.idTeacher;
+    }
+    return filters;
+  }
+
+  /** Determina si el botón de confirmación debe estar habilitado. */
+  canConfirm(): boolean {
+    return (
+      this.datesValid() &amp;&amp;
+      !this.previewLoading() &amp;&amp;
+      !this.previewError() &amp;&amp;
+      (this.previewCount() ?? 0) &gt; 0 &amp;&amp;
+      !this.isSubmitting()
+    );
+  }
+
+  /** Cierra el diálogo si no hay una suspensión en curso. */
+  onClose(): void {
+    if (!this.isSubmitting()) {
+      this.closed.emit();
+    }
+  }
+
+  /** Ejecuta la suspensión masiva usando los filtros validados. */
+  onConfirm(): void {
+    const filters &#x3D; this.buildFilters();
+    if (!filters || !this.canConfirm()) {
+      return;
+    }
+    this.isSubmitting.set(true);
+    this.submitError.set(&#x27;&#x27;);
+    this.sessionService.suspendByPeriod(filters).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.isSubmitting.set(false);
+        if (res.success) {
+          this.suspended.emit(res.count);
+          this.closed.emit();
+        } else {
+          this.submitError.set(&#x27;lists.classSessions.cancelDialog.error&#x27;);
+        }
+      },
+      error: () &#x3D;&gt; {
+        this.isSubmitting.set(false);
+        this.submitError.set(&#x27;lists.classSessions.cancelDialog.error&#x27;);
+      },
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;fixed inset-0 z-50 flex items-center justify-center p-4&quot;&gt;
+  &lt;div class&#x3D;&quot;absolute inset-0 bg-gray-900/40 backdrop-blur-sm&quot; (click)&#x3D;&quot;onClose()&quot;&gt;&lt;/div&gt;
+
+  &lt;div
+    class&#x3D;&quot;relative bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto&quot;
+    role&#x3D;&quot;dialog&quot;
+    aria-labelledby&#x3D;&quot;cancel-dialog-title&quot;
+  &gt;
+    &lt;button
+      type&#x3D;&quot;button&quot;
+      class&#x3D;&quot;absolute top-4 right-4 text-gray-400 hover:text-gray-600&quot;
+      (click)&#x3D;&quot;onClose()&quot;
+      [disabled]&#x3D;&quot;isSubmitting()&quot;
+    &gt;
+      ✕
+    &lt;/button&gt;
+
+    &lt;h2 id&#x3D;&quot;cancel-dialog-title&quot; class&#x3D;&quot;text-xl font-bold text-gray-800 mb-4 pr-8&quot;&gt;
+      {{ &#x27;lists.classSessions.cancelDialog.title&#x27; | translate }}
+    &lt;/h2&gt;
+
+    &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;onConfirm()&quot;&gt;
+      &lt;div class&#x3D;&quot;grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-1 text-sm&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.dateFrom&#x27; | translate }}
+          &lt;/label&gt;
+          &lt;input formControlName&#x3D;&quot;dateFrom&quot; type&#x3D;&quot;date&quot; class&#x3D;&quot;w-full px-3 py-2 border rounded-lg&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-1 text-sm&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.dateTo&#x27; | translate }}
+          &lt;/label&gt;
+          &lt;input formControlName&#x3D;&quot;dateTo&quot; type&#x3D;&quot;date&quot; class&#x3D;&quot;w-full px-3 py-2 border rounded-lg&quot; /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      @if (form.get(&#x27;dateFrom&#x27;)?.value &amp;&amp; form.get(&#x27;dateTo&#x27;)?.value &amp;&amp; !datesValid()) {
+        &lt;p class&#x3D;&quot;text-sm text-red-600 mb-3&quot;&gt;
+          {{ &#x27;lists.classSessions.cancelDialog.invalidDates&#x27; | translate }}
+        &lt;/p&gt;
+      }
+
+      &lt;p class&#x3D;&quot;text-sm text-gray-500 mb-2&quot;&gt;
+        {{ &#x27;lists.classSessions.cancelDialog.filtersHint&#x27; | translate }}
+      &lt;/p&gt;
+
+      &lt;div class&#x3D;&quot;grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-600 text-sm mb-1&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.filterCourse&#x27; | translate }}
+          &lt;/label&gt;
+          &lt;select formControlName&#x3D;&quot;idCourse&quot; class&#x3D;&quot;w-full px-3 py-2 border rounded-lg text-sm&quot; [disabled]&#x3D;&quot;loadingOptions()&quot;&gt;
+            &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.filterAll&#x27; | translate }}&lt;/option&gt;
+            @for (opt of courseOptions(); track opt.value) {
+              &lt;option [ngValue]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+            }
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-600 text-sm mb-1&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.filterSubject&#x27; | translate }}
+          &lt;/label&gt;
+          &lt;select formControlName&#x3D;&quot;idSubject&quot; class&#x3D;&quot;w-full px-3 py-2 border rounded-lg text-sm&quot; [disabled]&#x3D;&quot;loadingOptions()&quot;&gt;
+            &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.filterAll&#x27; | translate }}&lt;/option&gt;
+            @for (opt of subjectOptions(); track opt.value) {
+              &lt;option [ngValue]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+            }
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-600 text-sm mb-1&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.filterGroup&#x27; | translate }}
+          &lt;/label&gt;
+          &lt;select formControlName&#x3D;&quot;idGroup&quot; class&#x3D;&quot;w-full px-3 py-2 border rounded-lg text-sm&quot; [disabled]&#x3D;&quot;loadingOptions()&quot;&gt;
+            &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.filterAll&#x27; | translate }}&lt;/option&gt;
+            @for (opt of groupOptions(); track opt.value) {
+              &lt;option [ngValue]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+            }
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-600 text-sm mb-1&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.filterTeacher&#x27; | translate }}
+          &lt;/label&gt;
+          &lt;select formControlName&#x3D;&quot;idTeacher&quot; class&#x3D;&quot;w-full px-3 py-2 border rounded-lg text-sm&quot; [disabled]&#x3D;&quot;loadingOptions()&quot;&gt;
+            &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.filterAll&#x27; | translate }}&lt;/option&gt;
+            @for (opt of teacherOptions(); track opt.value) {
+              &lt;option [ngValue]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+            }
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg min-h-[3rem] flex items-center&quot;&gt;
+        @if (previewLoading()) {
+          &lt;span class&#x3D;&quot;text-sm text-amber-800&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.previewLoading&#x27; | translate }}&lt;/span&gt;
+        } @else if (previewError()) {
+          &lt;span class&#x3D;&quot;text-sm text-red-700&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.previewError&#x27; | translate }}&lt;/span&gt;
+        } @else if (datesValid() &amp;&amp; previewCount() !&#x3D;&#x3D; null) {
+          &lt;span class&#x3D;&quot;text-sm text-amber-900 font-medium&quot;&gt;
+            {{ &#x27;lists.classSessions.cancelDialog.previewCount&#x27; | translate: { count: previewCount() } }}
+          &lt;/span&gt;
+        } @else if (datesValid()) {
+          &lt;span class&#x3D;&quot;text-sm text-gray-600&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.previewWaiting&#x27; | translate }}&lt;/span&gt;
+        } @else {
+          &lt;span class&#x3D;&quot;text-sm text-gray-500&quot;&gt;{{ &#x27;lists.classSessions.cancelDialog.previewNeedDates&#x27; | translate }}&lt;/span&gt;
+        }
+      &lt;/div&gt;
+
+      @if (submitError()) {
+        &lt;div class&#x3D;&quot;mb-3 p-2 bg-red-50 text-red-700 text-sm rounded&quot;&gt;{{ submitError() | translate }}&lt;/div&gt;
+      }
+
+      &lt;div class&#x3D;&quot;flex justify-end gap-3&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;onClose()&quot;
+          [disabled]&#x3D;&quot;isSubmitting()&quot;
+          class&#x3D;&quot;px-4 py-2 bg-gray-200 rounded-lg text-gray-800&quot;
+        &gt;
+          {{ &#x27;lists.classSessions.cancelDialog.cancel&#x27; | translate }}
+        &lt;/button&gt;
+        &lt;button
+          type&#x3D;&quot;submit&quot;
+          [disabled]&#x3D;&quot;!canConfirm()&quot;
+          class&#x3D;&quot;px-4 py-2 bg-amber-600 text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed&quot;
+        &gt;
+          {{
+            isSubmitting()
+              ? (&#x27;lists.classSessions.cancelDialog.confirming&#x27; | translate)
+              : (&#x27;lists.classSessions.cancelDialog.confirm&#x27; | translate)
+          }}
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="fixed inset-0 z-50 flex items-center justify-center p-4">  <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" (click)="onClose()"></div>  <div    class="relative bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto"    role="dialog"    aria-labelledby="cancel-dialog-title"  >    <button      type="button"      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"      (click)="onClose()"      [disabled]="isSubmitting()"    >      ✕    </button>    <h2 id="cancel-dialog-title" class="text-xl font-bold text-gray-800 mb-4 pr-8">      {{ \'lists.classSessions.cancelDialog.title\' | translate }}    </h2>    <form [formGroup]="form" (ngSubmit)="onConfirm()">      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">        <div>          <label class="block text-gray-700 font-medium mb-1 text-sm">            {{ \'lists.classSessions.cancelDialog.dateFrom\' | translate }}          </label>          <input formControlName="dateFrom" type="date" class="w-full px-3 py-2 border rounded-lg" />        </div>        <div>          <label class="block text-gray-700 font-medium mb-1 text-sm">            {{ \'lists.classSessions.cancelDialog.dateTo\' | translate }}          </label>          <input formControlName="dateTo" type="date" class="w-full px-3 py-2 border rounded-lg" />        </div>      </div>      @if (form.get(\'dateFrom\')?.value && form.get(\'dateTo\')?.value && !datesValid()) {        <p class="text-sm text-red-600 mb-3">          {{ \'lists.classSessions.cancelDialog.invalidDates\' | translate }}        </p>      }      <p class="text-sm text-gray-500 mb-2">        {{ \'lists.classSessions.cancelDialog.filtersHint\' | translate }}      </p>      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">        <div>          <label class="block text-gray-600 text-sm mb-1">            {{ \'lists.classSessions.cancelDialog.filterCourse\' | translate }}          </label>          <select formControlName="idCourse" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">            <option [ngValue]="null">{{ \'lists.classSessions.cancelDialog.filterAll\' | translate }}</option>            @for (opt of courseOptions(); track opt.value) {              <option [ngValue]="opt.value">{{ opt.label }}</option>            }          </select>        </div>        <div>          <label class="block text-gray-600 text-sm mb-1">            {{ \'lists.classSessions.cancelDialog.filterSubject\' | translate }}          </label>          <select formControlName="idSubject" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">            <option [ngValue]="null">{{ \'lists.classSessions.cancelDialog.filterAll\' | translate }}</option>            @for (opt of subjectOptions(); track opt.value) {              <option [ngValue]="opt.value">{{ opt.label }}</option>            }          </select>        </div>        <div>          <label class="block text-gray-600 text-sm mb-1">            {{ \'lists.classSessions.cancelDialog.filterGroup\' | translate }}          </label>          <select formControlName="idGroup" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">            <option [ngValue]="null">{{ \'lists.classSessions.cancelDialog.filterAll\' | translate }}</option>            @for (opt of groupOptions(); track opt.value) {              <option [ngValue]="opt.value">{{ opt.label }}</option>            }          </select>        </div>        <div>          <label class="block text-gray-600 text-sm mb-1">            {{ \'lists.classSessions.cancelDialog.filterTeacher\' | translate }}          </label>          <select formControlName="idTeacher" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">            <option [ngValue]="null">{{ \'lists.classSessions.cancelDialog.filterAll\' | translate }}</option>            @for (opt of teacherOptions(); track opt.value) {              <option [ngValue]="opt.value">{{ opt.label }}</option>            }          </select>        </div>      </div>      <div class="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg min-h-[3rem] flex items-center">        @if (previewLoading()) {          <span class="text-sm text-amber-800">{{ \'lists.classSessions.cancelDialog.previewLoading\' | translate }}</span>        } @else if (previewError()) {          <span class="text-sm text-red-700">{{ \'lists.classSessions.cancelDialog.previewError\' | translate }}</span>        } @else if (datesValid() && previewCount() !== null) {          <span class="text-sm text-amber-900 font-medium">            {{ \'lists.classSessions.cancelDialog.previewCount\' | translate: { count: previewCount() } }}          </span>        } @else if (datesValid()) {          <span class="text-sm text-gray-600">{{ \'lists.classSessions.cancelDialog.previewWaiting\' | translate }}</span>        } @else {          <span class="text-sm text-gray-500">{{ \'lists.classSessions.cancelDialog.previewNeedDates\' | translate }}</span>        }      </div>      @if (submitError()) {        <div class="mb-3 p-2 bg-red-50 text-red-700 text-sm rounded">{{ submitError() | translate }}</div>      }      <div class="flex justify-end gap-3">        <button          type="button"          (click)="onClose()"          [disabled]="isSubmitting()"          class="px-4 py-2 bg-gray-200 rounded-lg text-gray-800"        >          {{ \'lists.classSessions.cancelDialog.cancel\' | translate }}        </button>        <button          type="submit"          [disabled]="!canConfirm()"          class="px-4 py-2 bg-amber-600 text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed"        >          {{            isSubmitting()              ? (\'lists.classSessions.cancelDialog.confirming\' | translate)              : (\'lists.classSessions.cancelDialog.confirm\' | translate)          }}        </button>      </div>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ClassSessionCancelDialogComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ClassSessionCancelDialogComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

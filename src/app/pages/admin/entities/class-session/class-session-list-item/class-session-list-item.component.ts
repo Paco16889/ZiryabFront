@@ -13,6 +13,7 @@ import {
   ClassSessionUpdatePayload,
 } from '../../../../../core/services/admin/entities/class-session.service';
 
+/** Fila del listado admin de sesiones basada en el componente genérico. */
 @Component({
   selector: 'app-class-session-list-item',
   imports: [GenericListItemComponent],
@@ -20,10 +21,13 @@ import {
   styleUrl: './class-session-list-item.component.scss',
 })
 export class ClassSessionListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
   private readonly sessionService = inject(ClassSessionService);
 
+  /** Sesión que se renderiza en esta fila. */
   @Input({ required: true }) classSession!: ClassSession;
 
+  /** Configuración del item genérico: campos visibles, edición y acciones CRUD. */
   readonly classSessionConfig: ListItemConfig<
     ClassSession,
     ClassSessionUpdatePayload,
@@ -60,6 +64,7 @@ export class ClassSessionListItemComponent {
     deleteFn: (id: number) => this.sessionService.deleteSession(id),
   };
 
+  /** Configuración de detalle para mostrar datos completos de la sesión. */
   readonly classSessionDetailConfig: ViewDetailConfig<ClassSession> = {
     fields: [
       { key: 'date', type: 'text', label: 'Fecha: ', className: 'text-xl font-bold' },

@@ -1,0 +1,1322 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TaskCreateFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Formulario de alta de tarea (patrón group-create-form, CURSO-103).</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-task-create-form</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./task-create-form.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./task-create-form.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#assignmentHttp" >assignmentHttp</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#assignmentOptions" >assignmentOptions</a>
+                            </li>
+                            <li>
+                                <a href="#createForm" >createForm</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <a href="#isCreating" >isCreating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loadingAssignments" >loadingAssignments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#taskService" >taskService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#taskTypes" >taskTypes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#typeLabel" >typeLabel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelCreate" >cancelCreate</a>
+                            </li>
+                            <li>
+                                <a href="#taskCreated" >taskCreated</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelCreate"></a>
+                        <b>cancelCreate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:30</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Cancela la creación y vuelve al listado.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="taskCreated"></a>
+                        <b>taskCreated</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:32</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Notifica al listado que debe recargar tras crear.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga asignaciones docentes disponibles para asociar la tarea.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cancela el formulario sin crear tarea.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida y crea la tarea administrativa.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typeLabel"></a>
+                    <span class="name">
+                        <span ><b>typeLabel</b></span>
+                        <a href="#typeLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>typeLabel(type: <a href="../miscellaneous/typealiases.html#TaskType" target="_self">TaskType</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Etiqueta humana del enum de tipo de tarea.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#TaskType" target="_self" >TaskType</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignmentHttp"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>assignmentHttp</b></span>
+                        <a href="#assignmentHttp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AssignmentHttpService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de asignaciones para elegir profesor-asignatura-grupo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignmentOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>assignmentOptions</b></span>
+                        <a href="#assignmentOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones de asignación docente para asociar la tarea.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createForm"></a>
+                    <span class="name">
+                        <span ><b>createForm</b></span>
+                        <a href="#createForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    idTeacherAssignment: [null as number | null, Validators.required],
+    title: [&#x27;&#x27;, Validators.required],
+    type: [TaskType.HOMEWORK, Validators.required],
+    startDate: [&#x27;&#x27;, Validators.required],
+    dueDate: [&#x27;&#x27;, Validators.required],
+    schoolYear: [environment.currentSchoolYear, Validators.required],
+    description: [&#x27;&#x27;],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario de alta de tarea.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error traducido mostrado en el formulario.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constructor de formularios reactivos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCreating"></a>
+                    <span class="name">
+                        <span ><b>isCreating</b></span>
+                        <a href="#isCreating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Evita doble envío durante la creación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingAssignments"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loadingAssignments</b></span>
+                        <a href="#loadingAssignments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga de asignaciones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taskService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>taskService</b></span>
+                        <a href="#taskService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AdminTaskService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio CRUD admin de tareas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="taskTypes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>taskTypes</b></span>
+                        <a href="#taskTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Object.values(TaskType)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tipos de tarea disponibles en el dominio.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/admin/entities/task/task-create-form/task-create-form.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de errores del backend.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit, output, signal } from &#x27;@angular/core&#x27;;
+import { FormBuilder, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { resolveApiError } from &#x27;../../../../../core/i18n/api-error.util&#x27;;
+import { TaskType } from &#x27;../../../../../core/models/task&#x27;;
+import { AssignmentHttpService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/teacher-assignment-http.service&#x27;;
+import { AdminTaskService } from &#x27;../../../../../core/services/admin/entities/task.service&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+
+/**
+ * Formulario de alta de tarea (patrón group-create-form, CURSO-103).
+ */
+@Component({
+  selector: &#x27;app-task-create-form&#x27;,
+  imports: [ReactiveFormsModule, TranslateModule],
+  templateUrl: &#x27;./task-create-form.component.html&#x27;,
+  styleUrl: &#x27;./task-create-form.component.scss&#x27;,
+})
+export class TaskCreateFormComponent implements OnInit {
+  /** Constructor de formularios reactivos. */
+  private readonly fb &#x3D; inject(FormBuilder);
+  /** Servicio CRUD admin de tareas. */
+  private readonly taskService &#x3D; inject(AdminTaskService);
+  /** Servicio de asignaciones para elegir profesor-asignatura-grupo. */
+  private readonly assignmentHttp &#x3D; inject(AssignmentHttpService);
+  /** Traducciones de errores del backend. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Cancela la creación y vuelve al listado. */
+  readonly cancelCreate &#x3D; output&lt;void&gt;();
+  /** Notifica al listado que debe recargar tras crear. */
+  readonly taskCreated &#x3D; output&lt;void&gt;();
+
+  /** Tipos de tarea disponibles en el dominio. */
+  readonly taskTypes &#x3D; Object.values(TaskType);
+  /** Opciones de asignación docente para asociar la tarea. */
+  readonly assignmentOptions &#x3D; signal&lt;Array&lt;{ value: number; label: string }&gt;&gt;([]);
+  /** Estado de carga de asignaciones. */
+  readonly loadingAssignments &#x3D; signal(true);
+
+  /** Formulario de alta de tarea. */
+  createForm &#x3D; this.fb.group({
+    idTeacherAssignment: [null as number | null, Validators.required],
+    title: [&#x27;&#x27;, Validators.required],
+    type: [TaskType.HOMEWORK, Validators.required],
+    startDate: [&#x27;&#x27;, Validators.required],
+    dueDate: [&#x27;&#x27;, Validators.required],
+    schoolYear: [environment.currentSchoolYear, Validators.required],
+    description: [&#x27;&#x27;],
+  });
+
+  /** Evita doble envío durante la creación. */
+  isCreating &#x3D; false;
+  /** Error traducido mostrado en el formulario. */
+  errorMessage &#x3D; &#x27;&#x27;;
+
+  /** Carga asignaciones docentes disponibles para asociar la tarea. */
+  ngOnInit(): void {
+    this.assignmentHttp.getAll().subscribe((res) &#x3D;&gt; {
+      this.loadingAssignments.set(false);
+      if (!res.success) {
+        this.assignmentOptions.set([]);
+        return;
+      }
+      this.assignmentOptions.set(
+        res.data.map((a) &#x3D;&gt; {
+          const teacher &#x3D; [a.teacher?.name, a.teacher?.surname].filter(Boolean).join(&#x27; &#x27;);
+          const subject &#x3D; a.subject?.name ?? &#x27;—&#x27;;
+          const group &#x3D; a.group?.name ?? &#x27;—&#x27;;
+          return {
+            value: a.id,
+            label: &#x60;${teacher} · ${subject} · ${group}&#x60;,
+          };
+        }),
+      );
+    });
+  }
+
+  /** Etiqueta humana del enum de tipo de tarea. */
+  typeLabel(type: TaskType): string {
+    const labels: Record&lt;TaskType, string&gt; &#x3D; {
+      [TaskType.PRACTICE]: &#x27;Práctica&#x27;,
+      [TaskType.THEORY]: &#x27;Teoría&#x27;,
+      [TaskType.EXAM]: &#x27;Examen&#x27;,
+      [TaskType.PROJECT]: &#x27;Proyecto&#x27;,
+      [TaskType.HOMEWORK]: &#x27;Deberes&#x27;,
+    };
+    return labels[type];
+  }
+
+  /** Valida y crea la tarea administrativa. */
+  onSubmit(): void {
+    if (this.createForm.invalid) {
+      this.createForm.markAllAsTouched();
+      return;
+    }
+    const raw &#x3D; this.createForm.getRawValue();
+    this.isCreating &#x3D; true;
+    this.errorMessage &#x3D; &#x27;&#x27;;
+
+    this.taskService
+      .createTask({
+        idTeacherAssignment: raw.idTeacherAssignment as number,
+        title: (raw.title as string).trim(),
+        type: raw.type as TaskType,
+        startDate: raw.startDate as string,
+        dueDate: raw.dueDate as string,
+        schoolYear: (raw.schoolYear as string).trim(),
+        description: raw.description?.trim() || undefined,
+      })
+      .subscribe({
+        next: () &#x3D;&gt; {
+          this.isCreating &#x3D; false;
+          this.taskCreated.emit();
+        },
+        error: (err) &#x3D;&gt; {
+          this.isCreating &#x3D; false;
+          this.errorMessage &#x3D; resolveApiError(this.translate, err, &#x27;common.errors.createTask&#x27;);
+        },
+      });
+  }
+
+  /** Cancela el formulario sin crear tarea. */
+  onCancel(): void {
+    this.cancelCreate.emit();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;max-w-2xl mx-auto&quot;&gt;
+  &lt;div class&#x3D;&quot;flex items-center mb-6&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;
+      ← {{ &#x27;common.buttons.back&#x27; | translate }}
+    &lt;/button&gt;
+    &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;lists.tasks.createTitle&#x27; | translate }}&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;createForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;
+          {{ &#x27;lists.tasks.fields.assignment&#x27; | translate }}
+        &lt;/label&gt;
+        &lt;select
+          formControlName&#x3D;&quot;idTeacherAssignment&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+          [disabled]&#x3D;&quot;loadingAssignments()&quot;
+        &gt;
+          &lt;option [ngValue]&#x3D;&quot;null&quot;&gt;{{ &#x27;lists.tasks.fields.assignmentPlaceholder&#x27; | translate }}&lt;/option&gt;
+          @for (opt of assignmentOptions(); track opt.value) {
+            &lt;option [ngValue]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+          }
+        &lt;/select&gt;
+        @if (createForm.get(&#x27;idTeacherAssignment&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;idTeacherAssignment&#x27;)?.touched) {
+          &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1&quot;&gt;{{ &#x27;lists.tasks.validation.assignment&#x27; | translate }}&lt;/span&gt;
+        }
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;lists.tasks.fields.title&#x27; | translate }}&lt;/label&gt;
+        &lt;input
+          formControlName&#x3D;&quot;title&quot;
+          type&#x3D;&quot;text&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
+        /&gt;
+        @if (createForm.get(&#x27;title&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;title&#x27;)?.touched) {
+          &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1&quot;&gt;{{ &#x27;lists.tasks.validation.title&#x27; | translate }}&lt;/span&gt;
+        }
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;lists.tasks.fields.type&#x27; | translate }}&lt;/label&gt;
+        &lt;select formControlName&#x3D;&quot;type&quot; class&#x3D;&quot;w-full px-4 py-2 border rounded-lg&quot;&gt;
+          @for (t of taskTypes; track t) {
+            &lt;option [value]&#x3D;&quot;t&quot;&gt;{{ typeLabel(t) }}&lt;/option&gt;
+          }
+        &lt;/select&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;lists.tasks.fields.startDate&#x27; | translate }}&lt;/label&gt;
+          &lt;input formControlName&#x3D;&quot;startDate&quot; type&#x3D;&quot;date&quot; class&#x3D;&quot;w-full px-4 py-2 border rounded-lg&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;lists.tasks.fields.dueDate&#x27; | translate }}&lt;/label&gt;
+          &lt;input formControlName&#x3D;&quot;dueDate&quot; type&#x3D;&quot;date&quot; class&#x3D;&quot;w-full px-4 py-2 border rounded-lg&quot; /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;lists.tasks.fields.schoolYear&#x27; | translate }}&lt;/label&gt;
+        &lt;input formControlName&#x3D;&quot;schoolYear&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;w-full px-4 py-2 border rounded-lg&quot; /&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;lists.tasks.fields.description&#x27; | translate }}&lt;/label&gt;
+        &lt;textarea
+          formControlName&#x3D;&quot;description&quot;
+          rows&#x3D;&quot;3&quot;
+          class&#x3D;&quot;w-full px-4 py-2 border rounded-lg&quot;
+        &gt;&lt;/textarea&gt;
+      &lt;/div&gt;
+
+      @if (errorMessage) {
+        &lt;div class&#x3D;&quot;mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700&quot;&gt;{{ errorMessage }}&lt;/div&gt;
+      }
+
+      &lt;div class&#x3D;&quot;flex justify-end gap-3&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;onCancel()&quot;
+          [disabled]&#x3D;&quot;isCreating&quot;
+          class&#x3D;&quot;px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50&quot;
+        &gt;
+          {{ &#x27;common.buttons.cancel&#x27; | translate }}
+        &lt;/button&gt;
+        &lt;button
+          type&#x3D;&quot;submit&quot;
+          [disabled]&#x3D;&quot;createForm.invalid || isCreating&quot;
+          class&#x3D;&quot;px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed&quot;
+        &gt;
+          {{ isCreating ? (&#x27;lists.tasks.creating&#x27; | translate) : (&#x27;lists.tasks.createButton&#x27; | translate) }}
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="max-w-2xl mx-auto">  <div class="flex items-center mb-6">    <button type="button" class="mr-4 text-gray-600 hover:text-gray-900" (click)="onCancel()">      ← {{ \'common.buttons.back\' | translate }}    </button>    <h1 class="text-2xl font-bold">{{ \'lists.tasks.createTitle\' | translate }}</h1>  </div>  <div class="bg-white p-6 rounded-lg shadow">    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">          {{ \'lists.tasks.fields.assignment\' | translate }}        </label>        <select          formControlName="idTeacherAssignment"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [disabled]="loadingAssignments()"        >          <option [ngValue]="null">{{ \'lists.tasks.fields.assignmentPlaceholder\' | translate }}</option>          @for (opt of assignmentOptions(); track opt.value) {            <option [ngValue]="opt.value">{{ opt.label }}</option>          }        </select>        @if (createForm.get(\'idTeacherAssignment\')?.invalid && createForm.get(\'idTeacherAssignment\')?.touched) {          <span class="text-red-500 text-sm mt-1">{{ \'lists.tasks.validation.assignment\' | translate }}</span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'lists.tasks.fields.title\' | translate }}</label>        <input          formControlName="title"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"        />        @if (createForm.get(\'title\')?.invalid && createForm.get(\'title\')?.touched) {          <span class="text-red-500 text-sm mt-1">{{ \'lists.tasks.validation.title\' | translate }}</span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'lists.tasks.fields.type\' | translate }}</label>        <select formControlName="type" class="w-full px-4 py-2 border rounded-lg">          @for (t of taskTypes; track t) {            <option [value]="t">{{ typeLabel(t) }}</option>          }        </select>      </div>      <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">        <div>          <label class="block text-gray-700 font-medium mb-2">{{ \'lists.tasks.fields.startDate\' | translate }}</label>          <input formControlName="startDate" type="date" class="w-full px-4 py-2 border rounded-lg" />        </div>        <div>          <label class="block text-gray-700 font-medium mb-2">{{ \'lists.tasks.fields.dueDate\' | translate }}</label>          <input formControlName="dueDate" type="date" class="w-full px-4 py-2 border rounded-lg" />        </div>      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'lists.tasks.fields.schoolYear\' | translate }}</label>        <input formControlName="schoolYear" type="text" class="w-full px-4 py-2 border rounded-lg" />      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'lists.tasks.fields.description\' | translate }}</label>        <textarea          formControlName="description"          rows="3"          class="w-full px-4 py-2 border rounded-lg"        ></textarea>      </div>      @if (errorMessage) {        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">{{ errorMessage }}</div>      }      <div class="flex justify-end gap-3">        <button          type="button"          (click)="onCancel()"          [disabled]="isCreating"          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50"        >          {{ \'common.buttons.cancel\' | translate }}        </button>        <button          type="submit"          [disabled]="createForm.invalid || isCreating"          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"        >          {{ isCreating ? (\'lists.tasks.creating\' | translate) : (\'lists.tasks.createButton\' | translate) }}        </button>      </div>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TaskCreateFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TaskCreateFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

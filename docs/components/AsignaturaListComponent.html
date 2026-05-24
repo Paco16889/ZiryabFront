@@ -149,6 +149,12 @@ y la recarga automática de la lista tras operaciones de eliminación o actualiz
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -266,7 +272,7 @@ y la recarga automática de la lista tras operaciones de eliminación o actualiz
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(subjectService: <a href="../injectables/SubjectServiceService.html" target="_self">SubjectServiceService</a>, modalUpdateService: <a href="../injectables/ModalEditServiceService.html" target="_self">ModalEditServiceService</a>, modalDeleteService: <a href="../injectables/ModalDeleteServiceService.html" target="_self">ModalDeleteServiceService</a>)</code>
+<code>constructor(subjectService: <a href="../injectables/SubjectService.html" target="_self">SubjectService</a>, modalUpdateService: <a href="../injectables/ModalEditService.html" target="_self">ModalEditService</a>, modalDeleteService: <a href="../injectables/ModalDeleteService.html" target="_self">ModalDeleteService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -296,7 +302,7 @@ cuando una eliminación se completa y recargar la lista</p>
                                                         <td>subjectService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/SubjectServiceService.html" target="_self" >SubjectServiceService</a></code>
+                                                                        <code><a href="../injectables/SubjectService.html" target="_self" >SubjectService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -314,7 +320,7 @@ cuando una eliminación se completa y recargar la lista</p>
                                                         <td>modalUpdateService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ModalEditServiceService.html" target="_self" >ModalEditServiceService</a></code>
+                                                                        <code><a href="../injectables/ModalEditService.html" target="_self" >ModalEditService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -333,7 +339,7 @@ cuando una actualización se completa y recargar la lista</li>
                                                         <td>modalDeleteService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ModalDeleteServiceService.html" target="_self" >ModalDeleteServiceService</a></code>
+                                                                        <code><a href="../injectables/ModalDeleteService.html" target="_self" >ModalDeleteService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -609,14 +615,14 @@ Se llama cuando el formulario de creación notifica que se ha creado una asignat
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect } from &#x27;@angular/core&#x27;;
-import { SubjectServiceService } from &#x27;../../../../../core/services/admin/entities/subject-service.service&#x27;;
-import { Subject } from &#x27;../../../../../core/models/subject&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, OnInit } from &#x27;@angular/core&#x27;;
+import { SubjectService } from &#x27;../../../../../core/services/admin/entities/subject.service&#x27;;
+import { Subject, SubjectDeleteResponse, SubjectUpdateRequest, SubjectUpdateResponse } from &#x27;../../../../../core/models/subject&#x27;;
 
 import { BotonCreateComponent } from &quot;../../../botones/boton-create/boton-create.component&quot;;
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { ModalDeleteServiceService } from &#x27;../../../../../core/services/UI/modal-delete-service.service&#x27;;
-import { ModalEditServiceService } from &#x27;../../../../../core/services/UI/modal-edit-service.service&#x27;;
+import { ModalDeleteService } from &#x27;../../../../../core/services/UI/modal-delete.service&#x27;;
+import { ModalEditService } from &#x27;../../../../../core/services/UI/modal-edit.service&#x27;;
 import { AsignaturaListItemComponent } from &#x27;../asignatura-list-item/asignatura-list-item.component&#x27;;
 import { SubjectCreateFormComponent } from &#x27;../subject-create-form/subject-create-form.component&#x27;;
 
@@ -631,7 +637,7 @@ import { SubjectCreateFormComponent } from &#x27;../subject-create-form/subject-
   templateUrl: &#x27;./asignatura-list.component.html&#x27;,
   styleUrl: &#x27;./asignatura-list.component.scss&#x27;
 })
-export class AsignaturaListComponent {
+export class AsignaturaListComponent implements OnInit {
 
     /**
    * Listado de asignaturas a mostrar, sincronizado con la signal del servicio.
@@ -650,11 +656,11 @@ export class AsignaturaListComponent {
    * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
    * cuando una eliminación se completa y recargar la lista
    */
-  constructor(private subjectService: SubjectServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
+  constructor(private subjectService: SubjectService,
+    private modalUpdateService: ModalEditService,
+    private modalDeleteService: ModalDeleteService) {
 
-      effect(() &#x3D;&gt; {this.subjects &#x3D; subjectService.subjects()})
+      effect(() &#x3D;&gt; {this.subjects &#x3D; this.subjectService.subjects()})
     effect(() &#x3D;&gt; {
       const deleteModalState &#x3D; this.modalDeleteService.modalState();
       const updateModalState &#x3D; this.modalUpdateService.modalState();
@@ -771,7 +777,7 @@ export class AsignaturaListComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><!-- subject-list.component.html --><div class="p-4">    <!-- Vista: Lista -->  @if(!showCreateForm){    <div class="flex justify-between items-center mb-4">      <h1 class="text-2xl font-bold">{{\'entities.subject.title\' | translate }}</h1>      <app-boton-create       label="{{\'lists.subjects.createButton\' | translate}}"      (clickAction)="openCreateForm()">       </app-boton-create>    </div>    @for (sub of subjects; track sub.id){    <app-asignatura-list-item [subject]="sub"        ></app-asignatura-list-item>    }  }          <!-- Vista: Formulario -->  @if(showCreateForm){    <app-subject-create-form       (cancelCreate)="closeCreateForm()"       (subjectCreated)="onSubjectCreated()">    </app-subject-create-form>  }</div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AsignaturaListComponent'};
 </script>

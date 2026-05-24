@@ -1,0 +1,1201 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  GridCellState</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/admin/entities/weekSchedule/week-schedule-grid-builder/week-schedule-grid-builder.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Estado editable de una celda del horario semanal antes de persistir cambios.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#finishTime" 
+>
+                                            finishTime
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#idSubject" 
+>
+                                            idSubject
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#idTeacher" 
+>
+                                            idTeacher
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#idTeacherAssignment" 
+>
+                                            idTeacherAssignment
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#label" 
+>
+                                            label
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#serverId" 
+>
+                                            serverId
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#startTime" 
+>
+                                            startTime
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#weekDay" 
+>
+                                            weekDay
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="finishTime"></a>
+                                        <span class="name "><b>finishTime</b>
+                                            <a href="#finishTime">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>finishTime:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Hora de fin de la celda, heredada de <code>environment.timetableSlots</code>.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="idSubject"></a>
+                                        <span class="name "><b>idSubject</b>
+                                            <a href="#idSubject">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>idSubject:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Asignatura usada para sumar horas y compararlas con las horas declaradas.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="idTeacher"></a>
+                                        <span class="name "><b>idTeacher</b>
+                                            <a href="#idTeacher">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>idTeacher:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profesor usado para comprobar solapes contra horarios de otros grupos.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="idTeacherAssignment"></a>
+                                        <span class="name "><b>idTeacherAssignment</b>
+                                            <a href="#idTeacherAssignment">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>idTeacherAssignment:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Asignación profesor-asignatura-grupo seleccionada para la celda.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="label"></a>
+                                        <span class="name "><b>label</b>
+                                            <a href="#label">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>label:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Texto mostrado en el selector: asignatura y, si está disponible, profesor.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="serverId"></a>
+                                        <span class="name "><b>serverId</b>
+                                            <a href="#serverId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>serverId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador del WeekSchedule existente, si la celda venía del backend.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="startTime"></a>
+                                        <span class="name "><b>startTime</b>
+                                            <a href="#startTime">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>startTime:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Hora de inicio de la celda, heredada de <code>environment.timetableSlots</code>.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="weekDay"></a>
+                                        <span class="name "><b>weekDay</b>
+                                            <a href="#weekDay">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>weekDay:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Día de la semana en formato UI (<code>1</code> lunes, <code>5</code> viernes).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, computed, inject, input, OnInit, output, signal } from &#x27;@angular/core&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { concat, forkJoin, Observable, of, last, map, catchError, mergeMap } from &#x27;rxjs&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+import { Assignment } from &#x27;../../../../../core/models/assingment&#x27;;
+import { TimetableSlot } from &#x27;../../../../../core/models/timetable-slot&#x27;;
+import {
+  WeekScheduleClassItem,
+  weekScheduleClassKey,
+} from &#x27;../../../../../core/models/week-schedule-flow/week-schedule-class.model&#x27;;
+import { WeekSchedule } from &#x27;../../../../../core/models/week-schedule&#x27;;
+import { TeacherSubjectAssignmentRow } from &#x27;../../../../../core/models/teacher/subjectforteacher&#x27;;
+import { WeekScheduleAssignmentDataService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-assignment-data.service&#x27;;
+import { WeekScheduleClassesHttpService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-classes-http.service&#x27;;
+import { TeachersService } from &#x27;../../../../../core/services/admin/entities/teachers.service&#x27;;
+import { WeekScheduleService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service&#x27;;
+import {
+  hoursBetween,
+  timeRangesOverlap,
+} from &#x27;../../../../../core/utils/time-range&#x27;;
+import { prismaDayOfWeekToNumber } from &#x27;../../../../../core/utils/week-day&#x27;;
+import { WeekScheduleAssignmentPickerComponent } from &#x27;../week-schedule-assignment-picker/week-schedule-assignment-picker.component&#x27;;
+import { WeekScheduleDayCardComponent } from &#x27;../week-schedule-day-card/week-schedule-day-card.component&#x27;;
+import { WeekScheduleHourCardComponent } from &#x27;../week-schedule-hour-card/week-schedule-hour-card.component&#x27;;
+
+/** Clave estable para identificar una celda del grid por día y hora de inicio. */
+export function weekScheduleCellKey(weekDay: number, startTime: string): string {
+  return &#x60;${weekDay}|${startTime}&#x60;;
+}
+
+/** Estado editable de una celda del horario semanal antes de persistir cambios. */
+export interface GridCellState {
+  /** Asignación profesor-asignatura-grupo seleccionada para la celda. */
+  idTeacherAssignment: number;
+
+  /** Identificador del WeekSchedule existente, si la celda venía del backend. */
+  serverId?: number;
+
+  /** Texto mostrado en el selector: asignatura y, si está disponible, profesor. */
+  label: string;
+
+  /** Profesor usado para comprobar solapes contra horarios de otros grupos. */
+  idTeacher: number;
+
+  /** Asignatura usada para sumar horas y compararlas con las horas declaradas. */
+  idSubject: number;
+
+  /** Día de la semana en formato UI (&#x60;1&#x60; lunes, &#x60;5&#x60; viernes). */
+  weekDay: number;
+
+  /** Hora de inicio de la celda, heredada de &#x60;environment.timetableSlots&#x60;. */
+  startTime: string;
+
+  /** Hora de fin de la celda, heredada de &#x60;environment.timetableSlots&#x60;. */
+  finishTime: string;
+}
+
+/**
+ * Constructor por días: una **clase** &#x60;(course, grade, group, schoolYear)&#x60; define el
+ * conjunto de &#x60;Assignment&#x60;; cada franja lleva un desplegable docente–asignatura.
+ */
+@Component({
+  selector: &#x27;app-week-schedule-grid-builder&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule,
+    WeekScheduleAssignmentPickerComponent,
+    WeekScheduleDayCardComponent,
+    WeekScheduleHourCardComponent,
+  ],
+  templateUrl: &#x27;./week-schedule-grid-builder.component.html&#x27;,
+  styleUrl: &#x27;./week-schedule-grid-builder.component.scss&#x27;,
+})
+export class WeekScheduleGridBuilderComponent implements OnInit {
+  /** Servicio que agrupa asignaciones docentes y horarios existentes para una clase. */
+  private readonly assignmentData &#x3D; inject(WeekScheduleAssignmentDataService);
+
+  /** API que lista clases agregadas por curso, nivel, grupo y año escolar. */
+  private readonly classesApi &#x3D; inject(WeekScheduleClassesHttpService);
+
+  /** API usada para resolver nombres de profesor a partir de &#x60;idTeacher&#x60;. */
+  private readonly teachersApi &#x3D; inject(TeachersService);
+
+  /** Servicio CRUD de WeekSchedule usado para crear, actualizar y borrar celdas. */
+  private readonly schedules &#x3D; inject(WeekScheduleService);
+
+  /** Traducciones de etiquetas de días y mensajes de validación del grid. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Solicita al shell padre salir del flujo de creación/edición de horarios. */
+  readonly cancelCreate &#x3D; output&lt;void&gt;();
+
+  /** Notifica que se han persistido cambios para refrescar listados externos. */
+  readonly scheduleSaved &#x3D; output&lt;void&gt;();
+
+  /** En pestaña grid del shell: oculta cabecera propia (atrás / título). @see CURSO-91 */
+  readonly embedded &#x3D; input(false);
+
+  /** Días laborables renderizados como columnas del grid. */
+  readonly weekdays &#x3D; [1, 2, 3, 4, 5] as const;
+
+  /** Franjas horarias oficiales del centro renderizadas como filas. */
+  readonly slots: TimetableSlot[] &#x3D; [...environment.timetableSlots];
+
+  /** Clases disponibles para seleccionar el contexto del horario. */
+  readonly classes &#x3D; signal&lt;WeekScheduleClassItem[]&gt;([]);
+
+  /** Error al cargar la lista inicial de clases. */
+  readonly classesLoadError &#x3D; signal(false);
+
+  /** Clase seleccionada; define curso, grupo y año escolar del horario editado. */
+  readonly selectedClass &#x3D; signal&lt;WeekScheduleClassItem | null&gt;(null);
+
+  /** Grupo de la clase seleccionada, usado en validaciones de solapes. */
+  readonly selectedGroupId &#x3D; computed(() &#x3D;&gt; this.selectedClass()?.group.id ?? null);
+
+  /** Curso escolar activo usado para filtrar clases y horarios. */
+  readonly schoolYear &#x3D; signal&lt;string&gt;(environment.currentSchoolYear);
+
+  /** Asignaciones docente-asignatura-grupo válidas para la clase seleccionada. */
+  readonly assignments &#x3D; signal&lt;TeacherSubjectAssignmentRow[]&gt;([]);
+
+  /** Mapa auxiliar para pintar nombres de profesor sin repetir búsquedas. */
+  readonly teacherNameById &#x3D; signal&lt;Map&lt;number, string&gt;&gt;(new Map());
+
+  /** Celdas actualmente editadas por el usuario, indexadas por &#x60;weekScheduleCellKey&#x60;. */
+  readonly cells &#x3D; signal&lt;Map&lt;string, GridCellState&gt;&gt;(new Map());
+
+  /** Snapshot de horarios tal como llegaron del backend para calcular el diff de guardado. */
+  private initialServerSchedules &#x3D; signal&lt;WeekSchedule[]&gt;([]);
+
+  /** Indica que se está cargando contexto de asignaciones/horarios de una clase. */
+  readonly loading &#x3D; signal(false);
+
+  /** Error al cargar contexto de la clase seleccionada. */
+  readonly loadError &#x3D; signal(false);
+
+  /** Indica que hay operaciones de persistencia en curso. */
+  readonly saving &#x3D; signal(false);
+
+  /** Error general durante la persistencia del diff. */
+  readonly saveError &#x3D; signal(false);
+
+  /** Mensajes de validación que bloquean el guardado del grid. */
+  readonly validationMessages &#x3D; signal&lt;string[]&gt;([]);
+
+  /** Opciones del selector ordenadas por asignatura y profesor para facilitar la edición. */
+  readonly sortedAssignmentOptions &#x3D; computed(() &#x3D;&gt; {
+    const rows &#x3D; this.assignments();
+    const names &#x3D; this.teacherNameById();
+    return [...rows].sort((a, b) &#x3D;&gt; {
+      const bySub &#x3D; a.subject.name.localeCompare(b.subject.name);
+      if (bySub !&#x3D;&#x3D; 0) {
+        return bySub;
+      }
+      return (names.get(a.idTeacher) ?? &#x27;&#x27;).localeCompare(names.get(b.idTeacher) ?? &#x27;&#x27;);
+    });
+  });
+
+  /** Helper expuesto al template para serializar la clase seleccionada. */
+  readonly classKey &#x3D; weekScheduleClassKey;
+
+  /** Carga las clases del curso escolar al montar el grid. */
+  ngOnInit(): void {
+    this.loadClasses();
+  }
+
+  /** Consulta las clases disponibles y las ordena por etiqueta legible. */
+  loadClasses(): void {
+    this.classesLoadError.set(false);
+    this.classesApi.getAllClasses(this.schoolYear()).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.classes.set(
+          res.success ? [...res.data].sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label)) : [],
+        );
+      },
+      error: () &#x3D;&gt; this.classesLoadError.set(true),
+    });
+  }
+
+  /**
+   * Cambia el contexto del grid: limpia celdas anteriores, carga asignaciones,
+   * nombres de profesores y horarios existentes para la clase seleccionada.
+   */
+  onClassSelected(key: string): void {
+    const cls &#x3D; key
+      ? (this.classes().find((c) &#x3D;&gt; weekScheduleClassKey(c) &#x3D;&#x3D;&#x3D; key) ?? null)
+      : null;
+    this.selectedClass.set(cls);
+    this.assignments.set([]);
+    this.cells.set(new Map());
+    this.initialServerSchedules.set([]);
+    this.validationMessages.set([]);
+    this.teacherNameById.set(new Map());
+    if (cls &#x3D;&#x3D; null) {
+      return;
+    }
+    this.loading.set(true);
+    this.loadError.set(false);
+    forkJoin({
+      ctx: this.assignmentData.fetchClassScheduleContext(
+        cls.course.id,
+        cls.grade,
+        cls.group.id,
+        cls.schoolYear,
+      ),
+      teachers: this.teachersApi.getAllTeachers(),
+    }).subscribe({
+      next: ({ ctx, teachers }) &#x3D;&gt; {
+        const nameMap &#x3D; new Map&lt;number, string&gt;();
+        if (teachers.success) {
+          for (const t of teachers.data) {
+            const full &#x3D; [t.name, t.surname].filter(Boolean).join(&#x27; &#x27;).trim();
+            nameMap.set(t.id, full || t.email || &#x60;#${t.id}&#x60;);
+          }
+        }
+        this.teacherNameById.set(nameMap);
+        this.assignments.set(ctx.assignments);
+        this.initialServerSchedules.set(ctx.weekSchedules);
+        this.cells.set(this.mapServerToCells(ctx.weekSchedules));
+        this.loading.set(false);
+      },
+      error: () &#x3D;&gt; {
+        this.loadError.set(true);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  /** Convierte WeekSchedule persistidos en celdas editables del grid. */
+  private mapServerToCells(list: WeekSchedule[]): Map&lt;string, GridCellState&gt; {
+    const m &#x3D; new Map&lt;string, GridCellState&gt;();
+    for (const ws of list) {
+      const ta &#x3D; ws.teacherAssignment;
+      const weekDay &#x3D; prismaDayOfWeekToNumber(ws.weekDay as string | number);
+      const key &#x3D; weekScheduleCellKey(weekDay, ws.startTime);
+      m.set(key, {
+        idTeacherAssignment: ta.id,
+        serverId: ws.id,
+        label: this.cellLabelFromAssignment(ta),
+        idTeacher: ta.idTeacher,
+        idSubject: ta.idSubject,
+        weekDay,
+        startTime: ws.startTime,
+        finishTime: ws.finishTime,
+      });
+    }
+    return m;
+  }
+
+  /** Reconstruye la etiqueta de una celda persistida a partir de su assignment. */
+  private cellLabelFromAssignment(ta: Assignment): string {
+    const rows &#x3D; this.assignments();
+    const row &#x3D; rows.find((r) &#x3D;&gt; r.id &#x3D;&#x3D;&#x3D; ta.id);
+    if (row) {
+      return this.assignmentOptionLabel(row);
+    }
+    return &#x60;Assignment ${ta.id}&#x60;;
+  }
+
+  /** Etiqueta visible para una opción del selector de celda. */
+  assignmentOptionLabel(row: TeacherSubjectAssignmentRow): string {
+    const t &#x3D; this.teacherNameById().get(row.idTeacher);
+    const sub &#x3D; row.subject.name;
+    if (t) {
+      return this.translate.instant(&#x27;weekScheduleBuilder.grid.optionSubjectTeacher&#x27;, {
+        subject: sub,
+        teacher: t,
+      });
+    }
+    return sub;
+  }
+
+  /** Genera la clave de mapa para una celda concreta del grid. */
+  cellKey(day: number, slot: TimetableSlot): string {
+    return weekScheduleCellKey(day, slot.startTime);
+  }
+
+  /** Devuelve la celda editada o persistida para un día y franja. */
+  cellAt(day: number, slot: TimetableSlot): GridCellState | undefined {
+    return this.cells().get(this.cellKey(day, slot));
+  }
+
+  /** Valor que debe aparecer seleccionado en el &#x60;&lt;select&gt;&#x60; de una celda. */
+  cellAssignmentSelectValue(day: number, slot: TimetableSlot): string {
+    const c &#x3D; this.cellAt(day, slot);
+    return c ? String(c.idTeacherAssignment) : &#x27;&#x27;;
+  }
+
+  /** Añade o sustituye la asignación de una celda del grid. */
+  onCellAssignmentChange(day: number, slot: TimetableSlot, assignmentId: number | null): void {
+    if (assignmentId &#x3D;&#x3D; null) {
+      this.clearCell(day, slot);
+      return;
+    }
+    const row &#x3D; this.assignments().find((r) &#x3D;&gt; r.id &#x3D;&#x3D;&#x3D; assignmentId);
+    if (!row) {
+      return;
+    }
+    const key &#x3D; this.cellKey(day, slot);
+    const next &#x3D; new Map(this.cells());
+    next.set(key, {
+      idTeacherAssignment: row.id,
+      label: this.assignmentOptionLabel(row),
+      idTeacher: row.idTeacher,
+      idSubject: row.idSubject,
+      weekDay: day,
+      startTime: slot.startTime,
+      finishTime: slot.finishTime,
+    });
+    this.cells.set(next);
+    this.validationMessages.set([]);
+  }
+
+  /** Vacía una celda y la marca como eliminación si existía en backend. */
+  clearCell(day: number, slot: TimetableSlot): void {
+    const key &#x3D; this.cellKey(day, slot);
+    const next &#x3D; new Map(this.cells());
+    next.delete(key);
+    this.cells.set(next);
+    this.validationMessages.set([]);
+  }
+
+  /** Traduce el nombre del día mostrado como cabecera de columna. */
+  weekdayLabel(day: number): string {
+    return this.translate.instant(&#x60;weekScheduleBuilder.days.${day}&#x60;);
+  }
+
+  /**
+   * Ejecuta validaciones locales: clase seleccionada, solapes dentro del grupo
+   * y exceso de horas por asignatura respecto a las horas declaradas.
+   */
+  runValidation(): boolean {
+    const msgs: string[] &#x3D; [];
+    const groupId &#x3D; this.selectedGroupId();
+    if (this.selectedClass() &#x3D;&#x3D; null || groupId &#x3D;&#x3D; null) {
+      msgs.push(this.translate.instant(&#x27;weekScheduleBuilder.grid.validationNoClass&#x27;));
+      this.validationMessages.set(msgs);
+      return false;
+    }
+    const list &#x3D; [...this.cells().values()];
+
+    for (let i &#x3D; 0; i &lt; list.length; i++) {
+      for (let j &#x3D; i + 1; j &lt; list.length; j++) {
+        const a &#x3D; list[i];
+        const b &#x3D; list[j];
+        if (
+          a.weekDay &#x3D;&#x3D;&#x3D; b.weekDay &amp;&amp;
+          timeRangesOverlap(a.startTime, a.finishTime, b.startTime, b.finishTime)
+        ) {
+          msgs.push(
+            this.translate.instant(&#x27;weekScheduleBuilder.grid.validationGroupOverlap&#x27;, {
+              a: a.label,
+              b: b.label,
+              day: a.weekDay,
+            }),
+          );
+        }
+      }
+    }
+
+    const warnedSubjects &#x3D; new Set&lt;number&gt;();
+    for (const c of list) {
+      if (warnedSubjects.has(c.idSubject)) {
+        continue;
+      }
+      const declared &#x3D; this.assignments().find((r) &#x3D;&gt; r.idSubject &#x3D;&#x3D;&#x3D; c.idSubject)
+        ?.subject?.hours;
+      if (declared !&#x3D; null &amp;&amp; declared &gt; 0) {
+        let sum &#x3D; 0;
+        for (const x of list) {
+          if (x.idSubject &#x3D;&#x3D;&#x3D; c.idSubject) {
+            sum +&#x3D; hoursBetween(x.startTime, x.finishTime);
+          }
+        }
+        if (sum &gt; declared + 1e-6) {
+          warnedSubjects.add(c.idSubject);
+          msgs.push(
+            this.translate.instant(&#x27;weekScheduleBuilder.grid.validationSubjectHours&#x27;, {
+              subject: c.label,
+              max: declared,
+              current: String(sum),
+            }),
+          );
+        }
+      }
+    }
+
+    this.validationMessages.set(msgs);
+    return msgs.length &#x3D;&#x3D;&#x3D; 0;
+  }
+
+  /**
+   * Consulta los horarios de cada profesor implicado para detectar solapes con
+   * otros grupos antes de persistir el horario actual.
+   */
+  validateTeachers$(groupId: number): Observable&lt;string[]&gt; {
+    const cells &#x3D; [...this.cells().values()];
+    const teacherIds &#x3D; [...new Set(cells.map((c) &#x3D;&gt; c.idTeacher))];
+    if (teacherIds.length &#x3D;&#x3D;&#x3D; 0) {
+      return of([]);
+    }
+    return forkJoin(
+      teacherIds.map((tid) &#x3D;&gt;
+        this.schedules.getSchedulesByTeacher(tid).pipe(
+          map((res) &#x3D;&gt; ({ tid, res })),
+          catchError(() &#x3D;&gt; of({ tid, res: { success: false, data: [] as WeekSchedule[], count: 0 } })),
+        ),
+      ),
+    ).pipe(
+      map((bundles) &#x3D;&gt; {
+        const extra: string[] &#x3D; [];
+        for (const { tid, res } of bundles) {
+          if (!res.success) {
+            continue;
+          }
+          const external &#x3D; res.data.filter(
+            (s) &#x3D;&gt; s.teacherAssignment.idGroup !&#x3D;&#x3D; groupId,
+          );
+          for (const cell of cells.filter((c) &#x3D;&gt; c.idTeacher &#x3D;&#x3D;&#x3D; tid)) {
+            for (const ex of external) {
+              if (
+                ex.weekDay &#x3D;&#x3D;&#x3D; cell.weekDay &amp;&amp;
+                timeRangesOverlap(
+                  cell.startTime,
+                  cell.finishTime,
+                  ex.startTime,
+                  ex.finishTime,
+                )
+              ) {
+                extra.push(
+                  this.translate.instant(&#x27;weekScheduleBuilder.grid.validationTeacherOverlap&#x27;, {
+                    label: cell.label,
+                    day: cell.weekDay,
+                  }),
+                );
+              }
+            }
+          }
+        }
+        return extra;
+      }),
+    );
+  }
+
+  /** Valida el grid, comprueba solapes externos y persiste el diff resultante. */
+  save(): void {
+    if (!this.runValidation()) {
+      return;
+    }
+    const groupId &#x3D; this.selectedGroupId();
+    if (groupId &#x3D;&#x3D; null) {
+      return;
+    }
+    this.saveError.set(false);
+    this.saving.set(true);
+    this.validateTeachers$(groupId).subscribe({
+      next: (teacherMsgs) &#x3D;&gt; {
+        if (teacherMsgs.length &gt; 0) {
+          this.validationMessages.set([...this.validationMessages(), ...teacherMsgs]);
+          this.saving.set(false);
+          return;
+        }
+        this.persistDiff$(groupId).subscribe({
+          next: () &#x3D;&gt; {
+            this.saving.set(false);
+            this.schedules.loadSchedules();
+            this.scheduleSaved.emit();
+          },
+          error: () &#x3D;&gt; {
+            this.saving.set(false);
+            this.saveError.set(true);
+          },
+        });
+      },
+      error: () &#x3D;&gt; {
+        this.saving.set(false);
+        this.saveError.set(true);
+      },
+    });
+  }
+
+  /**
+   * Calcula operaciones mínimas comparando el snapshot inicial con las celdas actuales:
+   * borra celdas eliminadas, crea nuevas y recrea las que cambiaron de assignment.
+   */
+  private persistDiff$(_groupId: number): Observable&lt;unknown&gt; {
+    const initial &#x3D; this.initialServerSchedules();
+    const byKeyInitial &#x3D; new Map&lt;string, WeekSchedule&gt;();
+    for (const ws of initial) {
+      const weekDay &#x3D; prismaDayOfWeekToNumber(ws.weekDay as string | number);
+      byKeyInitial.set(weekScheduleCellKey(weekDay, ws.startTime), ws);
+    }
+    const current &#x3D; this.cells();
+    const ops: Observable&lt;unknown&gt;[] &#x3D; [];
+
+    for (const [key, ws] of byKeyInitial) {
+      if (!current.has(key)) {
+        ops.push(
+          this.schedules.deleteSchedule(ws.id).pipe(
+            catchError(() &#x3D;&gt; of(null)),
+          ),
+        );
+      }
+    }
+
+    for (const [key, cell] of current) {
+      const prev &#x3D; byKeyInitial.get(key);
+      if (!prev) {
+        ops.push(
+          this.schedules
+            .createSchedule({
+              idTeacherAssignment: cell.idTeacherAssignment,
+              weekDay: cell.weekDay,
+              startTime: cell.startTime,
+              finishTime: cell.finishTime,
+            })
+            .pipe(catchError((e) &#x3D;&gt; {
+              throw e;
+            })),
+        );
+      } else if (prev.teacherAssignment.id !&#x3D;&#x3D; cell.idTeacherAssignment) {
+        ops.push(
+          this.schedules.deleteSchedule(prev.id).pipe(
+            mergeMap(() &#x3D;&gt;
+              this.schedules.createSchedule({
+                idTeacherAssignment: cell.idTeacherAssignment,
+                weekDay: cell.weekDay,
+                startTime: cell.startTime,
+                finishTime: cell.finishTime,
+              }),
+            ),
+            catchError((e) &#x3D;&gt; {
+              throw e;
+            }),
+          ),
+        );
+      } else if (
+        prev.weekDay !&#x3D;&#x3D; cell.weekDay ||
+        prev.startTime !&#x3D;&#x3D; cell.startTime ||
+        prev.finishTime !&#x3D;&#x3D; cell.finishTime
+      ) {
+        ops.push(
+          this.schedules
+            .updateSchedule(prev.id, {
+              id: prev.id,
+              weekDay: cell.weekDay,
+              startTime: cell.startTime,
+              finishTime: cell.finishTime,
+            })
+            .pipe(catchError((e) &#x3D;&gt; {
+              throw e;
+            })),
+        );
+      }
+    }
+
+    if (ops.length &#x3D;&#x3D;&#x3D; 0) {
+      return of(null);
+    }
+    return concat(...ops).pipe(last());
+  }
+
+  /** Cierra el builder sin guardar cambios. */
+  onCancel(): void {
+    this.cancelCreate.emit();
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'GridCellState.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

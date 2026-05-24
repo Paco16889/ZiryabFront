@@ -16,6 +16,7 @@ import { TeacherSubjectAssignmentRow } from '../../../../../core/models/teacher/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleAssignmentPickerComponent {
+  /** Servicio de traducción para componer etiquetas con asignatura y profesor. */
   private readonly translate = inject(TranslateService);
 
   /** Filas `TeacherOnSubjectOnGroup` (o equivalente) ya filtradas por el padre. */
@@ -26,6 +27,7 @@ export class WeekScheduleAssignmentPickerComponent {
   readonly selectedId = input<string>('');
   /** `id` HTML del select (accesibilidad con `<label for>` del padre). */
   readonly selectId = input.required<string>();
+  /** Deshabilita el selector cuando el grid está bloqueado por carga o guardado. */
   readonly disabled = input(false);
   /** Clases Tailwind del `<select>`. */
   readonly selectClass = input(
@@ -35,6 +37,7 @@ export class WeekScheduleAssignmentPickerComponent {
   /** `null` si se elige la opción vacía; si no, `id` del assignment (TeacherOnSubjectOnGroup). */
   readonly assignmentChange = output<number | null>();
 
+  /** Construye el texto de una opción usando asignatura y nombre del profesor si existe. */
   optionLabel(row: TeacherSubjectAssignmentRow): string {
     const t = this.teacherNameById().get(row.idTeacher);
     const sub = row.subject.name;
@@ -47,6 +50,7 @@ export class WeekScheduleAssignmentPickerComponent {
     return sub;
   }
 
+  /** Convierte el valor nativo del `<select>` en id numérico o `null` para limpiar celda. */
   onChange(ev: Event): void {
     const v = (ev.target as HTMLSelectElement).value;
     this.assignmentChange.emit(v ? Number(v) : null);

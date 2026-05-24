@@ -17,5 +17,6 @@ export class WeekScheduleHourCardComponent {
   /** Hora fin (`HH:mm`). */
   readonly finishTime = input.required<string>();
 
+  /** Etiqueta compacta para la cabecera de la franja, por ejemplo `08:15 – 09:15`. */
   readonly rangeLabel = computed(() => `${this.startTime()} – ${this.finishTime()}`);
 }

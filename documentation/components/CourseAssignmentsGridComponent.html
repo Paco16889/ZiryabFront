@@ -1,0 +1,2523 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CourseAssignmentsGridComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Datagrid fijo de asignaciones por asignatura (CURSO-98 / CURSO-100).</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-course-assignments-grid</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./course-assignments-grid.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./course-assignments-grid.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#assignmentsService" >assignmentsService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#existingAssignments" >existingAssignments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groups" >groups</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groupService" >groupService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loadError" >loadError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#rows" >rows</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saveFeedback" >saveFeedback</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saveValidation" >saveValidation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saving" >saving</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#schoolYear" >schoolYear</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#teachers" >teachers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#teachersService" >teachersService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#assignmentTeacherLabel" >assignmentTeacherLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#clearRows" >clearRows</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#clearSaveMessages" >clearSaveMessages</a>
+                            </li>
+                            <li>
+                                <a href="#feedbackIsSuccess" >feedbackIsSuccess</a>
+                            </li>
+                            <li>
+                                <a href="#feedbackIsWarning" >feedbackIsWarning</a>
+                            </li>
+                            <li>
+                                <a href="#gradeDisplay" >gradeDisplay</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isRowComplete" >isRowComplete</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isRowIncomplete" >isRowIncomplete</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadGrid" >loadGrid</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onBack" >onBack</a>
+                            </li>
+                            <li>
+                                <a href="#onGroupChange" >onGroupChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <a href="#onTeacherChange" >onTeacherChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#refreshExistingAssignments" >refreshExistingAssignments</a>
+                            </li>
+                            <li>
+                                <a href="#teacherLabel" >teacherLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateRow" >updateRow</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#context" >context</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#back" >back</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="context"></a>
+                        <b>context</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/CourseAssignmentsContext.html" target="_self" >CourseAssignmentsContext</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:51</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Contexto recibido desde el wizard: ciclo y grade que delimitan las asignaturas.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="back"></a>
+                        <b>back</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:54</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Vuelve al paso anterior del asistente.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignmentTeacherLabel"></a>
+                    <span class="name">
+                        <span ><b>assignmentTeacherLabel</b></span>
+                        <a href="#assignmentTeacherLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>assignmentTeacherLabel(a: <a href="../interfaces/AssignmentWithIncludes.html" target="_self">AssignmentWithIncludes</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Nombre del profesor en asignaciones ya persistidas.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>a</td>
+                                            <td>
+                                                            <code><a href="../interfaces/AssignmentWithIncludes.html" target="_self" >AssignmentWithIncludes</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearRows"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>clearRows</b></span>
+                        <a href="#clearRows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clearRows(subjectIds: Set<number>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="267"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:267</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Limpia profesor/grupo de asignaturas que ya se intentaron guardar.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subjectIds</td>
+                                            <td>
+                                                        <code>Set&lt;number&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearSaveMessages"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>clearSaveMessages</b></span>
+                        <a href="#clearSaveMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clearSaveMessages()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="278"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:278</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Borra mensajes de validación/feedback antes de una nueva edición.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="feedbackIsSuccess"></a>
+                    <span class="name">
+                        <span ><b>feedbackIsSuccess</b></span>
+                        <a href="#feedbackIsSuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>feedbackIsSuccess()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Indica si el último guardado creó asignaciones sin errores.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="feedbackIsWarning"></a>
+                    <span class="name">
+                        <span ><b>feedbackIsWarning</b></span>
+                        <a href="#feedbackIsWarning"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>feedbackIsWarning()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:195</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Indica si el último guardado acabó con duplicados o filas incompletas no críticas.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradeDisplay"></a>
+                    <span class="name">
+                        <span ><b>gradeDisplay</b></span>
+                        <a href="#gradeDisplay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>gradeDisplay()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formatea <code>grade</code> numérico como ordinal para mostrarlo en la cabecera.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isRowComplete"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isRowComplete</b></span>
+                        <a href="#isRowComplete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isRowComplete(row: <a href="../interfaces/CourseAssignmentGridRow.html" target="_self">CourseAssignmentGridRow</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Una fila se puede guardar cuando tiene profesor y grupo.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CourseAssignmentGridRow.html" target="_self" >CourseAssignmentGridRow</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isRowIncomplete"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isRowIncomplete</b></span>
+                        <a href="#isRowIncomplete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isRowIncomplete(row: <a href="../interfaces/CourseAssignmentGridRow.html" target="_self">CourseAssignmentGridRow</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="260"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:260</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Detecta filas parcialmente rellenadas para informar al usuario.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CourseAssignmentGridRow.html" target="_self" >CourseAssignmentGridRow</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadGrid"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadGrid</b></span>
+                        <a href="#loadGrid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadGrid()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:201</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga asignaturas del grade, asignaciones existentes, profesores y grupos.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga catálogos y filas al iniciar el grid.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBack"></a>
+                    <span class="name">
+                        <span ><b>onBack</b></span>
+                        <a href="#onBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onBack()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="294"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:294</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Vuelve al wizard sin guardar cambios pendientes.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onGroupChange"></a>
+                    <span class="name">
+                        <span ><b>onGroupChange</b></span>
+                        <a href="#onGroupChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onGroupChange(row: <a href="../interfaces/CourseAssignmentGridRow.html" target="_self">CourseAssignmentGridRow</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza el grupo elegido en una fila y limpia mensajes previos.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CourseAssignmentGridRow.html" target="_self" >CourseAssignmentGridRow</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida filas completas y ejecuta el alta masiva de asignaciones.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTeacherChange"></a>
+                    <span class="name">
+                        <span ><b>onTeacherChange</b></span>
+                        <a href="#onTeacherChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTeacherChange(row: <a href="../interfaces/CourseAssignmentGridRow.html" target="_self">CourseAssignmentGridRow</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza el profesor elegido en una fila y limpia mensajes previos.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CourseAssignmentGridRow.html" target="_self" >CourseAssignmentGridRow</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshExistingAssignments"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>refreshExistingAssignments</b></span>
+                        <a href="#refreshExistingAssignments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>refreshExistingAssignments()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="243"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:243</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Recarga solo las asignaciones existentes después de guardar.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teacherLabel"></a>
+                    <span class="name">
+                        <span ><b>teacherLabel</b></span>
+                        <a href="#teacherLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>teacherLabel(teacher: <a href="../interfaces/Teacher.html" target="_self">Teacher</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Nombre completo del profesor para opciones de selector.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>teacher</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Teacher.html" target="_self" >Teacher</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateRow"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>updateRow</b></span>
+                        <a href="#updateRow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateRow(idSubject: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, patch: Partial<Pick<CourseAssignmentGridRow, "idTeacher" | "idGroup">>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Aplica cambios inmutables a una fila identificada por asignatura.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idSubject</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>patch</td>
+                                            <td>
+                                                        <code>Partial&lt;Pick&lt;CourseAssignmentGridRow, &quot;idTeacher&quot; | &quot;idGroup&quot;&gt;&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignmentsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>assignmentsService</b></span>
+                        <a href="#assignmentsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AssignmentsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de asignaciones docentes y endpoints auxiliares de oferta.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="existingAssignments"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>existingAssignments</b></span>
+                        <a href="#existingAssignments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;AssignmentWithIncludes[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asignaciones ya existentes para mostrar duplicados o evitar confusión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groups"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groups</b></span>
+                        <a href="#groups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Group[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Grupos disponibles para el selector de cada fila.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groupService</b></span>
+                        <a href="#groupService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(GroupService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de grupos para seleccionar dónde se imparte cada asignatura.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadError"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loadError</b></span>
+                        <a href="#loadError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error al cargar asignaturas, asignaciones existentes, profesores o grupos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga inicial del grid.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rows"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>rows</b></span>
+                        <a href="#rows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;CourseAssignmentGridRow[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Filas editables, una por asignatura ofertada en el ciclo/grade.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveFeedback"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saveFeedback</b></span>
+                        <a href="#saveFeedback"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;CourseAssignmentsSaveFeedback | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resumen de la última operación de guardado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveValidation"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saveValidation</b></span>
+                        <a href="#saveValidation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;&#x27;noneToSave&#x27; | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Validación específica cuando no hay ninguna fila completa para guardar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saving"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saving</b></span>
+                        <a href="#saving"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de guardado masivo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="schoolYear"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>schoolYear</b></span>
+                        <a href="#schoolYear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(environment.currentSchoolYear)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Curso escolar aplicado al alta masiva.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teachers"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>teachers</b></span>
+                        <a href="#teachers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Teacher[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Profesores disponibles para el selector de cada fila.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teachersService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>teachersService</b></span>
+                        <a href="#teachersService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TeachersService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de profesores para seleccionar responsable de cada asignatura.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, input, OnInit, output, signal } from &#x27;@angular/core&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { forkJoin } from &#x27;rxjs&#x27;;
+import { AssignmentWithIncludes } from &#x27;../../../../../core/models/assingment&#x27;;
+import { AssignmentBulkCreateItem } from &#x27;../../../../../core/models/course-assignments/course-assignments-api.model&#x27;;
+import { CourseAssignmentsContext } from &#x27;../../../../../core/models/course-assignments/course-assignments-context.model&#x27;;
+import { CourseAssignmentGridRow } from &#x27;../../../../../core/models/course-assignments/course-assignment-grid-row.model&#x27;;
+import { Group } from &#x27;../../../../../core/models/group&#x27;;
+import { Teacher } from &#x27;../../../../../core/models/teacher&#x27;;
+import { AssignmentsService } from &#x27;../../../../../core/services/admin/entities/assignments.service&#x27;;
+import { GroupService } from &#x27;../../../../../core/services/admin/entities/group.service&#x27;;
+import { TeachersService } from &#x27;../../../../../core/services/admin/entities/teachers.service&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+
+/** Resultado resumido del guardado masivo de asignaciones desde el grid. */
+export type CourseAssignmentsSaveFeedback &#x3D; {
+  /** Asignaciones creadas correctamente. */
+  created: number;
+
+  /** Filas que ya existían en backend y no se duplicaron. */
+  duplicates: number;
+
+  /** Filas con profesor o grupo sin completar. */
+  incomplete: number;
+
+  /** Indica si el backend devolvió errores parciales o fallo general. */
+  hasErrors: boolean;
+};
+
+/**
+ * Datagrid fijo de asignaciones por asignatura (CURSO-98 / CURSO-100).
+ */
+@Component({
+  selector: &#x27;app-course-assignments-grid&#x27;,
+  standalone: true,
+  imports: [TranslateModule],
+  templateUrl: &#x27;./course-assignments-grid.component.html&#x27;,
+  styleUrl: &#x27;./course-assignments-grid.component.scss&#x27;,
+})
+export class CourseAssignmentsGridComponent implements OnInit {
+  /** Servicio de asignaciones docentes y endpoints auxiliares de oferta. */
+  private readonly assignmentsService &#x3D; inject(AssignmentsService);
+
+  /** Catálogo de profesores para seleccionar responsable de cada asignatura. */
+  private readonly teachersService &#x3D; inject(TeachersService);
+
+  /** Catálogo de grupos para seleccionar dónde se imparte cada asignatura. */
+  private readonly groupService &#x3D; inject(GroupService);
+
+  /** Contexto recibido desde el wizard: ciclo y grade que delimitan las asignaturas. */
+  readonly context &#x3D; input.required&lt;CourseAssignmentsContext&gt;();
+
+  /** Vuelve al paso anterior del asistente. */
+  readonly back &#x3D; output&lt;void&gt;();
+
+  /** Curso escolar aplicado al alta masiva. */
+  readonly schoolYear &#x3D; signal(environment.currentSchoolYear);
+
+  /** Estado de carga inicial del grid. */
+  readonly loading &#x3D; signal(true);
+
+  /** Error al cargar asignaturas, asignaciones existentes, profesores o grupos. */
+  readonly loadError &#x3D; signal(false);
+
+  /** Estado de guardado masivo. */
+  readonly saving &#x3D; signal(false);
+
+  /** Resumen de la última operación de guardado. */
+  readonly saveFeedback &#x3D; signal&lt;CourseAssignmentsSaveFeedback | null&gt;(null);
+
+  /** Validación específica cuando no hay ninguna fila completa para guardar. */
+  readonly saveValidation &#x3D; signal&lt;&#x27;noneToSave&#x27; | null&gt;(null);
+
+  /** Asignaciones ya existentes para mostrar duplicados o evitar confusión. */
+  readonly existingAssignments &#x3D; signal&lt;AssignmentWithIncludes[]&gt;([]);
+
+  /** Filas editables, una por asignatura ofertada en el ciclo/grade. */
+  readonly rows &#x3D; signal&lt;CourseAssignmentGridRow[]&gt;([]);
+
+  /** Profesores disponibles para el selector de cada fila. */
+  readonly teachers &#x3D; signal&lt;Teacher[]&gt;([]);
+
+  /** Grupos disponibles para el selector de cada fila. */
+  readonly groups &#x3D; signal&lt;Group[]&gt;([]);
+
+  /** Carga catálogos y filas al iniciar el grid. */
+  ngOnInit(): void {
+    this.loadGrid();
+  }
+
+  /** Formatea &#x60;grade&#x60; numérico como ordinal para mostrarlo en la cabecera. */
+  gradeDisplay(): string {
+    const grade &#x3D; this.context().grade.trim();
+    if (/^\d+$/.test(grade)) {
+      return &#x60;${grade}º&#x60;;
+    }
+    return grade;
+  }
+
+  /** Nombre completo del profesor para opciones de selector. */
+  teacherLabel(teacher: Teacher): string {
+    return [teacher.name, teacher.surname, teacher.ndSurname].filter(Boolean).join(&#x27; &#x27;).trim();
+  }
+
+  /** Nombre del profesor en asignaciones ya persistidas. */
+  assignmentTeacherLabel(a: AssignmentWithIncludes): string {
+    const t &#x3D; a.teacher;
+    if (!t?.name) {
+      return &#x27;—&#x27;;
+    }
+    return [t.name, t.surname].filter(Boolean).join(&#x27; &#x27;).trim();
+  }
+
+  /** Actualiza el profesor elegido en una fila y limpia mensajes previos. */
+  onTeacherChange(row: CourseAssignmentGridRow, value: string): void {
+    const id &#x3D; value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? null : Number(value);
+    this.updateRow(row.idSubject, { idTeacher: id });
+    this.clearSaveMessages();
+  }
+
+  /** Actualiza el grupo elegido en una fila y limpia mensajes previos. */
+  onGroupChange(row: CourseAssignmentGridRow, value: string): void {
+    const id &#x3D; value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? null : Number(value);
+    this.updateRow(row.idSubject, { idGroup: id });
+    this.clearSaveMessages();
+  }
+
+  /** Valida filas completas y ejecuta el alta masiva de asignaciones. */
+  onSave(): void {
+    this.clearSaveMessages();
+
+    const completeRows &#x3D; this.rows().filter((r) &#x3D;&gt; this.isRowComplete(r));
+    const incompleteCount &#x3D; this.rows().filter((r) &#x3D;&gt; this.isRowIncomplete(r)).length;
+
+    if (completeRows.length &#x3D;&#x3D;&#x3D; 0) {
+      this.saveValidation.set(&#x27;noneToSave&#x27;);
+      if (incompleteCount &gt; 0) {
+        this.saveFeedback.set({
+          created: 0,
+          duplicates: 0,
+          incomplete: incompleteCount,
+          hasErrors: false,
+        });
+      }
+      return;
+    }
+
+    const payload: AssignmentBulkCreateItem[] &#x3D; completeRows.map((r) &#x3D;&gt; ({
+      idTeacher: r.idTeacher!,
+      idSubject: r.idSubject,
+      idGroup: r.idGroup!,
+      schoolYear: this.schoolYear(),
+    }));
+
+    const savedSubjectIds &#x3D; new Set(completeRows.map((r) &#x3D;&gt; r.idSubject));
+
+    this.saving.set(true);
+    this.assignmentsService.createAssignmentsBulk(payload).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.saving.set(false);
+        const data &#x3D; res.data ?? { created: 0, duplicates: 0, skipped: 0, errors: [] };
+        this.saveFeedback.set({
+          created: data.created,
+          duplicates: data.duplicates,
+          incomplete: incompleteCount,
+          hasErrors: data.errors.length &gt; 0 || !res.success,
+        });
+
+        if (data.created &gt; 0) {
+          this.clearRows(savedSubjectIds);
+          this.refreshExistingAssignments();
+        } else if (data.duplicates &gt; 0) {
+          this.refreshExistingAssignments();
+        }
+      },
+      error: () &#x3D;&gt; {
+        this.saving.set(false);
+        this.saveFeedback.set({
+          created: 0,
+          duplicates: 0,
+          incomplete: incompleteCount,
+          hasErrors: true,
+        });
+      },
+    });
+  }
+
+  /** Indica si el último guardado creó asignaciones sin errores. */
+  feedbackIsSuccess(): boolean {
+    const f &#x3D; this.saveFeedback();
+    return !!f &amp;&amp; f.created &gt; 0 &amp;&amp; !f.hasErrors;
+  }
+
+  /** Indica si el último guardado acabó con duplicados o filas incompletas no críticas. */
+  feedbackIsWarning(): boolean {
+    const f &#x3D; this.saveFeedback();
+    return !!f &amp;&amp; (f.duplicates &gt; 0 || f.incomplete &gt; 0) &amp;&amp; !f.hasErrors;
+  }
+
+  /** Carga asignaturas del grade, asignaciones existentes, profesores y grupos. */
+  private loadGrid(): void {
+    const ctx &#x3D; this.context();
+    this.loading.set(true);
+    this.loadError.set(false);
+
+    forkJoin({
+      subjects: this.assignmentsService.getSubjectsByCourseAndGrade(ctx.idCourse, ctx.grade),
+      existing: this.assignmentsService.getAssignmentsByCourseAndGrade(
+        ctx.idCourse,
+        ctx.grade,
+        this.schoolYear(),
+      ),
+      teachers: this.teachersService.getAllTeachers(),
+      groups: this.groupService.getAllGroups(),
+    }).subscribe({
+      next: ({ subjects, existing, teachers, groups }) &#x3D;&gt; {
+        this.loading.set(false);
+        if (!subjects.success) {
+          this.loadError.set(true);
+          this.rows.set([]);
+        } else {
+          this.rows.set(
+            subjects.data.map((s) &#x3D;&gt; ({
+              idSubject: s.id,
+              subjectName: s.name,
+              idTeacher: null,
+              idGroup: null,
+            })),
+          );
+        }
+        this.existingAssignments.set(existing.success ? existing.data : []);
+        this.teachers.set(teachers.success ? teachers.data : []);
+        this.groups.set(groups.success ? groups.data : []);
+      },
+      error: () &#x3D;&gt; {
+        this.loading.set(false);
+        this.loadError.set(true);
+      },
+    });
+  }
+
+  /** Recarga solo las asignaciones existentes después de guardar. */
+  private refreshExistingAssignments(): void {
+    const ctx &#x3D; this.context();
+    this.assignmentsService
+      .getAssignmentsByCourseAndGrade(ctx.idCourse, ctx.grade, this.schoolYear())
+      .subscribe((res) &#x3D;&gt; {
+        if (res.success) {
+          this.existingAssignments.set(res.data);
+        }
+      });
+  }
+
+  /** Una fila se puede guardar cuando tiene profesor y grupo. */
+  private isRowComplete(row: CourseAssignmentGridRow): boolean {
+    return row.idTeacher !&#x3D; null &amp;&amp; row.idGroup !&#x3D; null;
+  }
+
+  /** Detecta filas parcialmente rellenadas para informar al usuario. */
+  private isRowIncomplete(row: CourseAssignmentGridRow): boolean {
+    const hasTeacher &#x3D; row.idTeacher !&#x3D; null;
+    const hasGroup &#x3D; row.idGroup !&#x3D; null;
+    return hasTeacher !&#x3D;&#x3D; hasGroup;
+  }
+
+  /** Limpia profesor/grupo de asignaturas que ya se intentaron guardar. */
+  private clearRows(subjectIds: Set&lt;number&gt;): void {
+    this.rows.update((list) &#x3D;&gt;
+      list.map((r) &#x3D;&gt;
+        subjectIds.has(r.idSubject)
+          ? { ...r, idTeacher: null, idGroup: null }
+          : r,
+      ),
+    );
+  }
+
+  /** Borra mensajes de validación/feedback antes de una nueva edición. */
+  private clearSaveMessages(): void {
+    this.saveFeedback.set(null);
+    this.saveValidation.set(null);
+  }
+
+  /** Aplica cambios inmutables a una fila identificada por asignatura. */
+  private updateRow(
+    idSubject: number,
+    patch: Partial&lt;Pick&lt;CourseAssignmentGridRow, &#x27;idTeacher&#x27; | &#x27;idGroup&#x27;&gt;&gt;,
+  ): void {
+    this.rows.update((list) &#x3D;&gt;
+      list.map((r) &#x3D;&gt; (r.idSubject &#x3D;&#x3D;&#x3D; idSubject ? { ...r, ...patch } : r)),
+    );
+  }
+
+  /** Vuelve al wizard sin guardar cambios pendientes. */
+  onBack(): void {
+    this.back.emit();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;max-w-7xl mx-auto p-4&quot;&gt;
+  &lt;div class&#x3D;&quot;flex items-center mb-6&quot;&gt;
+    &lt;button
+      type&#x3D;&quot;button&quot;
+      class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900&quot;
+      (click)&#x3D;&quot;onBack()&quot;
+    &gt;
+      ← {{ &#x27;common.buttons.back&#x27; | translate }}
+    &lt;/button&gt;
+    &lt;h1 class&#x3D;&quot;text-2xl font-bold text-gray-900&quot;&gt;
+      {{ &#x27;courseAssignments.grid.title&#x27; | translate }}
+    &lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;p class&#x3D;&quot;text-sm text-gray-700 mb-2&quot;&gt;
+    {{
+      &#x27;courseAssignments.grid.subtitle&#x27;
+        | translate: { course: context().courseName, grade: gradeDisplay() }
+    }}
+  &lt;/p&gt;
+  &lt;p class&#x3D;&quot;text-sm text-gray-600 mb-6&quot;&gt;
+    {{ &#x27;courseAssignments.grid.schoolYear&#x27; | translate }}:
+    &lt;span class&#x3D;&quot;font-medium&quot;&gt;{{ schoolYear() }}&lt;/span&gt;
+  &lt;/p&gt;
+
+  @if (loading()) {
+    &lt;p class&#x3D;&quot;text-sm text-gray-500&quot;&gt;{{ &#x27;courseAssignments.grid.loading&#x27; | translate }}&lt;/p&gt;
+  } @else if (loadError()) {
+    &lt;p class&#x3D;&quot;text-sm text-red-600&quot;&gt;{{ &#x27;courseAssignments.grid.loadError&#x27; | translate }}&lt;/p&gt;
+  } @else {
+  &lt;section class&#x3D;&quot;mb-8&quot;&gt;
+    &lt;h2 class&#x3D;&quot;text-lg font-semibold text-gray-900 mb-3&quot;&gt;
+      {{ &#x27;courseAssignments.grid.existingTitle&#x27; | translate }}
+    &lt;/h2&gt;
+    @if (existingAssignments().length &#x3D;&#x3D;&#x3D; 0) {
+      &lt;p class&#x3D;&quot;text-sm text-gray-500&quot;&gt;{{ &#x27;courseAssignments.grid.existingEmpty&#x27; | translate }}&lt;/p&gt;
+    } @else {
+      &lt;div class&#x3D;&quot;overflow-x-auto border border-gray-200 rounded-lg&quot;&gt;
+        &lt;table class&#x3D;&quot;min-w-full text-sm&quot;&gt;
+          &lt;thead class&#x3D;&quot;bg-gray-50 text-left&quot;&gt;
+            &lt;tr&gt;
+              &lt;th class&#x3D;&quot;px-3 py-2 font-medium text-gray-700&quot;&gt;
+                {{ &#x27;courseAssignments.grid.colSubject&#x27; | translate }}
+              &lt;/th&gt;
+              &lt;th class&#x3D;&quot;px-3 py-2 font-medium text-gray-700&quot;&gt;
+                {{ &#x27;courseAssignments.grid.colTeacher&#x27; | translate }}
+              &lt;/th&gt;
+              &lt;th class&#x3D;&quot;px-3 py-2 font-medium text-gray-700&quot;&gt;
+                {{ &#x27;courseAssignments.grid.colGroup&#x27; | translate }}
+              &lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            @for (a of existingAssignments(); track a.id) {
+              &lt;tr class&#x3D;&quot;border-t border-gray-100&quot;&gt;
+                &lt;td class&#x3D;&quot;px-3 py-2&quot;&gt;{{ a.subject?.name ?? &#x27;—&#x27; }}&lt;/td&gt;
+                &lt;td class&#x3D;&quot;px-3 py-2&quot;&gt;{{ assignmentTeacherLabel(a) }}&lt;/td&gt;
+                &lt;td class&#x3D;&quot;px-3 py-2&quot;&gt;{{ a.group?.name ?? &#x27;—&#x27; }}&lt;/td&gt;
+              &lt;/tr&gt;
+            }
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+    }
+  &lt;/section&gt;
+
+  &lt;section&gt;
+    &lt;h2 class&#x3D;&quot;text-lg font-semibold text-gray-900 mb-3&quot;&gt;
+      {{ &#x27;courseAssignments.grid.newTitle&#x27; | translate }}
+    &lt;/h2&gt;
+    @if (rows().length &#x3D;&#x3D;&#x3D; 0) {
+      &lt;p class&#x3D;&quot;text-sm text-gray-500&quot;&gt;{{ &#x27;courseAssignments.grid.rowsEmpty&#x27; | translate }}&lt;/p&gt;
+    } @else {
+      &lt;div class&#x3D;&quot;overflow-x-auto border border-gray-200 rounded-lg&quot;&gt;
+        &lt;table class&#x3D;&quot;min-w-full text-sm&quot;&gt;
+          &lt;thead class&#x3D;&quot;bg-purple-50 text-left&quot;&gt;
+            &lt;tr&gt;
+              &lt;th class&#x3D;&quot;px-3 py-2 font-medium text-gray-700&quot;&gt;
+                {{ &#x27;courseAssignments.grid.colSubject&#x27; | translate }}
+              &lt;/th&gt;
+              &lt;th class&#x3D;&quot;px-3 py-2 font-medium text-gray-700&quot;&gt;
+                {{ &#x27;courseAssignments.grid.colTeacher&#x27; | translate }}
+              &lt;/th&gt;
+              &lt;th class&#x3D;&quot;px-3 py-2 font-medium text-gray-700&quot;&gt;
+                {{ &#x27;courseAssignments.grid.colGroup&#x27; | translate }}
+              &lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            @for (row of rows(); track row.idSubject) {
+              &lt;tr class&#x3D;&quot;border-t border-gray-100&quot;&gt;
+                &lt;td class&#x3D;&quot;px-3 py-2 font-medium text-gray-900&quot;&gt;{{ row.subjectName }}&lt;/td&gt;
+                &lt;td class&#x3D;&quot;px-3 py-2&quot;&gt;
+                  &lt;select
+                    class&#x3D;&quot;w-full border border-gray-300 rounded-md px-2 py-1.5&quot;
+                    [value]&#x3D;&quot;row.idTeacher ?? &#x27;&#x27;&quot;
+                    (change)&#x3D;&quot;onTeacherChange(row, $any($event.target).value)&quot;
+                  &gt;
+                    &lt;option value&#x3D;&quot;&quot;&gt;{{ &#x27;courseAssignments.grid.selectTeacher&#x27; | translate }}&lt;/option&gt;
+                    @for (t of teachers(); track t.id) {
+                      &lt;option [value]&#x3D;&quot;t.id&quot;&gt;{{ teacherLabel(t) }}&lt;/option&gt;
+                    }
+                  &lt;/select&gt;
+                &lt;/td&gt;
+                &lt;td class&#x3D;&quot;px-3 py-2&quot;&gt;
+                  &lt;select
+                    class&#x3D;&quot;w-full border border-gray-300 rounded-md px-2 py-1.5&quot;
+                    [value]&#x3D;&quot;row.idGroup ?? &#x27;&#x27;&quot;
+                    (change)&#x3D;&quot;onGroupChange(row, $any($event.target).value)&quot;
+                  &gt;
+                    &lt;option value&#x3D;&quot;&quot;&gt;{{ &#x27;courseAssignments.grid.selectGroup&#x27; | translate }}&lt;/option&gt;
+                    @for (g of groups(); track g.id) {
+                      &lt;option [value]&#x3D;&quot;g.id&quot;&gt;{{ g.name }}&lt;/option&gt;
+                    }
+                  &lt;/select&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+            }
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      @if (saveValidation() &#x3D;&#x3D;&#x3D; &#x27;noneToSave&#x27;) {
+        &lt;p class&#x3D;&quot;text-sm text-amber-700 mt-4&quot; role&#x3D;&quot;alert&quot;&gt;
+          {{ &#x27;courseAssignments.grid.saveNone&#x27; | translate }}
+        &lt;/p&gt;
+      }
+
+      @if (saveFeedback(); as feedback) {
+        &lt;div
+          class&#x3D;&quot;mt-4 rounded-lg border px-4 py-3 text-sm&quot;
+          role&#x3D;&quot;status&quot;
+          [class.border-green-200]&#x3D;&quot;feedbackIsSuccess()&quot;
+          [class.bg-green-50]&#x3D;&quot;feedbackIsSuccess()&quot;
+          [class.text-green-800]&#x3D;&quot;feedbackIsSuccess()&quot;
+          [class.border-amber-200]&#x3D;&quot;feedbackIsWarning() &amp;&amp; !feedbackIsSuccess()&quot;
+          [class.bg-amber-50]&#x3D;&quot;feedbackIsWarning() &amp;&amp; !feedbackIsSuccess()&quot;
+          [class.text-amber-900]&#x3D;&quot;feedbackIsWarning() &amp;&amp; !feedbackIsSuccess()&quot;
+          [class.border-red-200]&#x3D;&quot;feedback.hasErrors&quot;
+          [class.bg-red-50]&#x3D;&quot;feedback.hasErrors&quot;
+          [class.text-red-800]&#x3D;&quot;feedback.hasErrors&quot;
+        &gt;
+          @if (feedback.created &gt; 0) {
+            &lt;p&gt;{{ &#x27;courseAssignments.grid.saveCreated&#x27; | translate: { count: feedback.created } }}&lt;/p&gt;
+          }
+          @if (feedback.duplicates &gt; 0) {
+            &lt;p&gt;{{ &#x27;courseAssignments.grid.saveDuplicates&#x27; | translate: { count: feedback.duplicates } }}&lt;/p&gt;
+          }
+          @if (feedback.incomplete &gt; 0) {
+            &lt;p&gt;{{ &#x27;courseAssignments.grid.saveIncomplete&#x27; | translate: { count: feedback.incomplete } }}&lt;/p&gt;
+          }
+          @if (feedback.hasErrors &amp;&amp; feedback.created &#x3D;&#x3D;&#x3D; 0) {
+            &lt;p&gt;{{ &#x27;courseAssignments.grid.saveError&#x27; | translate }}&lt;/p&gt;
+          }
+        &lt;/div&gt;
+      }
+
+      &lt;div class&#x3D;&quot;mt-4 flex flex-wrap gap-3&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          class&#x3D;&quot;px-4 py-2 rounded-md bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed&quot;
+          [disabled]&#x3D;&quot;saving()&quot;
+          (click)&#x3D;&quot;onSave()&quot;
+        &gt;
+          @if (saving()) {
+            {{ &#x27;courseAssignments.grid.saving&#x27; | translate }}
+          } @else {
+            {{ &#x27;courseAssignments.grid.saveButton&#x27; | translate }}
+          }
+        &lt;/button&gt;
+      &lt;/div&gt;
+    }
+  &lt;/section&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="max-w-7xl mx-auto p-4">  <div class="flex items-center mb-6">    <button      type="button"      class="mr-4 text-gray-600 hover:text-gray-900"      (click)="onBack()"    >      ← {{ \'common.buttons.back\' | translate }}    </button>    <h1 class="text-2xl font-bold text-gray-900">      {{ \'courseAssignments.grid.title\' | translate }}    </h1>  </div>  <p class="text-sm text-gray-700 mb-2">    {{      \'courseAssignments.grid.subtitle\'        | translate: { course: context().courseName, grade: gradeDisplay() }    }}  </p>  <p class="text-sm text-gray-600 mb-6">    {{ \'courseAssignments.grid.schoolYear\' | translate }}:    <span class="font-medium">{{ schoolYear() }}</span>  </p>  @if (loading()) {    <p class="text-sm text-gray-500">{{ \'courseAssignments.grid.loading\' | translate }}</p>  } @else if (loadError()) {    <p class="text-sm text-red-600">{{ \'courseAssignments.grid.loadError\' | translate }}</p>  } @else {  <section class="mb-8">    <h2 class="text-lg font-semibold text-gray-900 mb-3">      {{ \'courseAssignments.grid.existingTitle\' | translate }}    </h2>    @if (existingAssignments().length === 0) {      <p class="text-sm text-gray-500">{{ \'courseAssignments.grid.existingEmpty\' | translate }}</p>    } @else {      <div class="overflow-x-auto border border-gray-200 rounded-lg">        <table class="min-w-full text-sm">          <thead class="bg-gray-50 text-left">            <tr>              <th class="px-3 py-2 font-medium text-gray-700">                {{ \'courseAssignments.grid.colSubject\' | translate }}              </th>              <th class="px-3 py-2 font-medium text-gray-700">                {{ \'courseAssignments.grid.colTeacher\' | translate }}              </th>              <th class="px-3 py-2 font-medium text-gray-700">                {{ \'courseAssignments.grid.colGroup\' | translate }}              </th>            </tr>          </thead>          <tbody>            @for (a of existingAssignments(); track a.id) {              <tr class="border-t border-gray-100">                <td class="px-3 py-2">{{ a.subject?.name ?? \'—\' }}</td>                <td class="px-3 py-2">{{ assignmentTeacherLabel(a) }}</td>                <td class="px-3 py-2">{{ a.group?.name ?? \'—\' }}</td>              </tr>            }          </tbody>        </table>      </div>    }  </section>  <section>    <h2 class="text-lg font-semibold text-gray-900 mb-3">      {{ \'courseAssignments.grid.newTitle\' | translate }}    </h2>    @if (rows().length === 0) {      <p class="text-sm text-gray-500">{{ \'courseAssignments.grid.rowsEmpty\' | translate }}</p>    } @else {      <div class="overflow-x-auto border border-gray-200 rounded-lg">        <table class="min-w-full text-sm">          <thead class="bg-purple-50 text-left">            <tr>              <th class="px-3 py-2 font-medium text-gray-700">                {{ \'courseAssignments.grid.colSubject\' | translate }}              </th>              <th class="px-3 py-2 font-medium text-gray-700">                {{ \'courseAssignments.grid.colTeacher\' | translate }}              </th>              <th class="px-3 py-2 font-medium text-gray-700">                {{ \'courseAssignments.grid.colGroup\' | translate }}              </th>            </tr>          </thead>          <tbody>            @for (row of rows(); track row.idSubject) {              <tr class="border-t border-gray-100">                <td class="px-3 py-2 font-medium text-gray-900">{{ row.subjectName }}</td>                <td class="px-3 py-2">                  <select                    class="w-full border border-gray-300 rounded-md px-2 py-1.5"                    [value]="row.idTeacher ?? \'\'"                    (change)="onTeacherChange(row, $any($event.target).value)"                  >                    <option value="">{{ \'courseAssignments.grid.selectTeacher\' | translate }}</option>                    @for (t of teachers(); track t.id) {                      <option [value]="t.id">{{ teacherLabel(t) }}</option>                    }                  </select>                </td>                <td class="px-3 py-2">                  <select                    class="w-full border border-gray-300 rounded-md px-2 py-1.5"                    [value]="row.idGroup ?? \'\'"                    (change)="onGroupChange(row, $any($event.target).value)"                  >                    <option value="">{{ \'courseAssignments.grid.selectGroup\' | translate }}</option>                    @for (g of groups(); track g.id) {                      <option [value]="g.id">{{ g.name }}</option>                    }                  </select>                </td>              </tr>            }          </tbody>        </table>      </div>      @if (saveValidation() === \'noneToSave\') {        <p class="text-sm text-amber-700 mt-4" role="alert">          {{ \'courseAssignments.grid.saveNone\' | translate }}        </p>      }      @if (saveFeedback(); as feedback) {        <div          class="mt-4 rounded-lg border px-4 py-3 text-sm"          role="status"          [class.border-green-200]="feedbackIsSuccess()"          [class.bg-green-50]="feedbackIsSuccess()"          [class.text-green-800]="feedbackIsSuccess()"          [class.border-amber-200]="feedbackIsWarning() && !feedbackIsSuccess()"          [class.bg-amber-50]="feedbackIsWarning() && !feedbackIsSuccess()"          [class.text-amber-900]="feedbackIsWarning() && !feedbackIsSuccess()"          [class.border-red-200]="feedback.hasErrors"          [class.bg-red-50]="feedback.hasErrors"          [class.text-red-800]="feedback.hasErrors"        >          @if (feedback.created > 0) {            <p>{{ \'courseAssignments.grid.saveCreated\' | translate: { count: feedback.created } }}</p>          }          @if (feedback.duplicates > 0) {            <p>{{ \'courseAssignments.grid.saveDuplicates\' | translate: { count: feedback.duplicates } }}</p>          }          @if (feedback.incomplete > 0) {            <p>{{ \'courseAssignments.grid.saveIncomplete\' | translate: { count: feedback.incomplete } }}</p>          }          @if (feedback.hasErrors && feedback.created === 0) {            <p>{{ \'courseAssignments.grid.saveError\' | translate }}</p>          }        </div>      }      <div class="mt-4 flex flex-wrap gap-3">        <button          type="button"          class="px-4 py-2 rounded-md bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed"          [disabled]="saving()"          (click)="onSave()"        >          @if (saving()) {            {{ \'courseAssignments.grid.saving\' | translate }}          } @else {            {{ \'courseAssignments.grid.saveButton\' | translate }}          }        </button>      </div>    }  </section>  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CourseAssignmentsGridComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CourseAssignmentsGridComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

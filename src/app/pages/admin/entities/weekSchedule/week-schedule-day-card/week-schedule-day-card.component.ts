@@ -19,9 +19,11 @@ export class WeekScheduleDayCardComponent {
   /** Opcional: sufijo estable para `id`/`aria-labelledby` si hay varias tarjetas iguales en pantalla. */
   readonly cardSuffix = input<string | undefined>(undefined);
 
+  /** Identificador accesible que conecta el título del día con el contenedor de la tarjeta. */
   readonly dayHeadingId = computed(
     () => `week-schedule-day-${this.weekDay()}-${this.cardSuffix() ?? 'default'}`,
   );
 
+  /** Clave de traducción del nombre del día mostrado en la cabecera de la tarjeta. */
   readonly dayNameTranslateKey = computed(() => `weekScheduleBuilder.days.${this.weekDay()}`);
 }

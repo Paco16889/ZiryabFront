@@ -10,6 +10,7 @@ import { SubjectService } from '../../../../../core/services/admin/entities/subj
 import { EnrollmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/enrollment-http.service';
 import { environment } from '../../../../../../environments/environment';
 
+/** Formulario admin para crear una entrega individual asociada a una tarea y matrícula. */
 @Component({
   selector: 'app-student-task-create-form',
   imports: [ReactiveFormsModule, TranslateModule],
@@ -17,24 +18,40 @@ import { environment } from '../../../../../../environments/environment';
   styleUrl: './student-task-create-form.component.scss',
 })
 export class StudentTaskCreateFormComponent implements OnInit {
+  /** Constructor de formularios reactivos. */
   private readonly fb = inject(FormBuilder);
+  /** Servicio CRUD admin de StudentTasks. */
   private readonly studentTaskService = inject(StudentTaskService);
+  /** Traducciones de errores del backend. */
   private readonly translate = inject(TranslateService);
+  /** Servicio de tareas para poblar el selector de tarea. */
   private readonly taskService = inject(AdminTaskService);
+  /** Catálogo de grupos para filtrar matrículas. */
   private readonly groupService = inject(GroupService);
+  /** Catálogo de asignaturas para filtrar matrículas. */
   private readonly subjectService = inject(SubjectService);
+  /** Cliente de matrículas por filtros. */
   private readonly enrollmentHttp = inject(EnrollmentHttpService);
 
+  /** Cancela la creación y vuelve al listado. */
   readonly cancelCreate = output<void>();
+  /** Notifica al listado que debe recargar tras crear. */
   readonly studentTaskCreated = output<void>();
 
+  /** Tareas disponibles. */
   readonly taskOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Grupos disponibles para filtrar alumnos. */
   readonly groupOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Asignaturas disponibles para filtrar alumnos. */
   readonly subjectOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Matrículas filtradas para elegir alumno destinatario. */
   readonly enrollmentOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Estado de carga de tareas. */
   readonly loadingTasks = signal(true);
+  /** Estado de carga de matrículas. */
   readonly loadingEnrollments = signal(false);
 
+  /** Formulario de creación con tarea, matrícula, estado inicial y habilitación. */
   createForm = this.fb.group({
     idTask: [null as number | null, Validators.required],
     filterGroup: [null as number | null, Validators.required],
@@ -45,9 +62,12 @@ export class StudentTaskCreateFormComponent implements OnInit {
     isEnabled: [true],
   });
 
+  /** Evita doble envío durante la creación. */
   isCreating = false;
+  /** Error traducido mostrado en el formulario. */
   errorMessage = '';
 
+  /** Carga tareas, grupos y asignaturas para montar el formulario. */
   ngOnInit(): void {
     this.taskService.getAllTasks().subscribe((res) => {
       this.loadingTasks.set(false);
@@ -69,6 +89,7 @@ export class StudentTaskCreateFormComponent implements OnInit {
     });
   }
 
+  /** Carga matrículas que coinciden con grupo, asignatura y curso escolar. */
   loadEnrollments(): void {
     const g = this.createForm.get('filterGroup')?.value;
     const s = this.createForm.get('filterSubject')?.value;
@@ -90,6 +111,7 @@ export class StudentTaskCreateFormComponent implements OnInit {
     });
   }
 
+  /** Valida y crea la StudentTask individual. */
   onSubmit(): void {
     if (this.createForm.invalid) {
       this.createForm.markAllAsTouched();
@@ -118,6 +140,7 @@ export class StudentTaskCreateFormComponent implements OnInit {
       });
   }
 
+  /** Cancela el formulario sin crear entrega. */
   onCancel(): void {
     this.cancelCreate.emit();
   }

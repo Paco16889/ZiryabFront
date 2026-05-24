@@ -77,6 +77,10 @@ export class CardGridComponent {
     this.actionClicked.emit(item);
   }
 
+  /**
+   * Notifica al componente padre que se ha pulsado la acción secundaria de una tarjeta.
+   * @param item Tarjeta sobre la que se ejecutó la acción secundaria.
+   */
   onSecondaryAction(item: CardItem): void {
     this.secondaryActionClicked.emit(item);
   }

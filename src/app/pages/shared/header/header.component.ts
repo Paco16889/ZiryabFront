@@ -29,19 +29,30 @@ import { NotificationToggleService } from '../../../core/services/notification/n
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  /** Servicio que controla el menú de perfil. */
   private readonly perfilService = inject(PerfilMenuService);
+  /** Servicio de sesión para mostrar nombre/rol y reaccionar a logout. */
   private readonly authService = inject(AuthService);
+  /** Servicio SSE de notificaciones entrantes. */
   private readonly notificationsService = inject(NotificationsService);
+  /** Bandeja REST de notificaciones. */
   protected readonly notificationService = inject(NotificationService);
+  /** Estado del panel desplegable de notificaciones. */
   protected readonly notificationPanel = inject(NotificationToggleService);
 
+  /** Nombre mostrado en la cabecera. */
   userName = 'Nombre';
+  /** Clave i18n del rol mostrado. */
   userRoleKey = 'roles.user';
+  /** Notificación mostrada temporalmente como toast. */
   toastNotification: AppNotification | null = null;
 
+  /** Suscripciones activas de sesión y SSE. */
   private readonly subs = new Subscription();
+  /** Temporizador que oculta automáticamente el toast. */
   private toastClearHandle: ReturnType<typeof setTimeout> | null = null;
 
+  /** Sincroniza usuario, contador de notificaciones y toasts en tiempo real. */
   ngOnInit(): void {
     this.loadUserData();
 
@@ -68,6 +79,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
+  /** Cancela suscripciones y temporizador al destruir la cabecera. */
   ngOnDestroy(): void {
     this.subs.unsubscribe();
     if (this.toastClearHandle !== null) {
@@ -75,6 +87,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
+  /** Precarga usuario si la sesión ya estaba rehidratada. */
   private loadUserData(): void {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
@@ -84,6 +97,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
+  /** Convierte el rol backend en clave de traducción. */
   private getRoleKey(role: string): string {
     const map: Record<string, string> = {
       STUDENT: 'roles.student',
@@ -93,6 +107,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return map[role] ?? 'roles.user';
   }
 
+  /** Alterna menú de perfil cerrando previamente el panel de notificaciones. */
   toggleProfileMenu(): void {
     if (this.notificationPanel.isOpen()) {
       this.notificationPanel.close();
@@ -100,6 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.perfilService.toggleMenu();
   }
 
+  /** Alterna panel de notificaciones cerrando previamente el menú de perfil. */
   toggleNotifications(): void {
     if (this.perfilService.isMenuOpen()) {
       this.perfilService.closeMenu();
@@ -107,6 +123,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.notificationPanel.toggle();
   }
 
+  /** Muestra un toast temporal al recibir una notificación SSE. */
   private showToast(notification: AppNotification): void {
     this.toastNotification = notification;
     if (this.toastClearHandle !== null) {
@@ -117,6 +134,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }, 6000);
   }
 
+  /** Oculta el toast actual y limpia su temporizador. */
   dismissToast(): void {
     this.toastNotification = null;
     if (this.toastClearHandle !== null) {

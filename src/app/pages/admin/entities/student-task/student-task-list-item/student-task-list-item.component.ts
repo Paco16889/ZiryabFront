@@ -14,6 +14,7 @@ import {
   StudentTaskUpdatePayload,
 } from '../../../../../core/services/admin/entities/student-task.service';
 
+/** Etiquetas en castellano para estados de entrega. */
 const STATUS_LABELS: Record<SubmissionStatus, string> = {
   [SubmissionStatus.PENDING]: 'Pendiente',
   [SubmissionStatus.SUBMITTED]: 'Entregada',
@@ -22,6 +23,7 @@ const STATUS_LABELS: Record<SubmissionStatus, string> = {
   [SubmissionStatus.NOT_SUBMITTED]: 'No entregada',
 };
 
+/** Fila del listado admin de entregas basada en el componente genérico. */
 @Component({
   selector: 'app-student-task-list-item',
   imports: [GenericListItemComponent],
@@ -29,10 +31,13 @@ const STATUS_LABELS: Record<SubmissionStatus, string> = {
   styleUrl: './student-task-list-item.component.scss',
 })
 export class StudentTaskListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
   private readonly studentTaskService = inject(StudentTaskService);
 
+  /** Entrega renderizada por esta fila. */
   @Input({ required: true }) studentTask!: StudentTask;
 
+  /** Configuración del item genérico: campos, edición de estado/nota y acciones CRUD. */
   readonly studentTaskConfig: ListItemConfig<
     StudentTask,
     StudentTaskUpdatePayload,
@@ -85,6 +90,7 @@ export class StudentTaskListItemComponent {
     deleteFn: (id: number) => this.studentTaskService.deleteStudentTask(id),
   };
 
+  /** Configuración de detalle de una entrega. */
   readonly studentTaskDetailConfig: ViewDetailConfig<StudentTask> = {
     fields: [
       { key: 'task.title', type: 'text', label: 'Tarea: ', className: 'text-xl font-bold' },

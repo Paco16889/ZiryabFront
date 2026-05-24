@@ -149,19 +149,40 @@ export interface AssistanceItem {
 
 /** Justificación pendiente de revisión (vista profesor). */
 export interface PendingJustification {
+  /** Identificador del registro de asistencia pendiente. */
   id: number;
+
+  /** Estado actual de asistencia asociado a la justificación. */
   status: 'PRESENT' | 'ABSENT' | 'LATE' | 'EXCUSED';
+
+  /** Ruta del documento justificante subido por el alumno. */
   justificationUri: string;
+
+  /** Estado de revisión de la justificación. */
   justificationStatus: 'PENDING' | 'VIEWED' | 'REJECTED';
+
+  /** Nombre de la asignatura donde se produjo la ausencia. */
   subjectName: string;
+
+  /** Fecha de la sesión asociada. */
   sessionDate: string;
+
+  /** Hora de inicio de la sesión. */
   startTime: string;
+
+  /** Nombre completo del alumno que justificó la falta. */
   studentName: string;
 }
 
+/** Respuesta del backend con justificaciones pendientes para el profesor. */
 export interface PendingJustificationsResponse {
+  /** Indica si la consulta se completó correctamente. */
   success: boolean;
+
+  /** Justificaciones pendientes de revisar. */
   data: PendingJustification[];
+
+  /** Número total de justificaciones devueltas. */
   count: number;
 }
 

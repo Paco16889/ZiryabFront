@@ -142,14 +142,17 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Componente que muestra el listado de sesiones de clase del sistema.
-Gestiona la visualización del listado, la apertura del formulario de creación
-y la recarga automática de la lista tras operaciones de eliminación o actualización.
-ATENCIÓN: el formulario de creación no está implementado todavía.</p>
+        <p>Listado administrativo de sesiones de clase con creación y suspensión masiva.</p>
 
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -178,7 +181,10 @@ ATENCIÓN: el formulario de creación no está implementado todavía.</p>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="../components/ClassSessionListItemComponent.html" target="_self" >ClassSessionListItemComponent</a></code>
+                                <code><a href="../components/ClassSessionCreateFormComponent.html" target="_self" >ClassSessionCreateFormComponent</a></code>
                                 <code><a href="../components/BotonCreateComponent.html" target="_self" >BotonCreateComponent</a></code>
+                                <code><a href="../components/ClassSessionCancelDialogComponent.html" target="_self" >ClassSessionCancelDialogComponent</a></code>
+                            <code>TranslateModule</code>
                 </td>
             </tr>
 
@@ -221,7 +227,28 @@ ATENCIÓN: el formulario de creación no está implementado todavía.</p>
                                 <a href="#classSessions" >classSessions</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#modalDeleteService" >modalDeleteService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#modalUpdateService" >modalUpdateService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sessionService" >sessionService</a>
+                            </li>
+                            <li>
+                                <a href="#showCancelDialog" >showCancelDialog</a>
+                            </li>
+                            <li>
                                 <a href="#showCreateForm" >showCreateForm</a>
+                            </li>
+                            <li>
+                                <a href="#suspendSuccessCount" >suspendSuccessCount</a>
                             </li>
                         </ul>
                     </td>
@@ -236,13 +263,22 @@ ATENCIÓN: el formulario de creación no está implementado todavía.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#closeCancelDialog" >closeCancelDialog</a>
+                            </li>
+                            <li>
                                 <a href="#closeCreateForm" >closeCreateForm</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#onSubjectCreated" >onSubjectCreated</a>
+                                <a href="#onSessionCreated" >onSessionCreated</a>
+                            </li>
+                            <li>
+                                <a href="#onSessionsSuspended" >onSessionsSuspended</a>
+                            </li>
+                            <li>
+                                <a href="#openCancelDialog" >openCancelDialog</a>
                             </li>
                             <li>
                                 <a href="#openCreateForm" >openCreateForm</a>
@@ -265,91 +301,19 @@ ATENCIÓN: el formulario de creación no está implementado todavía.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(classSessionService: <a href="../injectables/ClassSessionServiceService.html" target="_self">ClassSessionServiceService</a>, modalUpdateService: <a href="../injectables/ModalEditServiceService.html" target="_self">ModalEditServiceService</a>, modalDeleteService: <a href="../injectables/ModalDeleteServiceService.html" target="_self">ModalDeleteServiceService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:40</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>cuando una actualización se completa y recargar la lista
-cuando una eliminación se completa y recargar la lista</p>
+                            <div class="io-description"><p>Sincroniza lista y recargas tras acciones de modales genéricos.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>classSessionService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ClassSessionServiceService.html" target="_self" >ClassSessionServiceService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que gestiona las operaciones con sesiones de clase</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>modalUpdateService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ModalEditServiceService.html" target="_self" >ModalEditServiceService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio del modal de edición, usado para detectar
-cuando una actualización se completa y recargar la lista</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>modalDeleteService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ModalDeleteServiceService.html" target="_self" >ModalDeleteServiceService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio del modal de eliminación, usado para detectar
-cuando una eliminación se completa y recargar la lista</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -365,6 +329,45 @@ cuando una eliminación se completa y recargar la lista</li>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeCancelDialog"></a>
+                    <span class="name">
+                        <span ><b>closeCancelDialog</b></span>
+                        <a href="#closeCancelDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeCancelDialog()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cierra el diálogo de suspensión masiva.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -385,15 +388,15 @@ cuando una eliminación se completa y recargar la lista</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:72</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Oculta el formulario de creación de sesiones de clase.</p>
+                        <div class="io-description"><p>Oculta el formulario de creación.</p>
 </div>
 
                         <div class="io-description">
@@ -424,15 +427,15 @@ cuando una eliminación se completa y recargar la lista</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:62</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Carga el listado de sesiones de clase al inicializar el componente.</p>
+                        <div class="io-description"><p>Carga inicial de sesiones.</p>
 </div>
 
                         <div class="io-description">
@@ -447,32 +450,139 @@ cuando una eliminación se completa y recargar la lista</li>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onSubjectCreated"></a>
+                    <a name="onSessionCreated"></a>
                     <span class="name">
-                        <span ><b>onSubjectCreated</b></span>
-                        <a href="#onSubjectCreated"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>onSessionCreated</b></span>
+                        <a href="#onSessionCreated"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onSubjectCreated()</code>
+<code>onSessionCreated()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:77</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Cierra el formulario de creación y recarga el listado de sesiones de clase.
-ATENCIÓN: método mal nombrado, debería llamarse onSessionCreated.</p>
+                        <div class="io-description"><p>Cierra el formulario y recarga tras crear una sesión.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSessionsSuspended"></a>
+                    <span class="name">
+                        <span ><b>onSessionsSuspended</b></span>
+                        <a href="#onSessionsSuspended"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSessionsSuspended(count: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Recarga sesiones y muestra el contador tras suspender en bloque.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>count</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCancelDialog"></a>
+                    <span class="name">
+                        <span ><b>openCancelDialog</b></span>
+                        <a href="#openCancelDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openCancelDialog()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el diálogo de suspensión masiva limpiando el resultado anterior.</p>
 </div>
 
                         <div class="io-description">
@@ -503,15 +613,15 @@ ATENCIÓN: método mal nombrado, debería llamarse onSessionCreated.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:67</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Muestra el formulario de creación de sesiones de clase.</p>
+                        <div class="io-description"><p>Muestra el formulario de creación.</p>
 </div>
 
                         <div class="io-description">
@@ -552,13 +662,167 @@ ATENCIÓN: método mal nombrado, debería llamarse onSessionCreated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sesiones renderizadas desde la signal del servicio.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalDeleteService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>modalDeleteService</b></span>
+                        <a href="#modalDeleteService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ModalDeleteService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Modal global usado para detectar borrados completados.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalUpdateService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>modalUpdateService</b></span>
+                        <a href="#modalUpdateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ModalEditService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Modal global usado para detectar ediciones completadas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sessionService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sessionService</b></span>
+                        <a href="#sessionService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ClassSessionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:27</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Listado de sesiones de clase a mostrar, sincronizado con la signal del servicio.</p>
+                    <div class="io-description"><p>Servicio que mantiene la cache de sesiones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showCancelDialog"></a>
+                    <span class="name">
+                        <span ><b>showCancelDialog</b></span>
+                        <a href="#showCancelDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Controla el diálogo de suspensión por periodo.</p>
 </div>
                 </td>
             </tr>
@@ -589,13 +853,50 @@ ATENCIÓN: método mal nombrado, debería llamarse onSessionCreated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:36</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Controla la visibilidad del formulario de creación de sesiones de clase.</p>
+                    <div class="io-description"><p>Controla si se muestra el formulario de creación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="suspendSuccessCount"></a>
+                    <span class="name">
+                        <span ><b>suspendSuccessCount</b></span>
+                        <a href="#suspendSuccessCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/class-session/class-session-list/class-session-list.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Número de sesiones suspendidas en la última operación correcta.</p>
 </div>
                 </td>
             </tr>
@@ -608,133 +909,149 @@ ATENCIÓN: método mal nombrado, debería llamarse onSessionCreated.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect } from &#x27;@angular/core&#x27;;
-import { ClassSessionListItemComponent } from &quot;../class-session-list-item/class-session-list-item.component&quot;;
-import { BotonCreateComponent } from &quot;../../../botones/boton-create/boton-create.component&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, inject, OnInit } from &#x27;@angular/core&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
 import { ClassSession } from &#x27;../../../../../core/models/class-sessions&#x27;;
-import { ClassSessionServiceService } from &#x27;../../../../../core/services/admin/entities/class-session-service.service&#x27;;
-import { ModalEditServiceService } from &#x27;../../../../../core/services/UI/modal-edit-service.service&#x27;;
-import { ModalDeleteServiceService } from &#x27;../../../../../core/services/UI/modal-delete-service.service&#x27;;
+import { ClassSessionService } from &#x27;../../../../../core/services/admin/entities/class-session.service&#x27;;
+import { ModalDeleteService } from &#x27;../../../../../core/services/UI/modal-delete.service&#x27;;
+import { ModalEditService } from &#x27;../../../../../core/services/UI/modal-edit.service&#x27;;
+import { BotonCreateComponent } from &#x27;../../../botones/boton-create/boton-create.component&#x27;;
+import { ClassSessionCancelDialogComponent } from &#x27;../class-session-cancel-dialog/class-session-cancel-dialog.component&#x27;;
+import { ClassSessionCreateFormComponent } from &#x27;../class-session-create-form/class-session-create-form.component&#x27;;
+import { ClassSessionListItemComponent } from &#x27;../class-session-list-item/class-session-list-item.component&#x27;;
 
-
-/**
- * Componente que muestra el listado de sesiones de clase del sistema.
- * Gestiona la visualización del listado, la apertura del formulario de creación
- * y la recarga automática de la lista tras operaciones de eliminación o actualización.
- * ATENCIÓN: el formulario de creación no está implementado todavía.
- */
+/** Listado administrativo de sesiones de clase con creación y suspensión masiva. */
 @Component({
   selector: &#x27;app-class-session-list&#x27;,
-  imports: [ClassSessionListItemComponent, BotonCreateComponent],
+  imports: [
+    ClassSessionListItemComponent,
+    ClassSessionCreateFormComponent,
+    BotonCreateComponent,
+    ClassSessionCancelDialogComponent,
+    TranslateModule,
+  ],
   templateUrl: &#x27;./class-session-list.component.html&#x27;,
-  styleUrl: &#x27;./class-session-list.component.scss&#x27;
+  styleUrl: &#x27;./class-session-list.component.scss&#x27;,
 })
-export class ClassSessionListComponent {
+export class ClassSessionListComponent implements OnInit {
+  /** Servicio que mantiene la cache de sesiones. */
+  private readonly sessionService &#x3D; inject(ClassSessionService);
+  /** Modal global usado para detectar borrados completados. */
+  private readonly modalDeleteService &#x3D; inject(ModalDeleteService);
+  /** Modal global usado para detectar ediciones completadas. */
+  private readonly modalUpdateService &#x3D; inject(ModalEditService);
 
-  /**
-   * Listado de sesiones de clase a mostrar, sincronizado con la signal del servicio.
-   */
-  classSessions: ClassSession[] &#x3D; []
-
-    /**
-   * Controla la visibilidad del formulario de creación de sesiones de clase.
-   */
+  /** Sesiones renderizadas desde la signal del servicio. */
+  classSessions: ClassSession[] &#x3D; [];
+  /** Controla si se muestra el formulario de creación. */
   showCreateForm &#x3D; false;
+  /** Controla el diálogo de suspensión por periodo. */
+  showCancelDialog &#x3D; false;
+  /** Número de sesiones suspendidas en la última operación correcta. */
+  suspendSuccessCount: number | null &#x3D; null;
 
-    /**
-   * @param classSessionService - Servicio que gestiona las operaciones con sesiones de clase
-   * @param modalUpdateService - Servicio del modal de edición, usado para detectar
-   * cuando una actualización se completa y recargar la lista
-   * @param modalDeleteService - Servicio del modal de eliminación, usado para detectar
-   * cuando una eliminación se completa y recargar la lista
-   */
-  constructor(private classSessionService: ClassSessionServiceService,
-    private modalUpdateService: ModalEditServiceService,
-    private modalDeleteService: ModalDeleteServiceService) {
-
-      effect(() &#x3D;&gt; {this.classSessions &#x3D; classSessionService.classSessions()})
+  /** Sincroniza lista y recargas tras acciones de modales genéricos. */
+  constructor() {
+    effect(() &#x3D;&gt; {
+      this.classSessions &#x3D; this.sessionService.classSessions();
+    });
     effect(() &#x3D;&gt; {
       const deleteModalState &#x3D; this.modalDeleteService.modalState();
-      const updateModalState &#x3D; this.modalUpdateService.modalState();
-     
-
-      // Si el modal se cerró (después de haber estado abierto con éxito)
       if (!deleteModalState.isOpen &amp;&amp; deleteModalState.showSuccess) {
-        console.log(&#x27;✅ Eliminado con éxito, recargando lista...&#x27;);
-        this.classSessionService.loadSessions();
+        this.sessionService.loadSessions();
       }
-
+    });
+    effect(() &#x3D;&gt; {
+      const updateModalState &#x3D; this.modalUpdateService.modalState();
       if (!updateModalState.isOpen &amp;&amp; updateModalState.showSuccess) {
-        console.log(&#x27;✅ Actualizado con éxito, recargando lista...&#x27;);
-        this.classSessionService.loadSessions();
+        this.sessionService.loadSessions();
       }
     });
   }
 
-    /**
-   * Carga el listado de sesiones de clase al inicializar el componente.
-   */
+  /** Carga inicial de sesiones. */
   ngOnInit(): void {
-    this.classSessionService.loadSessions();
+    this.sessionService.loadSessions();
   }
 
-
-
-/**
-   * Muestra el formulario de creación de sesiones de clase.
-   */
-  openCreateForm() {
+  /** Muestra el formulario de creación. */
+  openCreateForm(): void {
     this.showCreateForm &#x3D; true;
   }
 
-    /**
-   * Oculta el formulario de creación de sesiones de clase.
-   */
-  closeCreateForm() {
+  /** Oculta el formulario de creación. */
+  closeCreateForm(): void {
     this.showCreateForm &#x3D; false;
   }
 
-   /**
-   * Cierra el formulario de creación y recarga el listado de sesiones de clase.
-   * ATENCIÓN: método mal nombrado, debería llamarse onSessionCreated.
-   */
-  onSubjectCreated() {
+  /** Cierra el formulario y recarga tras crear una sesión. */
+  onSessionCreated(): void {
     this.closeCreateForm();
-    this.classSessionService.loadSessions();
+    this.sessionService.loadSessions();
   }
 
+  /** Abre el diálogo de suspensión masiva limpiando el resultado anterior. */
+  openCancelDialog(): void {
+    this.suspendSuccessCount &#x3D; null;
+    this.showCancelDialog &#x3D; true;
+  }
+
+  /** Cierra el diálogo de suspensión masiva. */
+  closeCancelDialog(): void {
+    this.showCancelDialog &#x3D; false;
+  }
+
+  /** Recarga sesiones y muestra el contador tras suspender en bloque. */
+  onSessionsSuspended(count: number): void {
+    this.showCancelDialog &#x3D; false;
+    this.suspendSuccessCount &#x3D; count;
+    this.sessionService.loadSessions();
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- subject-list.component.html --&gt;
-&lt;div class&#x3D;&quot;p-4&quot;&gt;
-  
-  &lt;!-- Vista: Lista --&gt;
-  @if(!showCreateForm){
-    &lt;div class&#x3D;&quot;flex justify-between items-center mb-4&quot;&gt;
-      &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;Class Sessions&lt;/h1&gt;
-      &lt;app-boton-create 
-      label&#x3D;&quot;Crear Sesiones&quot;
-      (clickAction)&#x3D;&quot;openCreateForm()&quot;&gt; 
-      &lt;/app-boton-create&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;p-4&quot;&gt;
+  @if (!showCreateForm) {
+    &lt;div class&#x3D;&quot;flex justify-between items-center mb-4 flex-wrap gap-2&quot;&gt;
+      &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;entities.classSession.title&#x27; | translate }}&lt;/h1&gt;
+      &lt;div class&#x3D;&quot;flex gap-2&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          class&#x3D;&quot;px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 text-sm font-medium&quot;
+          (click)&#x3D;&quot;openCancelDialog()&quot;
+        &gt;
+          {{ &#x27;lists.classSessions.cancelClassesButton&#x27; | translate }}
+        &lt;/button&gt;
+        &lt;app-boton-create
+          [label]&#x3D;&quot;&#x27;lists.classSessions.createButton&#x27; | translate&quot;
+          (clickAction)&#x3D;&quot;openCreateForm()&quot;
+        /&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
-    @for (class of classSessions; track class.id){
-    &lt;app-class-session-list-item [classSession]&#x3D;&quot;class&quot;
-        &gt;&lt;/app-class-session-list-item&gt;
+    @if (suspendSuccessCount !&#x3D;&#x3D; null) {
+      &lt;div class&#x3D;&quot;mb-4 p-3 bg-green-100 border border-green-400 rounded text-green-800 text-sm&quot;&gt;
+        {{ &#x27;lists.classSessions.cancelDialog.success&#x27; | translate: { count: suspendSuccessCount } }}
+      &lt;/div&gt;
     }
-  } 
-   
-    
-
-  &lt;!-- Vista: Formulario --&gt;
-  @if(showCreateForm){
-   &lt;p&gt;
-    aquí tendriamos el create form 
-    pero este irá de otra manera...
-   &lt;/p&gt;
+    @for (session of classSessions; track session.id) {
+      &lt;app-class-session-list-item [classSession]&#x3D;&quot;session&quot; /&gt;
+    }
   }
+  @if (showCancelDialog) {
+    &lt;app-class-session-cancel-dialog
+      (closed)&#x3D;&quot;closeCancelDialog()&quot;
+      (suspended)&#x3D;&quot;onSessionsSuspended($event)&quot;
+    /&gt;
+  }
+  @if (showCreateForm) {
+    &lt;app-class-session-create-form
+      (cancelCreate)&#x3D;&quot;closeCreateForm()&quot;
+      (sessionCreated)&#x3D;&quot;onSessionCreated()&quot;
+    /&gt;
+  }
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -764,8 +1081,8 @@ export class ClassSessionListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- subject-list.component.html --><div class="p-4">    <!-- Vista: Lista -->  @if(!showCreateForm){    <div class="flex justify-between items-center mb-4">      <h1 class="text-2xl font-bold">Class Sessions</h1>      <app-boton-create       label="Crear Sesiones"      (clickAction)="openCreateForm()">       </app-boton-create>    </div>    @for (class of classSessions; track class.id){    <app-class-session-list-item [classSession]="class"        ></app-class-session-list-item>    }  }          <!-- Vista: Formulario -->  @if(showCreateForm){   <p>    aquí tendriamos el create form     pero este irá de otra manera...   </p>  }</div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="p-4">  @if (!showCreateForm) {    <div class="flex justify-between items-center mb-4 flex-wrap gap-2">      <h1 class="text-2xl font-bold">{{ \'entities.classSession.title\' | translate }}</h1>      <div class="flex gap-2">        <button          type="button"          class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 text-sm font-medium"          (click)="openCancelDialog()"        >          {{ \'lists.classSessions.cancelClassesButton\' | translate }}        </button>        <app-boton-create          [label]="\'lists.classSessions.createButton\' | translate"          (clickAction)="openCreateForm()"        />      </div>    </div>    @if (suspendSuccessCount !== null) {      <div class="mb-4 p-3 bg-green-100 border border-green-400 rounded text-green-800 text-sm">        {{ \'lists.classSessions.cancelDialog.success\' | translate: { count: suspendSuccessCount } }}      </div>    }    @for (session of classSessions; track session.id) {      <app-class-session-list-item [classSession]="session" />    }  }  @if (showCancelDialog) {    <app-class-session-cancel-dialog      (closed)="closeCancelDialog()"      (suspended)="onSessionsSuspended($event)"    />  }  @if (showCreateForm) {    <app-class-session-create-form      (cancelCreate)="closeCreateForm()"      (sessionCreated)="onSessionCreated()"    />  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ClassSessionListComponent'};
 </script>

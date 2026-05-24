@@ -36,18 +36,27 @@ interface BloqueTemario {
   styleUrls: ['./temario-alumno.component.scss']
 })
 export class TemarioAlumnoComponent implements OnInit {
+  /** Servicio de entregas usado para obtener tareas del alumno. */
   private studentTaskService = inject(StudentTaskService);
+  /** Ruta activa de la que se lee la asignatura seleccionada. */
   private route = inject(ActivatedRoute);
+  /** Traducciones de errores y etiquetas. */
   private translate = inject(TranslateService);
 
+  /** Estado de carga del temario. */
   loading = signal<boolean>(true);
+  /** Mensaje de error visible. */
   error = signal<string>('');
 
+  /** Bloques de acordeón con tareas agrupadas por tipo. */
   bloques = signal<BloqueTemario[]>([]);
 
+  /** Enum expuesto al template para pintar estados. */
   SubmissionStatus = SubmissionStatus;
+  /** Nombre de asignatura recibido por ruta. */
   claseEnCurso = decodeURIComponent(this.route.snapshot.paramMap.get('claseId') || '');
 
+  /** Carga las tareas de la asignatura al montar la pantalla. */
   ngOnInit(): void {
     this.loadTasks();
   }

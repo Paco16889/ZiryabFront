@@ -30,32 +30,50 @@ import { WeekScheduleClassesHttpService } from '../../../../../core/services/adm
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleCreateClassSelectComponent implements OnInit {
+  /** Cliente HTTP específico que devuelve las clases agregadas para crear plantillas. */
   private readonly classesApi = inject(WeekScheduleClassesHttpService);
 
+  /** Helper expuesto al template para usar la misma clave que el formulario padre. */
   readonly classKey = weekScheduleClassKey;
 
+  /** Curso escolar usado para consultar y mostrar solo clases del año activo. */
   readonly schoolYear = input(environment.currentSchoolYear);
+
   /** Clave de la clase seleccionada (`weekScheduleClassKey`). */
   readonly selectedClassKey = input('');
+
+  /** Activa el mensaje de selección obligatoria tras intentar enviar el formulario padre. */
   readonly showValidation = input(false);
+
+  /** Bloquea el selector cuando la creación de plantilla no debe modificarse. */
   readonly disabled = input(false);
 
+  /** Emite la clase completa, no solo la clave, para construir luego el payload. */
   readonly classChange = output<WeekScheduleClassItem | null>();
 
+  /** Estado de carga mientras se consulta el endpoint de clases. */
   readonly loading = signal(true);
+
+  /** Indica que la consulta falló o devolvió una respuesta no exitosa. */
   readonly loadError = signal(false);
+
+  /** Cache local de clases devueltas por el API antes de aplicar filtros de elegibilidad. */
   private readonly allClasses = signal<WeekScheduleClassItem[]>([]);
 
+  /** Clases con curso/grupo/año suficientes para poder materializar una plantilla. */
   readonly eligibleClasses = computed(() =>
     this.allClasses().filter(isWeekScheduleClassEligibleForCreateTemplate),
   );
 
+  /** Etiqueta del año escolar que se muestra junto al selector. */
   readonly schoolYearLabel = computed(() => this.schoolYear());
 
+  /** Carga las clases disponibles al montar el selector. */
   ngOnInit(): void {
     this.loadClasses();
   }
 
+  /** Consulta el API y ordena las clases por etiqueta para facilitar la selección. */
   loadClasses(): void {
     this.loading.set(true);
     this.loadError.set(false);
@@ -78,6 +96,7 @@ export class WeekScheduleCreateClassSelectComponent implements OnInit {
     });
   }
 
+  /** Traduce la clave seleccionada en el `<select>` a la clase agregada completa. */
   onSelectChange(raw: string): void {
     if (!raw) {
       this.classChange.emit(null);

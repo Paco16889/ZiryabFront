@@ -23,13 +23,19 @@ import { TaskListItemComponent } from '../task-list-item/task-list-item.componen
   styleUrl: './task-list.component.scss',
 })
 export class TaskListComponent implements OnInit {
+  /** Servicio que mantiene la cache admin de tareas. */
   private readonly taskService = inject(AdminTaskService);
+  /** Modal global usado para detectar borrados completados. */
   private readonly modalDeleteService = inject(ModalDeleteService);
+  /** Modal global usado para detectar ediciones completadas. */
   private readonly modalUpdateService = inject(ModalEditService);
 
+  /** Tareas renderizadas desde la signal del servicio. */
   tasks: Task[] = [];
+  /** Controla si se muestra el formulario de creación. */
   showCreateForm = false;
 
+  /** Sincroniza lista y recarga tras acciones de modales genéricos. */
   constructor() {
     effect(() => {
       this.tasks = this.taskService.tasks();
@@ -48,18 +54,22 @@ export class TaskListComponent implements OnInit {
     });
   }
 
+  /** Carga inicial de tareas. */
   ngOnInit(): void {
     this.taskService.loadTasks();
   }
 
+  /** Muestra el formulario de creación. */
   openCreateForm(): void {
     this.showCreateForm = true;
   }
 
+  /** Oculta el formulario de creación. */
   closeCreateForm(): void {
     this.showCreateForm = false;
   }
 
+  /** Cierra el formulario y recarga tras crear tarea. */
   onTaskCreated(): void {
     this.closeCreateForm();
     this.taskService.loadTasks();

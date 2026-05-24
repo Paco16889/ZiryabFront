@@ -1,0 +1,1244 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TemarioAlumnoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/alumno/temario-alumno/temario-alumno.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente TemarioAlumno</p>
+<p>Responsable de renderizar las tareas y materiales de la asignatura
+categorizados en bloques semánticos (acordeones) interactivos para el alumno.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-temario-alumno</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterModule" target="_blank" >RouterModule</a></code>
+                            <code>TranslateModule</code>
+                                <code><a href="../components/BotonAtrasComponent.html" target="_self" >BotonAtrasComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./temario-alumno.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./temario-alumno.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bloques" >bloques</a>
+                            </li>
+                            <li>
+                                <a href="#claseEnCurso" >claseEnCurso</a>
+                            </li>
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#studentTaskService" >studentTaskService</a>
+                            </li>
+                            <li>
+                                <a href="#SubmissionStatus" >SubmissionStatus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#groupTasksByType" >groupTasksByType</a>
+                            </li>
+                            <li>
+                                <a href="#loadTasks" >loadTasks</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleBloque" >toggleBloque</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupTasksByType"></a>
+                    <span class="name">
+                        <span ><b>groupTasksByType</b></span>
+                        <a href="#groupTasksByType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>groupTasksByType(tasks: StudentTask[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Categoriza las tareas en grupos (BloqueTemario) basados en su <code>TaskType</code>.
+Verifica automáticamente si las tareas pendientes están atrasadas y cambia su estado local.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tasks</td>
+                                            <td>
+                                                        <code>StudentTask[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Listado de tareas pre-filtradas para la asignatura actual.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadTasks"></a>
+                    <span class="name">
+                        <span ><b>loadTasks</b></span>
+                        <a href="#loadTasks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadTasks()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga todas las tareas del estudiante y filtra por la asignatura actual.
+Posteriormente, agrupa los resultados por tipo de tarea.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga las tareas de la asignatura al montar la pantalla.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleBloque"></a>
+                    <span class="name">
+                        <span ><b>toggleBloque</b></span>
+                        <a href="#toggleBloque"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleBloque(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Alterna el estado (abierto/cerrado) del bloque de acordeón indicado en la interfaz.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Posición del bloque dentro de la lista interactiva.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bloques"></a>
+                    <span class="name">
+                        <span ><b>bloques</b></span>
+                        <a href="#bloques"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;BloqueTemario[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bloques de acordeón con tareas agrupadas por tipo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="claseEnCurso"></a>
+                    <span class="name">
+                        <span ><b>claseEnCurso</b></span>
+                        <a href="#claseEnCurso"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>decodeURIComponent(this.route.snapshot.paramMap.get(&#x27;claseId&#x27;) || &#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Nombre de asignatura recibido por ruta.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error visible.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga del temario.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ruta activa de la que se lee la asignatura seleccionada.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentTaskService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>studentTaskService</b></span>
+                        <a href="#studentTaskService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StudentTaskService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de entregas usado para obtener tareas del alumno.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SubmissionStatus"></a>
+                    <span class="name">
+                        <span ><b>SubmissionStatus</b></span>
+                        <a href="#SubmissionStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>SubmissionStatus</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Enum expuesto al template para pintar estados.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/alumno/temario-alumno/temario-alumno.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de errores y etiquetas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, inject, signal } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { BotonAtrasComponent } from &#x27;../../shared/boton-atras/boton-atras.component&#x27;;
+import { StudentTaskService } from &#x27;../../../core/services/alumno/student-task.service&#x27;;
+import { StudentTask, SubmissionStatus } from &#x27;../../../core/models/studentTask&#x27;;
+import { TaskType } from &#x27;../../../core/models/task&#x27;;
+import { resolveApiError } from &#x27;../../../core/i18n/api-error.util&#x27;;
+
+/**
+ * Interfaz que define la estructura agrupada de un bloque temático en el acordeón del Temario.
+ */
+interface BloqueTemario {
+  /** Clave i18n del bloque (syllabus.sections.*) */
+  titleKey: string;
+  /** Indica si este bloque está expandido visualmente */
+  abierto: boolean;
+  /** URL de icono asociado al bloque */
+  icono: string;
+  /** Tareas (StudentTasks) agrupadas correspondientes a este bloque */
+  tareas: StudentTask[];
+}
+
+/**
+ * Componente TemarioAlumno
+ *
+ * Responsable de renderizar las tareas y materiales de la asignatura
+ * categorizados en bloques semánticos (acordeones) interactivos para el alumno.
+ */
+@Component({
+  selector: &#x27;app-temario-alumno&#x27;,
+  standalone: true,
+  imports: [CommonModule, RouterModule, TranslateModule, BotonAtrasComponent],
+  templateUrl: &#x27;./temario-alumno.component.html&#x27;,
+  styleUrls: [&#x27;./temario-alumno.component.scss&#x27;]
+})
+export class TemarioAlumnoComponent implements OnInit {
+  /** Servicio de entregas usado para obtener tareas del alumno. */
+  private studentTaskService &#x3D; inject(StudentTaskService);
+  /** Ruta activa de la que se lee la asignatura seleccionada. */
+  private route &#x3D; inject(ActivatedRoute);
+  /** Traducciones de errores y etiquetas. */
+  private translate &#x3D; inject(TranslateService);
+
+  /** Estado de carga del temario. */
+  loading &#x3D; signal&lt;boolean&gt;(true);
+  /** Mensaje de error visible. */
+  error &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Bloques de acordeón con tareas agrupadas por tipo. */
+  bloques &#x3D; signal&lt;BloqueTemario[]&gt;([]);
+
+  /** Enum expuesto al template para pintar estados. */
+  SubmissionStatus &#x3D; SubmissionStatus;
+  /** Nombre de asignatura recibido por ruta. */
+  claseEnCurso &#x3D; decodeURIComponent(this.route.snapshot.paramMap.get(&#x27;claseId&#x27;) || &#x27;&#x27;);
+
+  /** Carga las tareas de la asignatura al montar la pantalla. */
+  ngOnInit(): void {
+    this.loadTasks();
+  }
+
+  /**
+   * Carga todas las tareas del estudiante y filtra por la asignatura actual.
+   * Posteriormente, agrupa los resultados por tipo de tarea.
+   */
+  loadTasks() {
+    this.studentTaskService.getAllStudentTasks().subscribe({
+      next: (res) &#x3D;&gt; {
+        if (res.success) {
+          const filteredTasks &#x3D; res.data.filter(t &#x3D;&gt;
+             t.task.teacherAssignment?.subject?.name?.toLowerCase() &#x3D;&#x3D;&#x3D; this.claseEnCurso.toLowerCase()
+          );
+          this.groupTasksByType(filteredTasks);
+        } else {
+          this.error.set(this.translate.instant(&#x27;common.errors.loadStudentTasksFailed&#x27;));
+        }
+        this.loading.set(false);
+      },
+      error: (err) &#x3D;&gt; {
+        this.error.set(resolveApiError(this.translate, err, &#x27;common.errors.connection&#x27;));
+        this.loading.set(false);
+      }
+    });
+  }
+
+  /**
+   * Categoriza las tareas en grupos (BloqueTemario) basados en su &#x60;TaskType&#x60;.
+   * Verifica automáticamente si las tareas pendientes están atrasadas y cambia su estado local.
+   * @param tasks Listado de tareas pre-filtradas para la asignatura actual.
+   */
+  groupTasksByType(tasks: StudentTask[]) {
+    const configBloques &#x3D; [
+      { tipo: TaskType.THEORY, titleKey: &#x27;syllabus.sections.THEORY&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/4207/4207253.png&#x27; },
+      { tipo: TaskType.EXAM, titleKey: &#x27;syllabus.sections.EXAM&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362402.png&#x27; },
+      { tipo: TaskType.PROJECT, titleKey: &#x27;syllabus.sections.PROJECT&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/1087/1087815.png&#x27; },
+      { tipo: TaskType.PRACTICE, titleKey: &#x27;syllabus.sections.PRACTICE&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/471/471495.png&#x27; },
+      { tipo: TaskType.HOMEWORK, titleKey: &#x27;syllabus.sections.HOMEWORK&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362369.png&#x27; }
+    ];
+
+    const nuevosBloques: BloqueTemario[] &#x3D; [];
+    const now &#x3D; new Date();
+    for (const conf of configBloques) {
+      const tareasDeTipo &#x3D; tasks.filter(t &#x3D;&gt; t.task.type &#x3D;&#x3D;&#x3D; conf.tipo);
+
+      if (tareasDeTipo.length &gt; 0) {
+        tareasDeTipo.sort((a, b) &#x3D;&gt; new Date(a.task.dueDate).getTime() - new Date(b.task.dueDate).getTime());
+        tareasDeTipo.forEach(t &#x3D;&gt; {
+          if (t.status &#x3D;&#x3D;&#x3D; SubmissionStatus.PENDING &amp;&amp; new Date(t.task.dueDate) &lt; now) {
+            t.status &#x3D; SubmissionStatus.LATE;
+          }
+        });
+
+        nuevosBloques.push({
+          titleKey: conf.titleKey,
+          abierto: nuevosBloques.length &#x3D;&#x3D;&#x3D; 0,
+          tareas: tareasDeTipo,
+          icono: conf.icono
+        });
+      }
+    }
+
+    this.bloques.set(nuevosBloques);
+  }
+
+  /**
+   * Alterna el estado (abierto/cerrado) del bloque de acordeón indicado en la interfaz.
+   * @param index Posición del bloque dentro de la lista interactiva.
+   */
+  toggleBloque(index: number): void {
+    this.bloques.update(bs &#x3D;&gt; {
+      const clon &#x3D; [...bs];
+      clon[index].abierto &#x3D; !clon[index].abierto;
+      return clon;
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;w-full max-w-4xl mx-auto p-6 font-sans text-slate-600 bg-slate-50 min-h-screen relative overflow-hidden&quot;&gt;
+  
+  &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+    &lt;app-boton-atras class&#x3D;&quot;relative z-10&quot;&gt;&lt;/app-boton-atras&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;text-center mb-10 relative&quot;&gt;
+    &lt;h1 class&#x3D;&quot;text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2 pb-2 leading-normal capitalize&quot;&gt;
+      {{ &#x27;syllabus.titlePrefix&#x27; | translate }} {{ claseEnCurso }}
+    &lt;/h1&gt;
+    &lt;p class&#x3D;&quot;text-slate-500&quot;&gt;{{ &#x27;syllabus.studentIntro&#x27; | translate }}&lt;/p&gt;
+  &lt;/div&gt;
+
+  @if (loading()) {
+    &lt;div class&#x3D;&quot;flex justify-center items-center py-20&quot;&gt;
+      &lt;div class&#x3D;&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  } @else if (error()) {
+    &lt;div class&#x3D;&quot;bg-red-50 border-l-4 border-red-500 p-4 mb-4 rounded shadow-sm text-red-700&quot;&gt;
+      {{ error() }}
+    &lt;/div&gt;
+  } @else {
+    &lt;div class&#x3D;&quot;flex flex-col gap-5 pb-6&quot;&gt;
+        @for (bloque of bloques(); track bloque.titleKey; let i &#x3D; $index) {
+        
+        &lt;div class&#x3D;&quot;rounded-3xl border transition-all duration-300 overflow-hidden bg-white hover:shadow-md&quot; [ngClass]&#x3D;&quot;{
+            &#x27;shadow-xl border-indigo-200 ring-2 ring-indigo-50&#x27;: bloque.abierto,
+            &#x27;border-slate-200&#x27;: !bloque.abierto
+            }&quot;&gt;
+
+            &lt;button (click)&#x3D;&quot;toggleBloque(i)&quot;
+                class&#x3D;&quot;w-full flex items-center justify-between p-5 cursor-pointer focus:outline-none group select-none&quot;&gt;
+                
+                &lt;div class&#x3D;&quot;flex items-center gap-5&quot;&gt;
+                    &lt;div class&#x3D;&quot;flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300&quot;
+                        [class]&#x3D;&quot;bloque.abierto ? &#x27;bg-indigo-50 border-indigo-100 scale-105 shadow-sm&#x27; : &#x27;bg-slate-50 border-transparent&#x27;&quot;&gt;
+                        &lt;img [src]&#x3D;&quot;bloque.icono&quot; alt&#x3D;&quot;Icono&quot; class&#x3D;&quot;w-8 h-8 object-contain transition-opacity duration-300&quot; [class.opacity-100]&#x3D;&quot;bloque.abierto&quot; [class.opacity-60]&#x3D;&quot;!bloque.abierto&quot;&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;text-left&quot;&gt;
+                        &lt;h3 class&#x3D;&quot;font-bold text-lg text-slate-800 leading-snug&quot; [class.text-indigo-700]&#x3D;&quot;bloque.abierto&quot;&gt;
+                            {{ bloque.titleKey | translate }}
+                        &lt;/h3&gt;
+                        &lt;span class&#x3D;&quot;inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md mt-1 bg-slate-100 text-slate-500&quot;&gt;
+                            {{ &#x27;syllabus.itemsCount&#x27; | translate:{ count: bloque.tareas.length } }}
+                        &lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 bg-slate-50 border border-slate-100 shrink-0&quot;
+                    [class.rotate-180]&#x3D;&quot;bloque.abierto&quot;&gt;
+                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;w-6 h-6 text-slate-400&quot; viewBox&#x3D;&quot;0 0 24 24&quot; fill&#x3D;&quot;none&quot;
+                        stroke&#x3D;&quot;currentColor&quot; stroke-width&#x3D;&quot;2.5&quot; stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot;&gt;
+                        &lt;path d&#x3D;&quot;M6 9l6 6 6-6&quot; /&gt;
+                    &lt;/svg&gt;
+                &lt;/div&gt;
+            &lt;/button&gt;
+
+            @if (bloque.abierto) {
+            &lt;div class&#x3D;&quot;p-4 bg-slate-50/50 border-t border-slate-100&quot;&gt;
+                &lt;ul class&#x3D;&quot;flex flex-col gap-3&quot;&gt;
+                    @for (st of bloque.tareas; track st.id) {
+                    
+                    &lt;a [routerLink]&#x3D;&quot;[&#x27;/tarea&#x27;, st.id]&quot; 
+                       class&#x3D;&quot;flex items-center gap-4 p-4 rounded-xl hover:bg-white transition-all cursor-pointer group/tema border border-transparent hover:border-slate-200 hover:shadow-sm&quot;&gt;
+                        
+                        &lt;div class&#x3D;&quot;flex flex-col flex-grow&quot;&gt;
+                          &lt;span class&#x3D;&quot;text-slate-800 font-bold text-base group-hover/tema:text-indigo-600 transition-colors&quot;&gt;
+                              {{ st.task.title }}
+                          &lt;/span&gt;
+                          &lt;span class&#x3D;&quot;text-xs text-slate-500 mt-1 line-clamp-1&quot;&gt;
+                              {{ &#x27;syllabus.dueLabel&#x27; | translate }} {{ st.task.dueDate | date:&#x27;medium&#x27; }}
+                          &lt;/span&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;shrink-0 flex items-center&quot;&gt;
+                            @switch (st.status) {
+                                @case (SubmissionStatus.PENDING) {
+                                    &lt;span class&#x3D;&quot;px-3 py-1 bg-white border border-amber-200 text-amber-700 rounded-full text-xs font-bold shadow-sm shadow-amber-50 flex items-center gap-2&quot;&gt;
+                                        &lt;div class&#x3D;&quot;w-2 h-2 rounded-full bg-amber-400 animate-pulse&quot;&gt;&lt;/div&gt;
+                                        {{ &#x27;studentTaskDetail.status.PENDING&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+                                @case (SubmissionStatus.SUBMITTED) {
+                                    &lt;span class&#x3D;&quot;px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-bold shadow-sm shadow-emerald-50 flex items-center gap-1.5&quot;&gt;
+                                        &lt;svg class&#x3D;&quot;w-3.5 h-3.5&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;3&quot; d&#x3D;&quot;M5 13l4 4L19 7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+                                        {{ &#x27;studentTaskDetail.status.SUBMITTED&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+                                @case (SubmissionStatus.GRADED) {
+                                    &lt;span class&#x3D;&quot;px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-full text-xs font-bold shadow-sm shadow-indigo-50 flex items-center gap-1.5&quot;&gt;
+                                        &lt;span class&#x3D;&quot;bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded mr-0.5&quot;&gt;{{ st.score }}&lt;/span&gt;
+                                        {{ &#x27;studentTaskDetail.status.GRADED&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+                                @case (SubmissionStatus.LATE) {
+                                    &lt;span class&#x3D;&quot;px-3 py-1 bg-orange-50 border border-orange-200 text-orange-700 rounded-full text-xs font-bold shadow-sm flex items-center gap-1.5&quot;&gt;
+                                        {{ &#x27;studentTaskDetail.status.LATE&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+                                @default {
+                                    &lt;span class&#x3D;&quot;px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-full text-xs font-bold flex items-center gap-1.5 line-through decoration-slate-400 opacity-80&quot;&gt;
+                                        {{ &#x27;studentTaskDetail.status.NOT_SUBMITTED&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+                            }
+                        &lt;/div&gt;
+                    &lt;/a&gt;
+                    }
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            }
+        &lt;/div&gt;
+        }
+
+        @if (bloques().length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !loading() &amp;&amp; !error()) {
+            &lt;div class&#x3D;&quot;text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300&quot;&gt;
+            &lt;div class&#x3D;&quot;w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400&quot;&gt;
+                &lt;svg class&#x3D;&quot;w-8 h-8&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 6v6m0 0v6m0-6h6m-6 0H6&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+            &lt;/div&gt;
+            &lt;h3 class&#x3D;&quot;text-xl font-bold text-slate-700 mb-1&quot;&gt;{{ &#x27;syllabus.emptyTitle&#x27; | translate }}&lt;/h3&gt;
+            &lt;p class&#x3D;&quot;text-slate-500&quot;&gt;{{ &#x27;syllabus.emptyBody&#x27; | translate }}&lt;/p&gt;
+            &lt;/div&gt;
+        }
+    &lt;/div&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./temario-alumno.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="w-full max-w-4xl mx-auto p-6 font-sans text-slate-600 bg-slate-50 min-h-screen relative overflow-hidden">    <div class="mb-4">    <app-boton-atras class="relative z-10"></app-boton-atras>  </div>  <div class="text-center mb-10 relative">    <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2 pb-2 leading-normal capitalize">      {{ \'syllabus.titlePrefix\' | translate }} {{ claseEnCurso }}    </h1>    <p class="text-slate-500">{{ \'syllabus.studentIntro\' | translate }}</p>  </div>  @if (loading()) {    <div class="flex justify-center items-center py-20">      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>    </div>  } @else if (error()) {    <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4 rounded shadow-sm text-red-700">      {{ error() }}    </div>  } @else {    <div class="flex flex-col gap-5 pb-6">        @for (bloque of bloques(); track bloque.titleKey; let i = $index) {                <div class="rounded-3xl border transition-all duration-300 overflow-hidden bg-white hover:shadow-md" [ngClass]="{            \'shadow-xl border-indigo-200 ring-2 ring-indigo-50\': bloque.abierto,            \'border-slate-200\': !bloque.abierto            }">            <button (click)="toggleBloque(i)"                class="w-full flex items-center justify-between p-5 cursor-pointer focus:outline-none group select-none">                                <div class="flex items-center gap-5">                    <div class="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300"                        [class]="bloque.abierto ? \'bg-indigo-50 border-indigo-100 scale-105 shadow-sm\' : \'bg-slate-50 border-transparent\'">                        <img [src]="bloque.icono" alt="Icono" class="w-8 h-8 object-contain transition-opacity duration-300" [class.opacity-100]="bloque.abierto" [class.opacity-60]="!bloque.abierto">                    </div>                    <div class="text-left">                        <h3 class="font-bold text-lg text-slate-800 leading-snug" [class.text-indigo-700]="bloque.abierto">                            {{ bloque.titleKey | translate }}                        </h3>                        <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md mt-1 bg-slate-100 text-slate-500">                            {{ \'syllabus.itemsCount\' | translate:{ count: bloque.tareas.length } }}                        </span>                    </div>                </div>                <div class="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 bg-slate-50 border border-slate-100 shrink-0"                    [class.rotate-180]="bloque.abierto">                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-400" viewBox="0 0 24 24" fill="none"                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">                        <path d="M6 9l6 6 6-6" />                    </svg>                </div>            </button>            @if (bloque.abierto) {            <div class="p-4 bg-slate-50/50 border-t border-slate-100">                <ul class="flex flex-col gap-3">                    @for (st of bloque.tareas; track st.id) {                                        <a [routerLink]="[\'/tarea\', st.id]"                        class="flex items-center gap-4 p-4 rounded-xl hover:bg-white transition-all cursor-pointer group/tema border border-transparent hover:border-slate-200 hover:shadow-sm">                                                <div class="flex flex-col flex-grow">                          <span class="text-slate-800 font-bold text-base group-hover/tema:text-indigo-600 transition-colors">                              {{ st.task.title }}                          </span>                          <span class="text-xs text-slate-500 mt-1 line-clamp-1">                              {{ \'syllabus.dueLabel\' | translate }} {{ st.task.dueDate | date:\'medium\' }}                          </span>                        </div>                        <div class="shrink-0 flex items-center">                            @switch (st.status) {                                @case (SubmissionStatus.PENDING) {                                    <span class="px-3 py-1 bg-white border border-amber-200 text-amber-700 rounded-full text-xs font-bold shadow-sm shadow-amber-50 flex items-center gap-2">                                        <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></div>                                        {{ \'studentTaskDetail.status.PENDING\' | translate }}                                    </span>                                }                                @case (SubmissionStatus.SUBMITTED) {                                    <span class="px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-bold shadow-sm shadow-emerald-50 flex items-center gap-1.5">                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>                                        {{ \'studentTaskDetail.status.SUBMITTED\' | translate }}                                    </span>                                }                                @case (SubmissionStatus.GRADED) {                                    <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-full text-xs font-bold shadow-sm shadow-indigo-50 flex items-center gap-1.5">                                        <span class="bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded mr-0.5">{{ st.score }}</span>                                        {{ \'studentTaskDetail.status.GRADED\' | translate }}                                    </span>                                }                                @case (SubmissionStatus.LATE) {                                    <span class="px-3 py-1 bg-orange-50 border border-orange-200 text-orange-700 rounded-full text-xs font-bold shadow-sm flex items-center gap-1.5">                                        {{ \'studentTaskDetail.status.LATE\' | translate }}                                    </span>                                }                                @default {                                    <span class="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-full text-xs font-bold flex items-center gap-1.5 line-through decoration-slate-400 opacity-80">                                        {{ \'studentTaskDetail.status.NOT_SUBMITTED\' | translate }}                                    </span>                                }                            }                        </div>                    </a>                    }                </ul>            </div>            }        </div>        }        @if (bloques().length === 0 && !loading() && !error()) {            <div class="text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300">            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>            </div>            <h3 class="text-xl font-bold text-slate-700 mb-1">{{ \'syllabus.emptyTitle\' | translate }}</h3>            <p class="text-slate-500">{{ \'syllabus.emptyBody\' | translate }}</p>            </div>        }    </div>  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TemarioAlumnoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TemarioAlumnoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

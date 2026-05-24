@@ -12,14 +12,21 @@ import { Router } from '@angular/router';
 import { StudentBySubject } from '../../../core/models/student-by-subject';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
 
+/** Bloque del temario agrupado por tipo de tarea (examen, práctica, etc.). */
 export interface BloqueTemario {
+  /** Identificador local del bloque para alternar su apertura. */
   id: number;
+  /** Clave i18n del título del bloque. */
   titleKey: string;
+  /** Indica si el acordeón está abierto. */
   abierta: boolean;
+  /** Icono ilustrativo del bloque. */
   icono: string;
+  /** Tareas agrupadas en el bloque. */
   tareas: Task[];
 }
 
+/** Temario del profesor con tareas por tipo y gestión rápida de asistencia. */
 @Component({
     selector: 'app-temario-profesor',
     standalone: true,
@@ -29,27 +36,46 @@ export interface BloqueTemario {
 })
 export class TemarioProfesorComponent implements OnInit {
 
+    /** Ruta activa con asignatura y subjectId. */
     private route = inject(ActivatedRoute);
+    /** Servicio de sesión para identificar al profesor. */
     private authService = inject(AuthService);
+    /** Servicio de clases para cargar alumnos de la asignatura. */
     private clasesService = inject(ClasesService);
+    /** Servicio de asistencia para crear sesión y guardar registros. */
     private attendanceSvc = inject(AttendanceService);
+    /** Servicio de tareas para cargar el temario. */
     private taskService = inject(TaskService);
+    /** Router para navegar a entregas. */
     private router = inject(Router);
+    /** Traducciones de mensajes. */
     private readonly translate = inject(TranslateService);
 
+    /** Bloques de tareas agrupados por tipo. */
     bloques = signal<BloqueTemario[]>([]);
+    /** Nombre de asignatura recibido por ruta. */
     claseEnCurso = decodeURIComponent(this.route.snapshot.paramMap.get('claseId') || '');
 
+    /** Identificador de asignatura usado para cargar alumnos. */
     subjectId: number | null = null;
+    /** Alumnos matriculados en la asignatura. */
     alumnos = signal<StudentBySubject[]>([]);
+    /** Error al cargar tareas del temario. */
     tasksLoadError = signal(false);
+    /** Estado de asistencia seleccionado por matrícula. */
     attendanceMap: Record<number, AttendanceStatus> = {};
+    /** Estado de carga de alumnos. */
     loadingAlumnos = signal(false);
+    /** Estado de guardado de asistencia. */
     saving = signal(false);
+    /** Mensaje de resultado de guardado. */
     saveMessage = signal('');
+    /** Indica si el último guardado de asistencia falló. */
     saveError = signal(false);
+    /** Controla el modal de asistencia. */
     showAttendanceModal = signal(false);
 
+    /** Estados disponibles para marcar asistencia. */
     readonly statusOptions: { value: AttendanceStatus; labelKey: string; color: string }[] = [
         { value: 'PRESENT', labelKey: 'assistanceStatus.PRESENT', color: 'emerald' },
         { value: 'ABSENT', labelKey: 'assistanceStatus.ABSENT', color: 'red' },
@@ -57,6 +83,7 @@ export class TemarioProfesorComponent implements OnInit {
         { value: 'EXCUSED', labelKey: 'assistanceStatus.EXCUSED', color: 'blue' },
     ];
 
+    /** Carga subjectId, alumnos y tareas al montar el temario. */
     ngOnInit(): void {
         const param = this.route.snapshot.queryParamMap.get('subjectId');
         if (param) {
@@ -66,6 +93,7 @@ export class TemarioProfesorComponent implements OnInit {
         this.loadTasks();
     }
 
+    /** Carga tareas de la asignatura actual. */
     loadTasks() {
       this.taskService.getAllTasks().subscribe({
         next: (res) => {
@@ -83,6 +111,7 @@ export class TemarioProfesorComponent implements OnInit {
       });
     }
 
+    /** Agrupa tareas por tipo y filtra por profesor autenticado. */
     groupTasksByType(tasks: Task[]) {
       const configBloques = [
         { tipo: TaskType.THEORY, titleKey: 'syllabus.sections.THEORY', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
@@ -111,6 +140,7 @@ export class TemarioProfesorComponent implements OnInit {
       this.bloques.set(nuevosBloques);
     }
 
+    /** Alterna el acordeón de un bloque de tareas. */
     toggleBloque(id: number): void {
         this.bloques.update(bs => bs.map(b => ({
             ...b,
@@ -118,10 +148,12 @@ export class TemarioProfesorComponent implements OnInit {
         })));
     }
 
+    /** Navega al listado de entregas de una tarea. */
     goToEntregas(taskId: number): void {
       this.router.navigate(['/tarea', taskId, 'entregas']);
     }
 
+    /** Carga alumnos de la asignatura para registrar asistencia. */
     private loadAlumnos(): void {
         this.loadingAlumnos.set(true);
         this.clasesService.getStudentsBySubject(this.subjectId!).subscribe({
@@ -138,10 +170,12 @@ export class TemarioProfesorComponent implements OnInit {
         });
     }
 
+    /** Cambia el estado de asistencia de una matrícula. */
     setStatus(enrollmentId: number, status: AttendanceStatus): void {
         this.attendanceMap = { ...this.attendanceMap, [enrollmentId]: status };
     }
 
+    /** Crea una sesión y guarda en bloque la asistencia seleccionada. */
     guardarAsistencia(): void {
         const user = this.authService.getCurrentUser();
         if (!user || !this.subjectId) return;
@@ -183,11 +217,13 @@ export class TemarioProfesorComponent implements OnInit {
         });
     }
 
+    /** Abre el modal de asistencia limpiando mensajes previos. */
     openAttendanceModal(): void {
         this.showAttendanceModal.set(true);
         this.saveMessage.set('');
     }
 
+    /** Cierra el modal de asistencia. */
     closeAttendanceModal(): void {
         this.showAttendanceModal.set(false);
     }

@@ -19,13 +19,19 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
   styleUrl: './horario-alumno.component.scss'
 })
 export class HorarioAlumnoComponent implements OnInit {
+  /** Servicio de sesión para obtener el alumno autenticado. */
   private authService = inject(AuthService);
+  /** Servicio de horarios semanales filtrados por alumno. */
   private weekScheduleService = inject(WeekScheduleService);
 
+  /** Días lectivos que se muestran como columnas/tarjetas. */
   readonly weekDays = [1, 2, 3, 4, 5];
+  /** Horarios agrupados por día numérico. */
   schedulesByDay: Record<number, WeekSchedule[]> = {};
+  /** Estado de carga inicial del horario. */
   isLoading = true;
 
+  /** Carga el horario del alumno autenticado y lo agrupa por día. */
   ngOnInit(): void {
     const userId = this.authService.getUserId();
 
@@ -41,15 +47,18 @@ export class HorarioAlumnoComponent implements OnInit {
     });
   }
 
+  /** Devuelve las franjas de un día, o lista vacía si no hay clase. */
   getDaySchedules(day: number): WeekSchedule[] {
     return this.schedulesByDay[day] ?? [];
   }
 
+  /** Extrae el nombre de asignatura desde la relación teacherAssignment. */
   getSubjectName(schedule: WeekSchedule): string {
     const assignment = schedule.teacherAssignment as unknown as { subject?: { name?: string } };
     return assignment.subject?.name ?? '-';
   }
 
+  /** Extrae el nombre de grupo desde la relación teacherAssignment. */
   getGroupName(schedule: WeekSchedule): string {
     const assignment = schedule.teacherAssignment as unknown as { group?: { name?: string } };
     return assignment.group?.name ?? '-';
@@ -63,6 +72,7 @@ export class HorarioAlumnoComponent implements OnInit {
     }));
   }
 
+  /** Ordena las franjas por hora y las agrupa por día de la semana. */
   private groupByDay(schedules: WeekSchedule[]): Record<number, WeekSchedule[]> {
     const dayMap: Record<string, number> = {
       'MONDAY': 1, 'TUESDAY': 2, 'WEDNESDAY': 3, 'THURSDAY': 4, 'FRIDAY': 5, 'SATURDAY': 6, 'SUNDAY': 7

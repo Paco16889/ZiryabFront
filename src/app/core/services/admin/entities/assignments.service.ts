@@ -26,14 +26,22 @@ import { CourseService } from './course.service';
   providedIn: 'root',
 })
 export class AssignmentsService {
+  /** Cliente HTTP para endpoints de cursos y asignaciones. */
   private readonly http = inject(HttpClient);
+
+  /** Fallback que permite derivar grades/asignaturas desde el detalle del curso. */
   private readonly courseService = inject(CourseService);
 
+  /** Endpoint base de cursos, usado para grades y subjects por ciclo. */
   private readonly coursesBaseUrl = `${environment.apiUrl}/courses`;
+
+  /** Endpoint base de asignaciones docentes. */
   private readonly assignmentsBaseUrl = `${environment.apiUrl}/assignments`;
 
   /**
    * Grades disponibles de un ciclo (`GET /api/courses/:id/grades` o fallback desde subjects).
+   *
+   * @param idCourse - Ciclo del que se extraen los valores distintos de `Subject.grade`
    */
   getGradesByCourse(idCourse: number): Observable<CourseGradesResponse> {
     return this.http
@@ -49,6 +57,9 @@ export class AssignmentsService {
       );
   }
 
+  /**
+   * Asignaturas de un ciclo y grade para alimentar una fila por asignatura en el grid.
+   */
   getSubjectsByCourseAndGrade(
     idCourse: number,
     grade: string,
@@ -68,6 +79,7 @@ export class AssignmentsService {
       );
   }
 
+  /** Alias semántico usado por componentes del flujo ciclo+grade. */
   getAssignmentsByCourseAndGrade(
     idCourse: number,
     grade: string,
@@ -76,6 +88,9 @@ export class AssignmentsService {
     return this.getAssignmentsByCourseGradeAndYear(idCourse, grade, schoolYear);
   }
 
+  /**
+   * Filtra asignaciones existentes por ciclo, grade y año escolar usando las relaciones incluidas.
+   */
   getAssignmentsByCourseGradeAndYear(
     idCourse: number,
     grade: string,
@@ -106,6 +121,7 @@ export class AssignmentsService {
     );
   }
 
+  /** Crea una asignación docente individual. */
   createAssignment(payload: AssignmentCreateRequest): Observable<AssignmentCreateResponse> {
     return this.http.post<AssignmentCreateResponse>(this.assignmentsBaseUrl, payload).pipe(
       catchError((error) => {
@@ -141,7 +157,7 @@ export class AssignmentsService {
       );
   }
 
-  /** Fallback cuando `POST /bulk` no existe: altas unitarias en paralelo. */
+  /** Fallback cuando `POST /bulk` no existe: altas unitarias en paralelo y resumen compatible. */
   private createAssignmentsSequential(
     items: AssignmentBulkCreateItem[],
   ): Observable<AssignmentBulkCreateResponse> {
@@ -187,6 +203,7 @@ export class AssignmentsService {
     );
   }
 
+  /** Fallback para obtener asignaturas del curso cuando no existe endpoint por grade. */
   private subjectsFromCourse(
     idCourse: number,
     grade: string,
@@ -214,6 +231,7 @@ export class AssignmentsService {
     );
   }
 
+  /** Fallback para derivar los grades disponibles desde `course.subjects`. */
   private gradesFromCourseSubjects(idCourse: number): Observable<CourseGradesResponse> {
     return this.courseService.getCourseById(idCourse).pipe(
       map((res) => {

@@ -21,21 +21,34 @@ import { Task } from '../../../core/models/task';
   styleUrls: ['./entregas-tarea.component.scss']
 })
 export class EntregasTareaComponent implements OnInit {
+  /** Ruta activa para leer el id de la tarea. */
   private route = inject(ActivatedRoute);
+  /** Router reservado para navegar a calificación/detalle. */
   private router = inject(Router);
+  /** Servicio que lista StudentTasks de la tarea. */
   private studentTaskService = inject(StudentTaskService);
+  /** Servicio que carga cabecera de la tarea. */
   private taskService = inject(TaskService);
+  /** Traducciones de errores. */
   private readonly translate = inject(TranslateService);
 
+  /** Id de tarea obtenido de la ruta. */
   taskId = Number(this.route.snapshot.paramMap.get('taskId'));
+  /** Datos de cabecera de la tarea. */
   taskDetails = signal<Task | null>(null);
+  /** Entregas de alumnos ordenadas por fecha. */
   studentTasks = signal<StudentTask[]>([]);
   
+  /** Estado de carga de la lista. */
   loading = signal(true);
+  /** Mensaje de error visible. */
   error = signal('');
+  /** Enum expuesto al template. */
   SubmissionStatus = SubmissionStatus;
+  /** Fecha actual usada para evaluar vencimiento. */
   today = new Date();
 
+  /** Carga cabecera y entregas si existe id de tarea. */
   ngOnInit(): void {
     if (this.taskId) {
       this.loadTaskHeader();

@@ -7,7 +7,10 @@
 
 /** Franja horaria de la plantilla en formato `HH:mm` (hora y minutos con dos dígitos). */
 export interface WeekScheduleMaterializeSlot {
+  /** Inicio de la franja que se repetirá en cada día seleccionado. */
   startTime: string;
+
+  /** Fin de la franja que se repetirá en cada día seleccionado. */
   finishTime: string;
 }
 

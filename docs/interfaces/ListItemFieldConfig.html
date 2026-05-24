@@ -482,7 +482,8 @@ Define cómo se muestra y formatea cada campo de la entidad en la vista de lista
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditFieldConfig } from &quot;./edit-modal-config&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable } from &quot;rxjs&quot;;
+import { EditFieldConfig } from &quot;./edit-modal-config&quot;;
 
 /**
  * Configuración de un campo individual dentro de un elemento de lista genérico.
@@ -519,7 +520,7 @@ export interface ListItemFieldConfig {
  *   entityNameFormat: (s) &#x3D;&gt; &#x60;${s.name} ${s.surname}&#x60;
  * };
  */
-export interface ListItemConfig&lt;T&gt; {
+export interface ListItemConfig&lt;T, U, R, S&gt; {
   /** Configuración de los campos a mostrar en el elemento de lista */
   fields: ListItemFieldConfig[];
   /** Configuración de las acciones disponibles para la entidad */
@@ -549,9 +550,9 @@ export interface ListItemConfig&lt;T&gt; {
   /** Función que obtiene la entidad por su identificador */
   getByIdFn?: (id: number) &#x3D;&gt; any;
   /** Función que ejecuta la actualización de la entidad */
-  updateFn?: (data: any) &#x3D;&gt; any;
+  updateFn?: (data: U) &#x3D;&gt; Observable&lt;R&gt;;
   /** Función que ejecuta la eliminación de la entidad */
-  deleteFn?: (id: number) &#x3D;&gt; any;
+  deleteFn?: (id: number) &#x3D;&gt; Observable&lt;S&gt;;
   /** Texto descriptivo del tipo de entidad para los mensajes del modal */
   entityType?: string;
   /** Función que genera el nombre representativo de la entidad para mostrar en los modales */

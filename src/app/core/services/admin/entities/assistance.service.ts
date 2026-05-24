@@ -13,6 +13,7 @@ import {
 } from '../../../models/assistance';
 import { environment } from '../../../../../environments/environment';
 
+/** Payload de actualización de asistencia con id añadido por el modal genérico. */
 export type AssistanceUpdatePayload = AssistanceUpdateRequest & { id: number };
 
 /**
@@ -23,12 +24,13 @@ export type AssistanceUpdatePayload = AssistanceUpdateRequest & { id: number };
   providedIn: 'root'
 })
 export class AssistanceService { 
-  /**
-   * URL base del endpoint de registros de asistencia.
-   */
+  /** Cliente HTTP para el módulo de asistencias. */
   private readonly http = inject(HttpClient);
+
+  /** URL base del endpoint de registros de asistencia. */
   private readonly apiUrl = `${environment.apiUrl}/assistances`;
 
+  /** Cache reactiva del listado administrativo de asistencias. */
   assistances = signal<Assistance[]>([]);
 
   /**
@@ -57,7 +59,7 @@ export class AssistanceService {
 
   /**
    * Obtiene un registro de asistencia por su identificador.
-   * @param id - Identificador único del registro de asistencia
+   * @param id Identificador único del registro de asistencia
    * @returns Observable con la respuesta que contiene el registro encontrado
    */
   getAssistanceById(id: number): Observable<AssistanceByIdResponse> {
@@ -71,7 +73,7 @@ export class AssistanceService {
 
   /**
    * Crea un nuevo registro de asistencia.
-   * @param data - Datos necesarios para crear el registro de asistencia
+   * @param data Datos necesarios para crear el registro de asistencia
    * @returns Observable con la respuesta que contiene el registro creado
    */
   createAssistance(data: AssistanceCreateRequest): Observable<AssistanceCreateResponse> {
@@ -84,9 +86,8 @@ export class AssistanceService {
   }
 
   /**
-   * Actualiza un registro de asistencia existente.
-   * @param id - Identificador único del registro a actualizar
-   * @param data - Datos del registro a actualizar
+   * Actualiza un registro de asistencia existente desde el modal genérico.
+   * @param payload Datos del registro a actualizar, incluido su identificador
    * @returns Observable con la respuesta que contiene el registro actualizado
    */
   updateAssistance(payload: AssistanceUpdatePayload): Observable<AssistanceUpdateResponse> {
@@ -101,7 +102,7 @@ export class AssistanceService {
 
   /**
    * Elimina un registro de asistencia por su identificador.
-   * @param id - Identificador único del registro a eliminar
+   * @param id Identificador único del registro a eliminar
    * @returns Observable con la respuesta de confirmación de eliminación
    */
   deleteAssistance(id: number): Observable<AssistanceDeleteResponse> {

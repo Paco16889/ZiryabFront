@@ -25,6 +25,7 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
   styleUrl: './student-create-form.component.scss'
 })
 export class StudentCreateFormComponent {
+  /** Traducciones de errores al crear el estudiante en Firebase o el backend. */
   private readonly translate = inject(TranslateService);
 
   /**

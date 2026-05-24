@@ -1,0 +1,701 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  AnalyticsExportParams</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/models/analytics.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Parámetros compartidos por resumen y exportaciones de informes.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#anyo" 
+>
+                                            anyo
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#ciclo" 
+>
+                                            ciclo
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#completo" 
+>
+                                            completo
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#formato" 
+>
+                                            formato
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#grupo" 
+>
+                                            grupo
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#inactivos" 
+>
+                                            inactivos
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="anyo"></a>
+                                        <span class="name "><b>anyo</b>
+                                            <a href="#anyo">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>anyo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Curso escolar del informe.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="ciclo"></a>
+                                        <span class="name "><b>ciclo</b>
+                                            <a href="#ciclo">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>ciclo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Ciclo formativo o <code>todos</code>.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="completo"></a>
+                                        <span class="name "><b>completo</b>
+                                            <a href="#completo">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>completo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Si es <code>true</code>, exporta el dataset completo ignorando filtros de ciclo/grupo.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="formato"></a>
+                                        <span class="name "><b>formato</b>
+                                            <a href="#formato">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>formato:     <code>&quot;csv&quot; | &quot;xlsx&quot;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>&quot;csv&quot; | &quot;xlsx&quot;</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Formato del fichero exportado.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="grupo"></a>
+                                        <span class="name "><b>grupo</b>
+                                            <a href="#grupo">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>grupo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Grupo académico o <code>todos</code>.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="inactivos"></a>
+                                        <span class="name "><b>inactivos</b>
+                                            <a href="#inactivos">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>inactivos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Incluye registros inactivos cuando el backend lo permite.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface AnalyticsSummary {
+  /** Filtros que el backend aplicó para calcular KPIs y tablas. */
+  filters: {
+    /** Curso escolar consultado. */
+    anyo: string;
+
+    /** Ciclo formativo seleccionado o &#x60;todos&#x60;. */
+    ciclo: string;
+
+    /** Grupo seleccionado o &#x60;todos&#x60;. */
+    grupo: string;
+
+    /** Indica si el cálculo incluye matrículas inactivas. */
+    incluirInactivos: boolean;
+  };
+
+  /** Métricas agregadas mostradas como tarjetas principales del informe. */
+  kpis: Record&lt;string, string | number | boolean | null&gt;;
+
+  /** Recuento de matrículas y alumnos únicos por ciclo, curso y estado. */
+  alumnosCiclo: AnalyticsAlumnosCicloRow[];
+
+  /** Ocupación y alumnado por grupo para detectar grupos con mayor carga. */
+  alumnosGrupo: AnalyticsAlumnosGrupoRow[];
+
+  /** Resumen de asignaciones docentes y horas impartidas por curso. */
+  profesores: AnalyticsProfesoresRow[];
+
+  /** Serie mensual de asistencia usada por las tablas/gráficas del informe. */
+  asistenciaMensual: AnalyticsAsistenciaRow[];
+
+  /** Resumen de tareas y entregas por curso y tipo de tarea. */
+  tareas: AnalyticsTareasRow[];
+}
+
+/** Fila del informe de alumnado agregada por ciclo, nivel y estado de matrícula. */
+export interface AnalyticsAlumnosCicloRow {
+  /** Nombre del ciclo formativo. */
+  course_name: string;
+
+  /** Nivel/curso dentro del ciclo. */
+  grade: string;
+
+  /** Estado de matrícula incluido en el recuento. */
+  enrollment_status: string;
+
+  /** Número de matrículas encontradas para esa combinación. */
+  matriculas: number;
+
+  /** Número de alumnos distintos tras agrupar posibles matrículas múltiples. */
+  alumnos_unicos: number;
+}
+
+/** Fila del informe de ocupación por grupo. */
+export interface AnalyticsAlumnosGrupoRow {
+  /** Nombre del ciclo formativo. */
+  course_name: string;
+
+  /** Nombre del grupo académico. */
+  group_name: string;
+
+  /** Matrículas registradas en el grupo. */
+  matriculas: number;
+
+  /** Alumnos únicos matriculados en el grupo. */
+  alumnos_unicos: number;
+
+  /** Capacidad máxima configurada para el grupo. */
+  capacity: number;
+
+  /** Porcentaje de ocupación del grupo; &#x60;null&#x60; si no hay capacidad válida. */
+  ocupacion_pct: number | null;
+}
+
+/** Fila del informe de profesorado por curso y estado de asignación. */
+export interface AnalyticsProfesoresRow {
+  /** Nombre del ciclo formativo. */
+  course_name: string;
+
+  /** Estado de la asignación docente. */
+  assignment_status: string;
+
+  /** Número total de asignaciones docentes. */
+  asignaciones: number;
+
+  /** Profesores distintos implicados en esas asignaciones. */
+  profesores_unicos: number;
+
+  /** Suma de horas semanales declaradas en las asignaturas asignadas. */
+  horas_totales: number;
+}
+
+/** Fila de asistencia mensual calculada para el informe. */
+export interface AnalyticsAsistenciaRow {
+  /** Mes agregado en formato devuelto por el backend. */
+  mes: string;
+
+  /** Nombre del ciclo formativo. */
+  course_name: string;
+
+  /** Número total de registros de asistencia. */
+  registros: number;
+
+  /** Registros marcados como presentes. */
+  presentes: number;
+
+  /** Registros marcados como ausentes. */
+  ausentes: number;
+
+  /** Porcentaje de asistencia del mes; &#x60;null&#x60; si no hay base de cálculo. */
+  tasa_asistencia_pct: number | null;
+}
+
+/** Fila de seguimiento de tareas y entregas del informe. */
+export interface AnalyticsTareasRow {
+  /** Nombre del ciclo formativo. */
+  course_name: string;
+
+  /** Tipo de tarea agrupado por el backend. */
+  task_type: string;
+
+  /** Número de tareas creadas. */
+  tareas: number;
+
+  /** Número de entregas recibidas. */
+  entregas: number;
+
+  /** Entregas que ya tienen calificación. */
+  calificadas: number;
+
+  /** Entregas pendientes de corrección o recepción. */
+  pendientes: number;
+
+  /** Porcentaje de entrega; &#x60;null&#x60; si no hay tareas sobre las que calcular. */
+  tasa_entrega_pct: number | null;
+}
+
+/** Respuesta del endpoint de resumen de analíticas. */
+export interface AnalyticsSummaryResponse {
+  /** Mensaje informativo del backend. */
+  message: string;
+
+  /** Resumen completo que alimenta el panel de informes. */
+  data: AnalyticsSummary;
+}
+
+/** Parámetros compartidos por resumen y exportaciones de informes. */
+export interface AnalyticsExportParams {
+  /** Curso escolar del informe. */
+  anyo: string;
+
+  /** Ciclo formativo o &#x60;todos&#x60;. */
+  ciclo: string;
+
+  /** Grupo académico o &#x60;todos&#x60;. */
+  grupo: string;
+
+  /** Incluye registros inactivos cuando el backend lo permite. */
+  inactivos: boolean;
+
+  /** Formato del fichero exportado. */
+  formato: &#x27;csv&#x27; | &#x27;xlsx&#x27;;
+
+  /** Si es &#x60;true&#x60;, exporta el dataset completo ignorando filtros de ciclo/grupo. */
+  completo: boolean;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'AnalyticsExportParams.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

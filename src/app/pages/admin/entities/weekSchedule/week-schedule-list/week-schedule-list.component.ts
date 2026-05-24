@@ -23,7 +23,8 @@ export class WeekScheduleListComponent implements OnInit {
 
 
   /**
-   * Listado de franjas horarias semanales a mostrar, sincronizado con la signal del servicio.
+   * Listado de franjas horarias semanales sincronizado desde la signal del servicio.
+   * Se copia a una propiedad simple porque el template actual todavía trabaja con arrays clásicos.
    */
    schedules: WeekSchedule[] = []
 
@@ -32,7 +33,7 @@ export class WeekScheduleListComponent implements OnInit {
    */
   showCreateForm = false;
 
-    /**
+     /**
    * @param weekScheduleService - Servicio que gestiona las operaciones con franjas horarias
    * @param modalUpdateService - Servicio del modal de edición, usado para detectar
    * cuando una actualización se completa y recargar la lista
@@ -75,23 +76,22 @@ export class WeekScheduleListComponent implements OnInit {
 
 
 
-/**
-   * Muestra el formulario de creación de franjas horarias.
+  /**
+   * Abre el constructor de horarios para crear o editar el horario semanal desde el shell.
    */
   openCreateForm() {
     this.showCreateForm = true;
   }
 
-   /**
-   * Oculta el formulario de creación de franjas horarias.
+  /**
+   * Cierra el constructor de horarios sin forzar recarga.
    */
   closeCreateForm() {
     this.showCreateForm = false;
   }
   
   /**
-   * Cierra el formulario de creación y recarga el listado de franjas horarias.
-   * Se llama cuando el formulario de creación notifica que se ha creado una franja horaria.
+   * Cierra el constructor y recarga el listado tras guardar desde el builder/grid.
    */
   onScheduleCreated() {
     this.closeCreateForm();

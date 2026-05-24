@@ -29,7 +29,8 @@ import { switchMap } from 'rxjs/operators';
 export class FirebaseAuthService {
 
   /**
-   * @param firebaseAuth - Instancia de Firebase Authentication inyectada por AngularFire
+   * Inyecta la instancia de Firebase Auth usada por los métodos del servicio.
+   * @param firebaseAuth Instancia de Firebase Authentication inyectada por AngularFire.
    */
   constructor(private firebaseAuth: Auth) {}
 
@@ -39,10 +40,9 @@ export class FirebaseAuthService {
    * Convierte la `Promise` nativa de Firebase en un `Observable` mediante `from()`,
    * siguiendo el patrón reactivo del resto de la aplicación.
    *
-   * @param email    - Correo electrónico del usuario
-   * @param password - Contraseña del usuario
-   * @returns `Observable<string>` que emite el ID token del usuario autenticado
-   *          y completa inmediatamente, o lanza error si las credenciales son inválidas
+   * @param email Correo electrónico del usuario.
+   * @param password Contraseña del usuario.
+   * @returns Observable que emite el ID token del usuario autenticado.
    */
   signIn(email: string, password: string): Observable<string> {
     return from(signInWithEmailAndPassword(this.firebaseAuth, email, password)).pipe(
@@ -57,10 +57,9 @@ export class FirebaseAuthService {
    * El token resultante debe usarse de inmediato para registrar al usuario
    * en el backend propio.
    *
-   * @param email    - Correo electrónico para la nueva cuenta
-   * @param password - Contraseña para la nueva cuenta
-   * @returns `Observable<string>` que emite el ID token de la cuenta recién creada
-   *          y completa inmediatamente, o lanza error si el email ya está en uso
+   * @param email Correo electrónico para la nueva cuenta.
+   * @param password Contraseña para la nueva cuenta.
+   * @returns Observable que emite el ID token de la cuenta recién creada.
    */
   signUp(email: string, password: string): Observable<string> {
     return from(createUserWithEmailAndPassword(this.firebaseAuth, email, password)).pipe(
@@ -74,8 +73,7 @@ export class FirebaseAuthService {
    * Convierte la `Promise` nativa de Firebase en un `Observable` mediante `from()`.
    * Tras completar, {@link AuthService} se encarga de limpiar el estado local.
    *
-   * @returns `Observable<void>` que completa cuando Firebase confirma el cierre de sesión,
-   *          o lanza error si Firebase no está disponible
+   * @returns Observable que completa cuando Firebase confirma el cierre de sesión.
    */
   signOut(): Observable<void> {
     return from(signOut(this.firebaseAuth));

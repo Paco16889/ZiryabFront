@@ -6,8 +6,10 @@ import { environment } from '../../../../../../environments/environment';
 import { numberToPrismaDayOfWeek, prismaDayOfWeekToNumber } from '../../../../utils/week-day';
 
 /**
- * Servicio encargado de gestionar las operaciones con franjas horarias semanales.
- * Incluye una signal para mantener el estado de los horarios en memoria.
+ * Servicio CRUD de franjas horarias semanales.
+ *
+ * Centraliza la conversión entre el día numérico que usa la UI (`1` lunes…`7` domingo)
+ * y el literal Prisma que espera el backend (`MONDAY`…`SUNDAY`).
  */
 @Injectable({
   providedIn: 'root'
@@ -15,23 +17,23 @@ import { numberToPrismaDayOfWeek, prismaDayOfWeekToNumber } from '../../../../ut
 export class WeekScheduleService {
 
 
-   /**
-    * URL base del endpoint de franjas horarias semanales.
-    */
+  /** URL base del módulo de horarios semanales en el backend. */
   private readonly apiUrl = `${environment.apiUrl}/horarios-semanales`;
 
-  /**
-   * Signal que almacena el listado completo de franjas horarias en memoria.
-   */
+  /** Cache reactiva del listado completo que consumen los listados y el builder. */
   schedules = signal<WeekSchedule[]>([]);
 
-    /**
-   * Inicializa el servicio.
-   * @param http - Cliente HTTP de Angular para realizar las peticiones a la API
+  /**
+   * Inyecta el cliente HTTP usado en todas las operaciones del módulo.
+   * @param http Cliente HTTP usado para acceder al módulo de horarios semanales.
    */
   constructor(private http: HttpClient) { }
 
-  /** Normaliza `weekDay` del API (string enum) al 1–7 interno del front. */
+  /**
+   * Normaliza `weekDay` del API (string enum) al 1–7 interno del front.
+   * @param ws Franja horaria tal como viene del backend.
+   * @returns Copia de la franja con el día convertido al formato numérico de la UI.
+   */
   private normalizeSchedule(ws: WeekSchedule): WeekSchedule {
     return {
       ...ws,
@@ -39,6 +41,11 @@ export class WeekScheduleService {
     };
   }
 
+  /**
+   * Normaliza todas las franjas de una respuesta de listado.
+   * @param res Respuesta cruda del listado de horarios semanales.
+   * @returns Respuesta con cada franja ya normalizada al formato de la UI.
+   */
   private normalizeList(res: WeekSchedulesAllResponse): WeekSchedulesAllResponse {
     if (!res.success || !res.data?.length) {
       return res;
@@ -49,11 +56,12 @@ export class WeekScheduleService {
     };
   }
 
-    /**
-   * Carga todas las franjas horarias e inicializa la signal schedules.
-   * Si la petición falla, la signal se establece como array vacío.
+  /**
+   * Carga todas las franjas horarias y actualiza `schedules`.
+   * En caso de error o `success: false`, limpia la cache para evitar mostrar datos obsoletos.
+   * @returns No devuelve valor; actualiza la signal `schedules` al completar la petición.
    */
-   loadSchedules() {
+  loadSchedules() {
     this.getAllSchedules().subscribe(res => {
       if (res.success) {
         this.schedules.set(res.data);
@@ -64,7 +72,7 @@ export class WeekScheduleService {
   }
 
   /**
-   * Obtiene todas las franjas horarias semanales.
+   * Obtiene todas las franjas horarias semanales normalizadas al formato de la UI.
    * @returns Observable con la respuesta que contiene el listado de franjas horarias
    */
    getAllSchedules(): Observable<WeekSchedulesAllResponse>{
@@ -75,7 +83,7 @@ export class WeekScheduleService {
   }
 
   /**
-   * Obtiene las franjas horarias semanales asociadas a un estudiante.
+   * Obtiene el horario semanal visible para un estudiante concreto.
    * @param idStudent - Identificador del estudiante autenticado
    * @returns Observable con las franjas horarias del estudiante
    */
@@ -87,7 +95,8 @@ export class WeekScheduleService {
   }
 
   /**
-   * Obtiene las franjas horarias semanales asociadas a un profesor.
+   * Obtiene todas las franjas en las que participa un profesor.
+   * Lo usa el grid admin para detectar solapes con otros grupos.
    * @param idTeacher - Identificador del profesor autenticado
    * @returns Observable con las franjas horarias del profesor
    */
@@ -98,8 +107,8 @@ export class WeekScheduleService {
     );
   }
 
-    /**
-   * Obtiene una franja horaria semanal por su identificador.
+  /**
+   * Obtiene una franja semanal por id y normaliza su día antes de entregarla al formulario.
    * @param id - Identificador único de la franja horaria
    * @returns Observable con la respuesta que contiene la franja horaria encontrada
    */
@@ -118,7 +127,7 @@ export class WeekScheduleService {
   }
 
   /**
-   * Crea una nueva franja horaria semanal.
+   * Crea una franja semanal convirtiendo `weekDay` de número UI a literal Prisma.
    * @param data - Datos necesarios para crear la franja horaria
    * @returns Observable con la respuesta que contiene la franja horaria creada
    */
@@ -140,8 +149,8 @@ export class WeekScheduleService {
     );
   }
 
-   /**
-   * Actualiza una franja horaria semanal existente.
+  /**
+   * Actualiza una franja semanal enviando solo los campos presentes y traduciendo el día a Prisma.
    * @param id - Identificador único de la franja horaria a actualizar
    * @param data - Datos de la franja horaria a actualizar
    * @returns Observable con la respuesta que contiene la franja horaria actualizada
@@ -170,7 +179,7 @@ export class WeekScheduleService {
     );
   }
 
-    /**
+  /**
    * Elimina una franja horaria semanal por su identificador.
    * @param id - Identificador único de la franja horaria a eliminar
    * @returns Observable con la respuesta de confirmación de eliminación

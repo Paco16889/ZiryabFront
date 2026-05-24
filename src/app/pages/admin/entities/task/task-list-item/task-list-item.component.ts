@@ -25,15 +25,20 @@ import {
   styleUrl: './task-list-item.component.scss',
 })
 export class TaskListItemComponent {
+  /** Servicio usado por el componente genérico para detalle, edición y borrado. */
   private readonly taskService = inject(AdminTaskService);
+  /** Traducciones de campos y tipos de tarea. */
   private readonly translate = inject(TranslateService);
 
+  /** Tarea renderizada por esta fila. */
   @Input({ required: true }) task!: Task;
 
+  /** Traduce el enum `TaskType` a una etiqueta visible. */
   private taskTypeLabel(type: TaskType): string {
     return this.translate.instant('taskTypes.' + type);
   }
 
+  /** Configuración del item genérico: campos, edición y acciones CRUD. */
   get taskConfig(): ListItemConfig<
     Task,
     TaskUpdatePayload,
@@ -101,6 +106,7 @@ export class TaskListItemComponent {
     };
   }
 
+  /** Configuración de la vista de detalle de tarea. */
   get taskDetailConfig(): ViewDetailConfig<Task> {
     return {
       fields: [

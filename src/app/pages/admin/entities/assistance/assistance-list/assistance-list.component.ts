@@ -8,6 +8,7 @@ import { BotonCreateComponent } from '../../../botones/boton-create/boton-create
 import { AssistanceCreateFormComponent } from '../assistance-create-form/assistance-create-form.component';
 import { AssistanceListItemComponent } from '../assistance-list-item/assistance-list-item.component';
 
+/** Listado administrativo de asistencias con alta manual y acciones genéricas. */
 @Component({
   selector: 'app-assistance-list',
   imports: [
@@ -20,13 +21,19 @@ import { AssistanceListItemComponent } from '../assistance-list-item/assistance-
   styleUrl: './assistance-list.component.scss',
 })
 export class AssistanceListComponent implements OnInit {
+  /** Servicio que mantiene la cache de asistencias. */
   private readonly assistanceService = inject(AssistanceService);
+  /** Modal global usado para detectar borrados completados. */
   private readonly modalDeleteService = inject(ModalDeleteService);
+  /** Modal global usado para detectar ediciones completadas. */
   private readonly modalUpdateService = inject(ModalEditService);
 
+  /** Asistencias renderizadas desde la signal del servicio. */
   assistances: Assistance[] = [];
+  /** Controla si se muestra el formulario de creación. */
   showCreateForm = false;
 
+  /** Sincroniza la lista y recarga tras modales exitosos. */
   constructor() {
     effect(() => {
       this.assistances = this.assistanceService.assistances();
@@ -41,18 +48,22 @@ export class AssistanceListComponent implements OnInit {
     });
   }
 
+  /** Carga inicial de asistencias. */
   ngOnInit(): void {
     this.assistanceService.loadAssistances();
   }
 
+  /** Muestra el formulario de alta. */
   openCreateForm(): void {
     this.showCreateForm = true;
   }
 
+  /** Oculta el formulario de alta. */
   closeCreateForm(): void {
     this.showCreateForm = false;
   }
 
+  /** Cierra el formulario y recarga tras crear asistencia. */
   onAssistanceCreated(): void {
     this.closeCreateForm();
     this.assistanceService.loadAssistances();

@@ -25,6 +25,7 @@ export class JustificarFaltaModalComponent {
 
   /** Servicio para gestionar las operaciones de asistencia */
   private assistanceService = inject(AssistanceService);
+  /** Traducciones de validaciones y errores al subir el justificante. */
   private readonly translate = inject(TranslateService);
 
   /** Signal que almacena el archivo seleccionado por el usuario */

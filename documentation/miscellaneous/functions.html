@@ -130,7 +130,61 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#filterTeacherAssignmentsForClass" title="src/app/core/utils/week-schedule-assignment-filters.ts" ><b>filterTeacherAssignmentsForClass</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-assignment-filters.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#filterTeacherAssignmentsForSchoolYear" title="src/app/core/utils/week-schedule-assignment-filters.ts" ><b>filterTeacherAssignmentsForSchoolYear</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-assignment-filters.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#hoursBetween" title="src/app/core/utils/time-range.ts" ><b>hoursBetween</b>&nbsp;&nbsp;&nbsp;(src/.../time-range.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initializeAppAuth" title="src/app/app.config.ts" ><b>initializeAppAuth</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isTeacherAssignmentRowSchedulable" title="src/app/core/utils/week-schedule-assignment-filters.ts" ><b>isTeacherAssignmentRowSchedulable</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-assignment-filters.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isValidHhMmTime" title="src/app/core/utils/time-range.ts" ><b>isValidHhMmTime</b>&nbsp;&nbsp;&nbsp;(src/.../time-range.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isWeekScheduleClassEligibleForCreateTemplate" title="src/app/core/models/week-schedule-flow/week-schedule-class.model.ts" ><b>isWeekScheduleClassEligibleForCreateTemplate</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-class.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#mapApiToNotification" title="src/app/core/repository/notification-repository.ts" ><b>mapApiToNotification</b>&nbsp;&nbsp;&nbsp;(src/.../notification-repository.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#normalizeGradeValue" title="src/app/core/utils/week-schedule-assignment-filters.ts" ><b>normalizeGradeValue</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-assignment-filters.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#normalizeHhMmTime" title="src/app/core/utils/time-range.ts" ><b>normalizeHhMmTime</b>&nbsp;&nbsp;&nbsp;(src/.../time-range.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#numberToPrismaDayOfWeek" title="src/app/core/utils/week-day.ts" ><b>numberToPrismaDayOfWeek</b>&nbsp;&nbsp;&nbsp;(src/.../week-day.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#personLabel" title="src/app/pages/admin/entities/notification/notification-create-form/notification-create-form.component.ts" ><b>personLabel</b>&nbsp;&nbsp;&nbsp;(src/.../notification-create-form.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#prismaDayOfWeekToNumber" title="src/app/core/utils/week-day.ts" ><b>prismaDayOfWeekToNumber</b>&nbsp;&nbsp;&nbsp;(src/.../week-day.ts)</a>
+                        </li>
+                        <li>
                             <a href="#provideTranslate" title="src/app/core/i18n/translate.provider.ts" ><b>provideTranslate</b>&nbsp;&nbsp;&nbsp;(src/.../translate.provider.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#resolveApiError" title="src/app/core/i18n/api-error.util.ts" ><b>resolveApiError</b>&nbsp;&nbsp;&nbsp;(src/.../api-error.util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#timeRangesOverlap" title="src/app/core/utils/time-range.ts" ><b>timeRangesOverlap</b>&nbsp;&nbsp;&nbsp;(src/.../time-range.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#timeToMinutes" title="src/app/core/utils/time-range.ts" ><b>timeToMinutes</b>&nbsp;&nbsp;&nbsp;(src/.../time-range.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#weekScheduleCellKey" title="src/app/pages/admin/entities/weekSchedule/week-schedule-grid-builder/week-schedule-grid-builder.component.ts" ><b>weekScheduleCellKey</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-grid-builder.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#weekScheduleClassKey" title="src/app/core/models/week-schedule-flow/week-schedule-class.model.ts" ><b>weekScheduleClassKey</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-class.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -139,7 +193,1242 @@
     </table>
 </section>
 
-    <h3>src/app/core/i18n/translate.provider.ts</h3>
+    <h3>src/app/core/utils/week-schedule-assignment-filters.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterTeacherAssignmentsForClass"></a>
+                    <span class="name">
+                        <span ><b>filterTeacherAssignmentsForClass</b></span>
+                        <a href="#filterTeacherAssignmentsForClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterTeacherAssignmentsForClass(rows, courseId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, schoolYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filas de una <strong>clase</strong> agregada: mismo ciclo, grade, grupo y año escolar.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rows</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Asignaciones candidatas ya devueltas por el API.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>courseId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Ciclo seleccionado en el builder.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Curso/nivel de la clase agregada.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>groupId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Grupo seleccionado.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>schoolYear</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Curso escolar activo.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>TeacherSubjectAssignmentRow[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Asignaciones compatibles con esa clase.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterTeacherAssignmentsForSchoolYear"></a>
+                    <span class="name">
+                        <span ><b>filterTeacherAssignmentsForSchoolYear</b></span>
+                        <a href="#filterTeacherAssignmentsForSchoolYear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterTeacherAssignmentsForSchoolYear(rows, schoolYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Deja solo las asignaciones del <strong>año académico</strong> indicado y que pasen <a href="../miscellaneous/functions.html#isTeacherAssignmentRowSchedulable">isTeacherAssignmentRowSchedulable</a>.</p>
+<p>Las filas deberían estar ya filtradas por grupo (p. ej. <code>idGroup</code>) antes de llamar a esta función;
+aquí no se filtra por grupo, solo por <code>schoolYear</code> y estado impartible.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rows</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Listado de asignaciones docente–asignatura–grupo.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>schoolYear</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Curso escolar, p. ej. <code>&#39;2024-2025&#39;</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>TeacherSubjectAssignmentRow[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Nuevo array solo con filas del año dado y schedulables.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTeacherAssignmentRowSchedulable"></a>
+                    <span class="name">
+                        <span ><b>isTeacherAssignmentRowSchedulable</b></span>
+                        <a href="#isTeacherAssignmentRowSchedulable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isTeacherAssignmentRowSchedulable(row: <a href="../interfaces/TeacherSubjectAssignmentRow.html" target="_self">TeacherSubjectAssignmentRow</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Comprueba si una fila de asignación docente puede usarse al <strong>montar horarios</strong> (está “schedulable”).</p>
+<ul>
+<li>Si <code>status</code> viene vacío o <code>null</code> (API antigua o sin campo), se considera <strong>válida</strong> (<code>true</code>).</li>
+<li>Solo se acepta explícitamente estado <strong><code>ACTIVE</code></strong> como impartible.</li>
+</ul>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/TeacherSubjectAssignmentRow.html" target="_self" >TeacherSubjectAssignmentRow</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fila <code>TeacherSubjectAssignmentRow</code> devuelta por el API.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p><code>true</code> si se puede ofrecer en el constructor de horarios; si no, <code>false</code>.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizeGradeValue"></a>
+                    <span class="name">
+                        <span ><b>normalizeGradeValue</b></span>
+                        <a href="#normalizeGradeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>normalizeGradeValue(grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Normaliza curso académico para comparar (<code>1º</code> ↔ <code>1</code>).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Grade recibido desde asignatura o selector.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Grade sin símbolo ordinal y sin espacios.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/utils/time-range.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hoursBetween"></a>
+                    <span class="name">
+                        <span ><b>hoursBetween</b></span>
+                        <a href="#hoursBetween"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hoursBetween(start: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, end: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Duración en <strong>horas</strong> (decimal) entre dos instantes <code>HH:mm</code> el mismo día.</p>
+<p>Si <code>end</code> es anterior o igual a <code>start</code>, el resultado es <strong>0</strong> (no hay duración negativa).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Hora de inicio <code>HH:mm</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>end</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Hora de fin <code>HH:mm</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Horas transcurridas (p. ej. 1.5 = una hora y media).</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isValidHhMmTime"></a>
+                    <span class="name">
+                        <span ><b>isValidHhMmTime</b></span>
+                        <a href="#isValidHhMmTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isValidHhMmTime(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Comprueba <code>HH:mm</code> con hora y minutos siempre a dos cifras.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Texto introducido por el usuario.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p><code>true</code> si cumple el patrón horario estricto.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizeHhMmTime"></a>
+                    <span class="name">
+                        <span ><b>normalizeHhMmTime</b></span>
+                        <a href="#normalizeHhMmTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>normalizeHhMmTime(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Si el valor cumple <code>HH:mm</code> estricto, lo devuelve recortado; si no, <code>null</code>.
+No rellena un solo dígito (<code>8:15</code> → inválido; debe escribirse <code>08:15</code>).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Texto de hora que puede contener espacios alrededor.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Hora normalizada o <code>null</code> si no es válida.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeRangesOverlap"></a>
+                    <span class="name">
+                        <span ><b>timeRangesOverlap</b></span>
+                        <a href="#timeRangesOverlap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>timeRangesOverlap(aStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, aEnd: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, bStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, bEnd: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Indica si dos intervalos de tiempo <strong>del mismo día</strong> se solapan (hay al menos un minuto en común).</p>
+<p>Cada intervalo es <code>[inicio, fin]</code> en minutos derivados de <code>HH:mm</code>. Dos clases consecutivas
+<code>09:00–10:00</code> y <code>10:00–11:00</code> <strong>no</strong> solapan (el fin de una es el inicio de la otra).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>aStart</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Inicio del primer intervalo <code>HH:mm</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>aEnd</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fin del primer intervalo <code>HH:mm</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>bStart</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Inicio del segundo intervalo <code>HH:mm</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>bEnd</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fin del segundo intervalo <code>HH:mm</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p><code>true</code> si hay solape; si no, <code>false</code>.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeToMinutes"></a>
+                    <span class="name">
+                        <span ><b>timeToMinutes</b></span>
+                        <a href="#timeToMinutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>timeToMinutes(t: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Pasa una hora <code>&quot;HH:mm&quot;</code> a minutos desde medianoche (entero).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>t</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Cadena con hora y minutos, p. ej. <code>&quot;09:30&quot;</code>.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Minutos desde las 00:00. Si el formato no es válido (NaN), devuelve <strong>0</strong>.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeAppAuth"></a>
+                    <span class="name">
+                        <span ><b>initializeAppAuth</b></span>
+                        <a href="#initializeAppAuth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeAppAuth(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Factory de <code>APP_INITIALIZER</code> que intenta recuperar la sesión antes de montar la app.
+Siempre completa, incluso si <code>/auth/verify-session</code> falla, para no bloquear la carga inicial.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>authService</td>
+                                            <td>
+                                                            <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/week-schedule-flow/week-schedule-class.model.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isWeekScheduleClassEligibleForCreateTemplate"></a>
+                    <span class="name">
+                        <span ><b>isWeekScheduleClassEligibleForCreateTemplate</b></span>
+                        <a href="#isWeekScheduleClassEligibleForCreateTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isWeekScheduleClassEligibleForCreateTemplate(c: <a href="../interfaces/WeekScheduleClassItem.html" target="_self">WeekScheduleClassItem</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Clases con oferta docente y sin plantilla horaria creada (pestaña Crear plantilla).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>c</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekScheduleClassItem.html" target="_self" >WeekScheduleClassItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weekScheduleClassKey"></a>
+                    <span class="name">
+                        <span ><b>weekScheduleClassKey</b></span>
+                        <a href="#weekScheduleClassKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>weekScheduleClassKey(c: <a href="../interfaces/WeekScheduleClassItem.html" target="_self">WeekScheduleClassItem</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Clave estable de clase agregada para <code>&lt;select&gt;</code> y mapas en memoria.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>c</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekScheduleClassItem.html" target="_self" >WeekScheduleClassItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/repository/notification-repository.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapApiToNotification"></a>
+                    <span class="name">
+                        <span ><b>mapApiToNotification</b></span>
+                        <a href="#mapApiToNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>mapApiToNotification(n: <a href="../interfaces/ApiNotification.html" target="_self">ApiNotification</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Adapta la notificación REST al modelo común usado por el panel.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>n</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ApiNotification.html" target="_self" >ApiNotification</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Notification.html" target="_self" >Notification</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/utils/week-day.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numberToPrismaDayOfWeek"></a>
+                    <span class="name">
+                        <span ><b>numberToPrismaDayOfWeek</b></span>
+                        <a href="#numberToPrismaDayOfWeek"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>numberToPrismaDayOfWeek(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Convierte el día de la UI (1–7) al literal que espera el backend al crear o actualizar horarios.</p>
+<ul>
+<li>1 → <code>MONDAY</code>, …, 7 → <code>SUNDAY</code>.</li>
+<li>Valores fuera de 1–7 devuelven <strong><code>MONDAY</code></strong> por defecto.</li>
+</ul>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>day</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Día en formato numérico 1 = lunes … 7 = domingo.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>String en mayúsculas compatible con Prisma / API.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prismaDayOfWeekToNumber"></a>
+                    <span class="name">
+                        <span ><b>prismaDayOfWeekToNumber</b></span>
+                        <a href="#prismaDayOfWeekToNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prismaDayOfWeekToNumber(day)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Convierte el valor de día que viene del API o de Prisma al número que usa el front.</p>
+<ul>
+<li>Si ya es un número entre 1 y 7, se devuelve igual (no se modifica).</li>
+<li>Si es un string tipo <code>MONDAY</code>, se mapea a 1, etc.</li>
+<li>Si el string no es reconocido, se devuelve <strong>1</strong> (lunes) por defecto.</li>
+</ul>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>day</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Día como string Prisma (<code>MONDAY</code>…) o número 1–7.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Entero 1–7 (lunes = 1, domingo = 7).</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/notification/notification-create-form/notification-create-form.component.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="personLabel"></a>
+                    <span class="name">
+                        <span ><b>personLabel</b></span>
+                        <a href="#personLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>personLabel(p)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Compone una etiqueta humana para alumnos/profesores evitando perder el email.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>p</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/i18n/translate.provider.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -168,6 +1457,171 @@ Configura el módulo de traducción con español como idioma por defecto
 y carga los ficheros de traducción desde la carpeta assets/i18n en formato JSON.</p>
 </div>
 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/i18n/api-error.util.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resolveApiError"></a>
+                    <span class="name">
+                        <span ><b>resolveApiError</b></span>
+                        <a href="#resolveApiError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resolveApiError(translate: TranslateService, err, fallbackKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Prioriza traducción por <code>code</code> del API; si no hay, mensaje del backend o clave i18n.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>translate</td>
+                                            <td>
+                                                        <code>TranslateService</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fallbackKey</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/weekSchedule/week-schedule-grid-builder/week-schedule-grid-builder.component.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weekScheduleCellKey"></a>
+                    <span class="name">
+                        <span ><b>weekScheduleCellKey</b></span>
+                        <a href="#weekScheduleCellKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>weekScheduleCellKey(weekDay: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, startTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Clave estable para identificar una celda del grid por día y hora de inicio.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>weekDay</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>startTime</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>

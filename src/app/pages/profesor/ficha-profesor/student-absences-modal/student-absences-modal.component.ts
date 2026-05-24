@@ -4,12 +4,17 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AssistanceService } from '../../../../core/services/alumno/assistance.service';
 import { resolveApiError } from '../../../../core/i18n/api-error.util';
 
+/** Resumen de ausencias de un alumno agrupadas por asignatura. */
 interface StudentAbsencesData {
+  /** Alumno al que pertenecen las ausencias. */
   student: { id: number; name: string; surname: string; email: string; };
+  /** Ausencias por asignatura. */
   subjects: { subjectName: string; absences: number; }[];
+  /** Total de ausencias del alumno. */
   totalAbsences: number;
 }
 
+/** Modal de profesor que muestra ausencias de sus alumnos. */
 @Component({
   selector: 'app-student-absences-modal',
   standalone: true,
@@ -118,19 +123,27 @@ interface StudentAbsencesData {
   `
 })
 export class StudentAbsencesModalComponent implements OnInit {
+  /** Evento de cierre del modal. */
   @Output() closeModal = new EventEmitter<void>();
 
+  /** Servicio que consulta ausencias de alumnos del profesor. */
   private assistanceService = inject(AssistanceService);
+  /** Traducciones de estados y errores. */
   private translate = inject(TranslateService);
 
+  /** Datos de alumnos con ausencias. */
   studentsData = signal<StudentAbsencesData[]>([]);
+  /** Estado de carga. */
   loading = signal<boolean>(true);
+  /** Error visible. */
   error = signal<string | null>(null);
 
+  /** Carga datos al abrir el modal. */
   ngOnInit() {
     this.loadData();
   }
 
+  /** Consulta el resumen de ausencias del profesor autenticado. */
   loadData() {
     this.loading.set(true);
     this.error.set(null);
@@ -150,6 +163,7 @@ export class StudentAbsencesModalComponent implements OnInit {
     });
   }
 
+  /** Emite cierre al contenedor padre. */
   onClose() {
     this.closeModal.emit();
   }

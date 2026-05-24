@@ -280,6 +280,10 @@
   STANDBY &#x3D; &#x27;STANDBY&#x27;
 }
 
+import { Teacher } from &#x27;./teacher&#x27;;
+import { Subject } from &#x27;./subject&#x27;;
+import { Group } from &#x27;./group&#x27;;
+
 /**
  * Representa la asignación de un profesor a una asignatura y grupo en un año académico concreto.
  */
@@ -296,6 +300,13 @@ export interface Assignment {
   schoolYear: string;
   /** Estado actual de la asignación */
   status: AssignmentStatus;
+
+  /** Datos del profesor */
+  teacher?: Teacher;
+  /** Datos de la asignatura */
+  subject?: Subject;
+  /** Datos del grupo */
+  group?: Group;
 }
 
 /**
@@ -307,6 +318,43 @@ export interface AssignmentsAllResponse {
   /** Listado de asignaciones */
   data: Assignment[];
   /** Número total de asignaciones devueltas */
+  count: number;
+}
+
+/** Asignación con &#x60;teacher&#x60;, &#x60;subject&#x60; y &#x60;group&#x60; incluidos (&#x60;GET /api/assignments&#x60;). */
+export interface AssignmentWithIncludes extends Omit&lt;Assignment, &#x27;teacher&#x27; | &#x27;subject&#x27; | &#x27;group&#x27;&gt; {
+  /** Profesor asignado, incluido para pintar nombres sin llamadas adicionales. */
+  teacher?: { id: number; name: string; surname?: string; email?: string };
+
+  /** Asignatura impartida, con datos suficientes para horarios e informes. */
+  subject?: {
+    /** Identificador de la asignatura. */
+    id: number;
+    /** Nombre visible de la asignatura. */
+    name: string;
+    /** Nivel/curso de la asignatura. */
+    grade?: string;
+    /** Horas semanales declaradas. */
+    hours?: number;
+    /** Ciclo al que pertenece la asignatura. */
+    course?: { id: number; name: string };
+  };
+
+  /** Grupo en el que se imparte la asignatura. */
+  group?: { id: number; name: string; capacity?: number };
+}
+
+/**
+ * Respuesta de &#x60;GET /api/assignments&#x60; con relaciones anidadas.
+ */
+export interface AssignmentsWithIncludesResponse {
+  /** Indica si la consulta se completó correctamente. */
+  success: boolean;
+
+  /** Asignaciones con relaciones anidadas. */
+  data: AssignmentWithIncludes[];
+
+  /** Número de asignaciones devueltas. */
   count: number;
 }
 

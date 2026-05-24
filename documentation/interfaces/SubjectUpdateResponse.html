@@ -288,7 +288,28 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Subject {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { WithId } from &quot;./withId&quot;;
+
+/**
+ * Representa una asignatura del sistema.
+ * @example
+ * const subject: Subject &#x3D; {
+ *   id: ID_ASIGNATURA,
+ *   name: &#x27;NOMBRE_ASIGNATURA&#x27;,
+ *   grade: &#x27;CURSO_EN_QUE_SE_IMPARTE&#x27;,
+ *   hours: HORAS_SEMANALES,
+ *   description: &#x27;DESCRIPCION_ASIGNATURA&#x27;,
+ *   idCourse: ID_CICLO,
+ *   course: {
+ *     id: ID_CICLO,
+ *     name: &#x27;NOMBRE_CICLO&#x27;,
+ *     description: &#x27;DESCRIPCION_CICLO&#x27;,
+ *     duration: DURACION_CICLO_EN_AÑOS,
+ *     createdAt: &#x27;FECHA_CREACION&#x27;
+ *   }
+ * };
+ */
+export interface Subject {
   /** Identificador único de la asignatura */
   id: number;
   /** Nombre de la asignatura */
@@ -448,7 +469,7 @@ export interface SubjectCreateResponse {
  *   idCourse: ID_CICLO
  * };
  */
-export interface SubjectUpdateRequest {
+export interface SubjectUpdateRequest extends WithId {
   /** Nuevo nombre de la asignatura */
   name: string;
   /** Nuevo curso en el que se imparte la asignatura */

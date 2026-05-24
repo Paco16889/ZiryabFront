@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Student } from '../../models/student';
 import { EnrollmentHttpService } from '../admin/entities/services-for-week-schedule/enrollment-http.service';
 
+/** Carga alumnos matriculados filtrando por asignatura, grupo y año académico. */
 @Injectable({
   providedIn: 'root'
 })
@@ -14,15 +15,14 @@ export class CargaStudentsporGrupoAsignaturaService {
    */
   students = signal<Student[]>([]);
 
+  /** Cliente de matrículas compartido con el flujo de horarios. */
   private readonly enrollments = inject(EnrollmentHttpService);
 
     /**
    * Carga los estudiantes filtrados y actualiza la signal students.
    * Si la petición falla o no devuelve datos, la signal se establece como array vacío.
    * 
-   * @param idSubject Identificador de la asignatura
-   * @param idGroup Identificador del grupo
-   * @param schoolYear Año académico
+   * @param filters Filtros de asignatura, grupo y curso escolar.
    */
 loadStudentsByFilters(filters: StudentByFiltersRequest): void {
   this.getEnrollmentsByFilters(filters)
@@ -38,9 +38,7 @@ loadStudentsByFilters(filters: StudentByFiltersRequest): void {
   /**
    * Obtiene las matrículas filtradas por asignatura, grupo y año académico.
    * 
-   * @param idSubject Identificador de la asignatura
-   * @param idGroup Identificador del grupo
-   * @param schoolYear Año académico (ej: '2024-2025')
+   * @param filters Filtros de asignatura, grupo y curso escolar.
    * @returns Observable con la respuesta de la API que incluye las matrículas y los estudiantes
    */
 getEnrollmentsByFilters(

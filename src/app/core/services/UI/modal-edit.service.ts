@@ -11,14 +11,22 @@ import { UpdateModalState, UpdateRequest } from '../../models/services/update-mo
   providedIn: 'root'
 })
 export class ModalEditService {
+  /** Traducciones para mensajes genéricos de error del modal. */
   private readonly translate = inject(TranslateService);
+
+  /** Estado interno del modal de edición compartido. */
   private _modalState = signal<UpdateModalState<unknown>>({ isOpen: false });
 
+  /** Estado público consumido por el componente modal. */
   modalState = this._modalState.asReadonly();
 
+  /** Configuración de la entidad y función de actualización activas. */
   private currentConfig: UpdateRequest<unknown, unknown, unknown> | null = null;
+
+  /** Temporizador que cierra el modal tras una actualización correcta. */
   private autoCloseTimeout: ReturnType<typeof setTimeout> | null = null;
 
+  /** Abre el modal con datos iniciales, campos editables y función de guardado. */
   openModal(request: UpdateRequest<unknown, unknown, unknown>) {
     this.currentConfig = request;
     this._modalState.set({
@@ -34,6 +42,7 @@ export class ModalEditService {
     });
   }
 
+  /** Ejecuta la actualización con los datos validados por el formulario genérico. */
   confirmUpdate(updateData: unknown) {
     if (!this.currentConfig) return;
 
@@ -66,6 +75,7 @@ export class ModalEditService {
     });
   }
 
+  /** Cierra el modal y limpia la configuración activa. */
   closeModal() {
     this.clearAutoCloseTimeout();
     this._modalState.update(state => ({
@@ -75,6 +85,7 @@ export class ModalEditService {
     this.currentConfig = null;
   }
 
+  /** Cancela cualquier cierre automático pendiente. */
   private clearAutoCloseTimeout(): void {
     if (this.autoCloseTimeout !== null) {
       clearTimeout(this.autoCloseTimeout);
@@ -82,6 +93,7 @@ export class ModalEditService {
     }
   }
 
+  /** Traduce o compone el error mostrado al usuario cuando falla la actualización. */
   private getErrorMessage(err: unknown, _action: 'actualizar'): string {
     const backendMessage = (err as { error?: { message?: string } })?.error?.message;
     if (backendMessage) {

@@ -223,9 +223,6 @@ la selección para continuar con el proceso de matriculación.</p>
                                 <a href="#errorMessage" >errorMessage</a>
                             </li>
                             <li>
-                                <a href="#selectedStudentId" >selectedStudentId</a>
-                            </li>
-                            <li>
                                 <a href="#student" >student</a>
                             </li>
                         </ul>
@@ -298,12 +295,12 @@ la selección para continuar con el proceso de matriculación.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(selectedStudentService: <a href="../injectables/SelectedStudentServiceService.html" target="_self">SelectedStudentServiceService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+<code>constructor(selectedStudentService: <a href="../injectables/SelectedStudentService.html" target="_self">SelectedStudentService</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -327,7 +324,7 @@ la selección para continuar con el proceso de matriculación.</p>
                                                         <td>selectedStudentService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/SelectedStudentServiceService.html" target="_self" >SelectedStudentServiceService</a></code>
+                                                                        <code><a href="../injectables/SelectedStudentService.html" target="_self" >SelectedStudentService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -335,9 +332,7 @@ la selección para continuar con el proceso de matriculación.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>Servicio que almacena el estudiante seleccionado</li>
-</ul>
+                                                                <p>Servicio que almacena el estudiante seleccionado para matriculación.</p>
 
                                                         </td>
                                                 </tr>
@@ -353,9 +348,7 @@ la selección para continuar con el proceso de matriculación.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>FormBuilder de Angular para construir el formulario reactivo</li>
-</ul>
+                                                                <p>FormBuilder de Angular para construir el formulario reactivo de búsqueda.</p>
 
                                                         </td>
                                                 </tr>
@@ -391,7 +384,7 @@ la selección para continuar con el proceso de matriculación.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:25</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -421,7 +414,7 @@ la selección para continuar con el proceso de matriculación.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:31</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -448,7 +441,7 @@ la selección para continuar con el proceso de matriculación.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:54</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -487,17 +480,16 @@ la selección para continuar con el proceso de matriculación.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:107</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Confirma la selección del estudiante encontrado.
-Emite el evento studentSelected y almacena el estudiante en el servicio de selección.
-Pendiente de revisar la comprobación de selectedStudentId que puede ser redundante.</p>
+                        <div class="io-description"><p>Confirma la selección del estudiante encontrado en la búsqueda.
+Almacena el estudiante en el servicio de selección global y notifica al componente padre.</p>
 </div>
 
                         <div class="io-description">
@@ -528,8 +520,8 @@ Pendiente de revisar la comprobación de selectedStudentId que puede ser redunda
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="122"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:122</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -567,8 +559,8 @@ Pendiente de revisar la comprobación de selectedStudentId que puede ser redunda
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -613,7 +605,7 @@ Si no se encuentra el estudiante muestra un mensaje de error.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -650,51 +642,13 @@ Si no se encuentra el estudiante muestra un mensaje de error.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:44</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Mensaje de error a mostrar si el DNI es inválido o no se encuentra el estudiante.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="selectedStudentId"></a>
-                    <span class="name">
-                        <span ><b>selectedStudentId</b></span>
-                        <a href="#selectedStudentId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>number | null</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:42</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Identificador del estudiante seleccionado mediante el radio button.
-Pendiente de revisar si es necesario o puede sustituirse por student?.id directamente.</p>
 </div>
                 </td>
             </tr>
@@ -725,7 +679,7 @@ Pendiente de revisar si es necesario o puede sustituirse por student?.id directa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/alumno/student-selector/student-selector.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -747,10 +701,11 @@ Es null cuando no se ha realizado ninguna búsqueda o no se han encontrado resul
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
-import { StudentsServiceService } from &#x27;../../../../../core/services/admin/entities/students-service.service&#x27;;
+import { StudentsService } from &#x27;../../../../../core/services/admin/entities/students.service&#x27;;
 import { Student, StudentByIdResponse } from &#x27;../../../../../core/models/student&#x27;;
 import { BotonConfirmarStudentComponent } from &quot;../../../botones/boton-confirmar-student/boton-confirmar-student.component&quot;;
-import { SelectedStudentServiceService } from &#x27;../../../../../core/services/admin/selected-student-service.service&#x27;;
+import { SelectedStudentService } from &#x27;../../../../../core/services/admin/selected-student.service&#x27;;
+import { DNI_NIE_PATTERN } from &#x27;../../../../../core/configs/validators&#x27;;
 
 /**
  * Componente que permite buscar y seleccionar un estudiante existente por su DNI.
@@ -782,11 +737,7 @@ export class StudentSelectorComponent {
    */
   student: Student | null &#x3D; null;
 
-    /**
-   * Identificador del estudiante seleccionado mediante el radio button.
-   * Pendiente de revisar si es necesario o puede sustituirse por student?.id directamente.
-   */
-  selectedStudentId: number | null &#x3D; null;
+
 
    /**
    * Mensaje de error a mostrar si el DNI es inválido o no se encuentra el estudiante.
@@ -804,16 +755,16 @@ export class StudentSelectorComponent {
   @Output() studentSelected &#x3D; new EventEmitter&lt;Student&gt;(); // ← Cambiado
 
 
-    /**
+  /**
    * Inicializa el componente.
-   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
-   * @param fb - FormBuilder de Angular para construir el formulario reactivo
+   * @param selectedStudentService Servicio que almacena el estudiante seleccionado para matriculación.
+   * @param fb FormBuilder de Angular para construir el formulario reactivo de búsqueda.
    */
-  constructor(private selectedStudentService: SelectedStudentServiceService
+  constructor(private selectedStudentService: SelectedStudentService
     ,private fb : FormBuilder
   ) {
      this.dniForm &#x3D; this.fb.group({
-      dni: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[0-9]{8}[A-Z]$/)]]
+      dni: [&#x27;&#x27;, [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]]
     });
   }
 
@@ -827,7 +778,7 @@ export class StudentSelectorComponent {
     
   if (this.dniForm.invalid) {
     this.dniForm.markAllAsTouched();
-    this.errorMessage &#x3D; &#x27;Introduce un DNI válido&#x27;;
+    this.errorMessage &#x3D; &#x27;Introduce un DNI / NIE válido&#x27;;
     return;
   }
   const dni &#x3D; this.dniForm.get(&#x27;dni&#x27;)?.value;
@@ -850,13 +801,12 @@ export class StudentSelectorComponent {
     }
   }
 
-   /**
-   * Confirma la selección del estudiante encontrado.
-   * Emite el evento studentSelected y almacena el estudiante en el servicio de selección.
-   * Pendiente de revisar la comprobación de selectedStudentId que puede ser redundante.
+  /**
+   * Confirma la selección del estudiante encontrado en la búsqueda.
+   * Almacena el estudiante en el servicio de selección global y notifica al componente padre.
    */
   confirmSelection() {
-    if (this.selectedStudentId &amp;&amp; this.student?.id &#x3D;&#x3D;&#x3D; this.selectedStudentId) {
+    if (this.student?.id) {
       this.studentSelected.emit(this.student);
       this.selectedStudentService.setSelectedStudent(this.student);
     }
@@ -881,20 +831,20 @@ export class StudentSelectorComponent {
   &lt;div class&#x3D;&quot;mb-4&quot;&gt;
     &lt;form [formGroup]&#x3D;&quot;dniForm&quot;&gt;
        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;
-      Introduce DNI del alumno
+      Introduce DNI / NIE del alumno
     &lt;/label&gt;
     &lt;input
     type&#x3D;&quot;text&quot;
     formControlName &#x3D; &quot;dni&quot;
       class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
-      placeholder&#x3D;&quot;12345678A&quot;
+      placeholder&#x3D;&quot;12345678A o X1234567A&quot;
     
     /&gt;
 
     @if(dniForm.get(&#x27;dni&#x27;)?.invalid &amp;&amp; dniForm.get(&#x27;dni&#x27;)?.touched){
             &lt;span 
               class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          DNI inválido (formato: 12345678A)
+          DNI/NIE inválido (ej: 12345678A o X1234567A)
         &lt;/span&gt;
         }
 
@@ -925,7 +875,7 @@ export class StudentSelectorComponent {
           type&#x3D;&quot;radio&quot;
           name&#x3D;&quot;selectedStudent&quot;
           [value]&#x3D;&quot;student.id&quot;
-          (change)&#x3D;&quot;selectedStudentId &#x3D; student.id&quot;
+          checked
         /&gt;
         {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}
       &lt;/label&gt;
@@ -941,7 +891,7 @@ export class StudentSelectorComponent {
         &lt;/button&gt;
         
         &lt;app-boton-confirmar-student
-        [disabled]&#x3D;&quot;!selectedStudentId&quot;
+        [disabled]&#x3D;&quot;!student.id&quot;
         (confirm)&#x3D;&quot;confirmSelection()&quot;&gt;
 
         &lt;/app-boton-confirmar-student&gt;
@@ -978,8 +928,8 @@ export class StudentSelectorComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- student-selector.component.html --><div class="max-w-2xl mx-auto">  <!-- Input DNI -->  <div class="mb-4">    <form [formGroup]="dniForm">       <label class="block text-gray-700 font-medium mb-2">      Introduce DNI del alumno    </label>    <input    type="text"    formControlName = "dni"      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"      placeholder="12345678A"        />    @if(dniForm.get(\'dni\')?.invalid && dniForm.get(\'dni\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          DNI inválido (formato: 12345678A)        </span>        }    <button      type="button"      class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"      (click)="searchStudent()"    >      Buscar alumno    </button>    </form>         </div>  <!-- Mensaje de error -->  @if(errorMessage){    <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">      {{ errorMessage }}    </div>  }  <!-- Resultado de la búsqueda -->  @if(student){    <div class="border-t pt-4 pb-2">      <label class="flex items-center gap-2 cursor-pointer p-1">        <input          type="radio"          name="selectedStudent"          [value]="student.id"          (change)="selectedStudentId = student.id"        />        {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}      </label>      <!-- Aquí van tus botones, suerte jeje -->      <div class="flex justify-end gap-3">        <!-- Botones que vas a reutilizar del create form -->          <button           type="button"          (click)="onCancel()"          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">          Cancelar        </button>                <app-boton-confirmar-student        [disabled]="!selectedStudentId"        (confirm)="confirmSelection()">        </app-boton-confirmar-student>      </div>    </div>  }</div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonCloseComponent', 'selector': 'app-boton-close'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioComponent', 'selector': 'app-temario'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><!-- student-selector.component.html --><div class="max-w-2xl mx-auto">  <!-- Input DNI -->  <div class="mb-4">    <form [formGroup]="dniForm">       <label class="block text-gray-700 font-medium mb-2">      Introduce DNI / NIE del alumno    </label>    <input    type="text"    formControlName = "dni"      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"      placeholder="12345678A o X1234567A"        />    @if(dniForm.get(\'dni\')?.invalid && dniForm.get(\'dni\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          DNI/NIE inválido (ej: 12345678A o X1234567A)        </span>        }    <button      type="button"      class="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"      (click)="searchStudent()"    >      Buscar alumno    </button>    </form>         </div>  <!-- Mensaje de error -->  @if(errorMessage){    <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">      {{ errorMessage }}    </div>  }  <!-- Resultado de la búsqueda -->  @if(student){    <div class="border-t pt-4 pb-2">      <label class="flex items-center gap-2 cursor-pointer p-1">        <input          type="radio"          name="selectedStudent"          [value]="student.id"          checked        />        {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}      </label>      <!-- Aquí van tus botones, suerte jeje -->      <div class="flex justify-end gap-3">        <!-- Botones que vas a reutilizar del create form -->          <button           type="button"          (click)="onCancel()"          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">          Cancelar        </button>                <app-boton-confirmar-student        [disabled]="!student.id"        (confirm)="confirmSelection()">        </app-boton-confirmar-student>      </div>    </div>  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'StudentSelectorComponent'};
 </script>

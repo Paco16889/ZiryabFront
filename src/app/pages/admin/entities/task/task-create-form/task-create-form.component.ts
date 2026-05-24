@@ -17,18 +17,28 @@ import { environment } from '../../../../../../environments/environment';
   styleUrl: './task-create-form.component.scss',
 })
 export class TaskCreateFormComponent implements OnInit {
+  /** Constructor de formularios reactivos. */
   private readonly fb = inject(FormBuilder);
+  /** Servicio CRUD admin de tareas. */
   private readonly taskService = inject(AdminTaskService);
+  /** Servicio de asignaciones para elegir profesor-asignatura-grupo. */
   private readonly assignmentHttp = inject(AssignmentHttpService);
+  /** Traducciones de errores del backend. */
   private readonly translate = inject(TranslateService);
 
+  /** Cancela la creación y vuelve al listado. */
   readonly cancelCreate = output<void>();
+  /** Notifica al listado que debe recargar tras crear. */
   readonly taskCreated = output<void>();
 
+  /** Tipos de tarea disponibles en el dominio. */
   readonly taskTypes = Object.values(TaskType);
+  /** Opciones de asignación docente para asociar la tarea. */
   readonly assignmentOptions = signal<Array<{ value: number; label: string }>>([]);
+  /** Estado de carga de asignaciones. */
   readonly loadingAssignments = signal(true);
 
+  /** Formulario de alta de tarea. */
   createForm = this.fb.group({
     idTeacherAssignment: [null as number | null, Validators.required],
     title: ['', Validators.required],
@@ -39,9 +49,12 @@ export class TaskCreateFormComponent implements OnInit {
     description: [''],
   });
 
+  /** Evita doble envío durante la creación. */
   isCreating = false;
+  /** Error traducido mostrado en el formulario. */
   errorMessage = '';
 
+  /** Carga asignaciones docentes disponibles para asociar la tarea. */
   ngOnInit(): void {
     this.assignmentHttp.getAll().subscribe((res) => {
       this.loadingAssignments.set(false);
@@ -63,6 +76,7 @@ export class TaskCreateFormComponent implements OnInit {
     });
   }
 
+  /** Etiqueta humana del enum de tipo de tarea. */
   typeLabel(type: TaskType): string {
     const labels: Record<TaskType, string> = {
       [TaskType.PRACTICE]: 'Práctica',
@@ -74,6 +88,7 @@ export class TaskCreateFormComponent implements OnInit {
     return labels[type];
   }
 
+  /** Valida y crea la tarea administrativa. */
   onSubmit(): void {
     if (this.createForm.invalid) {
       this.createForm.markAllAsTouched();
@@ -105,6 +120,7 @@ export class TaskCreateFormComponent implements OnInit {
       });
   }
 
+  /** Cancela el formulario sin crear tarea. */
   onCancel(): void {
     this.cancelCreate.emit();
   }

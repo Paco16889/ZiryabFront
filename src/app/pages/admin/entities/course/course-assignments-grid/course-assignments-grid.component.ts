@@ -12,10 +12,18 @@ import { GroupService } from '../../../../../core/services/admin/entities/group.
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 import { environment } from '../../../../../../environments/environment';
 
+/** Resultado resumido del guardado masivo de asignaciones desde el grid. */
 export type CourseAssignmentsSaveFeedback = {
+  /** Asignaciones creadas correctamente. */
   created: number;
+
+  /** Filas que ya existían en backend y no se duplicaron. */
   duplicates: number;
+
+  /** Filas con profesor o grupo sin completar. */
   incomplete: number;
+
+  /** Indica si el backend devolvió errores parciales o fallo general. */
   hasErrors: boolean;
 };
 
@@ -30,28 +38,57 @@ export type CourseAssignmentsSaveFeedback = {
   styleUrl: './course-assignments-grid.component.scss',
 })
 export class CourseAssignmentsGridComponent implements OnInit {
+  /** Servicio de asignaciones docentes y endpoints auxiliares de oferta. */
   private readonly assignmentsService = inject(AssignmentsService);
+
+  /** Catálogo de profesores para seleccionar responsable de cada asignatura. */
   private readonly teachersService = inject(TeachersService);
+
+  /** Catálogo de grupos para seleccionar dónde se imparte cada asignatura. */
   private readonly groupService = inject(GroupService);
 
+  /** Contexto recibido desde el wizard: ciclo y grade que delimitan las asignaturas. */
   readonly context = input.required<CourseAssignmentsContext>();
+
+  /** Vuelve al paso anterior del asistente. */
   readonly back = output<void>();
 
+  /** Curso escolar aplicado al alta masiva. */
   readonly schoolYear = signal(environment.currentSchoolYear);
+
+  /** Estado de carga inicial del grid. */
   readonly loading = signal(true);
+
+  /** Error al cargar asignaturas, asignaciones existentes, profesores o grupos. */
   readonly loadError = signal(false);
+
+  /** Estado de guardado masivo. */
   readonly saving = signal(false);
+
+  /** Resumen de la última operación de guardado. */
   readonly saveFeedback = signal<CourseAssignmentsSaveFeedback | null>(null);
+
+  /** Validación específica cuando no hay ninguna fila completa para guardar. */
   readonly saveValidation = signal<'noneToSave' | null>(null);
+
+  /** Asignaciones ya existentes para mostrar duplicados o evitar confusión. */
   readonly existingAssignments = signal<AssignmentWithIncludes[]>([]);
+
+  /** Filas editables, una por asignatura ofertada en el ciclo/grade. */
   readonly rows = signal<CourseAssignmentGridRow[]>([]);
+
+  /** Profesores disponibles para el selector de cada fila. */
   readonly teachers = signal<Teacher[]>([]);
+
+  /** Grupos disponibles para el selector de cada fila. */
   readonly groups = signal<Group[]>([]);
 
+  /** Carga catálogos y filas al iniciar el grid. */
   ngOnInit(): void {
     this.loadGrid();
   }
 
+  /** Formatea `grade` numérico como ordinal para mostrarlo en la cabecera. */
   gradeDisplay(): string {
     const grade = this.context().grade.trim();
     if (/^\d+$/.test(grade)) {
@@ -60,10 +97,12 @@ export class CourseAssignmentsGridComponent implements OnInit {
     return grade;
   }
 
+  /** Nombre completo del profesor para opciones de selector. */
   teacherLabel(teacher: Teacher): string {
     return [teacher.name, teacher.surname, teacher.ndSurname].filter(Boolean).join(' ').trim();
   }
 
+  /** Nombre del profesor en asignaciones ya persistidas. */
   assignmentTeacherLabel(a: AssignmentWithIncludes): string {
     const t = a.teacher;
     if (!t?.name) {
@@ -72,18 +111,21 @@ export class CourseAssignmentsGridComponent implements OnInit {
     return [t.name, t.surname].filter(Boolean).join(' ').trim();
   }
 
+  /** Actualiza el profesor elegido en una fila y limpia mensajes previos. */
   onTeacherChange(row: CourseAssignmentGridRow, value: string): void {
     const id = value === '' ? null : Number(value);
     this.updateRow(row.idSubject, { idTeacher: id });
     this.clearSaveMessages();
   }
 
+  /** Actualiza el grupo elegido en una fila y limpia mensajes previos. */
   onGroupChange(row: CourseAssignmentGridRow, value: string): void {
     const id = value === '' ? null : Number(value);
     this.updateRow(row.idSubject, { idGroup: id });
     this.clearSaveMessages();
   }
 
+  /** Valida filas completas y ejecuta el alta masiva de asignaciones. */
   onSave(): void {
     this.clearSaveMessages();
 
@@ -143,16 +185,19 @@ export class CourseAssignmentsGridComponent implements OnInit {
     });
   }
 
+  /** Indica si el último guardado creó asignaciones sin errores. */
   feedbackIsSuccess(): boolean {
     const f = this.saveFeedback();
     return !!f && f.created > 0 && !f.hasErrors;
   }
 
+  /** Indica si el último guardado acabó con duplicados o filas incompletas no críticas. */
   feedbackIsWarning(): boolean {
     const f = this.saveFeedback();
     return !!f && (f.duplicates > 0 || f.incomplete > 0) && !f.hasErrors;
   }
 
+  /** Carga asignaturas del grade, asignaciones existentes, profesores y grupos. */
   private loadGrid(): void {
     const ctx = this.context();
     this.loading.set(true);
@@ -194,6 +239,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
     });
   }
 
+  /** Recarga solo las asignaciones existentes después de guardar. */
   private refreshExistingAssignments(): void {
     const ctx = this.context();
     this.assignmentsService
@@ -205,16 +251,19 @@ export class CourseAssignmentsGridComponent implements OnInit {
       });
   }
 
+  /** Una fila se puede guardar cuando tiene profesor y grupo. */
   private isRowComplete(row: CourseAssignmentGridRow): boolean {
     return row.idTeacher != null && row.idGroup != null;
   }
 
+  /** Detecta filas parcialmente rellenadas para informar al usuario. */
   private isRowIncomplete(row: CourseAssignmentGridRow): boolean {
     const hasTeacher = row.idTeacher != null;
     const hasGroup = row.idGroup != null;
     return hasTeacher !== hasGroup;
   }
 
+  /** Limpia profesor/grupo de asignaturas que ya se intentaron guardar. */
   private clearRows(subjectIds: Set<number>): void {
     this.rows.update((list) =>
       list.map((r) =>
@@ -225,11 +274,13 @@ export class CourseAssignmentsGridComponent implements OnInit {
     );
   }
 
+  /** Borra mensajes de validación/feedback antes de una nueva edición. */
   private clearSaveMessages(): void {
     this.saveFeedback.set(null);
     this.saveValidation.set(null);
   }
 
+  /** Aplica cambios inmutables a una fila identificada por asignatura. */
   private updateRow(
     idSubject: number,
     patch: Partial<Pick<CourseAssignmentGridRow, 'idTeacher' | 'idGroup'>>,
@@ -239,6 +290,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
     );
   }
 
+  /** Vuelve al wizard sin guardar cambios pendientes. */
   onBack(): void {
     this.back.emit();
   }

@@ -29,6 +29,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TaskListItemComponent {
 
+  /** Servicio de traducción para resolver el tipo de tarea. */
   private readonly translate = inject(TranslateService);
 
   /** Tarea a mostrar */
@@ -58,8 +59,10 @@ export class TaskListItemComponent {
   readonly studentCount = computed(() => this.task().studentTasks.length);
 
 
+/** Evento emitido cuando el profesor abre la tarea. */
 readonly taskClick = output<void>();
 
+/** Notifica al padre que debe navegar al detalle/listado de entregas. */
 onTaskClick(): void {
   console.log('Navegando al detalle de la tarea');
   this.taskClick.emit();

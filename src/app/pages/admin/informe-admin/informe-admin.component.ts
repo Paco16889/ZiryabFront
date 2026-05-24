@@ -33,25 +33,52 @@ import { BotonHamburguesaComponent } from '../botones/boton-hamburguesa/boton-ha
   styleUrl: './informe-admin.component.scss',
 })
 export class InformeAdminComponent implements OnInit {
+  /** Servicio de analytics encargado de resumen, exportaciones y PBIX. */
   private readonly analytics = inject(AnalyticsHttpService);
+
+  /** Servicio que precarga ciclos/cursos para el filtro de informes. */
   private readonly courseService = inject(CourseService);
+
+  /** Servicio que precarga grupos para el filtro de informes. */
   private readonly groupService = inject(GroupService);
+
+  /** Traducciones de etiquetas del panel y errores devueltos por el backend. */
   private readonly translate = inject(TranslateService);
 
+  /** Catálogo de ciclos disponible para el select de filtro. */
   readonly courses = this.courseService.courses;
+
+  /** Catálogo de grupos disponible para el select de filtro. */
   readonly groups = this.groupService.groups;
 
+  /** Curso escolar seleccionado para resumen y exportaciones. */
   anyo = environment.currentSchoolYear;
+
+  /** Ciclo seleccionado; `todos` indica que no se filtra por ciclo. */
   ciclo = 'todos';
+
+  /** Grupo seleccionado; `todos` indica que no se filtra por grupo. */
   grupo = 'todos';
+
+  /** Incluye matrículas inactivas cuando se calcula o exporta el informe. */
   incluirInactivos = false;
 
+  /** Estado de carga del resumen visible en pantalla. */
   loading = signal(false);
+
+  /** Estado de descarga de CSV/XLSX/PBIX para bloquear botones. */
   exporting = signal(false);
+
+  /** Mensaje de error ya traducido para mostrar en la UI. */
   errorMessage = signal<string | null>(null);
+
+  /** Resumen devuelto por el backend con KPIs y tablas. */
   summary = signal<AnalyticsSummary | null>(null);
+
+  /** Controla el menú lateral en versión móvil del panel admin. */
   menuMobileOpen = false;
 
+  /** Tarjetas de KPIs normalizadas para renderizar valores vacíos de forma consistente. */
   readonly kpiCards = computed(() => {
     const k = this.summary()?.kpis ?? {};
     const empty = this.translate.instant('common.noData');
@@ -72,6 +99,7 @@ export class InformeAdminComponent implements OnInit {
     ];
   });
 
+  /** Cinco grupos con más alumnos únicos, usados como ranking rápido del informe. */
   readonly topGrupos = computed(() => {
     const rows = [...(this.summary()?.alumnosGrupo ?? [])];
     return rows
@@ -79,12 +107,14 @@ export class InformeAdminComponent implements OnInit {
       .slice(0, 5);
   });
 
+  /** Carga catálogos de filtros y el resumen inicial del curso activo. */
   ngOnInit(): void {
     this.courseService.loadCourses();
     this.groupService.loadGroups();
     this.refreshSummary();
   }
 
+  /** Solicita al backend el resumen filtrado y actualiza KPIs/tablas. */
   refreshSummary(): void {
     this.loading.set(true);
     this.errorMessage.set(null);
@@ -109,6 +139,7 @@ export class InformeAdminComponent implements OnInit {
       });
   }
 
+  /** Descarga CSV/XLSX completo o filtrado y muestra errores si el backend devuelve JSON. */
   exportFile(formato: 'csv' | 'xlsx', completo: boolean): void {
     this.exporting.set(true);
     this.errorMessage.set(null);
@@ -143,6 +174,7 @@ export class InformeAdminComponent implements OnInit {
       });
   }
 
+  /** Descarga el fichero Power BI preconstruido asociado al informe del proyecto. */
   downloadPowerBi(): void {
     this.exporting.set(true);
     this.errorMessage.set(null);
@@ -166,10 +198,12 @@ export class InformeAdminComponent implements OnInit {
     });
   }
 
+  /** Abre el menú móvil de administración. */
   abrirMenuMobile(): void {
     this.menuMobileOpen = true;
   }
 
+  /** Cierra el menú móvil de administración. */
   cerrarMenuMobile(): void {
     this.menuMobileOpen = false;
   }

@@ -20,12 +20,16 @@ import {
   providedIn: 'root',
 })
 export class EnrollmentHttpService {
+  /** Cliente HTTP para consultar matrículas del alumnado. */
   private readonly http = inject(HttpClient);
 
+  /** Endpoint base del módulo de matrículas. */
   private readonly apiUrl = `${environment.apiUrl}/enrollments`;
 
   /**
    * `GET /api/enrollments/by-filters` — matrículas de alumnos por asignatura, grupo y año.
+   *
+   * @param filters - Identificadores de asignatura, grupo y curso escolar que delimitan la consulta
    */
   getByFilters(filters: StudentByFiltersRequest): Observable<EnrollmentByFiltersResponse> {
     const params = new HttpParams()

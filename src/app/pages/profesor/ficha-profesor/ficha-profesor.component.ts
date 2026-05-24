@@ -23,6 +23,7 @@ export class FichaProfesorComponent implements OnInit {
 
   /** Servicio para gestionar las operaciones de asistencia */
   private assistanceService = inject(AssistanceService);
+  /** Traducciones de mensajes de éxito, error e información. */
   private readonly translate = inject(TranslateService);
 
   /** Signal que indica si los datos están cargándose */
@@ -33,9 +34,10 @@ export class FichaProfesorComponent implements OnInit {
   /** Signal que contiene el listado de faltas pendientes de revisión */
   public justificacionesPendientes = signal<AssistanceItem[]>([]);
 
-  /** Estado del modal de ausencias */
+  /** Controla la visibilidad del modal de ausencias de alumnos tutelados. */
   public isAbsencesModalOpen = signal<boolean>(false);
 
+  /** URL base del API para construir enlaces a justificantes adjuntos. */
   public apiUrl = environment.apiUrl;
 
   /**

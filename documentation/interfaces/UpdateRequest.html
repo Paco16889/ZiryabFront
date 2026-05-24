@@ -235,7 +235,7 @@ y la función de actualización a ejecutar cuando el usuario confirme los cambio
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>entityData:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                        <code>entityData:     <code>T</code>
 </code>
                                     </td>
                                 </tr>
@@ -243,7 +243,7 @@ y la función de actualización a ejecutar cuando el usuario confirme los cambio
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            <i>Type : </i>    <code>T</code>
 
                                         </td>
                                     </tr>
@@ -469,7 +469,7 @@ import { EditFieldConfig } from &quot;../../configs/edit-modal-config&quot;;
  * Todos los campos excepto isOpen son opcionales ya que solo se
  * rellenan cuando el modal está abierto.
  */
-export interface UpdateModalState {
+export interface UpdateModalState&lt;T&gt; {
 
   /** Indica si el modal está visible */
   isOpen: boolean;
@@ -480,7 +480,7 @@ export interface UpdateModalState {
   /** Tipo de entidad a actualizar, por ejemplo &#x27;student&#x27;, &#x27;course&#x27; */
   entityType?: string;
   /** Datos actuales de la entidad para prerellenar el formulario */
-  entityData?: any;
+  entityData?: T;
   /** Configuración de los campos editables del formulario */
   fields?: EditFieldConfig[];
   /** Indica si la petición de actualización está en curso */
@@ -505,7 +505,7 @@ export interface UpdateModalState {
  *   updateFn: (data) &#x3D;&gt; this.miServicio.update(data)
  * };
  */
-export interface UpdateRequest {
+export interface UpdateRequest&lt;T, U,  R&gt; {
     /** Identificador único de la entidad a actualizar */
   id: number;
   /** Nombre de la entidad a mostrar en el título del modal */
@@ -513,11 +513,11 @@ export interface UpdateRequest {
   /** Tipo de entidad, usado en los mensajes del modal */
   type: string;
   /** Datos actuales de la entidad para prerellenar el formulario */
-  entityData: any;
+  entityData: T;
   /** Configuración de los campos editables del formulario */
   fields: EditFieldConfig[];
   /** Función que ejecuta la petición de actualización al backend */
-  updateFn: (data: any) &#x3D;&gt; Observable&lt;any&gt;;
+  updateFn: (data: U) &#x3D;&gt; Observable&lt;R&gt;;
 }</code></pre>
     </div>
 </div>
