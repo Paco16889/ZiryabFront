@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { environment } from '../../../../environments/environment';
 import { AnalyticsSummary } from '../../../core/models/analytics';
 import { AnalyticsHttpService } from '../../../core/services/admin/analytics-http.service';
@@ -35,6 +36,7 @@ export class InformeAdminComponent implements OnInit {
   private readonly analytics = inject(AnalyticsHttpService);
   private readonly courseService = inject(CourseService);
   private readonly groupService = inject(GroupService);
+  private readonly translate = inject(TranslateService);
 
   readonly courses = this.courseService.courses;
   readonly groups = this.groupService.groups;
@@ -52,20 +54,21 @@ export class InformeAdminComponent implements OnInit {
 
   readonly kpiCards = computed(() => {
     const k = this.summary()?.kpis ?? {};
+    const empty = this.translate.instant('common.noData');
     return [
-      { key: 'informe.kpi.matriculas', value: k['total_matriculas'] ?? '—' },
-      { key: 'informe.kpi.alumnos', value: k['alumnos_unicos'] ?? '—' },
-      { key: 'informe.kpi.profesores', value: k['profesores_en_asignaciones'] ?? '—' },
-      { key: 'informe.kpi.ciclos', value: k['ciclos_formativos'] ?? '—' },
-      { key: 'informe.kpi.grupos', value: k['grupos'] ?? '—' },
+      { key: 'informe.kpi.matriculas', value: k['total_matriculas'] ?? empty },
+      { key: 'informe.kpi.alumnos', value: k['alumnos_unicos'] ?? empty },
+      { key: 'informe.kpi.profesores', value: k['profesores_en_asignaciones'] ?? empty },
+      { key: 'informe.kpi.ciclos', value: k['ciclos_formativos'] ?? empty },
+      { key: 'informe.kpi.grupos', value: k['grupos'] ?? empty },
       {
         key: 'informe.kpi.asistencia',
         value:
           k['tasa_asistencia_global_pct'] != null
             ? `${k['tasa_asistencia_global_pct']}%`
-            : '—',
+            : empty,
       },
-      { key: 'informe.kpi.sesionesCanceladas', value: k['sesiones_canceladas'] ?? '—' },
+      { key: 'informe.kpi.sesionesCanceladas', value: k['sesiones_canceladas'] ?? empty },
     ];
   });
 
@@ -100,7 +103,7 @@ export class InformeAdminComponent implements OnInit {
         error: (err) => {
           this.loading.set(false);
           this.errorMessage.set(
-            err?.error?.message ?? err?.message ?? 'Error al cargar el resumen',
+            resolveApiError(this.translate, err, 'common.errors.loadSummary'),
           );
         },
       });
@@ -134,7 +137,7 @@ export class InformeAdminComponent implements OnInit {
         error: (err) => {
           this.exporting.set(false);
           this.errorMessage.set(
-            err?.error?.message ?? err?.message ?? 'Error al exportar',
+            resolveApiError(this.translate, err, 'common.errors.export'),
           );
         },
       });
@@ -157,7 +160,7 @@ export class InformeAdminComponent implements OnInit {
       error: (err) => {
         this.exporting.set(false);
         this.errorMessage.set(
-          err?.error?.message ?? err?.message ?? 'Error al descargar Power BI',
+          resolveApiError(this.translate, err, 'common.errors.downloadPowerBi'),
         );
       },
     });

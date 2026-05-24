@@ -5,7 +5,8 @@ import { GradeService } from '../../../core/services/profesor/grade.service';
 import { EvaluationPeriod, Grade, CreateGradeRequest } from '../../../core/models/grade';
 import { Group } from '../../../core/models/group';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 
 interface StudentWithSubjects {
   id: number;
@@ -28,6 +29,7 @@ interface StudentWithSubjects {
 export class GestionNotasComponent implements OnInit {
   private gradeService = inject(GradeService);
   private fb = inject(FormBuilder);
+  private readonly translate = inject(TranslateService);
 
   public groups = signal<Group[]>([]);
   public selectedGroup = signal<Group | null>(null);
@@ -56,13 +58,13 @@ export class GestionNotasComponent implements OnInit {
           this.selectedGroup.set(res.data[0]);
           this.loadGrades();
         } else {
-          this.errorMessage.set('No eres tutor de ningún grupo actualmente.');
+          this.errorMessage.set(this.translate.instant('common.errors.noTutorGroups'));
         }
         this.loading.set(false);
       },
       error: (err) => {
         console.error('Error al cargar grupos:', err);
-        this.errorMessage.set('Error al cargar grupos tutorados');
+        this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.loadTutorGroups'));
         this.loading.set(false);
       }
     });
@@ -97,7 +99,7 @@ export class GestionNotasComponent implements OnInit {
         const enrollments = group.studentEnrollments || [];
         
         if (enrollments.length === 0) {
-          this.errorMessage.set('Este grupo no tiene alumnos matriculados.');
+          this.errorMessage.set(this.translate.instant('common.errors.noStudentsInGroup'));
           this.students.set([]);
         } else {
           this.errorMessage.set('');
@@ -143,7 +145,7 @@ export class GestionNotasComponent implements OnInit {
         }
 
         console.error('Error al cargar notas:', err);
-        this.errorMessage.set('Error al cargar notas');
+        this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.loadNotes'));
         this.loading.set(false);
       }
     });
@@ -215,7 +217,7 @@ export class GestionNotasComponent implements OnInit {
     }
 
     if (!allGraded) {
-      this.errorMessage.set('Todas las asignaturas de todos los alumnos deben ser calificadas con una nota entre 1 y 10.');
+      this.errorMessage.set(this.translate.instant('common.errors.allGradesRequired'));
       setTimeout(() => this.errorMessage.set(''), 5000);
       return;
     }
@@ -223,13 +225,16 @@ export class GestionNotasComponent implements OnInit {
     this.saving.set(true);
     this.gradeService.bulkUpsertGrades({ grades: gradesToSave }).subscribe({
       next: () => {
-        this.successMessage.set('Notas guardadas correctamente');
+        this.successMessage.set(this.translate.instant('grades.savedSuccess'));
         this.saving.set(false);
         setTimeout(() => this.successMessage.set(''), 3000);
       },
       error: (err) => {
         console.error('Error al guardar notas:', err);
-        const errorMsg = err.error?.message || err.error?.errors?.formErrors?.[0] || 'Error al guardar notas';
+        const errorMsg =
+          err.error?.message ||
+          err.error?.errors?.formErrors?.[0] ||
+          this.translate.instant('common.errors.saveNotes');
         this.errorMessage.set(errorMsg);
         this.saving.set(false);
       }

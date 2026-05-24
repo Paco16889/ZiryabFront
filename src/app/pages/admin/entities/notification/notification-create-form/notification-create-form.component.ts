@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { AdminNotificationService } from '../../../../../core/services/admin/entities/admin-notification.service';
 import { StudentsService } from '../../../../../core/services/admin/entities/students.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
@@ -30,6 +31,7 @@ export class NotificationCreateFormComponent implements OnInit {
   private readonly notificationService = inject(AdminNotificationService);
   private readonly studentsService = inject(StudentsService);
   private readonly teachersService = inject(TeachersService);
+  private readonly translate = inject(TranslateService);
 
   readonly cancelCreate = output<void>();
   readonly notificationCreated = output<void>();
@@ -107,7 +109,7 @@ export class NotificationCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la notificación';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createNotification');
         },
       });
   }

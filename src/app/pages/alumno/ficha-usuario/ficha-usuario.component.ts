@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { NgClass, DatePipe } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { JustificarFaltaModalComponent } from './justificar-falta-modal/justificar-falta-modal.component';
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
@@ -13,7 +14,7 @@ import { AssistanceItem } from '../../../core/models/assistance';
 @Component({
   selector: 'app-ficha-usuario',
   standalone: true,
-  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent],
+  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent, TranslateModule],
   templateUrl: './ficha-usuario.component.html',
   styleUrl: './ficha-usuario.component.scss'
 })
@@ -23,6 +24,7 @@ export class FichaUsuarioComponent implements OnInit {
   private assistanceService = inject(AssistanceService);
   /** Servicio para gestionar la autenticación y obtener el usuario actual */
   private authService = inject(AuthService);
+  private translate = inject(TranslateService);
 
   /** Signal que indica si los datos están cargándose */
   public loading = signal<boolean>(true);
@@ -60,12 +62,12 @@ export class FichaUsuarioComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error al cargar faltas', err);
-          this.errorMessage.set('Error al cargar las faltas.');
+          this.errorMessage.set(this.translate.instant('common.errors.loadAbsences'));
           this.loading.set(false);
         }
       });
     } else {
-      this.errorMessage.set('Usuario no identificado.');
+      this.errorMessage.set(this.translate.instant('common.errors.userNotIdentified'));
       this.loading.set(false);
     }
   }

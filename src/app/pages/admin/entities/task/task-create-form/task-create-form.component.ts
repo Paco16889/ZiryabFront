@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { TaskType } from '../../../../../core/models/task';
 import { AssignmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/teacher-assignment-http.service';
 import { AdminTaskService } from '../../../../../core/services/admin/entities/task.service';
@@ -19,6 +20,7 @@ export class TaskCreateFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly taskService = inject(AdminTaskService);
   private readonly assignmentHttp = inject(AssignmentHttpService);
+  private readonly translate = inject(TranslateService);
 
   readonly cancelCreate = output<void>();
   readonly taskCreated = output<void>();
@@ -98,7 +100,7 @@ export class TaskCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la tarea';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createTask');
         },
       });
   }

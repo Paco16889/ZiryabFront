@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { ClasesService } from '../../../core/services/clases.service';
@@ -9,24 +10,20 @@ import { TaskService } from '../../../core/services/task.service';
 import { Task, TaskType } from '../../../core/models/task';
 import { Router } from '@angular/router';
 import { StudentBySubject } from '../../../core/models/student-by-subject';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 
 export interface BloqueTemario {
   id: number;
-  titulo: string;
+  titleKey: string;
   abierta: boolean;
   icono: string;
   tareas: Task[];
 }
 
-/**
- * Componente que muestra el temario de una asignatura.
- * Incluye un apartado de "Pasar lista" donde pueden registrar la asistencia de 
- * todos los alumnos matriculados en la asignatura.
- */
 @Component({
     selector: 'app-temario-profesor',
     standalone: true,
-    imports: [CommonModule, BotonAtrasComponent],
+    imports: [CommonModule, BotonAtrasComponent, TranslateModule],
     templateUrl: './temario-profesor.component.html',
     styleUrls: ['./temario-profesor.component.scss']
 })
@@ -38,6 +35,7 @@ export class TemarioProfesorComponent implements OnInit {
     private attendanceSvc = inject(AttendanceService);
     private taskService = inject(TaskService);
     private router = inject(Router);
+    private readonly translate = inject(TranslateService);
 
     bloques = signal<BloqueTemario[]>([]);
     claseEnCurso = decodeURIComponent(this.route.snapshot.paramMap.get('claseId') || '');
@@ -52,11 +50,11 @@ export class TemarioProfesorComponent implements OnInit {
     saveError = signal(false);
     showAttendanceModal = signal(false);
 
-    readonly statusOptions: { value: AttendanceStatus; label: string; color: string }[] = [
-        { value: 'PRESENT', label: 'Presente', color: 'emerald' },
-        { value: 'ABSENT', label: 'Ausente', color: 'red' },
-        { value: 'LATE', label: 'Retraso', color: 'amber' },
-        { value: 'EXCUSED', label: 'Justificado', color: 'blue' },
+    readonly statusOptions: { value: AttendanceStatus; labelKey: string; color: string }[] = [
+        { value: 'PRESENT', labelKey: 'assistanceStatus.PRESENT', color: 'emerald' },
+        { value: 'ABSENT', labelKey: 'assistanceStatus.ABSENT', color: 'red' },
+        { value: 'LATE', labelKey: 'assistanceStatus.LATE', color: 'amber' },
+        { value: 'EXCUSED', labelKey: 'assistanceStatus.EXCUSED', color: 'blue' },
     ];
 
     ngOnInit(): void {
@@ -66,7 +64,7 @@ export class TemarioProfesorComponent implements OnInit {
             this.loadAlumnos();
         }
         this.loadTasks();
-    }//comentario
+    }
 
     loadTasks() {
       this.taskService.getAllTasks().subscribe({
@@ -87,24 +85,23 @@ export class TemarioProfesorComponent implements OnInit {
 
     groupTasksByType(tasks: Task[]) {
       const configBloques = [
-        { tipo: TaskType.THEORY, titulo: 'Material Teórico y Documentos', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
-        { tipo: TaskType.EXAM, titulo: 'Exámenes y Pruebas', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
-        { tipo: TaskType.PROJECT, titulo: 'Proyectos Evaluables', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
-        { tipo: TaskType.PRACTICE, titulo: 'Ejercicios Prácticos', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
-        { tipo: TaskType.HOMEWORK, titulo: 'Deberes Generales', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+        { tipo: TaskType.THEORY, titleKey: 'syllabus.sections.THEORY', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+        { tipo: TaskType.EXAM, titleKey: 'syllabus.sections.EXAM', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+        { tipo: TaskType.PROJECT, titleKey: 'syllabus.sections.PROJECT', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+        { tipo: TaskType.PRACTICE, titleKey: 'syllabus.sections.PRACTICE', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+        { tipo: TaskType.HOMEWORK, titleKey: 'syllabus.sections.HOMEWORK', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
       ];
 
       const nuevosBloques: BloqueTemario[] = [];
       const user = this.authService.getCurrentUser();
       for (const conf of configBloques) {
-        // Filtrar tareas que pertenecen al profesor logueado además de a la clase
         const tareasDeTipo = tasks.filter(t => t.type === conf.tipo && t.teacherAssignment?.idTeacher === user?.id);
         
         if (tareasDeTipo.length > 0) {
           tareasDeTipo.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
           nuevosBloques.push({
             id: nuevosBloques.length + 1,
-            titulo: conf.titulo,
+            titleKey: conf.titleKey,
             abierta: nuevosBloques.length === 0,
             icono: conf.icono,
             tareas: tareasDeTipo
@@ -166,7 +163,7 @@ export class TemarioProfesorComponent implements OnInit {
                     next: () => {
                         this.saving.set(false);
                         this.saveError.set(false);
-                        this.saveMessage.set('Asistencia guardada correctamente');
+                        this.saveMessage.set(this.translate.instant('syllabus.attendanceSaved'));
                         setTimeout(() => {
                             this.closeAttendanceModal();
                         }, 1500);
@@ -174,14 +171,14 @@ export class TemarioProfesorComponent implements OnInit {
                     error: () => {
                         this.saving.set(false);
                         this.saveError.set(true);
-                        this.saveMessage.set('Error al guardar la asistencia');
+                        this.saveMessage.set(this.translate.instant('common.errors.saveAttendance'));
                     }
                 });
             },
             error: (err) => {
                 this.saving.set(false);
                 this.saveError.set(true);
-                this.saveMessage.set(`❌ ${err?.error?.message ?? 'Error al obtener la sesión'}`);
+                this.saveMessage.set(resolveApiError(this.translate, err, 'common.errors.sessionError'));
             }
         });
     }

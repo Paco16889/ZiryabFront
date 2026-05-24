@@ -47,10 +47,10 @@
       <div class="mb-4">
         <label class="block font-medium mb-2">{{ 'lists.assistances.fields.status' | translate }}</label>
         <select formControlName="status" class="w-full border rounded-lg px-4 py-2">
-          <option [value]="'PRESENT'">Presente</option>
-          <option [value]="'ABSENT'">Ausente</option>
-          <option [value]="'LATE'">Tarde</option>
-          <option [value]="'EXCUSED'">Justificado</option>
+          <option [value]="'PRESENT'">{{ 'assistanceStatus.PRESENT' | translate }}</option>
+          <option [value]="'ABSENT'">{{ 'assistanceStatus.ABSENT' | translate }}</option>
+          <option [value]="'LATE'">{{ 'assistanceStatus.LATE' | translate }}</option>
+          <option [value]="'EXCUSED'">{{ 'assistanceStatus.EXCUSED' | translate }}</option>
         </select>
       </div>
       @if (errorMessage) {

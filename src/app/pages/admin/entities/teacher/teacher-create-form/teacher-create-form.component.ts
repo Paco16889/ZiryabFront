@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 import { PasswordService } from '../../../../../core/services/password.service';
@@ -16,11 +18,13 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
  */
 @Component({
   selector: 'app-teacher-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './teacher-create-form.component.html',
   styleUrl: './teacher-create-form.component.scss'
 })
 export class TeacherCreateFormComponent {
+  private readonly translate = inject(TranslateService);
+
   /** Evento emitido cuando el usuario cancela la creación */
   @Output() cancelCreate = new EventEmitter<void>();
 
@@ -110,7 +114,7 @@ export class TeacherCreateFormComponent {
         },
         error: (err) => {
           console.error('❌ Error guardando teacher:', err);
-          this.errorMessage = err.error?.message || err.message || 'Error al crear el profesor';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createTeacher');
         }
       });
     }

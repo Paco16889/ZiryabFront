@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { Student } from '../../../../../core/models/student';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentsService } from '../../../../../core/services/admin/entities/students.service';
@@ -18,11 +20,12 @@ import { DNI_NIE_PATTERN } from '../../../../../core/configs/validators';
  */
 @Component({
   selector: 'app-student-create-form',
-  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent],
+  imports: [ReactiveFormsModule, BotonConfirmarStudentComponent, TranslateModule],
   templateUrl: './student-create-form.component.html',
   styleUrl: './student-create-form.component.scss'
 })
 export class StudentCreateFormComponent {
+  private readonly translate = inject(TranslateService);
 
   /**
    * Evento emitido cuando the estudiante se ha creado correctamente.
@@ -150,7 +153,7 @@ export class StudentCreateFormComponent {
       },
       error: (err) => {
         console.error('❌ Error al crear estudiante:', err);
-        this.errorMessage = 'Error al crear el estudiante';
+        this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createStudent');
       }
     });
   }

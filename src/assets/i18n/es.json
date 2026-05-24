@@ -9,7 +9,8 @@
       "cancel": "Cancelar",
       "confirm": "Confirmar",
       "back": "Volver",
-      "search": "Buscar"
+      "search": "Buscar",
+      "close": "Cerrar"
     },
     "fields": {
       "email": "Email",
@@ -38,8 +39,395 @@
     },
     "messages": {
       "loading": "Cargando",
-      "loadingOptions": "Cargando opciones..."
+      "loadingEllipsis": "Cargando...",
+      "loadingOptions": "Cargando opciones...",
+      "emptyList": "No hay elementos para mostrar.",
+      "saving": "Guardando...",
+      "subject": "Asignatura",
+      "unassigned": "Sin asignar",
+      "loadingTeacher": "Consultando...",
+      "unknown": "Desconocida",
+      "optional": "opcional",
+      "total": "Total",
+      "required": "Obligatorio",
+      "between0And10": "Debe estar entre 0 y 10",
+      "gradeBetween0And10": "Introduce una nota entre 0 y 10",
+      "noDescription": "Sin descripción",
+      "enrollment": "Matrícula"
+    },
+    "noData": "—",
+    "errors": {
+      "unknown": "Error desconocido",
+      "connection": "Error de conexión con el servidor.",
+      "userNotIdentified": "Usuario no identificado. Por favor, inicia sesión.",
+      "loadSummary": "Error al cargar el resumen",
+      "export": "Error al exportar",
+      "downloadPowerBi": "Error al descargar Power BI",
+      "loadAbsences": "Error al cargar las faltas.",
+      "loadTask": "Error al cargar la tarea.",
+      "loadTaskDetail": "Error al cargar la tarea detallada.",
+      "loadGrades": "Error al cargar tus notas",
+      "loadTutorGroups": "Error al cargar grupos tutorados",
+      "loadNotes": "Error al cargar notas",
+      "saveNotes": "Error al guardar notas",
+      "createTask": "Error al crear la tarea",
+      "createTeacher": "Error al crear el profesor",
+      "createGroup": "Error al crear el grupo",
+      "createCourse": "Error al crear el ciclo",
+      "createSubject": "Error al crear la asignatura",
+      "createStudent": "Error al crear el estudiante",
+      "createEnrollment": "Error al crear la entrega",
+      "createNotification": "Error al crear la notificación",
+      "createSession": "Error al crear la sesión",
+      "createAssistance": "Error al crear la asistencia",
+      "uploadJustification": "Error al subir el justificante. Inténtalo de nuevo.",
+      "loadJustifications": "Error al cargar las justificaciones pendientes.",
+      "noSubjectsAssigned": "No tienes asignaturas asignadas.",
+      "noSubjectsEnrolled": "No tienes asignaturas matriculadas.",
+      "noTutorGroups": "No eres tutor de ningún grupo actualmente.",
+      "noStudentsInGroup": "Este grupo no tiene alumnos matriculados.",
+      "allGradesRequired": "Todas las asignaturas de todos los alumnos deben ser calificadas con una nota entre 1 y 10.",
+      "taskIdMissing": "ID de tarea no proporcionado.",
+      "couldNotLoadTask": "No se pudo cargar la tarea.",
+      "folderNotAllowed": "Las carpetas enteras no están permitidas. Por favor, comprímela a un solo archivo .ZIP",
+      "folderNotAllowedDetail": "Las carpetas enteras no están permitidas. Por favor, comprímela a .ZIP haciendo \"Click Derecho -> Comprimir\".",
+      "fileTooLarge50": "El archivo supera los 50 MB de peso máximo permitido.",
+      "fileTooLarge10": "El archivo supera el límite de 10 MB.",
+      "fileTooLarge1": "El archivo no puede pesar más de 1 MB.",
+      "invalidFileFormat": "El formato no es válido. Sube un PDF, JPG o PNG.",
+      "selectValidJustification": "Por favor, selecciona un justificante válido.",
+      "provideUrl": "Debes proveer una URL.",
+      "provideFile": "Debes seleccionar o arrastrar un archivo / ZIP.",
+      "invalidUploadLink": "El servidor procesó el archivo, pero no devolvió un enlace válido.",
+      "uploadFailed": "Hubo un error internamente al subir el archivo al servidor.",
+      "deleteSubmission": "Error al borrar la entrega.",
+      "studentNotFound": "Alumno no encontrado",
+      "invalidDni": "Introduce un DNI / NIE válido",
+      "existingStudent": "Estudiante existente. Matricular desde estudiante existente.",
+      "loadCoursesFailed": "No se pudieron cargar los ciclos",
+      "loadStudentTasksFailed": "No se pudieron obtener las tareas.",
+      "saveAttendance": "Error al guardar la asistencia",
+      "sessionError": "Error al obtener la sesión",
+      "deadlineExpiredNoLate": "El plazo de entrega ha expirado y el profesor no permite entregas tardías.",
+      "submitNotifyFailed": "Tu archivo fue subido pero falló la notificación de entrega a la BBDD."
     }
+  },
+
+  "studentTaskDetail": {
+    "problemDetected": "Problema detectado",
+    "status": {
+      "SUBMITTED": "Entregada",
+      "LATE": "Retraso",
+      "NOT_SUBMITTED": "No entregado",
+      "PENDING": "Pendiente",
+      "GRADED": "Calificada"
+    },
+    "dueDate": "Fecha límite",
+    "noDescription": "El profesor no ha proporcionado una descripción.",
+    "consultMaterial": "Material de consulta",
+    "viewDownload": "Ver / descargar",
+    "teacherEvaluation": "Evaluación del profesor",
+    "finalGrade": "Nota final",
+    "attachedComments": "Comentarios adjuntos",
+    "noFeedback": "Tu calificación ha sido procesada sin comentarios.",
+    "submissionArea": "Área de entrega",
+    "deadlineClosed": "Plazo de entrega cerrado",
+    "deadlineClosedBody": "La fecha límite era el <strong>{{date}}</strong> y el profesor <strong>no permite entregas tardías</strong> en esta tarea. No puedes enviar archivos ni enlaces.",
+    "deadlineClosedHint": "Si crees que es un error, contacta con tu profesor para que amplíe el plazo o habilite entregas fuera de fecha.",
+    "lateWarning": "Fuera de plazo",
+    "lateWarningBody": "Has superado la fecha límite ({{date}}). Aún puedes entregar: quedará marcada como <span class=\"font-bold\">Fuera de plazo (LATE)</span>.",
+    "sentOk": "Enviado correctamente",
+    "savedOn": "Tu entrega ha sido guardada satisfactoriamente en nuestras bases de datos el <strong>{{date}}</strong>.",
+    "deleteSubmission": "Borrar entrega",
+    "openOriginalLink": "Abrir enlace original",
+    "tabDropzone": "Dropzone",
+    "tabUrl": "Subir enlace",
+    "dropHint": "Haz click o arrastra aquí tu documento",
+    "dropZipHint": "Si tu entrega es una carpeta con varios archivos, no la aceptaremos directamente. Debes crear un .ZIP comprimido con la misma e insertarlo aquí.",
+    "maxWeight": "Máximo de capacidad de peso: 50MB",
+    "localUploadOk": "Carga local asegurada",
+    "removeFileTitle": "Eliminar y seleccionar otro",
+    "urlLabel": "Vincular recurso a la URL web",
+    "urlPlaceholder": "Ej: https://docs.google.com/document/d/mI-trabajO1/",
+    "urlInvalid": "Por favor, introduce un enlace web válido que empiece por http:// o https://",
+    "processing": "Procesando archivo/enlace...",
+    "confirmSubmit": "Confirmar envío al servidor",
+    "submitSuccess": "La carga y entrega de tu tarea fue registrada con éxito.",
+    "unsubmitConfirm": "¿Estás seguro de que quieres borrar tu entrega actual? Tendrás que subirla de nuevo."
+  },
+
+  "fichaProfesor": {
+    "noPendingJustifications": "No tienes justificaciones pendientes de revisar.",
+    "justifySuccess": "Falta justificada correctamente.",
+    "justifyError": "Hubo un error al intentar justificar la falta.",
+    "rejectSuccess": "Justificante rechazado.",
+    "rejectError": "Hubo un error al intentar rechazar el justificante."
+  },
+
+  "taskForm": {
+    "createSuccessWithFile": "Tarea creada con éxito con su fichero adjunto."
+  },
+
+  "grades": {
+    "title": "Evaluaciones",
+    "subtitle": "Introduce las notas de tus alumnos como tutor",
+    "tutoredGroup": "Grupo tutorizado",
+    "evaluationPeriod": "Periodo de evaluación",
+    "average": "Media",
+    "subjectsCount": "{{count}} asignaturas",
+    "loadingGroup": "Cargando datos del grupo...",
+    "noTutorGroup": "No se ha encontrado ningún grupo del que seas tutor",
+    "saveEvaluations": "Guardar evaluaciones",
+    "saving": "Guardando...",
+    "savedSuccess": "Notas guardadas correctamente"
+  },
+  "misGrades": {
+    "title": "Mis evaluaciones",
+    "subtitle": "Consulta tus notas de cada trimestre",
+    "subjectColumn": "Asignatura",
+    "averageGrade": "Nota media",
+    "loading": "Cargando tus calificaciones...",
+    "empty": "Aún no tienes calificaciones registradas"
+  },
+  "studentDashboard": {
+    "title": "Mi espacio",
+    "subtitle": "¿Qué te gustaría hacer hoy?",
+    "classesCard": "Clases",
+    "classesDesc": "Accede a tus asignaturas",
+    "managementCard": "Gestión",
+    "managementDesc": "Administra tu expediente",
+    "access": "Acceder"
+  },
+  "studentManagement": {
+    "title": "Gestión académica",
+    "subtitle": "Administra tu perfil y actividades",
+    "profileCard": "Ficha usuario",
+    "scheduleCard": "Horario",
+    "calendarCard": "Calendario",
+    "boardCard": "Tablón",
+    "viewProfile": "Ver perfil",
+    "consult": "Consultar",
+    "viewEvents": "Ver eventos",
+    "viewNotices": "Ver avisos"
+  },
+  "studentProfile": {
+    "title": "Ficha de usuario",
+    "subtitle": "Aquí puedes consultar tu historial de faltas de asistencia.",
+    "noAbsences": "No tienes faltas registradas en el servidor.",
+    "attendance": "Asistencia",
+    "justification": "Justificante",
+    "statusAbsent": "FALTA",
+    "statusLate": "RETRASO",
+    "statusExcused": "JUSTIFICADA",
+    "justificationPending": "PENDIENTE",
+    "justificationRejected": "RECHAZADO",
+    "justificationAccepted": "ACEPTADO",
+    "justificationNotSent": "NO ENVIADO"
+  },
+  "justifyAbsence": {
+    "title": "Justificar falta",
+    "selectDocument": "Seleccionar documento",
+    "fileHint": "PNG, JPG, PDF (máx. 1 MB)",
+    "upload": "Subir justificante",
+    "uploading": "Enviando...",
+    "successTitle": "¡Justificante enviado!",
+    "successHint": "El profesor revisará el documento para justificar tu falta."
+  },
+  "teacherProfile": {
+    "title": "Justificaciones",
+    "subtitle": "Revisa y gestiona las faltas de tus alumnos",
+    "loading": "Cargando justificaciones...",
+    "allCaughtUp": "Todo al día",
+    "noPending": "No hay nuevas justificaciones pendientes de revisar.",
+    "viewAbsencesByStudent": "Ver faltas por alumno",
+    "viewFile": "Ver archivo",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "absencesSummary": {
+      "title": "Resumen de faltas por alumno",
+      "loading": "Cargando datos de alumnos...",
+      "loadError": "No se pudieron cargar los datos.",
+      "fetchError": "Ocurrió un error al cargar las faltas.",
+      "empty": "No tienes alumnos registrados o no hay datos disponibles.",
+      "student": "Alumno",
+      "subjects": "Asignaturas",
+      "absencesPerSubject": "Faltas por asignatura",
+      "totalAbsences": "Total faltas",
+      "close": "Cerrar"
+    }
+  },
+  "classMenu": {
+    "youAreIn": "Estás en",
+    "tasksTitle": "Tareas",
+    "tasksDesc": "Gestiona las tareas de la clase",
+    "justificationsTitle": "Justificaciones",
+    "justificationsDesc": "Revisa justificantes de faltas"
+  },
+  "syllabus": {
+    "titlePrefix": "Temario:",
+    "studentIntro": "Material de clase, documentos de la unidad, ejercicios y tareas.",
+    "loadTasksError": "No se pudieron cargar las tareas para esta asignatura.",
+    "emptyTeacher": "Aún no has creado material para esta asignatura.",
+    "tasksCount": "{{count}} tareas",
+    "itemsCount": "{{count}} ítems",
+    "dueLabel": "Vence:",
+    "viewBaseFile": "Ver archivo base",
+    "viewSubmissions": "Ver entregas",
+    "saveAttendance": "Guardar asistencia",
+    "emptyTitle": "El temario está vacío",
+    "emptyBody": "Tu profesor todavía no ha subido material ni ha activado tareas para este bloque.",
+    "noDescription": "Sin descripción",
+    "takeAttendance": "Pasar lista",
+    "attendanceHint": "Selecciona el estado de cada alumno y guarda la asistencia.",
+    "loadingStudents": "Cargando alumnos...",
+    "noStudents": "No hay alumnos matriculados en esta asignatura.",
+    "attendanceSaved": "Asistencia guardada correctamente",
+    "sections": {
+      "THEORY": "Material teórico y documentos",
+      "EXAM": "Exámenes y pruebas",
+      "PROJECT": "Proyectos evaluables",
+      "PRACTICE": "Ejercicios prácticos",
+      "HOMEWORK": "Deberes generales"
+    }
+  },
+  "taskTypes": {
+    "HOMEWORK": "Deberes",
+    "PRACTICE": "Práctica",
+    "THEORY": "Teoría / material",
+    "PROJECT": "Proyecto",
+    "EXAM": "Examen"
+  },
+  "taskFormPage": {
+    "title": "Crear nueva tarea",
+    "taskTitle": "Título de la tarea",
+    "description": "Descripción",
+    "type": "Tipo",
+    "startDate": "Fecha de inicio",
+    "dueDate": "Fecha límite (entrega)",
+    "attachmentOptional": "Fichero adjunto (opcional)",
+    "uploadFile": "Sube un archivo",
+    "orDragDrop": "o arrástralo y suéltalo aquí",
+    "createTask": "Crear tarea",
+    "titlePlaceholder": "Ej: Entrega práctica 1",
+    "descriptionPlaceholder": "Añade instrucciones para los alumnos...",
+    "fileTypesHint": "PDF, DOCX, ZIP, PNG, JPG hasta 10 MB",
+    "fileSelected": "Seleccionado: {{name}}"
+  },
+  "submissions": {
+    "loading": "Cargando entregas de los estudiantes...",
+    "dueDate": "Fecha límite",
+    "student": "Alumno",
+    "status": "Estado",
+    "submittedAt": "Fecha entrega",
+    "grade": "Nota",
+    "actions": "Acciones",
+    "loadingDetail": "Cargando detalles de la entrega...",
+    "studentLabel": "Alumno",
+    "taskLabel": "Tarea a evaluar",
+    "submittedAtLabel": "Momento de entrega",
+    "fileLabel": "Archivo entregado",
+    "gradeFormTitle": "Formulario de corrección",
+    "gradeLabel": "Nota (0-10)",
+    "feedbackOptional": "Feedback (opcional)",
+    "gradeTask": "Calificar entrega",
+    "submitted": "Entregadas",
+    "graded": "Calificadas",
+    "notSubmitted": "No entregadas",
+    "backToSyllabus": "Volver al temario",
+    "backToSubmissions": "Volver a las entregas",
+    "studentList": "Listado de alumnos ({{count}})",
+    "noSubmissions": "No se encontraron entregas para esta tarea.",
+    "editGrade": "Editar nota",
+    "gradeAction": "Calificar",
+    "openAttachmentTitle": "Abrir archivo/enlace de la resolución",
+    "gradeDeliveryTitle": "Calificar entrega",
+    "noDateRecorded": "Sin fecha registrada",
+    "notAttachedYet": "Aún no adjuntado",
+    "viewDownloadAttachment": "Ver / descargar adjunto",
+    "feedbackPlaceholder": "Escribe aquí las correcciones o notas para el alumno...",
+    "saveGrade": "Guardar calificación",
+    "gradeRangeLabel": "Calificación (0 - 10)",
+    "commentsFeedback": "Comentarios y feedback",
+    "submittedAtShort": "Entregada:",
+    "gradeError": "Error al calificar la entrega. Por favor, inténtalo de nuevo."
+  },
+  "taskDetail": {
+    "selectTask": "Selecciona una tarea para ver el detalle.",
+    "startLabel": "Inicio:",
+    "dueLabel": "Entrega:",
+    "allowLate": "Permite entrega tardía"
+  },
+  "studentTasks": {
+    "loading": "Cargando tareas...",
+    "empty": "No tienes tareas asignadas."
+  },
+  "adminDashboard": {
+    "menu": "Menú"
+  },
+  "filters": {
+    "label": "Filtros:"
+  },
+  "forms": {
+    "createTeacher": "Crear nuevo profesor",
+    "createGroup": "Crear nuevo grupo",
+    "createCourse": "Crear nuevo ciclo",
+    "createSubject": "Crear nueva asignatura",
+    "selectCourse": "Selecciona un curso",
+    "selectCourseRequired": "Debes seleccionar un curso",
+    "weeklyHours": "Horas semanales",
+    "weeklyHoursRange": "Las horas deben estar entre 1 y 30",
+    "descriptionMax": "La descripción no puede superar los 255 caracteres",
+    "selectCycle": "Selecciona un ciclo",
+    "creating": "Creando...",
+    "createTeacherBtn": "Crear profesor",
+    "createGroupBtn": "Crear grupo",
+    "createCourseBtn": "Crear ciclo",
+    "createSubjectBtn": "Crear asignatura",
+    "groupName": "Nombre del grupo",
+    "courseName": "Nombre del ciclo",
+    "subjectName": "Nombre de la asignatura",
+    "gradeLabel": "Curso",
+    "grade1": "1º",
+    "grade2": "2º",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción breve de la asignatura",
+    "hoursPlaceholder": "Ej: 6",
+    "courseNamePlaceholder": "Ej: Desarrollo de Aplicaciones Multiplataforma",
+    "groupNamePlaceholder": "Ej: 2º DAM Mañana",
+    "subjectNamePlaceholder": "Ej: Programación",
+    "belongsToCycle": "Ciclo al que pertenece",
+    "loadingCycles": "Cargando ciclos...",
+    "dniLabel": "DNI / NIE",
+    "dniPlaceholder": "12345678A o X1234567A",
+    "dniInvalidExtended": "DNI/NIE inválido (ej: 12345678A o X1234567A)"
+  },
+
+  "apiErrors": {
+    "ANALYTICS_INVALID_SCHOOL_YEAR": "Parámetro año académico obligatorio (formato 2024-2025).",
+    "ANALYTICS_SUMMARY_FAILED": "Error al obtener el resumen del informe.",
+    "ANALYTICS_EXPORT_FAILED": "Error al generar el informe.",
+    "ANALYTICS_PBIX_NOT_FOUND": "Informe Power BI no disponible. Genera el fichero siguiendo la guía en el repositorio.",
+    "ANALYTICS_REPORT_EMPTY": "El informe generado está vacío."
+  },
+
+  "login": {
+    "platformTagline": "Plataforma Educativa",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "emailPlaceholder": "ejemplo@ziryab.es",
+    "submit": "Iniciar sesión"
+  },
+
+  "assistanceStatus": {
+    "PRESENT": "Presente",
+    "ABSENT": "Ausente",
+    "LATE": "Tarde",
+    "EXCUSED": "Justificado"
+  },
+
+  "aria": {
+    "openMenu": "Abrir menú",
+    "languageEs": "Español"
   },
 
   "entities": {
@@ -268,6 +656,7 @@
     "powerBiHint": "Descarga el informe predefinido en Power BI Desktop (mismo fichero para todos los filtros).",
     "downloadPbix": "Descargar informe Power BI",
     "menu": "Menú",
+    "yearPlaceholder": "2024-2025",
     "kpi": {
       "matriculas": "Matrículas",
       "alumnos": "Alumnos únicos",
@@ -297,7 +686,8 @@
     "updating": "Actualizando",
     "updated": "actualizado",
     "successMessage": "ha sido actualizado correctamente.",
-    "fieldInvalid": "Campo inválido"
+    "fieldInvalid": "Campo inválido",
+    "updateError": "Error al actualizar {{type}}."
   },
 
   "lists": {
@@ -446,7 +836,12 @@
       }
     },
     "techStack": {
-      "title": "Stack Tecnológico"
+      "title": "Stack Tecnológico",
+      "angular": "Angular 19 + Standalone",
+      "node": "Node.js Express",
+      "tailwind": "Tailwind CSS",
+      "prisma": "Prisma & PostgreSQL",
+      "firebase": "Firebase (Auth/Storage)"
     },
     "team": {
       "title": "Equipo Ziryab",
@@ -464,9 +859,22 @@
     "submit": "Acceder"
   },
   "notifications": {
+    "title": "Notificaciones",
+    "markAllRead": "Marcar todas como leídas",
+    "empty": "Sin notificaciones",
     "bellAria": "Notificaciones",
     "unreadAria": "Hay notificaciones sin leer",
-    "toastClose": "Cerrar aviso"
+    "toastClose": "Cerrar aviso",
+    "mock": {
+      "taskAssigned": {
+        "title": "Nueva tarea asignada",
+        "message": "Se te ha asignado la tarea \"Ejercicios tema 3\"."
+      },
+      "dueSoon": {
+        "title": "Entrega próxima",
+        "message": "La tarea \"Ejercicios tema 3\" vence mañana."
+      }
+    }
   },
   "perfil": {
     "logout": "Cerrar sesión",

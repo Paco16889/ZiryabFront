@@ -5,6 +5,8 @@ import { StudentAbsencesModalComponent } from './student-absences-modal/student-
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
 import { AssistanceItem } from '../../../core/models/assistance';
 import { environment } from '../../../../environments/environment';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 
 /**
  * Componente que muestra las faltas pendientes de justificar enviadas por los alumnos al profesor.
@@ -13,7 +15,7 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-ficha-profesor',
   standalone: true,
-  imports: [CommonModule, BotonAtrasComponent, StudentAbsencesModalComponent],
+  imports: [CommonModule, BotonAtrasComponent, StudentAbsencesModalComponent, TranslateModule],
   templateUrl: './ficha-profesor.component.html',
   styleUrl: './ficha-profesor.component.scss'
 })
@@ -21,6 +23,7 @@ export class FichaProfesorComponent implements OnInit {
 
   /** Servicio para gestionar las operaciones de asistencia */
   private assistanceService = inject(AssistanceService);
+  private readonly translate = inject(TranslateService);
 
   /** Signal que indica si los datos están cargándose */
   public loading = signal<boolean>(true);
@@ -58,7 +61,10 @@ export class FichaProfesorComponent implements OnInit {
           this.justificacionesPendientes.set(pendientes);
           
           if (pendientes.length === 0) {
-            this.statusMessage.set({text: 'No tienes justificaciones pendientes de revisar.', type: 'info'});
+            this.statusMessage.set({
+              text: this.translate.instant('fichaProfesor.noPendingJustifications'),
+              type: 'info',
+            });
           } else {
             this.statusMessage.set(null);
           }
@@ -67,7 +73,10 @@ export class FichaProfesorComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al cargar justificaciones', err);
-        this.statusMessage.set({text: 'Error al cargar las justificaciones pendientes.', type: 'error'});
+        this.statusMessage.set({
+          text: resolveApiError(this.translate, err, 'common.errors.loadJustifications'),
+          type: 'error',
+        });
         this.loading.set(false);
       }
     });
@@ -92,7 +101,10 @@ export class FichaProfesorComponent implements OnInit {
     this.assistanceService.justifyAbsence(assistanceId).subscribe({
       next: (res) => {
         if (res.success) {
-          this.statusMessage.set({text: 'Falta justificada correctamente.', type: 'success'});
+          this.statusMessage.set({
+            text: this.translate.instant('fichaProfesor.justifySuccess'),
+            type: 'success',
+          });
           // Eliminar de la lista local
           this.justificacionesPendientes.update(list => list.filter(a => a.id !== assistanceId));
         }
@@ -100,7 +112,10 @@ export class FichaProfesorComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al justificar', err);
-        this.statusMessage.set({text: 'Hubo un error al intentar justificar la falta.', type: 'error'});
+        this.statusMessage.set({
+          text: resolveApiError(this.translate, err, 'fichaProfesor.justifyError'),
+          type: 'error',
+        });
         this.loading.set(false);
       }
     });
@@ -115,7 +130,10 @@ export class FichaProfesorComponent implements OnInit {
     this.assistanceService.rejectJustification(assistanceId).subscribe({
       next: (res) => {
         if (res.success) {
-          this.statusMessage.set({text: 'Justificante rechazado.', type: 'info'});
+          this.statusMessage.set({
+            text: this.translate.instant('fichaProfesor.rejectSuccess'),
+            type: 'info',
+          });
           // Eliminar de la lista local ya que ya ha sido revisada (asumiremos que rechazarla cambia algo,
           // o simplemente la quitamos de la vista. Para ser correctos, idealmente el status pasaría a un estado REJECTED,
           // pero si vuelve a ABSENT igual se muestra en la lista.
@@ -127,7 +145,10 @@ export class FichaProfesorComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al rechazar', err);
-        this.statusMessage.set({text: 'Hubo un error al intentar rechazar el justificante.', type: 'error'});
+        this.statusMessage.set({
+          text: resolveApiError(this.translate, err, 'fichaProfesor.rejectError'),
+          type: 'error',
+        });
         this.loading.set(false);
       }
     });

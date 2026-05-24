@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output, signal, inject } from '@angular
 import { DatePipe } from '@angular/common';
 import { AssistanceItem } from '../../../../core/models/assistance';
 import { AssistanceService } from '../../../../core/services/alumno/assistance.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../core/i18n/api-error.util';
 
 /**
  * Componente de modal para que el alumno pueda justificar una falta de asistencia.
@@ -10,7 +12,7 @@ import { AssistanceService } from '../../../../core/services/alumno/assistance.s
 @Component({
   selector: 'app-justificar-falta-modal',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, TranslateModule],
   templateUrl: './justificar-falta-modal.component.html'
 })
 export class JustificarFaltaModalComponent {
@@ -23,6 +25,7 @@ export class JustificarFaltaModalComponent {
 
   /** Servicio para gestionar las operaciones de asistencia */
   private assistanceService = inject(AssistanceService);
+  private readonly translate = inject(TranslateService);
 
   /** Signal que almacena el archivo seleccionado por el usuario */
   public selectedFile = signal<File | null>(null);
@@ -45,7 +48,7 @@ export class JustificarFaltaModalComponent {
       // 1. Validar tamaño (max 1MB)
       const maxSizeInBytes = 1 * 1024 * 1024;
       if (file.size > maxSizeInBytes) {
-        this.errorMessage.set('El archivo no puede pesar más de 1 MB.');
+        this.errorMessage.set(this.translate.instant('common.errors.fileTooLarge1'));
         this.selectedFile.set(null);
         return;
       }
@@ -53,7 +56,7 @@ export class JustificarFaltaModalComponent {
       // 2. Validar formato (PDF o imagenes)
       const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
       if (!allowedTypes.includes(file.type)) {
-        this.errorMessage.set('El formato no es válido. Sube un PDF, JPG o PNG.');
+        this.errorMessage.set(this.translate.instant('common.errors.invalidFileFormat'));
         this.selectedFile.set(null);
         return;
       }
@@ -70,7 +73,7 @@ export class JustificarFaltaModalComponent {
   onSubmit(): void {
     if (!this.falta) return;
     if (!this.selectedFile()) {
-      this.errorMessage.set('Por favor, selecciona un justificante válido.');
+      this.errorMessage.set(this.translate.instant('common.errors.selectValidJustification'));
       return;
     }
 
@@ -88,7 +91,7 @@ export class JustificarFaltaModalComponent {
       },
       error: (err) => {
         this.isSubmitting.set(false);
-        this.errorMessage.set('Error al subir el justificante. Inténtalo de nuevo.');
+        this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.uploadJustification'));
         console.error(err);
       }
     });

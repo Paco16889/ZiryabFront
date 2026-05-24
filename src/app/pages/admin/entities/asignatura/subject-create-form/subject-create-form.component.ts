@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { CourseService } from '../../../../../core/services/admin/entities/course.service';
@@ -12,11 +14,13 @@ import { CoursesAllResponse } from '../../../../../core/models/course';
  */
 @Component({
   selector: 'app-subject-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './subject-create-form.component.html',
   styleUrl: './subject-create-form.component.scss'
 })
 export class SubjectCreateFormComponent {
+  private readonly translate = inject(TranslateService);
+
     /**
    * Evento emitido cuando el usuario cancela la creación.
    */
@@ -84,7 +88,7 @@ export class SubjectCreateFormComponent {
       },
       error: (err) => {
         console.error('Error cargando ciclos:', err);
-        this.errorMessage = 'No se pudieron cargar los ciclos';
+        this.errorMessage = this.translate.instant('common.errors.loadCoursesFailed');
         this.isLoadingCourses = false;
       }
     });
@@ -106,7 +110,7 @@ export class SubjectCreateFormComponent {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message || 'Error al crear la asignatura';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createSubject');
         }
       });
     }

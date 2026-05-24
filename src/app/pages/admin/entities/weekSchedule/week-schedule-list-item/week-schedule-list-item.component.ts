@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { WeekSchedule, WeekScheduleDeleteResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from '../../../../../core/models/week-schedule';
 import { ListItemConfig } from '../../../../../core/configs/list-item-config';
 import { Validators } from '@angular/forms';
@@ -20,32 +21,29 @@ import { GenericListItemComponent } from "../../../generic-list-item/generic-lis
 })
 export class WeekScheduleListItemComponent {
 
+  private readonly weekScheduleService = inject(WeekScheduleService);
+  private readonly translate = inject(TranslateService);
 
   /**
    * Franja horaria semanal a mostrar en el elemento de lista.
    */
-    @Input() schedule!: WeekSchedule;
+  @Input() schedule!: WeekSchedule;
 
-     /**
+  /**
    * Evento emitido cuando la franja horaria ha sido actualizada.
    */
   @Output() scheduleUpdated = new EventEmitter<WeekScheduleUpdateRequest>();
 
-   /**
+  /**
    * Evento emitido cuando la franja horaria ha sido eliminada, incluye su identificador.
    */
   @Output() scheduleDeleted = new EventEmitter<number>();
 
-   /**
-   * Evento emitido cuando la franja horaria ha sido eliminada, incluye su identificador.
-   */
-  constructor(
-    private weekScheduleService: WeekScheduleService
-  ){
-
+  private dayLabel(day: number): string {
+    return this.translate.instant(`weekScheduleBuilder.days.${day}`);
   }
 
-   /**
+  /**
    * Configuración del elemento de lista de la franja horaria semanal.
    * Definida como getter para garantizar que las referencias a this sean correctas.
    * Solo muestra el detalle, las acciones de edición y eliminación están deshabilitadas.
@@ -55,7 +53,7 @@ export class WeekScheduleListItemComponent {
   get scheduleConfig(): ListItemConfig<WeekSchedule, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse, WeekScheduleDeleteResponse> {
     return {
       fields: [
-        { 
+        {
           key: 'weekDay',
           className: 'font-medium',
           order: 1
@@ -77,38 +75,33 @@ export class WeekScheduleListItemComponent {
       editFields: [
         {
           name: 'weekDay',
-          label: 'Día de la semana',
+          label: this.translate.instant('weekScheduleBuilder.weekDay'),
           fieldType: 'select',
-          placeholder: 'Selecciona un día',
+          placeholder: this.translate.instant('common.placeholders.selectOption'),
           validators: [Validators.required],
-          errorMessage: 'El día de la semana es requerido',
-          options: [
-            { label: 'Lunes', value: 1 },
-            { label: 'Martes', value: 2 },
-            { label: 'Miércoles', value: 3 },
-            { label: 'Jueves', value: 4 },
-            { label: 'Viernes', value: 5 },
-            { label: 'Sábado', value: 6 },
-            { label: 'Domingo', value: 7 }
-          ],
+          errorMessage: this.translate.instant('common.validation.required'),
+          options: [1, 2, 3, 4, 5, 6, 7].map((value) => ({
+            label: this.dayLabel(value),
+            value,
+          })),
           optionValueKey: 'value',
           optionLabelKey: 'label'
         },
         {
           name: 'startTime',
-          label: 'Hora de Inicio',
+          label: this.translate.instant('weekScheduleBuilder.startTime'),
           type: 'time',
           placeholder: 'Ej: 09:00',
           validators: [Validators.required],
-          errorMessage: 'La hora de inicio es requerida'
+          errorMessage: this.translate.instant('common.validation.required')
         },
         {
           name: 'finishTime',
-          label: 'Hora de Finalización',
+          label: this.translate.instant('weekScheduleBuilder.endTime'),
           type: 'time',
           placeholder: 'Ej: 10:00',
           validators: [Validators.required],
-          errorMessage: 'La hora de finalización es requerida'
+          errorMessage: this.translate.instant('common.validation.required')
         }
       ],
       entityType: 'El Horario Semanal',
@@ -119,34 +112,35 @@ export class WeekScheduleListItemComponent {
     };
   }
 
-    /**
+  /**
    * Configuración de la vista de detalle de la franja horaria semanal.
    * Muestra el día de la semana, hora de inicio y hora de finalización.
    */
-   scheduleDetailConfig: ViewDetailConfig<WeekSchedule> = {
-          fields: [
-            {
-              key: 'weekDay',
-              type: 'text',
-              format: (value: string) => `${value}`,
-              className: 'text-xl font-bold',
-              label: 'Día de la semana:'
-            },
-              {
-              key: 'startTime',
-              type: 'text',
-              format: (value: string) => `${value}`,
-              className: 'text-xl font-bold',
-              label: 'Hora de Inicio: '
-            },
-            {
-              key: 'finishTime',
-              type: 'text',
-              format: (value: string) => `${value}`,
-              className: 'text-xl font-bold',
-              label: 'Hora de Finalización:'
-            }
-        ]
-        };
-        
+  get scheduleDetailConfig(): ViewDetailConfig<WeekSchedule> {
+    return {
+      fields: [
+        {
+          key: 'weekDay',
+          type: 'text',
+          format: (value: string) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('weekScheduleBuilder.weekDay') + ':'
+        },
+        {
+          key: 'startTime',
+          type: 'text',
+          format: (value: string) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('weekScheduleBuilder.startTime') + ': '
+        },
+        {
+          key: 'finishTime',
+          type: 'text',
+          format: (value: string) => `${value}`,
+          className: 'text-xl font-bold',
+          label: this.translate.instant('weekScheduleBuilder.endTime') + ':'
+        }
+      ]
+    };
+  }
 }

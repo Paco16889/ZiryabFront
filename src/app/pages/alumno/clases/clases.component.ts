@@ -5,7 +5,8 @@ import { ClasesService } from '../../../core/services/clases.service';
 import { AuthService } from '../../../core/services/auth.service'; 
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
 import { StudentSubjectEnrollmentRow } from '../../../core/models/teacher/subjectforteacher';
 
@@ -40,7 +41,8 @@ export class ClasesComponent implements OnInit {
   /**
    * Servicio de autenticación para obtener los datos del usuario actual.
    */
-  private authService = inject(AuthService); 
+  private authService = inject(AuthService);
+  private readonly translate = inject(TranslateService); 
 
     /**
    * Listado de asignaturas matriculadas del estudiante mapeadas al formato CardItem.
@@ -84,7 +86,7 @@ export class ClasesComponent implements OnInit {
         next: (response) => {
           console.log('Asignaturas recibidas (Alumno):', response.data);
           if (response.data.length === 0) {
-            this.errorMessage.set('No tienes asignaturas matriculadas.');
+            this.errorMessage.set(this.translate.instant('common.errors.noSubjectsEnrolled'));
           }
           
           this.asignaturasOriginales.set(response.data);
@@ -123,13 +125,13 @@ export class ClasesComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error al cargar asignaturas:', err);
-          this.errorMessage.set('Error de conexión con el servidor.');
+          this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.connection'));
           this.loading.set(false);
         }
       });
     } else {
       console.warn('No se encontró usuario logueado.');
-      this.errorMessage.set('Usuario no identificado.');
+      this.errorMessage.set(this.translate.instant('common.errors.userNotIdentified'));
       this.loading.set(false);
       this.navegador.toComponent('login');
     }
@@ -138,11 +140,13 @@ export class ClasesComponent implements OnInit {
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
       id: item.subject?.id || 0,
-      title: item.subject?.name || 'Asignatura',
+      title: item.subject?.name || this.translate.instant('common.messages.subject'),
       subtitleTopLabel: 'studentClasses.labels.grade',
       subtitleTopValue: item.group?.name || 'General',
       subtitleBottomLabel: 'studentClasses.labels.teacher',
-      subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || 'Consultando...',
+      subtitleBottomValue:
+        this.profesoresMap()[item.subject?.id || 0] ||
+        this.translate.instant('common.messages.loadingTeacher'),
       actionLabel: 'studentClasses.access',
     }));
     this.asignaturasCards.set(cards);

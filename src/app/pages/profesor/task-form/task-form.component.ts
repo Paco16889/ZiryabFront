@@ -2,12 +2,15 @@ import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TaskService } from '../../../core/services/profesor/task.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { CreateTaskResponse, Task } from '../../../core/models/teacher/tasks';
+import { TaskType } from '../../../core/models/task';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss'
 })
@@ -25,8 +28,14 @@ export class TaskFormComponent implements OnInit {
   errorMessage = '';
   successMessage = '';
 
+  readonly taskTypes = Object.values(TaskType).map((value) => ({
+    value,
+    labelKey: `taskTypes.${value}`,
+  }));
+
   private readonly fb = inject(FormBuilder);
   private readonly taskService = inject(TaskService);
+  private readonly translate = inject(TranslateService);
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
@@ -44,7 +53,7 @@ export class TaskFormComponent implements OnInit {
     const file: File = input.files[0];
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
-        this.errorMessage = 'El archivo supera el límite de 10 MB.';
+        this.errorMessage = this.translate.instant('common.errors.fileTooLarge10');
         this.selectedFile = null;
         input.value = '';
         return;
@@ -82,14 +91,14 @@ export class TaskFormComponent implements OnInit {
     this.taskService.createTask(formData).subscribe({
       next: (response: CreateTaskResponse) => {
         this.loading = false;
-        this.successMessage = 'Tarea creada con éxito con su fichero adjunto.';
+        this.successMessage = this.translate.instant('taskForm.createSuccessWithFile');
         this.taskForm.reset({ type: 'HOMEWORK' });
         this.selectedFile = null;
         this.taskCreated.emit(response.data);
       },
       error: (err: { error?: { message?: string } }) => {
         this.loading = false;
-        this.errorMessage = err.error?.message || 'Error al crear la tarea.';
+        this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createTask');
       }
     });
   }

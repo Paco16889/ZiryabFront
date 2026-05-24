@@ -1,6 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { StudentTaskService } from '../../../core/services/alumno/student-task.service';
 import { TaskService } from '../../../core/services/task.service';
 import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask';
@@ -14,7 +16,7 @@ import { Task } from '../../../core/models/task';
 @Component({
   selector: 'app-entregas-tarea',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   templateUrl: './entregas-tarea.component.html',
   styleUrls: ['./entregas-tarea.component.scss']
 })
@@ -23,6 +25,7 @@ export class EntregasTareaComponent implements OnInit {
   private router = inject(Router);
   private studentTaskService = inject(StudentTaskService);
   private taskService = inject(TaskService);
+  private readonly translate = inject(TranslateService);
 
   taskId = Number(this.route.snapshot.paramMap.get('taskId'));
   taskDetails = signal<Task | null>(null);
@@ -38,7 +41,7 @@ export class EntregasTareaComponent implements OnInit {
       this.loadTaskHeader();
       this.loadDeliveries();
     } else {
-      this.error.set('No se proporcionó un ID de tarea válido.');
+      this.error.set(this.translate.instant('common.errors.taskIdMissing'));
       this.loading.set(false);
     }
   }
@@ -79,12 +82,12 @@ export class EntregasTareaComponent implements OnInit {
           });
           this.studentTasks.set(sorted);
         } else {
-          this.error.set('No se pudieron cargar las entregas');
+          this.error.set(this.translate.instant('common.errors.loadTaskDetail'));
         }
         this.loading.set(false);
       },
       error: (err) => {
-         this.error.set('Hubo un error al descargar el listado de entregas');
+         this.error.set(resolveApiError(this.translate, err, 'common.errors.connection'));
          this.loading.set(false);
          console.error(err);
       }

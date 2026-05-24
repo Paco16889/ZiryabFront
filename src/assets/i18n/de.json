@@ -8,7 +8,8 @@
       "cancel": "Abbrechen",
       "confirm": "Bestätigen",
       "back": "Zurück",
-      "search": "Suchen"
+      "search": "Suchen",
+      "close": "Schließen"
     },
     "fields": {
       "email": "E-Mail",
@@ -37,8 +38,395 @@
     },
     "messages": {
       "loading": "Lädt",
-      "loadingOptions": "Optionen werden geladen..."
+      "loadingEllipsis": "Lädt...",
+      "loadingOptions": "Optionen werden geladen...",
+      "emptyList": "Keine Einträge anzuzeigen.",
+      "saving": "Speichern...",
+      "subject": "Fach",
+      "unassigned": "Nicht zugewiesen",
+      "loadingTeacher": "Lädt...",
+      "unknown": "Unbekannt",
+      "optional": "optional",
+      "total": "Gesamt",
+      "required": "Pflichtfeld",
+      "between0And10": "Muss zwischen 0 und 10 liegen",
+      "gradeBetween0And10": "Gib eine Note zwischen 0 und 10 ein",
+      "noDescription": "Keine Beschreibung",
+      "enrollment": "Einschreibung"
+    },
+    "noData": "—",
+    "errors": {
+      "unknown": "Unbekannter Fehler",
+      "connection": "Verbindungsfehler mit dem Server.",
+      "userNotIdentified": "Benutzer nicht identifiziert. Bitte anmelden.",
+      "loadSummary": "Fehler beim Laden der Zusammenfassung",
+      "export": "Fehler beim Export",
+      "downloadPowerBi": "Fehler beim Herunterladen des Power-BI-Berichts",
+      "loadAbsences": "Fehler beim Laden der Fehlzeiten.",
+      "loadTask": "Fehler beim Laden der Aufgabe.",
+      "loadTaskDetail": "Fehler beim Laden der Aufgabendetails.",
+      "loadGrades": "Fehler beim Laden deiner Noten",
+      "loadTutorGroups": "Fehler beim Laden der betreuten Gruppen",
+      "loadNotes": "Fehler beim Laden der Noten",
+      "saveNotes": "Fehler beim Speichern der Noten",
+      "createTask": "Fehler beim Erstellen der Aufgabe",
+      "createTeacher": "Fehler beim Erstellen des Lehrers",
+      "createGroup": "Fehler beim Erstellen der Gruppe",
+      "createCourse": "Fehler beim Erstellen des Bildungsgangs",
+      "createSubject": "Fehler beim Erstellen des Fachs",
+      "createStudent": "Fehler beim Erstellen des Schülers",
+      "createEnrollment": "Fehler beim Erstellen der Abgabe",
+      "createNotification": "Fehler beim Erstellen der Benachrichtigung",
+      "createSession": "Fehler beim Erstellen der Sitzung",
+      "createAssistance": "Fehler beim Erstellen der Anwesenheit",
+      "uploadJustification": "Fehler beim Hochladen der Begründung. Bitte erneut versuchen.",
+      "loadJustifications": "Fehler beim Laden ausstehender Begründungen.",
+      "noSubjectsAssigned": "Du hast keine zugewiesenen Fächer.",
+      "noSubjectsEnrolled": "Du bist in keinem Fach eingeschrieben.",
+      "noTutorGroups": "Du bist derzeit Tutor keiner Gruppe.",
+      "noStudentsInGroup": "Diese Gruppe hat keine eingeschriebenen Schüler.",
+      "allGradesRequired": "Alle Fächer aller Schüler müssen mit einer Note zwischen 1 und 10 bewertet werden.",
+      "taskIdMissing": "Aufgaben-ID nicht angegeben.",
+      "couldNotLoadTask": "Aufgabe konnte nicht geladen werden.",
+      "folderNotAllowed": "Ganze Ordner sind nicht erlaubt. Bitte als .ZIP komprimieren",
+      "folderNotAllowedDetail": "Ganze Ordner sind nicht erlaubt. Bitte als .ZIP komprimieren (Rechtsklick -> Komprimieren).",
+      "fileTooLarge50": "Datei überschreitet die maximale Größe von 50 MB.",
+      "fileTooLarge10": "Datei überschreitet das Limit von 10 MB.",
+      "fileTooLarge1": "Datei darf nicht mehr als 1 MB groß sein.",
+      "invalidFileFormat": "Ungültiges Format. Lade PDF, JPG oder PNG hoch.",
+      "selectValidJustification": "Bitte wähle eine gültige Begründung.",
+      "provideUrl": "Du musst eine URL angeben.",
+      "provideFile": "Du musst eine Datei / ZIP auswählen oder ablegen.",
+      "invalidUploadLink": "Server hat die Datei verarbeitet, aber keinen gültigen Link zurückgegeben.",
+      "uploadFailed": "Interner Fehler beim Hochladen der Datei.",
+      "deleteSubmission": "Fehler beim Löschen der Abgabe.",
+      "studentNotFound": "Schüler nicht gefunden",
+      "invalidDni": "Gib eine gültige Ausweisnummer ein",
+      "existingStudent": "Bestehender Schüler. Über bestehenden Schüler einschreiben.",
+      "loadStudentTasksFailed": "Aufgaben konnten nicht geladen werden.",
+      "loadCoursesFailed": "Bildungsgänge konnten nicht geladen werden",
+      "saveAttendance": "Fehler beim Speichern der Anwesenheit",
+      "sessionError": "Fehler beim Abrufen der Sitzung",
+      "deadlineExpiredNoLate": "Die Abgabefrist ist abgelaufen und der Lehrer erlaubt keine verspäteten Abgaben.",
+      "submitNotifyFailed": "Deine Datei wurde hochgeladen, aber die Abgabemeldung an die Datenbank ist fehlgeschlagen."
     }
+  },
+
+  "studentTaskDetail": {
+    "problemDetected": "Problem erkannt",
+    "status": {
+      "SUBMITTED": "Abgegeben",
+      "LATE": "Verspätet",
+      "NOT_SUBMITTED": "Nicht abgegeben",
+      "PENDING": "Ausstehend",
+      "GRADED": "Bewertet"
+    },
+    "dueDate": "Abgabefrist",
+    "noDescription": "Der Lehrer hat keine Beschreibung angegeben.",
+    "consultMaterial": "Referenzmaterial",
+    "viewDownload": "Ansehen / herunterladen",
+    "teacherEvaluation": "Bewertung des Lehrers",
+    "finalGrade": "Endnote",
+    "attachedComments": "Angehängte Kommentare",
+    "noFeedback": "Deine Note wurde ohne Kommentare verarbeitet.",
+    "submissionArea": "Abgabebereich",
+    "deadlineClosed": "Abgabefrist geschlossen",
+    "deadlineClosedBody": "Die Frist war der <strong>{{date}}</strong> und der Lehrer <strong>erlaubt keine verspäteten Abgaben</strong> für diese Aufgabe. Du kannst keine Dateien oder Links senden.",
+    "deadlineClosedHint": "Wenn du glaubst, dass es ein Fehler ist, wende dich an deinen Lehrer, um die Frist zu verlängern oder verspätete Abgaben zu erlauben.",
+    "lateWarning": "Frist überschritten",
+    "lateWarningBody": "Du hast die Frist ({{date}}) überschritten. Du kannst noch abgeben: es wird als <span class=\"font-bold\">Verspätet (LATE)</span> markiert.",
+    "sentOk": "Erfolgreich gesendet",
+    "savedOn": "Deine Abgabe wurde erfolgreich gespeichert am <strong>{{date}}</strong>.",
+    "deleteSubmission": "Abgabe löschen",
+    "openOriginalLink": "Original-Link öffnen",
+    "tabDropzone": "Dropzone",
+    "tabUrl": "Link hochladen",
+    "dropHint": "Klicke oder ziehe dein Dokument hierher",
+    "dropZipHint": "Wenn deine Abgabe ein Ordner mit mehreren Dateien ist, akzeptieren wir ihn nicht direkt. Erstelle eine .ZIP-Datei und lade sie hier hoch.",
+    "maxWeight": "Maximale Größe: 50 MB",
+    "localUploadOk": "Lokaler Upload bereit",
+    "removeFileTitle": "Entfernen und andere auswählen",
+    "urlLabel": "Web-URL verknüpfen",
+    "urlPlaceholder": "Z. B. https://docs.google.com/document/d/meine-arbeit/",
+    "urlInvalid": "Bitte gib einen gültigen Weblink ein, der mit http:// oder https:// beginnt",
+    "processing": "Datei/Link wird verarbeitet...",
+    "confirmSubmit": "Abgabe an Server bestätigen",
+    "submitSuccess": "Deine Aufgabe wurde erfolgreich hochgeladen und abgegeben.",
+    "unsubmitConfirm": "Möchtest du deine aktuelle Abgabe wirklich löschen? Du musst sie erneut hochladen."
+  },
+
+  "fichaProfesor": {
+    "noPendingJustifications": "Du hast keine ausstehenden Begründungen zur Prüfung.",
+    "justifySuccess": "Fehlzeit erfolgreich begründet.",
+    "justifyError": "Fehler beim Begründen der Fehlzeit.",
+    "rejectSuccess": "Begründung abgelehnt.",
+    "rejectError": "Fehler beim Ablehnen der Begründung."
+  },
+
+  "taskForm": {
+    "createSuccessWithFile": "Aufgabe erfolgreich mit angehängter Datei erstellt."
+  },
+
+  "grades": {
+    "title": "Bewertungen",
+    "subtitle": "Trage die Noten deiner Schüler als Tutor ein",
+    "tutoredGroup": "Betreute Gruppe",
+    "evaluationPeriod": "Bewertungszeitraum",
+    "average": "Durchschnitt",
+    "subjectsCount": "{{count}} Fächer",
+    "loadingGroup": "Gruppendaten werden geladen...",
+    "noTutorGroup": "Keine betreute Gruppe gefunden",
+    "saveEvaluations": "Bewertungen speichern",
+    "saving": "Speichern...",
+    "savedSuccess": "Noten erfolgreich gespeichert"
+  },
+  "misGrades": {
+    "title": "Meine Bewertungen",
+    "subtitle": "Sieh dir deine Noten pro Trimester an",
+    "subjectColumn": "Fach",
+    "averageGrade": "Durchschnittsnote",
+    "loading": "Deine Noten werden geladen...",
+    "empty": "Du hast noch keine eingetragenen Noten"
+  },
+  "studentDashboard": {
+    "title": "Mein Bereich",
+    "subtitle": "Was möchtest du heute tun?",
+    "classesCard": "Klassen",
+    "classesDesc": "Zu deinen Fächern",
+    "managementCard": "Verwaltung",
+    "managementDesc": "Verwalte deine Akte",
+    "access": "Öffnen"
+  },
+  "studentManagement": {
+    "title": "Akademische Verwaltung",
+    "subtitle": "Verwalte dein Profil und deine Aktivitäten",
+    "profileCard": "Benutzerprofil",
+    "scheduleCard": "Stundenplan",
+    "calendarCard": "Kalender",
+    "boardCard": "Pinnwand",
+    "viewProfile": "Profil ansehen",
+    "consult": "Öffnen",
+    "viewEvents": "Termine ansehen",
+    "viewNotices": "Mitteilungen ansehen"
+  },
+  "studentProfile": {
+    "title": "Benutzerprofil",
+    "subtitle": "Hier siehst du deinen Fehlzeitenverlauf.",
+    "noAbsences": "Du hast keine Fehlzeiten auf dem Server.",
+    "attendance": "Anwesenheit",
+    "justification": "Begründung",
+    "statusAbsent": "FEHLEND",
+    "statusLate": "VERSPÄTET",
+    "statusExcused": "ENTSCHULDIGT",
+    "justificationPending": "AUSSTEHEND",
+    "justificationRejected": "ABGELEHNT",
+    "justificationAccepted": "AKZEPTIERT",
+    "justificationNotSent": "NICHT GESENDET"
+  },
+  "justifyAbsence": {
+    "title": "Fehlzeit begründen",
+    "selectDocument": "Dokument auswählen",
+    "fileHint": "PNG, JPG, PDF (max. 1 MB)",
+    "upload": "Begründung hochladen",
+    "uploading": "Wird gesendet...",
+    "successTitle": "Begründung gesendet!",
+    "successHint": "Dein Lehrer prüft das Dokument zur Entschuldigung."
+  },
+  "teacherProfile": {
+    "title": "Begründungen",
+    "subtitle": "Prüfe und verwalte Fehlzeiten deiner Schüler",
+    "loading": "Begründungen werden geladen...",
+    "allCaughtUp": "Alles erledigt",
+    "noPending": "Keine neuen Begründungen zur Prüfung.",
+    "viewAbsencesByStudent": "Fehlzeiten nach Schüler anzeigen",
+    "viewFile": "Datei ansehen",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen",
+    "absencesSummary": {
+      "title": "Fehlzeitenübersicht nach Schüler",
+      "loading": "Schülerdaten werden geladen...",
+      "loadError": "Daten konnten nicht geladen werden.",
+      "fetchError": "Beim Laden der Fehlzeiten ist ein Fehler aufgetreten.",
+      "empty": "Du hast keine registrierten Schüler oder es sind keine Daten verfügbar.",
+      "student": "Schüler",
+      "subjects": "Fächer",
+      "absencesPerSubject": "Fehlzeiten pro Fach",
+      "totalAbsences": "Fehlzeiten gesamt",
+      "close": "Schließen"
+    }
+  },
+  "classMenu": {
+    "youAreIn": "Du bist in",
+    "tasksTitle": "Aufgaben",
+    "tasksDesc": "Aufgaben der Klasse verwalten",
+    "justificationsTitle": "Begründungen",
+    "justificationsDesc": "Fehlzeiten-Begründungen prüfen"
+  },
+  "syllabus": {
+    "titlePrefix": "Lehrplan:",
+    "studentIntro": "Unterrichtsmaterial, Dokumente, Übungen und Aufgaben.",
+    "loadTasksError": "Aufgaben für dieses Fach konnten nicht geladen werden.",
+    "emptyTeacher": "Du hast noch kein Material für dieses Fach erstellt.",
+    "tasksCount": "{{count}} Aufgaben",
+    "itemsCount": "{{count}} Einträge",
+    "dueLabel": "Fällig:",
+    "viewBaseFile": "Basisdatei ansehen",
+    "viewSubmissions": "Abgaben ansehen",
+    "saveAttendance": "Anwesenheit speichern",
+    "emptyTitle": "Themenplan ist leer",
+    "emptyBody": "Dein Lehrer hat noch kein Material oder keine Aufgaben für diesen Block hochgeladen.",
+    "noDescription": "Keine Beschreibung",
+    "takeAttendance": "Anwesenheit erfassen",
+    "attendanceHint": "Wähle den Status jedes Schülers und speichere die Anwesenheit.",
+    "loadingStudents": "Schüler werden geladen...",
+    "noStudents": "Keine Schüler in diesem Fach eingeschrieben.",
+    "attendanceSaved": "Anwesenheit erfolgreich gespeichert",
+    "sections": {
+      "THEORY": "Theoriematerial und Dokumente",
+      "EXAM": "Prüfungen und Tests",
+      "PROJECT": "Bewertbare Projekte",
+      "PRACTICE": "Praktische Übungen",
+      "HOMEWORK": "Allgemeine Hausaufgaben"
+    }
+  },
+  "taskTypes": {
+    "HOMEWORK": "Hausaufgaben",
+    "PRACTICE": "Übung",
+    "THEORY": "Theorie / Material",
+    "PROJECT": "Projekt",
+    "EXAM": "Prüfung"
+  },
+  "taskFormPage": {
+    "title": "Neue Aufgabe erstellen",
+    "taskTitle": "Aufgabentitel",
+    "description": "Beschreibung",
+    "type": "Typ",
+    "startDate": "Startdatum",
+    "dueDate": "Abgabefrist",
+    "attachmentOptional": "Anhang (optional)",
+    "uploadFile": "Datei hochladen",
+    "orDragDrop": "oder hier ablegen",
+    "createTask": "Aufgabe erstellen",
+    "titlePlaceholder": "z. B. Abgabe Übung 1",
+    "descriptionPlaceholder": "Anweisungen für Schüler hinzufügen...",
+    "fileTypesHint": "PDF, DOCX, ZIP, PNG, JPG bis 10 MB",
+    "fileSelected": "Ausgewählt: {{name}}"
+  },
+  "submissions": {
+    "loading": "Schülerabgaben werden geladen...",
+    "dueDate": "Abgabefrist",
+    "student": "Schüler",
+    "status": "Status",
+    "submittedAt": "Abgabedatum",
+    "grade": "Note",
+    "actions": "Aktionen",
+    "loadingDetail": "Abgabedetails werden geladen...",
+    "studentLabel": "Schüler",
+    "taskLabel": "Zu bewertende Aufgabe",
+    "submittedAtLabel": "Abgabezeitpunkt",
+    "fileLabel": "Abgegebene Datei",
+    "gradeFormTitle": "Bewertungsformular",
+    "gradeLabel": "Note (0-10)",
+    "feedbackOptional": "Feedback (optional)",
+    "gradeTask": "Abgabe bewerten",
+    "submitted": "Abgegeben",
+    "graded": "Bewertet",
+    "notSubmitted": "Nicht abgegeben",
+    "backToSyllabus": "Zurück zum Lehrplan",
+    "backToSubmissions": "Zurück zu den Abgaben",
+    "studentList": "Schülerliste ({{count}})",
+    "noSubmissions": "Keine Abgaben für diese Aufgabe gefunden.",
+    "editGrade": "Note bearbeiten",
+    "gradeAction": "Bewerten",
+    "openAttachmentTitle": "Datei/Link der Lösung öffnen",
+    "gradeDeliveryTitle": "Abgabe bewerten",
+    "noDateRecorded": "Kein Datum erfasst",
+    "notAttachedYet": "Noch nicht angehängt",
+    "viewDownloadAttachment": "Anhang ansehen / herunterladen",
+    "feedbackPlaceholder": "Schreibe hier Korrekturen oder Anmerkungen für den Schüler...",
+    "saveGrade": "Bewertung speichern",
+    "gradeRangeLabel": "Bewertung (0 - 10)",
+    "commentsFeedback": "Kommentare und Feedback",
+    "submittedAtShort": "Abgegeben:",
+    "gradeError": "Fehler beim Bewerten der Abgabe. Bitte erneut versuchen."
+  },
+  "taskDetail": {
+    "selectTask": "Wähle eine Aufgabe aus, um Details anzuzeigen.",
+    "startLabel": "Beginn:",
+    "dueLabel": "Abgabe:",
+    "allowLate": "Verspätete Abgabe erlaubt"
+  },
+  "studentTasks": {
+    "loading": "Aufgaben werden geladen...",
+    "empty": "Du hast keine zugewiesenen Aufgaben."
+  },
+  "adminDashboard": {
+    "menu": "Menü"
+  },
+  "filters": {
+    "label": "Filter:"
+  },
+  "forms": {
+    "createTeacher": "Neuen Lehrer erstellen",
+    "createGroup": "Neue Gruppe erstellen",
+    "createCourse": "Neuen Bildungsgang erstellen",
+    "createSubject": "Neues Fach erstellen",
+    "selectCourse": "Bildungsgang auswählen",
+    "selectCourseRequired": "Du musst einen Bildungsgang auswählen",
+    "weeklyHours": "Wochenstunden",
+    "weeklyHoursRange": "Stunden müssen zwischen 1 und 30 liegen",
+    "descriptionMax": "Beschreibung darf 255 Zeichen nicht überschreiten",
+    "selectCycle": "Bildungsgang auswählen",
+    "creating": "Wird erstellt...",
+    "createTeacherBtn": "Lehrer erstellen",
+    "createGroupBtn": "Gruppe erstellen",
+    "createCourseBtn": "Bildungsgang erstellen",
+    "createSubjectBtn": "Fach erstellen",
+    "groupName": "Gruppenname",
+    "courseName": "Name des Bildungsgangs",
+    "subjectName": "Fachname",
+    "gradeLabel": "Jahrgang",
+    "grade1": "1.",
+    "grade2": "2.",
+    "description": "Beschreibung",
+    "descriptionPlaceholder": "Kurze Beschreibung des Fachs",
+    "hoursPlaceholder": "z. B. 6",
+    "courseNamePlaceholder": "z. B. Multiplattform-Anwendungsentwicklung",
+    "groupNamePlaceholder": "z. B. 2. DAM Vormittag",
+    "subjectNamePlaceholder": "z. B. Programmierung",
+    "belongsToCycle": "Zugehöriger Bildungsgang",
+    "loadingCycles": "Bildungsgänge werden geladen...",
+    "dniLabel": "Ausweisnummer / NIE",
+    "dniPlaceholder": "12345678A oder X1234567A",
+    "dniInvalidExtended": "Ungültige Ausweisnummer/NIE (z. B. 12345678A oder X1234567A)"
+  },
+
+  "apiErrors": {
+    "ANALYTICS_INVALID_SCHOOL_YEAR": "Schuljahr ist erforderlich (Format 2024-2025).",
+    "ANALYTICS_SUMMARY_FAILED": "Fehler beim Abrufen der Berichtszusammenfassung.",
+    "ANALYTICS_EXPORT_FAILED": "Fehler beim Erstellen des Berichts.",
+    "ANALYTICS_PBIX_NOT_FOUND": "Power-BI-Bericht nicht verfügbar. Erstelle die Datei gemäß Repository-Anleitung.",
+    "ANALYTICS_REPORT_EMPTY": "Erstellter Bericht ist leer."
+  },
+
+  "login": {
+    "platformTagline": "Bildungsplattform",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "emailPlaceholder": "beispiel@ziryab.es",
+    "submit": "Anmelden"
+  },
+
+  "assistanceStatus": {
+    "PRESENT": "Anwesend",
+    "ABSENT": "Abwesend",
+    "LATE": "Verspätet",
+    "EXCUSED": "Entschuldigt"
+  },
+
+  "aria": {
+    "openMenu": "Menü öffnen",
+    "languageEs": "Spanisch"
   },
 
   "entities": {
@@ -265,6 +653,7 @@
     "powerBiHint": "Vordefinierten Power-BI-Desktop-Bericht herunterladen (gleiche Datei unabhängig von Filtern).",
     "downloadPbix": "Power-BI-Bericht herunterladen",
     "menu": "Menü",
+    "yearPlaceholder": "2024-2025",
     "kpi": {
       "matriculas": "Einschreibungen",
       "alumnos": "Einzigartige Schüler",
@@ -294,7 +683,8 @@
     "updating": "Wird aktualisiert",
     "updated": "aktualisiert",
     "successMessage": "wurde erfolgreich aktualisiert.",
-    "fieldInvalid": "Ungültiges Feld"
+    "fieldInvalid": "Ungültiges Feld",
+    "updateError": "Fehler beim Aktualisieren von {{type}}."
   },
 
   "lists": {
@@ -446,7 +836,12 @@
       }
     },
     "techStack": {
-      "title": "Technologie-Stack"
+      "title": "Technologie-Stack",
+      "angular": "Angular 19 + Standalone",
+      "node": "Node.js Express",
+      "tailwind": "Tailwind CSS",
+      "prisma": "Prisma & PostgreSQL",
+      "firebase": "Firebase (Auth/Storage)"
     },
     "team": {
       "title": "Ziryab-Team",
@@ -466,9 +861,22 @@
   },
 
   "notifications": {
+    "title": "Benachrichtigungen",
+    "markAllRead": "Alle als gelesen markieren",
+    "empty": "Keine Benachrichtigungen",
     "bellAria": "Benachrichtigungen",
     "unreadAria": "Ungelesene Benachrichtigungen",
-    "toastClose": "Hinweis schließen"
+    "toastClose": "Hinweis schließen",
+    "mock": {
+      "taskAssigned": {
+        "title": "Neue Aufgabe zugewiesen",
+        "message": "Dir wurde die Aufgabe \"Übungen Kapitel 3\" zugewiesen."
+      },
+      "dueSoon": {
+        "title": "Abgabe bald fällig",
+        "message": "Die Aufgabe \"Übungen Kapitel 3\" ist morgen fällig."
+      }
+    }
   },
 
   "perfil": {

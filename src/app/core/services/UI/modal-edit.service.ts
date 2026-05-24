@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { UpdateModalState, UpdateRequest } from '../../models/services/update-models';
 
 /**
@@ -10,6 +11,7 @@ import { UpdateModalState, UpdateRequest } from '../../models/services/update-mo
   providedIn: 'root'
 })
 export class ModalEditService {
+  private readonly translate = inject(TranslateService);
   private _modalState = signal<UpdateModalState<unknown>>({ isOpen: false });
 
   modalState = this._modalState.asReadonly();
@@ -80,8 +82,13 @@ export class ModalEditService {
     }
   }
 
-  private getErrorMessage(err: unknown, action: 'actualizar'): string {
+  private getErrorMessage(err: unknown, _action: 'actualizar'): string {
     const backendMessage = (err as { error?: { message?: string } })?.error?.message;
-    return backendMessage || `Error al ${action} ${this.currentConfig?.type}.`;
+    if (backendMessage) {
+      return backendMessage;
+    }
+    return this.translate.instant('editModal.updateError', {
+      type: this.currentConfig?.type ?? '',
+    });
   }
 }

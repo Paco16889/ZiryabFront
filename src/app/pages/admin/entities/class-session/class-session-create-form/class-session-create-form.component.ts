@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { ClassSessionService } from '../../../../../core/services/admin/entities/class-session.service';
 import { WeekScheduleService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
 
@@ -13,6 +14,7 @@ import { WeekScheduleService } from '../../../../../core/services/admin/entities
 export class ClassSessionCreateFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly sessionService = inject(ClassSessionService);
+  private readonly translate = inject(TranslateService);
   private readonly scheduleService = inject(WeekScheduleService);
 
   readonly cancelCreate = output<void>();
@@ -70,7 +72,7 @@ export class ClassSessionCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la sesión';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createSession');
         },
       });
   }

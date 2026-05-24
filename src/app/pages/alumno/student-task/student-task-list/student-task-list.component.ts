@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { StudentTaskService } from '../../../../core/services/alumno/student-task.service';
 import { StudentTask } from '../../../../core/models/studentTask';
 import { StudentTaskGroupComponent } from "../student-task-group/student-task-group.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 
 /**
@@ -11,7 +12,7 @@ import { StudentTaskGroupComponent } from "../student-task-group/student-task-gr
  */
 @Component({
   selector: 'app-student-task-list',
-  imports: [StudentTaskGroupComponent],
+  imports: [StudentTaskGroupComponent, TranslateModule],
   templateUrl: './student-task-list.component.html',
   styleUrl: './student-task-list.component.scss'
 })

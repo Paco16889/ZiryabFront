@@ -93,8 +93,8 @@ const MOCK_NOTIFICATIONS: Notification[] = [
   {
     id: 1,
     recipientFirebaseUID: 'mock-student',
-    title: 'Nueva tarea asignada',
-    message: 'Se te ha asignado la tarea "Ejercicios tema 3".',
+    title: 'notifications.mock.taskAssigned.title',
+    message: 'notifications.mock.taskAssigned.message',
     type: 'TASK',
     isRead: false,
     readAt: null,
@@ -103,8 +103,8 @@ const MOCK_NOTIFICATIONS: Notification[] = [
   {
     id: 2,
     recipientFirebaseUID: 'mock-student',
-    title: 'Entrega próxima',
-    message: 'La tarea "Ejercicios tema 3" vence mañana.',
+    title: 'notifications.mock.dueSoon.title',
+    message: 'notifications.mock.dueSoon.message',
     type: 'TASK',
     isRead: false,
     readAt: null,

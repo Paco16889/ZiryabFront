@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GroupService } from '../../../../../core/services/admin/entities/group.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 
 /**
  * Componente que gestiona el formulario de creación de un nuevo grupo.
@@ -8,11 +10,12 @@ import { GroupService } from '../../../../../core/services/admin/entities/group.
  */
 @Component({
   selector: 'app-group-create-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './group-create-form.component.html',
   styleUrl: './group-create-form.component.scss'
 })
 export class GroupCreateFormComponent {
+  private readonly translate = inject(TranslateService);
 
    /**
    * Evento emitido cuando el usuario cancela la creación.
@@ -68,7 +71,7 @@ onSubmit() {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message || 'Error al crear el grupo';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createGroup');
         }
       });
     }

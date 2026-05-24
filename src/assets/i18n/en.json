@@ -8,7 +8,8 @@
       "cancel": "Cancel",
       "confirm": "Confirm",
       "back": "Back",
-      "search": "Search"
+      "search": "Search",
+      "close": "Close"
     },
     "fields": {
       "email": "Email",
@@ -37,8 +38,395 @@
     },
     "messages": {
       "loading": "Loading",
-      "loadingOptions": "Loading options..."
+      "loadingEllipsis": "Loading...",
+      "loadingOptions": "Loading options...",
+      "emptyList": "No items to display.",
+      "saving": "Saving...",
+      "subject": "Subject",
+      "unassigned": "Unassigned",
+      "loadingTeacher": "Loading...",
+      "unknown": "Unknown",
+      "optional": "optional",
+      "total": "Total",
+      "required": "Required",
+      "between0And10": "Must be between 0 and 10",
+      "gradeBetween0And10": "Enter a grade between 0 and 10",
+      "noDescription": "No description",
+      "enrollment": "Enrollment"
+    },
+    "noData": "—",
+    "errors": {
+      "unknown": "Unknown error",
+      "connection": "Connection error with the server.",
+      "userNotIdentified": "User not identified. Please sign in.",
+      "loadSummary": "Error loading summary",
+      "export": "Error exporting",
+      "downloadPowerBi": "Error downloading Power BI report",
+      "loadAbsences": "Error loading absences.",
+      "loadTask": "Error loading task.",
+      "loadTaskDetail": "Error loading task details.",
+      "loadGrades": "Error loading your grades",
+      "loadTutorGroups": "Error loading tutored groups",
+      "loadNotes": "Error loading grades",
+      "saveNotes": "Error saving grades",
+      "createTask": "Error creating task",
+      "createTeacher": "Error creating teacher",
+      "createGroup": "Error creating group",
+      "createCourse": "Error creating course",
+      "createSubject": "Error creating subject",
+      "createStudent": "Error creating student",
+      "createEnrollment": "Error creating submission",
+      "createNotification": "Error creating notification",
+      "createSession": "Error creating session",
+      "createAssistance": "Error creating attendance record",
+      "uploadJustification": "Error uploading justification. Please try again.",
+      "loadJustifications": "Error loading pending justifications.",
+      "noSubjectsAssigned": "You have no assigned subjects.",
+      "noSubjectsEnrolled": "You are not enrolled in any subjects.",
+      "noTutorGroups": "You are not a tutor for any group currently.",
+      "noStudentsInGroup": "This group has no enrolled students.",
+      "allGradesRequired": "All subjects for all students must be graded between 1 and 10.",
+      "taskIdMissing": "Task ID not provided.",
+      "couldNotLoadTask": "Could not load task.",
+      "folderNotAllowed": "Whole folders are not allowed. Please compress to a single .ZIP file",
+      "folderNotAllowedDetail": "Whole folders are not allowed. Please compress to .ZIP (Right click -> Compress).",
+      "fileTooLarge50": "File exceeds the maximum size of 50 MB.",
+      "fileTooLarge10": "File exceeds the 10 MB limit.",
+      "fileTooLarge1": "File cannot exceed 1 MB.",
+      "invalidFileFormat": "Invalid format. Upload a PDF, JPG or PNG.",
+      "selectValidJustification": "Please select a valid justification.",
+      "provideUrl": "You must provide a URL.",
+      "provideFile": "You must select or drag a file / ZIP.",
+      "invalidUploadLink": "Server processed the file but did not return a valid link.",
+      "uploadFailed": "An internal error occurred while uploading the file.",
+      "deleteSubmission": "Error deleting submission.",
+      "studentNotFound": "Student not found",
+      "invalidDni": "Enter a valid ID number",
+      "existingStudent": "Existing student. Enroll from existing student.",
+      "loadCoursesFailed": "Could not load courses",
+      "loadStudentTasksFailed": "Could not fetch tasks.",
+      "saveAttendance": "Error saving attendance",
+      "sessionError": "Error fetching session",
+      "deadlineExpiredNoLate": "The submission deadline has passed and the teacher does not allow late submissions.",
+      "submitNotifyFailed": "Your file was uploaded but delivery notification to the database failed."
     }
+  },
+
+  "studentTaskDetail": {
+    "problemDetected": "Problem detected",
+    "status": {
+      "SUBMITTED": "Submitted",
+      "LATE": "Late",
+      "NOT_SUBMITTED": "Not submitted",
+      "PENDING": "Pending",
+      "GRADED": "Graded"
+    },
+    "dueDate": "Due date",
+    "noDescription": "The teacher has not provided a description.",
+    "consultMaterial": "Reference material",
+    "viewDownload": "View / download",
+    "teacherEvaluation": "Teacher evaluation",
+    "finalGrade": "Final grade",
+    "attachedComments": "Attached comments",
+    "noFeedback": "Your grade was processed without comments.",
+    "submissionArea": "Submission area",
+    "deadlineClosed": "Submission deadline closed",
+    "deadlineClosedBody": "The deadline was <strong>{{date}}</strong> and the teacher <strong>does not allow late submissions</strong> for this task. You cannot send files or links.",
+    "deadlineClosedHint": "If you think this is a mistake, contact your teacher to extend the deadline or allow late submissions.",
+    "lateWarning": "Past deadline",
+    "lateWarningBody": "You are past the deadline ({{date}}). You can still submit: it will be marked as <span class=\"font-bold\">Late (LATE)</span>.",
+    "sentOk": "Sent successfully",
+    "savedOn": "Your submission was saved successfully on <strong>{{date}}</strong>.",
+    "deleteSubmission": "Delete submission",
+    "openOriginalLink": "Open original link",
+    "tabDropzone": "Dropzone",
+    "tabUrl": "Upload link",
+    "dropHint": "Click or drag your document here",
+    "dropZipHint": "If your submission is a folder with several files, we cannot accept it directly. Create a compressed .ZIP and upload it here.",
+    "maxWeight": "Maximum size: 50MB",
+    "localUploadOk": "Local upload ready",
+    "removeFileTitle": "Remove and select another",
+    "urlLabel": "Link web resource URL",
+    "urlPlaceholder": "E.g. https://docs.google.com/document/d/my-work/",
+    "urlInvalid": "Please enter a valid web link starting with http:// or https://",
+    "processing": "Processing file/link...",
+    "confirmSubmit": "Confirm submission to server",
+    "submitSuccess": "Your task was uploaded and submitted successfully.",
+    "unsubmitConfirm": "Are you sure you want to delete your current submission? You will need to upload it again."
+  },
+
+  "fichaProfesor": {
+    "noPendingJustifications": "You have no pending justifications to review.",
+    "justifySuccess": "Absence justified successfully.",
+    "justifyError": "An error occurred while trying to justify the absence.",
+    "rejectSuccess": "Justification rejected.",
+    "rejectError": "An error occurred while trying to reject the justification."
+  },
+
+  "taskForm": {
+    "createSuccessWithFile": "Task created successfully with attached file."
+  },
+
+  "grades": {
+    "title": "Evaluations",
+    "subtitle": "Enter your students' grades as tutor",
+    "tutoredGroup": "Tutored group",
+    "evaluationPeriod": "Evaluation period",
+    "average": "Average",
+    "subjectsCount": "{{count}} subjects",
+    "loadingGroup": "Loading group data...",
+    "noTutorGroup": "No tutored group was found for you",
+    "saveEvaluations": "Save evaluations",
+    "saving": "Saving...",
+    "savedSuccess": "Grades saved successfully"
+  },
+  "misGrades": {
+    "title": "My evaluations",
+    "subtitle": "View your grades for each term",
+    "subjectColumn": "Subject",
+    "averageGrade": "Average grade",
+    "loading": "Loading your grades...",
+    "empty": "You have no grades recorded yet"
+  },
+  "studentDashboard": {
+    "title": "My space",
+    "subtitle": "What would you like to do today?",
+    "classesCard": "Classes",
+    "classesDesc": "Access your subjects",
+    "managementCard": "Management",
+    "managementDesc": "Manage your student record",
+    "access": "Open"
+  },
+  "studentManagement": {
+    "title": "Academic management",
+    "subtitle": "Manage your profile and activities",
+    "profileCard": "User profile",
+    "scheduleCard": "Schedule",
+    "calendarCard": "Calendar",
+    "boardCard": "Notice board",
+    "viewProfile": "View profile",
+    "consult": "Open",
+    "viewEvents": "View events",
+    "viewNotices": "View notices"
+  },
+  "studentProfile": {
+    "title": "User profile",
+    "subtitle": "View your attendance absence history here.",
+    "noAbsences": "You have no absences recorded on the server.",
+    "attendance": "Attendance",
+    "justification": "Justification",
+    "statusAbsent": "ABSENT",
+    "statusLate": "LATE",
+    "statusExcused": "EXCUSED",
+    "justificationPending": "PENDING",
+    "justificationRejected": "REJECTED",
+    "justificationAccepted": "ACCEPTED",
+    "justificationNotSent": "NOT SENT"
+  },
+  "justifyAbsence": {
+    "title": "Justify absence",
+    "selectDocument": "Select document",
+    "fileHint": "PNG, JPG, PDF (max. 1 MB)",
+    "upload": "Upload justification",
+    "uploading": "Sending...",
+    "successTitle": "Justification sent!",
+    "successHint": "Your teacher will review the document to justify your absence."
+  },
+  "teacherProfile": {
+    "title": "Justifications",
+    "subtitle": "Review and manage your students' absences",
+    "loading": "Loading justifications...",
+    "allCaughtUp": "All caught up",
+    "noPending": "There are no new justifications pending review.",
+    "viewAbsencesByStudent": "View absences by student",
+    "viewFile": "View file",
+    "accept": "Accept",
+    "reject": "Reject",
+    "absencesSummary": {
+      "title": "Student absences summary",
+      "loading": "Loading student data...",
+      "loadError": "Could not load data.",
+      "fetchError": "An error occurred while loading absences.",
+      "empty": "You have no registered students or no data is available.",
+      "student": "Student",
+      "subjects": "Subjects",
+      "absencesPerSubject": "Absences per subject",
+      "totalAbsences": "Total absences",
+      "close": "Close"
+    }
+  },
+  "classMenu": {
+    "youAreIn": "You are in",
+    "tasksTitle": "Tasks",
+    "tasksDesc": "Manage class tasks",
+    "justificationsTitle": "Justifications",
+    "justificationsDesc": "Review absence justifications"
+  },
+  "syllabus": {
+    "titlePrefix": "Syllabus:",
+    "studentIntro": "Class material, unit documents, exercises and tasks.",
+    "loadTasksError": "Could not load tasks for this subject.",
+    "emptyTeacher": "You have not created material for this subject yet.",
+    "tasksCount": "{{count}} tasks",
+    "itemsCount": "{{count}} items",
+    "dueLabel": "Due:",
+    "viewBaseFile": "View base file",
+    "viewSubmissions": "View submissions",
+    "saveAttendance": "Save attendance",
+    "emptyTitle": "Syllabus is empty",
+    "emptyBody": "Your teacher has not uploaded material or enabled tasks for this section yet.",
+    "noDescription": "No description",
+    "takeAttendance": "Take attendance",
+    "attendanceHint": "Select each student's status and save attendance.",
+    "loadingStudents": "Loading students...",
+    "noStudents": "No students enrolled in this subject.",
+    "attendanceSaved": "Attendance saved successfully",
+    "sections": {
+      "THEORY": "Theory material and documents",
+      "EXAM": "Exams and tests",
+      "PROJECT": "Graded projects",
+      "PRACTICE": "Practical exercises",
+      "HOMEWORK": "General homework"
+    }
+  },
+  "taskTypes": {
+    "HOMEWORK": "Homework",
+    "PRACTICE": "Practice",
+    "THEORY": "Theory / material",
+    "PROJECT": "Project",
+    "EXAM": "Exam"
+  },
+  "taskFormPage": {
+    "title": "Create new task",
+    "taskTitle": "Task title",
+    "description": "Description",
+    "type": "Type",
+    "startDate": "Start date",
+    "dueDate": "Due date",
+    "attachmentOptional": "Attachment (optional)",
+    "uploadFile": "Upload a file",
+    "orDragDrop": "or drag and drop it here",
+    "createTask": "Create task",
+    "titlePlaceholder": "E.g. Practice 1 submission",
+    "descriptionPlaceholder": "Add instructions for students...",
+    "fileTypesHint": "PDF, DOCX, ZIP, PNG, JPG up to 10 MB",
+    "fileSelected": "Selected: {{name}}"
+  },
+  "submissions": {
+    "loading": "Loading student submissions...",
+    "dueDate": "Due date",
+    "student": "Student",
+    "status": "Status",
+    "submittedAt": "Submitted at",
+    "grade": "Grade",
+    "actions": "Actions",
+    "loadingDetail": "Loading submission details...",
+    "studentLabel": "Student",
+    "taskLabel": "Task to grade",
+    "submittedAtLabel": "Submission time",
+    "fileLabel": "Submitted file",
+    "gradeFormTitle": "Grading form",
+    "gradeLabel": "Grade (0-10)",
+    "feedbackOptional": "Feedback (optional)",
+    "gradeTask": "Grade submission",
+    "submitted": "Submitted",
+    "graded": "Graded",
+    "notSubmitted": "Not submitted",
+    "backToSyllabus": "Back to syllabus",
+    "backToSubmissions": "Back to submissions",
+    "studentList": "Student list ({{count}})",
+    "noSubmissions": "No submissions found for this task.",
+    "editGrade": "Edit grade",
+    "gradeAction": "Grade",
+    "openAttachmentTitle": "Open submission file/link",
+    "gradeDeliveryTitle": "Grade submission",
+    "noDateRecorded": "No date recorded",
+    "notAttachedYet": "Not attached yet",
+    "viewDownloadAttachment": "View / download attachment",
+    "feedbackPlaceholder": "Write corrections or notes for the student here...",
+    "saveGrade": "Save grade",
+    "gradeRangeLabel": "Grade (0 - 10)",
+    "commentsFeedback": "Comments and feedback",
+    "submittedAtShort": "Submitted:",
+    "gradeError": "Error grading submission. Please try again."
+  },
+  "taskDetail": {
+    "selectTask": "Select a task to view details.",
+    "startLabel": "Start:",
+    "dueLabel": "Due:",
+    "allowLate": "Allows late submission"
+  },
+  "studentTasks": {
+    "loading": "Loading tasks...",
+    "empty": "You have no assigned tasks."
+  },
+  "adminDashboard": {
+    "menu": "Menu"
+  },
+  "filters": {
+    "label": "Filters:"
+  },
+  "forms": {
+    "createTeacher": "Create new teacher",
+    "createGroup": "Create new group",
+    "createCourse": "Create new course",
+    "createSubject": "Create new subject",
+    "selectCourse": "Select a course",
+    "selectCourseRequired": "You must select a course",
+    "weeklyHours": "Weekly hours",
+    "weeklyHoursRange": "Hours must be between 1 and 30",
+    "descriptionMax": "Description cannot exceed 255 characters",
+    "selectCycle": "Select a course cycle",
+    "creating": "Creating...",
+    "createTeacherBtn": "Create teacher",
+    "createGroupBtn": "Create group",
+    "createCourseBtn": "Create course",
+    "createSubjectBtn": "Create subject",
+    "groupName": "Group name",
+    "courseName": "Course name",
+    "subjectName": "Subject name",
+    "gradeLabel": "Year",
+    "grade1": "1st",
+    "grade2": "2nd",
+    "description": "Description",
+    "descriptionPlaceholder": "Brief subject description",
+    "hoursPlaceholder": "E.g. 6",
+    "courseNamePlaceholder": "E.g. Multiplatform App Development",
+    "groupNamePlaceholder": "E.g. 2nd year Morning",
+    "subjectNamePlaceholder": "E.g. Programming",
+    "belongsToCycle": "Belongs to cycle",
+    "loadingCycles": "Loading cycles...",
+    "dniLabel": "ID number",
+    "dniPlaceholder": "12345678A or X1234567A",
+    "dniInvalidExtended": "Invalid ID (e.g. 12345678A or X1234567A)"
+  },
+
+  "apiErrors": {
+    "ANALYTICS_INVALID_SCHOOL_YEAR": "School year is required (format 2024-2025).",
+    "ANALYTICS_SUMMARY_FAILED": "Error fetching report summary.",
+    "ANALYTICS_EXPORT_FAILED": "Error generating report.",
+    "ANALYTICS_PBIX_NOT_FOUND": "Power BI report not available. Generate the file following the repository guide.",
+    "ANALYTICS_REPORT_EMPTY": "Generated report is empty."
+  },
+
+  "login": {
+    "platformTagline": "Educational platform",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "example@ziryab.es",
+    "submit": "Sign in"
+  },
+
+  "assistanceStatus": {
+    "PRESENT": "Present",
+    "ABSENT": "Absent",
+    "LATE": "Late",
+    "EXCUSED": "Excused"
+  },
+
+  "aria": {
+    "openMenu": "Open menu",
+    "languageEs": "Spanish"
   },
 
   "entities": {
@@ -267,6 +655,7 @@
     "powerBiHint": "Download the predefined Power BI Desktop report (same file regardless of filters).",
     "downloadPbix": "Download Power BI report",
     "menu": "Menu",
+    "yearPlaceholder": "2024-2025",
     "kpi": {
       "matriculas": "Enrollments",
       "alumnos": "Unique students",
@@ -296,7 +685,8 @@
     "updating": "Updating",
     "updated": "updated",
     "successMessage": "has been successfully updated.",
-    "fieldInvalid": "Invalid field"
+    "fieldInvalid": "Invalid field",
+    "updateError": "Error updating {{type}}."
   },
 
   "lists": {
@@ -448,7 +838,12 @@
       }
     },
     "techStack": {
-      "title": "Tech Stack"
+      "title": "Tech Stack",
+      "angular": "Angular 19 + Standalone",
+      "node": "Node.js Express",
+      "tailwind": "Tailwind CSS",
+      "prisma": "Prisma & PostgreSQL",
+      "firebase": "Firebase (Auth/Storage)"
     },
     "team": {
       "title": "Ziryab Team",
@@ -468,9 +863,22 @@
   },
 
   "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "empty": "No notifications",
     "bellAria": "Notifications",
     "unreadAria": "You have unread notifications",
-    "toastClose": "Dismiss notification"
+    "toastClose": "Dismiss notification",
+    "mock": {
+      "taskAssigned": {
+        "title": "New task assigned",
+        "message": "You have been assigned the task \"Chapter 3 exercises\"."
+      },
+      "dueSoon": {
+        "title": "Submission due soon",
+        "message": "The task \"Chapter 3 exercises\" is due tomorrow."
+      }
+    }
   },
 
   "perfil": {

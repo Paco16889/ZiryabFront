@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { StudentCreateFormComponent } from "../student-create-form/student-create-form.component";
 import { StudentSelectorComponent } from "../student-selector/student-selector.component";
 import { Student } from '../../../../../core/models/student';
@@ -14,7 +15,7 @@ import { StudentModeSelectorComponent } from "../student-mode-selector/student-m
  */
 @Component({
   selector: 'app-student-enrollment',
-  imports: [StudentCreateFormComponent, SetRegistrationComponent, StudentSelectorComponent, StudentModeSelectorComponent],
+  imports: [StudentCreateFormComponent, SetRegistrationComponent, StudentSelectorComponent, StudentModeSelectorComponent, TranslateModule],
   templateUrl: './student-enrollment.component.html',
   styleUrl: './student-enrollment.component.scss'
 })

@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { GradeService } from '../../../core/services/profesor/grade.service';
 import { EvaluationPeriod, MyGradesResponse } from '../../../core/models/grade';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 
 @Component({
   selector: 'app-mis-evaluaciones',
@@ -14,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class MisNotasComponent implements OnInit {
   private gradeService = inject(GradeService);
+  private readonly translate = inject(TranslateService);
 
   public subjectsGrades = signal<MyGradesResponse[]>([]);
   public periods = Object.values(EvaluationPeriod);
@@ -33,7 +35,7 @@ export class MisNotasComponent implements OnInit {
         this.loading.set(false);
       },
       error: (err) => {
-        this.errorMessage.set('Error al cargar tus notas');
+        this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.loadGrades'));
         this.loading.set(false);
       }
     });

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { NotificationListItemComponent } from '../notification-list-item/notification-list-item.component';
 import { NotificationService } from '../../../../core/services/notification/notification.service';
 import { NotificationToggleService } from '../../../../core/services/notification/notification-toggle.service';
@@ -6,7 +7,7 @@ import { NotificationToggleService } from '../../../../core/services/notificatio
 @Component({
   selector: 'app-notification-list',
   standalone: true,
-  imports: [NotificationListItemComponent],
+  imports: [NotificationListItemComponent, TranslateModule],
   templateUrl: './notification-list.component.html',
   styleUrl: './notification-list.component.scss',
 })

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que representa el botón hamburguesa de navegación móvil.
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
  */
 @Component({
   selector: 'app-boton-hamburguesa',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './boton-hamburguesa.component.html',
   styleUrl: './boton-hamburguesa.component.scss'
 })

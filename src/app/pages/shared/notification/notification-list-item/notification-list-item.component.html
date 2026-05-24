@@ -5,12 +5,12 @@
 >
   <div class="flex-1 min-w-0">
     <p class="text-sm font-medium text-gray-900 truncate">
-      {{ notification().title }}
+      {{ isTranslationKey(notification().title) ? (notification().title | translate) : notification().title }}
     </p>
 
     @if (notification().message && notification().title) {
       <p class="text-xs text-gray-500 mt-0.5 truncate">
-        {{ notification().message }}
+        {{ isTranslationKey(notification().message) ? (notification().message | translate) : notification().message }}
       </p>
     }
 

@@ -4,41 +4,35 @@
     <button 
       (click)="onCancel()"
       class="mr-4 text-gray-600 hover:text-gray-900">
-      ← Volver
+      ← {{ 'common.buttons.back' | translate }}
     </button>
-    <h1 class="text-2xl font-bold">Crear Nuevo Grupo</h1>
+    <h1 class="text-2xl font-bold">{{ 'forms.createGroup' | translate }}</h1>
   </div>
 
   <div class="bg-white p-6 rounded-lg shadow">
     <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label class="block text-gray-700 font-medium mb-2">
-          Nombre del Grupo
+          {{ 'forms.groupName' | translate }}
         </label>
         <input 
           formControlName="name"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="Ej: 2º DAM Mañana"
+          [placeholder]="'forms.groupNamePlaceholder' | translate"
         />
         @if(createForm.get('name')?.invalid && createForm.get('name')?.touched){
-            <span 
-              class="text-red-500 text-sm mt-1">
-            El nombre es requerido
+            <span class="text-red-500 text-sm mt-1">
+            {{ 'common.validation.nameRequired' | translate }}
             </span>
         }
-        
       </div>
 
-      <!-- Mensaje de error -->
-
       @if(errorMessage){
-        <div  
-           class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
+        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
         {{ errorMessage }}
         </div>
       }
-      
 
       <div class="flex justify-end gap-3">
         <button 
@@ -46,14 +40,14 @@
           (click)="onCancel()"
           [disabled]="isCreating"
           class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">
-          Cancelar
+          {{ 'common.buttons.cancel' | translate }}
         </button>
         <button 
           type="submit"
           [disabled]="createForm.invalid || isCreating"
           class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 
                  disabled:bg-gray-300 disabled:cursor-not-allowed">
-          {{ isCreating ? 'Creando...' : 'Crear Grupo' }}
+          {{ isCreating ? ('forms.creating' | translate) : ('forms.createGroupBtn' | translate) }}
         </button>
       </div>
     </form>

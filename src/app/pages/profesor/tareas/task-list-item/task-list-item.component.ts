@@ -1,17 +1,8 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Task, TaskType } from '../../../../core/models/teacher/tasks';
+import { Task } from '../../../../core/models/teacher/tasks';
 import { output } from '@angular/core';
-
-
-/** Etiquetas legibles por tipo de tarea */
-const TASK_TYPE_LABELS: Record<TaskType, string> = {
-  PRACTICE: 'Práctica',
-  THEORY:   'Teoría',
-  EXAM:     'Examen',
-  PROJECT:  'Proyecto',
-  HOMEWORK: 'Deberes',
-};
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que representa una tarjeta individual de tarea.
@@ -38,6 +29,8 @@ const TASK_TYPE_LABELS: Record<TaskType, string> = {
 })
 export class TaskListItemComponent {
 
+  private readonly translate = inject(TranslateService);
+
   /** Tarea a mostrar */
   readonly task    = input.required<Task>();
   /** Color hexadecimal heredado del grupo */
@@ -46,7 +39,9 @@ export class TaskListItemComponent {
   readonly chipBg  = input.required<string>();
 
   /** Etiqueta legible del tipo de tarea */
-  readonly typeLabel = computed(() => TASK_TYPE_LABELS[this.task().type]);
+  readonly typeLabel = computed(() =>
+    this.translate.instant('taskTypes.' + this.task().type),
+  );
 
   /** Fecha de entrega formateada */
   readonly formattedDueDate = computed(() => {

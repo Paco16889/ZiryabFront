@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { SubmissionStatus } from '../../../../../core/models/studentTask';
 import { AdminTaskService } from '../../../../../core/services/admin/entities/task.service';
 import { StudentTaskService } from '../../../../../core/services/admin/entities/student-task.service';
@@ -18,6 +19,7 @@ import { environment } from '../../../../../../environments/environment';
 export class StudentTaskCreateFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly studentTaskService = inject(StudentTaskService);
+  private readonly translate = inject(TranslateService);
   private readonly taskService = inject(AdminTaskService);
   private readonly groupService = inject(GroupService);
   private readonly subjectService = inject(SubjectService);
@@ -111,7 +113,7 @@ export class StudentTaskCreateFormComponent implements OnInit {
         },
         error: (err) => {
           this.isCreating = false;
-          this.errorMessage = err.error?.message ?? 'Error al crear la entrega';
+          this.errorMessage = resolveApiError(this.translate, err, 'common.errors.createEnrollment');
         },
       });
   }

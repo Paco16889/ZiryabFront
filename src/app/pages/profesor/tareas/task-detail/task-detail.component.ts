@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { StudentTaskStatus } from '../../../../core/models/teacher/tasks';
 import { SubmissionStatus } from '../../../../core/models/studentTask';
 import { DatePipe, NgClass } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { StudentTask } from '../../../../core/models/teacher/tasks';
 
 
@@ -16,7 +17,7 @@ import { StudentTask } from '../../../../core/models/teacher/tasks';
  */
 @Component({
   selector: 'app-task-detail',
-  imports: [ NgClass, DatePipe, ReactiveFormsModule],
+  imports: [ NgClass, DatePipe, ReactiveFormsModule, TranslateModule],
   templateUrl: './task-detail.component.html',
   styleUrl: './task-detail.component.scss'
 })

@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
@@ -11,6 +12,7 @@ import {
 
 interface ApiMessage {
   message: string;
+  code?: string;
 }
 
 /**
@@ -19,6 +21,7 @@ interface ApiMessage {
 @Injectable({ providedIn: 'root' })
 export class AnalyticsHttpService {
   private readonly http = inject(HttpClient);
+  private readonly translate = inject(TranslateService);
   private readonly baseUrl = `${environment.apiUrl}/analytics`;
 
   /**
@@ -84,6 +87,13 @@ export class AnalyticsHttpService {
       try {
         const text = await blob.text();
         const parsed = JSON.parse(text) as ApiMessage;
+        if (parsed.code) {
+          const key = `apiErrors.${parsed.code}`;
+          const translated = this.translate.instant(key);
+          if (translated && translated !== key) {
+            return translated;
+          }
+        }
         return parsed.message ?? text;
       } catch {
         return null;

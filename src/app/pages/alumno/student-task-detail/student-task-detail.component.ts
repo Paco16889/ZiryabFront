@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { StudentTaskService } from '../../../core/services/alumno/student-task.service';
 import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { resolveApiError } from '../../../core/i18n/api-error.util';
 
 /**
  * Componente StudentTaskDetail
@@ -15,7 +17,7 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 @Component({
   selector: 'app-student-task-detail',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BotonAtrasComponent],
+  imports: [CommonModule, ReactiveFormsModule, BotonAtrasComponent, TranslateModule],
   templateUrl: './student-task-detail.component.html',
   styleUrls: ['./student-task-detail.component.scss']
 })
@@ -24,6 +26,7 @@ export class StudentTaskDetailComponent implements OnInit {
   private router = inject(Router);
   private studentTaskService = inject(StudentTaskService);
   private fb = inject(FormBuilder);
+  private readonly translate = inject(TranslateService);
 
   task = signal<StudentTask | null>(null);
   loading = signal<boolean>(true);
@@ -66,7 +69,7 @@ export class StudentTaskDetailComponent implements OnInit {
     if (idParam) {
       this.loadTask(parseInt(idParam, 10));
     } else {
-      this.errorMessage.set('ID de tarea no proporcionado.');
+      this.errorMessage.set(this.translate.instant('common.errors.taskIdMissing'));
       this.loading.set(false);
     }
   }
@@ -83,12 +86,14 @@ export class StudentTaskDetailComponent implements OnInit {
           this.task.set(res.data);
           this.checkDueDate(res.data);
         } else {
-          this.errorMessage.set('No se pudo cargar la tarea.');
+          this.errorMessage.set(this.translate.instant('common.errors.couldNotLoadTask'));
         }
         this.loading.set(false);
       },
       error: (err) => {
-        this.errorMessage.set(err.error?.message || 'Error al cargar la tarea detallada.');
+        this.errorMessage.set(
+          resolveApiError(this.translate, err, 'common.errors.loadTaskDetail'),
+        );
         this.loading.set(false);
       }
     });
@@ -176,7 +181,7 @@ export class StudentTaskDetailComponent implements OnInit {
     if (item.kind === 'file') {
       const entry = item.webkitGetAsEntry();
       if (entry && entry.isDirectory) {
-        this.errorMessage.set('Las carpetas enteras no están permitidas. Por favor, comprímela a .ZIP haciendo "Click Derecho -> Comprimir".');
+        this.errorMessage.set(this.translate.instant('common.errors.folderNotAllowedDetail'));
         this.selectedFile.set(null);
       } else {
         const file = item.getAsFile();
@@ -194,13 +199,13 @@ export class StudentTaskDetailComponent implements OnInit {
 
     // Si pesa 0 (o no tiene punto) es muy probable que sea una carpeta en file system OS antiguos
     if (file.size === 0 || (!file.type && file.name.indexOf('.') === -1)) {
-      this.errorMessage.set('Las carpetas enteras no están permitidas por seguridad. Por favor, comprímela a un solo archivo .ZIP');
+      this.errorMessage.set(this.translate.instant('common.errors.folderNotAllowed'));
       this.selectedFile.set(null);
       return;
     }
     
     if (file.size > 50 * 1024 * 1024) {
-      this.errorMessage.set('El archivo supera los 50 MB de peso máximo permitido.');
+      this.errorMessage.set(this.translate.instant('common.errors.fileTooLarge50'));
       this.selectedFile.set(null);
       return;
     }
@@ -222,9 +227,7 @@ export class StudentTaskDetailComponent implements OnInit {
     if (!t) return;
 
     if (this.submissionBlocked()) {
-      this.errorMessage.set(
-        'El plazo de entrega ha expirado y el profesor no permite entregas tardías.',
-      );
+      this.errorMessage.set(this.translate.instant('common.errors.deadlineExpiredNoLate'));
       return;
     }
 
@@ -236,13 +239,13 @@ export class StudentTaskDetailComponent implements OnInit {
 
     if (mode === 'url') {
       if (!formValue.attachmentUrl || formValue.attachmentUrl.trim() === '') {
-        this.errorMessage.set('Debes proveer una URL.');
+        this.errorMessage.set(this.translate.instant('common.errors.provideUrl'));
         return;
       }
       this.finalizeSubmission(t.id, formValue.attachmentUrl);
     } else {
       if (!this.selectedFile()) {
-        this.errorMessage.set('Debes seleccionar o arrastrar un archivo / ZIP.');
+        this.errorMessage.set(this.translate.instant('common.errors.provideFile'));
         return;
       }
       
@@ -252,12 +255,12 @@ export class StudentTaskDetailComponent implements OnInit {
           if (res.success && res.data?.attachmentUrl) {
             this.finalizeSubmission(t.id, res.data.attachmentUrl);
           } else {
-            this.errorMessage.set('El servidor procesó el archivo, pero no devolvió un enlace válido.');
+            this.errorMessage.set(this.translate.instant('common.errors.invalidUploadLink'));
             this.submitting.set(false);
           }
         },
         error: (err) => {
-          this.errorMessage.set(err.error?.message || 'Hubo un error internamente al subir el archivo al servidor.');
+          this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.uploadFailed'));
           this.submitting.set(false);
         }
       });
@@ -274,7 +277,7 @@ export class StudentTaskDetailComponent implements OnInit {
     this.studentTaskService.submitStudentTask(taskId, { attachmentUrl: url }).subscribe({
       next: (res) => {
         if (res.success) {
-          this.successMessage.set('La carga y entrega de tu tarea fue registrada con éxito.');
+          this.successMessage.set(this.translate.instant('studentTaskDetail.submitSuccess'));
           this.task.set(res.data);
           this.submitForm.disable();
           this.selectedFile.set(null);
@@ -284,7 +287,7 @@ export class StudentTaskDetailComponent implements OnInit {
       error: (err) => {
         const detail = this.extractApiError(err);
         this.errorMessage.set(
-          detail || 'Tu archivo fue subido pero falló la notificación de entrega a la BBDD.',
+          detail || this.translate.instant('common.errors.submitNotifyFailed'),
         );
         this.submitting.set(false);
       }
@@ -298,7 +301,7 @@ export class StudentTaskDetailComponent implements OnInit {
     const t = this.task();
     if (!t) return;
     
-    if (confirm('¿Estás seguro de que quieres borrar tu entrega actual? Tendrás que subirla de nuevo.')) {
+    if (confirm(this.translate.instant('studentTaskDetail.unsubmitConfirm'))) {
       this.submitting.set(true);
       this.studentTaskService.unsubmitStudentTask(t.id).subscribe({
         next: (res) => {
@@ -313,7 +316,7 @@ export class StudentTaskDetailComponent implements OnInit {
           this.submitting.set(false);
         },
         error: (err) => {
-          this.errorMessage.set(err.error?.message || 'Error al borrar la entrega.');
+          this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.deleteSubmission'));
           this.submitting.set(false);
         }
       });
