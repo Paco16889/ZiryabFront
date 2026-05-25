@@ -55,7 +55,7 @@
     </div>
 
     @if (createError()) {
-      <p class="text-red-500 text-xs mt-2">{{ createError()! | translate }}</p>
+      <p class="text-red-500 text-xs mt-2">{{ createError() }}</p>
     }
   </div>
 
@@ -145,7 +145,7 @@
                     }
                   }
                   @if (row.error) {
-                    <p class="text-red-500 text-xs mt-1">{{ row.error | translate }}</p>
+                    <p class="text-red-500 text-xs mt-1">{{ row.error.startsWith('adminPages.') ? (row.error | translate) : row.error }}</p>
                   }
                 </td>
 
