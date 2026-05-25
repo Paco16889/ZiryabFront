@@ -154,6 +154,35 @@
         </div>
       }
 
+      @if (showSchedulePrompt() && feedbackIsSuccess()) {
+        <div
+          class="mt-4 rounded-lg border border-purple-200 bg-purple-50 px-4 py-3 text-sm text-purple-900 space-y-3"
+          role="dialog"
+          aria-labelledby="schedule-prompt-title"
+        >
+          <p id="schedule-prompt-title" class="font-medium">
+            {{ 'courseAssignments.grid.schedulePromptTitle' | translate }}
+          </p>
+          <p>{{ 'courseAssignments.grid.schedulePromptBody' | translate }}</p>
+          <div class="flex flex-wrap gap-3">
+            <button
+              type="button"
+              class="px-4 py-2 rounded-md bg-purple-600 text-white text-sm font-medium hover:bg-purple-700"
+              (click)="goToCreateSchedule()"
+            >
+              {{ 'courseAssignments.grid.schedulePromptGo' | translate }}
+            </button>
+            <button
+              type="button"
+              class="px-4 py-2 rounded-md border border-gray-300 text-sm text-gray-700 hover:bg-gray-50"
+              (click)="dismissSchedulePrompt()"
+            >
+              {{ 'courseAssignments.grid.schedulePromptStay' | translate }}
+            </button>
+          </div>
+        </div>
+      }
+
       <div class="mt-4 flex flex-wrap gap-3">
         <button
           type="button"

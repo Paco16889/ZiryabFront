@@ -48,6 +48,15 @@
       <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
         {{ 'courseAssignments.wizard.emptyGrades' | translate }}
       </p>
+      @if (selectedCourseId() != null) {
+        <button
+          type="button"
+          class="text-sm font-medium text-purple-700 underline hover:text-purple-900"
+          (click)="goToCreateSubjectsForSelectedCourse()"
+        >
+          {{ 'courseAssignments.wizard.createSubjectsLink' | translate }}
+        </button>
+      }
     }
 
     <button

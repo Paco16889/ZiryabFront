@@ -109,5 +109,7 @@ export interface WeekScheduleUpdateApiResponse {
 
 export type {
   WeekScheduleMaterializeRequest,
+  WeekScheduleMaterializeResponse,
+  WeekScheduleMaterializeResult,
   WeekScheduleMaterializeSlot,
 } from './week-schedule-materialize.model';

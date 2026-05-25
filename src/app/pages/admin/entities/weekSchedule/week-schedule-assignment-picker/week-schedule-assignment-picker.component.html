@@ -1,9 +1,9 @@
 <select
   [id]="selectId()"
   [class]="selectClass()"
-  [value]="selectedId()"
+  [ngModel]="selectedId()"
   [disabled]="disabled()"
-  (change)="onChange($event)"
+  (ngModelChange)="onModelChange($event)"
 >
   <option value="">{{ 'weekScheduleBuilder.grid.cellSelectPlaceholder' | translate }}</option>
   @for (row of options(); track row.id) {

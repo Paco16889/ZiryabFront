@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ToggleService } from '../../../core/services/toggle.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -30,7 +30,7 @@ export class AdminMenuComponent {
    * Inicializa el componente.
    * @param toggle - Servicio que notifica qué sección debe mostrarse en el área de contenido principal
    */
-  constructor(private toggle: ToggleService){}
+  private readonly toggle = inject(ToggleService);
 
    /**
    * Alterna la sección del menú correspondiente y emite el evento de clic.
@@ -38,7 +38,6 @@ export class AdminMenuComponent {
    */
   onClick(str: string){
     this.toggle.toggle(str);
-    console.log(`Has pinchado en ${str}`);
     this.optionClicked.emit();
   }
 

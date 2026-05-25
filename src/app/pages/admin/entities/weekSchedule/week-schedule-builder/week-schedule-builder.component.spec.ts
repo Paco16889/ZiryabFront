@@ -2,19 +2,27 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../../../environments/environment';
+import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
 import { WeekScheduleBuilderComponent } from './week-schedule-builder.component';
+
 describe('WeekScheduleBuilderComponent', () => {
   let component: WeekScheduleBuilderComponent;
   let fixture: ComponentFixture<WeekScheduleBuilderComponent>;
   let httpMock: HttpTestingController;
+  let scheduleNav: jasmine.SpyObj<WeekScheduleNavigationService>;
 
   beforeEach(async () => {
+    scheduleNav = jasmine.createSpyObj('WeekScheduleNavigationService', ['takePendingCreate']);
+    scheduleNav.takePendingCreate.and.returnValue(null);
+
     await TestBed.configureTestingModule({
       imports: [
         WeekScheduleBuilderComponent,
         TranslateModule.forRoot(),
         HttpClientTestingModule,
       ],
+      providers: [{ provide: WeekScheduleNavigationService, useValue: scheduleNav }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WeekScheduleBuilderComponent);
@@ -47,10 +55,25 @@ describe('WeekScheduleBuilderComponent', () => {
     expect(fixture.debugElement.query(By.css('app-week-schedule-grid-builder'))).not.toBeNull();
   });
 
-  it('emits cancelCreate when back is clicked', () => {
-    const spy = jasmine.createSpy('cancelCreate');
-    component.cancelCreate.subscribe(spy);
-    fixture.debugElement.query(By.css('button')).nativeElement.click();
-    expect(spy).toHaveBeenCalled();
+  it('preselects create template class when navigation is pending', () => {
+    scheduleNav.takePendingCreate.and.returnValue({
+      idCourse: 5,
+      grade: '1',
+      idGroup: 42,
+    });
+    fixture = TestBed.createComponent(WeekScheduleBuilderComponent);
+    component = fixture.componentInstance;
+    httpMock = TestBed.inject(HttpTestingController);
+    fixture.detectChanges();
+    httpMock
+      .match((req) => req.url.includes('/horarios-semanales/classes'))
+      .forEach((r) => r.flush({ success: true, count: 0, data: [] }));
+
+    expect(scheduleNav.takePendingCreate).toHaveBeenCalled();
+    expect(component.builderMode()).toBe('create');
+    expect(component.createPreselectClassKey()).toBe(
+      `5|1|42|${environment.currentSchoolYear}`,
+    );
   });
+
 });

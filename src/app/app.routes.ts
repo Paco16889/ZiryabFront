@@ -74,6 +74,16 @@ export const routes: Routes = [
 
     },
 
+    {
+        path: 'issues',
+        loadComponent: () =>
+            import('./pages/admin/entities/issue/issue-list/issue-list.component').then(
+                (m) => m.IssueListComponent,
+            ),
+        canActivate: [AuthGuard],
+        data: { issueListVariant: 'standalone' },
+    },
+
     // ============================================
     // RUTAS DE PROFESOR (TEACHER)
     // ============================================

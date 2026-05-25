@@ -1,102 +1,116 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { StudentRegistration, StudentRegistrationRequest, StudentRegistrationResponse } from '../../models/student-registration';
-import { Observable } from 'rxjs';
-import { SelectedStudentService } from './selected-student.service';
-import { Student } from '../../models/student';
-import { Subject } from '../../models/subject';
+import { inject, Injectable } from '@angular/core';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Observable, from, of, throwError } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
+import {
+  StudentRegistrationRequest,
+  StudentRegistrationResponse,
+} from '../../models/student-registration';
+import { PendingStudentDraft, Student } from '../../models/student';
+import { PasswordService } from '../password.service';
+import { StudentsService } from './entities/students.service';
 import { SubjectService } from './entities/subject.service';
+import { SelectedStudentService } from './selected-student.service';
+
+export type EnrollmentConfirmErrorCode =
+  | 'NO_SUBJECTS'
+  | 'NO_STUDENT'
+  | 'STUDENT_CREATE_FAILED'
+  | 'REGISTRATION_FAILED';
 
 /**
- * Servicio encargado de gestionar el proceso de matriculación de un estudiante
- * en las asignaturas y grupo correspondientes.
- * Orquesta los datos del estudiante seleccionado y las asignaturas seleccionadas
- * para construir y enviar la petición de matriculación al backend.
+ * Orquesta matriculación (EQ-311-A): persistir solo al confirmar paso 3.
+ * Huérfanos → limpieza backend (EQ-311-C). Errores propagados al UI (EQ-313).
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentRegistrationService {
-  /**
-   * Identificador del estudiante a matricular.
-   */
-  private idStudent:number | null = null;
- 
+  private readonly http = inject(HttpClient);
+  private readonly selectedStudent = inject(SelectedStudentService);
+  private readonly subjectService = inject(SubjectService);
+  private readonly studentsService = inject(StudentsService);
+  private readonly auth = inject(Auth);
+  private readonly passwordGen = inject(PasswordService);
 
-  /**
-   * URL base del endpoint de matriculaciones.
-   */
-   private apiUrl = 'http://localhost:3000/api/studentregistration';
+  private readonly apiUrl = `${environment.apiUrl}/studentregistration`;
 
- /**
-   * Inicializa el servicio.
-   * @param auth - Instancia de Auth de Firebase para obtener el token actual
-   * @param http - Cliente HTTP de Angular para realizar peticiones al backend
-   * @param subjectService - Servicio para obtener la asignaturas seleccionadas
-   * @param studentSelectedService - Servicio para obtener el estudiante seleccionado
-   */
-  constructor(private http: HttpClient, private selectedStudent: SelectedStudentService, private subjectService: SubjectService) {}
-
-   /**
-   * Envía la petición de matriculación al backend.
-   * @param data - Datos de matriculación que incluyen el array de registros
-   * @returns Observable con la respuesta de confirmación de matriculación
-   */
   createRegistrations(data: StudentRegistrationRequest): Observable<StudentRegistrationResponse> {
     return this.http.post<StudentRegistrationResponse>(this.apiUrl, data);
   }
 
-   /**
-   * Construye y envía las matriculaciones del estudiante seleccionado
-   * en todas las asignaturas seleccionadas para el grupo indicado.
-   * Si no hay estudiante o asignaturas seleccionadas no realiza ninguna acción.
-   * @param idGroup - Identificador del grupo en el que se matricula el estudiante
-   * @returns Observable con la respuesta de matriculación o void si faltan datos
-   */
- registerStudent(idGroup: number) {
-    const student = this.selectedStudent.selectedStudent();
+  confirmEnrollment(idGroup: number): Observable<StudentRegistrationResponse> {
     const subjects = this.subjectService.selectedSubjects();
-
-    if (!student || subjects.length === 0) {
-      return;
+    if (subjects.length === 0) {
+      return throwError(() => new Error('NO_SUBJECTS' satisfies EnrollmentConfirmErrorCode));
     }
 
-    const registrations: StudentRegistration[] = subjects.map(subject => ({
-      idStudent: student.id,
-      idGroup: idGroup,
-      idSubject: subject.id,
-      schoolYear: '27/28'
-    }));
+    const draft = this.selectedStudent.pendingStudentDraft();
+    if (draft) {
+      return this.persistNewStudent(draft).pipe(
+        switchMap((student) => this.registerStudent(idGroup, student.id)),
+      );
+    }
 
-    const request: StudentRegistrationRequest = {
-      registrations
-    };
+    const existing = this.selectedStudent.selectedStudent();
+    if (existing) {
+      return this.registerStudent(idGroup, existing.id);
+    }
 
-    console.log('REQUEST FINAL:', request);
-
-   return this.createRegistrations(request);
+    return throwError(() => new Error('NO_STUDENT' satisfies EnrollmentConfirmErrorCode));
   }
 
-  /**
-   * Prepara y ejecuta el proceso completo de matriculación utilizando
-   * el estudiante y las asignaturas actualmente seleccionados en sus respectivas signals.
-   * Llama a registerStudent con el grupo por defecto y gestiona la respuesta.
-   */
-  preparaDatos(){
-    const subjectsForRegister = this.subjectService.selectedSubjects();
+  private persistNewStudent(draft: PendingStudentDraft): Observable<Student> {
+    const password = this.passwordGen.generateRandomPassword();
+    return from(createUserWithEmailAndPassword(this.auth, draft.email, password)).pipe(
+      switchMap((credential) =>
+        this.studentsService
+          .createStudent({
+            ...draft,
+            firebaseUID: credential.user.uid,
+          })
+          .pipe(
+            switchMap((response) => {
+              if (!response.success) {
+                return throwError(
+                  () => new Error('STUDENT_CREATE_FAILED' satisfies EnrollmentConfirmErrorCode),
+                );
+              }
+              return of(response.data as Student);
+            }),
+          ),
+      ),
+      map((student) => {
+        this.selectedStudent.setSelectedStudent(student);
+        return student;
+      }),
+    );
+  }
 
-    this.idStudent = this.selectedStudent.selectedStudent()!.id;
-    
-    console.log('hola soy subjectsForRegister ', subjectsForRegister, this.idStudent);
-
-    this.registerStudent(1)!
-    .subscribe({
-      next: (res) => {
-        console.log('✅ Registro enviado correctamente:', res);
-      },
-      error: (err) => {
-        console.error('❌ Error al registrar:', err);
-      }
-    });
+  private registerStudent(
+    idGroup: number,
+    idStudent: number,
+  ): Observable<StudentRegistrationResponse> {
+    const subjects = this.subjectService.selectedSubjects();
+    const request: StudentRegistrationRequest = {
+      registrations: subjects.map((subject) => ({
+        idStudent,
+        idGroup,
+        idSubject: subject.id,
+        schoolYear: environment.currentSchoolYear,
+      })),
+    };
+    return this.createRegistrations(request).pipe(
+      switchMap((response) => {
+        if (!response.success) {
+          return throwError(
+            () => new Error('REGISTRATION_FAILED' satisfies EnrollmentConfirmErrorCode),
+          );
+        }
+        return of(response);
+      }),
+    );
   }
 }

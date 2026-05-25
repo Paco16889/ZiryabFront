@@ -1,9 +1,12 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, OnInit, output, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../../../environments/environment';
+import { WeekScheduleClassItem, weekScheduleClassKey } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
+import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
+import { weekScheduleClassKeyFromParts } from '../../../../../core/utils/week-schedule-class-key';
 import { WeekScheduleCreateTemplateComponent } from '../week-schedule-create-template/week-schedule-create-template.component';
 import { WeekScheduleGridBuilderComponent } from '../week-schedule-grid-builder/week-schedule-grid-builder.component';
 
-/** Pestañas disponibles en el constructor de horarios de administración. */
 export type WeekScheduleBuilderMode = 'create' | 'grid';
 
 /**
@@ -21,28 +24,48 @@ export type WeekScheduleBuilderMode = 'create' | 'grid';
   templateUrl: './week-schedule-builder.component.html',
   styleUrl: './week-schedule-builder.component.scss',
 })
-export class WeekScheduleBuilderComponent {
-  /** Propaga al contenedor padre la salida del flujo sin crear ni guardar horarios. */
-  readonly cancelCreate = output<void>();
+export class WeekScheduleBuilderComponent implements OnInit {
+  private readonly scheduleNav = inject(WeekScheduleNavigationService);
 
-  /** Avisa al contenedor padre de que hay horarios nuevos o actualizados. */
   readonly scheduleCreated = output<void>();
 
   /** Pestaña por defecto: crear plantilla (CURSO-90). */
   readonly builderMode = signal<WeekScheduleBuilderMode>('create');
 
-  /** Cierra el builder desde cualquiera de sus pestañas. */
-  onCancel(): void {
-    this.cancelCreate.emit();
+  /** Clase a preseleccionar en rejilla tras materializar (CURSO-145). */
+  readonly gridPreselectClassKey = signal<string | null>(null);
+
+  /** Clase a preseleccionar en crear plantilla (EQ-309). */
+  readonly createPreselectClassKey = signal('');
+
+  ngOnInit(): void {
+    const pending = this.scheduleNav.takePendingCreate();
+    if (pending == null) {
+      return;
+    }
+    this.setBuilderMode('create');
+    this.createPreselectClassKey.set(
+      weekScheduleClassKeyFromParts(
+        pending.idCourse,
+        pending.grade,
+        pending.idGroup,
+        environment.currentSchoolYear,
+      ),
+    );
   }
 
-  /** Cambia entre creación por plantilla y edición directa en grid semanal. */
   setBuilderMode(mode: WeekScheduleBuilderMode): void {
     this.builderMode.set(mode);
   }
 
-  /** Reemite el guardado producido por el grid para refrescar listados externos. */
   onGridScheduleSaved(): void {
+    this.scheduleCreated.emit();
+  }
+
+  /** Tras materializar: ir a rejilla y preseleccionar la clase creada (CURSO-145). */
+  onTemplateCreated(cls: WeekScheduleClassItem): void {
+    this.gridPreselectClassKey.set(weekScheduleClassKey(cls));
+    this.setBuilderMode('grid');
     this.scheduleCreated.emit();
   }
 }

@@ -21,8 +21,9 @@
 
   <!-- Vista: Formulario -->
   @if(showCreateForm){
-    <app-subject-create-form 
-      (cancelCreate)="closeCreateForm()" 
+    <app-subject-create-form
+      [preselectedIdCourse]="preselectedIdCourse()"
+      (cancelCreate)="closeCreateForm()"
       (subjectCreated)="onSubjectCreated()">
     </app-subject-create-form>
   }

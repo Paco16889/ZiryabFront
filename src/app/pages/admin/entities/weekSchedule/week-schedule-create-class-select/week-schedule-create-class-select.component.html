@@ -14,19 +14,19 @@
     <select
       id="week-schedule-create-class-select"
       class="w-full max-w-lg border border-gray-300 rounded-md px-3 py-2 bg-white disabled:opacity-50"
-      [disabled]="disabled() || eligibleClasses().length === 0"
+      [disabled]="disabled() || classesWithoutSchedule().length === 0"
       [value]="selectedClassKey()"
       (change)="onSelectChange($any($event.target).value)"
     >
       <option value="">{{ 'weekScheduleBuilder.grid.classPlaceholder' | translate }}</option>
-      @for (c of eligibleClasses(); track classKey(c)) {
+      @for (c of classesWithoutSchedule(); track classKey(c)) {
         <option [value]="classKey(c)">{{ c.label }}</option>
       }
     </select>
 
     @if (loadError()) {
       <p class="text-sm text-red-600 mt-1">{{ 'weekScheduleBuilder.grid.loadClassesError' | translate }}</p>
-    } @else if (eligibleClasses().length === 0) {
+    } @else if (classesWithoutSchedule().length === 0) {
       <p class="text-sm text-amber-700 mt-1">
         {{ 'weekScheduleBuilder.create.emptyEligibleClasses' | translate }}
       </p>

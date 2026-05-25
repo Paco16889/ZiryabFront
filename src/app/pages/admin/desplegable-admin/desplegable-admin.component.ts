@@ -15,6 +15,7 @@ import { StudentTaskListComponent } from '../entities/student-task/student-task-
 import { AssistanceListComponent } from '../entities/assistance/assistance-list/assistance-list.component';
 import { NotificationListComponent } from '../entities/notification/notification-list/notification-list.component';
 import { TutorAssignmentComponent } from '../entities/group/tutor-assignment/tutor-assignment.component';
+import { IssueListComponent } from '../entities/issue/issue-list/issue-list.component';
 
 /**
  * Componente que actúa como área de contenido principal del panel de administración.
@@ -37,6 +38,7 @@ import { TutorAssignmentComponent } from '../entities/group/tutor-assignment/tut
     AssistanceListComponent,
     NotificationListComponent,
     TutorAssignmentComponent,
+    IssueListComponent,
   ],
   templateUrl: './desplegable-admin.component.html',
   styleUrl: './desplegable-admin.component.scss'

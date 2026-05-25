@@ -1,4 +1,4 @@
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { Subject, SubjectDeleteResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../../../../core/models/subject';
 
@@ -8,6 +8,7 @@ import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete
 import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { AsignaturaListItemComponent } from '../asignatura-list-item/asignatura-list-item.component';
 import { SubjectCreateFormComponent } from '../subject-create-form/subject-create-form.component';
+import { SubjectCreateNavigationService } from '../../../../../core/services/UI/subject-create-navigation.service';
 
 /**
  * Componente que muestra el listado de asignaturas del sistema.
@@ -21,6 +22,7 @@ import { SubjectCreateFormComponent } from '../subject-create-form/subject-creat
   styleUrl: './asignatura-list.component.scss'
 })
 export class AsignaturaListComponent implements OnInit {
+  private readonly subjectNav = inject(SubjectCreateNavigationService);
 
     /**
    * Listado de asignaturas a mostrar, sincronizado con la signal del servicio.
@@ -31,6 +33,9 @@ export class AsignaturaListComponent implements OnInit {
    * Controla la visibilidad del formulario de creación de asignaturas.
    */
   showCreateForm = false;
+
+  /** Ciclo a preseleccionar al abrir el formulario desde ciclos o wizard (CURSO-140). */
+  readonly preselectedIdCourse = signal<number | null>(null);
 
    /**
    * @param subjectService - Servicio que gestiona las operaciones con asignaturas
@@ -67,6 +72,11 @@ export class AsignaturaListComponent implements OnInit {
    */
   ngOnInit(): void {
     this.subjectService.loadSubjects();
+    const idCourse = this.subjectNav.takePendingIdCourse();
+    if (idCourse != null) {
+      this.preselectedIdCourse.set(idCourse);
+      this.showCreateForm = true;
+    }
   }
 
 
@@ -75,6 +85,7 @@ export class AsignaturaListComponent implements OnInit {
    * Muestra el formulario de creación de asignaturas.
    */
   openCreateForm() {
+    this.preselectedIdCourse.set(null);
     this.showCreateForm = true;
   }
 
@@ -83,6 +94,7 @@ export class AsignaturaListComponent implements OnInit {
    */
   closeCreateForm() {
     this.showCreateForm = false;
+    this.preselectedIdCourse.set(null);
   }
 
    /**

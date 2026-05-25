@@ -3,6 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Course } from '../../../../../core/models/course';
 import { CourseAssignmentsContext } from '../../../../../core/models/course-assignments/course-assignments-context.model';
 import { AssignmentsService } from '../../../../../core/services/admin/entities/assignments.service';
+import { SubjectCreateNavigationService } from '../../../../../core/services/UI/subject-create-navigation.service';
 
 /** Pasos del asistente: primero ciclo, después nivel/grade. */
 type WizardStep = 1 | 2;
@@ -20,6 +21,7 @@ type WizardStep = 1 | 2;
 export class CourseAssignmentsWizardComponent implements OnInit {
   /** Servicio que carga los grades disponibles para un ciclo. */
   private readonly assignmentsService = inject(AssignmentsService);
+  private readonly subjectNav = inject(SubjectCreateNavigationService);
 
   /** Ciclos disponibles recibidos desde el listado de cursos. */
   readonly courses = input.required<Course[]>();
@@ -145,5 +147,15 @@ export class CourseAssignmentsWizardComponent implements OnInit {
       return `${normalized}º`;
     }
     return grade;
+  }
+
+  /** Abre alta de asignaturas con el ciclo del wizard (CURSO-141). */
+  goToCreateSubjectsForSelectedCourse(): void {
+    const idCourse = this.selectedCourseId();
+    if (idCourse == null) {
+      return;
+    }
+    this.cancel.emit();
+    this.subjectNav.goToCreateSubjectForCourse(idCourse);
   }
 }

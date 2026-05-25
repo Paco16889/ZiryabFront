@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+﻿import { Component, effect, EventEmitter, inject, input, Output } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,9 +8,9 @@ import { SubjectByIdResponse, SubjectsAllResponse } from '../../../../../core/mo
 import { CoursesAllResponse } from '../../../../../core/models/course';
 
 /**
- * Componente que gestiona el formulario de creación de una nueva asignatura.
- * Carga los ciclos disponibles para asociar la asignatura y envía los datos
- * de creación al backend tras validar el formulario.
+ * Componente que gestiona el formulario de creaci├│n de una nueva asignatura.
+ * Carga los ciclos disponibles para asociar la asignatura y env├¡a los datos
+ * de creaci├│n al backend tras validar el formulario.
  */
 @Component({
   selector: 'app-subject-create-form',
@@ -22,8 +22,11 @@ export class SubjectCreateFormComponent {
   /** Traducciones de errores al cargar ciclos o crear la asignatura. */
   private readonly translate = inject(TranslateService);
 
+  /** Ciclo preseleccionado al llegar desde ciclos o wizard (CURSO-140). */
+  readonly preselectedIdCourse = input<number | null>(null);
+
     /**
-   * Evento emitido cuando el usuario cancela la creación.
+   * Evento emitido cuando el usuario cancela la creaci├│n.
    */
   @Output() cancelCreate = new EventEmitter<void>();
 
@@ -43,18 +46,18 @@ export class SubjectCreateFormComponent {
   courses: CoursesAllResponse['data'] = [];
 
    /**
-   * Indica si la petición de creación está en curso.
+   * Indica si la petici├│n de creaci├│n est├í en curso.
    */
   isCreating = false;
 
 
   /**
-   * Indica si los ciclos están siendo cargados desde el backend.
+   * Indica si los ciclos est├ín siendo cargados desde el backend.
    */
   isLoadingCourses = true;
 
     /**
-   * Mensaje de error a mostrar si la creación o la carga de ciclos falla.
+   * Mensaje de error a mostrar si la creaci├│n o la carga de ciclos falla.
    */
   errorMessage = '';
 
@@ -75,6 +78,18 @@ export class SubjectCreateFormComponent {
   description: ['', Validators.maxLength(255)],
   idCourse:    ['', Validators.required]
 });
+    effect(() => {
+      this.applyPreselectedCourse(this.preselectedIdCourse());
+    });
+  }
+
+  private applyPreselectedCourse(idCourse: number | null): void {
+    if (idCourse == null || this.isLoadingCourses || this.courses.length === 0) {
+      return;
+    }
+    if (this.courses.some((c) => c.id === idCourse)) {
+      this.createForm.patchValue({ idCourse });
+    }
   }
 
   /**
@@ -85,6 +100,7 @@ export class SubjectCreateFormComponent {
       next: (response) => {
         this.courses = response.data;
         this.isLoadingCourses = false;
+        this.applyPreselectedCourse(this.preselectedIdCourse());
       },
       error: (err) => {
         console.error('Error cargando ciclos:', err);
@@ -95,8 +111,8 @@ export class SubjectCreateFormComponent {
   }
 
   /**
-   * Valida el formulario y envía los datos al backend para crear la asignatura.
-   * Si la creación es exitosa emite el evento subjectCreated.
+   * Valida el formulario y env├¡a los datos al backend para crear la asignatura.
+   * Si la creaci├│n es exitosa emite el evento subjectCreated.
    */
   onSubmit() {
     if (this.createForm.valid) {

@@ -1,0 +1,229 @@
+<div class="max-w-2xl mx-auto">
+  <div class="flex items-center mb-6">
+    <button type="button" class="mr-4 text-gray-600 hover:text-gray-900" (click)="onCancel()">
+      ← {{ 'common.buttons.back' | translate }}
+    </button>
+    <h1 class="text-2xl font-bold">{{ 'lists.issues.createTitle' | translate }}</h1>
+  </div>
+
+  <div class="bg-white p-6 rounded-lg shadow">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.title' | translate }}</label>
+        <input
+          formControlName="title"
+          type="text"
+          maxlength="120"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        @if (createForm.get('title')?.invalid && createForm.get('title')?.touched) {
+          <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.title' | translate }}</span>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.body' | translate }}</label>
+        <textarea
+          formControlName="body"
+          rows="5"
+          maxlength="2000"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        ></textarea>
+        @if (createForm.get('body')?.invalid && createForm.get('body')?.touched) {
+          <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.body' | translate }}</span>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.audience' | translate }}</label>
+        <select
+          formControlName="audience"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          @for (aud of audiences; track aud) {
+            <option [value]="aud">{{ audienceLabel(aud) | translate }}</option>
+          }
+        </select>
+      </div>
+
+      @if (needsTargeted()) {
+        <p class="text-sm text-gray-500 mb-3">{{ 'lists.issues.form.targetedHint' | translate }}</p>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">
+            {{ 'lists.issues.form.idCourse' | translate }}
+            <span class="text-gray-400 font-normal text-sm">{{ 'lists.issues.form.optional' | translate }}</span>
+          </label>
+          <select formControlName="idCourse" class="w-full px-4 py-2 border rounded-lg" [disabled]="loadingOptions()">
+            <option [ngValue]="null">{{ 'lists.issues.form.anyOption' | translate }}</option>
+            @for (opt of courseOptions(); track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">
+            {{ 'lists.issues.form.grade' | translate }}
+            <span class="text-gray-400 font-normal text-sm">{{ 'lists.issues.form.optional' | translate }}</span>
+          </label>
+          <select formControlName="grade" class="w-full px-4 py-2 border rounded-lg">
+            <option value="">{{ 'lists.issues.form.anyOption' | translate }}</option>
+            @for (opt of gradeOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.labelKey | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">
+            {{ 'lists.issues.form.idGroup' | translate }}
+            <span class="text-gray-400 font-normal text-sm">{{ 'lists.issues.form.optional' | translate }}</span>
+          </label>
+          <select formControlName="idGroup" class="w-full px-4 py-2 border rounded-lg" [disabled]="loadingOptions()">
+            <option [ngValue]="null">{{ 'lists.issues.form.anyOption' | translate }}</option>
+            @for (opt of groupOptions(); track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">
+            {{ 'lists.issues.form.idSubject' | translate }}
+            <span class="text-gray-400 font-normal text-sm">{{ 'lists.issues.form.optional' | translate }}</span>
+          </label>
+          <select formControlName="idSubject" class="w-full px-4 py-2 border rounded-lg" [disabled]="loadingOptions()">
+            <option [ngValue]="null">{{ 'lists.issues.form.anyOption' | translate }}</option>
+            @for (opt of subjectOptions(); track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+
+        @if (targetedFilterError) {
+          <p class="text-red-500 text-sm mb-4">{{ 'lists.issues.form.validation.targeted' | translate }}</p>
+        }
+      }
+
+      @if (needsAssignment()) {
+        <p class="text-sm text-gray-500 mb-3">{{ 'lists.issues.form.assignmentHint' | translate }}</p>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">
+            {{ 'lists.issues.form.idTeacherFilter' | translate }}
+            <span class="text-gray-400 font-normal text-sm">{{ 'lists.issues.form.optional' | translate }}</span>
+          </label>
+          <select formControlName="idTeacher" class="w-full px-4 py-2 border rounded-lg" [disabled]="loadingOptions()">
+            <option [ngValue]="null">{{ 'lists.issues.form.anyOption' | translate }}</option>
+            @for (opt of teacherOptions(); track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.idTeacherAssignment' | translate }}</label>
+          <select
+            formControlName="idTeacherAssignment"
+            class="w-full px-4 py-2 border rounded-lg"
+            [disabled]="loadingOptions()"
+          >
+            <option [ngValue]="null">{{ 'lists.issues.form.selectPlaceholder' | translate }}</option>
+            @for (opt of assignmentOptions(); track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (createForm.get('idTeacherAssignment')?.invalid && createForm.get('idTeacherAssignment')?.touched) {
+            <span class="text-red-500 text-sm mt-1">{{
+              'lists.issues.form.validation.idTeacherAssignment' | translate
+            }}</span>
+          }
+        </div>
+      }
+
+      @if (needsTeacher()) {
+        <p class="text-sm text-gray-500 mb-3">{{ 'lists.issues.form.teacherHint' | translate }}</p>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.idTeacher' | translate }}</label>
+          <select formControlName="idTeacher" class="w-full px-4 py-2 border rounded-lg" [disabled]="loadingOptions()">
+            <option [ngValue]="null">{{ 'lists.issues.form.selectPlaceholder' | translate }}</option>
+            @for (opt of teacherOptions(); track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (createForm.get('idTeacher')?.invalid && createForm.get('idTeacher')?.touched) {
+            <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.idTeacher' | translate }}</span>
+          }
+        </div>
+      }
+
+      @if (loadingOptions() && (needsTargeted() || needsAssignment() || needsTeacher())) {
+        <p class="text-sm text-gray-400 mb-4">{{ 'common.messages.loadingOptions' | translate }}</p>
+      }
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.attachmentUrl' | translate }}</label>
+        <input
+          formControlName="attachmentUrl"
+          type="url"
+          class="w-full px-4 py-2 border rounded-lg"
+          [placeholder]="'lists.issues.form.attachmentPlaceholder' | translate"
+        />
+        @if (createForm.get('attachmentUrl')?.invalid && createForm.get('attachmentUrl')?.touched) {
+          <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.attachmentUrl' | translate }}</span>
+        }
+      </div>
+
+      <div class="mb-4 flex items-center gap-2">
+        <input
+          id="issue-create-isPublished"
+          formControlName="isPublished"
+          type="checkbox"
+          class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+        />
+        <label for="issue-create-isPublished" class="text-gray-700 font-medium">
+          {{ 'lists.issues.form.isPublished' | translate }}
+        </label>
+      </div>
+
+      @if (showPublishAt()) {
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.publishAt' | translate }}</label>
+          <input formControlName="publishAt" type="date" class="w-full px-4 py-2 border rounded-lg" />
+        </div>
+      }
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.expiresAt' | translate }}</label>
+        <input formControlName="expiresAt" type="date" class="w-full px-4 py-2 border rounded-lg" />
+      </div>
+
+      @if (errorMessage) {
+        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">{{ errorMessage }}</div>
+      }
+
+      <div class="flex justify-end gap-3">
+        <button
+          type="button"
+          (click)="onCancel()"
+          [disabled]="isCreating"
+          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50"
+        >
+          {{ 'common.buttons.cancel' | translate }}
+        </button>
+        <button
+          type="submit"
+          [disabled]="createForm.invalid || isCreating"
+          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        >
+          {{
+            isCreating
+              ? ('lists.issues.form.saving' | translate)
+              : ('lists.issues.createButton' | translate)
+          }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

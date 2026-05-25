@@ -23,8 +23,10 @@ export interface WeekSchedule {
   startTime: string;
   /** Hora de fin de la franja horaria, por ejemplo '10:00' */
   finishTime: string;
-  /** Datos completos de la asignación del profesor asociada a esta franja */
-  teacherAssignment: Assignment;
+  /** Etiqueta de clase agregada (p. ej. `1º DAM — Mañana`); presente en plantillas materializadas. */
+  label?: string;
+  /** Vacío en celdas de plantilla sin asignatura asignada aún. */
+  teacherAssignment?: Assignment | null;
 }
 
 /**
@@ -127,6 +129,8 @@ export interface WeekScheduleCreateResponse {
  * };
  */
 export interface WeekScheduleUpdateRequest extends WithId{
+  /** Asignación docente a vincular en una celda de plantilla vacía. */
+  idTeacherAssignment?: number;
   /** Nuevo día de la semana en formato numérico */
   weekDay?: number;
   /** Nueva hora de inicio de la franja horaria */

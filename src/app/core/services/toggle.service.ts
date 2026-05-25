@@ -33,4 +33,9 @@ export class ToggleService {
       this.openedMenu.set(menu);
     }
   }
+
+  /** Abre una sección del panel admin sin alternar cierre (CURSO-140). */
+  openMenu(menu: string): void {
+    this.openedMenu.set(menu);
+  }
 }

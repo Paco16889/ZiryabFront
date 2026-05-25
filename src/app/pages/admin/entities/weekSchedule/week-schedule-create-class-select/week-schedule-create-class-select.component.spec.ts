@@ -28,47 +28,46 @@ describe('WeekScheduleCreateClassSelectComponent', () => {
     httpMock.verify();
   });
 
+  function expectClassesRequest() {
+    return httpMock.expectOne(
+      (req) =>
+        req.url.includes('/horarios-semanales/classes') &&
+        req.params.get('hasWeekSchedule') === 'false',
+    );
+  }
+
   it('should create', () => {
     expect(component).toBeTruthy();
-    httpMock.expectOne((req) => req.url.includes('/horarios-semanales/classes')).flush({
-      success: true,
-      count: 0,
-      data: [],
-    });
+    expectClassesRequest().flush({ success: true, count: 0, data: [] });
   });
 
-  it('filters eligible classes and emits selection', () => {
-    httpMock.expectOne((req) => req.url.includes('/horarios-semanales/classes')).flush({
+  it('loads classes with hasWeekSchedule=false', () => {
+    expectClassesRequest().flush({
       success: true,
       count: 2,
       data: [
         {
-          label: '1º ASIR — Mañana',
+          label: '1º Ciclo de Prueba — Mañana',
           grade: '1',
-          course: { id: 1, name: 'ASIR' },
-          group: { id: 10, name: 'Mañana' },
-          schoolYear: '2025-2026',
-          subjectCount: 3,
+          course: { id: 7, name: 'Ciclo de Prueba' },
+          group: { id: 1, name: 'Mañana' },
+          schoolYear: '2024-2025',
+          subjectCount: 2,
           hasWeekSchedule: false,
         },
         {
-          label: '2º SMR — Tarde',
+          label: '2º DAM — Tarde',
           grade: '2',
-          course: { id: 2, name: 'SMR' },
-          group: { id: 20, name: 'Tarde' },
-          schoolYear: '2025-2026',
+          course: { id: 1, name: 'DAM' },
+          group: { id: 2, name: 'Tarde' },
+          schoolYear: '2024-2025',
           subjectCount: 0,
           hasWeekSchedule: false,
         },
       ],
     });
     fixture.detectChanges();
-    expect(component.eligibleClasses().length).toBe(1);
-
-    const emitted: (WeekScheduleClassItem | null)[] = [];
-    component.classChange.subscribe((c) => emitted.push(c));
-    const key = component.classKey(component.eligibleClasses()[0]);
-    component.onSelectChange(key);
-    expect(emitted[0]?.label).toBe('1º ASIR — Mañana');
+    expect(component.classesWithoutSchedule().length).toBe(1);
+    expect(component.classesWithoutSchedule()[0].label).toBe('1º Ciclo de Prueba — Mañana');
   });
 });

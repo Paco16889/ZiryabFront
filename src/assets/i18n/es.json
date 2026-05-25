@@ -171,6 +171,33 @@
       "singular": "franja horaria",
       "plural": "franjas horarias",
       "title": "Horarios"
+    },
+    "issue": {
+      "singular": "anuncio",
+      "plural": "anuncios",
+      "singularArticle": "el anuncio",
+      "title": "Tablón de anuncios"
+    }
+  },
+  "gestion": {
+    "title": "Gestión Académica",
+    "subtitle": "Administra tu perfil y actividades",
+    "cards": {
+      "profile": {
+        "title": "Ficha Usuario",
+        "action": "Ver Perfil"
+      },
+      "schedule": {
+        "title": "Horario",
+        "action": "Consultar"
+      },
+      "calendar": {
+        "title": "Calendario",
+        "action": "Ver Eventos"
+      },
+      "issues": {
+        "action": "Ver Avisos"
+      }
     }
   },
   "studentEnrollment": {
@@ -192,11 +219,24 @@
     "courseSelection": {
       "label": "¿Qué ciclo quieres matricular al alumno?"
     },
+    "groupSelection": {
+      "label": "Selecciona el grupo / turno",
+      "placeholder": "Elige un grupo"
+    },
     "subjectSelection": {
       "label": "Selecciona las asignaturas",
+      "fullOfferGrade": "Oferta Completa de {{grade}}º",
       "fullOffer": "Oferta Completa de 1º"
     },
-    "confirmButton": "Confirmar selección"
+    "confirmButton": "Confirmar selección",
+    "setRegistration": {
+      "studentLabel": "Alumno",
+      "studentPending": "(pendiente de confirmar)",
+      "saving": "Guardando matrículas…",
+      "saveErrorRegistration": "No se pudieron guardar las matrículas. Inténtalo de nuevo.",
+      "saveErrorStudent": "No se pudo crear el alumno. Revisa los datos e inténtalo de nuevo.",
+      "saveErrorGeneric": "No se pudo completar la matriculación. Inténtalo de nuevo."
+    }
   },
   "weekScheduleBuilder": {
     "title": "Crear horario",
@@ -206,6 +246,9 @@
     "create": {
       "daysLabel": "Días de la semana (L–V)",
       "validationNoDay": "Selecciona al menos un día.",
+      "selectClass": "Clase (grupo sin horario creado)",
+      "selectClassHint": "Solo grupos con asignaturas que aún no tienen plantilla horaria.",
+      "classPlaceholder": "Elige un grupo sin horario…",
       "loadingClasses": "Cargando clases…",
       "emptyEligibleClasses": "No hay clases con asignaturas y sin horario semanal para este año escolar.",
       "validationNoClass": "Selecciona una clase.",
@@ -213,12 +256,21 @@
       "slotsTitle": "Horario de cada franja",
       "slotRow": "Franja {{n}}",
       "validationMinSlots": "Indica al menos una franja.",
+      "slotCountProgress": "{{current}} / {{max}} franjas por día ({{total}} h en {{days}} día(s))",
+      "slotCountMaxReached": "Máximo {{max}} franjas por día ({{total}} h semanales ÷ {{days}} día(s)).",
+      "slotLimitHint": "Cada franja se repite en los {{days}} día(s) elegidos. Con {{total}} h semanales puedes definir hasta {{max}} franjas (si no divide exacto, la última cubre el resto en un día).",
       "timeFormatHint": "Formato obligatorio HH:mm con dos dígitos en hora y minutos (ej. 08:15, 09:00, 14:45). No uses 8:15.",
       "validationTimeFormat": "Formato inválido. Usa dos cifras en hora y minutos (ej. 08:15, no 8:15).",
-      "pendingApi": "El guardado de la plantilla estará disponible cuando el backend exponga el endpoint de materialización.",
       "submit": "Crear plantilla horaria",
-      "validate": "Comprobar formulario",
-      "submitHint": "El guardado se habilitará cuando el backend exponga el endpoint (CURSO-71)."
+      "saving": "Creando plantilla…",
+      "saveSuccess": "Plantilla creada. Esa clase ya no aparecerá en este selector. Se abrirá la rejilla semanal para asignar docentes.",
+      "saveError": "No se pudo crear la plantilla horaria.",
+      "submitHint": "El guardado se habilitará cuando el backend exponga el endpoint (CURSO-71).",
+      "bulkGenerating": "Preparando sesiones de clase en segundo plano…",
+      "bulkSuccess": "Se han generado {{created}} sesiones de clase para este curso.",
+      "bulkError": "No se pudieron generar las sesiones de clase. Inténtalo desde el panel de sesiones.",
+      "pendingApi": "El guardado de la plantilla estará disponible cuando el backend exponga el endpoint de materialización.",
+      "validate": "Comprobar formulario"
     },
     "placeholder": "Aquí se configurará el constructor de franjas horarias.",
     "selectGroup": "Grupo (sin franjas todavía)",
@@ -270,6 +322,7 @@
       "shiftPlaceholder": "— Turno —",
       "loadContextError": "No se pudo cargar el horario de este grupo.",
       "cellSelectPlaceholder": "— Libre —",
+      "cellSelectPlaceholderMultiple": "— {{count}} asignaturas —",
       "emptyClassAssignments": "No hay docentes asignados a esta clase en el año escolar. Revisa asignaciones grupo–asignatura.",
       "optionSubjectTeacher": "{{subject}} — {{teacher}}",
       "selectGroup": "Grupo",
@@ -295,6 +348,9 @@
       "validationTeacherOverlap": "Posible solape: «{{label}}» el día {{day}} con otro grupo."
     }
   },
+  "nav": {
+    "issues": "Tablón"
+  },
   "adminMenu": {
     "students": "Alumnos",
     "teachers": "Profesores",
@@ -307,6 +363,7 @@
     "studentTasks": "Entregas",
     "assistances": "Asistencias",
     "notifications": "Notificaciones",
+    "issues": "Tablón de anuncios",
     "tutors": "Tutores",
     "reports": "Informes"
   },
@@ -333,7 +390,8 @@
   "lists": {
     "students": {
       "title": "Alumnos",
-      "createButton": "Matricular Alumno"
+      "createButton": "Matricular Alumno",
+      "emptyList": "No hay alumnos registrados."
     },
     "subjects": {
       "title": "Asignaturas",
@@ -345,7 +403,11 @@
     },
     "courses": {
       "title": "Ciclos",
-      "createButton": "Nuevo Ciclo"
+      "createButton": "Nuevo Ciclo",
+      "createSuccess": "Ciclo «{{name}}» creado correctamente.",
+      "createSubjectsPrompt": "¿Quieres crear asignaturas para este ciclo?",
+      "createSubjectsCta": "Crear asignaturas para este ciclo",
+      "backToList": "Volver al listado de ciclos"
     },
     "groups": {
       "title": "Grupos",
@@ -354,6 +416,75 @@
     "schedules": {
       "createButton": "Crear horario",
       "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
+    },
+    "issues": {
+      "title": "Tablón de anuncios",
+      "createTitle": "Crear anuncio",
+      "createButton": "Nuevo anuncio",
+      "loading": "Cargando anuncios…",
+      "empty": "No hay anuncios publicados.",
+      "emitter": "Emisor",
+      "emitterTeacher": "Profesor #{{id}}",
+      "emitterAdmin": "Administración #{{id}}",
+      "audience": {
+        "CENTER": "Todo el centro",
+        "ALL_TEACHERS": "Todos los profesores",
+        "ALL_STUDENTS": "Todos los alumnos",
+        "GROUP": "Grupo (turno)",
+        "COURSE": "Ciclo y/o curso",
+        "SUBJECT_GROUP": "Ciclo, curso, grupo y/o asignatura",
+        "TEACHER": "Profesor",
+        "ASSIGNMENT": "Asignación docente concreta",
+        "TARGETED": "Por ciclo, curso y/o grupo"
+      },
+      "dialog": {
+        "createTitle": "Nuevo anuncio",
+        "editTitle": "Editar anuncio",
+        "close": "Cerrar"
+      },
+      "form": {
+        "title": "Título",
+        "body": "Cuerpo",
+        "audience": "Audiencia",
+        "idGroup": "Grupo",
+        "idCourse": "Ciclo",
+        "grade": "Curso (1º / 2º)",
+        "gradeOption1": "1º",
+        "gradeOption2": "2º",
+        "idSubject": "Asignatura",
+        "idTeacher": "Profesor",
+        "idTeacherFilter": "Filtrar por profesor (opcional)",
+        "idTeacherAssignment": "Asignación docente",
+        "optional": "(opcional)",
+        "anyOption": "— Cualquiera —",
+        "targetedHint": "Combina los filtros que necesites: ciclo, curso (1º/2º), turno y/o asignatura. Al menos uno es obligatorio.",
+        "assignmentHint": "Filtra por profesor y elige la impartición concreta (alumnos de ese grupo y asignatura).",
+        "teacherHint": "Comunicación dirigida a un profesor concreto (como compañero de centro).",
+        "attachmentUrl": "URL del adjunto",
+        "attachmentPlaceholder": "https://…",
+        "isPublished": "Publicar ahora",
+        "publishAt": "Fecha de publicación",
+        "expiresAt": "Fecha de expiración",
+        "selectPlaceholder": "Selecciona una opción",
+        "save": "Guardar",
+        "saving": "Guardando…",
+        "validation": {
+          "title": "El título es obligatorio (máx. 120 caracteres)",
+          "body": "El cuerpo es obligatorio (máx. 2000 caracteres)",
+          "idGroup": "Selecciona un grupo",
+          "idCourse": "Selecciona un ciclo",
+          "grade": "Selecciona 1º o 2º",
+          "idSubject": "Selecciona una asignatura",
+          "idTeacher": "Selecciona un profesor",
+          "idTeacherAssignment": "Selecciona una asignación docente",
+          "targeted": "Indica al menos un filtro: ciclo, curso, grupo o asignatura",
+          "attachmentUrl": "La URL debe comenzar por http:// o https://"
+        },
+        "errors": {
+          "create": "Error al crear el anuncio",
+          "update": "Error al actualizar el anuncio"
+        }
+      }
     },
     "tasks": {
       "title": "Tareas",
@@ -539,6 +670,7 @@
       "gradeLabel": "¿Qué curso?",
       "loadingGrades": "Cargando cursos disponibles…",
       "emptyGrades": "No hay cursos (grades) definidos para este ciclo. Revisa las asignaturas del ciclo.",
+      "createSubjectsLink": "Crear asignaturas para este ciclo",
       "validationCourse": "Selecciona un ciclo formativo.",
       "validationGrade": "Selecciona el curso (1º o 2º).",
       "next": "Siguiente",
@@ -565,7 +697,11 @@
       "saveCreated": "{{count}} asignación(es) creada(s).",
       "saveDuplicates": "{{count}} duplicada(s) (ya existían).",
       "saveIncomplete": "{{count}} fila(s) incompleta(s) omitida(s).",
-      "saveError": "No se pudieron guardar las asignaciones."
+      "saveError": "No se pudieron guardar las asignaciones.",
+      "schedulePromptTitle": "¿Crear horario semanal?",
+      "schedulePromptBody": "Las asignaciones se guardaron correctamente. ¿Quieres ir ahora a crear la plantilla horaria para este grupo?",
+      "schedulePromptGo": "Ir a crear horario",
+      "schedulePromptStay": "Quedarme aquí"
     }
   },
   "horario": {

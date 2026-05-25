@@ -109,14 +109,13 @@ updateStudent(student: StudentUpdateRequest): Observable<StudentUpdateResponse> 
    * @returns Observable con la respuesta que contiene el estudiante seleccionado
    */
 
-deleteStudent(id: number): Observable<StudentDeleteResponse>{
-
- return this.http.get<StudentDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
-  catchError((error) => {
-      console.error('Error Borrando Estudiante:', error);
-      throw error;
-    })
-);
-}
+  deleteStudent(id: number): Observable<StudentDeleteResponse> {
+    return this.http.delete<StudentDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error Borrando Estudiante:', error);
+        throw error;
+      }),
+    );
+  }
   
 }

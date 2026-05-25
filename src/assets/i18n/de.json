@@ -171,6 +171,33 @@
       "singular": "Zeitslot",
       "plural": "Zeitslots",
       "title": "Stundenpläne"
+    },
+    "issue": {
+      "singular": "Ankündigung",
+      "plural": "Ankündigungen",
+      "singularArticle": "die Ankündigung",
+      "title": "Anschlagtafel"
+    }
+  },
+  "gestion": {
+    "title": "Akademische Verwaltung",
+    "subtitle": "Verwalte dein Profil und deine Aktivitäten",
+    "cards": {
+      "profile": {
+        "title": "Benutzerprofil",
+        "action": "Profil anzeigen"
+      },
+      "schedule": {
+        "title": "Stundenplan",
+        "action": "Anzeigen"
+      },
+      "calendar": {
+        "title": "Kalender",
+        "action": "Termine anzeigen"
+      },
+      "issues": {
+        "action": "Ankündigungen anzeigen"
+      }
     }
   },
   "studentEnrollment": {
@@ -192,11 +219,24 @@
     "courseSelection": {
       "label": "Für welchen Bildungsgang möchten Sie den Schüler einschreiben?"
     },
+    "groupSelection": {
+      "label": "Gruppe / Unterrichtszeit wählen",
+      "placeholder": "Gruppe auswählen"
+    },
     "subjectSelection": {
       "label": "Fächer auswählen",
+      "fullOfferGrade": "Vollständiges Angebot des {{grade}}. Jahres",
       "fullOffer": "Vollständiges Angebot des 1. Jahres"
     },
-    "confirmButton": "Auswahl bestätigen"
+    "confirmButton": "Auswahl bestätigen",
+    "setRegistration": {
+      "studentLabel": "Schüler",
+      "studentPending": "(Bestätigung ausstehend)",
+      "saving": "Einschreibungen werden gespeichert…",
+      "saveErrorRegistration": "Die Einschreibungen konnten nicht gespeichert werden. Bitte erneut versuchen.",
+      "saveErrorStudent": "Der Schüler konnte nicht angelegt werden. Daten prüfen und erneut versuchen.",
+      "saveErrorGeneric": "Die Einschreibung konnte nicht abgeschlossen werden. Bitte erneut versuchen."
+    }
   },
   "weekScheduleBuilder": {
     "title": "Stundenplan anlegen",
@@ -206,6 +246,9 @@
     "create": {
       "daysLabel": "Wochentage (Mo–Fr)",
       "validationNoDay": "Wähle mindestens einen Tag.",
+      "selectClass": "Klasse (Gruppe ohne Stundenplan)",
+      "selectClassHint": "Nur Gruppen mit Fächern, die noch keine Wochenstundenplan-Vorlage haben.",
+      "classPlaceholder": "Gruppe ohne Stundenplan wählen…",
       "loadingClasses": "Klassen werden geladen…",
       "emptyEligibleClasses": "Keine Klassen mit Fächern und ohne Wochenstundenplan für dieses Schuljahr.",
       "validationNoClass": "Wähle eine Klasse.",
@@ -213,12 +256,21 @@
       "slotsTitle": "Zeiten je Einheit",
       "slotRow": "Einheit {{n}}",
       "validationMinSlots": "Mindestens eine Einheit angeben.",
+      "slotCountProgress": "{{current}} / {{max}} Einheiten pro Tag ({{total}} h auf {{days}} Tag(e))",
+      "slotCountMaxReached": "Maximal {{max}} Einheiten pro Tag ({{total}} Wochenstunden ÷ {{days}} Tag(e)).",
+      "slotLimitHint": "Jede Einheit gilt an allen {{days}} gewaehlten Tagen. Bei {{total}} Wochenstunden maximal {{max}} Einheiten (Reststunde ggf. nur an einem Tag).",
       "timeFormatHint": "Pflichtformat HH:mm mit zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
       "validationTimeFormat": "Ungültiges Format. Zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
-      "pendingApi": "Das Speichern der Vorlage ist verfügbar, sobald das Backend den Materialisierungs-Endpunkt bereitstellt.",
       "submit": "Wochenstundenplan-Vorlage erstellen",
-      "validate": "Formular prüfen",
-      "submitHint": "Speichern wird freigeschaltet, sobald das Backend den Endpunkt bereitstellt (CURSO-71)."
+      "saving": "Vorlage wird erstellt…",
+      "saveSuccess": "Vorlage erstellt. Diese Klasse erscheint in dieser Auswahl nicht mehr. Das Wochenraster wird geöffnet, um Lehrkräfte zuzuweisen.",
+      "saveError": "Die Wochenstundenplan-Vorlage konnte nicht erstellt werden.",
+      "submitHint": "Speichern wird freigeschaltet, sobald das Backend den Endpunkt bereitstellt (CURSO-71).",
+      "bulkGenerating": "Unterrichtssitzungen werden im Hintergrund vorbereitet…",
+      "bulkSuccess": "{{created}} Unterrichtssitzungen wurden für dieses Schuljahr generiert.",
+      "bulkError": "Unterrichtssitzungen konnten nicht generiert werden. Versuche es über das Sitzungen-Panel.",
+      "pendingApi": "Das Speichern der Vorlage ist verfügbar, sobald das Backend den Materialisierungs-Endpunkt bereitstellt.",
+      "validate": "Formular prüfen"
     },
     "placeholder": "Hier wird der Editor für Wochenstundenpläne eingerichtet.",
     "selectGroup": "Gruppe (noch keine Einheiten)",
@@ -268,6 +320,7 @@
       "shiftPlaceholder": "— Schicht —",
       "loadContextError": "Kontext des Stundenplans konnte nicht geladen werden.",
       "cellSelectPlaceholder": "— Frei —",
+      "cellSelectPlaceholderMultiple": "— {{count}} Fächer —",
       "emptyClassAssignments": "Keine Lehrzuordnungen für diese Klasse im Schuljahr. Gruppe–Fach prüfen.",
       "optionSubjectTeacher": "{{subject}} — {{teacher}}",
       "selectGroup": "Gruppe",
@@ -293,6 +346,9 @@
       "validationTeacherOverlap": "Mögliche Überschneidung: «{{label}}» am Tag {{day}} mit einer anderen Gruppe."
     }
   },
+  "nav": {
+    "issues": "Anschlagtafel"
+  },
   "adminMenu": {
     "students": "Schüler",
     "teachers": "Lehrer",
@@ -305,6 +361,7 @@
     "studentTasks": "Abgaben",
     "assistances": "Anwesenheit",
     "notifications": "Benachrichtigungen",
+    "issues": "Anschlagtafel",
     "tutors": "Tutoren",
     "reports": "Berichte"
   },
@@ -331,7 +388,8 @@
   "lists": {
     "students": {
       "title": "Schüler",
-      "createButton": "Schüler einschreiben"
+      "createButton": "Schüler einschreiben",
+      "emptyList": "Keine Schüler registriert."
     },
     "subjects": {
       "title": "Fächer",
@@ -343,7 +401,11 @@
     },
     "courses": {
       "title": "Zyklen",
-      "createButton": "Neuer Bildungsgang"
+      "createButton": "Neuer Bildungsgang",
+      "createSuccess": "Bildungsgang «{{name}}» wurde erfolgreich angelegt.",
+      "createSubjectsPrompt": "Möchten Sie Fächer für diesen Bildungsgang anlegen?",
+      "createSubjectsCta": "Fächer für diesen Bildungsgang anlegen",
+      "backToList": "Zurück zur Bildungsgangsliste"
     },
     "groups": {
       "title": "Gruppen",
@@ -352,6 +414,75 @@
     "schedules": {
       "createButton": "Stundenplan anlegen",
       "createPlaceholder": "Das Formular zur Erstellung des Stundenplans wird hier angezeigt."
+    },
+    "issues": {
+      "title": "Anschlagtafel",
+      "createTitle": "Ankündigung erstellen",
+      "createButton": "Neue Ankündigung",
+      "loading": "Ankündigungen werden geladen…",
+      "empty": "Keine veröffentlichten Ankündigungen.",
+      "emitter": "Absender",
+      "emitterTeacher": "Lehrer #{{id}}",
+      "emitterAdmin": "Verwaltung #{{id}}",
+      "audience": {
+        "CENTER": "Gesamtes Zentrum",
+        "ALL_TEACHERS": "Alle Lehrer",
+        "ALL_STUDENTS": "Alle Schüler",
+        "GROUP": "Gruppe (Schicht)",
+        "COURSE": "Bildungsgang und/oder Jahrgang",
+        "SUBJECT_GROUP": "Bildungsgang, Jahrgang, Gruppe und/oder Fach",
+        "TEACHER": "Lehrer",
+        "ASSIGNMENT": "Konkrete Lehrerzuweisung",
+        "TARGETED": "Nach Bildungsgang, Jahrgang und/oder Gruppe"
+      },
+      "dialog": {
+        "createTitle": "Neue Ankündigung",
+        "editTitle": "Ankündigung bearbeiten",
+        "close": "Schließen"
+      },
+      "form": {
+        "title": "Titel",
+        "body": "Text",
+        "audience": "Zielgruppe",
+        "idGroup": "Gruppe",
+        "idCourse": "Bildungsgang",
+        "grade": "Jahrgang (1. / 2.)",
+        "gradeOption1": "1.",
+        "gradeOption2": "2.",
+        "idSubject": "Fach",
+        "idTeacher": "Lehrer",
+        "idTeacherFilter": "Nach Lehrer filtern (optional)",
+        "idTeacherAssignment": "Lehrerzuweisung",
+        "optional": "(optional)",
+        "anyOption": "— Beliebig —",
+        "targetedHint": "Kombinieren Sie die benötigten Filter: Bildungsgang, Jahrgang, Schicht und/oder Fach. Mindestens einer ist Pflicht.",
+        "assignmentHint": "Nach Lehrer filtern und die konkrete Zuweisung wählen (Schüler dieser Gruppe und Fach).",
+        "teacherHint": "Mitteilung an einen bestimmten Lehrer (Kollege im Zentrum).",
+        "attachmentUrl": "Anhang-URL",
+        "attachmentPlaceholder": "https://…",
+        "isPublished": "Jetzt veröffentlichen",
+        "publishAt": "Veröffentlichungsdatum",
+        "expiresAt": "Ablaufdatum",
+        "selectPlaceholder": "Option auswählen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert…",
+        "validation": {
+          "title": "Titel ist erforderlich (max. 120 Zeichen)",
+          "body": "Text ist erforderlich (max. 2000 Zeichen)",
+          "idGroup": "Gruppe auswählen",
+          "idCourse": "Bildungsgang auswählen",
+          "grade": "1. oder 2. Jahrgang auswählen",
+          "idSubject": "Fach auswählen",
+          "idTeacher": "Lehrer auswählen",
+          "idTeacherAssignment": "Lehrerzuweisung auswählen",
+          "targeted": "Mindestens einen Filter wählen: Bildungsgang, Jahrgang, Gruppe oder Fach",
+          "attachmentUrl": "URL muss mit http:// oder https:// beginnen"
+        },
+        "errors": {
+          "create": "Fehler beim Erstellen der Ankündigung",
+          "update": "Fehler beim Aktualisieren der Ankündigung"
+        }
+      }
     },
     "tasks": {
       "title": "Aufgaben",
@@ -537,6 +668,7 @@
       "gradeLabel": "Welches Jahr?",
       "loadingGrades": "Verfuegbare Jahre werden geladen…",
       "emptyGrades": "Keine Jahre (grades) fuer diesen Zyklus. Pruefen Sie die Faecher des Zyklus.",
+      "createSubjectsLink": "Faecher fuer diesen Bildungsgang anlegen",
       "validationCourse": "Waehlen Sie einen Ausbildungszyklus.",
       "validationGrade": "Waehlen Sie das Jahr (1. oder 2.).",
       "next": "Weiter",
@@ -563,7 +695,11 @@
       "saveCreated": "{{count}} Zuweisung(en) erstellt.",
       "saveDuplicates": "{{count}} Duplikat(e) (bereits vorhanden).",
       "saveIncomplete": "{{count}} unvollstaendige Zeile(n) uebersprungen.",
-      "saveError": "Zuweisungen konnten nicht gespeichert werden."
+      "saveError": "Zuweisungen konnten nicht gespeichert werden.",
+      "schedulePromptTitle": "Wochenplan erstellen?",
+      "schedulePromptBody": "Zuweisungen gespeichert. Moechten Sie jetzt die Stundenplanvorlage fuer diese Gruppe erstellen?",
+      "schedulePromptGo": "Zur Planerstellung",
+      "schedulePromptStay": "Hier bleiben"
     }
   },
   "horario": {

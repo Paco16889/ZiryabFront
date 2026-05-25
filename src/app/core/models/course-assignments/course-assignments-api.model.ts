@@ -78,3 +78,22 @@ export type AssignmentBulkCreateResponse = {
   data?: AssignmentBulkCreateResult;
   message?: string;
 };
+
+/** Cuerpo y respuesta de `POST /api/assignments/bulk` (contrato back CURSO-101). */
+export type AssignmentBulkApiBody = {
+  assignments: AssignmentBulkCreateItem[];
+};
+
+export type AssignmentBulkApiResponse = {
+  success: boolean;
+  message?: string;
+  data?: {
+    created: unknown[];
+    duplicates: unknown[];
+    errors: Array<{
+      index: number;
+      message: string;
+      input?: { idSubject: number };
+    }>;
+  };
+};

@@ -1,98 +1,124 @@
-
+﻿
 <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
 
+  <!-- Email -->
+  <!-- Nombre -->
+  <!-- Apellidos -->
+  <!-- Fecha nacimiento -->
+  <!-- DNI -->
+   <!-- Email -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.email' | translate }}</label>
+        <label class="block text-gray-700 font-medium mb-2">Email</label>
         <input 
           formControlName="email"
           type="email"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          [placeholder]="'common.placeholders.email' | translate"
+          placeholder="profesor@ziryab.es"
         />
         @if(createForm.get('email')?.invalid && createForm.get('email')?.touched){
-            <span class="text-red-500 text-sm mt-1 block">
-          {{ 'common.validation.emailInvalid' | translate }}
+            <span 
+              class="text-red-500 text-sm mt-1 block">
+          Email inv├ílido
         </span>
         }
+        
       </div>
 
+      <!-- Nombre -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.name' | translate }}</label>
+        <label class="block text-gray-700 font-medium mb-2">Nombre</label>
         <input 
           formControlName="name"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          [placeholder]="'common.placeholders.name' | translate"
+          placeholder="Nombre"
         />
         @if(createForm.get('name')?.invalid && createForm.get('name')?.touched){
-            <span class="text-red-500 text-sm mt-1 block">
-          {{ 'common.validation.nameRequired' | translate }}
+            <span 
+              class="text-red-500 text-sm mt-1 block">
+          El nombre es requerido
         </span>
         }
+        
       </div>
 
+      <!-- Primer apellido -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.surname' | translate }}</label>
+        <label class="block text-gray-700 font-medium mb-2">Primer apellido</label>
         <input 
           formControlName="surname"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          [placeholder]="'common.placeholders.surname' | translate"
+          placeholder="Primer apellido"
         />
         @if(createForm.get('surname')?.invalid && createForm.get('surname')?.touched){
-            <span class="text-red-500 text-sm mt-1 block">
-          {{ 'common.validation.surnameRequired' | translate }}
+            <span 
+              class="text-red-500 text-sm mt-1 block">
+          El primer apellido es requerido
         </span>
         }
+        
       </div>
 
+      <!-- Segundo apellido -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.ndSurname' | translate }}</label>
+        <label class="block text-gray-700 font-medium mb-2">Segundo apellido</label>
         <input 
           formControlName="ndSurname"
           type="text"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          [placeholder]="'common.placeholders.ndSurname' | translate"
+          placeholder="Segundo apellido"
         />
         @if(createForm.get('ndSurname')?.invalid && createForm.get('ndSurname')?.touched){
-             <span class="text-red-500 text-sm mt-1 block">
-          {{ 'common.validation.ndSurnameRequired' | translate }}
+             <span 
+              class="text-red-500 text-sm mt-1 block">
+          El segundo apellido es requerido
         </span>
         }
+       
       </div>
 
+      <!-- Fecha de nacimiento -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">{{ 'common.fields.birthDate' | translate }}</label>
+        <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>
         <input 
           formControlName="birthDate"
           type="date"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         @if(createForm.get('birthDate')?.invalid && createForm.get('birthDate')?.touched){
-             <span class="text-red-500 text-sm mt-1 block">
-          {{ 'common.validation.birthDateRequired' | translate }}
+             <span
+              class="text-red-500 text-sm mt-1 block">
+          La fecha de nacimiento es requerida
         </span>
         }
+       
       </div>
 
+      <!-- DNI -->
       <div class="mb-4">
-<label class="block text-gray-700 font-medium mb-2">{{ 'adminPages.forms.common.dniNie' | translate }}</label>
+        <label class="block text-gray-700 font-medium mb-2">DNI / NIE</label>
         <input 
           formControlName="dni"
           type="text"
           maxlength="9"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          [placeholder]="'forms.dniPlaceholder' | translate"
+          placeholder="12345678A o X1234567A"
         />
         @if(createForm.get('dni')?.invalid && createForm.get('dni')?.touched){
-            <span class="text-red-500 text-sm mt-1 block">
-          {{ 'forms.dniInvalidExtended' | translate }}
+            <span 
+              class="text-red-500 text-sm mt-1 block">
+          DNI/NIE inv├ílido (ej: 12345678A o X1234567A)
         </span>
         }
+        
       </div>
 
+  <!-- errores -->
+   <!-- Mensaje de error -->
        @if(errorMessage){
-        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
+        <div 
+           class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
         {{ errorMessage }}
       </div>
        }
@@ -101,13 +127,13 @@
   <button 
     type="button"
     (click)="onCancel()"
-    [disabled]="isCreating"
-    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">
-    {{ 'common.buttons.cancel' | translate }}
+    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+    Cancelar
   </button>
   <app-boton-confirmar-student
   [disabled]="createForm.invalid"
-  (confirm)="onSubmit()">
+  (confirm)="onSubmit()">>
+
   </app-boton-confirmar-student>
 </div>
 

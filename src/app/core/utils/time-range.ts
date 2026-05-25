@@ -108,3 +108,21 @@ export function normalizeHhMmTime(value: string): string | null {
   const trimmed = value.trim();
   return isValidHhMmTime(trimmed) ? trimmed : null;
 }
+
+/** Suma minutos a una hora `HH:mm` (mismo día, módulo 24 h). */
+export function addMinutesToTime(time: string, minutes: number): string {
+  const total = Math.max(0, timeToMinutes(time) + minutes);
+  const capped = total % (24 * 60);
+  const h = Math.floor(capped / 60);
+  const m = capped % 60;
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+}
+
+/** Duración en minutos entre inicio y fin válidos; por defecto 60 min. */
+export function slotDurationMinutes(startTime: string, finishTime: string): number {
+  if (!isValidHhMmTime(startTime) || !isValidHhMmTime(finishTime)) {
+    return 60;
+  }
+  const diff = timeToMinutes(finishTime) - timeToMinutes(startTime);
+  return diff > 0 ? diff : 60;
+}
