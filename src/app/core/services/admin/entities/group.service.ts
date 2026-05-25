@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
-import { catchError, map, of } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { Group, GroupByIdResponse, GroupCreateRequest, GroupCreateResponse, GroupDeleteResponse, GroupsAllResponse, GroupUpdateRequest, GroupUpdateResponse } from '../../../models/group';

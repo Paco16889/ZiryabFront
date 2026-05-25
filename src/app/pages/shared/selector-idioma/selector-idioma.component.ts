@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que permite al usuario cambiar el idioma de la aplicación.
@@ -7,17 +8,13 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-selector-idioma',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './selector-idioma.component.html',
   styleUrl: './selector-idioma.component.scss'
 })
 export class SelectorIdiomaComponent {
-
-   /**
-   * Inicializa el componente.
-   * @param translate - Servicio de traducción para cambiar el idioma activo
-   */
-  constructor(private translate: TranslateService) {}
+  /** Servicio de traducción para cambiar el idioma activo. */
+  private readonly translate = inject(TranslateService);
 
    /**
    * Cambia el idioma activo de la aplicación y lo persiste en localStorage.

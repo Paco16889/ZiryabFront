@@ -2,7 +2,7 @@
 
   @if (studentsService.students().length === 0) {
     <p class="text-center text-gray-400 text-sm py-8">
-      No hay estudiantes cargados.
+      {{ 'teacherPages.attendance.noStudents' | translate }}
     </p>
   }
 

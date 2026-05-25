@@ -9,7 +9,8 @@
 
             <div class="flex-grow text-left md:text-center">
                 <h1
-                    class="text-3xl md:text-5xl font-extrabold text-purple-900 tracking-wide font-sans drop-shadow-sm cursor-default">
+                    (click)="navigateToDashboard()"
+                    class="text-3xl md:text-5xl font-extrabold text-purple-900 tracking-wide font-sans drop-shadow-sm cursor-pointer select-none hover:text-purple-700 transition-colors duration-200">
                     Ziryab
                 </h1>
             </div>
@@ -30,7 +31,7 @@
                     <div class="block text-right mr-1">
                         <h2
                             class="text-purple-900 font-bold text-sm leading-tight truncate max-w-[100px] md:max-w-[140px]">
-                            {{ userName }}
+                            {{ userName || ('sharedPages.header.defaultUser' | translate) }}
                         </h2>
                         <p class="text-purple-800 text-xs font-medium uppercase tracking-wider">
                             {{ userRoleKey | translate }}

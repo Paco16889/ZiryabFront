@@ -54,7 +54,7 @@ export class EntregasTareaComponent implements OnInit {
       this.loadTaskHeader();
       this.loadDeliveries();
     } else {
-      this.error.set(this.translate.instant('common.errors.taskIdMissing'));
+      this.error.set(this.translate.instant('teacherPages.deliveries.errorInvalidTaskId'));
       this.loading.set(false);
     }
   }
@@ -95,7 +95,7 @@ export class EntregasTareaComponent implements OnInit {
           });
           this.studentTasks.set(sorted);
         } else {
-          this.error.set(this.translate.instant('common.errors.loadTaskDetail'));
+          this.error.set(this.translate.instant('teacherPages.deliveries.errorLoad'));
         }
         this.loading.set(false);
       },

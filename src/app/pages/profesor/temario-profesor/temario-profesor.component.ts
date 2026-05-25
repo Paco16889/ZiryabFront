@@ -75,12 +75,11 @@ export class TemarioProfesorComponent implements OnInit {
     /** Controla el modal de asistencia. */
     showAttendanceModal = signal(false);
 
-    /** Estados disponibles para marcar asistencia. */
     readonly statusOptions: { value: AttendanceStatus; labelKey: string; color: string }[] = [
-        { value: 'PRESENT', labelKey: 'assistanceStatus.PRESENT', color: 'emerald' },
-        { value: 'ABSENT', labelKey: 'assistanceStatus.ABSENT', color: 'red' },
-        { value: 'LATE', labelKey: 'assistanceStatus.LATE', color: 'amber' },
-        { value: 'EXCUSED', labelKey: 'assistanceStatus.EXCUSED', color: 'blue' },
+        { value: 'PRESENT', labelKey: 'teacherPages.attendance.status.present', color: 'emerald' },
+        { value: 'ABSENT', labelKey: 'teacherPages.attendance.status.absent', color: 'red' },
+        { value: 'LATE', labelKey: 'teacherPages.attendance.status.late', color: 'amber' },
+        { value: 'EXCUSED', labelKey: 'teacherPages.attendance.status.excused', color: 'blue' },
     ];
 
     /** Carga subjectId, alumnos y tareas al montar el temario. */
@@ -114,11 +113,11 @@ export class TemarioProfesorComponent implements OnInit {
     /** Agrupa tareas por tipo y filtra por profesor autenticado. */
     groupTasksByType(tasks: Task[]) {
       const configBloques = [
-        { tipo: TaskType.THEORY, titleKey: 'syllabus.sections.THEORY', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
-        { tipo: TaskType.EXAM, titleKey: 'syllabus.sections.EXAM', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
-        { tipo: TaskType.PROJECT, titleKey: 'syllabus.sections.PROJECT', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
-        { tipo: TaskType.PRACTICE, titleKey: 'syllabus.sections.PRACTICE', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
-        { tipo: TaskType.HOMEWORK, titleKey: 'syllabus.sections.HOMEWORK', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+        { tipo: TaskType.THEORY, titleKey: 'teacherPages.syllabus.blocks.theory', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+        { tipo: TaskType.EXAM, titleKey: 'teacherPages.syllabus.blocks.exam', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+        { tipo: TaskType.PROJECT, titleKey: 'teacherPages.syllabus.blocks.project', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+        { tipo: TaskType.PRACTICE, titleKey: 'teacherPages.syllabus.blocks.practice', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+        { tipo: TaskType.HOMEWORK, titleKey: 'teacherPages.syllabus.blocks.homework', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
       ];
 
       const nuevosBloques: BloqueTemario[] = [];
@@ -197,7 +196,7 @@ export class TemarioProfesorComponent implements OnInit {
                     next: () => {
                         this.saving.set(false);
                         this.saveError.set(false);
-                        this.saveMessage.set(this.translate.instant('syllabus.attendanceSaved'));
+                        this.saveMessage.set(this.translate.instant('teacherPages.syllabus.attendanceSaved'));
                         setTimeout(() => {
                             this.closeAttendanceModal();
                         }, 1500);
@@ -205,7 +204,7 @@ export class TemarioProfesorComponent implements OnInit {
                     error: () => {
                         this.saving.set(false);
                         this.saveError.set(true);
-                        this.saveMessage.set(this.translate.instant('common.errors.saveAttendance'));
+                        this.saveMessage.set(this.translate.instant('teacherPages.syllabus.attendanceSaveError'));
                     }
                 });
             },

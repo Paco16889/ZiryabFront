@@ -87,7 +87,7 @@ export class StudentTaskDetailComponent implements OnInit {
     if (idParam) {
       this.loadTask(parseInt(idParam, 10));
     } else {
-      this.errorMessage.set(this.translate.instant('common.errors.taskIdMissing'));
+      this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.missingTaskId'));
       this.loading.set(false);
     }
   }
@@ -104,7 +104,7 @@ export class StudentTaskDetailComponent implements OnInit {
           this.task.set(res.data);
           this.checkDueDate(res.data);
         } else {
-          this.errorMessage.set(this.translate.instant('common.errors.couldNotLoadTask'));
+          this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.cannotLoadTask'));
         }
         this.loading.set(false);
       },
@@ -202,7 +202,7 @@ export class StudentTaskDetailComponent implements OnInit {
     if (item.kind === 'file') {
       const entry = item.webkitGetAsEntry();
       if (entry && entry.isDirectory) {
-        this.errorMessage.set(this.translate.instant('common.errors.folderNotAllowedDetail'));
+        this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.foldersNotAllowedZip'));
         this.selectedFile.set(null);
       } else {
         const file = item.getAsFile();
@@ -220,13 +220,13 @@ export class StudentTaskDetailComponent implements OnInit {
 
     // Si pesa 0 (o no tiene punto) es muy probable que sea una carpeta en file system OS antiguos
     if (file.size === 0 || (!file.type && file.name.indexOf('.') === -1)) {
-      this.errorMessage.set(this.translate.instant('common.errors.folderNotAllowed'));
+      this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.folderBlockedSecurity'));
       this.selectedFile.set(null);
       return;
     }
     
     if (file.size > 50 * 1024 * 1024) {
-      this.errorMessage.set(this.translate.instant('common.errors.fileTooLarge50'));
+      this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.maxFileSize'));
       this.selectedFile.set(null);
       return;
     }
@@ -261,13 +261,13 @@ export class StudentTaskDetailComponent implements OnInit {
 
     if (mode === 'url') {
       if (!formValue.attachmentUrl || formValue.attachmentUrl.trim() === '') {
-        this.errorMessage.set(this.translate.instant('common.errors.provideUrl'));
+        this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.urlRequired'));
         return;
       }
       this.finalizeSubmission(t.id, formValue.attachmentUrl);
     } else {
       if (!this.selectedFile()) {
-        this.errorMessage.set(this.translate.instant('common.errors.provideFile'));
+        this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.fileRequired'));
         return;
       }
       
@@ -277,7 +277,7 @@ export class StudentTaskDetailComponent implements OnInit {
           if (res.success && res.data?.attachmentUrl) {
             this.finalizeSubmission(t.id, res.data.attachmentUrl);
           } else {
-            this.errorMessage.set(this.translate.instant('common.errors.invalidUploadLink'));
+            this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.serverNoLink'));
             this.submitting.set(false);
           }
         },
@@ -299,7 +299,7 @@ export class StudentTaskDetailComponent implements OnInit {
     this.studentTaskService.submitStudentTask(taskId, { attachmentUrl: url }).subscribe({
       next: (res) => {
         if (res.success) {
-          this.successMessage.set(this.translate.instant('studentTaskDetail.submitSuccess'));
+          this.successMessage.set(this.translate.instant('studentPages.taskDetail.success.deliveryRegistered'));
           this.task.set(res.data);
           this.submitForm.disable();
           this.selectedFile.set(null);
@@ -307,10 +307,7 @@ export class StudentTaskDetailComponent implements OnInit {
         this.submitting.set(false);
       },
       error: (err) => {
-        const detail = this.extractApiError(err);
-        this.errorMessage.set(
-          detail || this.translate.instant('common.errors.submitNotifyFailed'),
-        );
+        this.errorMessage.set(err.error?.message || this.translate.instant('studentPages.taskDetail.errors.deliveryNotifyFailed'));
         this.submitting.set(false);
       }
     });
@@ -323,7 +320,7 @@ export class StudentTaskDetailComponent implements OnInit {
     const t = this.task();
     if (!t) return;
     
-    if (confirm(this.translate.instant('studentTaskDetail.unsubmitConfirm'))) {
+    if (confirm(this.translate.instant('studentPages.taskDetail.confirmDeleteDelivery'))) {
       this.submitting.set(true);
       this.studentTaskService.unsubmitStudentTask(t.id).subscribe({
         next: (res) => {

@@ -50,8 +50,7 @@ export class CourseCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private courseService: CourseService
-  ) {
+    private courseService: CourseService,) {
     this.createForm = this.fb.group({
       name: ['', Validators.required]
     });

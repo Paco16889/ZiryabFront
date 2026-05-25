@@ -32,7 +32,6 @@ export class StudentTaskCreateFormComponent implements OnInit {
   private readonly subjectService = inject(SubjectService);
   /** Cliente de matrículas por filtros. */
   private readonly enrollmentHttp = inject(EnrollmentHttpService);
-
   /** Cancela la creación y vuelve al listado. */
   readonly cancelCreate = output<void>();
   /** Notifica al listado que debe recargar tras crear. */

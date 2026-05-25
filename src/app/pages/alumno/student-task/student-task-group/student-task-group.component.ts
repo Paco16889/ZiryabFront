@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { StudentTask } from '../../../../core/models/studentTask';
 import { StudentTaskListItemComponent } from "../student-task-list-item/student-task-list-item.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 
 /**
@@ -9,7 +10,7 @@ import { StudentTaskListItemComponent } from "../student-task-list-item/student-
  */
 @Component({
   selector: 'app-student-task-group',
-  imports: [StudentTaskListItemComponent],
+  imports: [StudentTaskListItemComponent, TranslateModule],
   templateUrl: './student-task-group.component.html',
   styleUrl: './student-task-group.component.scss'
 })

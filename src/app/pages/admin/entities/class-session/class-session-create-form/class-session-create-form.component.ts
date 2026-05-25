@@ -21,7 +21,6 @@ export class ClassSessionCreateFormComponent implements OnInit {
   private readonly translate = inject(TranslateService);
   /** Servicio de horarios para poblar el selector de franja. */
   private readonly scheduleService = inject(WeekScheduleService);
-
   /** Cancela la creación y vuelve al listado. */
   readonly cancelCreate = output<void>();
   /** Notifica al listado que debe recargar tras crear. */
@@ -56,7 +55,12 @@ export class ClassSessionCreateFormComponent implements OnInit {
       this.scheduleOptions.set(
         res.data.map((ws) => ({
           value: ws.id,
-          label: `Día ${ws.weekDay} · ${ws.startTime}-${ws.finishTime} (#${ws.id})`,
+          label: this.translate.instant('adminPages.classSessions.scheduleOption', {
+            day: ws.weekDay,
+            start: ws.startTime,
+            end: ws.finishTime,
+            id: ws.id,
+          }),
         })),
       );
     });

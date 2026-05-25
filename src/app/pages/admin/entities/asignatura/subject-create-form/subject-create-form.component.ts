@@ -67,8 +67,7 @@ export class SubjectCreateFormComponent {
   constructor(
     private fb: FormBuilder,
     private subjectService: SubjectService,
-    private courseService: CourseService
-  ) {
+    private courseService: CourseService,) {
     this.createForm = this.fb.group({
   name:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
   grade:       ['', Validators.required],
@@ -89,7 +88,7 @@ export class SubjectCreateFormComponent {
       },
       error: (err) => {
         console.error('Error cargando ciclos:', err);
-        this.errorMessage = this.translate.instant('common.errors.loadCoursesFailed');
+        this.errorMessage = this.translate.instant('adminPages.forms.subject.loadCoursesError');
         this.isLoadingCourses = false;
       }
     });

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { EnrollmentStatus } from '../../../core/models/enrollment';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Componente que representa un botón de estado de asistencia para el listado del profesor.
@@ -12,6 +13,7 @@ import { EnrollmentStatus } from '../../../core/models/enrollment';
   styleUrl: './botonfalta.component.scss'
 })
 export class BotonfaltaComponent {
+  private translate = inject(TranslateService);
   /** El tipo de estado que representa este botón */
   @Input() statusType!: EnrollmentStatus;
   /** Indica si este botón es el estado actualmente seleccionado para el alumno */
@@ -24,9 +26,9 @@ export class BotonfaltaComponent {
    */
   get label(): string {
     switch (this.statusType) {
-      case EnrollmentStatus.ENROLLED: return 'Presente';
-      case EnrollmentStatus.EVALUATION_LOST: return 'Falta';
-      case EnrollmentStatus.WITHDRAWN: return 'Justificada';
+      case EnrollmentStatus.ENROLLED: return this.translate.instant('teacherPages.attendance.status.present');
+      case EnrollmentStatus.EVALUATION_LOST: return this.translate.instant('teacherPages.attendance.status.absent');
+      case EnrollmentStatus.WITHDRAWN: return this.translate.instant('teacherPages.attendance.status.excused');
       default: return '';
     }
   }

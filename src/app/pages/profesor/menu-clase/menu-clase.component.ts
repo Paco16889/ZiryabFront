@@ -1,12 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
 /** Menú de acciones de una asignación docente concreta. */
 @Component({
   selector: 'app-menu-clase',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, BotonAtrasComponent],
   templateUrl: './menu-clase.component.html',
 })
 export class MenuClaseComponent implements OnInit {

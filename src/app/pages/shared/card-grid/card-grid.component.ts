@@ -41,9 +41,9 @@ export class CardGridComponent {
   /** Título de la sección o del listado */
   @Input() title: string = '';
   /** Mensaje que se muestra durante la carga de datos */
-  @Input() loadingMessage: string = 'common.messages.loadingEllipsis';
+  @Input() loadingMessage: string = 'common.messages.loading';
   /** Mensaje que se muestra cuando no hay elementos en la lista */
-  @Input() emptyMessage: string = 'common.messages.emptyList';
+  @Input() emptyMessage: string = 'sharedPages.cardGrid.empty';
   /** Indica si los datos están en proceso de carga */
   @Input() loading: boolean = false;
   /** Mensaje de error a mostrar si falla la obtención de datos */

@@ -74,7 +74,7 @@ export class TemarioAlumnoComponent implements OnInit {
           );
           this.groupTasksByType(filteredTasks);
         } else {
-          this.error.set(this.translate.instant('common.errors.loadStudentTasksFailed'));
+          this.error.set(this.translate.instant('studentPages.syllabus.errors.cannotFetchTasks'));
         }
         this.loading.set(false);
       },
@@ -92,11 +92,11 @@ export class TemarioAlumnoComponent implements OnInit {
    */
   groupTasksByType(tasks: StudentTask[]) {
     const configBloques = [
-      { tipo: TaskType.THEORY, titleKey: 'syllabus.sections.THEORY', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
-      { tipo: TaskType.EXAM, titleKey: 'syllabus.sections.EXAM', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
-      { tipo: TaskType.PROJECT, titleKey: 'syllabus.sections.PROJECT', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
-      { tipo: TaskType.PRACTICE, titleKey: 'syllabus.sections.PRACTICE', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
-      { tipo: TaskType.HOMEWORK, titleKey: 'syllabus.sections.HOMEWORK', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+      { tipo: TaskType.THEORY, titleKey: 'studentPages.syllabus.blocks.theory', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+      { tipo: TaskType.EXAM, titleKey: 'studentPages.syllabus.blocks.exam', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+      { tipo: TaskType.PROJECT, titleKey: 'studentPages.syllabus.blocks.project', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+      { tipo: TaskType.PRACTICE, titleKey: 'studentPages.syllabus.blocks.practice', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+      { tipo: TaskType.HOMEWORK, titleKey: 'studentPages.syllabus.blocks.homework', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
     ];
 
     const nuevosBloques: BloqueTemario[] = [];

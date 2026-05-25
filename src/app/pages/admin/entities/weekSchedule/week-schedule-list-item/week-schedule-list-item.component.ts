@@ -84,10 +84,15 @@ export class WeekScheduleListItemComponent {
           placeholder: this.translate.instant('common.placeholders.selectOption'),
           validators: [Validators.required],
           errorMessage: this.translate.instant('common.validation.required'),
-          options: [1, 2, 3, 4, 5, 6, 7].map((value) => ({
-            label: this.dayLabel(value),
-            value,
-          })),
+          options: [
+            { label: this.translate.instant('weekScheduleBuilder.days.1'), value: 1 },
+            { label: this.translate.instant('weekScheduleBuilder.days.2'), value: 2 },
+            { label: this.translate.instant('weekScheduleBuilder.days.3'), value: 3 },
+            { label: this.translate.instant('weekScheduleBuilder.days.4'), value: 4 },
+            { label: this.translate.instant('weekScheduleBuilder.days.5'), value: 5 },
+            { label: this.translate.instant('weekScheduleBuilder.days.6'), value: 6 },
+            { label: this.translate.instant('weekScheduleBuilder.days.7'), value: 7 }
+          ],
           optionValueKey: 'value',
           optionLabelKey: 'label'
         },
@@ -95,7 +100,7 @@ export class WeekScheduleListItemComponent {
           name: 'startTime',
           label: this.translate.instant('weekScheduleBuilder.startTime'),
           type: 'time',
-          placeholder: 'Ej: 09:00',
+          placeholder: '09:00',
           validators: [Validators.required],
           errorMessage: this.translate.instant('common.validation.required')
         },
@@ -103,12 +108,12 @@ export class WeekScheduleListItemComponent {
           name: 'finishTime',
           label: this.translate.instant('weekScheduleBuilder.endTime'),
           type: 'time',
-          placeholder: 'Ej: 10:00',
+          placeholder: '10:00',
           validators: [Validators.required],
           errorMessage: this.translate.instant('common.validation.required')
         }
       ],
-      entityType: 'El Horario Semanal',
+      entityType: this.translate.instant('entities.weekSchedule.singular'),
       entityNameFormat: (schedule: WeekSchedule) => schedule.startTime,
       getByIdFn: (id: number) => this.weekScheduleService.getWeekSchedulebyId(id),
       updateFn: (data: WeekScheduleUpdateRequest) => this.weekScheduleService.updateSchedule(data.id, data),
@@ -147,4 +152,5 @@ export class WeekScheduleListItemComponent {
       ]
     };
   }
+
 }

@@ -51,7 +51,7 @@ export class CalificarTareaComponent implements OnInit {
     if (id) {
       this.loadStudentTask(Number(id));
     } else {
-      this.error = this.translate.instant('common.errors.taskIdMissing');
+      this.error = this.translate.instant('teacherPages.gradeDelivery.errorInvalidId');
       this.loading = false;
     }
   }
@@ -75,7 +75,7 @@ export class CalificarTareaComponent implements OnInit {
             });
           }
         } else {
-          this.error = this.translate.instant('common.errors.couldNotLoadTask');
+          this.error = this.translate.instant('teacherPages.gradeDelivery.errorLoad');
         }
         this.loading = false;
       },

@@ -71,8 +71,7 @@ export class StudentCreateFormComponent {
     private studentService: StudentsService,
     private fireBaseAuth: Auth,
     private passwordGen: PasswordService,
-    private selectedStudentService: SelectedStudentService
-  ) {
+    private selectedStudentService: SelectedStudentService,) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],
@@ -138,7 +137,7 @@ export class StudentCreateFormComponent {
     // 2️⃣ si existe → avisar y return
     if (exists) {
       console.log('estudiante existente');
-      this.errorMessage = 'Estudiante existente. Matricular desde estudiante existente.';
+      this.errorMessage = this.translate.instant('adminPages.forms.student.alreadyExists');
       return;
     }
 

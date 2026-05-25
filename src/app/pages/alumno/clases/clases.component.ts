@@ -147,14 +147,12 @@ export class ClasesComponent implements OnInit {
   private construirCards(): void {
     const cards: CardItem[] = this.asignaturasOriginales().map(item => ({
       id: item.subject?.id || 0,
-      title: item.subject?.name || this.translate.instant('common.messages.subject'),
-      subtitleTopLabel: 'studentClasses.labels.grade',
-      subtitleTopValue: item.group?.name || 'General',
-      subtitleBottomLabel: 'studentClasses.labels.teacher',
-      subtitleBottomValue:
-        this.profesoresMap()[item.subject?.id || 0] ||
-        this.translate.instant('common.messages.loadingTeacher'),
-      actionLabel: 'studentClasses.access',
+      title: item.subject?.name || this.translate.instant('studentPages.classes.subjectFallback'),
+      subtitleTopLabel: 'studentPages.classes.levelLabel',
+      subtitleTopValue: item.group?.name || '-',
+      subtitleBottomLabel: 'studentPages.classes.teacherLabel',
+      subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || this.translate.instant('studentPages.classes.loadingTeacher'),
+      actionLabel: this.translate.instant('studentPages.common.access')
     }));
     this.asignaturasCards.set(cards);
   }

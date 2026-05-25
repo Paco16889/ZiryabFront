@@ -79,11 +79,11 @@ export class TaskCreateFormComponent implements OnInit {
   /** Etiqueta humana del enum de tipo de tarea. */
   typeLabel(type: TaskType): string {
     const labels: Record<TaskType, string> = {
-      [TaskType.PRACTICE]: 'Práctica',
-      [TaskType.THEORY]: 'Teoría',
-      [TaskType.EXAM]: 'Examen',
-      [TaskType.PROJECT]: 'Proyecto',
-      [TaskType.HOMEWORK]: 'Deberes',
+      [TaskType.PRACTICE]: this.translate.instant('teacherPages.taskTypes.practice'),
+      [TaskType.THEORY]: this.translate.instant('teacherPages.taskTypes.theory'),
+      [TaskType.EXAM]: this.translate.instant('teacherPages.taskTypes.exam'),
+      [TaskType.PROJECT]: this.translate.instant('teacherPages.taskTypes.project'),
+      [TaskType.HOMEWORK]: this.translate.instant('teacherPages.taskTypes.homework'),
     };
     return labels[type];
   }

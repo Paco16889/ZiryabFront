@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -29,7 +30,8 @@ import { NotificationToggleService } from '../../../core/services/notification/n
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  /** Servicio que controla el menú de perfil. */
+/** Servicio que controla el menú de perfil. */
+  private readonly router = inject(Router);
   private readonly perfilService = inject(PerfilMenuService);
   /** Servicio de sesión para mostrar nombre/rol y reaccionar a logout. */
   private readonly authService = inject(AuthService);
@@ -63,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.userRoleKey = this.getRoleKey(user.role);
           this.notificationService.load();
         } else {
-          this.userName = 'Nombre';
+          this.userName = '';
           this.userRoleKey = 'roles.user';
           this.dismissToast();
           this.notificationPanel.close();
@@ -107,7 +109,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return map[role] ?? 'roles.user';
   }
 
-  /** Alterna menú de perfil cerrando previamente el panel de notificaciones. */
+/** Alterna menú de perfil cerrando previamente el panel de notificaciones. */
+  navigateToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
   toggleProfileMenu(): void {
     if (this.notificationPanel.isOpen()) {
       this.notificationPanel.close();

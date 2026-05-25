@@ -1,6 +1,15 @@
 import { Teacher } from './teacher';
 import { Enrollment } from './enrollment';
 
+/** Clase tutorada que devuelve GET /api/grades/tutored-groups */
+export interface TutoredCourseGroup {
+  id: number;
+  grade: string; // "1" o "2"
+  course: { id: number; name: string };
+  group: { id: number; name: string };
+  studentEnrollments: Enrollment[];
+}
+
 /** Periodos evaluables disponibles para calificaciones de una matrícula. */
 export enum EvaluationPeriod {
   INITIAL = 'INITIAL',

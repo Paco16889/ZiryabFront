@@ -105,7 +105,9 @@ export class AssistanceCreateFormComponent implements OnInit {
         res.success
           ? res.data.map((e) => ({
               value: e.id,
-              label: [e.student?.name, e.student?.surname].filter(Boolean).join(' ') || `Matrícula ${e.id}`,
+              label:
+                [e.student?.name, e.student?.surname].filter(Boolean).join(' ') ||
+                this.translate.instant('adminPages.assistance.enrollmentFallback', { id: e.id }),
             }))
           : [],
       );

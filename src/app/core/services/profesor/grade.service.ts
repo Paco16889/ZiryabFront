@@ -3,8 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../auth.service';
-import { Grade, CreateGradeRequest, BulkCreateGradesRequest, EvaluationPeriod, MyGradesResponse } from '../../models/grade';
-import { Group } from '../../models/group';
+import {
+  Grade,
+  CreateGradeRequest,
+  BulkCreateGradesRequest,
+  EvaluationPeriod,
+  MyGradesResponse,
+  TutoredCourseGroup,
+} from '../../models/grade';
 
 /** Servicio de calificaciones para profesor y alumno autenticados. */
 @Injectable({
@@ -22,14 +28,21 @@ export class GradeService {
     return this.http.get<ApiResponse<MyGradesResponse[]>>(`${this.apiUrl}/my`);
   }
 
-  /** Obtiene grupos tutorizados por el profesor para gestión de notas. */
-  getTutoredGroups(): Observable<ApiResponse<Group[]>> {
-    return this.http.get<ApiResponse<Group[]>>(`${this.apiUrl}/tutored-groups`);
+  /** Devuelve las clases (CourseGroup) de las que el profesor autenticado es tutor */
+  getTutoredGroups(): Observable<ApiResponse<TutoredCourseGroup[]>> {
+    return this.http.get<ApiResponse<TutoredCourseGroup[]>>(
+      `${this.apiUrl}/tutored-groups`
+    );
   }
 
-  /** Lista notas de un grupo para un periodo evaluable concreto. */
-  getGradesByGroupAndPeriod(idGroup: number, period: EvaluationPeriod): Observable<ApiResponse<Grade[]>> {
-    return this.http.get<ApiResponse<Grade[]>>(`${this.apiUrl}/group/${idGroup}/period/${period}`);
+  /** Notas de una clase (CourseGroup) para un periodo */
+  getGradesByCourseGroupAndPeriod(
+    courseGroupId: number,
+    period: EvaluationPeriod
+  ): Observable<ApiResponse<Grade[]>> {
+    return this.http.get<ApiResponse<Grade[]>>(
+      `${this.apiUrl}/course-group/${courseGroupId}/period/${period}`
+    );
   }
 
   /** Crea o actualiza una calificación individual. */

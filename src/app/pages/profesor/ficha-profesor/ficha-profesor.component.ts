@@ -63,10 +63,7 @@ export class FichaProfesorComponent implements OnInit {
           this.justificacionesPendientes.set(pendientes);
           
           if (pendientes.length === 0) {
-            this.statusMessage.set({
-              text: this.translate.instant('fichaProfesor.noPendingJustifications'),
-              type: 'info',
-            });
+            this.statusMessage.set({text: this.translate.instant('teacherPages.justifications.noPending'), type: 'info'});
           } else {
             this.statusMessage.set(null);
           }
@@ -103,10 +100,7 @@ export class FichaProfesorComponent implements OnInit {
     this.assistanceService.justifyAbsence(assistanceId).subscribe({
       next: (res) => {
         if (res.success) {
-          this.statusMessage.set({
-            text: this.translate.instant('fichaProfesor.justifySuccess'),
-            type: 'success',
-          });
+          this.statusMessage.set({text: this.translate.instant('teacherPages.justifications.successAccept'), type: 'success'});
           // Eliminar de la lista local
           this.justificacionesPendientes.update(list => list.filter(a => a.id !== assistanceId));
         }
@@ -132,10 +126,7 @@ export class FichaProfesorComponent implements OnInit {
     this.assistanceService.rejectJustification(assistanceId).subscribe({
       next: (res) => {
         if (res.success) {
-          this.statusMessage.set({
-            text: this.translate.instant('fichaProfesor.rejectSuccess'),
-            type: 'info',
-          });
+          this.statusMessage.set({text: this.translate.instant('teacherPages.justifications.successReject'), type: 'info'});
           // Eliminar de la lista local ya que ya ha sido revisada (asumiremos que rechazarla cambia algo,
           // o simplemente la quitamos de la vista. Para ser correctos, idealmente el status pasaría a un estado REJECTED,
           // pero si vuelve a ABSENT igual se muestra en la lista.

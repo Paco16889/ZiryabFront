@@ -1,13 +1,18 @@
-<div class="w-full h-full flex flex-col items-center justify-start bg-gray-50 p-6 pt-12 pb-24">
-    
-    <div class="mb-10 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 tracking-tight mb-3">
-            {{ 'studentManagement.title' | translate }}
+<div class="w-full bg-gray-50 flex flex-col items-center p-4 sm:p-6 lg:p-8 pt-8 sm:pt-10 pb-16">
+
+    <div class="mb-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2">
+            {{ 'studentPages.management.title' | translate }}
         </h1>
-        <p class="text-gray-500 text-lg font-medium">{{ 'studentManagement.subtitle' | translate }}</p>
+        <p class="text-gray-500 text-base sm:text-lg font-medium">{{ 'studentPages.management.subtitle' | translate }}</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+    <!--
+      Grid de 2 cols en móvil, 6 cols en sm+.
+      Cada card ocupa 2/6 cols → 3 cards por fila.
+      Cards 4 y 5: col-start-2 y col-start-4 → dejan col 1 y col 6 libres → centradas.
+    -->
+    <div class="grid grid-cols-2 sm:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 w-full max-w-screen-xl">
 
         <div (click)="goToComponent('ficha-usuario')" 
             class="group relative flex flex-col items-center justify-center p-8 h-72 rounded-3xl shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:-translate-y-2
@@ -27,8 +32,15 @@
                     {{ 'studentManagement.viewProfile' | translate }}
                 </span>
             </div>
+            <h2 class="text-sm sm:text-lg lg:text-xl font-extrabold text-gray-800 text-center group-hover:text-indigo-700 transition-colors">
+                {{ 'studentPages.management.cards.record.title' | translate }}
+            </h2>
+            <span class="text-xs sm:text-sm font-semibold text-indigo-600 bg-white/70 px-3 sm:px-4 py-1 sm:py-2 rounded-full border border-indigo-200 whitespace-nowrap">
+                {{ 'studentPages.management.cards.record.cta' | translate }}
+            </span>
         </div>
 
+        <!-- Horario -->
         <div (click)="goToComponent('horario')"
             class="group relative flex flex-col items-center justify-center p-8 h-72 rounded-3xl shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:-translate-y-2
                     bg-gradient-to-br from-emerald-50 via-teal-50 to-teal-100 border-2 border-teal-200 overflow-hidden">
@@ -47,8 +59,15 @@
                     {{ 'studentManagement.consult' | translate }}
                 </span>
             </div>
+            <h2 class="text-sm sm:text-lg lg:text-xl font-extrabold text-gray-800 text-center group-hover:text-teal-700 transition-colors">
+                {{ 'studentPages.management.cards.schedule.title' | translate }}
+            </h2>
+            <span class="text-xs sm:text-sm font-semibold text-teal-600 bg-white/70 px-3 sm:px-4 py-1 sm:py-2 rounded-full border border-teal-200 whitespace-nowrap">
+                {{ 'studentPages.management.cards.schedule.cta' | translate }}
+            </span>
         </div>
 
+        <!-- Calendario -->
         <div (click)="goToComponent('calendario')"
             class="group relative flex flex-col items-center justify-center p-8 h-72 rounded-3xl shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:-translate-y-2
                     bg-gradient-to-br from-amber-50 via-orange-50 to-orange-100 border-2 border-orange-200 overflow-hidden">
@@ -67,8 +86,15 @@
                     {{ 'studentManagement.viewEvents' | translate }}
                 </span>
             </div>
+            <h2 class="text-sm sm:text-lg lg:text-xl font-extrabold text-gray-800 text-center group-hover:text-orange-600 transition-colors">
+                {{ 'studentPages.management.cards.calendar.title' | translate }}
+            </h2>
+            <span class="text-xs sm:text-sm font-semibold text-orange-500 bg-white/70 px-3 sm:px-4 py-1 sm:py-2 rounded-full border border-orange-200 whitespace-nowrap">
+                {{ 'studentPages.management.cards.calendar.cta' | translate }}
+            </span>
         </div>
 
+        <!-- Tablón — fila 2, centrado: ocupa cols 2-3 en grid de 6 -->
         <div (click)="goToComponent('tablon-anuncio')"
             class="group relative flex flex-col items-center justify-center p-8 h-72 rounded-3xl shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:-translate-y-2
                     bg-gradient-to-br from-rose-50 via-pink-50 to-pink-100 border-2 border-pink-200 overflow-hidden">
@@ -87,27 +113,37 @@
                     {{ 'studentManagement.viewNotices' | translate }}
                 </span>
             </div>
+            <h2 class="text-sm sm:text-lg lg:text-xl font-extrabold text-gray-800 text-center group-hover:text-pink-600 transition-colors">
+                {{ 'studentPages.management.cards.board.title' | translate }}
+            </h2>
+            <span class="text-xs sm:text-sm font-semibold text-pink-500 bg-white/70 px-3 sm:px-4 py-1 sm:py-2 rounded-full border border-pink-200 whitespace-nowrap">
+                {{ 'studentPages.management.cards.board.cta' | translate }}
+            </span>
         </div>
 
+        <!-- Evaluaciones — fila 2, centrado: ocupa cols 4-5 en grid de 6 -->
         <div (click)="goToComponent('evaluaciones')"
-            class="group relative flex flex-col items-center justify-center p-8 h-72 rounded-3xl shadow-lg transition-all duration-300 ease-in-out cursor-pointer hover:shadow-2xl hover:-translate-y-2
-                    bg-gradient-to-br from-blue-50 via-cyan-50 to-cyan-100 border-2 border-cyan-200 overflow-hidden">
-            
-            <div class="flex flex-col items-center text-center space-y-4 transition-transform duration-300 group-hover:-translate-y-6">
-                <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <h2 class="text-2xl font-extrabold text-gray-800 group-hover:text-cyan-700 transition-colors">{{ 'evaluaciones.title' | translate }}</h2>
+            class="col-span-1 sm:col-span-2 sm:col-start-4
+                   group flex flex-col items-center justify-center gap-3 sm:gap-5
+                   p-5 sm:p-8 lg:p-10 rounded-3xl shadow-sm border-2 cursor-pointer
+                   bg-gradient-to-br from-cyan-50 to-cyan-100 border-cyan-200
+                   hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-200
+                   min-h-[160px] sm:min-h-[240px] lg:min-h-[280px]">
+            <div class="w-12 h-12 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
             </div>
-
-            <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                <span class="text-cyan-600 font-bold text-base flex items-center gap-2 bg-white/60 px-4 py-2 rounded-full border border-cyan-200 backdrop-blur-sm">
-                    {{ 'evaluaciones.subtitle' | translate }}
-                </span>
-            </div>
+            <h2 class="text-sm sm:text-lg lg:text-xl font-extrabold text-gray-800 text-center group-hover:text-cyan-700 transition-colors">
+                {{ 'evaluaciones.title' | translate }}
+            </h2>
+            <span class="text-xs sm:text-sm font-semibold text-cyan-600 bg-white/70 px-3 sm:px-4 py-1 sm:py-2 rounded-full border border-cyan-200 whitespace-nowrap">
+                {{ 'evaluaciones.subtitle' | translate }}
+            </span>
         </div>
+
     </div>
+
+    <app-boton-atras></app-boton-atras>
 </div>
 <app-boton-atras></app-boton-atras>

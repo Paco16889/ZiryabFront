@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from '../../../core/models/subject';
+import { TranslateModule } from '@ngx-translate/core';
 
 /**
  * Componente que muestra los datos básicos de una asignatura.
@@ -7,7 +8,7 @@ import { Subject } from '../../../core/models/subject';
  */
 @Component({
   selector: 'app-subject',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './subject.component.html',
   styleUrl: './subject.component.scss'
 })

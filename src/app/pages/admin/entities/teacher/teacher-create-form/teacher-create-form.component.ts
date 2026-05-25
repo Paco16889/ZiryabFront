@@ -54,8 +54,7 @@ export class TeacherCreateFormComponent {
     private fb: FormBuilder,
     private teacherService: TeachersService,
     private fireBaseAuth: Auth,
-    private passwordGen: PasswordService
-  ) {
+    private passwordGen: PasswordService,) {
     this.createForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],

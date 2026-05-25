@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { StudentTaskStatus } from '../../../../core/models/teacher/tasks';
 import { SubmissionStatus } from '../../../../core/models/studentTask';
 import { DatePipe, NgClass } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StudentTask } from '../../../../core/models/teacher/tasks';
 
 
@@ -112,11 +112,11 @@ export class TaskDetailComponent {
    */
  statusLabel(status: StudentTaskStatus): string {
   const labels: Record<StudentTaskStatus, string> = {
-    [SubmissionStatus.PENDING]:       'Pendiente',
-    [SubmissionStatus.SUBMITTED]:     'Entregada',
-    [SubmissionStatus.LATE]:          'Entregada tarde',
-    [SubmissionStatus.GRADED]:        'Calificada',
-    [SubmissionStatus.NOT_SUBMITTED]: 'No entregada',
+    [SubmissionStatus.PENDING]:       this.translate.instant('teacherPages.status.pending'),
+    [SubmissionStatus.SUBMITTED]:     this.translate.instant('teacherPages.status.submitted'),
+    [SubmissionStatus.LATE]:          this.translate.instant('teacherPages.status.lateLong'),
+    [SubmissionStatus.GRADED]:        this.translate.instant('teacherPages.status.graded'),
+    [SubmissionStatus.NOT_SUBMITTED]: this.translate.instant('teacherPages.status.notSubmitted'),
   };
   return labels[status];
 }

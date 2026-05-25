@@ -69,7 +69,7 @@ export class TaskFormComponent implements OnInit {
     const file: File = input.files[0];
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
-        this.errorMessage = this.translate.instant('common.errors.fileTooLarge10');
+        this.errorMessage = this.translate.instant('teacherPages.taskForm.errorMaxSize');
         this.selectedFile = null;
         input.value = '';
         return;
@@ -108,7 +108,7 @@ export class TaskFormComponent implements OnInit {
     this.taskService.createTask(formData).subscribe({
       next: (response: CreateTaskResponse) => {
         this.loading = false;
-        this.successMessage = this.translate.instant('taskForm.createSuccessWithFile');
+        this.successMessage = this.translate.instant('teacherPages.taskForm.successCreated');
         this.taskForm.reset({ type: 'HOMEWORK' });
         this.selectedFile = null;
         this.taskCreated.emit(response.data);

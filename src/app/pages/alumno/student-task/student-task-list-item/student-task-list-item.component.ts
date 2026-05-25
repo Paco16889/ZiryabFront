@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { StudentTask, SubmissionStatus } from '../../../../core/models/studentTask';
 import { DatePipe, NgClass } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 /**
@@ -9,11 +10,12 @@ import { DatePipe, NgClass } from '@angular/common';
  */
 @Component({
   selector: 'app-student-task-list-item',
-  imports: [ NgClass, DatePipe],
+  imports: [ NgClass, DatePipe, TranslateModule],
   templateUrl: './student-task-list-item.component.html',
   styleUrl: './student-task-list-item.component.scss'
 })
 export class StudentTaskListItemComponent {
+  private translate = inject(TranslateService);
   /** Entrega del alumno con todos sus datos y la tarea asociada */
   @Input() studentTask!: StudentTask;
 
@@ -21,13 +23,13 @@ export class StudentTaskListItemComponent {
    * Devuelve la etiqueta legible del estado de la entrega.
    */
   statusLabel(): string {
-    const labels: Record<SubmissionStatus, string> = {
-      [SubmissionStatus.PENDING]:       'Pendiente',
-      [SubmissionStatus.SUBMITTED]:     'Entregada',
-      [SubmissionStatus.LATE]:          'Entregada tarde',
-      [SubmissionStatus.GRADED]:        'Calificada',
-      [SubmissionStatus.NOT_SUBMITTED]: 'No entregada',
+    const keys: Record<SubmissionStatus, string> = {
+      [SubmissionStatus.PENDING]:       'studentPages.tasks.status.pending',
+      [SubmissionStatus.SUBMITTED]:     'studentPages.tasks.status.submitted',
+      [SubmissionStatus.LATE]:          'studentPages.tasks.status.late',
+      [SubmissionStatus.GRADED]:        'studentPages.tasks.status.graded',
+      [SubmissionStatus.NOT_SUBMITTED]: 'studentPages.tasks.status.notSubmitted',
     };
-    return labels[this.studentTask.status];
+    return this.translate.instant(keys[this.studentTask.status]);
   }
 }
