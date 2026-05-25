@@ -364,6 +364,15 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Teacher } from &#x27;./teacher&#x27;;
 import { Enrollment } from &#x27;./enrollment&#x27;;
 
+/** Clase tutorada que devuelve GET /api/grades/tutored-groups */
+export interface TutoredCourseGroup {
+  id: number;
+  grade: string; // &quot;1&quot; o &quot;2&quot;
+  course: { id: number; name: string };
+  group: { id: number; name: string };
+  studentEnrollments: Enrollment[];
+}
+
 /** Periodos evaluables disponibles para calificaciones de una matrícula. */
 export enum EvaluationPeriod {
   INITIAL &#x3D; &#x27;INITIAL&#x27;,

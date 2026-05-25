@@ -1,0 +1,714 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  CourseGroupRow</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/admin/entities/group/tutor-assignment/tutor-assignment.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#cg" 
+>
+                                            cg
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#eligibleTutors" 
+>
+                                            eligibleTutors
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#error" 
+>
+                                            error
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#loadingTutors" 
+>
+                                            loadingTutors
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#saved" 
+>
+                                            saved
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#saving" 
+>
+                                            saving
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#selectedTutorId" 
+>
+                                            selectedTutorId
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="cg"></a>
+                                        <span class="name "><b>cg</b>
+                                            <a href="#cg">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>cg:         <code><a href="../interfaces/CourseGroup.html" target="_self" >CourseGroup</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/CourseGroup.html" target="_self" >CourseGroup</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="eligibleTutors"></a>
+                                        <span class="name "><b>eligibleTutors</b>
+                                            <a href="#eligibleTutors">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>eligibleTutors:     <code>TeacherOption[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>TeacherOption[]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="error"></a>
+                                        <span class="name "><b>error</b>
+                                            <a href="#error">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>error:     <code>string | null</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string | null</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="loadingTutors"></a>
+                                        <span class="name "><b>loadingTutors</b>
+                                            <a href="#loadingTutors">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>loadingTutors:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="saved"></a>
+                                        <span class="name "><b>saved</b>
+                                            <a href="#saved">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>saved:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="saving"></a>
+                                        <span class="name "><b>saving</b>
+                                            <a href="#saving">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>saving:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="selectedTutorId"></a>
+                                        <span class="name "><b>selectedTutorId</b>
+                                            <a href="#selectedTutorId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>selectedTutorId:     <code>number | null</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>number | null</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit, signal } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { CourseGroupService } from &#x27;../../../../../core/services/admin/entities/course-group.service&#x27;;
+import { CourseGroup } from &#x27;../../../../../core/models/course-group&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+
+interface TeacherOption {
+  id: number;
+  name: string;
+  surname: string;
+}
+
+interface CourseOption {
+  id: number;
+  name: string;
+}
+
+interface GroupOption {
+  id: number;
+  name: string;
+}
+
+interface CourseGroupRow {
+  cg: CourseGroup;
+  selectedTutorId: number | null;
+  saving: boolean;
+  saved: boolean;
+  error: string | null;
+  eligibleTutors: TeacherOption[];
+  loadingTutors: boolean;
+}
+
+@Component({
+  selector: &#x27;app-tutor-assignment&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslateModule],
+  templateUrl: &#x27;./tutor-assignment.component.html&#x27;,
+})
+export class TutorAssignmentComponent implements OnInit {
+  private readonly cgService   &#x3D; inject(CourseGroupService);
+  private readonly http        &#x3D; inject(HttpClient);
+
+  rows       &#x3D; signal&lt;CourseGroupRow[]&gt;([]);
+  courses    &#x3D; signal&lt;CourseOption[]&gt;([]);
+  groups     &#x3D; signal&lt;GroupOption[]&gt;([]);
+  loading    &#x3D; signal(true);
+  loadError  &#x3D; signal&lt;string | null&gt;(null);
+
+  // Estado del formulario de creación de nueva clase
+  newCourseId &#x3D; signal&lt;number | null&gt;(null);
+  newGroupId  &#x3D; signal&lt;number | null&gt;(null);
+  newGrade    &#x3D; signal&lt;string | null&gt;(null);
+  creating    &#x3D; signal(false);
+  createError &#x3D; signal&lt;string | null&gt;(null);
+
+  ngOnInit(): void {
+    this.loadAll();
+  }
+
+  private loadAll(): void {
+    this.loading.set(true);
+    this.loadError.set(null);
+
+    const coursesUrl &#x3D; &#x60;${environment.apiUrl}/courses&#x60;;
+    const groupsUrl  &#x3D; &#x60;${environment.apiUrl}/groups&#x60;;
+
+    this.http.get&lt;{ success: boolean; data: CourseOption[] }&gt;(coursesUrl).subscribe({
+      next: (res) &#x3D;&gt; this.courses.set(res.data.sort((a, b) &#x3D;&gt; a.name.localeCompare(b.name))),
+    });
+
+    this.http.get&lt;{ success: boolean; data: GroupOption[] }&gt;(groupsUrl).subscribe({
+      next: (res) &#x3D;&gt; this.groups.set(res.data.sort((a, b) &#x3D;&gt; a.name.localeCompare(b.name))),
+    });
+
+    this.cgService.getAll().subscribe({
+      next: (res) &#x3D;&gt; {
+        if (res.success) {
+          const initial &#x3D; res.data.map((cg): CourseGroupRow &#x3D;&gt; ({
+            cg,
+            selectedTutorId: cg.tutorId,
+            saving: false,
+            saved: false,
+            error: null,
+            eligibleTutors: [],
+            loadingTutors: true,
+          }));
+          this.rows.set(initial);
+          // Carga los tutores elegibles de cada fila en paralelo
+          initial.forEach((row) &#x3D;&gt; this.loadEligibleTutors(row));
+        }
+        this.loading.set(false);
+      },
+      error: () &#x3D;&gt; {
+        this.loadError.set(&#x27;adminPages.tutors.errorLoading&#x27;);
+        this.loading.set(false);
+      },
+    });
+  }
+
+  private loadEligibleTutors(row: CourseGroupRow): void {
+    const url &#x3D; &#x60;${environment.apiUrl}/course-groups/${row.cg.id}/eligible-tutors&#x60;;
+    this.http.get&lt;{ success: boolean; data: TeacherOption[] }&gt;(url).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.rows.update((rows) &#x3D;&gt;
+          rows.map((r) &#x3D;&gt;
+            r.cg.id &#x3D;&#x3D;&#x3D; row.cg.id
+              ? { ...r, eligibleTutors: res.data, loadingTutors: false }
+              : r,
+          ),
+        );
+      },
+      error: () &#x3D;&gt; {
+        this.rows.update((rows) &#x3D;&gt;
+          rows.map((r) &#x3D;&gt;
+            r.cg.id &#x3D;&#x3D;&#x3D; row.cg.id ? { ...r, loadingTutors: false } : r,
+          ),
+        );
+      },
+    });
+  }
+
+  saveTutor(row: CourseGroupRow): void {
+    row.saving &#x3D; true;
+    row.saved  &#x3D; false;
+    row.error  &#x3D; null;
+
+    this.cgService.assignTutor(row.cg.id, row.selectedTutorId).subscribe({
+      next: (res) &#x3D;&gt; {
+        row.cg           &#x3D; res.data;
+        row.saving       &#x3D; false;
+        row.saved        &#x3D; true;
+        setTimeout(() &#x3D;&gt; (row.saved &#x3D; false), 3000);
+      },
+      error: (err) &#x3D;&gt; {
+        row.saving &#x3D; false;
+        row.error  &#x3D; err?.error?.message ?? &#x27;adminPages.tutors.errorSaving&#x27;;
+      },
+    });
+  }
+
+  createCourseGroup(): void {
+    const cId   &#x3D; this.newCourseId();
+    const gId   &#x3D; this.newGroupId();
+    const grade &#x3D; this.newGrade();
+    if (!cId || !gId || !grade) return;
+
+    this.creating.set(true);
+    this.createError.set(null);
+
+    this.cgService.create(cId, gId, grade).subscribe({
+      next: (res) &#x3D;&gt; {
+        const newRow: CourseGroupRow &#x3D; {
+          cg: res.data,
+          selectedTutorId: null,
+          saving: false,
+          saved: false,
+          error: null,
+          eligibleTutors: [],
+          loadingTutors: true,
+        };
+        this.rows.update((rows) &#x3D;&gt; [...rows, newRow]);
+        this.loadEligibleTutors(newRow);
+        this.newCourseId.set(null);
+        this.newGroupId.set(null);
+        this.newGrade.set(null);
+        this.creating.set(false);
+      },
+      error: (err) &#x3D;&gt; {
+        this.createError.set(err?.error?.message ?? &#x27;adminPages.tutors.errorCreating&#x27;);
+        this.creating.set(false);
+      },
+    });
+  }
+
+  deleteRow(row: CourseGroupRow): void {
+    this.cgService.delete(row.cg.id).subscribe({
+      next: () &#x3D;&gt; this.rows.update((rows) &#x3D;&gt; rows.filter((r) &#x3D;&gt; r.cg.id !&#x3D;&#x3D; row.cg.id)),
+    });
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'CourseGroupRow.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

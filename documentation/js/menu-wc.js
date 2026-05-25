@@ -342,6 +342,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/TemarioProfesorComponent.html" data-type="entity-link" >TemarioProfesorComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/TutorAssignmentComponent.html" data-type="entity-link" >TutorAssignmentComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/UnauthorizedComponent.html" data-type="entity-link" >UnauthorizedComponent</a>
                             </li>
                             <li class="link">
@@ -425,6 +428,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ClassSessionService.html" data-type="entity-link" >ClassSessionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/CourseGroupService.html" data-type="entity-link" >CourseGroupService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/CourseService.html" data-type="entity-link" >CourseService</a>
@@ -618,6 +624,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AssignmentWithIncludes.html" data-type="entity-link" >AssignmentWithIncludes</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/AssignTutorResponse.html" data-type="entity-link" >AssignTutorResponse</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Assistance.html" data-type="entity-link" >Assistance</a>
                             </li>
                             <li class="link">
@@ -706,6 +715,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/CourseDeleteResponse.html" data-type="entity-link" >CourseDeleteResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CourseGroup.html" data-type="entity-link" >CourseGroup</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CourseGroupRow.html" data-type="entity-link" >CourseGroupRow</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CourseGroupsResponse.html" data-type="entity-link" >CourseGroupsResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CourseOption.html" data-type="entity-link" >CourseOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/CoursesAllResponse.html" data-type="entity-link" >CoursesAllResponse</a>
@@ -808,6 +829,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/GroupDeleteResponse.html" data-type="entity-link" >GroupDeleteResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GroupOption.html" data-type="entity-link" >GroupOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GroupsAllResponse.html" data-type="entity-link" >GroupsAllResponse</a>
@@ -1047,6 +1071,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/TeacherDeleteResponse.html" data-type="entity-link" >TeacherDeleteResponse</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/TeacherOption.html" data-type="entity-link" >TeacherOption</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/TeachersAllResponse.html" data-type="entity-link" >TeachersAllResponse</a>
                             </li>
                             <li class="link">
@@ -1060,6 +1087,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/TimetableSlot.html" data-type="entity-link" >TimetableSlot</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TutoredCourseGroup.html" data-type="entity-link" >TutoredCourseGroup</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/UpdateModalState.html" data-type="entity-link" >UpdateModalState</a>

@@ -483,12 +483,11 @@ export class TemarioProfesorComponent implements OnInit {
     /** Controla el modal de asistencia. */
     showAttendanceModal &#x3D; signal(false);
 
-    /** Estados disponibles para marcar asistencia. */
     readonly statusOptions: { value: AttendanceStatus; labelKey: string; color: string }[] &#x3D; [
-        { value: &#x27;PRESENT&#x27;, labelKey: &#x27;assistanceStatus.PRESENT&#x27;, color: &#x27;emerald&#x27; },
-        { value: &#x27;ABSENT&#x27;, labelKey: &#x27;assistanceStatus.ABSENT&#x27;, color: &#x27;red&#x27; },
-        { value: &#x27;LATE&#x27;, labelKey: &#x27;assistanceStatus.LATE&#x27;, color: &#x27;amber&#x27; },
-        { value: &#x27;EXCUSED&#x27;, labelKey: &#x27;assistanceStatus.EXCUSED&#x27;, color: &#x27;blue&#x27; },
+        { value: &#x27;PRESENT&#x27;, labelKey: &#x27;teacherPages.attendance.status.present&#x27;, color: &#x27;emerald&#x27; },
+        { value: &#x27;ABSENT&#x27;, labelKey: &#x27;teacherPages.attendance.status.absent&#x27;, color: &#x27;red&#x27; },
+        { value: &#x27;LATE&#x27;, labelKey: &#x27;teacherPages.attendance.status.late&#x27;, color: &#x27;amber&#x27; },
+        { value: &#x27;EXCUSED&#x27;, labelKey: &#x27;teacherPages.attendance.status.excused&#x27;, color: &#x27;blue&#x27; },
     ];
 
     /** Carga subjectId, alumnos y tareas al montar el temario. */
@@ -522,11 +521,11 @@ export class TemarioProfesorComponent implements OnInit {
     /** Agrupa tareas por tipo y filtra por profesor autenticado. */
     groupTasksByType(tasks: Task[]) {
       const configBloques &#x3D; [
-        { tipo: TaskType.THEORY, titleKey: &#x27;syllabus.sections.THEORY&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/4207/4207253.png&#x27; },
-        { tipo: TaskType.EXAM, titleKey: &#x27;syllabus.sections.EXAM&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362402.png&#x27; },
-        { tipo: TaskType.PROJECT, titleKey: &#x27;syllabus.sections.PROJECT&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/1087/1087815.png&#x27; },
-        { tipo: TaskType.PRACTICE, titleKey: &#x27;syllabus.sections.PRACTICE&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/471/471495.png&#x27; },
-        { tipo: TaskType.HOMEWORK, titleKey: &#x27;syllabus.sections.HOMEWORK&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362369.png&#x27; }
+        { tipo: TaskType.THEORY, titleKey: &#x27;teacherPages.syllabus.blocks.theory&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/4207/4207253.png&#x27; },
+        { tipo: TaskType.EXAM, titleKey: &#x27;teacherPages.syllabus.blocks.exam&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362402.png&#x27; },
+        { tipo: TaskType.PROJECT, titleKey: &#x27;teacherPages.syllabus.blocks.project&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/1087/1087815.png&#x27; },
+        { tipo: TaskType.PRACTICE, titleKey: &#x27;teacherPages.syllabus.blocks.practice&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/471/471495.png&#x27; },
+        { tipo: TaskType.HOMEWORK, titleKey: &#x27;teacherPages.syllabus.blocks.homework&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362369.png&#x27; }
       ];
 
       const nuevosBloques: BloqueTemario[] &#x3D; [];
@@ -605,7 +604,7 @@ export class TemarioProfesorComponent implements OnInit {
                     next: () &#x3D;&gt; {
                         this.saving.set(false);
                         this.saveError.set(false);
-                        this.saveMessage.set(this.translate.instant(&#x27;syllabus.attendanceSaved&#x27;));
+                        this.saveMessage.set(this.translate.instant(&#x27;teacherPages.syllabus.attendanceSaved&#x27;));
                         setTimeout(() &#x3D;&gt; {
                             this.closeAttendanceModal();
                         }, 1500);
@@ -613,7 +612,7 @@ export class TemarioProfesorComponent implements OnInit {
                     error: () &#x3D;&gt; {
                         this.saving.set(false);
                         this.saveError.set(true);
-                        this.saveMessage.set(this.translate.instant(&#x27;common.errors.saveAttendance&#x27;));
+                        this.saveMessage.set(this.translate.instant(&#x27;teacherPages.syllabus.attendanceSaveError&#x27;));
                     }
                 });
             },

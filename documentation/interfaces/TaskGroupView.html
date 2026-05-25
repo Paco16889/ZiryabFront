@@ -365,7 +365,7 @@ para renderizar la lista agrupada visualmente.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject, computed, signal } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
-import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
 import { TaskService } from &#x27;../../../../core/services/profesor/task.service&#x27;;
 import { TaskGroupUiService } from &#x27;../../../../core/services/profesor/task-group-ui.service&#x27;;
 import { TaskGroupItemComponent } from &#x27;../task-group-item/task-group-item.component&#x27;;
@@ -421,6 +421,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   private readonly taskService    &#x3D; inject(TaskService);
   /** Servicio UI que recuerda grupos plegados/desplegados. */
   private readonly taskGroupUiSvc &#x3D; inject(TaskGroupUiService);
+  private readonly translate &#x3D; inject(TranslateService);
 
   /** Controla la visibilidad del formulario de nueva tarea. */
   readonly showTaskForm &#x3D; signal(false);
@@ -472,7 +473,7 @@ get idTeacherAssignment(): number {
     if (ungrouped.length &gt; 0) {
       groupMap.set(UNGROUPED_KEY, {
         key: UNGROUPED_KEY,
-        name: &#x27;Sin agrupar&#x27;,
+        name: this.translate.instant(&#x27;teacherPages.tasks.ungrouped&#x27;),
         color: &#x27;#aaa&#x27;,
         tasks: ungrouped,
       });

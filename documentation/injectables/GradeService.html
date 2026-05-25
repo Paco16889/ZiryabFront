@@ -183,7 +183,7 @@
                                 <a href="#bulkUpsertGrades" >bulkUpsertGrades</a>
                             </li>
                             <li>
-                                <a href="#getGradesByGroupAndPeriod" >getGradesByGroupAndPeriod</a>
+                                <a href="#getGradesByCourseGroupAndPeriod" >getGradesByCourseGroupAndPeriod</a>
                             </li>
                             <li>
                                 <a href="#getMyGrades" >getMyGrades</a>
@@ -232,8 +232,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -285,31 +285,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getGradesByGroupAndPeriod"></a>
+                    <a name="getGradesByCourseGroupAndPeriod"></a>
                     <span class="name">
-                        <span ><b>getGradesByGroupAndPeriod</b></span>
-                        <a href="#getGradesByGroupAndPeriod"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getGradesByCourseGroupAndPeriod</b></span>
+                        <a href="#getGradesByCourseGroupAndPeriod"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getGradesByGroupAndPeriod(idGroup: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, period: <a href="../miscellaneous/enumerations.html#EvaluationPeriod" target="_self">EvaluationPeriod</a>)</code>
+<code>getGradesByCourseGroupAndPeriod(courseGroupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, period: <a href="../miscellaneous/enumerations.html#EvaluationPeriod" target="_self">EvaluationPeriod</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:39</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Lista notas de un grupo para un periodo evaluable concreto.</p>
+                        <div class="io-description"><p>Notas de una clase (CourseGroup) para un periodo</p>
 </div>
 
                             <div class="io-description">
@@ -325,7 +325,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>idGroup</td>
+                                                <td>courseGroupId</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
@@ -382,8 +382,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -421,19 +421,19 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:32</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Obtiene grupos tutorizados por el profesor para gestión de notas.</p>
+                        <div class="io-description"><p>Devuelve las clases (CourseGroup) de las que el profesor autenticado es tutor</p>
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;ApiResponse&lt;Group[]&gt;&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;ApiResponse&lt;TutoredCourseGroup[]&gt;&gt;</code>
 
                         </div>
                 </td>
@@ -460,8 +460,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/core/services/profesor/grade.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -540,7 +540,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/profesor/grade.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/services/profesor/grade.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -578,7 +578,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/services/profesor/grade.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/core/services/profesor/grade.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -602,8 +602,14 @@ import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { environment } from &#x27;../../../../environments/environment&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { ApiResponse } from &#x27;../auth.service&#x27;;
-import { Grade, CreateGradeRequest, BulkCreateGradesRequest, EvaluationPeriod, MyGradesResponse } from &#x27;../../models/grade&#x27;;
-import { Group } from &#x27;../../models/group&#x27;;
+import {
+  Grade,
+  CreateGradeRequest,
+  BulkCreateGradesRequest,
+  EvaluationPeriod,
+  MyGradesResponse,
+  TutoredCourseGroup,
+} from &#x27;../../models/grade&#x27;;
 
 /** Servicio de calificaciones para profesor y alumno autenticados. */
 @Injectable({
@@ -621,14 +627,21 @@ export class GradeService {
     return this.http.get&lt;ApiResponse&lt;MyGradesResponse[]&gt;&gt;(&#x60;${this.apiUrl}/my&#x60;);
   }
 
-  /** Obtiene grupos tutorizados por el profesor para gestión de notas. */
-  getTutoredGroups(): Observable&lt;ApiResponse&lt;Group[]&gt;&gt; {
-    return this.http.get&lt;ApiResponse&lt;Group[]&gt;&gt;(&#x60;${this.apiUrl}/tutored-groups&#x60;);
+  /** Devuelve las clases (CourseGroup) de las que el profesor autenticado es tutor */
+  getTutoredGroups(): Observable&lt;ApiResponse&lt;TutoredCourseGroup[]&gt;&gt; {
+    return this.http.get&lt;ApiResponse&lt;TutoredCourseGroup[]&gt;&gt;(
+      &#x60;${this.apiUrl}/tutored-groups&#x60;
+    );
   }
 
-  /** Lista notas de un grupo para un periodo evaluable concreto. */
-  getGradesByGroupAndPeriod(idGroup: number, period: EvaluationPeriod): Observable&lt;ApiResponse&lt;Grade[]&gt;&gt; {
-    return this.http.get&lt;ApiResponse&lt;Grade[]&gt;&gt;(&#x60;${this.apiUrl}/group/${idGroup}/period/${period}&#x60;);
+  /** Notas de una clase (CourseGroup) para un periodo */
+  getGradesByCourseGroupAndPeriod(
+    courseGroupId: number,
+    period: EvaluationPeriod
+  ): Observable&lt;ApiResponse&lt;Grade[]&gt;&gt; {
+    return this.http.get&lt;ApiResponse&lt;Grade[]&gt;&gt;(
+      &#x60;${this.apiUrl}/course-group/${courseGroupId}/period/${period}&#x60;
+    );
   }
 
   /** Crea o actualiza una calificación individual. */
