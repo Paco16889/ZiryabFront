@@ -35,13 +35,19 @@ export class GestionComponent {
    */
   goToComponent(route: string) {
     if (route === 'ficha-usuario') {
-        this.router.navigate(['/ficha-usuario']); 
+      this.router.navigate(['/ficha-usuario']);
     } else if (route === 'horario') {
-        const userRole = this.authService.getUserRole();
-        const targetRoute = userRole === 'TEACHER' ? '/horario-profesor' : '/horario-alumno';
-        this.router.navigate([targetRoute]);
+      const userRole = this.authService.getUserRole();
+      const targetRoute = userRole === 'TEACHER' ? '/horario-profesor' : '/horario-alumno';
+      this.router.navigate([targetRoute]);
+    } else if (route === 'tablon-anuncio') {
+      this.router.navigate(['/issues']);
+    } else if (route === 'evaluaciones') {
+      const userRole = this.authService.getUserRole();
+      const targetRoute = userRole === 'STUDENT' ? '/mis-evaluaciones' : '/evaluaciones';
+      this.router.navigate([targetRoute]);
     } else {
-        this.router.navigate([`/${route}`]);
+      this.router.navigate([`/${route}`]);
     }
   }
 }

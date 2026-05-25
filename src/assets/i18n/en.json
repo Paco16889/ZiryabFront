@@ -1238,7 +1238,7 @@
   "FINAL": "Final Grade",
   "evaluaciones": {
     "title": "Evaluations",
-    "subtitle": "Quarterly grade management",
+    "subtitle": "View grades",
     "description": "View and manage academic grades"
   },
   "studentTaskDetail": {
