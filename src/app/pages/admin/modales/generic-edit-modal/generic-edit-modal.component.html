@@ -1,22 +1,22 @@
-<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white rounded-lg p-6 w-96 max-h-[90vh] overflow-y-auto">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="max-h-[90vh] w-96 overflow-y-auto rounded-lg border border-purple-200 bg-white p-6 dark:border-purple-800 dark:bg-gray-900">
     
     @if(!showSuccess && !isUpdating){
       <div>
-        <h3 class="text-xl font-bold mb-4">{{ 'editModal.title' | translate }} {{ entityType }}</h3>
+        <h3 class="mb-4 text-xl font-bold text-purple-800 dark:text-purple-200">{{ 'editModal.title' | translate }} {{ entityType }}</h3>
 
         <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
           @for(field of fields; track field.name){
             <div class="mb-4">
-              <label class="block text-gray-700 mb-2">{{ field.label }}</label>
+              <label class="mb-2 block text-gray-700 dark:text-gray-300">{{ field.label }}</label>
               
               @if(field.fieldType === 'select'){
                 @if(loadingOptions[field.name]){
-                  <div class="text-gray-500">{{ 'common.messages.loadingOptions' | translate }}</div>
+                  <div class="text-gray-500 dark:text-gray-400">{{ 'common.messages.loadingOptions' | translate }}</div>
                 } @else {
                   <select
                     [formControlName]="field.name"
-                    class="w-full px-3 py-2 border rounded">
+                    class="w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:focus:ring-purple-400">
                     <option value="">{{ field.placeholder || ('common.placeholders.selectOption' | translate) }}</option>
                     @for(option of fieldOptions[field.name]; track option.value){
                       <option [ngValue]="option.value">{{ option.label }}</option>
@@ -31,7 +31,7 @@
                   [type]="field.type || 'text'"
                   [placeholder]="field.placeholder || ''"
                   [maxlength]="field.maxlength!"
-                  class="w-full px-3 py-2 border rounded"
+                  class="w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:focus:ring-purple-400"
                 />
               }
               
@@ -50,16 +50,16 @@
           }
 
           <div class="flex justify-end gap-2">
-            <button 
+            <button
               type="button" 
               (click)="onClose()" 
-              class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+              class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
               {{ 'editModal.cancel' | translate }}
             </button>
             <button 
               type="submit" 
               [disabled]="editForm.invalid" 
-              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300">
+              class="rounded-md border border-purple-700 bg-purple-600 px-4 py-2 text-white hover:bg-purple-700 disabled:bg-gray-300 dark:border-purple-500 dark:bg-purple-700 dark:hover:bg-purple-600 dark:disabled:bg-gray-600">
               {{ 'editModal.save' | translate }}
             </button>
           </div>
@@ -69,16 +69,16 @@
 
     @if(isUpdating){
       <div class="text-center py-4">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-        <p class="text-gray-600">{{ 'editModal.updating' | translate }} {{ entityType }}...</p>
+        <div class="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-purple-600 dark:border-purple-400"></div>
+        <p class="text-gray-600 dark:text-gray-300">{{ 'editModal.updating' | translate }} {{ entityType }}...</p>
       </div>
     }
 
     @if(showSuccess){
       <div class="text-center py-4">
-        <div class="text-green-500 text-6xl mb-4">✓</div>
-        <h3 class="text-xl font-bold text-green-600 mb-2">{{ entityType }} {{ 'editModal.updated' | translate }}</h3>
-        <p class="text-gray-600">
+        <div class="mb-4 text-6xl text-purple-600 dark:text-purple-300">✓</div>
+        <h3 class="mb-2 text-xl font-bold text-purple-700 dark:text-purple-200">{{ entityType }} {{ 'editModal.updated' | translate }}</h3>
+        <p class="text-gray-600 dark:text-gray-300">
           {{ entityType }} <strong>{{ entityName }}</strong> {{ 'editModal.successMessage' | translate }}
         </p>
       </div>

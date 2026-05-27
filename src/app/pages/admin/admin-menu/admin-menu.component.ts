@@ -37,8 +37,16 @@ export class AdminMenuComponent {
    * @param str - Nombre identificador de la sección del menú pulsada
    */
   onClick(str: string){
+    this.openedMenu = str;
     this.toggle.toggle(str);
     this.optionClicked.emit();
+  }
+
+  menuButtonClass(section: string): string {
+    const base = 'rounded-md border px-4 py-2 text-left transition-colors';
+    const inactive = 'border-purple-200 bg-purple-50 text-purple-800 hover:bg-purple-100 dark:border-purple-700 dark:bg-purple-900/30 dark:text-purple-200 dark:hover:bg-purple-800/40';
+    const active = 'border-purple-700 bg-purple-600 text-white hover:bg-purple-700 dark:border-purple-500 dark:bg-purple-700 dark:hover:bg-purple-600';
+    return `${base} ${this.openedMenu === section ? active : inactive}`;
   }
 
 }

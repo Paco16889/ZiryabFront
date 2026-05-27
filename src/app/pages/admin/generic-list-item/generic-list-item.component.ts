@@ -176,7 +176,15 @@ export class GenericListItemComponent<T extends WithId, U, R, S> {
    */
   get containerClass(): string {
     return this.config.layout?.containerClass || 
-           'flex flex-col md:flex-row md:justify-between md:items-center m-2 bg-purple-300 rounded px-2 py-2 gap-2';
+           'm-2 flex items-stretch overflow-hidden rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-gray-900 shadow-sm';
+  }
+
+  /**
+   * Devuelve las clases del bloque interno de contenido del item.
+   * Replica la estructura visual tipo task-group-item con fondo suave.
+   */
+  get contentClass(): string {
+    return 'flex flex-1 flex-col gap-2 bg-purple-50/50 dark:bg-gray-900 px-4 py-3 md:flex-row md:items-center md:justify-between';
   }
 
   /**
@@ -185,7 +193,7 @@ export class GenericListItemComponent<T extends WithId, U, R, S> {
    */
   get fieldsContainerClass(): string {
     return this.config.layout?.fieldsContainerClass || 
-           'flex flex-col md:flex-row md:gap-4';
+           'flex flex-col gap-1 md:flex-row md:flex-wrap md:gap-4';
   }
 
     /**

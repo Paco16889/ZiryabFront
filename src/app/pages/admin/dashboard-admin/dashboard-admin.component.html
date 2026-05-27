@@ -1,7 +1,7 @@
 
     
-  <div class="flex">
-    <div class="bg-purple-100 hidden md:block">
+  <div class="flex bg-gray-50 dark:bg-gray-950">
+    <div class="hidden md:block border-r border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-gray-900">
       <app-admin-menu></app-admin-menu>
     </div>
     
@@ -16,12 +16,12 @@
     <app-boton-hamburguesa (menuToggled)="abrirMenuMobile()"></app-boton-hamburguesa>
   </div>
   @if(menuMobileOpen){
-  <div class="fixed inset-0 z-50 bg-white flex flex-col">
+  <div class="fixed inset-0 z-50 flex flex-col bg-white dark:bg-gray-900">
   <!-- Header con botón volver -->
-    <div class="flex items-center p-4 bg-purple-200 shadow-md">
+    <div class="flex items-center border-b border-purple-200 bg-purple-50 p-4 shadow-sm dark:border-purple-800 dark:bg-gray-900">
       <app-boton-atras></app-boton-atras>
       
-<h2 class="ml-4 text-xl font-bold">{{ 'adminPages.dashboard.menu' | translate }}</h2>
+<h2 class="ml-4 text-xl font-bold text-purple-800 dark:text-purple-200">{{ 'adminPages.dashboard.menu' | translate }}</h2>
     </div>
 
   <!-- Contenido del menú reutilizado -->

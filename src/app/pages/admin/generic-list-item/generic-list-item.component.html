@@ -1,53 +1,59 @@
 <!-- Contenedor principal del list-item -->
 <div [class]="containerClass">
-  <!-- Campos de información -->
-  <div [class]="fieldsContainerClass">
-  @for (field of config.fields; track field.key) {
-    <p [class]="getFieldClasses(field)">
-      @if (field.label) {
-        <span class="font-medium">{{ field.label }}: </span>
-      }
-      {{ getFormattedValue(item, field) }}
-    </p>
-  }
-</div>
+  <!-- Banda lateral morada integrada (estilo task-group-item) -->
+  <div class="w-1.5 self-stretch flex-shrink-0 bg-purple-600 dark:bg-purple-500"></div>
 
-  <!-- Botones de acción -->
-  @if (hasActions) {
-    <div [class]="actionsContainerClass">
-      @if (config.actions?.edit) {
-        <app-boton-edit
-          class="w-full"
-          [id]="item.id"
-          [name]="getEntityName(item)"
-          [type]="config.entityType || 'el elemento'"
-          [entityData]="item"
-          [fields]="config.editFields!"
-          [updateFn]="config.updateFn!"
-          >
-        </app-boton-edit>
-      }
-
-      @if (config.actions?.delete) {
-        <app-boton-delete
-          class="w-full"
-          [id]="item.id"
-          [name]="getEntityName(item)"
-          [type]="config.entityType || 'el elemento'"
-          [deleteFn]="config.deleteFn!">
-          >
-        </app-boton-delete>
-      }
-
-      @if (config.actions?.detail) {
-        <app-boton-viewdetail
-          class="w-full"
-          [id]="item.id"
-          (showDetail)="toggleDetail($event)">
-        </app-boton-viewdetail>
+  <!-- Contenido del item -->
+  <div [class]="contentClass">
+    <!-- Campos de información -->
+    <div [class]="fieldsContainerClass">
+      @for (field of config.fields; track field.key) {
+        <p [class]="getFieldClasses(field)">
+          @if (field.label) {
+            <span class="font-medium">{{ field.label }}: </span>
+          }
+          {{ getFormattedValue(item, field) }}
+        </p>
       }
     </div>
-  }
+
+    <!-- Botones de acción -->
+    @if (hasActions) {
+      <div [class]="actionsContainerClass">
+        @if (config.actions?.edit) {
+          <app-boton-edit
+            class="w-full"
+            [id]="item.id"
+            [name]="getEntityName(item)"
+            [type]="config.entityType || 'el elemento'"
+            [entityData]="item"
+            [fields]="config.editFields!"
+            [updateFn]="config.updateFn!"
+            >
+          </app-boton-edit>
+        }
+
+        @if (config.actions?.delete) {
+          <app-boton-delete
+            class="w-full"
+            [id]="item.id"
+            [name]="getEntityName(item)"
+            [type]="config.entityType || 'el elemento'"
+            [deleteFn]="config.deleteFn!">
+            >
+          </app-boton-delete>
+        }
+
+        @if (config.actions?.detail) {
+          <app-boton-viewdetail
+            class="w-full"
+            [id]="item.id"
+            (showDetail)="toggleDetail($event)">
+          </app-boton-viewdetail>
+        }
+      </div>
+    }
+  </div>
 </div>
 
 

@@ -1,18 +1,18 @@
 <!-- generic-delete-modal.component.html -->
-<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white rounded-lg p-6 w-96">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="w-96 rounded-lg border border-purple-200 bg-white p-6 dark:border-purple-800 dark:bg-gray-900">
     
     <!-- Estado: Confirmación -->
     @if(!showSuccess && !isDeleting){
       <div>
-        <h3 class="text-xl font-bold mb-4 text-red-600">{{ 'deleteModal.title' | translate }} </h3>
+        <h3 class="mb-4 text-xl font-bold text-red-600 dark:text-red-400">{{ 'deleteModal.title' | translate }} </h3>
         
         <p class="mb-4">
           {{ 'deleteModal.confirmMessage' | translate }} {{ entityType }} 
           <strong class="text-red-600">{{ entityName }}</strong>?
         </p>
         
-        <p class="text-sm text-gray-600 mb-4">
+        <p class="mb-4 text-sm text-gray-600 dark:text-gray-300">
           {{ 'deleteModal.warningMessage' | translate }}
           
         </p>
@@ -28,14 +28,14 @@
           <button 
             type="button"
             (click)="onClose()"
-            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+            class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
             {{ 'deleteModal.cancel' | translate }}
       
           </button>
           <button 
             type="button"
             (click)="onConfirm()"
-            class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+            class="rounded-md bg-red-600 px-4 py-2 text-white hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600">
             {{ 'deleteModal.delete' | translate }}
         
           </button>
@@ -46,17 +46,17 @@
     <!-- Estado: Eliminando -->
     @if(isDeleting){
       <div class="text-center py-4">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500 mx-auto mb-4"></div>
-        <p class="text-gray-600">{{ 'deleteModal.deleting' | translate }}{{ entityType }}...</p>
+        <div class="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-red-600 dark:border-red-500"></div>
+        <p class="text-gray-600 dark:text-gray-300">{{ 'deleteModal.deleting' | translate }}{{ entityType }}...</p>
       </div>
     }
 
     <!-- Estado: Éxito -->
     @if(showSuccess){
       <div class="text-center py-4">
-        <div class="text-green-500 text-6xl mb-4">✓</div>
-        <h3 class="text-xl font-bold text-green-600 mb-2">{{ entityType }} {{ 'deleteModal.deleted' | translate }}</h3>
-        <p class="text-gray-600">
+        <div class="mb-4 text-6xl text-purple-600 dark:text-purple-300">✓</div>
+        <h3 class="mb-2 text-xl font-bold text-purple-700 dark:text-purple-200">{{ entityType }} {{ 'deleteModal.deleted' | translate }}</h3>
+        <p class="text-gray-600 dark:text-gray-300">
           {{ entityType }} <strong>{{ entityName }}</strong> {{ 'deleteModal.successMessage' | translate }}
         </p>
       </div>

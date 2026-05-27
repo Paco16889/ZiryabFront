@@ -36,7 +36,7 @@
         <button type="button" (click)="onCancel()" [disabled]="isCreating" class="px-6 py-2 bg-gray-300 rounded-lg">
           {{ 'common.buttons.cancel' | translate }}
         </button>
-        <button type="submit" [disabled]="createForm.invalid || isCreating" class="px-6 py-2 bg-green-500 text-white rounded-lg disabled:bg-gray-300">
+        <button type="submit" [disabled]="createForm.invalid || isCreating" class="px-6 py-2 bg-purple-600 dark:bg-purple-700 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 disabled:bg-gray-300 dark:disabled:bg-gray-600">
           {{ isCreating ? ('lists.classSessions.creating' | translate) : ('lists.classSessions.createButton' | translate) }}
         </button>
       </div>

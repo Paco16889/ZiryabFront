@@ -2,7 +2,6 @@
           type="button"
           (click)="confirmSelection()"
           [disabled]="disabled"
-          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 
-                 disabled:bg-gray-300 disabled:cursor-not-allowed">
+          class="rounded-md border border-purple-700 bg-purple-600 px-6 py-2 text-white transition-colors hover:bg-purple-700 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300 dark:border-purple-500 dark:bg-purple-700 dark:hover:bg-purple-600 dark:disabled:border-gray-600 dark:disabled:bg-gray-600">
           {{'common.buttons.confirm' | translate}}
         </button>

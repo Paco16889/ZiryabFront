@@ -14,7 +14,7 @@
           formControlName="title"
           type="text"
           maxlength="120"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
         />
         @if (createForm.get('title')?.invalid && createForm.get('title')?.touched) {
           <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.title' | translate }}</span>
@@ -27,7 +27,7 @@
           formControlName="body"
           rows="5"
           maxlength="2000"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
         ></textarea>
         @if (createForm.get('body')?.invalid && createForm.get('body')?.touched) {
           <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.body' | translate }}</span>
@@ -38,7 +38,7 @@
         <label class="block text-gray-700 font-medium mb-2">{{ 'lists.issues.form.audience' | translate }}</label>
         <select
           formControlName="audience"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
         >
           @for (aud of audiences; track aud) {
             <option [value]="aud">{{ audienceLabel(aud) | translate }}</option>
@@ -180,7 +180,7 @@
           id="issue-create-isPublished"
           formControlName="isPublished"
           type="checkbox"
-          class="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+          class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
         />
         <label for="issue-create-isPublished" class="text-gray-700 font-medium">
           {{ 'lists.issues.form.isPublished' | translate }}
@@ -215,7 +215,7 @@
         <button
           type="submit"
           [disabled]="createForm.invalid || isCreating"
-          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          class="px-6 py-2 bg-purple-600 dark:bg-purple-700 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
         >
           {{
             isCreating
