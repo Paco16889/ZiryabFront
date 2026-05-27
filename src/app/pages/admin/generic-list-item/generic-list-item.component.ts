@@ -208,11 +208,11 @@ export class GenericListItemComponent<T extends WithId, U, R, S> {
   
   // Si responsive es TRUE, usa grid en móvil
   if (this.config.layout?.responsive === true) {
-    return 'grid grid-cols-3 gap-2 w-full md:flex md:w-auto md:gap-1';
+    return 'grid grid-cols-3 gap-2 w-auto md:flex md:w-auto md:gap-2';
   }
   
   // Si responsive es FALSE (o undefined), usa flex siempre
-  return 'flex gap-1 py-1';
+  return 'flex gap-2';
 }
 
 

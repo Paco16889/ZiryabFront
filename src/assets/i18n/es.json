@@ -649,6 +649,10 @@
       }
     }
   },
+  "theme": {
+    "toggleToDark": "Activar modo oscuro",
+    "toggleToLight": "Activar modo claro"
+  },
   "perfil": {
     "logout": "Cerrar sesión",
     "loggingOut": "Cerrando sesión..."
@@ -1019,6 +1023,24 @@
     "assistance": {
       "enrollmentFallback": "Matrícula {{id}}",
       "enrollmentId": "Matrícula ID"
+    },
+    "credentials": {
+      "title": "Credenciales de acceso",
+      "subtitle": "Consulta las credenciales de tus alumnos asignados",
+      "loading": "Cargando credenciales...",
+      "empty": "No hay credenciales asignadas a tu tutoría.",
+      "show": "Mostrar",
+      "hide": "Ocultar",
+      "columns": {
+        "student": "Alumno",
+        "email": "Email",
+        "password": "Contraseña",
+        "actions": "Acciones"
+      },
+      "errors": {
+        "load": "No se pudieron cargar las credenciales.",
+        "userNotFound": "No se ha podido identificar al tutor autenticado."
+      }
     }
   },
   "sharedPages": {

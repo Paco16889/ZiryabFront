@@ -20,6 +20,7 @@ import { MisNotasComponent } from './pages/alumno/mis-notas/mis-notas.component'
 import { HorarioProfesorComponent } from './pages/profesor/horario/horario-profesor.component';
 import { CalendarioComponent } from './pages/shared/calendario/calendario.component';
 import { GestionNotasComponent } from './pages/profesor/gestion-notas/gestion-notas.component';
+import { CredencialesAlumnosComponent } from './pages/profesor/credenciales-alumnos/credenciales-alumnos.component';
 
 /**
  * Definición de rutas de la aplicación.
@@ -115,6 +116,12 @@ export const routes: Routes = [
     {
         path: 'evaluaciones',
         component: GestionNotasComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
+    },
+    {
+        path: 'credenciales-alumnos',
+        component: CredencialesAlumnosComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['TEACHER'] },
     },

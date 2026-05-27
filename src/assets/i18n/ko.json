@@ -498,7 +498,29 @@
     "assistance": {
       "enrollmentFallback": "등록 {{id}}",
       "enrollmentId": "등록 ID"
+    },
+    "credentials": {
+      "title": "접속 자격 증명",
+      "subtitle": "담당 학생의 자격 증명을 확인하세요",
+      "loading": "자격 증명을 불러오는 중...",
+      "empty": "담당 튜터 그룹에 할당된 자격 증명이 없습니다.",
+      "show": "표시",
+      "hide": "숨기기",
+      "columns": {
+        "student": "학생",
+        "email": "이메일",
+        "password": "비밀번호",
+        "actions": "동작"
+      },
+      "errors": {
+        "load": "자격 증명을 불러오지 못했습니다.",
+        "userNotFound": "인증된 튜터를 식별할 수 없습니다."
+      }
     }
+  },
+  "theme": {
+    "toggleToDark": "다크 모드 켜기",
+    "toggleToLight": "라이트 모드 켜기"
   },
   "sharedPages": {
     "login": {

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { Observable, from, of, throwError } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import {
   StudentRegistrationRequest,
@@ -12,6 +12,7 @@ import { PendingStudentDraft, Student } from '../../models/student';
 import { PasswordService } from '../password.service';
 import { StudentsService } from './entities/students.service';
 import { SubjectService } from './entities/subject.service';
+import { StudentPasswordService } from './entities/student-password.service';
 import { SelectedStudentService } from './selected-student.service';
 
 export type EnrollmentConfirmErrorCode =
@@ -32,6 +33,7 @@ export class StudentRegistrationService {
   private readonly selectedStudent = inject(SelectedStudentService);
   private readonly subjectService = inject(SubjectService);
   private readonly studentsService = inject(StudentsService);
+  private readonly studentPasswordService = inject(StudentPasswordService);
   private readonly auth = inject(Auth);
   private readonly passwordGen = inject(PasswordService);
 
@@ -78,7 +80,15 @@ export class StudentRegistrationService {
                   () => new Error('STUDENT_CREATE_FAILED' satisfies EnrollmentConfirmErrorCode),
                 );
               }
-              return of(response.data as Student);
+              const createdStudent = response.data as Student;
+              return this.studentPasswordService.save(createdStudent.id, password).pipe(
+                // Best-effort: si falla guardar credencial, no bloquea matrícula.
+                catchError((error) => {
+                  console.error('[EQ-336] No se pudo guardar la contraseña de alumno:', error);
+                  return of(null);
+                }),
+                map(() => createdStudent),
+              );
             }),
           ),
       ),

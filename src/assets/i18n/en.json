@@ -649,6 +649,10 @@
       }
     }
   },
+  "theme": {
+    "toggleToDark": "Enable dark mode",
+    "toggleToLight": "Enable light mode"
+  },
   "perfil": {
     "logout": "Log out",
     "loggingOut": "Logging out..."
@@ -1019,6 +1023,24 @@
     "assistance": {
       "enrollmentFallback": "Enrollment {{id}}",
       "enrollmentId": "Enrollment ID"
+    },
+    "credentials": {
+      "title": "Access credentials",
+      "subtitle": "Review credentials for your assigned students",
+      "loading": "Loading credentials...",
+      "empty": "There are no credentials assigned to your tutoring group.",
+      "show": "Show",
+      "hide": "Hide",
+      "columns": {
+        "student": "Student",
+        "email": "Email",
+        "password": "Password",
+        "actions": "Actions"
+      },
+      "errors": {
+        "load": "Credentials could not be loaded.",
+        "userNotFound": "Authenticated tutor could not be identified."
+      }
     }
   },
   "sharedPages": {

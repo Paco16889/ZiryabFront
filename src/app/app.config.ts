@@ -11,6 +11,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { APP_INITIALIZER, inject } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
 import { Observable } from 'rxjs';
+import { ThemeService } from './core/services/theme.service';
 
 /**
  * Factory de `APP_INITIALIZER` que intenta recuperar la sesión antes de montar la app.
@@ -24,6 +25,12 @@ export function initializeAppAuth(authService: AuthService) {
         error: () => subscriber.complete()
       });
     });
+  };
+}
+
+export function initializeAppTheme(themeService: ThemeService) {
+  return () => {
+    themeService.init();
   };
 }
 
@@ -61,6 +68,12 @@ const firebaseConfig = {
  */
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppTheme,
+      deps: [ThemeService],
+      multi: true
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAppAuth,

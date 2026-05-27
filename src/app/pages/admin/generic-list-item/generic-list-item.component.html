@@ -22,7 +22,6 @@
       <div [class]="actionsContainerClass">
         @if (config.actions?.edit) {
           <app-boton-edit
-            class="w-full"
             [id]="item.id"
             [name]="getEntityName(item)"
             [type]="config.entityType || 'el elemento'"
@@ -35,7 +34,6 @@
 
         @if (config.actions?.delete) {
           <app-boton-delete
-            class="w-full"
             [id]="item.id"
             [name]="getEntityName(item)"
             [type]="config.entityType || 'el elemento'"
@@ -46,7 +44,6 @@
 
         @if (config.actions?.detail) {
           <app-boton-viewdetail
-            class="w-full"
             [id]="item.id"
             (showDetail)="toggleDetail($event)">
           </app-boton-viewdetail>

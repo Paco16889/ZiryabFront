@@ -7,6 +7,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { AppNotification, NotificationsService } from '../../../core/services/notifications.service';
 import type { UserResponse } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from '../selector-idioma/selector-idioma.component';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotificationBadgeComponent } from '../notification/notification-badge/notification-badge.component';
 import { NotificationListComponent } from '../notification/notification-list/notification-list.component';
@@ -21,6 +22,7 @@ import { NotificationToggleService } from '../../../core/services/notification/n
   standalone: true,
   imports: [
     CommonModule,
+    ThemeToggleComponent,
     SelectorIdiomaComponent,
     TranslateModule,
     NotificationBadgeComponent,

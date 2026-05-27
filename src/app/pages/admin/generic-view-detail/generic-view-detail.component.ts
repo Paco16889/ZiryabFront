@@ -77,7 +77,8 @@ export class GenericViewDetailComponent<T> {
    * Devuelve las clases CSS del contenedor principal de la vista de detalle.
    */
   get containerClass(): string {
-    return this.config.layout?.containerClass || 'flex flex-col gap-2 p-4 bg-gray-100 rounded';
+    return this.config.layout?.containerClass ||
+      'flex flex-col gap-2 rounded-lg border border-purple-200 bg-purple-50/50 p-4 dark:border-purple-800 dark:bg-purple-950/20';
   }
 
    /**
