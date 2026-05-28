@@ -14,11 +14,16 @@ import {
   providedIn: 'root',
 })
 export class WeekScheduleMaterializeHttpService {
+  /** Cliente HTTP de Angular. */
   private readonly http = inject(HttpClient);
 
+  /** Endpoint de materialización de plantilla semanal. */
   private readonly apiUrl = `${environment.apiUrl}/horarios-semanales/materialize`;
 
-  /** `POST /api/horarios-semanales/materialize` */
+  /**
+   * `POST /api/horarios-semanales/materialize`
+   * @param body Plantilla semanal a persistir (días, franjas y metadatos de clase).
+   */
   materialize(body: WeekScheduleMaterializeRequest): Observable<WeekScheduleMaterializeResponse> {
     return this.http.post<WeekScheduleMaterializeResponse>(this.apiUrl, body).pipe(
       catchError((err) =>

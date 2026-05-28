@@ -376,12 +376,21 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Teacher } from &#x27;./teacher&#x27;;
 import { Enrollment } from &#x27;./enrollment&#x27;;
 
-/** Clase tutorada que devuelve GET /api/grades/tutored-groups */
+/** Clase tutorada que devuelve &#x60;GET /api/grades/tutored-groups&#x60;. */
 export interface TutoredCourseGroup {
+  /** Identificador de la relación ciclo–grupo. */
   id: number;
-  grade: string; // &quot;1&quot; o &quot;2&quot;
+
+  /** Curso dentro del ciclo (&#x60;&quot;1&quot;&#x60; o &#x60;&quot;2&quot;&#x60;). */
+  grade: string;
+
+  /** Ciclo formativo del grupo. */
   course: { id: number; name: string };
+
+  /** Grupo académico tutorizado. */
   group: { id: number; name: string };
+
+  /** Matrículas de alumnos del grupo para el tutor. */
   studentEnrollments: Enrollment[];
 }
 

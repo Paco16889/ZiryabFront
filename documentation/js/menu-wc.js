@@ -207,7 +207,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/HorarioProfesorComponent.html" data-type="entity-link" >HorarioProfesorComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/InformeAdminComponent.html" data-type="entity-link" >InformeAdminComponent</a>
+                                <a href="components/IssueCreateFormComponent.html" data-type="entity-link" >IssueCreateFormComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/IssueListComponent.html" data-type="entity-link" >IssueListComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/IssueListItemComponent.html" data-type="entity-link" >IssueListItemComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/JustificarFaltaModalComponent.html" data-type="entity-link" >JustificarFaltaModalComponent</a>
@@ -377,9 +383,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/WeekScheduleListComponent.html" data-type="entity-link" >WeekScheduleListComponent</a>
                             </li>
-                            <li class="link">
-                                <a href="components/WeekScheduleListItemComponent.html" data-type="entity-link" >WeekScheduleListItemComponent</a>
-                            </li>
                         </ul>
                     </li>
                         <li class="chapter">
@@ -391,13 +394,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
+                                    <a href="injectables/AdminIssueService.html" data-type="entity-link" >AdminIssueService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/AdminNotificationService.html" data-type="entity-link" >AdminNotificationService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/AdminTaskService.html" data-type="entity-link" >AdminTaskService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/AnalyticsHttpService.html" data-type="entity-link" >AnalyticsHttpService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/AssignmentHttpService.html" data-type="entity-link" >AssignmentHttpService</a>
@@ -499,6 +502,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/StudentTaskService-1.html" data-type="entity-link" >StudentTaskService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/SubjectCreateNavigationService.html" data-type="entity-link" >SubjectCreateNavigationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/SubjectService.html" data-type="entity-link" >SubjectService</a>
                                 </li>
                                 <li class="link">
@@ -520,7 +526,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/WeekScheduleAssignmentDataService.html" data-type="entity-link" >WeekScheduleAssignmentDataService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/WeekScheduleBulkGenerateHttpService.html" data-type="entity-link" >WeekScheduleBulkGenerateHttpService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/WeekScheduleClassesHttpService.html" data-type="entity-link" >WeekScheduleClassesHttpService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/WeekScheduleMaterializeHttpService.html" data-type="entity-link" >WeekScheduleMaterializeHttpService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/WeekScheduleNavigationService.html" data-type="entity-link" >WeekScheduleNavigationService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/WeekScheduleService.html" data-type="entity-link" >WeekScheduleService</a>
@@ -551,33 +566,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsAlumnosCicloRow.html" data-type="entity-link" >AnalyticsAlumnosCicloRow</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsAlumnosGrupoRow.html" data-type="entity-link" >AnalyticsAlumnosGrupoRow</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsAsistenciaRow.html" data-type="entity-link" >AnalyticsAsistenciaRow</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsExportParams.html" data-type="entity-link" >AnalyticsExportParams</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsProfesoresRow.html" data-type="entity-link" >AnalyticsProfesoresRow</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsSummary.html" data-type="entity-link" >AnalyticsSummary</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsSummaryResponse.html" data-type="entity-link" >AnalyticsSummaryResponse</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/AnalyticsTareasRow.html" data-type="entity-link" >AnalyticsTareasRow</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ApiMessage.html" data-type="entity-link" >ApiMessage</a>
-                            </li>
                             <li class="link">
                                 <a href="interfaces/ApiNotification.html" data-type="entity-link" >ApiNotification</a>
                             </li>
@@ -708,6 +696,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CourseByIdResponse.html" data-type="entity-link" >CourseByIdResponse</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/CourseCreatedPayload.html" data-type="entity-link" >CourseCreatedPayload</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/CourseCreateRequest.html" data-type="entity-link" >CourseCreateRequest</a>
                             </li>
                             <li class="link">
@@ -783,16 +774,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EnrollmentsAllResponse.html" data-type="entity-link" >EnrollmentsAllResponse</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EnrollmentsForScheduleContextResponse.html" data-type="entity-link" >EnrollmentsForScheduleContextResponse</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/EnrollmentUpdateRequest.html" data-type="entity-link" >EnrollmentUpdateRequest</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EnrollmentUpdateResponse.html" data-type="entity-link" >EnrollmentUpdateResponse</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/EnrollmentWithSubjectAndGroup.html" data-type="entity-link" >EnrollmentWithSubjectAndGroup</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GetAsignaturasAlumnoResponse.html" data-type="entity-link" >GetAsignaturasAlumnoResponse</a>
@@ -843,6 +828,30 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/GroupUpdateResponse.html" data-type="entity-link" >GroupUpdateResponse</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/Issue.html" data-type="entity-link" >Issue</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssueByIdResponse.html" data-type="entity-link" >IssueByIdResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssueCreateRequest.html" data-type="entity-link" >IssueCreateRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssueCreateResponse.html" data-type="entity-link" >IssueCreateResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssueDeleteResponse.html" data-type="entity-link" >IssueDeleteResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssuesAllResponse.html" data-type="entity-link" >IssuesAllResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssueUpdateRequest.html" data-type="entity-link" >IssueUpdateRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IssueUpdateResponse.html" data-type="entity-link" >IssueUpdateResponse</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/ListItemConfig.html" data-type="entity-link" >ListItemConfig</a>
                             </li>
                             <li class="link">
@@ -880,6 +889,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/PendingJustificationsResponse.html" data-type="entity-link" >PendingJustificationsResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PendingStudentDraft.html" data-type="entity-link" >PendingStudentDraft</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/RecipientOption.html" data-type="entity-link" >RecipientOption</a>
@@ -1005,12 +1017,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/SubjectDetail.html" data-type="entity-link" >SubjectDetail</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/SubjectGroupYearKey.html" data-type="entity-link" >SubjectGroupYearKey</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SubjectInGroupForYearSlice.html" data-type="entity-link" >SubjectInGroupForYearSlice</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/SubjectsAllResponse.html" data-type="entity-link" >SubjectsAllResponse</a>
                             </li>
                             <li class="link">
@@ -1125,6 +1131,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/WeekScheduleAssignmentWithIncludes.html" data-type="entity-link" >WeekScheduleAssignmentWithIncludes</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/WeekScheduleBulkGenerateRequest.html" data-type="entity-link" >WeekScheduleBulkGenerateRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/WeekScheduleBulkGenerateResponse.html" data-type="entity-link" >WeekScheduleBulkGenerateResponse</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/WeekScheduleByIdApiResponse.html" data-type="entity-link" >WeekScheduleByIdApiResponse</a>
                             </li>
                             <li class="link">
@@ -1149,6 +1161,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/WeekScheduleCreateApiResponse.html" data-type="entity-link" >WeekScheduleCreateApiResponse</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/WeekScheduleCreateNavigationContext.html" data-type="entity-link" >WeekScheduleCreateNavigationContext</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/WeekScheduleCreateRequest.html" data-type="entity-link" >WeekScheduleCreateRequest</a>
                             </li>
                             <li class="link">
@@ -1161,7 +1176,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/WeekScheduleDeleteResponse.html" data-type="entity-link" >WeekScheduleDeleteResponse</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/WeekScheduleGridCellHoursSlice.html" data-type="entity-link" >WeekScheduleGridCellHoursSlice</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/WeekScheduleMaterializeRequest.html" data-type="entity-link" >WeekScheduleMaterializeRequest</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/WeekScheduleMaterializeResponse.html" data-type="entity-link" >WeekScheduleMaterializeResponse</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/WeekScheduleMaterializeResult.html" data-type="entity-link" >WeekScheduleMaterializeResult</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/WeekScheduleMaterializeSlot.html" data-type="entity-link" >WeekScheduleMaterializeSlot</a>

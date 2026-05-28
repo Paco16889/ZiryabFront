@@ -271,7 +271,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface WeekScheduleClassCourseRef {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { WeekSchedule } from &#x27;../week-schedule&#x27;;
+
+/** Referencia mínima a ciclo formativo en listado de clases para horarios. */
+export interface WeekScheduleClassCourseRef {
   /** Identificador del ciclo/curso en el backend. */
   id: number;
 
@@ -332,9 +335,27 @@ export function weekScheduleClassKey(c: WeekScheduleClassItem): string {
   return &#x60;${c.course.id}|${c.grade}|${c.group.id}|${c.schoolYear}&#x60;;
 }
 
-/** Clases con oferta docente y sin plantilla horaria creada (pestaña Crear plantilla). */
+/** Clases elegibles en Crear plantilla (&#x60;GET&#x60; con &#x60;hasWeekSchedule&#x3D;false&#x60;). */
 export function isWeekScheduleClassEligibleForCreateTemplate(c: WeekScheduleClassItem): boolean {
-  return c.subjectCount &gt; 0 &amp;&amp; !c.hasWeekSchedule;
+  return c.subjectCount &gt; 0 &amp;&amp; c.hasWeekSchedule &#x3D;&#x3D;&#x3D; false;
+}
+
+/** Plantilla con al menos una franja sin &#x60;teacherAssignment&#x60; (rejilla: celdas libres). */
+export function classHasVacantScheduleSlots(
+  cls: WeekScheduleClassItem,
+  schedules: WeekSchedule[],
+): boolean {
+  return schedules.some(
+    (s) &#x3D;&gt; s.label &#x3D;&#x3D;&#x3D; cls.label &amp;&amp; s.teacherAssignment &#x3D;&#x3D; null,
+  );
+}
+
+/** Rejilla: clases con plantilla y franjas vacías por asignar. */
+export function isWeekScheduleClassEligibleForGridSelector(
+  c: WeekScheduleClassItem,
+  schedules: WeekSchedule[],
+): boolean {
+  return c.subjectCount &gt; 0 &amp;&amp; classHasVacantScheduleSlots(c, schedules);
 }
 </code></pre>
     </div>

@@ -221,7 +221,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Hora final de la franja en formato estricto <code>HH:mm</code>.</p>
+                                    <div class="io-description"><p>Hora de fin (<code>HH:mm</code>).</p>
 </div>
                                 </td>
                             </tr>
@@ -260,7 +260,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Hora de inicio de la franja en formato estricto <code>HH:mm</code>.</p>
+                                    <div class="io-description"><p>Hora de inicio (<code>HH:mm</code>).</p>
 </div>
                                 </td>
                             </tr>
@@ -273,30 +273,21 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, output } from &#x27;@angular/core&#x27;;
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+import { isValidHhMmTime, normalizeHhMmTime, timeToMinutes } from &#x27;../../../../../core/utils/time-range&#x27;;
 import {
-  isValidHhMmTime,
-  normalizeHhMmTime,
-  timeToMinutes,
-} from &#x27;../../../../../core/utils/time-range&#x27;;
+  defaultWeekScheduleSlotRow,
+  nextWeekScheduleSlotRow,
+  weekScheduleSlotStartPlaceholder,
+} from &#x27;./week-schedule-create-slots.util&#x27;;
 
 /** Una franja horaria de la plantilla (inicio–fin en &#x60;HH:mm&#x60;). */
 export interface WeekScheduleCreateSlotRow {
-  /** Hora de inicio de la franja en formato estricto &#x60;HH:mm&#x60;. */
+  /** Hora de inicio (&#x60;HH:mm&#x60;). */
   startTime: string;
 
-  /** Hora final de la franja en formato estricto &#x60;HH:mm&#x60;. */
+  /** Hora de fin (&#x60;HH:mm&#x60;). */
   finishTime: string;
 }
-
-/** Primera franja configurada para el centro, usada al añadir filas nuevas. */
-const firstCenterSlot &#x3D; environment.timetableSlots[0];
-
-/** Fila base para mantener una hora inicial válida antes de que el usuario edite. */
-const DEFAULT_SLOT_ROW: WeekScheduleCreateSlotRow &#x3D; {
-  startTime: firstCenterSlot?.startTime ?? &#x27;08:15&#x27;,
-  finishTime: firstCenterSlot?.finishTime ?? &#x27;09:15&#x27;,
-};
 
 /**
  * Número de franjas y filas dinámicas inicio/fin para la plantilla horaria.
@@ -311,38 +302,62 @@ const DEFAULT_SLOT_ROW: WeekScheduleCreateSlotRow &#x3D; {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleCreateSlotsComponent {
-  /** Lista de franjas controlada por el componente padre. */
-  readonly slots &#x3D; input&lt;WeekScheduleCreateSlotRow[]&gt;([{ ...DEFAULT_SLOT_ROW }]);
+  /** Franjas horarias editables de la plantilla. */
+  readonly slots &#x3D; input&lt;WeekScheduleCreateSlotRow[]&gt;([defaultWeekScheduleSlotRow()]);
 
-  /** Activa los mensajes visuales cuando el padre ya intentó enviar el formulario. */
+  /** Muestra errores de validación en plantilla. */
   readonly showValidation &#x3D; input(false);
 
-  /** Bloquea cambios mientras la plantilla no debe editarse o se está enviando. */
+  /** Bloquea edición de franjas. */
   readonly disabled &#x3D; input(false);
 
-  /** Emite una copia completa de las franjas cada vez que cambia cantidad u horas. */
+  /** Máximo de filas de franja (horas semanales ÷ días seleccionados). */
+  readonly maxSlots &#x3D; input&lt;number | null&gt;(null);
+
+  /** Horas semanales del centro para calcular &#x60;maxSlots&#x60;. */
+  readonly weeklyHoursTotal &#x3D; input&lt;number | null&gt;(null);
+
+  /** Días laborables seleccionados en la plantilla. */
+  readonly selectedDayCount &#x3D; input(0);
+
+  /** Emite el array de franjas cuando el usuario edita filas u horas. */
   readonly slotsChange &#x3D; output&lt;WeekScheduleCreateSlotRow[]&gt;();
 
-  /** Placeholder que enseña el formato de hora exigido por las validaciones. */
-  readonly timePlaceholder &#x3D; &#x27;08:15&#x27;;
-
-  /** Número actual de franjas que se muestra en el selector de cantidad. */
+  /** Número actual de filas de franja. */
   slotCount(): number {
     return this.slots().length;
   }
 
-  /**
-   * Ajusta el tamaño de la lista de franjas sin mutar el input original:
-   * añade filas con la franja base o elimina desde el final.
-   */
+  /** Máximo de franjas permitido según horas semanales y días. */
+  effectiveMaxSlots(): number | null {
+    const max &#x3D; this.maxSlots();
+    return max !&#x3D; null &amp;&amp; max &gt; 0 ? max : null;
+  }
+
+  /** Indica si no se pueden añadir más franjas. */
+  isAtMaxSlots(): boolean {
+    const max &#x3D; this.effectiveMaxSlots();
+    return max !&#x3D; null &amp;&amp; this.slots().length &gt;&#x3D; max;
+  }
+
+  /** Placeholder de inicio sugerido para la fila &#x60;index&#x60;. */
+  startPlaceholder(index: number): string {
+    return weekScheduleSlotStartPlaceholder(this.slots(), index);
+  }
+
+  /** Ajusta el número de filas de franja (añadir o quitar). */
   onSlotCountChange(raw: string): void {
     if (this.disabled()) {
       return;
     }
-    const count &#x3D; Math.max(1, Math.floor(Number(raw)) || 1);
+    let count &#x3D; Math.max(1, Math.floor(Number(raw)) || 1);
+    const max &#x3D; this.effectiveMaxSlots();
+    if (max !&#x3D; null) {
+      count &#x3D; Math.min(count, max);
+    }
     const next &#x3D; [...this.slots()];
     while (next.length &lt; count) {
-      next.push({ ...DEFAULT_SLOT_ROW });
+      next.push(nextWeekScheduleSlotRow(next));
     }
     while (next.length &gt; count) {
       next.pop();
@@ -350,7 +365,7 @@ export class WeekScheduleCreateSlotsComponent {
     this.slotsChange.emit(next);
   }
 
-  /** Actualiza una celda concreta de hora y emite la lista completa al padre. */
+  /** Actualiza inicio o fin de una franja mientras se escribe. */
   onSlotTimeInput(index: number, field: keyof WeekScheduleCreateSlotRow, value: string): void {
     if (this.disabled()) {
       return;
@@ -361,10 +376,7 @@ export class WeekScheduleCreateSlotsComponent {
     this.slotsChange.emit(next);
   }
 
-  /**
-   * Normaliza la hora al perder foco solo si el valor sigue siendo &#x60;HH:mm&#x60; válido;
-   * los valores inválidos se mantienen para que el usuario vea y corrija el error.
-   */
+  /** Normaliza formato &#x60;HH:mm&#x60; al salir del campo. */
   onSlotTimeBlur(index: number, field: keyof WeekScheduleCreateSlotRow, value: string): void {
     if (this.disabled()) {
       return;
@@ -375,19 +387,19 @@ export class WeekScheduleCreateSlotsComponent {
     }
   }
 
-  /** Comprueba si un campo individual incumple el formato &#x60;HH:mm&#x60;. */
+  /** &#x60;true&#x60; si el texto no es una hora &#x60;HH:mm&#x60; válida. */
   isFieldFormatInvalid(value: string): boolean {
     return !isValidHhMmTime(value.trim());
   }
 
-  /** Indica si inicio o fin de una fila tienen formato horario inválido. */
+  /** Valida formato de inicio y fin de una fila. */
   isRowFormatInvalid(row: WeekScheduleCreateSlotRow): boolean {
     return (
       this.isFieldFormatInvalid(row.startTime) || this.isFieldFormatInvalid(row.finishTime)
     );
   }
 
-  /** Detecta franjas donde el fin no es posterior al inicio. */
+  /** &#x60;true&#x60; si la hora de fin no es posterior al inicio. */
   isRowTimeOrderInvalid(row: WeekScheduleCreateSlotRow): boolean {
     if (!isValidHhMmTime(row.startTime) || !isValidHhMmTime(row.finishTime)) {
       return false;
@@ -395,7 +407,7 @@ export class WeekScheduleCreateSlotsComponent {
     return timeToMinutes(row.startTime) &gt;&#x3D; timeToMinutes(row.finishTime);
   }
 
-  /** Resume si hay cualquier franja inválida para bloquear el envío del padre. */
+  /** Indica si alguna franja tiene error de formato u orden. */
   hasInvalidSlots(): boolean {
     return this.slots().some(
       (row) &#x3D;&gt; this.isRowFormatInvalid(row) || this.isRowTimeOrderInvalid(row),

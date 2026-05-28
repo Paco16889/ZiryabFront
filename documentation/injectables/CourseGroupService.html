@@ -137,6 +137,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Cliente HTTP para la gestión admin de grupos dentro de ciclos (<code>/api/course-groups</code>).</p>
+
+            </p>
 
 
 
@@ -224,14 +231,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:41</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Asigna o quita el tutor de un grupo en ciclo.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -242,6 +251,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -256,6 +266,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador de <code>course_groups</code>.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>tutorId</td>
@@ -268,6 +282,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Profesor tutor o <code>null</code> para desasignar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -303,14 +321,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:30</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Vincula un grupo a un ciclo en un curso concreto.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -321,6 +341,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -335,6 +356,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del ciclo.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>idGroup</td>
@@ -347,6 +372,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del grupo.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>grade</td>
@@ -359,6 +388,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Curso dentro del ciclo (<code>&quot;1&quot;</code> o <code>&quot;2&quot;</code>).</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -394,14 +427,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:51</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Elimina la vinculación ciclo–grupo.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -412,6 +447,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -426,6 +462,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador de <code>course_groups</code>.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -461,14 +501,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:18</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Lista todas las relaciones ciclo–grupo.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Observable&lt;CourseGroupsResponse&gt;</code>
@@ -510,10 +552,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:12</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Base URL del recurso <code>course-groups</code>.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -543,10 +591,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/core/services/admin/entities/course-group.service.ts:15</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cliente HTTP de Angular.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -563,29 +617,49 @@ import { catchError } from &#x27;rxjs/operators&#x27;;
 import { environment } from &#x27;../../../../../environments/environment&#x27;;
 import { AssignTutorResponse, CourseGroup, CourseGroupsResponse } from &#x27;../../../models/course-group&#x27;;
 
+/** Cliente HTTP para la gestión admin de grupos dentro de ciclos (&#x60;/api/course-groups&#x60;). */
 @Injectable({ providedIn: &#x27;root&#x27; })
 export class CourseGroupService {
+  /** Base URL del recurso &#x60;course-groups&#x60;. */
   private readonly apiUrl &#x3D; &#x60;${environment.apiUrl}/course-groups&#x60;;
+
+  /** Cliente HTTP de Angular. */
   private readonly http &#x3D; inject(HttpClient);
 
+  /** Lista todas las relaciones ciclo–grupo. */
   getAll(): Observable&lt;CourseGroupsResponse&gt; {
     return this.http.get&lt;CourseGroupsResponse&gt;(this.apiUrl).pipe(
       catchError((err) &#x3D;&gt; { throw err; })
     );
   }
 
+  /**
+   * Vincula un grupo a un ciclo en un curso concreto.
+   * @param idCourse Identificador del ciclo.
+   * @param idGroup Identificador del grupo.
+   * @param grade Curso dentro del ciclo (&#x60;&quot;1&quot;&#x60; o &#x60;&quot;2&quot;&#x60;).
+   */
   create(idCourse: number, idGroup: number, grade: string): Observable&lt;{ success: boolean; data: CourseGroup }&gt; {
     return this.http.post&lt;{ success: boolean; data: CourseGroup }&gt;(this.apiUrl, { idCourse, idGroup, grade }).pipe(
       catchError((err) &#x3D;&gt; { throw err; })
     );
   }
 
+  /**
+   * Asigna o quita el tutor de un grupo en ciclo.
+   * @param id Identificador de &#x60;course_groups&#x60;.
+   * @param tutorId Profesor tutor o &#x60;null&#x60; para desasignar.
+   */
   assignTutor(id: number, tutorId: number | null): Observable&lt;AssignTutorResponse&gt; {
     return this.http.patch&lt;AssignTutorResponse&gt;(&#x60;${this.apiUrl}/${id}/tutor&#x60;, { tutorId }).pipe(
       catchError((err) &#x3D;&gt; { throw err; })
     );
   }
 
+  /**
+   * Elimina la vinculación ciclo–grupo.
+   * @param id Identificador de &#x60;course_groups&#x60;.
+   */
   delete(id: number): Observable&lt;{ success: boolean; message: string }&gt; {
     return this.http.delete&lt;{ success: boolean; message: string }&gt;(&#x60;${this.apiUrl}/${id}&#x60;).pipe(
       catchError((err) &#x3D;&gt; { throw err; })

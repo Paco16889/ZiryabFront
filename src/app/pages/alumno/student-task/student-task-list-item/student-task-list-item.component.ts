@@ -15,6 +15,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './student-task-list-item.component.scss'
 })
 export class StudentTaskListItemComponent {
+  /** Traducciones de estados de entrega. */
   private translate = inject(TranslateService);
   /** Entrega del alumno con todos sus datos y la tarea asociada */
   @Input() studentTask!: StudentTask;

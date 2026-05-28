@@ -144,6 +144,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Grupo académico en el formulario de nueva clase.</p>
+
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -212,6 +219,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador del grupo.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -245,6 +258,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nombre del grupo.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -261,32 +280,64 @@ import { CourseGroupService } from &#x27;../../../../../core/services/admin/enti
 import { CourseGroup } from &#x27;../../../../../core/models/course-group&#x27;;
 import { environment } from &#x27;../../../../../../environments/environment&#x27;;
 
+/** Profesor candidato a tutor en un desplegable. */
 interface TeacherOption {
+  /** Identificador del profesor. */
   id: number;
+
+  /** Nombre del profesor. */
   name: string;
+
+  /** Primer apellido. */
   surname: string;
 }
 
+/** Ciclo formativo en el formulario de nueva clase. */
 interface CourseOption {
+  /** Identificador del ciclo. */
   id: number;
+
+  /** Nombre del ciclo. */
   name: string;
 }
 
+/** Grupo académico en el formulario de nueva clase. */
 interface GroupOption {
+  /** Identificador del grupo. */
   id: number;
+
+  /** Nombre del grupo. */
   name: string;
 }
 
+/** Fila editable de asignación de tutor a una clase (ciclo + grupo + grade). */
 interface CourseGroupRow {
+  /** Relación ciclo–grupo persistida. */
   cg: CourseGroup;
+
+  /** Tutor seleccionado en el desplegable (puede ser &#x60;null&#x60;). */
   selectedTutorId: number | null;
+
+  /** Guardado en curso para esta fila. */
   saving: boolean;
+
+  /** Muestra confirmación visual tras guardar. */
   saved: boolean;
+
+  /** Mensaje de error de la última operación. */
   error: string | null;
+
+  /** Profesores que pueden ser tutor de esta clase. */
   eligibleTutors: TeacherOption[];
+
+  /** Carga de tutores elegibles en curso. */
   loadingTutors: boolean;
 }
 
+/**
+ * Pantalla admin para asignar tutores a clases (ciclo + grupo + grade)
+ * y crear nuevas vinculaciones ciclo–grupo.
+ */
 @Component({
   selector: &#x27;app-tutor-assignment&#x27;,
   standalone: true,
@@ -294,32 +345,54 @@ interface CourseGroupRow {
   templateUrl: &#x27;./tutor-assignment.component.html&#x27;,
 })
 export class TutorAssignmentComponent implements OnInit {
-  private readonly cgService   &#x3D; inject(CourseGroupService);
-  private readonly http        &#x3D; inject(HttpClient);
+  /** CRUD de clases (ciclo–grupo–grade) y asignación de tutor. */
+  private readonly cgService &#x3D; inject(CourseGroupService);
 
-  rows       &#x3D; signal&lt;CourseGroupRow[]&gt;([]);
-  courses    &#x3D; signal&lt;CourseOption[]&gt;([]);
-  groups     &#x3D; signal&lt;GroupOption[]&gt;([]);
-  loading    &#x3D; signal(true);
-  loadError  &#x3D; signal&lt;string | null&gt;(null);
+  /** Carga catálogos de ciclos, grupos y tutores elegibles. */
+  private readonly http &#x3D; inject(HttpClient);
 
-  // Estado del formulario de creación de nueva clase
+  /** Filas de clases con tutor editable. */
+  rows &#x3D; signal&lt;CourseGroupRow[]&gt;([]);
+
+  /** Ciclos para el formulario de alta de clase. */
+  courses &#x3D; signal&lt;CourseOption[]&gt;([]);
+
+  /** Grupos para el formulario de alta de clase. */
+  groups &#x3D; signal&lt;GroupOption[]&gt;([]);
+
+  /** Carga inicial de tablas. */
+  loading &#x3D; signal(true);
+
+  /** Clave i18n o mensaje si falla la carga. */
+  loadError &#x3D; signal&lt;string | null&gt;(null);
+
+  /** Ciclo elegido al crear una clase nueva. */
   newCourseId &#x3D; signal&lt;number | null&gt;(null);
-  newGroupId  &#x3D; signal&lt;number | null&gt;(null);
-  newGrade    &#x3D; signal&lt;string | null&gt;(null);
-  creating    &#x3D; signal(false);
+
+  /** Grupo elegido al crear una clase nueva. */
+  newGroupId &#x3D; signal&lt;number | null&gt;(null);
+
+  /** Grade elegido al crear una clase nueva. */
+  newGrade &#x3D; signal&lt;string | null&gt;(null);
+
+  /** Alta de clase en curso. */
+  creating &#x3D; signal(false);
+
+  /** Error al crear clase. */
   createError &#x3D; signal&lt;string | null&gt;(null);
 
+  /** Carga cursos, grupos y filas de &#x60;course_groups&#x60;. */
   ngOnInit(): void {
     this.loadAll();
   }
 
+  /** Peticiones paralelas de catálogos y listado de clases. */
   private loadAll(): void {
     this.loading.set(true);
     this.loadError.set(null);
 
     const coursesUrl &#x3D; &#x60;${environment.apiUrl}/courses&#x60;;
-    const groupsUrl  &#x3D; &#x60;${environment.apiUrl}/groups&#x60;;
+    const groupsUrl &#x3D; &#x60;${environment.apiUrl}/groups&#x60;;
 
     this.http.get&lt;{ success: boolean; data: CourseOption[] }&gt;(coursesUrl).subscribe({
       next: (res) &#x3D;&gt; this.courses.set(res.data.sort((a, b) &#x3D;&gt; a.name.localeCompare(b.name))),
@@ -342,7 +415,6 @@ export class TutorAssignmentComponent implements OnInit {
             loadingTutors: true,
           }));
           this.rows.set(initial);
-          // Carga los tutores elegibles de cada fila en paralelo
           initial.forEach((row) &#x3D;&gt; this.loadEligibleTutors(row));
         }
         this.loading.set(false);
@@ -354,6 +426,7 @@ export class TutorAssignmentComponent implements OnInit {
     });
   }
 
+  /** Carga profesores elegibles como tutor para una fila. */
   private loadEligibleTutors(row: CourseGroupRow): void {
     const url &#x3D; &#x60;${environment.apiUrl}/course-groups/${row.cg.id}/eligible-tutors&#x60;;
     this.http.get&lt;{ success: boolean; data: TeacherOption[] }&gt;(url).subscribe({
@@ -376,28 +449,30 @@ export class TutorAssignmentComponent implements OnInit {
     });
   }
 
+  /** Persiste el tutor seleccionado para la clase. */
   saveTutor(row: CourseGroupRow): void {
     row.saving &#x3D; true;
-    row.saved  &#x3D; false;
-    row.error  &#x3D; null;
+    row.saved &#x3D; false;
+    row.error &#x3D; null;
 
     this.cgService.assignTutor(row.cg.id, row.selectedTutorId).subscribe({
       next: (res) &#x3D;&gt; {
-        row.cg           &#x3D; res.data;
-        row.saving       &#x3D; false;
-        row.saved        &#x3D; true;
+        row.cg &#x3D; res.data;
+        row.saving &#x3D; false;
+        row.saved &#x3D; true;
         setTimeout(() &#x3D;&gt; (row.saved &#x3D; false), 3000);
       },
       error: (err) &#x3D;&gt; {
         row.saving &#x3D; false;
-        row.error  &#x3D; err?.error?.message ?? &#x27;adminPages.tutors.errorSaving&#x27;;
+        row.error &#x3D; err?.error?.message ?? &#x27;adminPages.tutors.errorSaving&#x27;;
       },
     });
   }
 
+  /** Crea una nueva clase (ciclo + grupo + grade) y la añade a la tabla. */
   createCourseGroup(): void {
-    const cId   &#x3D; this.newCourseId();
-    const gId   &#x3D; this.newGroupId();
+    const cId &#x3D; this.newCourseId();
+    const gId &#x3D; this.newGroupId();
     const grade &#x3D; this.newGrade();
     if (!cId || !gId || !grade) return;
 
@@ -429,6 +504,7 @@ export class TutorAssignmentComponent implements OnInit {
     });
   }
 
+  /** Elimina la vinculación ciclo–grupo de la fila. */
   deleteRow(row: CourseGroupRow): void {
     this.cgService.delete(row.cg.id).subscribe({
       next: () &#x3D;&gt; this.rows.update((rows) &#x3D;&gt; rows.filter((r) &#x3D;&gt; r.cg.id !&#x3D;&#x3D; row.cg.id)),

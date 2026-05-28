@@ -14,6 +14,10 @@ import {
 import { SelectedStudentService } from '../../../../../core/services/admin/selected-student.service';
 import { normalizeGradeValue } from '../../../../../core/utils/week-schedule-assignment-filters';
 
+/**
+ * Paso 3 del wizard de matriculación: elegir ciclo, grupo y asignaturas
+ * antes de confirmar el alta en backend (EQ-311 / EQ-313).
+ */
 @Component({
   selector: 'app-set-registration',
   imports: [FormsModule, BotonConfirmarStudentComponent, TranslateModule],
@@ -21,30 +25,61 @@ import { normalizeGradeValue } from '../../../../../core/utils/week-schedule-ass
   styleUrl: './set-registration.component.scss',
 })
 export class SetRegistrationComponent {
+  /** Catálogo de ciclos formativos. */
   private readonly courseService = inject(CourseService);
+
+  /** Catálogo de grupos académicos. */
   private readonly groupService = inject(GroupService);
+
+  /** Asignaturas por ciclo y selección para matricular. */
   private readonly subjectService = inject(SubjectService);
+
+  /** Confirmación de matrícula (alumno nuevo o existente). */
   private readonly studentRegService = inject(StudentRegistrationService);
+
+  /** Mensajes de error i18n del paso 3. */
   private readonly translate = inject(TranslateService);
+
+  /** Alumno/borrador activo y estado del wizard. */
   readonly studentSelectedService = inject(SelectedStudentService);
 
+  /** Ciclos cargados desde `CourseService`. */
   readonly courses = this.courseService.courses;
+
+  /** Grupos cargados desde `GroupService`. */
   readonly groups = this.groupService.groups;
 
+  /** Ciclo seleccionado en el desplegable. */
   selectedCicloId: number | null = null;
+
+  /** Grupo donde se matriculará al alumno. */
   selectedGroupId: number | null = null;
+
+  /** Asignaturas del ciclo elegido (todas las ofertas). */
   asignaturasPorCiclo: Subject[] | null = null;
+
+  /** Asignaturas marcadas para la matrícula. */
   selectedSubjects: Subject[] = [];
+
   /** Oferta completa activa (solo un grade a la vez); null = selección suelta. */
   activeFullOfferGrade: string | null = null;
 
+  /** Nombre del alumno o borrador mostrado en cabecera. */
   enrollmentTargetLabel = '';
+
+  /** Confirmación de matrícula en curso. */
   readonly isSaving = signal(false);
+
+  /** Mensaje de error traducido tras fallo al guardar. */
   readonly saveError = signal<string | null>(null);
 
+  /** Listado de alumnos (legacy del contenedor padre). */
   @Input() students: Student[] = [];
+
+  /** Cierra el wizard tras matrícula exitosa. */
   @Output() closeForm = new EventEmitter<void>();
 
+  /** Carga catálogos y etiqueta del objetivo de matrícula. */
   ngOnInit(): void {
     this.courseService.loadCourses();
     this.groupService.loadGroups();
@@ -52,17 +87,20 @@ export class SetRegistrationComponent {
     this.enrollmentTargetLabel = this.studentSelectedService.enrollmentTargetLabel();
   }
 
+  /** Limpia asignaturas y oferta completa seleccionada. */
   private resetSubjectSelection(): void {
     this.selectedSubjects = [];
     this.activeFullOfferGrade = null;
   }
 
+  /** Al cambiar ciclo, resetea grupo y asignaturas. */
   eligeCiclo(): void {
     this.selectedGroupId = null;
     this.asignaturasPorCiclo = null;
     this.resetSubjectSelection();
   }
 
+  /** Carga asignaturas del ciclo cuando hay ciclo y grupo válidos. */
   eligeGrupo(): void {
     if (this.selectedCicloId == null || this.selectedGroupId == null) {
       this.asignaturasPorCiclo = null;
@@ -74,6 +112,7 @@ export class SetRegistrationComponent {
     this.resetSubjectSelection();
   }
 
+  /** Grades distintos presentes en la oferta del ciclo. */
   availableFullOfferGrades(): string[] {
     const grades = new Set<string>();
     for (const subject of this.asignaturasPorCiclo ?? []) {
@@ -82,6 +121,7 @@ export class SetRegistrationComponent {
     return [...grades].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   }
 
+  /** Asignaturas de un grade concreto dentro del ciclo. */
   private subjectsForGrade(grade: string): Subject[] {
     const gradeNorm = normalizeGradeValue(grade);
     return (this.asignaturasPorCiclo ?? []).filter(
@@ -89,10 +129,12 @@ export class SetRegistrationComponent {
     );
   }
 
+  /** Indica si la oferta completa de un grade está activa. */
   isFullOfferSelected(grade: string): boolean {
     return this.activeFullOfferGrade === normalizeGradeValue(grade);
   }
 
+  /** Marca o desmarca todas las asignaturas de un grade. */
   toggleFullOffer(grade: string, event: Event): void {
     const input = event.target as HTMLInputElement;
     const gradeNorm = normalizeGradeValue(grade);
@@ -108,10 +150,12 @@ export class SetRegistrationComponent {
     }
   }
 
+  /** Comprueba si una asignatura está en `selectedSubjects`. */
   isSubjectSelected(subject: Subject): boolean {
     return this.selectedSubjects.some((s) => s.id === subject.id);
   }
 
+  /** Añade o quita una asignatura de la selección manual. */
   onToggleSubject(subject: Subject, event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -151,11 +195,13 @@ export class SetRegistrationComponent {
     });
   }
 
+  /** Restaura flags de guardado en curso. */
   private finishSaving(): void {
     this.isSaving.set(false);
     this.studentSelectedService.enrollmentInProgress.set(false);
   }
 
+  /** Traduce códigos de `EnrollmentConfirmErrorCode` a mensaje de UI. */
   private resolveSaveErrorMessage(err: unknown): string {
     const code =
       err instanceof Error ? (err.message as EnrollmentConfirmErrorCode) : 'REGISTRATION_FAILED';

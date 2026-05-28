@@ -25,6 +25,9 @@ export class LoginComponent {
    */
   error = signal(false);
 
+  /** Mensaje detallado cuando el backend o Firebase devuelve un error concreto. */
+  errorMessage = signal<string | null>(null);
+
   /**
    * Indica si la petición de inicio de sesión está en curso.
    */
@@ -87,6 +90,7 @@ export class LoginComponent {
 
     this.loading.set(true);
     this.error.set(false);
+    this.errorMessage.set(null);
 
     try {
       const { email, password } = this.formLogin.value;
@@ -114,8 +118,22 @@ export class LoginComponent {
           }
 
         },
-        error: (error) => {
-          console.error('❌ Error en login:', error);
+        error: (err: { error?: { message?: string }; message?: string; code?: string }) => {
+          console.error('❌ Error en login:', err);
+          const backendMsg = err?.error?.message;
+          const firebaseCodes = new Set([
+            'auth/invalid-credential',
+            'auth/wrong-password',
+            'auth/user-not-found',
+            'auth/invalid-email',
+          ]);
+          if (backendMsg) {
+            this.errorMessage.set(backendMsg);
+          } else if (err?.code && firebaseCodes.has(err.code)) {
+            this.errorMessage.set(null);
+          } else if (err?.message) {
+            this.errorMessage.set(err.message);
+          }
           this.error.set(true);
           this.loading.set(false);
         }

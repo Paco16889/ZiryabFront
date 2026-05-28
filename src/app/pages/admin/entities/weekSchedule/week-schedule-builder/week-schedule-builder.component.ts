@@ -7,6 +7,7 @@ import { weekScheduleClassKeyFromParts } from '../../../../../core/utils/week-sc
 import { WeekScheduleCreateTemplateComponent } from '../week-schedule-create-template/week-schedule-create-template.component';
 import { WeekScheduleGridBuilderComponent } from '../week-schedule-grid-builder/week-schedule-grid-builder.component';
 
+/** Pestaña activa del builder: crear plantilla o editar rejilla semanal. */
 export type WeekScheduleBuilderMode = 'create' | 'grid';
 
 /**
@@ -25,8 +26,10 @@ export type WeekScheduleBuilderMode = 'create' | 'grid';
   styleUrl: './week-schedule-builder.component.scss',
 })
 export class WeekScheduleBuilderComponent implements OnInit {
+  /** Contexto pendiente al llegar desde asignaciones docentes (EQ-309). */
   private readonly scheduleNav = inject(WeekScheduleNavigationService);
 
+  /** Notifica al menú admin que el horario quedó guardado o materializado. */
   readonly scheduleCreated = output<void>();
 
   /** Pestaña por defecto: crear plantilla (CURSO-90). */
@@ -38,6 +41,7 @@ export class WeekScheduleBuilderComponent implements OnInit {
   /** Clase a preseleccionar en crear plantilla (EQ-309). */
   readonly createPreselectClassKey = signal('');
 
+  /** Aplica contexto pendiente de navegación desde asignaciones docentes. */
   ngOnInit(): void {
     const pending = this.scheduleNav.takePendingCreate();
     if (pending == null) {
@@ -54,10 +58,12 @@ export class WeekScheduleBuilderComponent implements OnInit {
     );
   }
 
+  /** Cambia entre pestaña de plantilla y rejilla. */
   setBuilderMode(mode: WeekScheduleBuilderMode): void {
     this.builderMode.set(mode);
   }
 
+  /** La rejilla guardó cambios; propaga evento al contenedor. */
   onGridScheduleSaved(): void {
     this.scheduleCreated.emit();
   }

@@ -14,8 +14,10 @@ import { WeekScheduleBuilderComponent } from '../week-schedule-builder/week-sche
   styleUrl: './week-schedule-list.component.scss',
 })
 export class WeekScheduleListComponent {
+  /** Recarga horarios tras guardar en el builder. */
   private readonly weekScheduleService = inject(WeekScheduleService);
 
+  /** Propaga guardado del builder al servicio de listado. */
   onScheduleSaved(): void {
     this.weekScheduleService.loadSchedules();
   }

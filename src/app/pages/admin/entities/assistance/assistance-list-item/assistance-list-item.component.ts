@@ -15,7 +15,10 @@ import {
   AssistanceUpdatePayload,
 } from '../../../../../core/services/admin/entities/assistance.service';
 
-/** Etiquetas en castellano para estados de asistencia usados por el CRUD admin. */
+/**
+ * Etiquetas en castellano para estados de asistencia (fallback si falla i18n).
+ * @deprecated Preferir `getStatusLabel` con claves de traducción.
+ */
 const STATUS_LABELS: Record<AssistanceStatus, string> = {
   [AssistanceStatus.PRESENT]: 'Presente',
   [AssistanceStatus.ABSENT]: 'Ausente',
@@ -33,12 +36,17 @@ const STATUS_LABELS: Record<AssistanceStatus, string> = {
 export class AssistanceListItemComponent {
   /** Servicio usado por el componente genérico para detalle, edición y borrado. */
   private readonly assistanceService = inject(AssistanceService);
+
+  /** Traducciones de campos y estados de asistencia. */
   private readonly translate = inject(TranslateService);
 
   /** Registro de asistencia que se muestra en esta fila. */
   @Input({ required: true }) assistance!: Assistance;
 
-  /** Configuración del item genérico: campos, edición de estado y acciones CRUD. */
+  /**
+   * Configuración del item genérico: campos, edición de estado y acciones CRUD.
+   * Incluye callbacks de detalle, actualización y borrado contra `AssistanceService`.
+   */
   readonly assistanceConfig: ListItemConfig<
     Assistance,
     AssistanceUpdatePayload,
@@ -115,6 +123,7 @@ export class AssistanceListItemComponent {
     ],
   };
 
+  /** Etiqueta i18n del estado de asistencia para listado y detalle. */
   private getStatusLabel(status: AssistanceStatus): string {
     const keyByStatus: Record<AssistanceStatus, string> = {
       [AssistanceStatus.PRESENT]: 'teacherPages.attendance.status.present',

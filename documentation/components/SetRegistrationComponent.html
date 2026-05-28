@@ -142,10 +142,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Componente que gestiona la selección de ciclo y asignaturas
-para la matriculación de un estudiante.
-Permite seleccionar asignaturas individualmente o mediante la opción
-de oferta completa, y confirma la matriculación al servicio correspondiente.</p>
+        <p>Paso 3 del wizard de matriculación: elegir ciclo, grupo y asignaturas
+antes de confirmar el alta en backend (EQ-311 / EQ-313).</p>
 
     </p>
 
@@ -179,6 +177,7 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
                 <td class="col-md-9">
                                 <code><a href="https://angular.io/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
                                 <code><a href="../components/BotonConfirmarStudentComponent.html" target="_self" >BotonConfirmarStudentComponent</a></code>
+                            <code>TranslateModule</code>
                 </td>
             </tr>
 
@@ -218,38 +217,67 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#activeFullOfferGrade" >activeFullOfferGrade</a>
+                            </li>
+                            <li>
                                 <a href="#asignaturasPorCiclo" >asignaturasPorCiclo</a>
                             </li>
                             <li>
-                                <a href="#ciclos" >ciclos</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#courses" >courses</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#courseService" >courseService</a>
                             </li>
                             <li>
-                                <a href="#isOfertaCompletaSelected" >isOfertaCompletaSelected</a>
+                                <a href="#enrollmentTargetLabel" >enrollmentTargetLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groups" >groups</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#groupService" >groupService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isSaving" >isSaving</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saveError" >saveError</a>
                             </li>
                             <li>
                                 <a href="#selectedCicloId" >selectedCicloId</a>
                             </li>
                             <li>
-                                <a href="#selectedStudent" >selectedStudent</a>
+                                <a href="#selectedGroupId" >selectedGroupId</a>
                             </li>
                             <li>
                                 <a href="#selectedSubjects" >selectedSubjects</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#studentRegService" >studentRegService</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#studentSelectedService" >studentSelectedService</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#subjectService" >subjectService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
                             </li>
                         </ul>
                     </td>
@@ -264,7 +292,20 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#availableFullOfferGrades" >availableFullOfferGrades</a>
+                            </li>
+                            <li>
                                 <a href="#eligeCiclo" >eligeCiclo</a>
+                            </li>
+                            <li>
+                                <a href="#eligeGrupo" >eligeGrupo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#finishSaving" >finishSaving</a>
+                            </li>
+                            <li>
+                                <a href="#isFullOfferSelected" >isFullOfferSelected</a>
                             </li>
                             <li>
                                 <a href="#isSubjectSelected" >isSubjectSelected</a>
@@ -279,7 +320,19 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
                                 <a href="#onToggleSubject" >onToggleSubject</a>
                             </li>
                             <li>
-                                <a href="#toggleOfertaCompleta" >toggleOfertaCompleta</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetSubjectSelection" >resetSubjectSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resolveSaveErrorMessage" >resolveSaveErrorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subjectsForGrade" >subjectsForGrade</a>
+                            </li>
+                            <li>
+                                <a href="#toggleFullOffer" >toggleFullOffer</a>
                             </li>
                         </ul>
                     </td>
@@ -321,117 +374,6 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(courseService: <a href="../injectables/CourseService.html" target="_self">CourseService</a>, subjectService: <a href="../injectables/SubjectService.html" target="_self">SubjectService</a>, studentRegService: <a href="../injectables/StudentRegistrationService.html" target="_self">StudentRegistrationService</a>, studentSelectedService: <a href="../injectables/SelectedStudentService.html" target="_self">SelectedStudentService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:68</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Inicializa el componente.</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>courseService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/CourseService.html" target="_self" >CourseService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que gestiona los ciclos académicos</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>subjectService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/SubjectService.html" target="_self" >SubjectService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que gestiona las asignaturas</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>studentRegService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/StudentRegistrationService.html" target="_self" >StudentRegistrationService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que gestiona el proceso de matriculación</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>studentSelectedService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/SelectedStudentService.html" target="_self" >SelectedStudentService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que proporciona el estudiante actualmente seleccionado</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -456,12 +398,12 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:77</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Listado de estudiantes disponibles para seleccionar.</p>
+                        <div class="io-description"><p>Listado de alumnos (legacy del contenedor padre).</p>
 </div>
                     </td>
                 </tr>
@@ -486,12 +428,12 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:80</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando el formulario de matriculación se cierra.</p>
+                        <div class="io-description"><p>Cierra el wizard tras matrícula exitosa.</p>
 </div>
                     </td>
                 </tr>
@@ -505,6 +447,45 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="availableFullOfferGrades"></a>
+                    <span class="name">
+                        <span ><b>availableFullOfferGrades</b></span>
+                        <a href="#availableFullOfferGrades"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>availableFullOfferGrades()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Grades distintos presentes en la oferta del ciclo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -525,22 +506,170 @@ de oferta completa, y confirma la matriculación al servicio correspondiente.</p
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="98"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:98</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:97</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Actualiza las asignaturas disponibles al seleccionar un ciclo.
-Reinicia la selección de asignaturas y el estado de oferta completa.</p>
+                        <div class="io-description"><p>Al cambiar ciclo, resetea grupo y asignaturas.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eligeGrupo"></a>
+                    <span class="name">
+                        <span ><b>eligeGrupo</b></span>
+                        <a href="#eligeGrupo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eligeGrupo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga asignaturas del ciclo cuando hay ciclo y grupo válidos.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finishSaving"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>finishSaving</b></span>
+                        <a href="#finishSaving"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>finishSaving()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Restaura flags de guardado en curso.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullOfferSelected"></a>
+                    <span class="name">
+                        <span ><b>isFullOfferSelected</b></span>
+                        <a href="#isFullOfferSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isFullOfferSelected(grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Indica si la oferta completa de un grade está activa.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -565,16 +694,15 @@ Reinicia la selección de asignaturas y el estado de oferta completa.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:154</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Indica si una asignatura está seleccionada individualmente.
-Devuelve false si la opción de oferta completa está activa.</p>
+                        <div class="io-description"><p>Comprueba si una asignatura está en <code>selectedSubjects</code>.</p>
 </div>
 
                             <div class="io-description">
@@ -586,7 +714,6 @@ Devuelve false si la opción de oferta completa está activa.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -601,12 +728,6 @@ Devuelve false si la opción de oferta completa está activa.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Asignatura a comprobar</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -616,8 +737,7 @@ Devuelve false si la opción de oferta completa está activa.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>true si la asignatura está seleccionada individualmente</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -643,15 +763,15 @@ Devuelve false si la opción de oferta completa está activa.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:83</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Carga los ciclos y asignaturas disponibles e inicializa el estudiante seleccionado.</p>
+                        <div class="io-description"><p>Carga catálogos y etiqueta del objetivo de matrícula.</p>
 </div>
 
                         <div class="io-description">
@@ -682,16 +802,15 @@ Devuelve false si la opción de oferta completa está activa.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="167"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:167</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:175</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Confirma la matriculación con las asignaturas seleccionadas y cierra el formulario.
-Delega la ejecución al StudentRegistrationService y emite el evento closeForm.</p>
+                        <div class="io-description"><p>EQ-313: cerrar wizard solo tras respuesta OK; mantener UI bloqueada mientras guarda.</p>
 </div>
 
                         <div class="io-description">
@@ -722,16 +841,15 @@ Delega la ejecución al StudentRegistrationService y emite el evento closeForm.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="147"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:147</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:159</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Añade o elimina una asignatura de la selección actual.
-Si la oferta completa estaba activa la desactiva antes de modificar la selección.</p>
+                        <div class="io-description"><p>Añade o quita una asignatura de la selección manual.</p>
 </div>
 
                             <div class="io-description">
@@ -743,7 +861,6 @@ Si la oferta completa estaba activa la desactiva antes de modificar la selecció
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -758,12 +875,6 @@ Si la oferta completa estaba activa la desactiva antes de modificar la selecció
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Asignatura a añadir o eliminar</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>event</td>
@@ -776,12 +887,6 @@ Si la oferta completa estaba activa la desactiva antes de modificar la selecció
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Evento del checkbox de la asignatura</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -801,33 +906,74 @@ Si la oferta completa estaba activa la desactiva antes de modificar la selecció
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="toggleOfertaCompleta"></a>
+                    <a name="resetSubjectSelection"></a>
                     <span class="name">
-                        <span ><b>toggleOfertaCompleta</b></span>
-                        <a href="#toggleOfertaCompleta"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>resetSubjectSelection</b></span>
+                        <a href="#resetSubjectSelection"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>toggleOfertaCompleta(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetSubjectSelection()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:91</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Activa o desactiva la selección de todas las asignaturas del ciclo.
-Si se activa selecciona todas las asignaturas disponibles,
-si se desactiva vacía la selección.</p>
+                        <div class="io-description"><p>Limpia asignaturas y oferta completa seleccionada.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resolveSaveErrorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>resolveSaveErrorMessage</b></span>
+                        <a href="#resolveSaveErrorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resolveSaveErrorMessage(err: unknown)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:205</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Traduce códigos de <code>EnrollmentConfirmErrorCode</code> a mensaje de UI.</p>
 </div>
 
                             <div class="io-description">
@@ -839,10 +985,161 @@ si se desactiva vacía la selección.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectsForGrade"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subjectsForGrade</b></span>
+                        <a href="#subjectsForGrade"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>subjectsForGrade(grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Asignaturas de un grade concreto dentro del ciclo.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Subject.html" target="_self" >Subject[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleFullOffer"></a>
+                    <span class="name">
+                        <span ><b>toggleFullOffer</b></span>
+                        <a href="#toggleFullOffer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleFullOffer(grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Marca o desmarca todas las asignaturas de un grade.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                         <tr>
                                                 <td>event</td>
                                             <td>
@@ -854,12 +1151,6 @@ si se desactiva vacía la selección.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Evento del checkbox de oferta completa</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -885,6 +1176,43 @@ si se desactiva vacía la selección.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="activeFullOfferGrade"></a>
+                    <span class="name">
+                        <span ><b>activeFullOfferGrade</b></span>
+                        <a href="#activeFullOfferGrade"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Oferta completa activa (solo un grade a la vez); null = selección suelta.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="asignaturasPorCiclo"></a>
                     <span class="name">
                         <span ><b>asignaturasPorCiclo</b></span>
@@ -905,14 +1233,13 @@ si se desactiva vacía la selección.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:59</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Asignaturas del ciclo académico seleccionado.
-Es null cuando no hay ningún ciclo seleccionado.</p>
+                    <div class="io-description"><p>Asignaturas del ciclo elegido (todas las ofertas).</p>
 </div>
                 </td>
             </tr>
@@ -923,33 +1250,34 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ciclos"></a>
+                    <a name="courses"></a>
                     <span class="name">
-                        <span ><b>ciclos</b></span>
-                        <a href="#ciclos"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>courses</b></span>
+                        <a href="#courses"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Course.html" target="_self" >Course[]</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
+                        <i>Default value : </i><code>this.courseService.courses</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:47</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Listado de ciclos académicos disponibles para seleccionar.</p>
+                    <div class="io-description"><p>Ciclos cargados desde <code>CourseService</code>.</p>
 </div>
                 </td>
             </tr>
@@ -962,40 +1290,10 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 <td class="col-md-4">
                     <a name="courseService"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>courseService</b></span>
                         <a href="#courseService"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/CourseService.html" target="_self" >CourseService</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:77</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description">- Servicio que gestiona los ciclos académicos</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="isOfertaCompletaSelected"></a>
-                    <span class="name">
-                        <span ><b>isOfertaCompletaSelected</b></span>
-                        <a href="#isOfertaCompletaSelected"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1007,19 +1305,208 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
+                        <i>Default value : </i><code>inject(CourseService)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:29</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Indica si la opción de oferta completa está seleccionada.
-Cuando es true todas las asignaturas del ciclo quedan seleccionadas.</p>
+                    <div class="io-description"><p>Catálogo de ciclos formativos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enrollmentTargetLabel"></a>
+                    <span class="name">
+                        <span ><b>enrollmentTargetLabel</b></span>
+                        <a href="#enrollmentTargetLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Nombre del alumno o borrador mostrado en cabecera.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groups"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groups</b></span>
+                        <a href="#groups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.groupService.groups</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Grupos cargados desde <code>GroupService</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>groupService</b></span>
+                        <a href="#groupService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(GroupService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Catálogo de grupos académicos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSaving"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isSaving</b></span>
+                        <a href="#isSaving"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Confirmación de matrícula en curso.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveError"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saveError</b></span>
+                        <a href="#saveError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error traducido tras fallo al guardar.</p>
 </div>
                 </td>
             </tr>
@@ -1050,14 +1537,13 @@ Cuando es true todas las asignaturas del ciclo quedan seleccionadas.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:53</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Identificador del ciclo académico seleccionado actualmente.
-Es null cuando no hay ningún ciclo seleccionado.</p>
+                    <div class="io-description"><p>Ciclo seleccionado en el desplegable.</p>
 </div>
                 </td>
             </tr>
@@ -1068,16 +1554,16 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="selectedStudent"></a>
+                    <a name="selectedGroupId"></a>
                     <span class="name">
-                        <span ><b>selectedStudent</b></span>
-                        <a href="#selectedStudent"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>selectedGroupId</b></span>
+                        <a href="#selectedGroupId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Student.html" target="_self" >Student | null</a></code>
+                        <i>Type : </i>    <code>number | null</code>
 
                     </td>
                 </tr>
@@ -1088,13 +1574,13 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:56</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Estudiante seleccionado para matricular, obtenido del SelectedStudentService.</p>
+                    <div class="io-description"><p>Grupo donde se matriculará al alumno.</p>
 </div>
                 </td>
             </tr>
@@ -1114,7 +1600,7 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Subject.html" target="_self" >Subject[] | null</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/Subject.html" target="_self" >Subject[]</a></code>
 
                     </td>
                 </tr>
@@ -1125,13 +1611,13 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:62</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Asignaturas seleccionadas para la matriculación.</p>
+                    <div class="io-description"><p>Asignaturas marcadas para la matrícula.</p>
 </div>
                 </td>
             </tr>
@@ -1144,7 +1630,8 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 <td class="col-md-4">
                     <a name="studentRegService"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>studentRegService</b></span>
                         <a href="#studentRegService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1152,19 +1639,25 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/StudentRegistrationService.html" target="_self" >StudentRegistrationService</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StudentRegistrationService)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:79</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:38</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">- Servicio que gestiona el proceso de matriculación</div>
+                    <div class="io-description"><p>Confirmación de matrícula (alumno nuevo o existente).</p>
+</div>
                 </td>
             </tr>
 
@@ -1176,7 +1669,7 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 <td class="col-md-4">
                     <a name="studentSelectedService"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>studentSelectedService</b></span>
                         <a href="#studentSelectedService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1184,19 +1677,25 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/SelectedStudentService.html" target="_self" >SelectedStudentService</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SelectedStudentService)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:44</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">- Servicio que proporciona el estudiante actualmente seleccionado</div>
+                    <div class="io-description"><p>Alumno/borrador activo y estado del wizard.</p>
+</div>
                 </td>
             </tr>
 
@@ -1208,7 +1707,8 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
                 <td class="col-md-4">
                     <a name="subjectService"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>subjectService</b></span>
                         <a href="#subjectService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1216,19 +1716,64 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/SubjectService.html" target="_self" >SubjectService</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SubjectService)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:35</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description">- Servicio que gestiona las asignaturas</div>
+                    <div class="io-description"><p>Asignaturas por ciclo y selección para matricular.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/admin/entities/alumno/set-registration/set-registration.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensajes de error i18n del paso 3.</p>
+</div>
                 </td>
             </tr>
 
@@ -1240,247 +1785,327 @@ Es null cuando no hay ningún ciclo seleccionado.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
-import { Course } from &#x27;../../../../../core/models/course&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output, inject, signal } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
 import { CourseService } from &#x27;../../../../../core/services/admin/entities/course.service&#x27;;
-import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { GroupService } from &#x27;../../../../../core/services/admin/entities/group.service&#x27;;
 import { SubjectService } from &#x27;../../../../../core/services/admin/entities/subject.service&#x27;;
 import { Subject } from &#x27;../../../../../core/models/subject&#x27;;
-import { BotonConfirmarStudentComponent } from &quot;../../../botones/boton-confirmar-student/boton-confirmar-student.component&quot;;
+import { BotonConfirmarStudentComponent } from &#x27;../../../botones/boton-confirmar-student/boton-confirmar-student.component&#x27;;
 import { Student } from &#x27;../../../../../core/models/student&#x27;;
-import { StudentRegistrationService } from &#x27;../../../../../core/services/admin/student-registration.service&#x27;;
+import {
+  EnrollmentConfirmErrorCode,
+  StudentRegistrationService,
+} from &#x27;../../../../../core/services/admin/student-registration.service&#x27;;
 import { SelectedStudentService } from &#x27;../../../../../core/services/admin/selected-student.service&#x27;;
-
+import { normalizeGradeValue } from &#x27;../../../../../core/utils/week-schedule-assignment-filters&#x27;;
 
 /**
- * Componente que gestiona la selección de ciclo y asignaturas
- * para la matriculación de un estudiante.
- * Permite seleccionar asignaturas individualmente o mediante la opción
- * de oferta completa, y confirma la matriculación al servicio correspondiente.
+ * Paso 3 del wizard de matriculación: elegir ciclo, grupo y asignaturas
+ * antes de confirmar el alta en backend (EQ-311 / EQ-313).
  */
 @Component({
   selector: &#x27;app-set-registration&#x27;,
-  imports: [FormsModule, BotonConfirmarStudentComponent],
+  imports: [FormsModule, BotonConfirmarStudentComponent, TranslateModule],
   templateUrl: &#x27;./set-registration.component.html&#x27;,
-  styleUrl: &#x27;./set-registration.component.scss&#x27;
+  styleUrl: &#x27;./set-registration.component.scss&#x27;,
 })
 export class SetRegistrationComponent {
+  /** Catálogo de ciclos formativos. */
+  private readonly courseService &#x3D; inject(CourseService);
 
-   /**
-   * Listado de ciclos académicos disponibles para seleccionar.
-   */
-  ciclos: Course[] &#x3D; [];
+  /** Catálogo de grupos académicos. */
+  private readonly groupService &#x3D; inject(GroupService);
 
-  /**
-   * Identificador del ciclo académico seleccionado actualmente.
-   * Es null cuando no hay ningún ciclo seleccionado.
-   */
+  /** Asignaturas por ciclo y selección para matricular. */
+  private readonly subjectService &#x3D; inject(SubjectService);
+
+  /** Confirmación de matrícula (alumno nuevo o existente). */
+  private readonly studentRegService &#x3D; inject(StudentRegistrationService);
+
+  /** Mensajes de error i18n del paso 3. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Alumno/borrador activo y estado del wizard. */
+  readonly studentSelectedService &#x3D; inject(SelectedStudentService);
+
+  /** Ciclos cargados desde &#x60;CourseService&#x60;. */
+  readonly courses &#x3D; this.courseService.courses;
+
+  /** Grupos cargados desde &#x60;GroupService&#x60;. */
+  readonly groups &#x3D; this.groupService.groups;
+
+  /** Ciclo seleccionado en el desplegable. */
   selectedCicloId: number | null &#x3D; null;
 
-    /**
-   * Asignaturas del ciclo académico seleccionado.
-   * Es null cuando no hay ningún ciclo seleccionado.
-   */
+  /** Grupo donde se matriculará al alumno. */
+  selectedGroupId: number | null &#x3D; null;
+
+  /** Asignaturas del ciclo elegido (todas las ofertas). */
   asignaturasPorCiclo: Subject[] | null &#x3D; null;
 
-    /**
-   * Indica si la opción de oferta completa está seleccionada.
-   * Cuando es true todas las asignaturas del ciclo quedan seleccionadas.
-   */
-  isOfertaCompletaSelected &#x3D; false;
+  /** Asignaturas marcadas para la matrícula. */
+  selectedSubjects: Subject[] &#x3D; [];
 
-    /**
-   * Asignaturas seleccionadas para la matriculación.
-   */
-  selectedSubjects: Subject[] | null &#x3D; [];
+  /** Oferta completa activa (solo un grade a la vez); null &#x3D; selección suelta. */
+  activeFullOfferGrade: string | null &#x3D; null;
 
-   /**
-   * Estudiante seleccionado para matricular, obtenido del SelectedStudentService.
-   */
-  selectedStudent: Student | null &#x3D; null;
+  /** Nombre del alumno o borrador mostrado en cabecera. */
+  enrollmentTargetLabel &#x3D; &#x27;&#x27;;
 
-   /**
-   * Listado de estudiantes disponibles para seleccionar.
-   */
-   @Input() students: Student[] &#x3D; []; 
+  /** Confirmación de matrícula en curso. */
+  readonly isSaving &#x3D; signal(false);
 
-   /**
-   * Evento emitido cuando el formulario de matriculación se cierra.
-   */
-   @Output() closeForm &#x3D; new EventEmitter&lt;void&gt;();
-   
-    /**
-   * Inicializa el componente.
-   * @param courseService - Servicio que gestiona los ciclos académicos
-   * @param subjectService - Servicio que gestiona las asignaturas
-   * @param studentRegService - Servicio que gestiona el proceso de matriculación
-   * @param studentSelectedService - Servicio que proporciona el estudiante actualmente seleccionado
-   */
-    constructor(public courseService: CourseService,
-      public subjectService: SubjectService,
-      public studentRegService: StudentRegistrationService,
-      public studentSelectedService: SelectedStudentService
-    ){
-      
+  /** Mensaje de error traducido tras fallo al guardar. */
+  readonly saveError &#x3D; signal&lt;string | null&gt;(null);
+
+  /** Listado de alumnos (legacy del contenedor padre). */
+  @Input() students: Student[] &#x3D; [];
+
+  /** Cierra el wizard tras matrícula exitosa. */
+  @Output() closeForm &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Carga catálogos y etiqueta del objetivo de matrícula. */
+  ngOnInit(): void {
+    this.courseService.loadCourses();
+    this.groupService.loadGroups();
+    this.subjectService.loadSubjects();
+    this.enrollmentTargetLabel &#x3D; this.studentSelectedService.enrollmentTargetLabel();
+  }
+
+  /** Limpia asignaturas y oferta completa seleccionada. */
+  private resetSubjectSelection(): void {
+    this.selectedSubjects &#x3D; [];
+    this.activeFullOfferGrade &#x3D; null;
+  }
+
+  /** Al cambiar ciclo, resetea grupo y asignaturas. */
+  eligeCiclo(): void {
+    this.selectedGroupId &#x3D; null;
+    this.asignaturasPorCiclo &#x3D; null;
+    this.resetSubjectSelection();
+  }
+
+  /** Carga asignaturas del ciclo cuando hay ciclo y grupo válidos. */
+  eligeGrupo(): void {
+    if (this.selectedCicloId &#x3D;&#x3D; null || this.selectedGroupId &#x3D;&#x3D; null) {
+      this.asignaturasPorCiclo &#x3D; null;
+      this.resetSubjectSelection();
+      return;
     }
 
-    /**
-   * Carga los ciclos y asignaturas disponibles e inicializa el estudiante seleccionado.
-   */
-    ngOnInit():void{
-      this.courseService.loadCourses();
-      this.subjectService.loadSubjects();
-      this.selectedStudent &#x3D; this.studentSelectedService.selectedStudent();
-    }
-    
-     /**
-   * Actualiza las asignaturas disponibles al seleccionar un ciclo.
-   * Reinicia la selección de asignaturas y el estado de oferta completa.
-   */
-    eligeCiclo(){
-      if(this.selectedCicloId &#x3D;&#x3D; null){
-        this.asignaturasPorCiclo &#x3D; null;
-        this.selectedSubjects &#x3D; [];
-        this.isOfertaCompletaSelected &#x3D; false;
-        return;
-      }
-    
-      this.asignaturasPorCiclo &#x3D; this.subjectService.loadByCourse(this.selectedCicloId);
-            this.selectedSubjects &#x3D; [];
-             this.isOfertaCompletaSelected &#x3D; false;
+    this.asignaturasPorCiclo &#x3D; this.subjectService.loadByCourse(this.selectedCicloId);
+    this.resetSubjectSelection();
+  }
 
+  /** Grades distintos presentes en la oferta del ciclo. */
+  availableFullOfferGrades(): string[] {
+    const grades &#x3D; new Set&lt;string&gt;();
+    for (const subject of this.asignaturasPorCiclo ?? []) {
+      grades.add(normalizeGradeValue(subject.grade));
+    }
+    return [...grades].sort((a, b) &#x3D;&gt; a.localeCompare(b, undefined, { numeric: true }));
+  }
+
+  /** Asignaturas de un grade concreto dentro del ciclo. */
+  private subjectsForGrade(grade: string): Subject[] {
+    const gradeNorm &#x3D; normalizeGradeValue(grade);
+    return (this.asignaturasPorCiclo ?? []).filter(
+      (subject) &#x3D;&gt; normalizeGradeValue(subject.grade) &#x3D;&#x3D;&#x3D; gradeNorm,
+    );
+  }
+
+  /** Indica si la oferta completa de un grade está activa. */
+  isFullOfferSelected(grade: string): boolean {
+    return this.activeFullOfferGrade &#x3D;&#x3D;&#x3D; normalizeGradeValue(grade);
+  }
+
+  /** Marca o desmarca todas las asignaturas de un grade. */
+  toggleFullOffer(grade: string, event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    const gradeNorm &#x3D; normalizeGradeValue(grade);
+
+    if (input.checked) {
+      this.activeFullOfferGrade &#x3D; gradeNorm;
+      this.selectedSubjects &#x3D; [...this.subjectsForGrade(gradeNorm)];
+      return;
     }
 
-      /**
-   * Indica si una asignatura está seleccionada individualmente.
-   * Devuelve false si la opción de oferta completa está activa.
-   * @param subject - Asignatura a comprobar
-   * @returns true si la asignatura está seleccionada individualmente
-   */
+    if (this.activeFullOfferGrade &#x3D;&#x3D;&#x3D; gradeNorm) {
+      this.resetSubjectSelection();
+    }
+  }
+
+  /** Comprueba si una asignatura está en &#x60;selectedSubjects&#x60;. */
   isSubjectSelected(subject: Subject): boolean {
-  return !this.isOfertaCompletaSelected &amp;&amp; this.selectedSubjects!.some(s &#x3D;&gt; s.id &#x3D;&#x3D;&#x3D; subject.id);
-}
-
- /**
-   * Activa o desactiva la selección de todas las asignaturas del ciclo.
-   * Si se activa selecciona todas las asignaturas disponibles,
-   * si se desactiva vacía la selección.
-   * @param event - Evento del checkbox de oferta completa
-   */
-toggleOfertaCompleta(event: Event) {
-  const input &#x3D; event.target as HTMLInputElement;
-  const checked &#x3D; input.checked;
-
-  this.isOfertaCompletaSelected &#x3D; checked;
-
-  if (checked) {
-    this.selectedSubjects &#x3D; [...this.asignaturasPorCiclo!];
-  } else {
-    this.selectedSubjects &#x3D; [];
-  }
-}
-
- /**
-   * Añade o elimina una asignatura de la selección actual.
-   * Si la oferta completa estaba activa la desactiva antes de modificar la selección.
-   * @param subject - Asignatura a añadir o eliminar
-   * @param event - Evento del checkbox de la asignatura
-   */
-onToggleSubject(subject: Subject, event: Event) {
-  const input &#x3D; event.target as HTMLInputElement;
-  const checked &#x3D; input.checked;
-
-  if (this.isOfertaCompletaSelected) {
-    this.isOfertaCompletaSelected &#x3D; false;
-    this.selectedSubjects &#x3D; [];
+    return this.selectedSubjects.some((s) &#x3D;&gt; s.id &#x3D;&#x3D;&#x3D; subject.id);
   }
 
-  if (checked) {
-    this.selectedSubjects!.push(subject);
-  } else {
-    this.selectedSubjects &#x3D; this.selectedSubjects!.filter(s &#x3D;&gt; s.id !&#x3D;&#x3D; subject.id);
-  }
-}
+  /** Añade o quita una asignatura de la selección manual. */
+  onToggleSubject(subject: Subject, event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
 
- /**
-   * Confirma la matriculación con las asignaturas seleccionadas y cierra el formulario.
-   * Delega la ejecución al StudentRegistrationService y emite el evento closeForm.
-   */
-  onConfirmRegistration(){
-    this.subjectService.setSelectedSubjects(this.selectedSubjects!);
-    this.studentRegService.preparaDatos();
-    console.log(&#x60;Aqui tenemos el id del estudiante selecionado: ${this.selectedStudent?.id}, su Dni: ${this.selectedStudent?.dni}, y su nombre: ${this.selectedStudent?.name}&#x60;);
-    console.log(&#x27;aqui tenemos las asignaturas selecionadas en set-register.comonent&#x27;, this.selectedSubjects);
+    if (this.activeFullOfferGrade !&#x3D;&#x3D; null) {
+      this.activeFullOfferGrade &#x3D; null;
+      this.selectedSubjects &#x3D; [];
+    }
 
-      this.closeForm.emit();
-  
+    if (input.checked) {
+      this.selectedSubjects.push(subject);
+    } else {
+      this.selectedSubjects &#x3D; this.selectedSubjects.filter((s) &#x3D;&gt; s.id !&#x3D;&#x3D; subject.id);
+    }
   }
-  
+
+  /** EQ-313: cerrar wizard solo tras respuesta OK; mantener UI bloqueada mientras guarda. */
+  onConfirmRegistration(): void {
+    if (this.isSaving() || this.selectedGroupId &#x3D;&#x3D; null) {
+      return;
+    }
+
+    this.saveError.set(null);
+    this.subjectService.setSelectedSubjects(this.selectedSubjects);
+
+    this.isSaving.set(true);
+    this.studentSelectedService.enrollmentInProgress.set(true);
+
+    this.studentRegService.confirmEnrollment(this.selectedGroupId).subscribe({
+      next: () &#x3D;&gt; {
+        this.finishSaving();
+        this.closeForm.emit();
+      },
+      error: (err: unknown) &#x3D;&gt; {
+        this.finishSaving();
+        this.saveError.set(this.resolveSaveErrorMessage(err));
+      },
+    });
+  }
+
+  /** Restaura flags de guardado en curso. */
+  private finishSaving(): void {
+    this.isSaving.set(false);
+    this.studentSelectedService.enrollmentInProgress.set(false);
+  }
+
+  /** Traduce códigos de &#x60;EnrollmentConfirmErrorCode&#x60; a mensaje de UI. */
+  private resolveSaveErrorMessage(err: unknown): string {
+    const code &#x3D;
+      err instanceof Error ? (err.message as EnrollmentConfirmErrorCode) : &#x27;REGISTRATION_FAILED&#x27;;
+
+    if (code &#x3D;&#x3D;&#x3D; &#x27;STUDENT_CREATE_FAILED&#x27;) {
+      return this.translate.instant(&#x27;studentEnrollment.setRegistration.saveErrorStudent&#x27;);
+    }
+    if (code &#x3D;&#x3D;&#x3D; &#x27;NO_SUBJECTS&#x27; || code &#x3D;&#x3D;&#x3D; &#x27;NO_STUDENT&#x27;) {
+      return this.translate.instant(&#x27;studentEnrollment.setRegistration.saveErrorGeneric&#x27;);
+    }
+    return this.translate.instant(&#x27;studentEnrollment.setRegistration.saveErrorRegistration&#x27;);
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">
+        <pre class="line-numbers"><code class="language-html">@if (enrollmentTargetLabel) {
+  &lt;p class&#x3D;&quot;text-sm text-gray-600 mb-4&quot;&gt;
+    {{ &#x27;studentEnrollment.setRegistration.studentLabel&#x27; | translate }}:
+    &lt;span class&#x3D;&quot;font-medium text-gray-900&quot;&gt;{{ enrollmentTargetLabel }}&lt;/span&gt;
+    @if (studentSelectedService.pendingStudentDraft()) {
+      &lt;span class&#x3D;&quot;text-amber-700&quot;&gt;
+        {{ &#x27;studentEnrollment.setRegistration.studentPending&#x27; | translate }}
+      &lt;/span&gt;
+    }
+  &lt;/p&gt;
+}
+
 &lt;div class&#x3D;&quot;mb-4&quot;&gt;
   &lt;label class&#x3D;&quot;block font-medium mb-2&quot;&gt;
-    ¿Qué ciclo quieres matricular al estudiante?
+    {{ &#x27;studentEnrollment.courseSelection.label&#x27; | translate }}
   &lt;/label&gt;
 
-  &lt;select 
+  &lt;select
     [(ngModel)]&#x3D;&quot;selectedCicloId&quot;
     (ngModelChange)&#x3D;&quot;eligeCiclo()&quot;
     class&#x3D;&quot;border rounded p-2 w-full&quot;
+    [disabled]&#x3D;&quot;isSaving()&quot;
   &gt;
-  @for(ciclo of courseService.courses(); track ciclo.id){
-     &lt;option  [ngValue]&#x3D;&quot;ciclo.id&quot;&gt;
-      {{ ciclo.name }}
-    &lt;/option&gt;
-  }
-   
+    @for (ciclo of courses(); track ciclo.id) {
+      &lt;option [ngValue]&#x3D;&quot;ciclo.id&quot;&gt;{{ ciclo.name }}&lt;/option&gt;
+    }
   &lt;/select&gt;
 &lt;/div&gt;
-@if(asignaturasPorCiclo?.length){
+
+@if (selectedCicloId !&#x3D; null) {
   &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-  &lt;label class&#x3D;&quot;block font-medium mb-2&quot;&gt;
-    Selecciona las asignaturas
-  &lt;/label&gt;
+    &lt;label class&#x3D;&quot;block font-medium mb-2&quot;&gt;
+      {{ &#x27;studentEnrollment.groupSelection.label&#x27; | translate }}
+    &lt;/label&gt;
 
-  &lt;div class&#x3D;&quot;flex flex-col gap-2&quot;&gt;
-    &lt;label class&#x3D;&quot;flex items-center gap-2 cursor-pointer&quot;&gt;
-        &lt;input
-          type&#x3D;&quot;checkbox&quot;
-          [checked]&#x3D;&quot;isOfertaCompletaSelected&quot;
-          (change)&#x3D;&quot;toggleOfertaCompleta($event)&quot;
-      
-        /&gt;
-        Oferta Completa de 1º
-      &lt;/label&gt;
-      
-    @for(subject of asignaturasPorCiclo; track subject.id) {
-      &lt;label class&#x3D;&quot;flex items-center gap-2 cursor-pointer&quot;&gt;
-        &lt;input
-          type&#x3D;&quot;checkbox&quot;
-          [value]&#x3D;&quot;subject.id&quot;
-      
-          [checked]&#x3D;&quot;isSubjectSelected(subject)&quot;
-          (change)&#x3D;&quot;onToggleSubject(subject, $event)&quot;
-        /&gt;
-        {{ subject.name }}
-      &lt;/label&gt;
-    }
+    &lt;select
+      [(ngModel)]&#x3D;&quot;selectedGroupId&quot;
+      (ngModelChange)&#x3D;&quot;eligeGrupo()&quot;
+      class&#x3D;&quot;border rounded p-2 w-full&quot;
+      [disabled]&#x3D;&quot;isSaving()&quot;
+    &gt;
+      &lt;option [ngValue]&#x3D;&quot;null&quot; disabled&gt;
+        {{ &#x27;studentEnrollment.groupSelection.placeholder&#x27; | translate }}
+      &lt;/option&gt;
+      @for (group of groups(); track group.id) {
+        &lt;option [ngValue]&#x3D;&quot;group.id&quot;&gt;{{ group.name }}&lt;/option&gt;
+      }
+    &lt;/select&gt;
   &lt;/div&gt;
-  
-  &lt;div class&#x3D;&quot;mt-6 flex justify-end&quot;&gt;
-    &lt;app-boton-confirmar-student
-      [disabled]&#x3D;&quot;selectedSubjects!.length &#x3D;&#x3D;&#x3D; 0&quot;
-      (confirm)&#x3D;&quot;onConfirmRegistration()&quot;&gt;
-    &lt;/app-boton-confirmar-student&gt;
-  &lt;/div&gt;
-
-&lt;/div&gt;
 }
 
+@if (asignaturasPorCiclo?.length) {
+  &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+    &lt;label class&#x3D;&quot;block font-medium mb-2&quot;&gt;
+      {{ &#x27;studentEnrollment.subjectSelection.label&#x27; | translate }}
+    &lt;/label&gt;
+
+    &lt;div class&#x3D;&quot;flex flex-col gap-2&quot;&gt;
+      @for (grade of availableFullOfferGrades(); track grade) {
+        &lt;label class&#x3D;&quot;flex items-center gap-2 cursor-pointer font-medium&quot;&gt;
+          &lt;input
+            type&#x3D;&quot;checkbox&quot;
+            [checked]&#x3D;&quot;isFullOfferSelected(grade)&quot;
+            (change)&#x3D;&quot;toggleFullOffer(grade, $event)&quot;
+            [disabled]&#x3D;&quot;isSaving()&quot;
+          /&gt;
+          {{ &#x27;studentEnrollment.subjectSelection.fullOfferGrade&#x27; | translate: { grade: grade } }}
+        &lt;/label&gt;
+      }
+
+      @for (subject of asignaturasPorCiclo; track subject.id) {
+        &lt;label class&#x3D;&quot;flex items-center gap-2 cursor-pointer&quot;&gt;
+          &lt;input
+            type&#x3D;&quot;checkbox&quot;
+            [checked]&#x3D;&quot;isSubjectSelected(subject)&quot;
+            (change)&#x3D;&quot;onToggleSubject(subject, $event)&quot;
+            [disabled]&#x3D;&quot;isSaving()&quot;
+          /&gt;
+          {{ subject.name }}
+        &lt;/label&gt;
+      }
+    &lt;/div&gt;
+
+    @if (saveError(); as err) {
+      &lt;p class&#x3D;&quot;text-sm text-red-700 mt-4&quot; role&#x3D;&quot;alert&quot;&gt;{{ err }}&lt;/p&gt;
+    }
+
+    &lt;div class&#x3D;&quot;mt-6 flex justify-end items-center gap-3&quot;&gt;
+      @if (isSaving()) {
+        &lt;span class&#x3D;&quot;text-sm text-gray-500&quot; aria-live&#x3D;&quot;polite&quot;&gt;
+          {{ &#x27;studentEnrollment.setRegistration.saving&#x27; | translate }}
+        &lt;/span&gt;
+      }
+      &lt;app-boton-confirmar-student
+        [disabled]&#x3D;&quot;selectedSubjects.length &#x3D;&#x3D;&#x3D; 0 || isSaving() || selectedGroupId &#x3D;&#x3D; null&quot;
+        (confirm)&#x3D;&quot;onConfirmRegistration()&quot;
+      &gt;&lt;/app-boton-confirmar-student&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
 </code></pre>
     </div>
 
@@ -1510,8 +2135,8 @@ onToggleSubject(subject: Subject, event: Event) {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="mb-4">  <label class="block font-medium mb-2">    ¿Qué ciclo quieres matricular al estudiante?  </label>  <select     [(ngModel)]="selectedCicloId"    (ngModelChange)="eligeCiclo()"    class="border rounded p-2 w-full"  >  @for(ciclo of courseService.courses(); track ciclo.id){     <option  [ngValue]="ciclo.id">      {{ ciclo.name }}    </option>  }     </select></div>@if(asignaturasPorCiclo?.length){  <div class="mb-4">  <label class="block font-medium mb-2">    Selecciona las asignaturas  </label>  <div class="flex flex-col gap-2">    <label class="flex items-center gap-2 cursor-pointer">        <input          type="checkbox"          [checked]="isOfertaCompletaSelected"          (change)="toggleOfertaCompleta($event)"              />        Oferta Completa de 1º      </label>          @for(subject of asignaturasPorCiclo; track subject.id) {      <label class="flex items-center gap-2 cursor-pointer">        <input          type="checkbox"          [value]="subject.id"                [checked]="isSubjectSelected(subject)"          (change)="onToggleSubject(subject, $event)"        />        {{ subject.name }}      </label>    }  </div>    <div class="mt-6 flex justify-end">    <app-boton-confirmar-student      [disabled]="selectedSubjects!.length === 0"      (confirm)="onConfirmRegistration()">    </app-boton-confirmar-student>  </div></div>}</div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div>@if (enrollmentTargetLabel) {  <p class="text-sm text-gray-600 mb-4">    {{ \'studentEnrollment.setRegistration.studentLabel\' | translate }}:    <span class="font-medium text-gray-900">{{ enrollmentTargetLabel }}</span>    @if (studentSelectedService.pendingStudentDraft()) {      <span class="text-amber-700">        {{ \'studentEnrollment.setRegistration.studentPending\' | translate }}      </span>    }  </p>}<div class="mb-4">  <label class="block font-medium mb-2">    {{ \'studentEnrollment.courseSelection.label\' | translate }}  </label>  <select    [(ngModel)]="selectedCicloId"    (ngModelChange)="eligeCiclo()"    class="border rounded p-2 w-full"    [disabled]="isSaving()"  >    @for (ciclo of courses(); track ciclo.id) {      <option [ngValue]="ciclo.id">{{ ciclo.name }}</option>    }  </select></div>@if (selectedCicloId != null) {  <div class="mb-4">    <label class="block font-medium mb-2">      {{ \'studentEnrollment.groupSelection.label\' | translate }}    </label>    <select      [(ngModel)]="selectedGroupId"      (ngModelChange)="eligeGrupo()"      class="border rounded p-2 w-full"      [disabled]="isSaving()"    >      <option [ngValue]="null" disabled>        {{ \'studentEnrollment.groupSelection.placeholder\' | translate }}      </option>      @for (group of groups(); track group.id) {        <option [ngValue]="group.id">{{ group.name }}</option>      }    </select>  </div>}@if (asignaturasPorCiclo?.length) {  <div class="mb-4">    <label class="block font-medium mb-2">      {{ \'studentEnrollment.subjectSelection.label\' | translate }}    </label>    <div class="flex flex-col gap-2">      @for (grade of availableFullOfferGrades(); track grade) {        <label class="flex items-center gap-2 cursor-pointer font-medium">          <input            type="checkbox"            [checked]="isFullOfferSelected(grade)"            (change)="toggleFullOffer(grade, $event)"            [disabled]="isSaving()"          />          {{ \'studentEnrollment.subjectSelection.fullOfferGrade\' | translate: { grade: grade } }}        </label>      }      @for (subject of asignaturasPorCiclo; track subject.id) {        <label class="flex items-center gap-2 cursor-pointer">          <input            type="checkbox"            [checked]="isSubjectSelected(subject)"            (change)="onToggleSubject(subject, $event)"            [disabled]="isSaving()"          />          {{ subject.name }}        </label>      }    </div>    @if (saveError(); as err) {      <p class="text-sm text-red-700 mt-4" role="alert">{{ err }}</p>    }    <div class="mt-6 flex justify-end items-center gap-3">      @if (isSaving()) {        <span class="text-sm text-gray-500" aria-live="polite">          {{ \'studentEnrollment.setRegistration.saving\' | translate }}        </span>      }      <app-boton-confirmar-student        [disabled]="selectedSubjects.length === 0 || isSaving() || selectedGroupId == null"        (confirm)="onConfirmRegistration()"      ></app-boton-confirmar-student>    </div>  </div>}</div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SetRegistrationComponent'};
 </script>

@@ -6,10 +6,16 @@ import { ToggleService } from '../toggle.service';
  */
 @Injectable({ providedIn: 'root' })
 export class SubjectCreateNavigationService {
+  /** Abre el panel lateral del menú admin en la sección de asignaturas. */
   private readonly toggle = inject(ToggleService);
 
+  /** Ciclo pendiente de preseleccionar en el formulario de alta de asignatura. */
   readonly pendingIdCourse = signal<number | null>(null);
 
+  /**
+   * Abre el menú de asignaturas y deja el ciclo listo para el formulario de creación.
+   * @param idCourse Identificador del ciclo a preseleccionar.
+   */
   goToCreateSubjectForCourse(idCourse: number): void {
     this.pendingIdCourse.set(idCourse);
     this.toggle.openMenu('subjects');

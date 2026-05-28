@@ -222,6 +222,7 @@ export class AuthService {
     return { ...res.data, token: res.token };
   }
 
+  /** Persiste JWT en sessionStorage y publica el usuario en `currentUser$`. */
   private openSession(user: UserResponse): void {
     const token =
       user.token || sessionStorage.getItem(AuthService.JWT_STORAGE_KEY) || '';

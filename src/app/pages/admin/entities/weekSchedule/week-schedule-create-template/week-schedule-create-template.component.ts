@@ -35,34 +35,67 @@ import { WeekScheduleCreateWeekdaysComponent } from '../week-schedule-create-wee
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleCreateTemplateComponent {
+  /** POST materializar plantilla de franjas. */
   private readonly materializeApi = inject(WeekScheduleMaterializeHttpService);
+
+  /** POST generar horarios en bloque tras materializar. */
   private readonly bulkGenerateApi = inject(WeekScheduleBulkGenerateHttpService);
+
+  /** Horas semanales del ciclo+curso para calcular máximo de franjas. */
   private readonly assignmentsService = inject(AssignmentsService);
+
+  /** Mensajes de éxito/error i18n. */
   private readonly translate = inject(TranslateService);
 
   /** Preselección tras navegar desde asignaciones docentes (EQ-309). */
   readonly preselectClassKey = input('');
 
+  /** Días de la semana seleccionados (1 = lunes … 7 = domingo). */
   readonly weekDays = signal<number[]>([]);
+
+  /** Clase elegida para materializar la plantilla. */
   readonly selectedClass = signal<WeekScheduleClassItem | null>(null);
+
+  /** Clave estable de la clase en el selector hijo. */
   readonly selectedClassKey = signal('');
+
+  /** Filas de franjas horarias (inicio/fin) de la plantilla. */
   readonly slots = signal<WeekScheduleCreateSlotRow[]>([defaultWeekScheduleSlotRow()]);
+
+  /** Máximo de franjas permitidas según horas semanales y días elegidos. */
   readonly maxSlots = signal<number | null>(null);
+
   /** Suma de `hours` de las asignaturas del ciclo+grade (presupuesto semanal). */
   readonly weeklyHoursTotal = signal<number | null>(null);
+
+  /** El usuario pulsó enviar al menos una vez (activa validación visual). */
   readonly submitted = signal(false);
+
+  /** POST de materialización en curso. */
   readonly saving = signal(false);
+
+  /** Mensaje de error del API o i18n tras fallo de guardado. */
   readonly saveError = signal<string | null>(null);
+
+  /** Indica que la materialización terminó correctamente. */
   readonly saveSuccess = signal(false);
+
+  /** Contador para forzar recarga del selector de clases tras crear plantilla. */
   readonly classListRefresh = signal(0);
+
+  /** Bulk-generate de sesiones en curso tras materializar. */
   readonly bulkGenerating = signal(false);
+
+  /** Mensaje de resultado del bulk-generate (éxito o error i18n). */
   readonly bulkResult = signal<string | null>(null);
 
   /** Emitido tras POST OK con la clase materializada (CURSO-145). */
   readonly templateCreated = output<WeekScheduleClassItem>();
 
+  /** Muestra errores de validación tras el primer intento de envío. */
   readonly showValidation = computed(() => this.submitted());
 
+  /** Clase, días, franjas y rangos horarios coherentes. */
   readonly formValid = computed(() => {
     if (!this.selectedClass()) {
       return false;
@@ -85,12 +118,15 @@ export class WeekScheduleCreateTemplateComponent {
     });
   });
 
+  /** Envío habilitado si el formulario es válido y no hay guardado en curso. */
   readonly canSubmit = computed(() => this.formValid() && !this.saving());
 
+  /** Clave de clase para el selector hijo (preselección o selección actual). */
   readonly classSelectKey = computed(
     () => this.preselectClassKey() || this.selectedClassKey(),
   );
 
+  /** Actualiza clase seleccionada y recarga horas semanales. */
   onClassChange(cls: WeekScheduleClassItem | null): void {
     this.selectedClass.set(cls);
     this.selectedClassKey.set(cls ? weekScheduleClassKey(cls) : '');
@@ -99,6 +135,7 @@ export class WeekScheduleCreateTemplateComponent {
     this.loadWeeklyHoursForClass(cls);
   }
 
+  /** Consulta asignaturas del ciclo+grade y actualiza `weeklyHoursTotal` y `maxSlots`. */
   private loadWeeklyHoursForClass(cls: WeekScheduleClassItem | null): void {
     if (cls == null) {
       this.weeklyHoursTotal.set(null);
@@ -130,15 +167,18 @@ export class WeekScheduleCreateTemplateComponent {
     }
   }
 
+  /** Sincroniza días de la semana desde el hijo y recalcula máximo de franjas. */
   onWeekDaysChange(days: number[]): void {
     this.weekDays.set(days);
     this.recalculateMaxSlots();
   }
 
+  /** Sincroniza filas de franjas horarias desde el hijo. */
   onSlotsChange(rows: WeekScheduleCreateSlotRow[]): void {
     this.slots.set(rows);
   }
 
+  /** Construye el cuerpo del POST de materialización si el formulario es válido. */
   buildMaterializeRequest(): WeekScheduleMaterializeRequest | null {
     const cls = this.selectedClass();
     if (!cls || !this.formValid()) {
@@ -155,6 +195,7 @@ export class WeekScheduleCreateTemplateComponent {
     };
   }
 
+  /** Materializa la plantilla y, si OK, lanza bulk-generate para la clase creada. */
   onSubmit(): void {
     this.submitted.set(true);
     this.saveError.set(null);

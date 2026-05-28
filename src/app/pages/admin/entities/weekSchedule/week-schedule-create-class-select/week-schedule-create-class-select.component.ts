@@ -63,52 +63,61 @@ import { weekScheduleClassKeyFromParts } from '../../../../../core/utils/week-sc
 
 export class WeekScheduleCreateClassSelectComponent {
 
+  /** Listado de clases sin plantilla horaria (`hasWeekSchedule=false`). */
   private readonly classesApi = inject(WeekScheduleClassesHttpService);
 
 
 
+  /** Función expuesta al template para clave de clase. */
   readonly classKey = weekScheduleClassKey;
 
-
-
+  /** Año escolar del listado de clases sin plantilla. */
   readonly schoolYear = input(environment.currentSchoolYear);
 
+  /** Clave de clase a preseleccionar al cargar. */
   readonly selectedClassKey = input('');
 
+  /** Muestra error si no hay clase elegida. */
   readonly showValidation = input(false);
 
+  /** Deshabilita el selector. */
   readonly disabled = input(false);
 
+  /** Incrementar para forzar recarga del listado. */
   readonly refreshToken = input(0);
 
-
-
+  /** Emite la clase elegida o `null` si se limpia. */
   readonly classChange = output<WeekScheduleClassItem | null>();
 
-
-
+  /** Carga de clases en curso. */
   readonly loading = signal(true);
 
+  /** Error al obtener clases del API. */
   readonly loadError = signal(false);
 
+  /** Respuesta cruda del API antes de filtrar elegibles. */
   private readonly classesFromApi = signal<WeekScheduleClassItem[]>([]);
 
 
 
+  /** Clases elegibles para crear plantilla (sin horario materializado). */
   readonly classesWithoutSchedule = computed(() =>
 
     this.classesFromApi().filter(isWeekScheduleClassEligibleForCreateTemplate),
 
   );
 
+  /** Clave de preselección ya aplicada (evita emitir duplicados). */
   private readonly preselectApplied = signal('');
 
 
 
+  /** Año escolar mostrado en la UI del selector. */
   readonly schoolYearLabel = computed(() => this.schoolYear());
 
 
 
+  /** Recarga clases al cambiar año o token; aplica preselección cuando hay listado. */
   constructor() {
 
     effect(() => {
@@ -131,6 +140,7 @@ export class WeekScheduleCreateClassSelectComponent {
 
 
 
+  /** Obtiene clases sin horario semanal para el año escolar. */
   loadClasses(): void {
 
     this.loading.set(true);
@@ -177,6 +187,7 @@ export class WeekScheduleCreateClassSelectComponent {
 
 
 
+  /** Emite la clase correspondiente a la clave del `<select>`. */
   onSelectChange(raw: string): void {
 
     if (!raw) {
@@ -195,6 +206,7 @@ export class WeekScheduleCreateClassSelectComponent {
 
   }
 
+  /** Aplica preselección una sola vez cuando el listado está listo. */
   private tryApplyPreselect(key: string, classes: WeekScheduleClassItem[]): void {
 
     if (!key || classes.length === 0 || this.preselectApplied() === key) {
@@ -215,6 +227,7 @@ export class WeekScheduleCreateClassSelectComponent {
 
   }
 
+  /** Compara claves de clase en distintos formatos. */
   private classKeysMatch(item: WeekScheduleClassItem, key: string): boolean {
 
     return (

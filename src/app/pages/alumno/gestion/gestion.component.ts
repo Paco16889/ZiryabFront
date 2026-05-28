@@ -26,6 +26,8 @@ export class GestionComponent {
    * ATENCIÓN: debería usarse NavigationService para ser consistente con el resto del proyecto.
    */
   private readonly router = inject(Router);
+
+  /** Rol del usuario para rutas de horario y evaluaciones. */
   private readonly authService = inject(AuthService);
   
     /**

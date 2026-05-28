@@ -5,7 +5,7 @@ import { CourseAssignmentsContext } from '../../../../../core/models/course-assi
 import { AssignmentsService } from '../../../../../core/services/admin/entities/assignments.service';
 import { SubjectCreateNavigationService } from '../../../../../core/services/UI/subject-create-navigation.service';
 
-/** Pasos del asistente: primero ciclo, después nivel/grade. */
+/** Pasos del asistente: `1` = ciclo, `2` = nivel/grade dentro del ciclo. */
 type WizardStep = 1 | 2;
 
 /**
@@ -21,6 +21,8 @@ type WizardStep = 1 | 2;
 export class CourseAssignmentsWizardComponent implements OnInit {
   /** Servicio que carga los grades disponibles para un ciclo. */
   private readonly assignmentsService = inject(AssignmentsService);
+
+  /** Navegación a alta de asignaturas tras completar el wizard. */
   private readonly subjectNav = inject(SubjectCreateNavigationService);
 
   /** Ciclos disponibles recibidos desde el listado de cursos. */

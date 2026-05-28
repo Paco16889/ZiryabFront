@@ -84,29 +84,31 @@ export interface StudentsAllResponse {
   count: number;
 }
 
-/**
- * Datos necesarios para crear un nuevo estudiante.
- * El campo role es opcional, por defecto el backend asignará STUDENT.
- * @example
- * const request: StudentCreateRequest = {
- *   email: 'EMAIL_ESTUDIANTE',
- *   name: 'NOMBRE_ESTUDIANTE',
- *   surname: 'PRIMER_APELLIDO',
- *   ndSurname: 'SEGUNDO_APELLIDO',
- *   birthDate: 'FECHA_NACIMIENTO',
- *   dni: 'DNI_ESTUDIANTE'
- * };
- */
 /** Datos del paso 2 del wizard, solo en memoria hasta confirmar matrícula (EQ-311-A). */
 export interface PendingStudentDraft {
+  /** Correo del alumno pendiente de alta. */
   email: string;
+
+  /** Nombre del alumno. */
   name: string;
+
+  /** Primer apellido. */
   surname: string;
+
+  /** Segundo apellido. */
   ndSurname: string;
+
+  /** Fecha de nacimiento en formato ISO o local del formulario. */
   birthDate: string;
+
+  /** Documento de identidad del alumno. */
   dni: string;
 }
 
+/**
+ * Cuerpo del POST para crear un estudiante en el backend.
+ * El campo `role` es opcional; por defecto el backend asigna `STUDENT`.
+ */
 export interface StudentCreateRequest {
   /** Correo electrónico del estudiante */
   email: string;

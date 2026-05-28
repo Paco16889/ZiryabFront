@@ -216,7 +216,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAllClasses(schoolYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getAllClasses(schoolYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, withoutScheduleOnly: unknown)</code>
                 </td>
             </tr>
 
@@ -267,6 +267,23 @@
 <li>Curso escolar usado por el backend para filtrar clases y horarios existentes</li>
 </ul>
 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>withoutScheduleOnly</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                            <td>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -401,8 +418,12 @@ export class WeekScheduleClassesHttpService {
    */
   getAllClasses(
     schoolYear: string &#x3D; environment.currentSchoolYear,
+    withoutScheduleOnly &#x3D; false,
   ): Observable&lt;WeekScheduleClassesResponse&gt; {
-    const params &#x3D; new HttpParams().set(&#x27;schoolYear&#x27;, schoolYear);
+    let params &#x3D; new HttpParams().set(&#x27;schoolYear&#x27;, schoolYear);
+    if (withoutScheduleOnly) {
+      params &#x3D; params.set(&#x27;hasWeekSchedule&#x27;, &#x27;false&#x27;);
+    }
 
     return this.http.get&lt;WeekScheduleClassesResponse&gt;(this.apiUrl, { params }).pipe(
       catchError(() &#x3D;&gt; of({ success: false, count: 0, data: [] })),

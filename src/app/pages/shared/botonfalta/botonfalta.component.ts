@@ -13,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './botonfalta.component.scss'
 })
 export class BotonfaltaComponent {
+  /** Traducciones de etiquetas de asistencia. */
   private translate = inject(TranslateService);
   /** El tipo de estado que representa este botón */
   @Input() statusType!: EnrollmentStatus;

@@ -22,6 +22,7 @@ import { SubjectCreateNavigationService } from '../../../../../core/services/UI/
   styleUrl: './asignatura-list.component.scss'
 })
 export class AsignaturaListComponent implements OnInit {
+  /** Preselección de ciclo al abrir alta desde el listado de ciclos. */
   private readonly subjectNav = inject(SubjectCreateNavigationService);
 
     /**

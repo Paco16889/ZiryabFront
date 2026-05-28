@@ -144,6 +144,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Relación entre un ciclo formativo, un grupo y su tutor opcional.</p>
+
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -248,6 +255,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Datos resumidos del ciclo.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -283,7 +296,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>&quot;1&quot; o &quot;2&quot; — curso dentro del ciclo</p>
+                                    <div class="io-description"><p>Curso dentro del ciclo (<code>&quot;1&quot;</code> o <code>&quot;2&quot;</code>).</p>
 </div>
                                 </td>
                             </tr>
@@ -320,6 +333,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Datos resumidos del grupo.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -353,6 +372,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador de la fila en <code>course_groups</code>.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -386,6 +411,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Ciclo al que pertenece el grupo.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -419,6 +450,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Grupo académico asociado.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -452,6 +489,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Datos del tutor cuando <code>tutorId</code> no es nulo.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -485,6 +528,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Profesor tutor asignado, o <code>null</code> si no hay tutor.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -493,26 +542,52 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface CourseGroup {
+  /** Identificador de la fila en &#x60;course_groups&#x60;. */
   id: number;
+
+  /** Ciclo al que pertenece el grupo. */
   idCourse: number;
+
+  /** Datos resumidos del ciclo. */
   course: { id: number; name: string };
+
+  /** Grupo académico asociado. */
   idGroup: number;
-  group:   { id: number; name: string };
-  /** &quot;1&quot; o &quot;2&quot; — curso dentro del ciclo */
-  grade:   string;
+
+  /** Datos resumidos del grupo. */
+  group: { id: number; name: string };
+
+  /** Curso dentro del ciclo (&#x60;&quot;1&quot;&#x60; o &#x60;&quot;2&quot;&#x60;). */
+  grade: string;
+
+  /** Profesor tutor asignado, o &#x60;null&#x60; si no hay tutor. */
   tutorId: number | null;
-  tutor:   { id: number; name: string; surname: string } | null;
+
+  /** Datos del tutor cuando &#x60;tutorId&#x60; no es nulo. */
+  tutor: { id: number; name: string; surname: string } | null;
 }
 
+/** Respuesta de listado de grupos por ciclo. */
 export interface CourseGroupsResponse {
+  /** Indica éxito de la operación HTTP. */
   success: boolean;
+
+  /** Grupos del ciclo solicitado. */
   data: CourseGroup[];
+
+  /** Total de registros devueltos. */
   count: number;
 }
 
+/** Respuesta al asignar o cambiar el tutor de un grupo en un ciclo. */
 export interface AssignTutorResponse {
+  /** Indica éxito de la operación HTTP. */
   success: boolean;
+
+  /** Mensaje descriptivo del backend. */
   message: string;
+
+  /** Grupo actualizado con el tutor asignado. */
   data: CourseGroup;
 }
 </code></pre>

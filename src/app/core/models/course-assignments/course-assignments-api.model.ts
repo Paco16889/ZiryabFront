@@ -84,15 +84,31 @@ export type AssignmentBulkApiBody = {
   assignments: AssignmentBulkCreateItem[];
 };
 
+/** Respuesta cruda de `POST /api/assignments/bulk` tal como la devuelve el backend. */
 export type AssignmentBulkApiResponse = {
+  /** Indica si la petición se procesó correctamente. */
   success: boolean;
+
+  /** Mensaje informativo o de error del servidor. */
   message?: string;
+
+  /** Desglose del resultado del alta masiva. */
   data?: {
+    /** Asignaciones creadas en la operación. */
     created: unknown[];
+
+    /** Filas descartadas por duplicado. */
     duplicates: unknown[];
+
+    /** Errores por índice de entrada en el array enviado. */
     errors: Array<{
+      /** Posición del ítem fallido en `assignments`. */
       index: number;
+
+      /** Descripción del error devuelto por el backend. */
       message: string;
+
+      /** Datos de entrada asociados al error (p. ej. asignatura conflictiva). */
       input?: { idSubject: number };
     }>;
   };

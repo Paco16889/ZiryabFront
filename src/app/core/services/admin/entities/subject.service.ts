@@ -140,6 +140,7 @@ getSubjectbyId(id: number): Observable<SubjectByIdResponse> {
     this.selectedSubjects.set(subjects);
   }
 
+  /** Vacía la selección de asignaturas del wizard de matriculación. */
   clearSelectedSubjects(): void {
     this.selectedSubjects.set([]);
   }
