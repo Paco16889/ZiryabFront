@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Course, CourseByIdResponse, CourseCreateRequest, CourseCreateResponse, CourseDeleteResponse, CoursesAllResponse, CourseUpdateRequest, CourseUpdateResponse } from '../../../models/course';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Servicio encargado de gestionar las operaciones con ciclos académicos.
@@ -15,7 +16,7 @@ export class CourseService {
   /**
    * URL base del endpoint de ciclos académicos.
    */
-  private apiUrl = 'http://localhost:3000/api/courses';
+  private apiUrl = `${environment.apiUrl}/courses`;
 
     /**
    * Inicializa el servicio.

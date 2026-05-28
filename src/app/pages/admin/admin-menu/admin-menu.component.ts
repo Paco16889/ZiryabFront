@@ -1,5 +1,4 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { ToggleService } from '../../../core/services/toggle.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -10,7 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-admin-menu',
-  imports: [TranslateModule, RouterLink],
+  imports: [TranslateModule],
   templateUrl: './admin-menu.component.html',
   styleUrl: './admin-menu.component.scss'
 })

@@ -59,9 +59,6 @@
       "unknown": "Unknown error",
       "connection": "Connection error with the server.",
       "userNotIdentified": "User not identified. Please sign in.",
-      "loadSummary": "Error loading summary",
-      "export": "Error exporting",
-      "downloadPowerBi": "Error downloading Power BI report",
       "loadAbsences": "Error loading absences.",
       "loadTask": "Error loading task.",
       "loadTaskDetail": "Error loading task details.",
@@ -364,8 +361,7 @@
     "assistances": "Attendance",
     "notifications": "Notifications",
     "issues": "Notice board",
-    "tutors": "Tutors",
-    "reports": "Reports"
+    "tutors": "Tutors"
   },
   "deleteModal": {
     "title": "Confirm deletion",
@@ -1526,13 +1522,6 @@
     "dniPlaceholder": "12345678A or X1234567A",
     "dniInvalidExtended": "Invalid ID (e.g. 12345678A or X1234567A)"
   },
-  "apiErrors": {
-    "ANALYTICS_INVALID_SCHOOL_YEAR": "School year is required (format 2024-2025).",
-    "ANALYTICS_SUMMARY_FAILED": "Error fetching report summary.",
-    "ANALYTICS_EXPORT_FAILED": "Error generating report.",
-    "ANALYTICS_PBIX_NOT_FOUND": "Power BI report not available. Generate the file following the repository guide.",
-    "ANALYTICS_REPORT_EMPTY": "Generated report is empty."
-  },
   "assistanceStatus": {
     "PRESENT": "Present",
     "ABSENT": "Absent",
@@ -1542,41 +1531,6 @@
   "aria": {
     "openMenu": "Open menu",
     "languageEs": "Spanish"
-  },
-  "informe": {
-    "title": "Center analytics — Ziryab",
-    "subtitle": "Global academic report (enrollments, teachers, attendance and tasks)",
-    "backToAdmin": "Back to admin panel",
-    "filters": "Filters",
-    "filterYear": "School year",
-    "filterCourse": "Course cycle",
-    "filterGroup": "Group",
-    "allCourses": "All cycles",
-    "allGroups": "All groups",
-    "includeInactive": "Include inactive enrollments and assignments",
-    "applyFilters": "Apply filters",
-    "loading": "Loading…",
-    "exports": "Export data",
-    "exportCsvFull": "Export full CSV",
-    "exportXlsxFull": "Export full XLSX",
-    "exportCsvFiltered": "Export filtered CSV",
-    "exportXlsxFiltered": "Export filtered XLSX",
-    "topGroups": "Top groups by students",
-    "enrollments": "Enrollments",
-    "powerBiTitle": "Power BI report",
-    "powerBiHint": "Download the predefined Power BI Desktop report (same file regardless of filters).",
-    "downloadPbix": "Download Power BI report",
-    "menu": "Menu",
-    "yearPlaceholder": "2024-2025",
-    "kpi": {
-      "matriculas": "Enrollments",
-      "alumnos": "Unique students",
-      "profesores": "Teachers",
-      "ciclos": "Cycles",
-      "grupos": "Groups",
-      "asistencia": "Attendance rate",
-      "sesionesCanceladas": "Cancelled sessions"
-    }
   },
   "studentClasses": {
     "title": "My subjects",

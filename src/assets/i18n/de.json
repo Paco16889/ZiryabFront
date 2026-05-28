@@ -59,9 +59,6 @@
       "unknown": "Unbekannter Fehler",
       "connection": "Verbindungsfehler mit dem Server.",
       "userNotIdentified": "Benutzer nicht identifiziert. Bitte anmelden.",
-      "loadSummary": "Fehler beim Laden der Zusammenfassung",
-      "export": "Fehler beim Export",
-      "downloadPowerBi": "Fehler beim Herunterladen des Power-BI-Berichts",
       "loadAbsences": "Fehler beim Laden der Fehlzeiten.",
       "loadTask": "Fehler beim Laden der Aufgabe.",
       "loadTaskDetail": "Fehler beim Laden der Aufgabendetails.",
@@ -362,8 +359,7 @@
     "assistances": "Anwesenheit",
     "notifications": "Benachrichtigungen",
     "issues": "Anschlagtafel",
-    "tutors": "Tutoren",
-    "reports": "Berichte"
+    "tutors": "Tutoren"
   },
   "deleteModal": {
     "title": "Löschen bestätigen",
@@ -1523,13 +1519,6 @@
     "dniPlaceholder": "12345678A oder X1234567A",
     "dniInvalidExtended": "Ungültige Ausweisnummer/NIE (z. B. 12345678A oder X1234567A)"
   },
-  "apiErrors": {
-    "ANALYTICS_INVALID_SCHOOL_YEAR": "Schuljahr ist erforderlich (Format 2024-2025).",
-    "ANALYTICS_SUMMARY_FAILED": "Fehler beim Abrufen der Berichtszusammenfassung.",
-    "ANALYTICS_EXPORT_FAILED": "Fehler beim Erstellen des Berichts.",
-    "ANALYTICS_PBIX_NOT_FOUND": "Power-BI-Bericht nicht verfügbar. Erstelle die Datei gemäß Repository-Anleitung.",
-    "ANALYTICS_REPORT_EMPTY": "Erstellter Bericht ist leer."
-  },
   "assistanceStatus": {
     "PRESENT": "Anwesend",
     "ABSENT": "Abwesend",
@@ -1539,41 +1528,6 @@
   "aria": {
     "openMenu": "Menü öffnen",
     "languageEs": "Spanisch"
-  },
-  "informe": {
-    "title": "Zentrumsanalyse — Ziryab",
-    "subtitle": "Globaler akademischer Bericht (Einschreibungen, Lehrer, Anwesenheit und Aufgaben)",
-    "backToAdmin": "Zurück zum Admin-Panel",
-    "filters": "Filter",
-    "filterYear": "Schuljahr",
-    "filterCourse": "Bildungsgang",
-    "filterGroup": "Gruppe",
-    "allCourses": "Alle Bildungsgänge",
-    "allGroups": "Alle Gruppen",
-    "includeInactive": "Inaktive Einschreibungen und Zuweisungen einschließen",
-    "applyFilters": "Filter anwenden",
-    "loading": "Laden…",
-    "exports": "Daten exportieren",
-    "exportCsvFull": "Vollständiges CSV exportieren",
-    "exportXlsxFull": "Vollständiges XLSX exportieren",
-    "exportCsvFiltered": "Gefiltertes CSV exportieren",
-    "exportXlsxFiltered": "Gefiltertes XLSX exportieren",
-    "topGroups": "Top-Gruppen nach Schülern",
-    "enrollments": "Einschreibungen",
-    "powerBiTitle": "Power-BI-Bericht",
-    "powerBiHint": "Vordefinierten Power-BI-Desktop-Bericht herunterladen (gleiche Datei unabhängig von Filtern).",
-    "downloadPbix": "Power-BI-Bericht herunterladen",
-    "menu": "Menü",
-    "yearPlaceholder": "2024-2025",
-    "kpi": {
-      "matriculas": "Einschreibungen",
-      "alumnos": "Einzigartige Schüler",
-      "profesores": "Lehrer",
-      "ciclos": "Bildungsgänge",
-      "grupos": "Gruppen",
-      "asistencia": "Anwesenheitsrate",
-      "sesionesCanceladas": "Abgesagte Sitzungen"
-    }
   },
   "studentClasses": {
     "title": "Meine Faecher",

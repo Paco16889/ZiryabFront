@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TasksAllResponse, TaskByIdResponse } from '../models/task';
+import { environment } from '../../../environments/environment';
 
 /**
  * Servicio encargado de la gestión global de Tareas (Tasks).
@@ -15,7 +16,7 @@ export class TaskService {
   private http = inject(HttpClient);
 
   /** Endpoint base de tareas usado por este servicio legacy. */
-  private apiUrl = 'http://localhost:3000/api/tasks';
+  private apiUrl = `${environment.apiUrl}/tasks`;
 
   /**
    * Obtiene la lista con todas las tareas registradas en el sistema.
