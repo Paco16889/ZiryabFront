@@ -149,7 +149,11 @@ export class NotificationsService implements OnDestroy {
   connect(): void {
     this.disconnect();
 
-    const url = `${this.apiUrl}/notifications/events`;
+    const token = this.authService.getToken();
+    const baseUrl = `${this.apiUrl}/notifications/events`;
+    const url = token
+      ? `${baseUrl}?token=${encodeURIComponent(token)}`
+      : baseUrl;
 
     try {
       const es = new EventSource(url, { withCredentials: true });
