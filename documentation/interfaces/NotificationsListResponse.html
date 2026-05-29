@@ -140,7 +140,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/services/notifications.service.ts</code>
+            <code>src/app/core/repository/notification-repository.ts</code>
         </p>
 
 
@@ -148,7 +148,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Respuesta de <code>GET …/notifications</code> usada solo en este cliente.</p>
+                <p>Respuesta de <code>GET /api/notifications</code> (misma forma que usa <code>NotificationsService</code>).</p>
 
             </p>
 
@@ -178,6 +178,7 @@
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#pagination" 
 >
                                             pagination
@@ -208,7 +209,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>data:     <code>AppNotification[]</code>
+                                        <code>data:     <code>ApiNotification[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -216,7 +217,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>AppNotification[]</code>
+                                            <i>Type : </i>    <code>ApiNotification[]</code>
 
                                         </td>
                                     </tr>
@@ -227,7 +228,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Notificaciones de la página solicitada.</p>
+                                    <div class="io-description"><p>Página de notificaciones devuelta por la API.</p>
 </div>
                                 </td>
                             </tr>
@@ -299,13 +300,18 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Metadatos de paginación para el listado REST.</p>
+                                    <div class="io-description"><p>Metadatos de paginación cuando el backend los incluye.</p>
 </div>
                                 </td>
                             </tr>
@@ -316,17 +322,36 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, inject, OnDestroy } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, inject } from &#x27;@angular/core&#x27;;
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { BehaviorSubject, Subject, Subscription, distinctUntilChanged, firstValueFrom, map } from &#x27;rxjs&#x27;;
-import { AuthService, type UserResponse } from &#x27;./auth.service&#x27;;
+import { Observable, forkJoin, of } from &#x27;rxjs&#x27;;
+import { catchError, map } from &#x27;rxjs/operators&#x27;;
 import { environment } from &#x27;../../../environments/environment&#x27;;
+import { Notification } from &#x27;../models/notification&#x27;;
 
-/**
- * Notificación según modelo del backend (&#x60;Notification&#x60; en Prisma).
- * Se recibe por SSE y en listados REST; las fechas en JSON vienen como cadena ISO.
- */
-export interface AppNotification {
+/** Respuesta de &#x60;GET /api/notifications&#x60; (misma forma que usa &#x60;NotificationsService&#x60;). */
+interface NotificationsListResponse {
+  /** Mensaje informativo del backend. */
+  message: string;
+
+  /** Página de notificaciones devuelta por la API. */
+  data: ApiNotification[];
+
+  /** Metadatos de paginación cuando el backend los incluye. */
+  pagination?: {
+    /** Página solicitada. */
+    page: number;
+    /** Tamaño de página aplicado. */
+    limit: number;
+    /** Total de notificaciones del usuario. */
+    total: number;
+    /** Número total de páginas disponibles. */
+    totalPages: number;
+  };
+}
+
+/** Forma JSON exacta que devuelve el backend antes de mapearla al modelo de UI. */
+interface ApiNotification {
   /** Identificador único de la notificación. */
   id: number;
 
@@ -339,199 +364,110 @@ export interface AppNotification {
   /** Mensaje o clave i18n. */
   message: string;
 
-  /** Categoría de la notificación. */
+  /** Tipo de notificación enviado por backend. */
   type: string;
 
-  /** Indica si la notificación ya fue leída. */
+  /** Estado de lectura actual. */
   isRead: boolean;
 
-  /** Fecha de lectura serializada o &#x60;null&#x60;. */
+  /** Fecha de lectura serializada, o &#x60;null&#x60;. */
   readAt: string | null;
 
   /** Fecha de creación serializada. */
   createdAt: string;
 }
 
-/** Respuesta de &#x60;GET …/notifications&#x60; usada solo en este cliente. */
-interface NotificationsListResponse {
-  /** Mensaje informativo del backend. */
-  message: string;
-
-  /** Notificaciones de la página solicitada. */
-  data: AppNotification[];
-
-  /** Metadatos de paginación para el listado REST. */
-  pagination: {
-    /** Página solicitada. */
-    page: number;
-    /** Tamaño máximo de página. */
-    limit: number;
-    /** Total de notificaciones del usuario. */
-    total: number;
-    /** Número total de páginas. */
-    totalPages: number;
+/** Adapta la notificación REST al modelo común usado por el panel. */
+function mapApiToNotification(n: ApiNotification): Notification {
+  return {
+    id: n.id,
+    recipientFirebaseUID: n.recipientFirebaseUID,
+    title: n.title,
+    message: n.message,
+    type: n.type,
+    isRead: n.isRead,
+    readAt: n.readAt,
+    createdAt: n.createdAt,
   };
 }
 
-/**
- * Servicio de notificaciones del cliente.
- *
- * Combina REST (&#x60;GET /notifications&#x60;) para el número de no leídas inicial y
- * **Server-Sent Events** contra &#x60;/notifications/events&#x60; para recibir cada nueva
- * &#x60;AppNotification&#x60; en tiempo real usando cookies (&#x60;withCredentials&#x60; en &#x60;EventSource&#x60;).
- *
- * Se suscribe a {@link AuthService.currentUser$} para conectar SSE al iniciar sesión
- * y desconectar al cerrar sesión.
- */
+/** Repositorio REST de notificaciones, con modo mock para desarrollo local. */
 @Injectable({ providedIn: &#x27;root&#x27; })
-export class NotificationsService implements OnDestroy {
-  /** Cliente HTTP usado para calcular el contador inicial de no leídas. */
+export class NotificationRepository {
+  /** Cliente HTTP usado para consultar y marcar notificaciones. */
   private readonly http &#x3D; inject(HttpClient);
 
-  /** Servicio de sesión que indica cuándo abrir o cerrar SSE. */
-  private readonly authService &#x3D; inject(AuthService);
-
-  /** URL base del backend usada para REST y SSE. */
+  /** URL base del backend configurada para la aplicación. */
   private readonly apiUrl &#x3D; environment.apiUrl;
 
-  /** Instancia &#x60;EventSource&#x60; abierta hacia la API, o &#x60;null&#x60; si no hay conexión. */
-  private eventSource: EventSource | null &#x3D; null;
+  /** Obtiene las últimas notificaciones del usuario autenticado. */
+  getAll(): Observable&lt;Notification[]&gt; {
+    if (environment.useMockNotifications) {
+      return of(MOCK_NOTIFICATIONS.map((notification) &#x3D;&gt; ({ ...notification })));
+    }
 
-  /** Emisor de cada notificación parseada desde el stream SSE (&#x60;message&#x60;). */
-  private readonly notificationSubject &#x3D; new Subject&lt;AppNotification&gt;();
-
-  /**
-   * Flujo observable de nuevas notificaciones recibidas por SSE tras el login.
-   */
-  readonly notification$ &#x3D; this.notificationSubject.asObservable();
-
-  /** Estado del conteo de no leídas sincronizado con la API localmente. */
-  private readonly unreadCountSubject &#x3D; new BehaviorSubject&lt;number&gt;(0);
-
-  /**
-   * Flujo observable del número total de notificaciones no leídas.
-   */
-  readonly unreadCount$ &#x3D; this.unreadCountSubject.asObservable();
-
-  /** Suscripción al estado de sesión; se cancela en {@link NotificationsService.ngOnDestroy}. */
-  private readonly authSubscription: Subscription;
-
-  /**
-   * Al construir el servicio, escucha cambios de usuario y abre/cierra SSE según haya Firebase UID estable.
-   */
-  constructor() {
-    this.authSubscription &#x3D; this.authService.currentUser$
+    return this.http
+      .get&lt;NotificationsListResponse&gt;(&#x60;${this.apiUrl}/notifications&#x60;, {
+        params: { page: &#x27;1&#x27;, limit: &#x27;500&#x27; },
+      })
       .pipe(
-        map((user: UserResponse | null) &#x3D;&gt; user?.firebaseUID ?? &#x27;&#x27;),
-        distinctUntilChanged()
-      )
-      .subscribe((firebaseUid: string) &#x3D;&gt; {
-        if (!firebaseUid) {
-          this.onLogout();
-          return;
-        }
-        void this.onSessionActive();
-      });
-  }
-
-  /**
-   * Cierra SSE y cancela la suscripción al {@link AuthService}.
-   */
-  ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
-    this.disconnect();
-  }
-
-  /**
-   * Tras autenticación: obtiene el contador de no leídas vía REST y abre el canal SSE.
-   */
-  private async onSessionActive(): Promise&lt;void&gt; {
-    await this.refreshUnreadCount();
-    this.connect();
-  }
-
-  /**
-   * Limpia conexiones y reinicia el contador de no leídas al cerrar sesión.
-   */
-  private onLogout(): void {
-    this.disconnect();
-    this.unreadCountSubject.next(0);
-  }
-
-  /**
-   * Establece conexión SSE con &#x60;GET …/notifications/events&#x60;.
-   *
-   * El navegador envía cookies de sesión gracias a &#x60;{ withCredentials: true }&#x60;,
-   * coherente con el interceptor HTTP de la aplicación.
-   */
-  connect(): void {
-    this.disconnect();
-
-    const token &#x3D; this.authService.getToken();
-    const baseUrl &#x3D; &#x60;${this.apiUrl}/notifications/events&#x60;;
-    const url &#x3D; token
-      ? &#x60;${baseUrl}?token&#x3D;${encodeURIComponent(token)}&#x60;
-      : baseUrl;
-
-    try {
-      const es &#x3D; new EventSource(url, { withCredentials: true });
-      this.eventSource &#x3D; es;
-
-      es.addEventListener(&#x27;message&#x27;, (ev: MessageEvent) &#x3D;&gt; {
-        try {
-          const raw &#x3D; ev.data as string;
-          const parsed &#x3D; JSON.parse(raw) as AppNotification;
-          this.notificationSubject.next(parsed);
-          const nextUnread &#x3D; Math.min(
-            this.unreadCountSubject.value + 1,
-            9999
-          );
-          this.unreadCountSubject.next(nextUnread);
-        } catch {
-          // payload no JSON válido
-        }
-      });
-
-      es.onerror &#x3D; (): void &#x3D;&gt; {
-        if (es.readyState &#x3D;&#x3D;&#x3D; EventSource.CLOSED) {
-          this.eventSource &#x3D; null;
-        }
-      };
-    } catch {
-      this.eventSource &#x3D; null;
-    }
-  }
-
-  /**
-   * Cierra el &#x60;EventSource&#x60; activo si existe.
-   */
-  disconnect(): void {
-    if (this.eventSource) {
-      this.eventSource.close();
-      this.eventSource &#x3D; null;
-    }
-  }
-
-  /**
-   * Recalcula el número de notificaciones no leídas desde la API (página 1, límite fijo).
-   */
-  async refreshUnreadCount(): Promise&lt;void&gt; {
-    try {
-      const res &#x3D; await firstValueFrom(
-        this.http.get&lt;NotificationsListResponse&gt;(
-          &#x60;${this.apiUrl}/notifications&#x60;,
-          {
-            params: { page: &#x27;1&#x27;, limit: &#x27;500&#x27; },
-          }
-        )
+        map((res) &#x3D;&gt; (res.data ?? []).map(mapApiToNotification)),
+        catchError(() &#x3D;&gt; of([]))
       );
-      const unread &#x3D; res.data.filter((n: AppNotification) &#x3D;&gt; !n.isRead).length;
-      this.unreadCountSubject.next(unread);
-    } catch {
-      this.unreadCountSubject.next(0);
+  }
+
+  /** Marca una notificación como leída en backend, ignorando errores para no romper la UI. */
+  markAsRead(id: number): Observable&lt;void&gt; {
+    if (environment.useMockNotifications) {
+      return of(undefined);
     }
+
+    return this.http.patch(&#x60;${this.apiUrl}/notifications/${id}/read&#x60;, {}).pipe(
+      map(() &#x3D;&gt; undefined),
+      catchError(() &#x3D;&gt; of(undefined))
+    );
+  }
+
+  /** Marca varias como leídas ejecutando llamadas individuales porque no hay endpoint bulk. */
+  markAllAsRead(ids: number[]): Observable&lt;void&gt; {
+    if (ids.length &#x3D;&#x3D;&#x3D; 0) {
+      return of(undefined);
+    }
+
+    if (environment.useMockNotifications) {
+      return of(undefined);
+    }
+
+    return forkJoin(ids.map((id) &#x3D;&gt; this.markAsRead(id))).pipe(
+      map(() &#x3D;&gt; undefined),
+      catchError(() &#x3D;&gt; of(undefined))
+    );
   }
 }
+
+/** Datos locales para validar la UI de notificaciones sin depender del backend. */
+const MOCK_NOTIFICATIONS: Notification[] &#x3D; [
+  {
+    id: 1,
+    recipientFirebaseUID: &#x27;mock-student&#x27;,
+    title: &#x27;notifications.mock.taskAssigned.title&#x27;,
+    message: &#x27;notifications.mock.taskAssigned.message&#x27;,
+    type: &#x27;TASK&#x27;,
+    isRead: false,
+    readAt: null,
+    createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
+  },
+  {
+    id: 2,
+    recipientFirebaseUID: &#x27;mock-student&#x27;,
+    title: &#x27;notifications.mock.dueSoon.title&#x27;,
+    message: &#x27;notifications.mock.dueSoon.message&#x27;,
+    type: &#x27;TASK&#x27;,
+    isRead: false,
+    readAt: null,
+    createdAt: new Date(Date.now() - 1000 * 60 * 60).toISOString(),
+  },
+];
 </code></pre>
     </div>
 </div>

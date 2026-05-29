@@ -287,7 +287,7 @@ Valida el formulario y envía los datos al backend para crear el ciclo.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -371,7 +371,7 @@ Valida el formulario y envía los datos al backend para crear el ciclo.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:33</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -398,7 +398,7 @@ Valida el formulario y envía los datos al backend para crear el ciclo.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:38</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -437,8 +437,8 @@ Valida el formulario y envía los datos al backend para crear el ciclo.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -476,8 +476,8 @@ Valida el formulario y envía los datos al backend para crear el ciclo.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -521,7 +521,7 @@ Si la creación es exitosa emite el evento courseCreated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -558,7 +558,7 @@ Si la creación es exitosa emite el evento courseCreated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -595,7 +595,7 @@ Si la creación es exitosa emite el evento courseCreated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -634,7 +634,7 @@ Si la creación es exitosa emite el evento courseCreated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/admin/entities/course/course-create-form/course-create-form.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -659,6 +659,15 @@ import { CourseService } from &#x27;../../../../../core/services/admin/entities/
 import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
 import { resolveApiError } from &#x27;../../../../../core/i18n/api-error.util&#x27;;
 
+/** Payload emitido tras crear ciclo (CURSO-139). */
+export interface CourseCreatedPayload {
+  /** Identificador del ciclo recién creado. */
+  id: number;
+
+  /** Nombre del ciclo mostrado en el flujo post-alta. */
+  name: string;
+}
+
 /**
  * Componente que gestiona el formulario de creación de un nuevo ciclo académico.
  * Valida el formulario y envía los datos al backend para crear el ciclo.
@@ -681,7 +690,7 @@ export class CourseCreateFormComponent {
     /**
    * Evento emitido cuando el ciclo se ha creado correctamente.
    */
-  @Output() courseCreated &#x3D; new EventEmitter&lt;void&gt;();
+  @Output() courseCreated &#x3D; new EventEmitter&lt;CourseCreatedPayload&gt;();
 
    /**
    * Formulario reactivo con el campo nombre del ciclo académico.
@@ -705,8 +714,7 @@ export class CourseCreateFormComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private courseService: CourseService
-  ) {
+    private courseService: CourseService,) {
     this.createForm &#x3D; this.fb.group({
       name: [&#x27;&#x27;, Validators.required]
     });
@@ -722,8 +730,9 @@ export class CourseCreateFormComponent {
       this.errorMessage &#x3D; &#x27;&#x27;;
 
       this.courseService.createCourse(this.createForm.value).subscribe({
-        next: () &#x3D;&gt; {
-          this.courseCreated.emit();
+        next: (res) &#x3D;&gt; {
+          this.isCreating &#x3D; false;
+          this.courseCreated.emit({ id: res.data.id, name: res.data.name });
         },
         error: (err) &#x3D;&gt; {
           this.isCreating &#x3D; false;
@@ -752,14 +761,14 @@ export class CourseCreateFormComponent {
       class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900&quot;&gt;
       ← {{ &#x27;common.buttons.back&#x27; | translate }}
     &lt;/button&gt;
-    &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;forms.createCourse&#x27; | translate }}&lt;/h1&gt;
+&lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;adminPages.forms.course.title&#x27; | translate }}&lt;/h1&gt;
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
     &lt;form [formGroup]&#x3D;&quot;createForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
         &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;
-          {{ &#x27;forms.courseName&#x27; | translate }}
+{{ &#x27;adminPages.forms.course.nameLabel&#x27; | translate }}
         &lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;name&quot;
@@ -793,7 +802,7 @@ export class CourseCreateFormComponent {
           [disabled]&#x3D;&quot;createForm.invalid || isCreating&quot;
           class&#x3D;&quot;px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 
                  disabled:bg-gray-300 disabled:cursor-not-allowed&quot;&gt;
-          {{ isCreating ? (&#x27;forms.creating&#x27; | translate) : (&#x27;forms.createCourseBtn&#x27; | translate) }}
+{{ isCreating ? (&#x27;adminPages.forms.common.creating&#x27; | translate) : (&#x27;adminPages.forms.course.submit&#x27; | translate) }}
         &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
@@ -828,8 +837,8 @@ export class CourseCreateFormComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- course-create-form.component.html --><div class="max-w-2xl mx-auto">  <div class="flex items-center mb-6">    <button       (click)="onCancel()"      class="mr-4 text-gray-600 hover:text-gray-900">      ← {{ \'common.buttons.back\' | translate }}    </button>    <h1 class="text-2xl font-bold">{{ \'forms.createCourse\' | translate }}</h1>  </div>  <div class="bg-white p-6 rounded-lg shadow">    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">          {{ \'forms.courseName\' | translate }}        </label>        <input           formControlName="name"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'forms.courseNamePlaceholder\' | translate"        />        @if(createForm.get(\'name\')?.invalid && createForm.get(\'name\')?.touched){            <span class="text-red-500 text-sm mt-1">            {{ \'common.validation.nameRequired\' | translate }}            </span>        }      </div>      @if(errorMessage){        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">        {{ errorMessage }}        </div>      }      <div class="flex justify-end gap-3">        <button           type="button"          (click)="onCancel()"          [disabled]="isCreating"          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">          {{ \'common.buttons.cancel\' | translate }}        </button>        <button           type="submit"          [disabled]="createForm.invalid || isCreating"          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600                  disabled:bg-gray-300 disabled:cursor-not-allowed">          {{ isCreating ? (\'forms.creating\' | translate) : (\'forms.createCourseBtn\' | translate) }}        </button>      </div>    </form>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><!-- course-create-form.component.html --><div class="max-w-2xl mx-auto">  <div class="flex items-center mb-6">    <button       (click)="onCancel()"      class="mr-4 text-gray-600 hover:text-gray-900">      ← {{ \'common.buttons.back\' | translate }}    </button><h1 class="text-2xl font-bold">{{ \'adminPages.forms.course.title\' | translate }}</h1>  </div>  <div class="bg-white p-6 rounded-lg shadow">    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'adminPages.forms.course.nameLabel\' | translate }}        </label>        <input           formControlName="name"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'forms.courseNamePlaceholder\' | translate"        />        @if(createForm.get(\'name\')?.invalid && createForm.get(\'name\')?.touched){            <span class="text-red-500 text-sm mt-1">            {{ \'common.validation.nameRequired\' | translate }}            </span>        }      </div>      @if(errorMessage){        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">        {{ errorMessage }}        </div>      }      <div class="flex justify-end gap-3">        <button           type="button"          (click)="onCancel()"          [disabled]="isCreating"          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">          {{ \'common.buttons.cancel\' | translate }}        </button>        <button           type="submit"          [disabled]="createForm.invalid || isCreating"          class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600                  disabled:bg-gray-300 disabled:cursor-not-allowed">{{ isCreating ? (\'adminPages.forms.common.creating\' | translate) : (\'adminPages.forms.course.submit\' | translate) }}        </button>      </div>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CourseCreateFormComponent'};
 </script>

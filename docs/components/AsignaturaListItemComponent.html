@@ -216,7 +216,9 @@ para el componente genérico GenericListItemComponent.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#subjectDetailConfig" >subjectDetailConfig</a>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
                             </li>
                         </ul>
                     </td>
@@ -269,6 +271,9 @@ para el componente genérico GenericListItemComponent.</p>
                                 <li>
                                     <a href="#subjectConfig" >subjectConfig</a>
                                 </li>
+                                <li>
+                                    <a href="#subjectDetailConfig" >subjectDetailConfig</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -287,7 +292,7 @@ para el componente genérico GenericListItemComponent.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -373,7 +378,7 @@ para el selector del formulario de edición</li>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:37</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -403,7 +408,7 @@ para el selector del formulario de edición</li>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:48</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -430,7 +435,7 @@ para el selector del formulario de edición</li>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -455,72 +460,35 @@ Pendiente de sustituir el tipo inline por SubjectUpdateRequest.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="subjectDetailConfig"></a>
+                    <a name="translate"></a>
                     <span class="name">
-                        <span ><b>subjectDetailConfig</b></span>
-                        <a href="#subjectDetailConfig"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>ViewDetailConfig&lt;Subject&gt;</code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{
-        fields: [
-          {
-            key: &#x27;name&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Nombre de la Asignatura:&#x27;
-          },
-          {
-            key: &#x27;grade&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Curso en el que se imparte: &#x27;
-          },
-          {
-            key: &#x27;course.name&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Ciclo al que pertenece:&#x27;
-          },
-          {
-  key: &#x27;hours&#x27;,
-  type: &#x27;text&#x27;,
-  format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-  className: &#x27;text-xl font-bold&#x27;,
-  label: &#x27;Horas semanales:&#x27;
-},
-{
-  key: &#x27;description&#x27;,
-  type: &#x27;text&#x27;,
-  format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-  className: &#x27;text-xl font-bold&#x27;,
-  label: &#x27;Descripción:&#x27;
-}
-      ]
-      }</code>
+                        <i>Default value : </i><code>inject(TranslateService)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:145</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:32</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Configuración de la vista de detalle de la asignatura.
-Define los campos nombre, curso y ciclo al que pertenece.</p>
+                    <div class="io-description"><p>Traducciones de etiquetas y mensajes del formulario.</p>
 </div>
                 </td>
             </tr>
@@ -549,7 +517,7 @@ Define los campos nombre, curso y ciclo al que pertenece.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:68</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -571,12 +539,46 @@ y las funciones de servicio.</p>
 
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="subjectDetailConfig"></a>
+                        <span class="name"><b>subjectDetailConfig</b><a href="#subjectDetailConfig"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>subjectDetailConfig()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/pages/admin/entities/asignatura/asignatura-list-item/asignatura-list-item.component.ts:148</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Configuración de la vista de detalle de la asignatura.
+Define los campos nombre, curso y ciclo al que pertenece.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>ViewDetailConfig&lt;Subject&gt;</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
 </section>
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, inject, Input, Output } from &#x27;@angular/core&#x27;;
 import { Subject, SubjectByIdResponse, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from &#x27;../../../../../core/models/subject&#x27;;
 
 import { SubjectService } from &#x27;../../../../../core/services/admin/entities/subject.service&#x27;;
@@ -588,6 +590,7 @@ import { SubjectService } from &#x27;../../../../../core/services/admin/entities
 import { CourseService } from &#x27;../../../../../core/services/admin/entities/course.service&#x27;;
 import { Validators } from &#x27;@angular/forms&#x27;;
 import { map } from &#x27;rxjs&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
 
 import { GenericListItemComponent } from &quot;../../../generic-list-item/generic-list-item.component&quot;;
 import { ListItemConfig } from &#x27;../../../../../core/configs/list-item-config&#x27;;
@@ -605,6 +608,9 @@ import { ViewDetailConfig } from &#x27;../../../../../core/configs/view-detail-c
   styleUrl: &#x27;./asignatura-list-item.component.scss&#x27;
 })
 export class AsignaturaListItemComponent {
+  /** Traducciones de etiquetas y mensajes del formulario. */
+  private readonly translate &#x3D; inject(TranslateService);
+
   /**
    * Asignatura a mostrar en el elemento de lista.
    */
@@ -629,8 +635,7 @@ export class AsignaturaListItemComponent {
    */
   constructor(
     private subjectService: SubjectService,
-    private courseService: CourseService
-  ) {}
+    private courseService: CourseService,) {}
 
     /**
    * Configuración del elemento de lista de la asignatura.
@@ -659,19 +664,19 @@ export class AsignaturaListItemComponent {
       editFields: [
         {
           name: &#x27;name&#x27;,
-          label: &#x27;Nombre de la asignatura&#x27;,
+          label: this.translate.instant(&#x27;adminPages.forms.subject.nameLabel&#x27;),
           type: &#x27;text&#x27;,
-          placeholder: &#x27;Nombre de la asignatura&#x27;,
+          placeholder: this.translate.instant(&#x27;adminPages.forms.subject.nameLabel&#x27;),
           validators: [Validators.required],
-          errorMessage: &#x27;El nombre es requerido&#x27;
+          errorMessage: this.translate.instant(&#x27;common.validation.nameRequired&#x27;)
         },
         {
           name: &#x27;idCourse&#x27;,
-          label: &#x27;Ciclo&#x27;,
+          label: this.translate.instant(&#x27;adminPages.forms.subject.courseLabel&#x27;),
           fieldType: &#x27;select&#x27;,
-          placeholder: &#x27;Selecciona un ciclo&#x27;,
+          placeholder: this.translate.instant(&#x27;adminPages.forms.subject.coursePlaceholder&#x27;),
           validators: [Validators.required],
-          errorMessage: &#x27;Debes seleccionar un ciclo&#x27;,
+          errorMessage: this.translate.instant(&#x27;adminPages.forms.subject.courseRequired&#x27;),
           optionsObservable: this.courseService.getAllCourses().pipe(
             map(res &#x3D;&gt; res.data)
           ),
@@ -680,11 +685,11 @@ export class AsignaturaListItemComponent {
         },
         {
   name: &#x27;grade&#x27;,
-  label: &#x27;Curso&#x27;,
+  label: this.translate.instant(&#x27;adminPages.forms.subject.gradeLabel&#x27;),
   fieldType: &#x27;select&#x27;,
-  placeholder: &#x27;Selecciona un curso&#x27;,
+  placeholder: this.translate.instant(&#x27;adminPages.forms.subject.gradePlaceholder&#x27;),
   validators: [Validators.required],
-  errorMessage: &#x27;Debes seleccionar un curso&#x27;,
+  errorMessage: this.translate.instant(&#x27;adminPages.forms.subject.gradeRequired&#x27;),
   options: [
     { value: &#x27;1&#x27;, label: &#x27;1º&#x27; },
     { value: &#x27;2&#x27;, label: &#x27;2º&#x27; }
@@ -692,22 +697,22 @@ export class AsignaturaListItemComponent {
 },
 {
   name: &#x27;hours&#x27;,
-  label: &#x27;Horas semanales&#x27;,
+  label: this.translate.instant(&#x27;adminPages.forms.subject.hoursLabel&#x27;),
   type: &#x27;number&#x27;,
-  placeholder: &#x27;Ej: 6&#x27;,
+  placeholder: this.translate.instant(&#x27;adminPages.forms.subject.hoursPlaceholder&#x27;),
   validators: [Validators.min(1), Validators.max(30)],
-  errorMessage: &#x27;Las horas deben estar entre 1 y 30&#x27;
+  errorMessage: this.translate.instant(&#x27;adminPages.forms.subject.hoursInvalid&#x27;)
 },
 {
   name: &#x27;description&#x27;,
-  label: &#x27;Descripción&#x27;,
+  label: this.translate.instant(&#x27;lists.tasks.fields.description&#x27;),
   type: &#x27;text&#x27;,
-  placeholder: &#x27;Descripción breve de la asignatura&#x27;,
+  placeholder: this.translate.instant(&#x27;adminPages.forms.subject.descriptionPlaceholder&#x27;),
   validators: [Validators.maxLength(255)],
-  errorMessage: &#x27;La descripción no puede superar los 255 caracteres&#x27;
+  errorMessage: this.translate.instant(&#x27;adminPages.forms.subject.descriptionInvalid&#x27;)
 }
       ],
-      entityType: &#x27;la asignatura&#x27;,
+      entityType: this.translate.instant(&#x27;entities.subject.singularArticle&#x27;),
       entityNameFormat: (subject: Subject) &#x3D;&gt; subject.name,
       getByIdFn: (id: number) &#x3D;&gt; this.subjectService.getSubjectbyId(id),
       updateFn: (data: SubjectUpdateRequest) &#x3D;&gt; this.subjectService.updateSubject(data.id, data),
@@ -720,49 +725,47 @@ export class AsignaturaListItemComponent {
    * Configuración de la vista de detalle de la asignatura.
    * Define los campos nombre, curso y ciclo al que pertenece.
    */
-  subjectDetailConfig: ViewDetailConfig&lt;Subject&gt; &#x3D; {
-        fields: [
-          {
-            key: &#x27;name&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Nombre de la Asignatura:&#x27;
-          },
-          {
-            key: &#x27;grade&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Curso en el que se imparte: &#x27;
-          },
-          {
-            key: &#x27;course.name&#x27;,
-            type: &#x27;text&#x27;,
-            format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-            className: &#x27;text-xl font-bold&#x27;,
-            label: &#x27;Ciclo al que pertenece:&#x27;
-          },
-          {
-  key: &#x27;hours&#x27;,
-  type: &#x27;text&#x27;,
-  format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-  className: &#x27;text-xl font-bold&#x27;,
-  label: &#x27;Horas semanales:&#x27;
-},
-{
-  key: &#x27;description&#x27;,
-  type: &#x27;text&#x27;,
-  format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
-  className: &#x27;text-xl font-bold&#x27;,
-  label: &#x27;Descripción:&#x27;
-}
+  get subjectDetailConfig(): ViewDetailConfig&lt;Subject&gt; {
+    return {
+      fields: [
+        {
+          key: &#x27;name&#x27;,
+          type: &#x27;text&#x27;,
+          format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+          className: &#x27;text-xl font-bold&#x27;,
+          label: this.translate.instant(&#x27;adminPages.subjectDetail.name&#x27;)
+        },
+        {
+          key: &#x27;grade&#x27;,
+          type: &#x27;text&#x27;,
+          format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+          className: &#x27;text-xl font-bold&#x27;,
+          label: this.translate.instant(&#x27;adminPages.subjectDetail.grade&#x27;)
+        },
+        {
+          key: &#x27;course.name&#x27;,
+          type: &#x27;text&#x27;,
+          format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+          className: &#x27;text-xl font-bold&#x27;,
+          label: this.translate.instant(&#x27;adminPages.subjectDetail.course&#x27;)
+        },
+        {
+          key: &#x27;hours&#x27;,
+          type: &#x27;text&#x27;,
+          format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+          className: &#x27;text-xl font-bold&#x27;,
+          label: this.translate.instant(&#x27;adminPages.subjectDetail.hours&#x27;)
+        },
+        {
+          key: &#x27;description&#x27;,
+          type: &#x27;text&#x27;,
+          format: (value) &#x3D;&gt; &#x60;${value}&#x60;,
+          className: &#x27;text-xl font-bold&#x27;,
+          label: this.translate.instant(&#x27;adminPages.subjectDetail.description&#x27;)
+        }
       ]
-      };
-      
- 
-
- 
+    };
+  }
 }
 </code></pre>
     </div>
@@ -803,7 +806,7 @@ export class AsignaturaListItemComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><app-generic-list-item  [item]="subject"  [config]="subjectConfig"  [detailConfig]="subjectDetailConfig">  </app-generic-list-item></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AsignaturaListItemComponent'};
 </script>

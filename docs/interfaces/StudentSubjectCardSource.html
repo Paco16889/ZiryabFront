@@ -426,14 +426,12 @@ export class ClasesComponent implements OnInit {
   private construirCards(): void {
     const cards: CardItem[] &#x3D; this.asignaturasOriginales().map(item &#x3D;&gt; ({
       id: item.subject?.id || 0,
-      title: item.subject?.name || this.translate.instant(&#x27;common.messages.subject&#x27;),
-      subtitleTopLabel: &#x27;studentClasses.labels.grade&#x27;,
-      subtitleTopValue: item.group?.name || &#x27;General&#x27;,
-      subtitleBottomLabel: &#x27;studentClasses.labels.teacher&#x27;,
-      subtitleBottomValue:
-        this.profesoresMap()[item.subject?.id || 0] ||
-        this.translate.instant(&#x27;common.messages.loadingTeacher&#x27;),
-      actionLabel: &#x27;studentClasses.access&#x27;,
+      title: item.subject?.name || this.translate.instant(&#x27;studentPages.classes.subjectFallback&#x27;),
+      subtitleTopLabel: &#x27;studentPages.classes.levelLabel&#x27;,
+      subtitleTopValue: item.group?.name || &#x27;-&#x27;,
+      subtitleBottomLabel: &#x27;studentPages.classes.teacherLabel&#x27;,
+      subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || this.translate.instant(&#x27;studentPages.classes.loadingTeacher&#x27;),
+      actionLabel: this.translate.instant(&#x27;studentPages.common.access&#x27;)
     }));
     this.asignaturasCards.set(cards);
   }

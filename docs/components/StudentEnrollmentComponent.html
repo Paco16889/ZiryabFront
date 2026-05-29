@@ -142,10 +142,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Componente orquestador del proceso de matriculación de un estudiante.
-Gestiona el flujo completo mostrando los distintos pasos según el modo activo:
-creación de nuevo estudiante, selección de estudiante existente
-o selección de ciclo y asignaturas para la matriculación.</p>
+        <p>Contenedor del wizard de matriculación: modo nuevo alumno, existente
+o paso final de asignaturas (EQ-311).</p>
 
     </p>
 
@@ -154,7 +152,7 @@ o selección de ciclo y asignaturas para la matriculación.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -229,6 +227,19 @@ o selección de ciclo y asignaturas para la matriculación.</p>
                             <li>
                                 <a href="#mode" >mode</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedStudentService" >selectedStudentService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#sessionClosed" >sessionClosed</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subjectService" >subjectService</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -242,7 +253,11 @@ o selección de ciclo y asignaturas para la matriculación.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnChanges" >ngOnChanges</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#closeSession" >closeSession</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
                                 <a href="#onCancel" >onCancel</a>
@@ -305,64 +320,6 @@ o selección de ciclo y asignaturas para la matriculación.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(selectedStudentService: <a href="../injectables/SelectedStudentService.html" target="_self">SelectedStudentService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:35</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>para compartirlo entre los componentes del flujo de matriculación</p>
-</div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>selectedStudentService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/SelectedStudentService.html" target="_self" >SelectedStudentService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que almacena el estudiante seleccionado
-para compartirlo entre los componentes del flujo de matriculación</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -387,12 +344,12 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Listado de estudiantes disponibles para seleccionar en el modo de estudiante existente.</p>
+                        <div class="io-description"><p>Alumnos disponibles para matricular existente.</p>
 </div>
                     </td>
                 </tr>
@@ -417,12 +374,12 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:38</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando el usuario cancela el proceso de matriculación.</p>
+                        <div class="io-description"><p>Cancela el wizard completo.</p>
 </div>
                     </td>
                 </tr>
@@ -444,12 +401,12 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:41</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando el proceso de matriculación se completa correctamente.</p>
+                        <div class="io-description"><p>Matrícula confirmada con éxito.</p>
 </div>
                     </td>
                 </tr>
@@ -467,74 +424,78 @@ para compartirlo entre los componentes del flujo de matriculación</li>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnChanges"></a>
+                    <a name="closeSession"></a>
                     <span class="name">
-                        <span ><b>ngOnChanges</b></span>
-                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>closeSession</b></span>
+                        <a href="#closeSession"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>closeSession()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:94</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Detecta cambios en el listado de estudiantes recibido por Input.</p>
+                        <div class="io-description"><p>Cancelar: solo limpia memoria (A). Huérfanos en BD → job backend (C).</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>changes</td>
-                                            <td>
-                                                            <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <ul>
-<li>Objeto con los cambios detectados en los Inputs</li>
-</ul>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Limpia borrador/alumno si el usuario abandona sin confirmar.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -559,15 +520,15 @@ para compartirlo entre los componentes del flujo de matriculación</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:65</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Emite el evento cancelCreate para cancelar el proceso de matriculación.</p>
+                        <div class="io-description"><p>Cancela y limpia sesión de matriculación.</p>
 </div>
 
                         <div class="io-description">
@@ -598,15 +559,15 @@ para compartirlo entre los componentes del flujo de matriculación</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:71</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Cancela el formulario de creación de estudiante y vuelve al listado.</p>
+                        <div class="io-description"><p>Alias de cancelación desde el formulario de alta.</p>
 </div>
 
                         <div class="io-description">
@@ -637,15 +598,15 @@ para compartirlo entre los componentes del flujo de matriculación</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:87</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Notifica al componente padre que el proceso de matriculación ha finalizado.</p>
+                        <div class="io-description"><p>Matrícula OK: limpia estado y notifica al padre.</p>
 </div>
 
                         <div class="io-description">
@@ -669,65 +630,28 @@ para compartirlo entre los componentes del flujo de matriculación</li>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onStudentCreated(student: <a href="../interfaces/Student.html" target="_self">Student</a>)</code>
+<code>onStudentCreated()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="104"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:104</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:82</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Avanza al paso de selección de asignaturas tras crear un nuevo estudiante.</p>
+                        <div class="io-description"><p>Borrador creado: pasa al paso de asignaturas.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>student</td>
-                                            <td>
-                                                            <code><a href="../interfaces/Student.html" target="_self" >Student</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <ul>
-<li>Estudiante recién creado</li>
-</ul>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -752,15 +676,15 @@ para compartirlo entre los componentes del flujo de matriculación</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:76</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Almacena el estudiante seleccionado y avanza al paso de selección de asignaturas.</p>
+                        <div class="io-description"><p>Alumno existente elegido: pasa al paso de asignaturas.</p>
 </div>
 
                             <div class="io-description">
@@ -772,7 +696,6 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -787,12 +710,6 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Estudiante seleccionado en el modo de estudiante existente</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -828,15 +745,15 @@ para compartirlo entre los componentes del flujo de matriculación</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:60</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Establece el modo activo del flujo de matriculación.</p>
+                        <div class="io-description"><p>Cambia el subpaso del wizard.</p>
 </div>
 
                             <div class="io-description">
@@ -848,7 +765,6 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -863,12 +779,6 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>Modo a activar: &#39;new&#39;, &#39;existing&#39; o &#39;set-registration&#39;</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -914,18 +824,129 @@ para compartirlo entre los componentes del flujo de matriculación</li>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:47</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Modo activo del flujo de matriculación.</p>
-<ul>
-<li>new: formulario de creación de nuevo estudiante.</li>
-<li>existing: selector de estudiante existente.</li>
-<li>set-registration: selección de ciclo y asignaturas.</li>
-</ul>
+                    <div class="io-description"><p>Paso visible del wizard: alta de alumno, selector de existente
+o matrícula de asignaturas (paso 3).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedStudentService"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedStudentService</b></span>
+                        <a href="#selectedStudentService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SelectedStudentService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado compartido del alumno/borrador en el wizard de matriculación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sessionClosed"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>sessionClosed</b></span>
+                        <a href="#sessionClosed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Evita limpiar estado dos veces al cerrar con éxito.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subjectService</b></span>
+                        <a href="#subjectService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SubjectService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/alumno/student-enrollment/student-enrollment.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Limpia asignaturas seleccionadas al cancelar el wizard.</p>
 </div>
                 </td>
             </tr>
@@ -938,123 +959,109 @@ para compartirlo entre los componentes del flujo de matriculación</li>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from &#x27;@angular/core&#x27;;
-import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { StudentCreateFormComponent } from &quot;../student-create-form/student-create-form.component&quot;;
-import { StudentSelectorComponent } from &quot;../student-selector/student-selector.component&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnDestroy, Output, inject } from &#x27;@angular/core&#x27;;
+import { StudentCreateFormComponent } from &#x27;../student-create-form/student-create-form.component&#x27;;
+import { StudentSelectorComponent } from &#x27;../student-selector/student-selector.component&#x27;;
 import { Student } from &#x27;../../../../../core/models/student&#x27;;
 import { SelectedStudentService } from &#x27;../../../../../core/services/admin/selected-student.service&#x27;;
-import { SetRegistrationComponent } from &quot;../set-registration/set-registration.component&quot;;
-import { StudentModeSelectorComponent } from &quot;../student-mode-selector/student-mode-selector.component&quot;;
+import { SubjectService } from &#x27;../../../../../core/services/admin/entities/subject.service&#x27;;
+import { SetRegistrationComponent } from &#x27;../set-registration/set-registration.component&#x27;;
+import { StudentModeSelectorComponent } from &#x27;../student-mode-selector/student-mode-selector.component&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
 
 /**
- * Componente orquestador del proceso de matriculación de un estudiante.
- * Gestiona el flujo completo mostrando los distintos pasos según el modo activo:
- * creación de nuevo estudiante, selección de estudiante existente
- * o selección de ciclo y asignaturas para la matriculación.
+ * Contenedor del wizard de matriculación: modo nuevo alumno, existente
+ * o paso final de asignaturas (EQ-311).
  */
 @Component({
   selector: &#x27;app-student-enrollment&#x27;,
-  imports: [StudentCreateFormComponent, SetRegistrationComponent, StudentSelectorComponent, StudentModeSelectorComponent, TranslateModule],
+  imports: [
+    StudentCreateFormComponent,
+    SetRegistrationComponent,
+    StudentSelectorComponent,
+    StudentModeSelectorComponent,
+    TranslateModule,
+  ],
   templateUrl: &#x27;./student-enrollment.component.html&#x27;,
-  styleUrl: &#x27;./student-enrollment.component.scss&#x27;
+  styleUrl: &#x27;./student-enrollment.component.scss&#x27;,
 })
-export class StudentEnrollmentComponent implements OnChanges{
+export class StudentEnrollmentComponent implements OnDestroy {
+  /** Estado compartido del alumno/borrador en el wizard de matriculación. */
+  readonly selectedStudentService &#x3D; inject(SelectedStudentService);
+
+  /** Limpia asignaturas seleccionadas al cancelar el wizard. */
+  private readonly subjectService &#x3D; inject(SubjectService);
+
+  /** Alumnos disponibles para matricular existente. */
+  @Input() students: Student[] &#x3D; [];
+
+  /** Cancela el wizard completo. */
+  @Output() cancelCreate &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Matrícula confirmada con éxito. */
+  @Output() studentCreated &#x3D; new EventEmitter&lt;void&gt;();
 
   /**
-   * Listado de estudiantes disponibles para seleccionar en el modo de estudiante existente.
-   */
-      @Input() students: Student[] &#x3D; [];
-      /**
-   * Evento emitido cuando el usuario cancela el proceso de matriculación.
-   */
-       @Output() cancelCreate &#x3D; new EventEmitter&lt;void&gt;();
-        /**
-   * Evento emitido cuando el proceso de matriculación se completa correctamente.
-   */
-       @Output() studentCreated &#x3D; new EventEmitter&lt;void&gt;();
-
-
-        /**
-   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado
-   * para compartirlo entre los componentes del flujo de matriculación
-   */
-       constructor(private selectedStudentService: SelectedStudentService) {}
-
-         /**
-   * Detecta cambios en el listado de estudiantes recibido por Input.
-   * @param changes - Objeto con los cambios detectados en los Inputs
-   */
-  //se queda para desarrollo quitar en producción
-    ngOnChanges(changes: SimpleChanges) {
-    if (changes[&#x27;students&#x27;]) {
-      console.log(&#x27;📦 Enrollment recibe students (ngOnChanges):&#x27;, this.students);
-      console.log(&#x27;📊 Cantidad:&#x27;, this.students.length);
-    }
-  }
-
- /**
-   * Modo activo del flujo de matriculación.
-   * - new: formulario de creación de nuevo estudiante.
-   * - existing: selector de estudiante existente.
-   * - set-registration: selección de ciclo y asignaturas.
+   * Paso visible del wizard: alta de alumno, selector de existente
+   * o matrícula de asignaturas (paso 3).
    */
   mode: &#x27;new&#x27; | &#x27;existing&#x27; | &#x27;set-registration&#x27; &#x3D; &#x27;new&#x27;;
 
+  /** Evita limpiar estado dos veces al cerrar con éxito. */
+  private sessionClosed &#x3D; false;
 
-    /**
-   * Establece el modo activo del flujo de matriculación.
-   * @param mode - Modo a activar: &#x27;new&#x27;, &#x27;existing&#x27; o &#x27;set-registration&#x27;
-   */
-  setMode(mode: &#x27;new&#x27; | &#x27;existing&#x27; | &#x27;set-registration&#x27;) {
+  /** Limpia borrador/alumno si el usuario abandona sin confirmar. */
+  ngOnDestroy(): void {
+    if (!this.sessionClosed) {
+      this.selectedStudentService.clearSelectedStudent();
+    }
+  }
+
+  /** Cambia el subpaso del wizard. */
+  setMode(mode: &#x27;new&#x27; | &#x27;existing&#x27; | &#x27;set-registration&#x27;): void {
     this.mode &#x3D; mode;
   }
-  
-   /**
-   * Emite el evento cancelCreate para cancelar el proceso de matriculación.
-   */
-  onCancel() {
+
+  /** Cancela y limpia sesión de matriculación. */
+  onCancel(): void {
+    this.closeSession();
     this.cancelCreate.emit();
   }
 
-   /**
-   * Cancela el formulario de creación de estudiante y vuelve al listado.
-   */
-  onCancelStudentCreate(){
+  /** Alias de cancelación desde el formulario de alta. */
+  onCancelStudentCreate(): void {
     this.onCancel();
   }
 
-   /**
-   * Almacena el estudiante seleccionado y avanza al paso de selección de asignaturas.
-   * @param student - Estudiante seleccionado en el modo de estudiante existente
-   */
-  onStudentSelected(student: Student) {
-  // 1️⃣ Guardamos el student en la signal
-  this.selectedStudentService.setSelectedStudent(student);
-
-  // 2️⃣ Cambiamos la vista al siguiente nivel
+  /** Alumno existente elegido: pasa al paso de asignaturas. */
+  onStudentSelected(student: Student): void {
+    this.selectedStudentService.setSelectedStudent(student);
     this.setMode(&#x27;set-registration&#x27;);
+  }
 
-}
+  /** Borrador creado: pasa al paso de asignaturas. */
+  onStudentCreated(): void {
+    this.setMode(&#x27;set-registration&#x27;);
+  }
 
- /**
-   * Avanza al paso de selección de asignaturas tras crear un nuevo estudiante.
-   * @param student - Estudiante recién creado
-   */
-onStudentCreated(student: Student){
-  this.setMode(&#x27;set-registration&#x27;);
-}
+  /** Matrícula OK: limpia estado y notifica al padre. */
+  onRegistrationFinished(): void {
+    this.sessionClosed &#x3D; true;
+    this.selectedStudentService.completeEnrollmentSession();
+    this.studentCreated.emit();
+  }
 
-  /**
-   * Notifica al componente padre que el proceso de matriculación ha finalizado.
-   */
-onRegistrationFinished() {
-  // 1️⃣ avisamos al ListComponent
-  this.studentCreated.emit();
-
-
- 
-}
+  /** Cancelar: solo limpia memoria (A). Huérfanos en BD → job backend (C). */
+  private closeSession(): void {
+    if (this.sessionClosed) {
+      return;
+    }
+    this.sessionClosed &#x3D; true;
+    this.selectedStudentService.clearSelectedStudent();
+    this.selectedStudentService.enrollmentInProgress.set(false);
+    this.subjectService.clearSelectedSubjects();
+    this.mode &#x3D; &#x27;new&#x27;;
+  }
 }
 </code></pre>
     </div>
@@ -1062,44 +1069,59 @@ onRegistrationFinished() {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;max-w-2xl mx-auto&quot;&gt;
   &lt;div class&#x3D;&quot;flex items-center mb-6&quot;&gt;
-    &lt;button 
+    &lt;button
+      type&#x3D;&quot;button&quot;
       (click)&#x3D;&quot;onCancel()&quot;
-      class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900&quot;&gt;
-      ← {{ &#x27;common.buttons.back&#x27; | translate }}
+      [disabled]&#x3D;&quot;selectedStudentService.enrollmentInProgress()&quot;
+      class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed&quot;&gt;
+      ← Volver
     &lt;/button&gt;
     &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;studentEnrollment.title&#x27; | translate }}&lt;/h1&gt;
   &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
 
+    &lt;!-- Selector tipo alumno --&gt;
      @if (mode &#x3D;&#x3D;&#x3D; &#x27;new&#x27; || mode &#x3D;&#x3D;&#x3D; &#x27;existing&#x27;) {
        &lt;app-student-mode-selector
       (modeSelected)&#x3D;&quot;setMode($event)&quot;&gt;
+
       &lt;/app-student-mode-selector&gt;
      }
+  
 
+    &lt;!-- FORMULARIO: ALUMNO NUEVO --&gt;
     @if(mode &#x3D;&#x3D;&#x3D; &#x27;new&#x27;){
       &lt;div class&#x3D;&quot;border-t pt-6&quot;&gt;
+        &lt;!-- aquí irá tu student-create-form real --&gt;
         &lt;p class&#x3D;&quot;text-gray-600 mb-4&quot;&gt;
-          {{ &#x27;studentEnrollment.newStudentForm.instructions&#x27; | translate }}
+          Introduce los datos del nuevo alumno
         &lt;/p&gt;
         &lt;app-student-create-form
         (cancelCreate)&#x3D;&quot;onCancelStudentCreate()&quot;
-        (studentCreated)&#x3D;&quot;onStudentCreated($event)&quot;&gt;
+        (studentCreated)&#x3D;&quot;onStudentCreated()&quot;&gt;
+
         &lt;/app-student-create-form&gt;
+
+        &lt;!-- placeholder --&gt;
+        &lt;!-- aquí luego metes el formGroup del alumno --&gt;
       &lt;/div&gt;
     }
 
+    &lt;!-- FORMULARIO: ALUMNO EXISTENTE --&gt;
     @if(mode &#x3D;&#x3D;&#x3D; &#x27;existing&#x27;){
       &lt;div class&#x3D;&quot;border-t pt-6&quot;&gt;
         &lt;p class&#x3D;&quot;text-gray-600 mb-4&quot;&gt;
-          {{ &#x27;studentEnrollment.existingStudentForm.instructions&#x27; | translate }}
+          Selecciona un alumno existente para matricular
         &lt;/p&gt;
         &lt;app-student-selector
          [students]&#x3D;&quot;students&quot;
          (cancelSelection)&#x3D;&quot;onCancel()&quot;
          (studentSelected)&#x3D;&quot;onStudentSelected($event)&quot;&gt;
+
         &lt;/app-student-selector&gt;
+        &lt;!-- placeholder --&gt;
+        &lt;!-- aquí luego irá el select de alumnos + curso --&gt;
       &lt;/div&gt;
     }
 
@@ -1109,6 +1131,7 @@ onRegistrationFinished() {
     [students]&#x3D;&quot;students&quot; (closeForm)&#x3D;&quot;onRegistrationFinished()&quot;&gt;&lt;/app-set-registration&gt;
   &lt;/div&gt;
 }
+
 
   &lt;/div&gt;
 &lt;/div&gt;
@@ -1141,8 +1164,8 @@ onRegistrationFinished() {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="max-w-2xl mx-auto">  <div class="flex items-center mb-6">    <button       (click)="onCancel()"      class="mr-4 text-gray-600 hover:text-gray-900">      ← {{ \'common.buttons.back\' | translate }}    </button>    <h1 class="text-2xl font-bold">{{ \'studentEnrollment.title\' | translate }}</h1>  </div>  <div class="bg-white p-6 rounded-lg shadow">     @if (mode === \'new\' || mode === \'existing\') {       <app-student-mode-selector      (modeSelected)="setMode($event)">      </app-student-mode-selector>     }    @if(mode === \'new\'){      <div class="border-t pt-6">        <p class="text-gray-600 mb-4">          {{ \'studentEnrollment.newStudentForm.instructions\' | translate }}        </p>        <app-student-create-form        (cancelCreate)="onCancelStudentCreate()"        (studentCreated)="onStudentCreated($event)">        </app-student-create-form>      </div>    }    @if(mode === \'existing\'){      <div class="border-t pt-6">        <p class="text-gray-600 mb-4">          {{ \'studentEnrollment.existingStudentForm.instructions\' | translate }}        </p>        <app-student-selector         [students]="students"         (cancelSelection)="onCancel()"         (studentSelected)="onStudentSelected($event)">        </app-student-selector>      </div>    }    @if(mode === \'set-registration\'){  <div class="border-t pt-6">    <app-set-registration    [students]="students" (closeForm)="onRegistrationFinished()"></app-set-registration>  </div>}  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="max-w-2xl mx-auto">  <div class="flex items-center mb-6">    <button      type="button"      (click)="onCancel()"      [disabled]="selectedStudentService.enrollmentInProgress()"      class="mr-4 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed">      ← Volver    </button>    <h1 class="text-2xl font-bold">{{ \'studentEnrollment.title\' | translate }}</h1>  </div>  <div class="bg-white p-6 rounded-lg shadow">    <!-- Selector tipo alumno -->     @if (mode === \'new\' || mode === \'existing\') {       <app-student-mode-selector      (modeSelected)="setMode($event)">      </app-student-mode-selector>     }      <!-- FORMULARIO: ALUMNO NUEVO -->    @if(mode === \'new\'){      <div class="border-t pt-6">        <!-- aquí irá tu student-create-form real -->        <p class="text-gray-600 mb-4">          Introduce los datos del nuevo alumno        </p>        <app-student-create-form        (cancelCreate)="onCancelStudentCreate()"        (studentCreated)="onStudentCreated()">        </app-student-create-form>        <!-- placeholder -->        <!-- aquí luego metes el formGroup del alumno -->      </div>    }    <!-- FORMULARIO: ALUMNO EXISTENTE -->    @if(mode === \'existing\'){      <div class="border-t pt-6">        <p class="text-gray-600 mb-4">          Selecciona un alumno existente para matricular        </p>        <app-student-selector         [students]="students"         (cancelSelection)="onCancel()"         (studentSelected)="onStudentSelected($event)">        </app-student-selector>        <!-- placeholder -->        <!-- aquí luego irá el select de alumnos + curso -->      </div>    }    @if(mode === \'set-registration\'){  <div class="border-t pt-6">    <app-set-registration    [students]="students" (closeForm)="onRegistrationFinished()"></app-set-registration>  </div>}  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'StudentEnrollmentComponent'};
 </script>

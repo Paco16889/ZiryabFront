@@ -142,10 +142,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Componente que gestiona el formulario de creación de un nuevo estudiante.
-Crea el usuario en Firebase Authentication y posteriormente lo registra
-en el backend con los datos del formulario.
-Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordService.</p>
+        <p>Paso 2 del wizard: valida y guarda borrador en memoria (EQ-311-A).
+Firebase y POST /students se ejecutan al confirmar matrículas en el paso 3.</p>
 
     </p>
 
@@ -225,12 +223,19 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
                                 <a href="#errorMessage" >errorMessage</a>
                             </li>
                             <li>
-                                <a href="#isCreating" >isCreating</a>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#fb" >fb</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#translate" >translate</a>
+                                <a href="#selectedStudentService" >selectedStudentService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#studentService" >studentService</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -248,9 +253,6 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#createStudent" >createStudent</a>
-                            </li>
                             <li>
                                 <a href="#onCancel" >onCancel</a>
                             </li>
@@ -292,124 +294,19 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, studentService: <a href="../injectables/StudentsService.html" target="_self">StudentsService</a>, fireBaseAuth: Auth, passwordGen: <a href="../injectables/PasswordService.html" target="_self">PasswordService</a>, selectedStudentService: <a href="../injectables/SelectedStudentService.html" target="_self">SelectedStudentService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:43</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Inicializa el componente.</p>
+                            <div class="io-description"><p>Construye el formulario con validadores de email y DNI/NIE.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                                    <td>Description</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>fb</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>FormBuilder de Angular para construir el formulario reactivo</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>studentService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/StudentsService.html" target="_self" >StudentsService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que gestiona las operaciones con estudiantes</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>fireBaseAuth</td>
-                                                  
-                                                        <td>
-                                                                    <code>Auth</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Instancia de Firebase Authentication para crear el usuario</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>passwordGen</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/PasswordService.html" target="_self" >PasswordService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que genera la contraseña aleatoria del nuevo usuario</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>selectedStudentService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/SelectedStudentService.html" target="_self" >SelectedStudentService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>Servicio que almacena el estudiante seleccionado tras la creación</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -435,12 +332,12 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:34</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando el usuario cancela la creación.</p>
+                        <div class="io-description"><p>Cancela el wizard de matriculación.</p>
 </div>
                     </td>
                 </tr>
@@ -462,13 +359,12 @@ Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordServi
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:31</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Evento emitido cuando the estudiante se ha creado correctamente.
-Incluye los datos del estudiante creado.</p>
+                        <div class="io-description"><p>Avanza al paso 3 tras guardar el borrador en memoria.</p>
 </div>
                     </td>
                 </tr>
@@ -482,51 +378,6 @@ Incluye los datos del estudiante creado.</p>
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createStudent"></a>
-                    <span class="name">
-                        <span ><b>createStudent</b></span>
-                        <a href="#createStudent"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>createStudent()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:92</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Crea el usuario en Firebase Authentication y lo registra en el backend.
-Genera una contraseña aleatoria para Firebase y usa el UID resultante
-para completar el registro en el backend.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Student.html" target="_self" >Observable&lt;Student&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Observable con los datos del estudiante creado.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -547,15 +398,15 @@ para completar el registro en el backend.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="165"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:165</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:87</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Emite el evento cancelCreate para cerrar el formulario sin guardar cambios.</p>
+                        <div class="io-description"><p>Emite cancelación al contenedor del wizard.</p>
 </div>
 
                         <div class="io-description">
@@ -586,17 +437,15 @@ para completar el registro en el backend.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:58</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Valida el formulario, comprueba si el estudiante ya existe por DNI
-y ejecuta la creación si todo es correcto.
-Si el estudiante ya existe, muestra un mensaje de error sin realizar la creación.</p>
+                        <div class="io-description"><p>Valida, comprueba DNI y guarda borrador sin llamar al API de alumnos.</p>
 </div>
 
                         <div class="io-description">
@@ -632,13 +481,13 @@ Si el estudiante ya existe, muestra un mensaje de error sin realizar la creació
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:37</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Formulario reactivo con los campos necesarios para crear un estudiante.</p>
+                    <div class="io-description"><p>Formulario reactivo con datos personales del alumno.</p>
 </div>
                 </td>
             </tr>
@@ -669,13 +518,13 @@ Si el estudiante ya existe, muestra un mensaje de error sin realizar la creació
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:40</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Mensaje de error a mostrar si la creación falla o el estudiante ya existe.</p>
+                    <div class="io-description"><p>Mensaje de validación o DNI duplicado.</p>
 </div>
                 </td>
             </tr>
@@ -686,49 +535,12 @@ Si el estudiante ya existe, muestra un mensaje de error sin realizar la creació
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isCreating"></a>
-                    <span class="name">
-                        <span ><b>isCreating</b></span>
-                        <a href="#isCreating"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:50</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Indica si la petición de creación está en curso.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="translate"></a>
+                    <a name="fb"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>translate</b></span>
-                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -740,18 +552,96 @@ Si el estudiante ya existe, muestra un mensaje de error sin realizar la creació
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>inject(TranslateService)</code>
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:22</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Traducciones de errores al crear el estudiante en Firebase o el backend.</p>
+                    <div class="io-description"><p>Constructor de formularios reactivos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedStudentService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedStudentService</b></span>
+                        <a href="#selectedStudentService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(SelectedStudentService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guarda el borrador en memoria del wizard.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studentService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>studentService</b></span>
+                        <a href="#studentService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StudentsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Comprueba DNI duplicado en listado local.</p>
 </div>
                 </td>
             </tr>
@@ -783,13 +673,13 @@ Si el estudiante ya existe, muestra un mensaje de error sin realizar la creació
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/entities/alumno/student-create-form/student-create-form.component.ts:43</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Indica si el formulario es válido</p>
+                    <div class="io-description"><p>Indica si el formulario cumple validaciones (uso en plantilla).</p>
 </div>
                 </td>
             </tr>
@@ -803,170 +693,92 @@ Si el estudiante ya existe, muestra un mensaje de error sin realizar la creació
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Output, inject } from &#x27;@angular/core&#x27;;
-import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
-import { resolveApiError } from &#x27;../../../../../core/i18n/api-error.util&#x27;;
-import { Student } from &#x27;../../../../../core/models/student&#x27;;
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
-import { StudentsService } from &#x27;../../../../../core/services/admin/entities/students.service&#x27;;
-import { Auth, createUserWithEmailAndPassword } from &#x27;@angular/fire/auth&#x27;;
-import { PasswordService } from &#x27;../../../../../core/services/password.service&#x27;;
-import { BotonConfirmarStudentComponent } from &quot;../../../botones/boton-confirmar-student/boton-confirmar-student.component&quot;;
-import { SelectedStudentService } from &#x27;../../../../../core/services/admin/selected-student.service&#x27;;
-import { Observable, from } from &#x27;rxjs&#x27;;
-import { switchMap, map, finalize } from &#x27;rxjs/operators&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { BotonConfirmarStudentComponent } from &#x27;../../../botones/boton-confirmar-student/boton-confirmar-student.component&#x27;;
 import { DNI_NIE_PATTERN } from &#x27;../../../../../core/configs/validators&#x27;;
+import { PendingStudentDraft } from &#x27;../../../../../core/models/student&#x27;;
+import { SelectedStudentService } from &#x27;../../../../../core/services/admin/selected-student.service&#x27;;
+import { StudentsService } from &#x27;../../../../../core/services/admin/entities/students.service&#x27;;
 
 /**
- * Componente que gestiona el formulario de creación de un nuevo estudiante.
- * Crea el usuario en Firebase Authentication y posteriormente lo registra
- * en el backend con los datos del formulario.
- * Genera una contraseña aleatoria para el nuevo usuario mediante el PasswordService.
+ * Paso 2 del wizard: valida y guarda borrador en memoria (EQ-311-A).
+ * Firebase y POST /students se ejecutan al confirmar matrículas en el paso 3.
  */
 @Component({
   selector: &#x27;app-student-create-form&#x27;,
   imports: [ReactiveFormsModule, BotonConfirmarStudentComponent, TranslateModule],
   templateUrl: &#x27;./student-create-form.component.html&#x27;,
-  styleUrl: &#x27;./student-create-form.component.scss&#x27;
+  styleUrl: &#x27;./student-create-form.component.scss&#x27;,
 })
 export class StudentCreateFormComponent {
-  /** Traducciones de errores al crear el estudiante en Firebase o el backend. */
-  private readonly translate &#x3D; inject(TranslateService);
+  /** Constructor de formularios reactivos. */
+  private readonly fb &#x3D; inject(FormBuilder);
 
-  /**
-   * Evento emitido cuando the estudiante se ha creado correctamente.
-   * Incluye los datos del estudiante creado.
-   */
-  @Output() studentCreated &#x3D; new EventEmitter&lt;Student&gt;();
+  /** Comprueba DNI duplicado en listado local. */
+  private readonly studentService &#x3D; inject(StudentsService);
 
-  /**
-   * Evento emitido cuando el usuario cancela la creación.
-   */
+  /** Guarda el borrador en memoria del wizard. */
+  private readonly selectedStudentService &#x3D; inject(SelectedStudentService);
+
+  /** Avanza al paso 3 tras guardar el borrador en memoria. */
+  @Output() studentCreated &#x3D; new EventEmitter&lt;void&gt;();
+
+  /** Cancela el wizard de matriculación. */
   @Output() cancelCreate &#x3D; new EventEmitter&lt;void&gt;();
 
-   /**
-   * Formulario reactivo con los campos necesarios para crear un estudiante.
-   */
+  /** Formulario reactivo con datos personales del alumno. */
   createForm: FormGroup;
 
-  /**
-   * Indica si la petición de creación está en curso.
-   */
-  isCreating &#x3D; false;
-
-    /**
-   * Mensaje de error a mostrar si la creación falla o el estudiante ya existe.
-   */
+  /** Mensaje de validación o DNI duplicado. */
   errorMessage &#x3D; &#x27;&#x27;;
 
-  /** Indica si el formulario es válido */
+  /** Indica si el formulario cumple validaciones (uso en plantilla). */
   public validForm &#x3D; false;
 
-
-    /**
-   * Inicializa el componente.
-   * @param fb - FormBuilder de Angular para construir el formulario reactivo
-   * @param studentService - Servicio que gestiona las operaciones con estudiantes
-   * @param fireBaseAuth - Instancia de Firebase Authentication para crear el usuario
-   * @param passwordGen - Servicio que genera la contraseña aleatoria del nuevo usuario
-   * @param selectedStudentService - Servicio que almacena el estudiante seleccionado tras la creación
-   */
-  constructor(
-    private fb: FormBuilder,
-    private studentService: StudentsService,
-    private fireBaseAuth: Auth,
-    private passwordGen: PasswordService,
-    private selectedStudentService: SelectedStudentService
-  ) {
+  /** Construye el formulario con validadores de email y DNI/NIE. */
+  constructor() {
     this.createForm &#x3D; this.fb.group({
       email: [&#x27;&#x27;, [Validators.required, Validators.email]],
       name: [&#x27;&#x27;, Validators.required],
       surname: [&#x27;&#x27;, Validators.required],
       ndSurname: [&#x27;&#x27;, Validators.required],
       birthDate: [&#x27;&#x27;, Validators.required],
-      dni: [&#x27;&#x27;, [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]]
+      dni: [&#x27;&#x27;, [Validators.required, Validators.pattern(DNI_NIE_PATTERN)]],
     });
   }
 
-  /**
-   * Crea el usuario en Firebase Authentication y lo registra en el backend.
-   * Genera una contraseña aleatoria para Firebase y usa el UID resultante
-   * para completar el registro en el backend.
-   * @returns Observable con los datos del estudiante creado.
-   */
-  createStudent(): Observable&lt;Student&gt; {
-    const email &#x3D; this.createForm.value.email;
-    const password &#x3D; this.passwordGen.generateRandomPassword();
+  /** Valida, comprueba DNI y guarda borrador sin llamar al API de alumnos. */
+  onSubmit(): void {
+    if (this.createForm.invalid) {
+      return;
+    }
 
-    this.isCreating &#x3D; true;
-
-    return from(createUserWithEmailAndPassword(this.fireBaseAuth, email, password)).pipe(
-      switchMap(credential &#x3D;&gt; {
-        const firebaseUID &#x3D; credential.user.uid;
-
-        const studentData &#x3D; {
-          email,
-          name: this.createForm.value.name,
-          surname: this.createForm.value.surname,
-          ndSurname: this.createForm.value.ndSurname,
-          birthDate: this.createForm.value.birthDate,
-          dni: this.createForm.value.dni,
-          firebaseUID,
-        };
-
-        return this.studentService.createStudent(studentData).pipe(
-          map(response &#x3D;&gt; response.data)
-        );
-      }),
-      finalize(() &#x3D;&gt; {
-        this.isCreating &#x3D; false;
-      })
-    );
-  }
-
-  /**
-   * Valida el formulario, comprueba si el estudiante ya existe por DNI
-   * y ejecuta la creación si todo es correcto.
-   * Si el estudiante ya existe, muestra un mensaje de error sin realizar la creación.
-   */
-  onSubmit() {
-    if (this.createForm.invalid) return;
-    
     const formValue &#x3D; this.createForm.value;
-    const dni &#x3D; formValue.dni;
+    const dni &#x3D; formValue.dni as string;
 
-    // 1️⃣ comprobar existencias
-    const exists &#x3D; this.studentService.students().some(
-      student &#x3D;&gt; student.dni &#x3D;&#x3D;&#x3D; dni
-    );
-
-    // 2️⃣ si existe → avisar y return
+    const exists &#x3D; this.studentService.students().some((student) &#x3D;&gt; student.dni &#x3D;&#x3D;&#x3D; dni);
     if (exists) {
-      console.log(&#x27;estudiante existente&#x27;);
       this.errorMessage &#x3D; &#x27;Estudiante existente. Matricular desde estudiante existente.&#x27;;
       return;
     }
 
-    this.createStudent().subscribe({
-      next: (createdStudent) &#x3D;&gt; {
-        console.log(&#x27;✅ Estudiante creado: &#x27;, createdStudent);
+    const draft: PendingStudentDraft &#x3D; {
+      email: formValue.email,
+      name: formValue.name,
+      surname: formValue.surname,
+      ndSurname: formValue.ndSurname,
+      birthDate: formValue.birthDate,
+      dni: formValue.dni,
+    };
 
-        //  guardar en signal global
-        this.selectedStudentService.setSelectedStudent(createdStudent);
-
-        //  avisar al padre
-        this.studentCreated.emit(createdStudent);
-      },
-      error: (err) &#x3D;&gt; {
-        console.error(&#x27;❌ Error al crear estudiante:&#x27;, err);
-        this.errorMessage &#x3D; resolveApiError(this.translate, err, &#x27;common.errors.createStudent&#x27;);
-      }
-    });
+    this.selectedStudentService.setPendingStudentDraft(draft);
+    this.errorMessage &#x3D; &#x27;&#x27;;
+    this.studentCreated.emit();
   }
 
-  /**
-   * Emite el evento cancelCreate para cerrar el formulario sin guardar cambios.
-   */
-  onCancel() {
+  /** Emite cancelación al contenedor del wizard. */
+  onCancel(): void {
     this.cancelCreate.emit();
   }
 }
@@ -974,101 +786,127 @@ export class StudentCreateFormComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">
+        <pre class="line-numbers"><code class="language-html">﻿
 &lt;form [formGroup]&#x3D;&quot;createForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
 
+  &lt;!-- Email --&gt;
+  &lt;!-- Nombre --&gt;
+  &lt;!-- Apellidos --&gt;
+  &lt;!-- Fecha nacimiento --&gt;
+  &lt;!-- DNI --&gt;
+   &lt;!-- Email --&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;common.fields.email&#x27; | translate }}&lt;/label&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Email&lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;email&quot;
           type&#x3D;&quot;email&quot;
           class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
-          [placeholder]&#x3D;&quot;&#x27;common.placeholders.email&#x27; | translate&quot;
+          placeholder&#x3D;&quot;profesor@ziryab.es&quot;
         /&gt;
         @if(createForm.get(&#x27;email&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;email&#x27;)?.touched){
-            &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          {{ &#x27;common.validation.emailInvalid&#x27; | translate }}
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          Email inv├ílido
         &lt;/span&gt;
         }
+        
       &lt;/div&gt;
 
+      &lt;!-- Nombre --&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;common.fields.name&#x27; | translate }}&lt;/label&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Nombre&lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;name&quot;
           type&#x3D;&quot;text&quot;
           class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
-          [placeholder]&#x3D;&quot;&#x27;common.placeholders.name&#x27; | translate&quot;
+          placeholder&#x3D;&quot;Nombre&quot;
         /&gt;
         @if(createForm.get(&#x27;name&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;name&#x27;)?.touched){
-            &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          {{ &#x27;common.validation.nameRequired&#x27; | translate }}
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          El nombre es requerido
         &lt;/span&gt;
         }
+        
       &lt;/div&gt;
 
+      &lt;!-- Primer apellido --&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;common.fields.surname&#x27; | translate }}&lt;/label&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Primer apellido&lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;surname&quot;
           type&#x3D;&quot;text&quot;
           class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
-          [placeholder]&#x3D;&quot;&#x27;common.placeholders.surname&#x27; | translate&quot;
+          placeholder&#x3D;&quot;Primer apellido&quot;
         /&gt;
         @if(createForm.get(&#x27;surname&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;surname&#x27;)?.touched){
-            &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          {{ &#x27;common.validation.surnameRequired&#x27; | translate }}
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          El primer apellido es requerido
         &lt;/span&gt;
         }
+        
       &lt;/div&gt;
 
+      &lt;!-- Segundo apellido --&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;common.fields.ndSurname&#x27; | translate }}&lt;/label&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Segundo apellido&lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;ndSurname&quot;
           type&#x3D;&quot;text&quot;
           class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
-          [placeholder]&#x3D;&quot;&#x27;common.placeholders.ndSurname&#x27; | translate&quot;
+          placeholder&#x3D;&quot;Segundo apellido&quot;
         /&gt;
         @if(createForm.get(&#x27;ndSurname&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;ndSurname&#x27;)?.touched){
-             &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          {{ &#x27;common.validation.ndSurnameRequired&#x27; | translate }}
+             &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          El segundo apellido es requerido
         &lt;/span&gt;
         }
+       
       &lt;/div&gt;
 
+      &lt;!-- Fecha de nacimiento --&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;common.fields.birthDate&#x27; | translate }}&lt;/label&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;Fecha de nacimiento&lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;birthDate&quot;
           type&#x3D;&quot;date&quot;
           class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
         /&gt;
         @if(createForm.get(&#x27;birthDate&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;birthDate&#x27;)?.touched){
-             &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          {{ &#x27;common.validation.birthDateRequired&#x27; | translate }}
+             &lt;span
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          La fecha de nacimiento es requerida
         &lt;/span&gt;
         }
+       
       &lt;/div&gt;
 
+      &lt;!-- DNI --&gt;
       &lt;div class&#x3D;&quot;mb-4&quot;&gt;
-        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;{{ &#x27;forms.dniLabel&#x27; | translate }}&lt;/label&gt;
+        &lt;label class&#x3D;&quot;block text-gray-700 font-medium mb-2&quot;&gt;DNI / NIE&lt;/label&gt;
         &lt;input 
           formControlName&#x3D;&quot;dni&quot;
           type&#x3D;&quot;text&quot;
           maxlength&#x3D;&quot;9&quot;
           class&#x3D;&quot;w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500&quot;
-          [placeholder]&#x3D;&quot;&#x27;forms.dniPlaceholder&#x27; | translate&quot;
+          placeholder&#x3D;&quot;12345678A o X1234567A&quot;
         /&gt;
         @if(createForm.get(&#x27;dni&#x27;)?.invalid &amp;&amp; createForm.get(&#x27;dni&#x27;)?.touched){
-            &lt;span class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
-          {{ &#x27;forms.dniInvalidExtended&#x27; | translate }}
+            &lt;span 
+              class&#x3D;&quot;text-red-500 text-sm mt-1 block&quot;&gt;
+          DNI/NIE inv├ílido (ej: 12345678A o X1234567A)
         &lt;/span&gt;
         }
+        
       &lt;/div&gt;
 
+  &lt;!-- errores --&gt;
+   &lt;!-- Mensaje de error --&gt;
        @if(errorMessage){
-        &lt;div class&#x3D;&quot;mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700&quot;&gt;
+        &lt;div 
+           class&#x3D;&quot;mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700&quot;&gt;
         {{ errorMessage }}
       &lt;/div&gt;
        }
@@ -1077,13 +915,13 @@ export class StudentCreateFormComponent {
   &lt;button 
     type&#x3D;&quot;button&quot;
     (click)&#x3D;&quot;onCancel()&quot;
-    [disabled]&#x3D;&quot;isCreating&quot;
-    class&#x3D;&quot;px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50&quot;&gt;
-    {{ &#x27;common.buttons.cancel&#x27; | translate }}
+    class&#x3D;&quot;px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400&quot;&gt;
+    Cancelar
   &lt;/button&gt;
   &lt;app-boton-confirmar-student
   [disabled]&#x3D;&quot;createForm.invalid&quot;
-  (confirm)&#x3D;&quot;onSubmit()&quot;&gt;
+  (confirm)&#x3D;&quot;onSubmit()&quot;&gt;&gt;
+
   &lt;/app-boton-confirmar-student&gt;
 &lt;/div&gt;
 
@@ -1117,8 +955,8 @@ export class StudentCreateFormComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="createForm" (ngSubmit)="onSubmit()">      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'common.fields.email\' | translate }}</label>        <input           formControlName="email"          type="email"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'common.placeholders.email\' | translate"        />        @if(createForm.get(\'email\')?.invalid && createForm.get(\'email\')?.touched){            <span class="text-red-500 text-sm mt-1 block">          {{ \'common.validation.emailInvalid\' | translate }}        </span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'common.fields.name\' | translate }}</label>        <input           formControlName="name"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'common.placeholders.name\' | translate"        />        @if(createForm.get(\'name\')?.invalid && createForm.get(\'name\')?.touched){            <span class="text-red-500 text-sm mt-1 block">          {{ \'common.validation.nameRequired\' | translate }}        </span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'common.fields.surname\' | translate }}</label>        <input           formControlName="surname"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'common.placeholders.surname\' | translate"        />        @if(createForm.get(\'surname\')?.invalid && createForm.get(\'surname\')?.touched){            <span class="text-red-500 text-sm mt-1 block">          {{ \'common.validation.surnameRequired\' | translate }}        </span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'common.fields.ndSurname\' | translate }}</label>        <input           formControlName="ndSurname"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'common.placeholders.ndSurname\' | translate"        />        @if(createForm.get(\'ndSurname\')?.invalid && createForm.get(\'ndSurname\')?.touched){             <span class="text-red-500 text-sm mt-1 block">          {{ \'common.validation.ndSurnameRequired\' | translate }}        </span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'common.fields.birthDate\' | translate }}</label>        <input           formControlName="birthDate"          type="date"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"        />        @if(createForm.get(\'birthDate\')?.invalid && createForm.get(\'birthDate\')?.touched){             <span class="text-red-500 text-sm mt-1 block">          {{ \'common.validation.birthDateRequired\' | translate }}        </span>        }      </div>      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">{{ \'forms.dniLabel\' | translate }}</label>        <input           formControlName="dni"          type="text"          maxlength="9"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          [placeholder]="\'forms.dniPlaceholder\' | translate"        />        @if(createForm.get(\'dni\')?.invalid && createForm.get(\'dni\')?.touched){            <span class="text-red-500 text-sm mt-1 block">          {{ \'forms.dniInvalidExtended\' | translate }}        </span>        }      </div>       @if(errorMessage){        <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">        {{ errorMessage }}      </div>       } <div class="flex justify-end gap-3">  <button     type="button"    (click)="onCancel()"    [disabled]="isCreating"    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 disabled:opacity-50">    {{ \'common.buttons.cancel\' | translate }}  </button>  <app-boton-confirmar-student  [disabled]="createForm.invalid"  (confirm)="onSubmit()">  </app-boton-confirmar-student></div></form>  </div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div>﻿<form [formGroup]="createForm" (ngSubmit)="onSubmit()">  <!-- Email -->  <!-- Nombre -->  <!-- Apellidos -->  <!-- Fecha nacimiento -->  <!-- DNI -->   <!-- Email -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Email</label>        <input           formControlName="email"          type="email"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="profesor@ziryab.es"        />        @if(createForm.get(\'email\')?.invalid && createForm.get(\'email\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          Email inv├ílido        </span>        }              </div>      <!-- Nombre -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Nombre</label>        <input           formControlName="name"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="Nombre"        />        @if(createForm.get(\'name\')?.invalid && createForm.get(\'name\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          El nombre es requerido        </span>        }              </div>      <!-- Primer apellido -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Primer apellido</label>        <input           formControlName="surname"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="Primer apellido"        />        @if(createForm.get(\'surname\')?.invalid && createForm.get(\'surname\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          El primer apellido es requerido        </span>        }              </div>      <!-- Segundo apellido -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Segundo apellido</label>        <input           formControlName="ndSurname"          type="text"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="Segundo apellido"        />        @if(createForm.get(\'ndSurname\')?.invalid && createForm.get(\'ndSurname\')?.touched){             <span               class="text-red-500 text-sm mt-1 block">          El segundo apellido es requerido        </span>        }             </div>      <!-- Fecha de nacimiento -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>        <input           formControlName="birthDate"          type="date"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"        />        @if(createForm.get(\'birthDate\')?.invalid && createForm.get(\'birthDate\')?.touched){             <span              class="text-red-500 text-sm mt-1 block">          La fecha de nacimiento es requerida        </span>        }             </div>      <!-- DNI -->      <div class="mb-4">        <label class="block text-gray-700 font-medium mb-2">DNI / NIE</label>        <input           formControlName="dni"          type="text"          maxlength="9"          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"          placeholder="12345678A o X1234567A"        />        @if(createForm.get(\'dni\')?.invalid && createForm.get(\'dni\')?.touched){            <span               class="text-red-500 text-sm mt-1 block">          DNI/NIE inv├ílido (ej: 12345678A o X1234567A)        </span>        }              </div>  <!-- errores -->   <!-- Mensaje de error -->       @if(errorMessage){        <div            class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">        {{ errorMessage }}      </div>       } <div class="flex justify-end gap-3">  <button     type="button"    (click)="onCancel()"    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">    Cancelar  </button>  <app-boton-confirmar-student  [disabled]="createForm.invalid"  (confirm)="onSubmit()">>  </app-boton-confirmar-student></div></form>  </div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'StudentCreateFormComponent'};
 </script>

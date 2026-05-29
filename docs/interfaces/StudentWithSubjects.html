@@ -365,8 +365,7 @@
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { GradeService } from &#x27;../../../core/services/profesor/grade.service&#x27;;
-import { EvaluationPeriod, Grade, CreateGradeRequest } from &#x27;../../../core/models/grade&#x27;;
-import { Group } from &#x27;../../../core/models/group&#x27;;
+import { EvaluationPeriod, Grade, CreateGradeRequest, TutoredCourseGroup } from &#x27;../../../core/models/grade&#x27;;
 import { BotonAtrasComponent } from &#x27;../../shared/boton-atras/boton-atras.component&#x27;;
 import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
 import { resolveApiError } from &#x27;../../../core/i18n/api-error.util&#x27;;
@@ -406,13 +405,13 @@ export class GestionNotasComponent implements OnInit {
   /** Traducciones de mensajes. */
   private readonly translate &#x3D; inject(TranslateService);
 
-  /** Grupos tutorizados por el profesor. */
-  public groups &#x3D; signal&lt;Group[]&gt;([]);
-  /** Grupo seleccionado para calificar. */
-  public selectedGroup &#x3D; signal&lt;Group | null&gt;(null);
-  /** Periodo de evaluación activo. */
+  /** Grupo tutorizado activo en el selector. */
+  public selectedGroup &#x3D; signal&lt;TutoredCourseGroup | null&gt;(null);
+
+  /** Periodo de evaluación activo (trimestres). */
   public selectedPeriod &#x3D; signal&lt;EvaluationPeriod&gt;(EvaluationPeriod.FIRST_TRIMESTER);
-  /** Periodos disponibles para selector. */
+
+  /** Periodos disponibles para el selector. */
   public periods &#x3D; Object.values(EvaluationPeriod);
   
   /** Alumnos agrupados con asignaturas del grupo. */
@@ -439,15 +438,12 @@ export class GestionNotasComponent implements OnInit {
     this.loading.set(true);
     this.gradeService.getTutoredGroups().subscribe({
       next: (res) &#x3D;&gt; {
-        console.log(&#x27;Grupos tutorados recibidos:&#x27;, res.data);
         if (res.data &amp;&amp; res.data.length &gt; 0) {
-          // Seleccionamos el primer grupo (según el usuario, solo hay uno)
           this.selectedGroup.set(res.data[0]);
           this.loadGrades();
         } else {
           this.errorMessage.set(this.translate.instant(&#x27;common.errors.noTutorGroups&#x27;));
         }
-        this.loading.set(false);
       },
       error: (err) &#x3D;&gt; {
         console.error(&#x27;Error al cargar grupos:&#x27;, err);
@@ -478,7 +474,7 @@ export class GestionNotasComponent implements OnInit {
 
     const period &#x3D; this.selectedPeriod();
     this.loading.set(true);
-    this.gradeService.getGradesByGroupAndPeriod(group.id, period).subscribe({
+    this.gradeService.getGradesByCourseGroupAndPeriod(group.id, period).subscribe({
       next: (res) &#x3D;&gt; {
         if (period !&#x3D;&#x3D; this.selectedPeriod()) {
           return;
