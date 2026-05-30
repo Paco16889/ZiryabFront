@@ -199,6 +199,7 @@ export class AssignmentsService {
           idSubject: item.idSubject,
           idGroup: item.idGroup,
           schoolYear: item.schoolYear,
+          isTutor: item.isTutor,
         }).pipe(
           map(() => ({ ok: true as const, idSubject: item.idSubject })),
           catchError((err: { status?: number }) =>

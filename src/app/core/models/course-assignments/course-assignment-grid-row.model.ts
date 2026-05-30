@@ -13,4 +13,7 @@ export interface CourseAssignmentGridRow {
 
   /** Grupo seleccionado; `null` mientras la fila está incompleta. */
   idGroup: number | null;
+
+  /** Marca si esta asignación debe guardarse como tutoría de la clase. */
+  isTutor: boolean;
 }

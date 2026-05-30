@@ -36,6 +36,8 @@ export interface Assignment {
   schoolYear: string;
   /** Estado actual de la asignación */
   status: AssignmentStatus;
+  /** Si esta asignación es la tutoría de su clase */
+  isTutor?: boolean;
 
   /** Datos del profesor */
   teacher?: Teacher;
@@ -116,6 +118,8 @@ export interface AssignmentCreateRequest {
   idGroup: number;
   /** Año académico de la asignación, por ejemplo '2024-2025' */
   schoolYear: string;
+  /** Si esta asignación debe marcarse como tutoría */
+  isTutor?: boolean;
 }
 
 /**

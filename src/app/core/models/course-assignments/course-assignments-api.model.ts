@@ -55,6 +55,9 @@ export interface AssignmentBulkCreateItem {
 
   /** Curso escolar de la asignación. */
   schoolYear: string;
+
+  /** Indica si esta asignación representa al tutor de su clase. */
+  isTutor?: boolean;
 }
 
 /** Resultado agregado de crear asignaciones docentes en lote. */

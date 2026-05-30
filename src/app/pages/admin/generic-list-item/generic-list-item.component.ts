@@ -196,24 +196,26 @@ export class GenericListItemComponent<T extends WithId, U, R, S> {
            'flex flex-col gap-1 text-gray-800 dark:text-purple-100 md:flex-row md:flex-wrap md:gap-4';
   }
 
-    /**
+  /**
    * Devuelve las clases CSS del contenedor de acciones del elemento.
-   * Si responsive es true usa grid en móvil, si no usa flex siempre.
+   * En móvil reparte el ancho entre botones (grid); en desktop fila compacta.
    */
   get actionsContainerClass(): string {
-  // Si hay una clase personalizada, úsala
-  if (this.config.layout?.actionsContainerClass) {
-    return this.config.layout.actionsContainerClass;
+    if (this.config.layout?.actionsContainerClass) {
+      return this.config.layout.actionsContainerClass;
+    }
+
+    const actionCount = [
+      this.config.actions?.edit,
+      this.config.actions?.delete,
+      this.config.actions?.detail,
+    ].filter(Boolean).length;
+
+    const mobileCols =
+      actionCount <= 1 ? 'grid-cols-1' : actionCount === 2 ? 'grid-cols-2' : 'grid-cols-3';
+
+    return `grid ${mobileCols} gap-2 w-full md:flex md:w-auto md:gap-2`;
   }
-  
-  // Si responsive es TRUE, usa grid en móvil
-  if (this.config.layout?.responsive === true) {
-    return 'grid grid-cols-3 gap-2 w-auto md:flex md:w-auto md:gap-2';
-  }
-  
-  // Si responsive es FALSE (o undefined), usa flex siempre
-  return 'flex gap-2';
-}
 
 
  /**

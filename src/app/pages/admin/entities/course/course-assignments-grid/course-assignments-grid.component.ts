@@ -1,6 +1,8 @@
-import { Component, inject, input, OnInit, output, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, from } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 import { AssignmentWithIncludes } from '../../../../../core/models/assingment';
 import { AssignmentBulkCreateItem } from '../../../../../core/models/course-assignments/course-assignments-api.model';
 import { CourseAssignmentsContext } from '../../../../../core/models/course-assignments/course-assignments-context.model';
@@ -34,6 +36,8 @@ export class CourseAssignmentsGridComponent implements OnInit {
   private readonly teachersService = inject(TeachersService);
   private readonly groupService = inject(GroupService);
   private readonly scheduleNav = inject(WeekScheduleNavigationService);
+  private readonly http = inject(HttpClient);
+  private readonly assignmentsApiUrl = `${environment.apiUrl}/assignments`;
 
   readonly context = input.required<CourseAssignmentsContext>();
   readonly back = output<void>();
@@ -45,6 +49,56 @@ export class CourseAssignmentsGridComponent implements OnInit {
   readonly saveFeedback = signal<CourseAssignmentsSaveFeedback | null>(null);
   readonly saveValidation = signal<'noneToSave' | null>(null);
   readonly existingAssignments = signal<AssignmentWithIncludes[]>([]);
+  readonly updatingTutorAssignments = signal(false);
+  readonly tutorUpdateError = signal<string | null>(null);
+  readonly tutorUpdateSuccess = signal(false);
+  private readonly initialTutorAssignmentByGroup = signal<Record<number, number | null>>({});
+  readonly assignedGroupIds = computed(() => {
+    const ids = new Set<number>();
+    for (const a of this.existingAssignments()) {
+      if (a.group?.id != null) {
+        ids.add(a.group.id);
+      }
+    }
+    return ids;
+  });
+  readonly existingAssignmentsForView = computed(() =>
+    [...this.existingAssignments()].sort((a, b) => {
+      const groupCmp = (a.group?.name ?? '').localeCompare(b.group?.name ?? '');
+      if (groupCmp !== 0) return groupCmp;
+      const subjectCmp = (a.subject?.name ?? '').localeCompare(b.subject?.name ?? '');
+      if (subjectCmp !== 0) return subjectCmp;
+      return this.assignmentTeacherLabel(a).localeCompare(this.assignmentTeacherLabel(b));
+    }),
+  );
+  readonly currentTutorAssignmentByGroup = computed(() => {
+    const byGroup: Record<number, number | null> = {};
+    for (const a of this.existingAssignments()) {
+      const groupId = this.getAssignmentGroupId(a);
+      if (groupId == null) continue;
+      if (!(groupId in byGroup)) {
+        byGroup[groupId] = null;
+      }
+      if (a.isTutor) {
+        byGroup[groupId] = a.id;
+      }
+    }
+    return byGroup;
+  });
+  readonly hasPendingTutorUpdates = computed(() => {
+    const current = this.currentTutorAssignmentByGroup();
+    const initial = this.initialTutorAssignmentByGroup();
+    const groups = new Set<number>([
+      ...Object.keys(current).map(Number),
+      ...Object.keys(initial).map(Number),
+    ]);
+    for (const groupId of groups) {
+      if ((current[groupId] ?? null) !== (initial[groupId] ?? null)) {
+        return true;
+      }
+    }
+    return false;
+  });
   readonly rows = signal<CourseAssignmentGridRow[]>([]);
   readonly teachers = signal<Teacher[]>([]);
   readonly groups = signal<Group[]>([]);
@@ -78,6 +132,9 @@ export class CourseAssignmentsGridComponent implements OnInit {
   onTeacherChange(row: CourseAssignmentGridRow, value: string): void {
     const id = value === '' ? null : Number(value);
     this.updateRow(row.idSubject, { idTeacher: id });
+    if (id == null) {
+      this.updateRow(row.idSubject, { isTutor: false });
+    }
     this.clearSaveMessages();
   }
 
@@ -86,10 +143,118 @@ export class CourseAssignmentsGridComponent implements OnInit {
     const isFirstRow = this.rows()[0]?.idSubject === row.idSubject;
     if (isFirstRow && id != null) {
       this.rows.update((list) => list.map((r) => ({ ...r, idGroup: id })));
+      this.enforceSingleTutorByGroup();
     } else {
       this.updateRow(row.idSubject, { idGroup: id });
+      if (id == null) {
+        this.updateRow(row.idSubject, { isTutor: false });
+      }
+      this.enforceSingleTutorByGroup();
     }
     this.clearSaveMessages();
+  }
+
+  onTutorChange(row: CourseAssignmentGridRow, checked: boolean): void {
+    this.tutorUpdateError.set(null);
+    this.tutorUpdateSuccess.set(false);
+    if (!checked) {
+      this.updateRow(row.idSubject, { isTutor: false });
+      return;
+    }
+    if (row.idGroup == null || row.idTeacher == null) {
+      return;
+    }
+    this.rows.update((list) =>
+      list.map((r) => {
+        if (r.idGroup !== row.idGroup) {
+          return r;
+        }
+        return { ...r, isTutor: r.idSubject === row.idSubject };
+      }),
+    );
+    this.clearSaveMessages();
+  }
+
+  onExistingTutorToggle(assignmentId: number, checked: boolean): void {
+    this.tutorUpdateError.set(null);
+    this.tutorUpdateSuccess.set(false);
+    const target = this.existingAssignments().find((a) => a.id === assignmentId);
+    if (!target) {
+      return;
+    }
+    const groupId = this.getAssignmentGroupId(target);
+    if (groupId == null) {
+      return;
+    }
+    this.existingAssignments.update((list) =>
+      list.map((a) => {
+        const gid = this.getAssignmentGroupId(a);
+        if (gid !== groupId) {
+          return a;
+        }
+        if (!checked) {
+          return a.id === assignmentId ? { ...a, isTutor: false } : a;
+        }
+        return { ...a, isTutor: a.id === assignmentId };
+      }),
+    );
+  }
+
+  updateTutorAssignments(): void {
+    if (!this.hasPendingTutorUpdates()) {
+      return;
+    }
+    this.updatingTutorAssignments.set(true);
+    this.tutorUpdateError.set(null);
+    this.tutorUpdateSuccess.set(false);
+
+    const current = this.currentTutorAssignmentByGroup();
+    const initial = this.initialTutorAssignmentByGroup();
+    const changedGroupIds = Object.keys(current)
+      .map(Number)
+      .filter((groupId) => (current[groupId] ?? null) !== (initial[groupId] ?? null));
+
+    const updates = changedGroupIds.flatMap((groupId) => {
+      const selectedTutorAssignmentId = current[groupId] ?? null;
+      return this.existingAssignments()
+        .filter((a) => this.getAssignmentGroupId(a) === groupId)
+        .map((a) => ({
+          id: a.id,
+          isTutor: selectedTutorAssignmentId != null && a.id === selectedTutorAssignmentId,
+        }));
+    });
+
+    if (updates.length === 0) {
+      this.updatingTutorAssignments.set(false);
+      return;
+    }
+
+    // Evita carrera: primero desactivar tutores actuales, luego activar el nuevo.
+    updates.sort((x, y) => Number(x.isTutor) - Number(y.isTutor));
+
+    from(updates)
+      .pipe(
+        concatMap((u) =>
+          this.http.patch(`${this.assignmentsApiUrl}/${u.id}`, { isTutor: u.isTutor }),
+        ),
+      )
+      .subscribe({
+      next: () => {
+        this.updatingTutorAssignments.set(false);
+        this.tutorUpdateSuccess.set(true);
+        this.initialTutorAssignmentByGroup.set({ ...this.currentTutorAssignmentByGroup() });
+        this.refreshExistingAssignments();
+      },
+      error: (err) => {
+        this.updatingTutorAssignments.set(false);
+        this.tutorUpdateError.set(err?.error?.message ?? 'courseAssignments.grid.tutorUpdateError');
+      },
+    });
+  }
+
+  availableGroupsForRow(row: CourseAssignmentGridRow): Group[] {
+    const assigned = this.assignedGroupIds();
+    return this.groups().filter((g) => g.id === row.idGroup || !assigned.has(g.id));
   }
 
   onSave(): void {
@@ -116,6 +281,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
       idSubject: r.idSubject,
       idGroup: r.idGroup!,
       schoolYear: this.schoolYear(),
+      isTutor: r.isTutor,
     }));
 
     const savedSubjectIds = new Set(completeRows.map((r) => r.idSubject));
@@ -190,10 +356,14 @@ export class CourseAssignmentsGridComponent implements OnInit {
               subjectName: s.name,
               idTeacher: null,
               idGroup: null,
+              isTutor: false,
             })),
           );
         }
         this.existingAssignments.set(existing.success ? existing.data : []);
+        this.initialTutorAssignmentByGroup.set(this.buildTutorAssignmentByGroup(existing.success ? existing.data : []));
+        this.tutorUpdateSuccess.set(false);
+        this.tutorUpdateError.set(null);
         this.teachers.set(teachers.success ? teachers.data : []);
         this.groups.set(groups.success ? groups.data : []);
       },
@@ -211,6 +381,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
       .subscribe((res) => {
         if (res.success) {
           this.existingAssignments.set(res.data);
+          this.initialTutorAssignmentByGroup.set(this.buildTutorAssignmentByGroup(res.data));
         }
       });
   }
@@ -229,7 +400,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
     this.rows.update((list) =>
       list.map((r) =>
         subjectIds.has(r.idSubject)
-          ? { ...r, idTeacher: null, idGroup: null }
+          ? { ...r, idTeacher: null, idGroup: null, isTutor: false }
           : r,
       ),
     );
@@ -239,15 +410,61 @@ export class CourseAssignmentsGridComponent implements OnInit {
     this.saveFeedback.set(null);
     this.saveValidation.set(null);
     this.showSchedulePrompt.set(false);
+    this.tutorUpdateSuccess.set(false);
+    this.tutorUpdateError.set(null);
   }
 
   private updateRow(
     idSubject: number,
-    patch: Partial<Pick<CourseAssignmentGridRow, 'idTeacher' | 'idGroup'>>,
+    patch: Partial<Pick<CourseAssignmentGridRow, 'idTeacher' | 'idGroup' | 'isTutor'>>,
   ): void {
     this.rows.update((list) =>
       list.map((r) => (r.idSubject === idSubject ? { ...r, ...patch } : r)),
     );
+  }
+
+  private enforceSingleTutorByGroup(): void {
+    this.rows.update((list) => {
+      const firstTutorByGroup = new Map<number, number>();
+      return list.map((row) => {
+        if (!row.isTutor || row.idGroup == null || row.idTeacher == null) {
+          return row;
+        }
+        const existing = firstTutorByGroup.get(row.idGroup);
+        if (existing == null) {
+          firstTutorByGroup.set(row.idGroup, row.idSubject);
+          return row;
+        }
+        if (existing !== row.idSubject) {
+          return { ...row, isTutor: false };
+        }
+        return row;
+      });
+    });
+  }
+
+  private buildTutorAssignmentByGroup(
+    list: AssignmentWithIncludes[],
+  ): Record<number, number | null> {
+    const byGroup: Record<number, number | null> = {};
+    for (const a of list) {
+      const groupId = this.getAssignmentGroupId(a);
+      if (groupId == null) continue;
+      if (!(groupId in byGroup)) {
+        byGroup[groupId] = null;
+      }
+      if (a.isTutor) {
+        byGroup[groupId] = a.id;
+      }
+    }
+    return byGroup;
+  }
+
+  private getAssignmentGroupId(a: AssignmentWithIncludes): number | null {
+    if (a.group?.id != null) {
+      return a.group.id;
+    }
+    return (a as { idGroup?: number }).idGroup ?? null;
   }
 
   onBack(): void {
