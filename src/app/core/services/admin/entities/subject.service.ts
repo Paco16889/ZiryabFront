@@ -108,7 +108,8 @@ getSubjectbyId(id: number): Observable<SubjectByIdResponse> {
    * @returns Observable con la respuesta que contiene la asignatura actualizada
    */
  updateSubject(id: number, data: SubjectUpdateRequest): Observable<SubjectUpdateResponse> {
-  return this.http.patch<SubjectUpdateResponse>(`${this.apiUrl}/${id}`, data).pipe(
+  const { id: _omitId, ...body } = data;
+  return this.http.patch<SubjectUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
     catchError((error) => {
       console.error('Error updating subject:', error);
       throw error;

@@ -83,13 +83,50 @@ export class GenericEditModalComponent<T extends WithId & Record<string, unknown
   ngOnInit() {
     const group: Record<string, unknown> = {};
     this.fields.forEach(f => {
-      group[f.name] = [this.entityData[f.name] || '', f.validators || []];
+      group[f.name] = [this.initialControlValue(f), f.validators || []];
 
       if (f.fieldType === 'select') {
         this.loadSelectOptions(f);
       }
     });
     this.editForm = this.fb.group(group);
+  }
+
+  /**
+   * Valor inicial del control según tipo de campo.
+   * Los numéricos conservan number; el resto usa cadena vacía si falta valor.
+   */
+  private initialControlValue(field: EditFieldConfig): unknown {
+    const raw = this.entityData[field.name];
+    if (field.type === 'number') {
+      return raw === null || raw === undefined ? null : raw;
+    }
+    return raw ?? '';
+  }
+
+  /**
+   * Convierte campos `type: 'number'` del formulario a number para el PATCH.
+   * Los inputs HTML devuelven string; el backend (Zod) espera number (EQ-323).
+   */
+  private normalizeNumericFields(
+    formValue: Record<string, unknown>,
+  ): Record<string, unknown> {
+    const normalized = { ...formValue };
+    for (const field of this.fields) {
+      if (field.type !== 'number') {
+        continue;
+      }
+      const raw = normalized[field.name];
+      if (raw === '' || raw === null || raw === undefined) {
+        normalized[field.name] = null;
+        continue;
+      }
+      const parsed = Number(raw);
+      if (!Number.isNaN(parsed)) {
+        normalized[field.name] = parsed;
+      }
+    }
+    return normalized;
   }
 
   /**
@@ -126,7 +163,7 @@ export class GenericEditModalComponent<T extends WithId & Record<string, unknown
     if (this.editForm.invalid) return;
     const updateData = {
       id: this.entityData.id,
-      ...this.editForm.value
+      ...this.normalizeNumericFields(this.editForm.value as Record<string, unknown>),
     } as U;
 
     this.editModalService.confirmUpdate(updateData);
