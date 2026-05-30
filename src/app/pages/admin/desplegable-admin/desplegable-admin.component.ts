@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ToggleService } from '../../../core/services/toggle.service';
-import { FilterSectionComponent } from '../filter-section/filter-section.component';
 
 import { AsignaturaListComponent } from '../entities/asignatura/asignatura-list/asignatura-list.component';
 
@@ -15,6 +14,7 @@ import { StudentTaskListComponent } from '../entities/student-task/student-task-
 import { AssistanceListComponent } from '../entities/assistance/assistance-list/assistance-list.component';
 import { NotificationListComponent } from '../entities/notification/notification-list/notification-list.component';
 import { TutorAssignmentComponent } from '../entities/group/tutor-assignment/tutor-assignment.component';
+import { SubstitutionListComponent } from '../entities/substitution/substitution-list/substitution-list.component';
 import { IssueListComponent } from '../entities/issue/issue-list/issue-list.component';
 
 /**
@@ -38,6 +38,7 @@ import { IssueListComponent } from '../entities/issue/issue-list/issue-list.comp
     AssistanceListComponent,
     NotificationListComponent,
     TutorAssignmentComponent,
+    SubstitutionListComponent,
     IssueListComponent,
   ],
   templateUrl: './desplegable-admin.component.html',

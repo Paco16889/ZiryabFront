@@ -13,21 +13,18 @@ import { TeachersService } from '../../../../../core/services/admin/entities/tea
 import { Teacher } from '../../../../../core/models/teacher';
 import { ViewDetailConfig } from '../../../../../core/configs/view-detail-config';
 import { environment } from '../../../../../../environments/environment';
+import {
+  coursesFromFilterSources,
+  gradesFromFilterSources,
+  groupsFromFilterSources,
+  matchesAssignmentFilters,
+} from '../../../../../core/utils/assignment-filter-options.util';
+import { CourseGroupGradeFiltersComponent } from '../../../shared/course-group-grade-filters/course-group-grade-filters.component';
 
 interface TeacherOption {
   id: number;
   name: string;
   surname: string;
-}
-
-interface CourseOption {
-  id: number;
-  name: string;
-}
-
-interface GroupOption {
-  id: number;
-  name: string;
 }
 
 interface TutorClassRow {
@@ -56,7 +53,13 @@ interface TutorSummaryItem {
 @Component({
   selector: 'app-tutor-assignment',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, GenericListItemComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TranslateModule,
+    GenericListItemComponent,
+    CourseGroupGradeFiltersComponent,
+  ],
   templateUrl: './tutor-assignment.component.html',
 })
 export class TutorAssignmentComponent implements OnInit {
@@ -79,55 +82,25 @@ export class TutorAssignmentComponent implements OnInit {
     this.loadAll();
   }
 
-  readonly courses = computed<CourseOption[]>(() => {
-    const map = new Map<number, string>();
-    for (const row of this.allRows()) {
-      if (!map.has(row.idCourse)) {
-        map.set(row.idCourse, row.courseName);
-      }
-    }
-    return [...map.entries()]
-      .map(([id, name]) => ({ id, name }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
+  readonly courses = computed(() => coursesFromFilterSources(this.allRows()));
 
-  readonly groups = computed<GroupOption[]>(() => {
-    const selectedCourseId = this.selectedCourseId();
-    const source = selectedCourseId == null
-      ? this.allRows()
-      : this.allRows().filter((r) => r.idCourse === selectedCourseId);
-    const map = new Map<number, string>();
-    for (const row of source) {
-      if (!map.has(row.idGroup)) {
-        map.set(row.idGroup, row.groupName);
-      }
-    }
-    return [...map.entries()]
-      .map(([id, name]) => ({ id, name }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  });
+  readonly groups = computed(() =>
+    groupsFromFilterSources(this.allRows(), this.selectedCourseId()),
+  );
 
-  readonly grades = computed<string[]>(() => {
-    const selectedCourseId = this.selectedCourseId();
-    const source = selectedCourseId == null
-      ? this.allRows()
-      : this.allRows().filter((r) => r.idCourse === selectedCourseId);
-    return [...new Set(source.map((r) => r.grade))]
-      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-  });
+  readonly grades = computed(() =>
+    gradesFromFilterSources(this.allRows(), this.selectedCourseId()),
+  );
 
-  readonly rows = computed<TutorClassRow[]>(() => {
-    const selectedCourseId = this.selectedCourseId();
-    const selectedGroupId = this.selectedGroupId();
-    const selectedGrade = this.selectedGrade();
-
-    return this.allRows().filter((r) => {
-      if (selectedCourseId != null && r.idCourse !== selectedCourseId) return false;
-      if (selectedGroupId != null && r.idGroup !== selectedGroupId) return false;
-      if (selectedGrade != null && r.grade !== selectedGrade) return false;
-      return true;
-    });
-  });
+  readonly rows = computed<TutorClassRow[]>(() =>
+    this.allRows().filter((r) =>
+      matchesAssignmentFilters(r, {
+        courseId: this.selectedCourseId(),
+        groupId: this.selectedGroupId(),
+        grade: this.selectedGrade(),
+      }),
+    ),
+  );
 
   readonly tutorSummaryItems = computed<TutorSummaryItem[]>(() => {
     let nextId = 1;
@@ -330,12 +303,6 @@ export class TutorAssignmentComponent implements OnInit {
         row.error = err?.error?.message ?? 'adminPages.tutors.errorSaving';
       },
     });
-  }
-
-  clearFilters(): void {
-    this.selectedCourseId.set(null);
-    this.selectedGroupId.set(null);
-    this.selectedGrade.set(null);
   }
 
   openEditor(): void {

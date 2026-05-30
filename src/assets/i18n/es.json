@@ -351,6 +351,15 @@
   "nav": {
     "issues": "Tablón"
   },
+  "adminFilters": {
+    "course": "Ciclo",
+    "group": "Grupo (turno)",
+    "grade": "Curso",
+    "selectCourse": "Seleccionar ciclo",
+    "selectGroup": "Seleccionar grupo",
+    "selectGrade": "Seleccionar curso",
+    "clear": "Limpiar filtros"
+  },
   "adminMenu": {
     "students": "Alumnos",
     "teachers": "Profesores",
@@ -365,6 +374,7 @@
     "notifications": "Notificaciones",
     "issues": "Tablón de anuncios",
     "tutors": "Tutores",
+    "substitutions": "Sustituciones",
     "reports": "Informes"
   },
   "deleteModal": {
@@ -416,6 +426,49 @@
     "schedules": {
       "createButton": "Crear horario",
       "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
+    },
+    "substitutions": {
+      "title": "Sustituciones",
+      "createButton": "Sustituir profesor",
+      "closeButton": "Cerrar sustitución",
+      "createTitle": "Sustituir profesor",
+      "createSubtitle": "Se creará una sustitución por cada impartición del titular en el año actual (mismas fechas y notas).",
+      "filterFindTeacher": "Ayuda: filtrar quién imparte (para localizar al titular)",
+      "selectTitular": "Profesor a sustituir (titular)",
+      "previewTitle": "Se sustituirán {{count}} imparticiones:",
+      "noTeachersForFilters": "Ningún profesor coincide con los filtros.",
+      "noAssignmentsForTitular": "Este profesor no tiene imparticiones disponibles (o ya están todas sustituidas).",
+      "bulkSaving": "Registrando sustituciones…",
+      "bulkPartialSuccess": "Registradas {{ok}} de {{total}}. Revisa el listado y las que fallaron (p. ej. ya tenían sustitución activa).",
+      "closeTitle": "Cerrar sustitución",
+      "closeSelectLabel": "Sustitución activa",
+      "closeEndDate": "Fecha de fin",
+      "closeConfirm": "Cerrar y reactivar titular",
+      "closeEmpty": "No hay sustituciones activas para cerrar.",
+      "closeError": "No se pudo cerrar la sustitución.",
+      "empty": "No hay sustituciones registradas.",
+      "loadError": "Error al cargar las sustituciones.",
+      "badgeActive": "Activa",
+      "badgeClosed": "Cerrada",
+      "entityType": "la sustitución",
+      "colTitular": "Titular",
+      "colSubstitute": "Sustituto",
+      "colClass": "Clase",
+      "colStart": "Inicio",
+      "colEnd": "Fin",
+      "colStatus": "Estado",
+      "colDates": "Periodo",
+      "filterAssignments": "Filtrar asignaciones (impartición)",
+      "selectAssignment": "Asignación a sustituir",
+      "selectSubstitute": "Profesor sustituto",
+      "startDate": "Fecha de inicio",
+      "notes": "Notas (opcional)",
+      "createConfirm": "Registrar sustitución",
+      "createError": "No se pudo registrar la sustitución.",
+      "createConflict": "Ya existe una sustitución activa para esa clase.",
+      "loadAssignmentsError": "Error al cargar las asignaciones.",
+      "noEligibleAssignments": "No hay asignaciones disponibles para sustituir.",
+      "noAssignmentsForFilters": "Ninguna asignación coincide con los filtros."
     },
     "issues": {
       "title": "Tablón de anuncios",
@@ -753,7 +806,8 @@
     "labels": {
       "course": "Curso",
       "group": "Grado/Grupo"
-    }
+    },
+    "substitutingBadge": "Sustituyendo a {{name}}"
   },
   "teacherPages": {
     "grades": {

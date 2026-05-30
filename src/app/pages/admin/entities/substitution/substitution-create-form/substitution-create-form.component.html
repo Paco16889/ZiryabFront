@@ -1,0 +1,155 @@
+<button
+  type="button"
+  class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+  (click)="cancelCreate.emit()"
+>
+  ← {{ 'common.buttons.back' | translate }}
+</button>
+
+<div class="mt-4 max-w-2xl">
+  <h2 class="text-xl font-bold text-gray-900 dark:text-purple-100">
+    {{ 'lists.substitutions.createTitle' | translate }}
+  </h2>
+  <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+    {{ 'lists.substitutions.createSubtitle' | translate }}
+  </p>
+
+  @if (loading()) {
+    <div class="flex justify-center py-12">
+      <div class="h-10 w-10 animate-spin rounded-full border-b-4 border-purple-600"></div>
+    </div>
+  } @else if (loadError()) {
+    <p class="mt-4 text-sm text-red-600">{{ 'lists.substitutions.loadAssignmentsError' | translate }}</p>
+  } @else if (eligibleAssignments().length === 0) {
+    <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+      {{ 'lists.substitutions.noEligibleAssignments' | translate }}
+    </p>
+  } @else {
+    <app-course-group-grade-filters
+      class="mt-4 block"
+      [titleKey]="'lists.substitutions.filterFindTeacher'"
+      [courses]="courses()"
+      [groups]="groups()"
+      [grades]="grades()"
+      [courseId]="selectedCourseId()"
+      [groupId]="selectedGroupId()"
+      [grade]="selectedGrade()"
+      (courseIdChange)="selectedCourseId.set($event)"
+      (groupIdChange)="selectedGroupId.set($event)"
+      (gradeChange)="selectedGrade.set($event)"
+    />
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      class="mt-4 space-y-4 rounded-2xl border border-gray-100 bg-white p-5 dark:border-gray-800 dark:bg-gray-900"
+    >
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="sub-titular">
+          {{ 'lists.substitutions.selectTitular' | translate }}
+        </label>
+        <select
+          id="sub-titular"
+          formControlName="idTitular"
+          class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+        >
+          <option [ngValue]="null" disabled>{{ 'common.placeholders.selectOption' | translate }}</option>
+          @for (t of titularTeacherOptions(); track t.id) {
+            <option [ngValue]="t.id">{{ t.label }}</option>
+          }
+        </select>
+        @if (titularTeacherOptions().length === 0) {
+          <p class="mt-1 text-xs text-amber-600">{{ 'lists.substitutions.noTeachersForFilters' | translate }}</p>
+        }
+      </div>
+
+      @if (selectedTitularId() != null) {
+        <div class="rounded-lg border border-purple-100 bg-purple-50/80 p-3 dark:border-purple-800 dark:bg-purple-950/40">
+          <p class="text-sm font-medium text-purple-900 dark:text-purple-100">
+            {{ 'lists.substitutions.previewTitle' | translate: { count: titularAssignments().length } }}
+          </p>
+          @if (titularAssignments().length === 0) {
+            <p class="mt-2 text-xs text-amber-700 dark:text-amber-300">
+              {{ 'lists.substitutions.noAssignmentsForTitular' | translate }}
+            </p>
+          } @else {
+            <ul class="mt-2 max-h-40 space-y-1 overflow-y-auto text-xs text-gray-700 dark:text-gray-300">
+              @for (a of titularAssignments(); track a.id) {
+                <li>{{ assignmentLabel(a) }}</li>
+              }
+            </ul>
+          }
+        </div>
+      }
+
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="sub-substitute">
+          {{ 'lists.substitutions.selectSubstitute' | translate }}
+        </label>
+        <select
+          id="sub-substitute"
+          formControlName="idSubstitute"
+          class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+          [disabled]="selectedTitularId() == null || titularAssignments().length === 0"
+        >
+          <option [ngValue]="null" disabled>{{ 'common.placeholders.selectOption' | translate }}</option>
+          @for (t of substituteTeacherOptions(); track t.id) {
+            <option [ngValue]="t.id">{{ t.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="sub-start">
+          {{ 'lists.substitutions.startDate' | translate }}
+        </label>
+        <input
+          id="sub-start"
+          type="date"
+          formControlName="startDate"
+          class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+        />
+      </div>
+
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="sub-notes">
+          {{ 'lists.substitutions.notes' | translate }}
+        </label>
+        <textarea
+          id="sub-notes"
+          formControlName="notes"
+          rows="2"
+          class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+        ></textarea>
+      </div>
+
+      @if (errorMessage(); as err) {
+        <p class="text-sm text-red-600">{{ err.startsWith('lists.') ? (err | translate) : err }}</p>
+      }
+      @if (bulkSummary(); as summary) {
+        <p class="text-sm text-amber-800 dark:text-amber-200">{{ summary }}</p>
+      }
+
+      <div class="flex flex-wrap gap-2">
+        <button
+          type="submit"
+          class="rounded-md bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-700 disabled:opacity-50"
+          [disabled]="saving() || titularAssignments().length === 0"
+        >
+          @if (saving()) {
+            {{ 'lists.substitutions.bulkSaving' | translate }}
+          } @else {
+            {{ 'lists.substitutions.createConfirm' | translate }}
+          }
+        </button>
+        <button
+          type="button"
+          class="rounded-md border border-gray-300 px-4 py-2 text-sm dark:border-gray-600"
+          (click)="cancelCreate.emit()"
+        >
+          {{ 'common.buttons.cancel' | translate }}
+        </button>
+      </div>
+    </form>
+  }
+</div>

@@ -349,6 +349,15 @@
   "nav": {
     "issues": "Anschlagtafel"
   },
+  "adminFilters": {
+    "course": "Bildungsgang",
+    "group": "Gruppe (Zeit)",
+    "grade": "Jahrgang",
+    "selectCourse": "Bildungsgang wählen",
+    "selectGroup": "Gruppe wählen",
+    "selectGrade": "Jahrgang wählen",
+    "clear": "Filter zurücksetzen"
+  },
   "adminMenu": {
     "students": "Schüler",
     "teachers": "Lehrer",
@@ -363,6 +372,7 @@
     "notifications": "Benachrichtigungen",
     "issues": "Anschlagtafel",
     "tutors": "Tutoren",
+    "substitutions": "Vertretungen",
     "reports": "Berichte"
   },
   "deleteModal": {
@@ -414,6 +424,51 @@
     "schedules": {
       "createButton": "Stundenplan anlegen",
       "createPlaceholder": "Das Formular zur Erstellung des Stundenplans wird hier angezeigt."
+    },
+    "substitutions": {
+      "title": "Vertretungen",
+      "createButton": "Lehrer vertreten",
+      "closeButton": "Vertretung beenden",
+      "createTitle": "Lehrer vertreten",
+      "createSubtitle": "Pro Zuweisung des Hauptlehrers im aktuellen Schuljahr wird eine Vertretung angelegt (gleiche Daten und Notizen).",
+      "filterFindTeacher": "Hilfe: Filter wer unterrichtet (Hauptlehrer finden)",
+      "selectTitular": "Zu vertretender Lehrer (Hauptlehrer)",
+      "previewTitle": "Es werden {{count}} Zuweisungen vertreten:",
+      "noTeachersForFilters": "Kein Lehrer entspricht den Filtern.",
+      "noAssignmentsForTitular": "Dieser Lehrer hat keine verfügbaren Zuweisungen (oder alle sind bereits vertreten).",
+      "bulkSaving": "Vertretungen werden registriert…",
+      "bulkPartialSuccess": "{{ok}} von {{total}} registriert. Liste prüfen (z. B. bereits aktive Vertretung).",
+      "createPlaceholder": "Das Anlageformular (Zuweisung, Vertretungslehrer, Daten und Notizen) folgt in der nächsten Iteration.",
+      "closeTitle": "Vertretung beenden",
+      "closeSelectLabel": "Aktive Vertretung",
+      "closeEndDate": "Enddatum",
+      "closeConfirm": "Beenden und Hauptlehrer reaktivieren",
+      "closeEmpty": "Es gibt keine aktiven Vertretungen zum Beenden.",
+      "closeError": "Die Vertretung konnte nicht beendet werden.",
+      "empty": "Keine Vertretungen registriert.",
+      "loadError": "Fehler beim Laden der Vertretungen.",
+      "badgeActive": "Aktiv",
+      "badgeClosed": "Beendet",
+      "entityType": "die Vertretung",
+      "colTitular": "Hauptlehrer",
+      "colSubstitute": "Vertretung",
+      "colClass": "Klasse",
+      "colStart": "Beginn",
+      "colEnd": "Ende",
+      "colStatus": "Status",
+      "colDates": "Zeitraum",
+      "filterAssignments": "Zuweisungen filtern (Unterricht)",
+      "selectAssignment": "Zu vertretende Zuweisung",
+      "selectSubstitute": "Vertretungslehrer",
+      "startDate": "Startdatum",
+      "notes": "Notizen (optional)",
+      "createConfirm": "Vertretung registrieren",
+      "createError": "Die Vertretung konnte nicht registriert werden.",
+      "createConflict": "Für diese Klasse existiert bereits eine aktive Vertretung.",
+      "loadAssignmentsError": "Fehler beim Laden der Zuweisungen.",
+      "noEligibleAssignments": "Keine Zuweisungen zur Vertretung verfügbar.",
+      "noAssignmentsForFilters": "Keine Zuweisung entspricht den Filtern.",
+      "createPlaceholder": ""
     },
     "issues": {
       "title": "Anschlagtafel",
@@ -751,7 +806,8 @@
     "labels": {
       "course": "Kurs",
       "group": "Jahrgang/Gruppe"
-    }
+    },
+    "substitutingBadge": "Vertretung fuer {{name}}"
   },
   "teacherPages": {
     "grades": {

@@ -1,0 +1,62 @@
+<div class="mb-6 rounded-2xl border border-purple-100 bg-purple-50 p-4 sm:p-5 dark:border-purple-800 dark:bg-purple-950/30">
+  @if (titleKey(); as key) {
+    <p class="mb-3 text-sm font-semibold text-purple-800 dark:text-purple-200">{{ key | translate }}</p>
+  }
+  <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-end">
+    @if (showCourse()) {
+      <div class="flex flex-1 flex-col gap-1">
+        <label class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ 'adminFilters.course' | translate }}</label>
+        <select
+          [ngModel]="courseId()"
+          (ngModelChange)="onCourseChange($event)"
+          class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:focus:ring-purple-500"
+        >
+          <option [ngValue]="null">— {{ 'adminFilters.selectCourse' | translate }} —</option>
+          @for (c of courses(); track c.id) {
+            <option [ngValue]="c.id">{{ c.name }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (showGroup()) {
+      <div class="flex flex-1 flex-col gap-1">
+        <label class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ 'adminFilters.group' | translate }}</label>
+        <select
+          [ngModel]="groupId()"
+          (ngModelChange)="onGroupChange($event)"
+          class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:focus:ring-purple-500"
+        >
+          <option [ngValue]="null">— {{ 'adminFilters.selectGroup' | translate }} —</option>
+          @for (g of groups(); track g.id) {
+            <option [ngValue]="g.id">{{ g.name }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (showGrade()) {
+      <div class="flex flex-col gap-1">
+        <label class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ 'adminFilters.grade' | translate }}</label>
+        <select
+          [ngModel]="grade()"
+          (ngModelChange)="onGradeChange($event)"
+          class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:focus:ring-purple-500"
+        >
+          <option [ngValue]="null">— {{ 'adminFilters.selectGrade' | translate }} —</option>
+          @for (g of grades(); track g) {
+            <option [ngValue]="g">{{ g }}º</option>
+          }
+        </select>
+      </div>
+    }
+
+    <button
+      type="button"
+      (click)="clear()"
+      class="mt-1 inline-flex items-center justify-center gap-2 self-end rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-purple-700 sm:mt-0"
+    >
+      {{ 'adminFilters.clear' | translate }}
+    </button>
+  </div>
+</div>

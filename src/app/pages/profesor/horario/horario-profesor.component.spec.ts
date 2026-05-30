@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { WeekScheduleService } from '../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
+import { TeacherTeachingContextService } from '../../../core/services/profesor/teacher-teaching-context.service';
 import { HorarioProfesorComponent } from './horario-profesor.component';
 
 describe('HorarioProfesorComponent', () => {
@@ -18,11 +18,11 @@ describe('HorarioProfesorComponent', () => {
           useValue: { getUserId: () => 2 }
         },
         {
-          provide: WeekScheduleService,
+          provide: TeacherTeachingContextService,
           useValue: {
-            getSchedulesByTeacher: () => of({ success: true, data: [], count: 0 })
-          }
-        }
+            getMyWeekSchedules: () => of([]),
+          },
+        },
       ]
     }).compileComponents();
 

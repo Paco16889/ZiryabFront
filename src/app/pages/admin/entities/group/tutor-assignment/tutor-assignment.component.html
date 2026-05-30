@@ -51,51 +51,18 @@
       </h2>
     </div>
 
-    <!-- Filtros -->
-    <div class="mb-6 rounded-2xl border border-purple-100 dark:border-purple-800 bg-purple-50 dark:bg-purple-950/30 p-4 sm:p-5">
-      <p class="mb-3 text-sm font-semibold text-purple-800 dark:text-purple-200">{{ 'adminPages.tutors.addClass' | translate }}</p>
-      <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-end">
-
-        <div class="flex flex-col gap-1 flex-1">
-          <label class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ 'adminPages.tutors.colCourse' | translate }}</label>
-          <select [ngModel]="selectedCourseId()" (ngModelChange)="selectedCourseId.set($event)"
-            class="border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500">
-            <option [ngValue]="null">— {{ 'adminPages.tutors.selectCourse' | translate }} —</option>
-            @for (c of courses(); track c.id) {
-              <option [ngValue]="c.id">{{ c.name }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="flex flex-col gap-1 flex-1">
-          <label class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ 'adminPages.tutors.colGroup' | translate }}</label>
-          <select [ngModel]="selectedGroupId()" (ngModelChange)="selectedGroupId.set($event)"
-            class="border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500">
-            <option [ngValue]="null">— {{ 'adminPages.tutors.selectGroup' | translate }} —</option>
-            @for (g of groups(); track g.id) {
-              <option [ngValue]="g.id">{{ g.name }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="flex flex-col gap-1">
-          <label class="text-xs font-medium text-gray-600 dark:text-gray-400">{{ 'adminPages.tutors.colGrade' | translate }}</label>
-          <select [ngModel]="selectedGrade()" (ngModelChange)="selectedGrade.set($event)"
-            class="border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500">
-            <option [ngValue]="null">— {{ 'adminPages.tutors.selectGrade' | translate }} —</option>
-            @for (grade of grades(); track grade) {
-              <option [ngValue]="grade">{{ grade }}º</option>
-            }
-          </select>
-        </div>
-
-        <button
-          (click)="clearFilters()"
-          class="mt-1 inline-flex items-center justify-center gap-2 self-end rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-purple-700 disabled:cursor-not-allowed disabled:opacity-50 sm:mt-0">
-          Limpiar filtros
-        </button>
-      </div>
-    </div>
+    <app-course-group-grade-filters
+      [titleKey]="'adminPages.tutors.addClass'"
+      [courses]="courses()"
+      [groups]="groups()"
+      [grades]="grades()"
+      [courseId]="selectedCourseId()"
+      [groupId]="selectedGroupId()"
+      [grade]="selectedGrade()"
+      (courseIdChange)="selectedCourseId.set($event)"
+      (groupIdChange)="selectedGroupId.set($event)"
+      (gradeChange)="selectedGrade.set($event)"
+    />
   }
 
   <!-- Estado carga -->

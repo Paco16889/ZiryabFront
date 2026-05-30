@@ -24,6 +24,10 @@ export interface CardItem {
   secondaryActionLabel?: string;
   /** ID de TeacherOnSubjectOnGroup (menu-clase, tareas, justificaciones) */
   assignmentId?: number;
+  /** Clave i18n de etiqueta opcional (p. ej. sustitución). */
+  badgeKey?: string;
+  /** Parámetros para la etiqueta con `translate`. */
+  badgeParams?: Record<string, string>;
 }
 
 /**

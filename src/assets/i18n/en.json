@@ -351,6 +351,15 @@
   "nav": {
     "issues": "Notice board"
   },
+  "adminFilters": {
+    "course": "Cycle",
+    "group": "Group (shift)",
+    "grade": "Year",
+    "selectCourse": "Select cycle",
+    "selectGroup": "Select group",
+    "selectGrade": "Select year",
+    "clear": "Clear filters"
+  },
   "adminMenu": {
     "students": "Students",
     "teachers": "Teachers",
@@ -365,6 +374,7 @@
     "notifications": "Notifications",
     "issues": "Notice board",
     "tutors": "Tutors",
+    "substitutions": "Substitutions",
     "reports": "Reports"
   },
   "deleteModal": {
@@ -416,6 +426,51 @@
     "schedules": {
       "createButton": "Create schedule",
       "createPlaceholder": "The schedule creation form will appear here."
+    },
+    "substitutions": {
+      "title": "Substitutions",
+      "createButton": "Substitute teacher",
+      "closeButton": "Close substitution",
+      "createTitle": "Substitute teacher",
+      "createSubtitle": "One substitution will be created per titular assignment in the current school year (same dates and notes).",
+      "filterFindTeacher": "Help: filter who teaches (to find the titular teacher)",
+      "selectTitular": "Teacher to substitute (titular)",
+      "previewTitle": "{{count}} assignments will be substituted:",
+      "noTeachersForFilters": "No teacher matches the filters.",
+      "noAssignmentsForTitular": "This teacher has no available assignments (or all are already substituted).",
+      "bulkSaving": "Registering substitutions…",
+      "bulkPartialSuccess": "Registered {{ok}} of {{total}}. Check the list for failures (e.g. active substitution already exists).",
+      "createPlaceholder": "The create form (assignment, substitute, dates and notes) will be implemented in the next iteration.",
+      "closeTitle": "Close substitution",
+      "closeSelectLabel": "Active substitution",
+      "closeEndDate": "End date",
+      "closeConfirm": "Close and restore titular teacher",
+      "closeEmpty": "There are no active substitutions to close.",
+      "closeError": "Could not close the substitution.",
+      "empty": "No substitutions registered.",
+      "loadError": "Error loading substitutions.",
+      "badgeActive": "Active",
+      "badgeClosed": "Closed",
+      "entityType": "the substitution",
+      "colTitular": "Titular",
+      "colSubstitute": "Substitute",
+      "colClass": "Class",
+      "colStart": "Start",
+      "colEnd": "End",
+      "colStatus": "Status",
+      "colDates": "Period",
+      "filterAssignments": "Filter assignments (teaching)",
+      "selectAssignment": "Assignment to substitute",
+      "selectSubstitute": "Substitute teacher",
+      "startDate": "Start date",
+      "notes": "Notes (optional)",
+      "createConfirm": "Register substitution",
+      "createError": "Could not register the substitution.",
+      "createConflict": "An active substitution already exists for this class.",
+      "loadAssignmentsError": "Error loading assignments.",
+      "noEligibleAssignments": "No assignments available to substitute.",
+      "noAssignmentsForFilters": "No assignment matches the selected filters.",
+      "createPlaceholder": ""
     },
     "issues": {
       "title": "Notice board",
@@ -753,7 +808,8 @@
     "labels": {
       "course": "Course",
       "group": "Grade/Group"
-    }
+    },
+    "substitutingBadge": "Substituting for {{name}}"
   },
   "teacherPages": {
     "grades": {

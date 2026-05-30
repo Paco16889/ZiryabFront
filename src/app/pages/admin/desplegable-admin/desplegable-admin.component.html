@@ -41,6 +41,9 @@
 @if (toggleservice.openedMenu() === 'tutors') {
     <app-tutor-assignment></app-tutor-assignment>
 }
+@if (toggleservice.openedMenu() === 'substitutions') {
+    <app-substitution-list />
+}
 @if (toggleservice.openedMenu() === 'issues') {
     <app-issue-list />
 }

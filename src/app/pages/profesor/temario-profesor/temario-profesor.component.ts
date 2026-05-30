@@ -5,6 +5,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { ClasesService } from '../../../core/services/clases.service';
+import { CargaStudentsporGrupoAsignaturaService } from '../../../core/services/profesor/carga-studentspor-grupo-asignatura.service';
+import { TeacherTeachingContextService } from '../../../core/services/profesor/teacher-teaching-context.service';
 import { AttendanceService, AttendanceRecord, AttendanceStatus } from '../../../core/services/attendance.service';
 import { TaskService } from '../../../core/services/task.service';
 import { Task, TaskType } from '../../../core/models/task';
@@ -40,8 +42,12 @@ export class TemarioProfesorComponent implements OnInit {
     private route = inject(ActivatedRoute);
     /** Servicio de sesión para identificar al profesor. */
     private authService = inject(AuthService);
-    /** Servicio de clases para cargar alumnos de la asignatura. */
+    /** Servicio de clases para cargar alumnos por asignatura (titular). */
     private clasesService = inject(ClasesService);
+    /** Matrículas por grupo y asignatura (sustitución). */
+    private studentsByGroup = inject(CargaStudentsporGrupoAsignaturaService);
+    /** Asignaciones titulares + sustituciones activas. */
+    private teachingContext = inject(TeacherTeachingContextService);
     /** Servicio de asistencia para crear sesión y guardar registros. */
     private attendanceSvc = inject(AttendanceService);
     /** Servicio de tareas para cargar el temario. */
@@ -58,6 +64,8 @@ export class TemarioProfesorComponent implements OnInit {
 
     /** Identificador de asignatura usado para cargar alumnos. */
     subjectId: number | null = null;
+    /** Asignación docente concreta (titular o sustitución). */
+    assignmentId: number | null = null;
     /** Alumnos matriculados en la asignatura. */
     alumnos = signal<StudentBySubject[]>([]);
     /** Error al cargar tareas del temario. */
@@ -84,9 +92,15 @@ export class TemarioProfesorComponent implements OnInit {
 
     /** Carga subjectId, alumnos y tareas al montar el temario. */
     ngOnInit(): void {
-        const param = this.route.snapshot.queryParamMap.get('subjectId');
-        if (param) {
-            this.subjectId = Number(param);
+        const subjectParam = this.route.snapshot.queryParamMap.get('subjectId');
+        const assignmentParam = this.route.snapshot.queryParamMap.get('assignmentId');
+        if (subjectParam) {
+            this.subjectId = Number(subjectParam);
+        }
+        if (assignmentParam) {
+            this.assignmentId = Number(assignmentParam);
+        }
+        if (this.subjectId) {
             this.loadAlumnos();
         }
         this.loadTasks();
@@ -97,9 +111,13 @@ export class TemarioProfesorComponent implements OnInit {
       this.taskService.getAllTasks().subscribe({
         next: (res) => {
           if (res.success) {
-            const filteredTasks = res.data.filter(t => 
-               t.teacherAssignment?.subject?.name?.toLowerCase() === this.claseEnCurso.toLowerCase()
-            );
+            const filteredTasks = this.assignmentId
+              ? res.data.filter((t) => t.teacherAssignment?.id === this.assignmentId)
+              : res.data.filter(
+                  (t) =>
+                    t.teacherAssignment?.subject?.name?.toLowerCase() ===
+                    this.claseEnCurso.toLowerCase(),
+                );
             this.groupTasksByType(filteredTasks);
           }
         },
@@ -121,9 +139,15 @@ export class TemarioProfesorComponent implements OnInit {
       ];
 
       const nuevosBloques: BloqueTemario[] = [];
-      const user = this.authService.getCurrentUser();
       for (const conf of configBloques) {
-        const tareasDeTipo = tasks.filter(t => t.type === conf.tipo && t.teacherAssignment?.idTeacher === user?.id);
+        const tareasDeTipo = this.assignmentId
+          ? tasks.filter(
+              (t) => t.type === conf.tipo && t.teacherAssignment?.id === this.assignmentId,
+            )
+          : tasks.filter((t) => {
+              const user = this.authService.getCurrentUser();
+              return t.type === conf.tipo && t.teacherAssignment?.idTeacher === user?.id;
+            });
         
         if (tareasDeTipo.length > 0) {
           tareasDeTipo.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
@@ -155,6 +179,54 @@ export class TemarioProfesorComponent implements OnInit {
     /** Carga alumnos de la asignatura para registrar asistencia. */
     private loadAlumnos(): void {
         this.loadingAlumnos.set(true);
+        const user = this.authService.getCurrentUser();
+        if (!user?.id || !this.subjectId) {
+            this.loadingAlumnos.set(false);
+            return;
+        }
+
+        if (this.assignmentId) {
+            this.teachingContext.getMyAssignmentRows(user.id).subscribe({
+                next: (rows) => {
+                    const row = rows.find((r) => r.id === this.assignmentId);
+                    if (!row?.idGroup) {
+                        this.loadAlumnosBySubject();
+                        return;
+                    }
+                    this.studentsByGroup.getEnrollmentsByFilters({
+                        idSubject: row.idSubject,
+                        idGroup: row.idGroup,
+                        schoolYear: row.schoolYear,
+                    }).subscribe({
+                        next: (response) => {
+                            if (response.success) {
+                                const mapped: StudentBySubject[] = response.data.map((e) => ({
+                                    enrollmentId: e.id,
+                                    studentId: e.student.id,
+                                    name: e.student.name,
+                                    surname: e.student.surname ?? '',
+                                    groupId: e.idGroup,
+                                    groupName: row.group?.name ?? '',
+                                }));
+                                this.alumnos.set(mapped);
+                                mapped.forEach((alumno) => {
+                                    this.attendanceMap[alumno.enrollmentId] = 'PRESENT';
+                                });
+                            }
+                            this.loadingAlumnos.set(false);
+                        },
+                        error: () => this.loadingAlumnos.set(false),
+                    });
+                },
+                error: () => this.loadAlumnosBySubject(),
+            });
+            return;
+        }
+
+        this.loadAlumnosBySubject();
+    }
+
+    private loadAlumnosBySubject(): void {
         this.clasesService.getStudentsBySubject(this.subjectId!).subscribe({
             next: (response) => {
                 this.alumnos.set(response.data);
@@ -165,7 +237,7 @@ export class TemarioProfesorComponent implements OnInit {
             },
             error: () => {
                 this.loadingAlumnos.set(false);
-            }
+            },
         });
     }
 

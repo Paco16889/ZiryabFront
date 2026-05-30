@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { WeekSchedule } from '../../../core/models/week-schedule';
 import { AuthService } from '../../../core/services/auth.service';
-import { WeekScheduleService } from '../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service';
+import { TeacherTeachingContextService } from '../../../core/services/profesor/teacher-teaching-context.service';
 import { prismaDayOfWeekToNumber } from '../../../core/utils/week-day';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 
@@ -21,8 +21,8 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 export class HorarioProfesorComponent implements OnInit {
   /** Servicio de sesión para identificar al profesor. */
   private authService = inject(AuthService);
-  /** Servicio que devuelve horarios filtrados por profesor. */
-  private weekScheduleService = inject(WeekScheduleService);
+  /** Horario titular + franjas de asignaciones en sustitución. */
+  private teachingContext = inject(TeacherTeachingContextService);
 
   /** Días lectivos que se muestran en la vista. */
   readonly weekDays = [1, 2, 3, 4, 5];
@@ -40,9 +40,8 @@ export class HorarioProfesorComponent implements OnInit {
       return;
     }
 
-    this.weekScheduleService.getSchedulesByTeacher(userId).subscribe((response) => {
+    this.teachingContext.getMyWeekSchedules(userId).subscribe((schedules) => {
       this.isLoading = false;
-      const schedules = response.success ? response.data : [];
       this.schedulesByDay = this.groupByDay(this.normalizeSchedules(schedules));
     });
   }
