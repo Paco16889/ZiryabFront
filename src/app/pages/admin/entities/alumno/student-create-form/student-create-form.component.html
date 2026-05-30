@@ -8,11 +8,11 @@
   <!-- DNI -->
    <!-- Email -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Email</label>
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
         <input 
           formControlName="email"
           type="email"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
           placeholder="profesor@ziryab.es"
         />
         @if(createForm.get('email')?.invalid && createForm.get('email')?.touched){
@@ -26,11 +26,11 @@
 
       <!-- Nombre -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Nombre</label>
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Nombre</label>
         <input 
           formControlName="name"
           type="text"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
           placeholder="Nombre"
         />
         @if(createForm.get('name')?.invalid && createForm.get('name')?.touched){
@@ -44,11 +44,11 @@
 
       <!-- Primer apellido -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Primer apellido</label>
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Primer apellido</label>
         <input 
           formControlName="surname"
           type="text"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
           placeholder="Primer apellido"
         />
         @if(createForm.get('surname')?.invalid && createForm.get('surname')?.touched){
@@ -62,11 +62,11 @@
 
       <!-- Segundo apellido -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Segundo apellido</label>
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Segundo apellido</label>
         <input 
           formControlName="ndSurname"
           type="text"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
           placeholder="Segundo apellido"
         />
         @if(createForm.get('ndSurname')?.invalid && createForm.get('ndSurname')?.touched){
@@ -80,11 +80,11 @@
 
       <!-- Fecha de nacimiento -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">Fecha de nacimiento</label>
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Fecha de nacimiento</label>
         <input 
           formControlName="birthDate"
           type="date"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
         />
         @if(createForm.get('birthDate')?.invalid && createForm.get('birthDate')?.touched){
              <span
@@ -97,12 +97,12 @@
 
       <!-- DNI -->
       <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-2">DNI / NIE</label>
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">DNI / NIE</label>
         <input 
           formControlName="dni"
           type="text"
           maxlength="9"
-          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
           placeholder="12345678A o X1234567A"
         />
         @if(createForm.get('dni')?.invalid && createForm.get('dni')?.touched){
@@ -118,7 +118,7 @@
    <!-- Mensaje de error -->
        @if(errorMessage){
         <div 
-           class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
+           class="mb-4 p-3 bg-red-100 dark:bg-red-950/30 border border-red-400 dark:border-red-800 rounded text-red-700 dark:text-red-300">
         {{ errorMessage }}
       </div>
        }

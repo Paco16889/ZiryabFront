@@ -1,5 +1,5 @@
 <div class="max-w-7xl mx-auto">
-  <h1 class="text-2xl font-bold mb-6">{{ 'weekScheduleBuilder.title' | translate }}</h1>
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100 mb-6">{{ 'weekScheduleBuilder.title' | translate }}</h1>
 
   <div
     class="flex flex-wrap gap-2 mb-6"
@@ -16,8 +16,11 @@
       [class.text-white]="builderMode() === 'create'"
       [class.border-purple-600]="builderMode() === 'create'"
       [class.bg-white]="builderMode() !== 'create'"
+      [class.dark:bg-gray-800]="builderMode() !== 'create'"
       [class.text-gray-800]="builderMode() !== 'create'"
+      [class.dark:text-gray-200]="builderMode() !== 'create'"
       [class.border-gray-300]="builderMode() !== 'create'"
+      [class.dark:border-gray-600]="builderMode() !== 'create'"
     >
       {{ 'weekScheduleBuilder.modeCreate' | translate }}
     </button>
@@ -31,8 +34,11 @@
       [class.text-white]="builderMode() === 'grid'"
       [class.border-purple-600]="builderMode() === 'grid'"
       [class.bg-white]="builderMode() !== 'grid'"
+      [class.dark:bg-gray-800]="builderMode() !== 'grid'"
       [class.text-gray-800]="builderMode() !== 'grid'"
+      [class.dark:text-gray-200]="builderMode() !== 'grid'"
       [class.border-gray-300]="builderMode() !== 'grid'"
+      [class.dark:border-gray-600]="builderMode() !== 'grid'"
     >
       {{ 'weekScheduleBuilder.modeGrid' | translate }}
     </button>

@@ -85,13 +85,33 @@ export class GenericViewDetailComponent<T> {
    * Devuelve las clases CSS de los campos de tipo título.
    */
   get titleClass(): string {
-    return this.config.layout?.titleClass || 'text-xl font-bold';
+    return (
+      this.config.layout?.titleClass ||
+      'text-xl font-bold text-gray-900 dark:text-purple-100'
+    );
   }
 
    /**
    * Devuelve las clases CSS de los campos de tipo texto.
    */
   get fieldClass(): string {
-    return this.config.layout?.fieldClass || 'text-sm';
+    return this.config.layout?.fieldClass || 'text-sm text-gray-800 dark:text-purple-100';
+  }
+
+  /**
+   * Combina clases de campo con variantes dark cuando el detalle usa clases solo de modo claro.
+   */
+  resolveFieldClass(field: ViewDetailFieldConfig, fallback: string): string {
+    const base = field.className || fallback;
+    if (base.includes('dark:')) {
+      return base;
+    }
+    if (base.includes('text-gray-700')) {
+      return `${base} dark:text-purple-200`;
+    }
+    if (base.includes('text-gray-800') || base.includes('text-gray-900') || base.includes('font-bold')) {
+      return `${base} dark:text-purple-100`;
+    }
+    return base;
   }
 }

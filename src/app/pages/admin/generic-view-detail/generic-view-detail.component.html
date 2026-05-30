@@ -2,13 +2,13 @@
   <!-- Campos normales -->
   @for (field of config.fields; track field.key) {
     @if (field.type === 'title') {
-      <h2 [class]="field.className || titleClass">
+      <h2 [class]="resolveFieldClass(field, titleClass)">
         {{ getFormattedValue(item, field) }}
       </h2>
     } @else {
-      <p [class]="field.className || fieldClass">
+      <p [class]="resolveFieldClass(field, fieldClass)">
         @if (field.label) {
-          <span class="font-medium">{{ field.label }} </span>
+          <span class="font-medium text-gray-900 dark:text-purple-200">{{ field.label }} </span>
         }
         {{ getFormattedValue(item, field) }}
       </p>
@@ -20,9 +20,9 @@
     @for (list of config.nestedLists; track list.key) {
       <div class="mt-4">
         @if (list.title) {
-          <h3 class="font-semibold mb-2">{{ list.title }}</h3>
+          <h3 class="mb-2 font-semibold text-gray-900 dark:text-purple-100">{{ list.title }}</h3>
         }
-        <ul class="list-disc list-inside">
+        <ul class="list-inside list-disc text-gray-800 dark:text-purple-100">
           @for (nestedItem of getNestedArray(item, list.key); track nestedItem) {
             <li>
               @if (list.itemFormat) {

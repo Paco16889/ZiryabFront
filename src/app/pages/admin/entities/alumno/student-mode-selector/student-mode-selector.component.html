@@ -1,25 +1,27 @@
-<div class="mb-6">
-      <label class="block text-gray-700 font-medium mb-2">
+﻿<div class="mb-6">
+      <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
         Tipo de matrícula
       </label>
 
       <div class="flex gap-6">
-        <label class="flex items-center gap-2 cursor-pointer">
+        <label class="flex items-center gap-2 cursor-pointer text-gray-800 dark:text-gray-200">
           <input
             type="radio"
             name="mode"
             value="new"
             checked
+            class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-purple-400 dark:focus:ring-purple-400"
             (change)="setMode('new')"
           />
           Alumno nuevo
         </label>
 
-        <label class="flex items-center gap-2 cursor-pointer">
+        <label class="flex items-center gap-2 cursor-pointer text-gray-800 dark:text-gray-200">
           <input
             type="radio"
             name="mode"
             value="existing"
+            class="h-4 w-4 border-gray-300 text-purple-600 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-purple-400 dark:focus:ring-purple-400"
             (change)="setMode('existing')"
           />
           Alumno existente

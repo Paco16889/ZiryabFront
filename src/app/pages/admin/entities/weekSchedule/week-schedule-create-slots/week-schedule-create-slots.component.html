@@ -1,6 +1,6 @@
-<div class="space-y-4 max-w-2xl">
+﻿<div class="space-y-4 max-w-2xl">
   <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1" for="week-schedule-create-slot-count">
+    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="week-schedule-create-slot-count">
       {{ 'weekScheduleBuilder.create.slotCount' | translate }}
     </label>
     <input
@@ -8,13 +8,13 @@
       type="number"
       min="1"
       [max]="effectiveMaxSlots() ?? null"
-      class="w-24 border border-gray-300 rounded-md px-3 py-2 disabled:opacity-50"
+      class="w-24 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-800 dark:text-gray-100 disabled:opacity-50"
       [value]="slotCount()"
       [disabled]="disabled()"
       (change)="onSlotCountChange($any($event.target).value)"
     />
     @if (effectiveMaxSlots(); as max) {
-      <p class="text-xs text-gray-600 mt-1">
+      <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
         {{
           'weekScheduleBuilder.create.slotCountProgress'
             | translate
@@ -48,23 +48,23 @@
   </div>
 
   <div>
-    <h2 class="text-sm font-medium text-gray-700 mb-2">
+    <h2 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
       {{ 'weekScheduleBuilder.create.slotsTitle' | translate }}
     </h2>
-    <p class="text-xs text-gray-500 mb-3">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
       {{ 'weekScheduleBuilder.create.timeFormatHint' | translate }}
     </p>
 
     <ul class="space-y-3">
       @for (row of slots(); track $index) {
         <li
-          class="grid grid-cols-1 sm:grid-cols-[auto_1fr_1fr] gap-3 items-end border border-gray-200 rounded-lg p-3 bg-white"
+          class="grid grid-cols-1 sm:grid-cols-[auto_1fr_1fr] gap-3 items-end border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-900"
         >
-          <span class="text-xs font-medium text-gray-500 sm:pb-2">
+          <span class="text-xs font-medium text-gray-500 dark:text-gray-400 sm:pb-2">
             {{ 'weekScheduleBuilder.create.slotRow' | translate: { n: $index + 1 } }}
           </span>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1" [for]="'slot-start-' + $index">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" [for]="'slot-start-' + $index">
               {{ 'weekScheduleBuilder.startTime' | translate }}
             </label>
             <input
@@ -76,7 +76,7 @@
               [attr.placeholder]="startPlaceholder($index)"
               [attr.title]="'weekScheduleBuilder.create.timeFormatHint' | translate"
               autocomplete="off"
-              class="w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 font-mono bg-white dark:bg-gray-800 dark:text-gray-100 disabled:opacity-50"
               [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.startTime)"
               [value]="row.startTime"
               [disabled]="disabled()"
@@ -90,7 +90,7 @@
             }
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1" [for]="'slot-end-' + $index">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" [for]="'slot-end-' + $index">
               {{ 'weekScheduleBuilder.endTime' | translate }}
             </label>
             <input
@@ -102,7 +102,7 @@
               [attr.placeholder]="startPlaceholder($index)"
               [attr.title]="'weekScheduleBuilder.create.timeFormatHint' | translate"
               autocomplete="off"
-              class="w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 font-mono bg-white dark:bg-gray-800 dark:text-gray-100 disabled:opacity-50"
               [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.finishTime)"
               [value]="row.finishTime"
               [disabled]="disabled()"

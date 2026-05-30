@@ -1,29 +1,29 @@
-<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
+﻿<div class="max-w-2xl mx-auto bg-white dark:bg-gray-900 dark:border dark:border-gray-800 p-6 rounded-lg shadow space-y-6">
   <div class="flex items-center gap-3">
     <button
       type="button"
-      class="text-gray-600 hover:text-gray-900"
+      class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
       (click)="onBack()"
     >
       ← {{ 'common.buttons.back' | translate }}
     </button>
-    <h2 class="text-xl font-bold text-gray-900">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-purple-100">
       {{ 'courseAssignments.wizard.title' | translate }}
     </h2>
   </div>
 
-  <p class="text-sm text-gray-600">
+  <p class="text-sm text-gray-600 dark:text-gray-400">
     {{ 'courseAssignments.wizard.stepLabel' | translate: { step: step() } }}
   </p>
 
   @if (step() === 1) {
     <div class="space-y-2">
-      <label class="block text-sm font-medium text-gray-700" for="course-select">
+      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="course-select">
         {{ 'courseAssignments.wizard.courseLabel' | translate }}
       </label>
       <select
         id="course-select"
-        class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+        class="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm bg-white dark:bg-gray-800 dark:text-gray-100"
         [value]="selectedCourseId() ?? ''"
         (change)="selectCourse(+$any($event.target).value)"
       >
@@ -42,16 +42,16 @@
     </div>
 
     @if (loadingGrades()) {
-      <p class="text-sm text-gray-500">{{ 'courseAssignments.wizard.loadingGrades' | translate }}</p>
+      <p class="text-sm text-gray-500 dark:text-gray-400">{{ 'courseAssignments.wizard.loadingGrades' | translate }}</p>
     }
     @if (gradesError()) {
-      <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+      <p class="text-sm text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-md px-3 py-2">
         {{ 'courseAssignments.wizard.emptyGrades' | translate }}
       </p>
       @if (selectedCourseId() != null) {
         <button
           type="button"
-          class="text-sm font-medium text-purple-700 underline hover:text-purple-900"
+          class="text-sm font-medium text-purple-700 dark:text-purple-300 underline hover:text-purple-900 dark:hover:text-purple-200"
           (click)="goToCreateSubjectsForSelectedCourse()"
         >
           {{ 'courseAssignments.wizard.createSubjectsLink' | translate }}
@@ -70,12 +70,12 @@
   }
 
   @if (step() === 2) {
-    <p class="text-sm text-gray-700">
+    <p class="text-sm text-gray-700 dark:text-gray-300">
       {{ 'courseAssignments.wizard.courseSelected' | translate: { name: selectedCourseName() } }}
     </p>
 
     <div class="space-y-2">
-      <span class="block text-sm font-medium text-gray-700">
+      <span class="block text-sm font-medium text-gray-700 dark:text-gray-300">
         {{ 'courseAssignments.wizard.gradeLabel' | translate }}
       </span>
       <div class="flex flex-wrap gap-2" role="group" [attr.aria-label]="'courseAssignments.wizard.gradeLabel' | translate">
@@ -87,8 +87,11 @@
             [class.text-white]="selectedGrade() === grade"
             [class.border-purple-600]="selectedGrade() === grade"
             [class.bg-white]="selectedGrade() !== grade"
+            [class.dark:bg-gray-800]="selectedGrade() !== grade"
             [class.text-gray-800]="selectedGrade() !== grade"
+            [class.dark:text-gray-200]="selectedGrade() !== grade"
             [class.border-gray-300]="selectedGrade() !== grade"
+            [class.dark:border-gray-600]="selectedGrade() !== grade"
             (click)="selectGrade(grade)"
           >
             {{ gradeLabel(grade) }}

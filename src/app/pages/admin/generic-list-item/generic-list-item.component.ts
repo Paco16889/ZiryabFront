@@ -193,7 +193,7 @@ export class GenericListItemComponent<T extends WithId, U, R, S> {
    */
   get fieldsContainerClass(): string {
     return this.config.layout?.fieldsContainerClass || 
-           'flex flex-col gap-1 md:flex-row md:flex-wrap md:gap-4';
+           'flex flex-col gap-1 text-gray-800 dark:text-purple-100 md:flex-row md:flex-wrap md:gap-4';
   }
 
     /**
@@ -224,12 +224,21 @@ export class GenericListItemComponent<T extends WithId, U, R, S> {
 
 getFieldClasses(field: ListItemFieldConfig): string {
   let classes = field.className || '';
-  
-  // Si debe ocultarse en móvil, añadimos la clase de Tailwind
+
+  if (!classes.includes('dark:')) {
+    if (classes.includes('text-gray-700')) {
+      classes += ' dark:text-purple-200';
+    } else if (classes.includes('text-purple-700')) {
+      classes += ' dark:text-purple-300';
+    } else if (classes.includes('font-bold') || classes.includes('font-medium')) {
+      classes += ' dark:text-purple-100';
+    }
+  }
+
   if (field.hideOnMobile) {
     classes += ' hidden md:block';
   }
-  
+
   return classes;
 }
 }

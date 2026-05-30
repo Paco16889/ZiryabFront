@@ -1,7 +1,7 @@
-<div class="p-4">
+﻿<div class="p-4">
   @if (!showCreateForm) {
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">{{ 'entities.student.title' | translate }}</h1>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100">{{ 'entities.student.title' | translate }}</h1>
       <app-boton-create
         label="{{ 'lists.students.createButton' | translate }}"
         (clickAction)="openCreateForm()"
@@ -10,7 +10,7 @@
     </div>
 
     @if (students.length === 0) {
-      <p class="text-gray-600">{{ 'lists.students.emptyList' | translate }}</p>
+      <p class="text-gray-600 dark:text-gray-400">{{ 'lists.students.emptyList' | translate }}</p>
     }
 
     @for (stu of students; track stu.id) {

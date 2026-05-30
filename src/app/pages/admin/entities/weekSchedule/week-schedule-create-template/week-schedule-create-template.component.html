@@ -1,4 +1,4 @@
-<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
+﻿<div class="max-w-2xl mx-auto bg-white dark:bg-gray-900 dark:border dark:border-gray-800 p-6 rounded-lg shadow space-y-6">
   <app-week-schedule-create-class-select
     [selectedClassKey]="classSelectKey()"
     [refreshToken]="classListRefresh()"
@@ -22,7 +22,7 @@
   />
 
   @if (weeklyHoursTotal() != null && weekDays().length > 0 && maxSlots() != null) {
-    <p class="text-xs text-gray-600 -mt-2">
+    <p class="text-xs text-gray-600 dark:text-gray-400 -mt-2">
       {{
         'weekScheduleBuilder.create.slotLimitHint'
           | translate
@@ -60,7 +60,7 @@
         {{ 'weekScheduleBuilder.create.submit' | translate }}
       }
     </button>
-    <p class="text-xs text-gray-500 mt-2">
+    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
       {{ 'weekScheduleBuilder.create.submitHint' | translate }}
     </p>
   </div>

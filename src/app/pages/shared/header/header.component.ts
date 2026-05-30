@@ -48,6 +48,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userName = 'Nombre';
   /** Clave i18n del rol mostrado. */
   userRoleKey = 'roles.user';
+  /** Toggle de tema solo visible para administradores (modo oscuro limitado al panel admin). */
+  showThemeToggle = false;
   /** Notificación mostrada temporalmente como toast. */
   toastNotification: AppNotification | null = null;
 
@@ -65,10 +67,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (user) {
           this.userName = user.name;
           this.userRoleKey = this.getRoleKey(user.role);
+          this.showThemeToggle = user.role === 'ADMIN';
           this.notificationService.load();
         } else {
           this.userName = '';
           this.userRoleKey = 'roles.user';
+          this.showThemeToggle = false;
           this.dismissToast();
           this.notificationPanel.close();
         }
@@ -97,6 +101,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (currentUser) {
       this.userName = currentUser.name;
       this.userRoleKey = this.getRoleKey(currentUser.role);
+      this.showThemeToggle = currentUser.role === 'ADMIN';
       this.notificationService.load();
     }
   }

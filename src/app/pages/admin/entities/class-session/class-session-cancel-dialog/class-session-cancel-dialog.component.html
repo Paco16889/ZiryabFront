@@ -1,37 +1,37 @@
-<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+﻿<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
   <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" (click)="onClose()"></div>
 
   <div
-    class="relative bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto"
+    class="relative bg-white dark:bg-gray-900 dark:border dark:border-gray-800 rounded-2xl shadow-xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto"
     role="dialog"
     aria-labelledby="cancel-dialog-title"
   >
     <button
       type="button"
-      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+      class="absolute top-4 right-4 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
       (click)="onClose()"
       [disabled]="isSubmitting()"
     >
       ✕
     </button>
 
-    <h2 id="cancel-dialog-title" class="text-xl font-bold text-gray-800 mb-4 pr-8">
+    <h2 id="cancel-dialog-title" class="text-xl font-bold text-gray-800 dark:text-purple-100 mb-4 pr-8">
       {{ 'lists.classSessions.cancelDialog.title' | translate }}
     </h2>
 
     <form [formGroup]="form" (ngSubmit)="onConfirm()">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-gray-700 font-medium mb-1 text-sm">
+          <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1 text-sm">
             {{ 'lists.classSessions.cancelDialog.dateFrom' | translate }}
           </label>
-          <input formControlName="dateFrom" type="date" class="w-full px-3 py-2 border rounded-lg" />
+          <input formControlName="dateFrom" type="date" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100" />
         </div>
         <div>
-          <label class="block text-gray-700 font-medium mb-1 text-sm">
+          <label class="block text-gray-700 dark:text-gray-300 font-medium mb-1 text-sm">
             {{ 'lists.classSessions.cancelDialog.dateTo' | translate }}
           </label>
-          <input formControlName="dateTo" type="date" class="w-full px-3 py-2 border rounded-lg" />
+          <input formControlName="dateTo" type="date" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100" />
         </div>
       </div>
 
@@ -41,16 +41,16 @@
         </p>
       }
 
-      <p class="text-sm text-gray-500 mb-2">
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
         {{ 'lists.classSessions.cancelDialog.filtersHint' | translate }}
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
         <div>
-          <label class="block text-gray-600 text-sm mb-1">
+          <label class="block text-gray-600 dark:text-gray-400 text-sm mb-1">
             {{ 'lists.classSessions.cancelDialog.filterCourse' | translate }}
           </label>
-          <select formControlName="idCourse" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">
+          <select formControlName="idCourse" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100" [disabled]="loadingOptions()">
             <option [ngValue]="null">{{ 'lists.classSessions.cancelDialog.filterAll' | translate }}</option>
             @for (opt of courseOptions(); track opt.value) {
               <option [ngValue]="opt.value">{{ opt.label }}</option>
@@ -58,10 +58,10 @@
           </select>
         </div>
         <div>
-          <label class="block text-gray-600 text-sm mb-1">
+          <label class="block text-gray-600 dark:text-gray-400 text-sm mb-1">
             {{ 'lists.classSessions.cancelDialog.filterSubject' | translate }}
           </label>
-          <select formControlName="idSubject" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">
+          <select formControlName="idSubject" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100" [disabled]="loadingOptions()">
             <option [ngValue]="null">{{ 'lists.classSessions.cancelDialog.filterAll' | translate }}</option>
             @for (opt of subjectOptions(); track opt.value) {
               <option [ngValue]="opt.value">{{ opt.label }}</option>
@@ -69,10 +69,10 @@
           </select>
         </div>
         <div>
-          <label class="block text-gray-600 text-sm mb-1">
+          <label class="block text-gray-600 dark:text-gray-400 text-sm mb-1">
             {{ 'lists.classSessions.cancelDialog.filterGroup' | translate }}
           </label>
-          <select formControlName="idGroup" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">
+          <select formControlName="idGroup" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100" [disabled]="loadingOptions()">
             <option [ngValue]="null">{{ 'lists.classSessions.cancelDialog.filterAll' | translate }}</option>
             @for (opt of groupOptions(); track opt.value) {
               <option [ngValue]="opt.value">{{ opt.label }}</option>
@@ -80,10 +80,10 @@
           </select>
         </div>
         <div>
-          <label class="block text-gray-600 text-sm mb-1">
+          <label class="block text-gray-600 dark:text-gray-400 text-sm mb-1">
             {{ 'lists.classSessions.cancelDialog.filterTeacher' | translate }}
           </label>
-          <select formControlName="idTeacher" class="w-full px-3 py-2 border rounded-lg text-sm" [disabled]="loadingOptions()">
+          <select formControlName="idTeacher" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-800 dark:text-gray-100" [disabled]="loadingOptions()">
             <option [ngValue]="null">{{ 'lists.classSessions.cancelDialog.filterAll' | translate }}</option>
             @for (opt of teacherOptions(); track opt.value) {
               <option [ngValue]="opt.value">{{ opt.label }}</option>
@@ -92,7 +92,7 @@
         </div>
       </div>
 
-      <div class="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg min-h-[3rem] flex items-center">
+      <div class="mb-4 p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg min-h-[3rem] flex items-center">
         @if (previewLoading()) {
           <span class="text-sm text-amber-800">{{ 'lists.classSessions.cancelDialog.previewLoading' | translate }}</span>
         } @else if (previewError()) {
@@ -102,14 +102,14 @@
             {{ 'lists.classSessions.cancelDialog.previewCount' | translate: { count: previewCount() } }}
           </span>
         } @else if (datesValid()) {
-          <span class="text-sm text-gray-600">{{ 'lists.classSessions.cancelDialog.previewWaiting' | translate }}</span>
+          <span class="text-sm text-gray-600 dark:text-gray-400">{{ 'lists.classSessions.cancelDialog.previewWaiting' | translate }}</span>
         } @else {
-          <span class="text-sm text-gray-500">{{ 'lists.classSessions.cancelDialog.previewNeedDates' | translate }}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400">{{ 'lists.classSessions.cancelDialog.previewNeedDates' | translate }}</span>
         }
       </div>
 
       @if (submitError()) {
-        <div class="mb-3 p-2 bg-red-50 text-red-700 text-sm rounded">{{ submitError() | translate }}</div>
+        <div class="mb-3 p-2 bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-300 text-sm rounded border border-red-200 dark:border-red-800">{{ submitError() | translate }}</div>
       }
 
       <div class="flex justify-end gap-3">
@@ -117,7 +117,7 @@
           type="button"
           (click)="onClose()"
           [disabled]="isSubmitting()"
-          class="px-4 py-2 bg-gray-200 rounded-lg text-gray-800"
+          class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200"
         >
           {{ 'lists.classSessions.cancelDialog.cancel' | translate }}
         </button>

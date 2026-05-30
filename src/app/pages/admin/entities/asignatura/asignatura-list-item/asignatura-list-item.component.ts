@@ -68,10 +68,22 @@ export class AsignaturaListItemComponent {
   get subjectConfig(): ListItemConfig<Subject, SubjectUpdateRequest, SubjectUpdateResponse, SubjectDeleteResponse>  {
     return {
       fields: [
-        { 
+        {
           key: 'name',
-          className: 'font-medium'
-        }
+          className: 'font-medium',
+          order: 1,
+        },
+        {
+          key: 'grade',
+          order: 2,
+          format: (value: string) => (value ? `${value}º` : ''),
+        },
+        {
+          key: 'course.name',
+          order: 3,
+          className: 'text-sm text-gray-700',
+          hideOnMobile: true,
+        },
       ],
       actions: {
         edit: true,

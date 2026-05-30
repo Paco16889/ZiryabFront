@@ -1,16 +1,16 @@
-<div class="max-w-2xl mx-auto">
+﻿<div class="max-w-2xl mx-auto">
   <div class="flex items-center mb-6">
     <button
       type="button"
       (click)="onCancel()"
       [disabled]="selectedStudentService.enrollmentInProgress()"
-      class="mr-4 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed">
+      class="mr-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
       ← Volver
     </button>
-    <h1 class="text-2xl font-bold">{{ 'studentEnrollment.title' | translate }}</h1>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100">{{ 'studentEnrollment.title' | translate }}</h1>
   </div>
 
-  <div class="bg-white p-6 rounded-lg shadow">
+  <div class="bg-white dark:bg-gray-900 dark:border dark:border-gray-800 p-6 rounded-lg shadow">
 
     <!-- Selector tipo alumno -->
      @if (mode === 'new' || mode === 'existing') {
@@ -23,9 +23,9 @@
 
     <!-- FORMULARIO: ALUMNO NUEVO -->
     @if(mode === 'new'){
-      <div class="border-t pt-6">
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
         <!-- aquí irá tu student-create-form real -->
-        <p class="text-gray-600 mb-4">
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
           Introduce los datos del nuevo alumno
         </p>
         <app-student-create-form
@@ -41,8 +41,8 @@
 
     <!-- FORMULARIO: ALUMNO EXISTENTE -->
     @if(mode === 'existing'){
-      <div class="border-t pt-6">
-        <p class="text-gray-600 mb-4">
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
           Selecciona un alumno existente para matricular
         </p>
         <app-student-selector

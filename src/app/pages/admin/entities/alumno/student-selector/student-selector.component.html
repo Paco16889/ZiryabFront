@@ -1,15 +1,15 @@
-<!-- student-selector.component.html -->
+﻿<!-- student-selector.component.html -->
 <div class="max-w-2xl mx-auto">
   <!-- Input DNI -->
   <div class="mb-4">
     <form [formGroup]="dniForm">
-       <label class="block text-gray-700 font-medium mb-2">
+       <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
       Introduce DNI / NIE del alumno
     </label>
     <input
     type="text"
     formControlName = "dni"
-      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
       placeholder="12345678A o X1234567A"
     
     />
@@ -35,20 +35,21 @@
 
   <!-- Mensaje de error -->
   @if(errorMessage){
-    <div class="mb-4 p-3 bg-red-100 border border-red-400 rounded text-red-700">
+    <div class="mb-4 p-3 bg-red-100 dark:bg-red-950/30 border border-red-400 dark:border-red-800 rounded text-red-700 dark:text-red-300">
       {{ errorMessage }}
     </div>
   }
 
   <!-- Resultado de la búsqueda -->
   @if(student){
-    <div class="border-t pt-4 pb-2">
-      <label class="flex items-center gap-2 cursor-pointer p-1">
+    <div class="border-t border-gray-200 dark:border-gray-700 pt-4 pb-2">
+      <label class="flex items-center gap-2 cursor-pointer p-1 text-gray-800 dark:text-gray-200">
         <input
           type="radio"
           name="selectedStudent"
           [value]="student.id"
           checked
+          class="h-4 w-4 shrink-0 border-gray-300 text-purple-600 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-purple-400 dark:focus:ring-purple-400"
         />
         {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}
       </label>
@@ -59,7 +60,7 @@
           <button 
           type="button"
           (click)="onCancel()"
-          class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+          class="px-6 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600">
           Cancelar
         </button>
         

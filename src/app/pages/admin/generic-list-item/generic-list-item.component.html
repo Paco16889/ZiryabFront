@@ -10,7 +10,7 @@
       @for (field of config.fields; track field.key) {
         <p [class]="getFieldClasses(field)">
           @if (field.label) {
-            <span class="font-medium">{{ field.label }}: </span>
+            <span class="font-medium text-gray-900 dark:text-purple-200">{{ field.label }}: </span>
           }
           {{ getFormattedValue(item, field) }}
         </p>
