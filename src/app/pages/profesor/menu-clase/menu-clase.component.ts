@@ -35,6 +35,8 @@ export class MenuClaseComponent implements OnInit {
 
   /** Navega al área de asistencia/ficha del profesor. */
   navigateToAsistencias(): void {
-    this.router.navigate(['/ficha-profesor']);
+    this.router.navigate(['/ficha-profesor'], {
+      queryParams: { assignmentId: this.idTeacherAssignment() },
+    });
   }
 }

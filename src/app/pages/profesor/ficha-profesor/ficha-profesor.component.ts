@@ -1,16 +1,18 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { NgClass, DatePipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { StudentAbsencesModalComponent } from './student-absences-modal/student-absences-modal.component';
 import { AssistanceService } from '../../../core/services/alumno/assistance.service';
 import { AssistanceItem } from '../../../core/models/assistance';
+import { AuthService } from '../../../core/services/auth.service';
+import { TeacherTeachingContextService } from '../../../core/services/profesor/teacher-teaching-context.service';
 import { environment } from '../../../../environments/environment';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
 
 /**
  * Componente que muestra las faltas pendientes de justificar enviadas por los alumnos al profesor.
- * Permite visualizar el justificante y aceptar o rechazar la justificación.
  */
 @Component({
   selector: 'app-ficha-profesor',
@@ -21,49 +23,77 @@ import { resolveApiError } from '../../../core/i18n/api-error.util';
 })
 export class FichaProfesorComponent implements OnInit {
 
-  /** Servicio para gestionar las operaciones de asistencia */
   private assistanceService = inject(AssistanceService);
-  /** Traducciones de mensajes de éxito, error e información. */
+  private authService = inject(AuthService);
+  private teachingContext = inject(TeacherTeachingContextService);
+  private route = inject(ActivatedRoute);
   private readonly translate = inject(TranslateService);
 
-  /** Signal que indica si los datos están cargándose */
   public loading = signal<boolean>(true);
-  /** Signal para almacenar mensajes de error o información */
   public statusMessage = signal<{text: string, type: 'error' | 'success' | 'info'} | null>(null);
-
-  /** Signal que contiene el listado de faltas pendientes de revisión */
   public justificacionesPendientes = signal<AssistanceItem[]>([]);
-
-  /** Controla la visibilidad del modal de ausencias de alumnos tutelados. */
   public isAbsencesModalOpen = signal<boolean>(false);
-
-  /** URL base del API para construir enlaces a justificantes adjuntos. */
   public apiUrl = environment.apiUrl;
 
-  /**
-   * Ciclo de vida: Inicializa el componente cargando las faltas pendientes.
-   */
+  private assignmentId: number | null = null;
+  private allowedSubjectNames = new Set<string>();
+
   ngOnInit(): void {
+    const param = this.route.snapshot.queryParamMap.get('assignmentId');
+    if (param) {
+      this.assignmentId = Number(param);
+    }
     this.cargarJustificacionesPendientes();
   }
 
-  /**
-   * Obtiene todas las asistencias del profesor y filtra aquellas
-   * que tengan un archivo adjunto pero que aún no hayan sido justificadas.
-   */
   cargarJustificacionesPendientes(): void {
+    const teacherId = this.authService.getUserId();
+    if (!teacherId) {
+      this.loading.set(false);
+      return;
+    }
+
     this.loading.set(true);
+    this.teachingContext.ensureLoaded(teacherId).subscribe({
+      next: (rows) => {
+        const scope = this.assignmentId != null
+          ? rows.filter((r) => r.id === this.assignmentId)
+          : rows;
+        this.allowedSubjectNames = new Set(
+          scope.map((r) => r.subject.name.toLowerCase()),
+        );
+        this.loadAssistances();
+      },
+      error: () => this.loadAssistances(),
+    });
+  }
+
+  private loadAssistances(): void {
     this.assistanceService.getAllAssistances().subscribe({
       next: (res) => {
         if (res.success && res.data) {
-          // Filtrar faltas que tengan un justificante enviado o estén en estado PENDING, sin comprobar EXCUSED ni ABSENT por ahora para depurar.
-          const pendientes = res.data.filter(a => 
-            (a.justificationUri || a.justificationStatus === 'PENDING') && a.status !== 'EXCUSED'
-          );
+          const pendientes = res.data.filter((a) => {
+            const subjectName =
+              a.session?.schedule?.teacherAssignment?.subject?.name?.toLowerCase();
+            if (
+              this.allowedSubjectNames.size > 0 &&
+              subjectName &&
+              !this.allowedSubjectNames.has(subjectName)
+            ) {
+              return false;
+            }
+            return (
+              (a.justificationUri || a.justificationStatus === 'PENDING') &&
+              a.status !== 'EXCUSED'
+            );
+          });
           this.justificacionesPendientes.set(pendientes);
-          
+
           if (pendientes.length === 0) {
-            this.statusMessage.set({text: this.translate.instant('teacherPages.justifications.noPending'), type: 'info'});
+            this.statusMessage.set({
+              text: this.translate.instant('teacherPages.justifications.noPending'),
+              type: 'info',
+            });
           } else {
             this.statusMessage.set(null);
           }
@@ -77,32 +107,27 @@ export class FichaProfesorComponent implements OnInit {
           type: 'error',
         });
         this.loading.set(false);
-      }
+      },
     });
   }
 
-  /**
-   * Abre el archivo adjunto en una pestaña nueva.
-   * @param uri Ruta relativa del archivo.
-   */
   verJustificante(uri: string): void {
-    // Si la uri ya empieza por http, se abre tal cual. Si no, se concatena con la apiUrl
     const fullUrl = uri.startsWith('http') ? uri : `${this.apiUrl.replace('/api', '')}${uri}`;
     window.open(fullUrl, '_blank');
   }
 
-  /**
-   * Acepta la justificación, cambiando el estado de la falta a EXCUSED.
-   * @param assistanceId Identificador de la falta.
-   */
   aceptarJustificacion(assistanceId: number): void {
     this.loading.set(true);
     this.assistanceService.justifyAbsence(assistanceId).subscribe({
       next: (res) => {
         if (res.success) {
-          this.statusMessage.set({text: this.translate.instant('teacherPages.justifications.successAccept'), type: 'success'});
-          // Eliminar de la lista local
-          this.justificacionesPendientes.update(list => list.filter(a => a.id !== assistanceId));
+          this.statusMessage.set({
+            text: this.translate.instant('teacherPages.justifications.successAccept'),
+            type: 'success',
+          });
+          this.justificacionesPendientes.update((list) =>
+            list.filter((a) => a.id !== assistanceId),
+          );
         }
         this.loading.set(false);
       },
@@ -113,26 +138,22 @@ export class FichaProfesorComponent implements OnInit {
           type: 'error',
         });
         this.loading.set(false);
-      }
+      },
     });
   }
 
-  /**
-   * Rechaza la justificación, manteniendo la falta como ABSENT.
-   * @param assistanceId Identificador de la falta.
-   */
   rechazarJustificacion(assistanceId: number): void {
     this.loading.set(true);
     this.assistanceService.rejectJustification(assistanceId).subscribe({
       next: (res) => {
         if (res.success) {
-          this.statusMessage.set({text: this.translate.instant('teacherPages.justifications.successReject'), type: 'info'});
-          // Eliminar de la lista local ya que ya ha sido revisada (asumiremos que rechazarla cambia algo,
-          // o simplemente la quitamos de la vista. Para ser correctos, idealmente el status pasaría a un estado REJECTED,
-          // pero si vuelve a ABSENT igual se muestra en la lista.
-          // Para evitar que vuelva a aparecer, el backend requeriría un 'justificationStatus = REJECTED'.
-          // Si el backend no tiene esto, la retiramos de la vista y ya.
-          this.justificacionesPendientes.update(list => list.filter(a => a.id !== assistanceId));
+          this.statusMessage.set({
+            text: this.translate.instant('teacherPages.justifications.successReject'),
+            type: 'info',
+          });
+          this.justificacionesPendientes.update((list) =>
+            list.filter((a) => a.id !== assistanceId),
+          );
         }
         this.loading.set(false);
       },
@@ -143,7 +164,7 @@ export class FichaProfesorComponent implements OnInit {
           type: 'error',
         });
         this.loading.set(false);
-      }
+      },
     });
   }
 }

@@ -12,6 +12,7 @@ import {
   DeleteTaskResponse,
 } from '../../models/teacher/tasks';
 import { CreateStudentTaskService } from './create-student-task.service';
+import { environment } from '../../../../environments/environment';
 
 /**
  * Servicio de profesorado para gestionar tareas de una asignación docente.
@@ -30,7 +31,7 @@ export class TaskService {
    * Endpoint base del módulo de tareas del backend.
    * Actualmente apunta al backend local usado por las pantallas de profesorado.
    */
-  private apiUrl = 'http://localhost:3000/api/tasks';
+  private apiUrl = `${environment.apiUrl}/tasks`;
 
   /**
    * Inyecta las dependencias usadas en el flujo de tareas del profesor.

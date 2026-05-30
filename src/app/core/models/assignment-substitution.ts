@@ -14,6 +14,7 @@ export interface SubstitutionTeacherAssignment {
   status: AssignmentStatus;
   currentSubstituteId?: number | null;
   schoolYear: string;
+  isTutor?: boolean;
   teacher?: SubstitutionTeacherRef;
   subject?: {
     id: number;

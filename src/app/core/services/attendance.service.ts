@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 /** Estados de asistencia posibles según el backend */
 export type AttendanceStatus = 'PRESENT' | 'ABSENT' | 'EXCUSED' | 'LATE';
@@ -48,7 +49,7 @@ export class AttendanceService {
   private http = inject(HttpClient);
 
   /** URL base de la API. */
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = environment.apiUrl;
 
   /**
    * Obtiene o crea la sesión de clase de hoy para la asignatura y profesor indicados.

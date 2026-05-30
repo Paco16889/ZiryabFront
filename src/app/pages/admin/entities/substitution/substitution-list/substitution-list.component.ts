@@ -1,6 +1,7 @@
 import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { AssignmentSubstitutionsService } from '../../../../../core/services/admin/entities/assignment-substitutions.service';
+import { TeacherTeachingContextService } from '../../../../../core/services/profesor/teacher-teaching-context.service';
 import { ModalDeleteService } from '../../../../../core/services/UI/modal-delete.service';
 import { ModalEditService } from '../../../../../core/services/UI/modal-edit.service';
 import { BotonCreateComponent } from '../../../botones/boton-create/boton-create.component';
@@ -28,6 +29,7 @@ type SubstitutionView = 'list' | 'create' | 'close';
 })
 export class SubstitutionListComponent implements OnInit {
   private readonly substitutionService = inject(AssignmentSubstitutionsService);
+  private readonly teachingContext = inject(TeacherTeachingContextService);
   private readonly modalDeleteService = inject(ModalDeleteService);
   private readonly modalEditService = inject(ModalEditService);
 
@@ -70,11 +72,13 @@ export class SubstitutionListComponent implements OnInit {
 
   onSubstitutionClosed(): void {
     this.backToList();
+    this.teachingContext.invalidate();
     this.substitutionService.loadSubstitutions();
   }
 
   onSubstitutionCreated(): void {
     this.backToList();
+    this.teachingContext.invalidate();
     this.substitutionService.loadSubstitutions();
   }
 }

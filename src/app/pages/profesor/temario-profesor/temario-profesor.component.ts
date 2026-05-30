@@ -4,12 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { AuthService } from '../../../core/services/auth.service';
-import { ClasesService } from '../../../core/services/clases.service';
 import { CargaStudentsporGrupoAsignaturaService } from '../../../core/services/profesor/carga-studentspor-grupo-asignatura.service';
 import { TeacherTeachingContextService } from '../../../core/services/profesor/teacher-teaching-context.service';
 import { AttendanceService, AttendanceRecord, AttendanceStatus } from '../../../core/services/attendance.service';
-import { TaskService } from '../../../core/services/task.service';
-import { Task, TaskType } from '../../../core/models/task';
+import { TaskService } from '../../../core/services/profesor/task.service';
+import { Task, TaskType } from '../../../core/models/teacher/tasks';
+
 import { Router } from '@angular/router';
 import { StudentBySubject } from '../../../core/models/student-by-subject';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
@@ -42,8 +42,6 @@ export class TemarioProfesorComponent implements OnInit {
     private route = inject(ActivatedRoute);
     /** Servicio de sesión para identificar al profesor. */
     private authService = inject(AuthService);
-    /** Servicio de clases para cargar alumnos por asignatura (titular). */
-    private clasesService = inject(ClasesService);
     /** Matrículas por grupo y asignatura (sustitución). */
     private studentsByGroup = inject(CargaStudentsporGrupoAsignaturaService);
     /** Asignaciones titulares + sustituciones activas. */
@@ -100,54 +98,47 @@ export class TemarioProfesorComponent implements OnInit {
         if (assignmentParam) {
             this.assignmentId = Number(assignmentParam);
         }
-        if (this.subjectId) {
-            this.loadAlumnos();
+        if (!this.assignmentId) {
+            this.tasksLoadError.set(true);
+            return;
         }
+        this.loadAlumnos();
         this.loadTasks();
     }
 
-    /** Carga tareas de la asignatura actual. */
+    /** Carga tareas de la asignación docente (titular o sustituto). */
     loadTasks() {
-      this.taskService.getAllTasks().subscribe({
+      if (!this.assignmentId) {
+        return;
+      }
+      this.taskService.getTasksByAssignment(this.assignmentId).subscribe({
         next: (res) => {
           if (res.success) {
-            const filteredTasks = this.assignmentId
-              ? res.data.filter((t) => t.teacherAssignment?.id === this.assignmentId)
-              : res.data.filter(
-                  (t) =>
-                    t.teacherAssignment?.subject?.name?.toLowerCase() ===
-                    this.claseEnCurso.toLowerCase(),
-                );
-            this.groupTasksByType(filteredTasks);
+            this.groupTasksByType(res.data);
           }
         },
         error: (err) => {
           console.error(err);
           this.tasksLoadError.set(true);
-        }
+        },
       });
     }
 
-    /** Agrupa tareas por tipo y filtra por profesor autenticado. */
+    /** Agrupa tareas por tipo de la asignación actual. */
     groupTasksByType(tasks: Task[]) {
-      const configBloques = [
-        { tipo: TaskType.THEORY, titleKey: 'teacherPages.syllabus.blocks.theory', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
-        { tipo: TaskType.EXAM, titleKey: 'teacherPages.syllabus.blocks.exam', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
-        { tipo: TaskType.PROJECT, titleKey: 'teacherPages.syllabus.blocks.project', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
-        { tipo: TaskType.PRACTICE, titleKey: 'teacherPages.syllabus.blocks.practice', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
-        { tipo: TaskType.HOMEWORK, titleKey: 'teacherPages.syllabus.blocks.homework', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' }
+      const configBloques: { tipo: TaskType; titleKey: string; icono: string }[] = [
+        { tipo: 'THEORY', titleKey: 'teacherPages.syllabus.blocks.theory', icono: 'https://cdn-icons-png.flaticon.com/512/4207/4207253.png' },
+        { tipo: 'EXAM', titleKey: 'teacherPages.syllabus.blocks.exam', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362402.png' },
+        { tipo: 'PROJECT', titleKey: 'teacherPages.syllabus.blocks.project', icono: 'https://cdn-icons-png.flaticon.com/512/1087/1087815.png' },
+        { tipo: 'PRACTICE', titleKey: 'teacherPages.syllabus.blocks.practice', icono: 'https://cdn-icons-png.flaticon.com/512/471/471495.png' },
+        { tipo: 'HOMEWORK', titleKey: 'teacherPages.syllabus.blocks.homework', icono: 'https://cdn-icons-png.flaticon.com/512/3362/3362369.png' },
       ];
 
       const nuevosBloques: BloqueTemario[] = [];
       for (const conf of configBloques) {
-        const tareasDeTipo = this.assignmentId
-          ? tasks.filter(
-              (t) => t.type === conf.tipo && t.teacherAssignment?.id === this.assignmentId,
-            )
-          : tasks.filter((t) => {
-              const user = this.authService.getCurrentUser();
-              return t.type === conf.tipo && t.teacherAssignment?.idTeacher === user?.id;
-            });
+        const tareasDeTipo = tasks.filter(
+          (t) => t.type === conf.tipo && t.teacherAssignment?.id === this.assignmentId,
+        );
         
         if (tareasDeTipo.length > 0) {
           tareasDeTipo.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
@@ -180,64 +171,44 @@ export class TemarioProfesorComponent implements OnInit {
     private loadAlumnos(): void {
         this.loadingAlumnos.set(true);
         const user = this.authService.getCurrentUser();
-        if (!user?.id || !this.subjectId) {
+        if (!user?.id || !this.assignmentId) {
             this.loadingAlumnos.set(false);
             return;
         }
 
-        if (this.assignmentId) {
-            this.teachingContext.getMyAssignmentRows(user.id).subscribe({
-                next: (rows) => {
-                    const row = rows.find((r) => r.id === this.assignmentId);
-                    if (!row?.idGroup) {
-                        this.loadAlumnosBySubject();
-                        return;
-                    }
-                    this.studentsByGroup.getEnrollmentsByFilters({
-                        idSubject: row.idSubject,
-                        idGroup: row.idGroup,
-                        schoolYear: row.schoolYear,
-                    }).subscribe({
-                        next: (response) => {
-                            if (response.success) {
-                                const mapped: StudentBySubject[] = response.data.map((e) => ({
-                                    enrollmentId: e.id,
-                                    studentId: e.student.id,
-                                    name: e.student.name,
-                                    surname: e.student.surname ?? '',
-                                    groupId: e.idGroup,
-                                    groupName: row.group?.name ?? '',
-                                }));
-                                this.alumnos.set(mapped);
-                                mapped.forEach((alumno) => {
-                                    this.attendanceMap[alumno.enrollmentId] = 'PRESENT';
-                                });
-                            }
-                            this.loadingAlumnos.set(false);
-                        },
-                        error: () => this.loadingAlumnos.set(false),
-                    });
-                },
-                error: () => this.loadAlumnosBySubject(),
-            });
-            return;
-        }
-
-        this.loadAlumnosBySubject();
-    }
-
-    private loadAlumnosBySubject(): void {
-        this.clasesService.getStudentsBySubject(this.subjectId!).subscribe({
-            next: (response) => {
-                this.alumnos.set(response.data);
-                response.data.forEach((alumno: StudentBySubject) => {
-                    this.attendanceMap[alumno.enrollmentId] = 'PRESENT';
+        this.teachingContext.ensureLoaded(user.id).subscribe({
+            next: (rows) => {
+                const row = rows.find((r) => r.id === this.assignmentId);
+                if (!row?.idGroup) {
+                    this.loadingAlumnos.set(false);
+                    return;
+                }
+                this.studentsByGroup.getEnrollmentsByFilters({
+                    idSubject: row.idSubject,
+                    idGroup: row.idGroup,
+                    schoolYear: row.schoolYear,
+                }).subscribe({
+                    next: (response) => {
+                        if (response.success) {
+                            const mapped: StudentBySubject[] = response.data.map((e) => ({
+                                enrollmentId: e.id,
+                                studentId: e.student.id,
+                                name: e.student.name,
+                                surname: e.student.surname ?? '',
+                                groupId: e.idGroup,
+                                groupName: row.group?.name ?? '',
+                            }));
+                            this.alumnos.set(mapped);
+                            mapped.forEach((alumno) => {
+                                this.attendanceMap[alumno.enrollmentId] = 'PRESENT';
+                            });
+                        }
+                        this.loadingAlumnos.set(false);
+                    },
+                    error: () => this.loadingAlumnos.set(false),
                 });
-                this.loadingAlumnos.set(false);
             },
-            error: () => {
-                this.loadingAlumnos.set(false);
-            },
+            error: () => this.loadingAlumnos.set(false),
         });
     }
 
@@ -254,7 +225,10 @@ export class TemarioProfesorComponent implements OnInit {
         this.saving.set(true);
         this.saveMessage.set('');
 
-        this.attendanceSvc.startSession(this.subjectId, user.id).subscribe({
+        const teacherId = this.teachingContext.resolveTeacherIdForApi(user.id, {
+          assignmentId: this.assignmentId ?? undefined,
+        });
+        this.attendanceSvc.startSession(this.subjectId, teacherId).subscribe({
             next: (sessionId) => {
                 const records: AttendanceRecord[] = Object.entries(this.attendanceMap).map(
                     ([enrollmentId, status]) => ({

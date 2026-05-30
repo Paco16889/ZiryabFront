@@ -2,6 +2,8 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GradeService } from '../../../core/services/profesor/grade.service';
+import { TeacherTeachingContextService } from '../../../core/services/profesor/teacher-teaching-context.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { EvaluationPeriod, Grade, CreateGradeRequest, TutoredCourseGroup } from '../../../core/models/grade';
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -37,6 +39,8 @@ interface StudentWithSubjects {
 export class GestionNotasComponent implements OnInit {
   /** Servicio de calificaciones. */
   private gradeService = inject(GradeService);
+  private teachingContext = inject(TeacherTeachingContextService);
+  private authService = inject(AuthService);
   /** Constructor de formularios, reservado para controles reactivos. */
   private fb = inject(FormBuilder);
   /** Traducciones de mensajes. */
@@ -68,21 +72,27 @@ export class GestionNotasComponent implements OnInit {
 
   /** Carga grupos donde el profesor actúa como tutor. */
   loadGroups(): void {
+    const teacherId = this.authService.getUserId();
+    if (!teacherId) {
+      this.errorMessage.set(this.translate.instant('common.errors.userNotIdentified'));
+      return;
+    }
     this.loading.set(true);
-    this.gradeService.getTutoredGroups().subscribe({
-      next: (res) => {
-        if (res.data && res.data.length > 0) {
-          this.selectedGroup.set(res.data[0]);
+    this.teachingContext.getMyTutoredGroups(teacherId).subscribe({
+      next: (groups) => {
+        if (groups.length > 0) {
+          this.selectedGroup.set(groups[0]);
           this.loadGrades();
         } else {
           this.errorMessage.set(this.translate.instant('common.errors.noTutorGroups'));
+          this.loading.set(false);
         }
       },
       error: (err) => {
         console.error('Error al cargar grupos:', err);
         this.errorMessage.set(resolveApiError(this.translate, err, 'common.errors.loadTutorGroups'));
         this.loading.set(false);
-      }
+      },
     });
   }
 
