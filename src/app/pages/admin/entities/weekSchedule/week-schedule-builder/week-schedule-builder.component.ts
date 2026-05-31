@@ -69,3 +69,5 @@ export class WeekScheduleBuilderComponent implements OnInit {
     this.scheduleCreated.emit();
   }
 }
+
+//comentario premerge
