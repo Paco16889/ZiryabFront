@@ -1189,6 +1189,9 @@
         "board": {
           "title": "Tablón",
           "cta": "Ver Avisos"
+        },
+        "passwords": {
+          "title": "Contraseñas"
         }
       }
     },

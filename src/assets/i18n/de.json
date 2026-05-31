@@ -1188,6 +1188,9 @@
         "board": {
           "title": "Schwarzes Brett",
           "cta": "Hinweise ansehen"
+        },
+        "passwords": {
+          "title": "Passwörter"
         }
       }
     },

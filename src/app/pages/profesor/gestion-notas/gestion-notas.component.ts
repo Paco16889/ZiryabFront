@@ -80,7 +80,7 @@ export class GestionNotasComponent implements OnInit {
     this.loading.set(true);
     this.teachingContext.getMyTutoredGroups(teacherId).subscribe({
       next: (groups) => {
-        if (groups.length > 0) {
+        if (groups.length === 1) {
           this.selectedGroup.set(groups[0]);
           this.loadGrades();
         } else {

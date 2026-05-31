@@ -1191,6 +1191,9 @@
         "board": {
           "title": "Board",
           "cta": "View Notices"
+        },
+        "passwords": {
+          "title": "Passwords"
         }
       }
     },

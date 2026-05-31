@@ -139,7 +139,10 @@ export class TeacherTeachingContextService {
     );
   }
 
-  /** Grupos tutorizados propios + grupos donde sustituyes a un titular tutor. */
+  /**
+   * Grupo tutorizado del profesor (como mucho uno: propio o por sustitución al titular tutor).
+   * Regla de negocio: tutor de un solo grupo o de ninguno.
+   */
   getMyTutoredGroups(loggedInTeacherId: number): Observable<TutoredCourseGroup[]> {
     return this.ensureLoaded(loggedInTeacherId).pipe(
       switchMap((rows) => {
@@ -148,7 +151,7 @@ export class TeacherTeachingContextService {
           switchMap((res) => {
             const own = res.data ?? [];
             if (tutorSubRows.length === 0) {
-              return of(own);
+              return of(this.atMostOneTutoredGroup(own));
             }
             const loads = tutorSubRows.map((row) =>
               this.buildTutoredGroupFromAssignment(row).pipe(
@@ -166,7 +169,7 @@ export class TeacherTeachingContextService {
                     byGroupId.set(g.group.id, g);
                   }
                 }
-                return [...byGroupId.values()];
+                return this.atMostOneTutoredGroup([...byGroupId.values()]);
               }),
             );
           }),
@@ -180,12 +183,21 @@ export class TeacherTeachingContextService {
                     ),
                   ),
                 ).pipe(
-                  map((built) => built.filter((g): g is TutoredCourseGroup => g != null)),
+                  map((built) =>
+                    this.atMostOneTutoredGroup(
+                      built.filter((g): g is TutoredCourseGroup => g != null),
+                    ),
+                  ),
                 ),
           ),
         );
       }),
     );
+  }
+
+  /** En el dominio solo existe 0 o 1 grupo tutorizado por profesor. */
+  private atMostOneTutoredGroup(groups: TutoredCourseGroup[]): TutoredCourseGroup[] {
+    return groups.length > 0 ? [groups[0]] : [];
   }
 
   private loadContext(teacherId: number): Observable<TeacherAssignmentContextRow[]> {

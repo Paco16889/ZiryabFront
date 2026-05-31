@@ -119,6 +119,18 @@
             </span>
         </div>
 
+        @if (showTutorCredentials()) {
+          <div class="col-span-2 sm:col-span-6 flex justify-center">
+            <button
+              type="button"
+              (click)="goToComponent('credenciales-alumnos')"
+              class="w-full max-w-md rounded-2xl border-2 border-violet-300 bg-violet-50 px-6 py-4 text-lg font-bold text-violet-800 shadow-sm transition hover:bg-violet-100 hover:shadow-md active:scale-[0.98]"
+            >
+              {{ 'studentPages.management.cards.passwords.title' | translate }}
+            </button>
+          </div>
+        }
+
     </div>
 
     <app-boton-atras></app-boton-atras>
