@@ -300,18 +300,30 @@ export interface StudentsAllResponse {
   count: number;
 }
 
+/** Datos del paso 2 del wizard, solo en memoria hasta confirmar matrícula (EQ-311-A). */
+export interface PendingStudentDraft {
+  /** Correo del alumno pendiente de alta. */
+  email: string;
+
+  /** Nombre del alumno. */
+  name: string;
+
+  /** Primer apellido. */
+  surname: string;
+
+  /** Segundo apellido. */
+  ndSurname: string;
+
+  /** Fecha de nacimiento en formato ISO o local del formulario. */
+  birthDate: string;
+
+  /** Documento de identidad del alumno. */
+  dni: string;
+}
+
 /**
- * Datos necesarios para crear un nuevo estudiante.
- * El campo role es opcional, por defecto el backend asignará STUDENT.
- * @example
- * const request: StudentCreateRequest &#x3D; {
- *   email: &#x27;EMAIL_ESTUDIANTE&#x27;,
- *   name: &#x27;NOMBRE_ESTUDIANTE&#x27;,
- *   surname: &#x27;PRIMER_APELLIDO&#x27;,
- *   ndSurname: &#x27;SEGUNDO_APELLIDO&#x27;,
- *   birthDate: &#x27;FECHA_NACIMIENTO&#x27;,
- *   dni: &#x27;DNI_ESTUDIANTE&#x27;
- * };
+ * Cuerpo del POST para crear un estudiante en el backend.
+ * El campo &#x60;role&#x60; es opcional; por defecto el backend asigna &#x60;STUDENT&#x60;.
  */
 export interface StudentCreateRequest {
   /** Correo electrónico del estudiante */
@@ -326,6 +338,8 @@ export interface StudentCreateRequest {
   birthDate: string;
   /** DNI o NIE del estudiante */
   dni: string;
+  /** UID de Firebase, requerido al persistir en backend */
+  firebaseUID?: string;
   /** Rol del estudiante, por defecto STUDENT si no se indica */
   role?: string;
 }

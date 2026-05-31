@@ -57,13 +57,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
   private readonly taskService    = inject(TaskService);
   /** Servicio UI que recuerda grupos plegados/desplegados. */
   private readonly taskGroupUiSvc = inject(TaskGroupUiService);
+
+  /** Nombre del grupo «sin agrupar» en la lista. */
   private readonly translate = inject(TranslateService);
 
   /** Controla la visibilidad del formulario de nueva tarea. */
   readonly showTaskForm = signal(false);
 
-  /** ID de la asignación del profesor cuyos tareas se cargarán */
-private readonly route = inject(ActivatedRoute);
+  /** Ruta con `idTeacherAssignment` para cargar tareas. */
+  private readonly route = inject(ActivatedRoute);
 
 /** Identificador de asignación docente tomado de la ruta. */
 get idTeacherAssignment(): number {

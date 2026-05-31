@@ -4,9 +4,16 @@ import { hoursBetween } from './time-range';
 
 /** Celda mínima para contar horas ya asignadas a una asignatura en la rejilla. */
 export interface WeekScheduleGridCellHoursSlice {
+  /** Asignatura ocupando la franja, si ya hay asignación. */
   idSubject?: number;
+
+  /** Asignación docente vinculada a la celda. */
   idTeacherAssignment?: number;
+
+  /** Hora de inicio de la franja (`HH:mm`). */
   startTime: string;
+
+  /** Hora de fin de la franja (`HH:mm`). */
   finishTime: string;
 }
 

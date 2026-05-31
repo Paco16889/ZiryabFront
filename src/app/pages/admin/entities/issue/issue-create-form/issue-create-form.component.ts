@@ -23,8 +23,10 @@ const CREATE_FORM_AUDIENCES: IssueAudience[] = [
   'TEACHER',
 ];
 
+/** Valida URLs de adjunto (`http` o `https`). */
 const URL_PATTERN = /^https?:\/\/.+/i;
 
+/** Opciones de curso dentro del ciclo para audiencia acotada. */
 const GRADE_OPTIONS = [
   { value: '1', labelKey: 'lists.issues.form.gradeOption1' },
   { value: '2', labelKey: 'lists.issues.form.gradeOption2' },
@@ -40,32 +42,70 @@ const GRADE_OPTIONS = [
   styleUrl: './issue-create-form.component.scss',
 })
 export class IssueCreateFormComponent implements OnInit {
+  /** Constructor del formulario reactivo de alta. */
   private readonly fb = inject(FormBuilder);
+
+  /** POST de anuncios en el tablón. */
   private readonly issueService = inject(AdminIssueService);
+
+  /** Desplegable de grupos para audiencia TARGETED. */
   private readonly groupService = inject(GroupService);
+
+  /** Desplegable de ciclos para audiencia TARGETED. */
   private readonly courseService = inject(CourseService);
+
+  /** Catálogo de asignaturas para filtros TARGETED. */
   private readonly subjectService = inject(SubjectService);
+
+  /** Desplegable de profesores para audiencia TEACHER. */
   private readonly teachersService = inject(TeachersService);
+
+  /** Asignaciones docentes para audiencia ASSIGNMENT. */
   private readonly assignmentHttp = inject(AssignmentHttpService);
+
+  /** Etiquetas y mensajes de error i18n. */
   private readonly translate = inject(TranslateService);
 
+  /** Cancela el formulario de alta. */
   readonly cancelCreate = output<void>();
+
+  /** Anuncio creado correctamente. */
   readonly issueCreated = output<void>();
 
+  /** Valores de audiencia mostrados en el desplegable. */
   readonly audiences = CREATE_FORM_AUDIENCES;
+
+  /** Grades para filtro de audiencia acotada. */
   readonly gradeOptions = GRADE_OPTIONS;
+
+  /** Grupos para filtro TARGETED. */
   readonly groupOptions = signal<Array<{ value: number; label: string }>>([]);
+
+  /** Ciclos para filtro TARGETED. */
   readonly courseOptions = signal<Array<{ value: number; label: string }>>([]);
+
+  /** Asignaturas filtradas por ciclo/grade. */
   readonly subjectOptions = signal<Array<{ value: number; label: string }>>([]);
+
+  /** Profesores para audiencia TEACHER. */
   readonly teacherOptions = signal<Array<{ value: number; label: string }>>([]);
+
+  /** Asignaciones docentes para audiencia ASSIGNMENT. */
   readonly assignmentOptions = signal<Array<{ value: number; label: string }>>([]);
+
+  /** Carga de desplegables auxiliares. */
   readonly loadingOptions = signal(true);
 
+  /** `true` si TARGETED no tiene ningún filtro rellenado. */
   targetedFilterError = false;
 
+  /** Catálogo completo de asignaturas para filtrar en cliente. */
   private readonly allSubjects = signal<Subject[]>([]);
+
+  /** Catálogo de asignaciones para audiencia ASSIGNMENT. */
   private readonly allAssignments = signal<AssignmentWithIncludes[]>([]);
 
+  /** Formulario reactivo del anuncio y filtros de audiencia. */
   createForm = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(120)]],
     body: ['', [Validators.required, Validators.maxLength(2000)]],
@@ -82,9 +122,13 @@ export class IssueCreateFormComponent implements OnInit {
     expiresAt: [''],
   });
 
+  /** Petición POST en curso. */
   isCreating = false;
+
+  /** Error devuelto por el API al crear. */
   errorMessage = '';
 
+  /** Carga opciones y suscribe cambios de audiencia/filtros. */
   ngOnInit(): void {
     this.loadSelectOptions();
     this.createForm.get('audience')?.valueChanges.subscribe((audience) => {
@@ -116,26 +160,32 @@ export class IssueCreateFormComponent implements OnInit {
     this.applyAudienceValidators(this.createForm.get('audience')!.value as IssueAudience);
   }
 
+  /** Audiencia con filtros de ciclo, grade, grupo o asignatura. */
   needsTargeted(): boolean {
     return this.createForm.get('audience')?.value === 'TARGETED';
   }
 
+  /** Audiencia ligada a una asignación docente concreta. */
   needsAssignment(): boolean {
     return this.createForm.get('audience')?.value === 'ASSIGNMENT';
   }
 
+  /** Audiencia dirigida a un profesor. */
   needsTeacher(): boolean {
     return this.createForm.get('audience')?.value === 'TEACHER';
   }
 
+  /** Muestra fecha de publicación programada si no se publica ya. */
   showPublishAt(): boolean {
     return !this.createForm.get('isPublished')?.value;
   }
 
+  /** Clave i18n de la etiqueta de audiencia. */
   audienceLabel(audience: IssueAudience): string {
     return `lists.issues.audience.${audience}`;
   }
 
+  /** Texto del grade para opciones (p. ej. `2º`). */
   gradeDisplay(grade: string): string {
     const normalized = grade.trim();
     if (/^\d+$/.test(normalized)) {
@@ -144,16 +194,19 @@ export class IssueCreateFormComponent implements OnInit {
     return grade;
   }
 
+  /** Etiqueta compuesta de asignatura en desplegable TARGETED. */
   subjectOptionLabel(subject: Subject): string {
     const courseName = subject.course?.name?.trim() || '—';
     const grade = this.gradeDisplay(subject.grade ?? '');
     return `${subject.name} · ${courseName} · ${grade}`;
   }
 
+  /** Emite cancelación al listado. */
   onCancel(): void {
     this.cancelCreate.emit();
   }
 
+  /** Valida, construye payload y crea el anuncio. */
   onSubmit(): void {
     if (this.createForm.invalid) {
       this.createForm.markAllAsTouched();
@@ -190,11 +243,13 @@ export class IssueCreateFormComponent implements OnInit {
     });
   }
 
+  /** Comprueba que TARGETED tenga al menos un filtro. */
   private hasAtLeastOneTargetedFilter(): boolean {
     const raw = this.createForm.getRawValue();
     return !!(raw.idCourse || raw.grade || raw.idGroup || raw.idSubject);
   }
 
+  /** Carga grupos, ciclos, asignaturas, profesores y asignaciones. */
   private loadSelectOptions(): void {
     this.loadingOptions.set(true);
     let pending = 5;
@@ -245,6 +300,7 @@ export class IssueCreateFormComponent implements OnInit {
     });
   }
 
+  /** Filtra asignaturas según ciclo y grade del formulario. */
   private refreshSubjectOptions(): void {
     if (!this.needsTargeted()) {
       this.subjectOptions.set([]);
@@ -271,6 +327,7 @@ export class IssueCreateFormComponent implements OnInit {
     );
   }
 
+  /** Filtra asignaciones por año escolar y profesor opcional. */
   private refreshAssignmentOptions(): void {
     if (!this.needsAssignment()) {
       this.assignmentOptions.set([]);
@@ -294,6 +351,7 @@ export class IssueCreateFormComponent implements OnInit {
     );
   }
 
+  /** Etiqueta de asignación en desplegable ASSIGNMENT. */
   private assignmentOptionLabel(a: AssignmentWithIncludes): string {
     const teacher = [a.teacher?.name, a.teacher?.surname].filter(Boolean).join(' ').trim() || '—';
     const subject = a.subject?.name ?? '—';
@@ -303,6 +361,7 @@ export class IssueCreateFormComponent implements OnInit {
     return `${teacher} · ${subject} · ${course} · ${grade} · ${group}`;
   }
 
+  /** Ajusta validadores según el tipo de audiencia. */
   private applyAudienceValidators(audience: IssueAudience): void {
     const idGroup = this.createForm.get('idGroup');
     const idCourse = this.createForm.get('idCourse');
@@ -328,6 +387,7 @@ export class IssueCreateFormComponent implements OnInit {
     this.refreshAssignmentOptions();
   }
 
+  /** Resetea campos que no aplican a la audiencia elegida. */
   private clearUnusedAudienceFields(audience: IssueAudience): void {
     if (audience === 'TARGETED') {
       this.createForm.patchValue({
@@ -387,6 +447,7 @@ export class IssueCreateFormComponent implements OnInit {
     return 'SUBJECT_GROUP';
   }
 
+  /** Copia filtros TARGETED al payload del API. */
   private attachTargetedFields(
     payload: IssueCreateRequest,
     raw: ReturnType<typeof this.createForm.getRawValue>,
@@ -405,6 +466,7 @@ export class IssueCreateFormComponent implements OnInit {
     }
   }
 
+  /** Copia asignación docente y datos derivados al payload. */
   private attachAssignmentFields(
     payload: IssueCreateRequest,
     raw: ReturnType<typeof this.createForm.getRawValue>,
@@ -429,6 +491,7 @@ export class IssueCreateFormComponent implements OnInit {
     }
   }
 
+  /** Construye el cuerpo de `POST /api/issues`. */
   private buildPayload(): IssueCreateRequest {
     const raw = this.createForm.getRawValue();
     const formAudience = raw.audience as IssueAudience;

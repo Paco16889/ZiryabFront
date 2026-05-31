@@ -383,8 +383,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:190</a></div>
                         </td>
                     </tr>
 
@@ -1263,6 +1263,9 @@ export class WeekScheduleService {
     }
     if (data.finishTime !&#x3D;&#x3D; undefined) {
       body[&#x27;finishTime&#x27;] &#x3D; data.finishTime;
+    }
+    if (data.idTeacherAssignment !&#x3D;&#x3D; undefined) {
+      body[&#x27;idTeacherAssignment&#x27;] &#x3D; data.idTeacherAssignment;
     }
     return this.http.patch&lt;WeekScheduleUpdateResponse&gt;(&#x60;${this.apiUrl}/${id}&#x60;, body).pipe(
       map((r) &#x3D;&gt;

@@ -313,6 +313,9 @@ export interface ApiResponse&lt;T&gt; {
   data: T;
 }
 
+/** Login/registro: JWT en la raíz del JSON, no dentro de &#x60;data&#x60;. */
+type AuthApiResponse &#x3D; ApiResponse&lt;Omit&lt;UserResponse, &#x27;token&#x27;&gt;&gt; &amp; { token: string };
+
 // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
 // SERVICIO
 // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
@@ -349,6 +352,9 @@ export interface ApiResponse&lt;T&gt; {
  */
 @Injectable({ providedIn: &#x27;root&#x27; })
 export class AuthService {
+  /** sessionStorage: JWT para Bearer cross-origin (Render). */
+  private static readonly JWT_STORAGE_KEY &#x3D; &#x27;ziryab_jwt&#x27;;
+
   /** URL base del backend propio. */
   private readonly apiUrl &#x3D; environment.apiUrl;
 
@@ -377,9 +383,9 @@ export class AuthService {
   login(email: string, password: string): Observable&lt;UserResponse&gt; {
     return this.firebaseAuthService.signIn(email, password).pipe(
       switchMap((token) &#x3D;&gt;
-        this.http.post&lt;ApiResponse&lt;UserResponse&gt;&gt;(&#x60;${this.apiUrl}/auth/login&#x60;, { token })
+        this.http.post&lt;AuthApiResponse&gt;(&#x60;${this.apiUrl}/auth/login&#x60;, { token })
       ),
-      map((res) &#x3D;&gt; res.data),
+      map((res) &#x3D;&gt; this.mapAuthResponse(res)),
       tap((user) &#x3D;&gt; this.openSession(user))
     );
   }
@@ -406,7 +412,7 @@ export class AuthService {
   ): Observable&lt;UserResponse&gt; {
     return this.firebaseAuthService.signUp(email, password).pipe(
       switchMap((token) &#x3D;&gt;
-        this.http.post&lt;ApiResponse&lt;UserResponse&gt;&gt;(&#x60;${this.apiUrl}/auth/register&#x60;, {
+        this.http.post&lt;AuthApiResponse&gt;(&#x60;${this.apiUrl}/auth/register&#x60;, {
           token,
           email,
           name,
@@ -416,17 +422,25 @@ export class AuthService {
           role,
         })
       ),
-      map((res) &#x3D;&gt; res.data),
+      map((res) &#x3D;&gt; this.mapAuthResponse(res)),
       tap((user) &#x3D;&gt; this.openSession(user))
     );
   }
 
   /** Verifica la cookie/JWT actual con el backend y rehidrata el usuario. */
   verifySession(): Observable&lt;UserResponse&gt; {
-    return this.http.get&lt;ApiResponse&lt;UserResponse&gt;&gt;(&#x60;${this.apiUrl}/auth/me&#x60;).pipe(
-      map((res) &#x3D;&gt; res.data),
-      tap((user) &#x3D;&gt; this.openSession(user))
-    );
+    return this.http
+      .get&lt;ApiResponse&lt;Omit&lt;UserResponse, &#x27;token&#x27;&gt;&gt;&gt;(&#x60;${this.apiUrl}/auth/me&#x60;)
+      .pipe(
+        map((res) &#x3D;&gt; {
+          const jwt &#x3D; this.getToken();
+          if (!jwt) {
+            throw new Error(&#x27;Sin token de sesión&#x27;);
+          }
+          return { ...res.data, token: jwt };
+        }),
+        tap((user) &#x3D;&gt; this.openSession(user))
+      );
   }
 
   /** Cierra la sesión en backend y limpia el estado local. */
@@ -451,7 +465,10 @@ export class AuthService {
 
   /** Devuelve el JWT del usuario en memoria, si existe. */
   getToken(): string | null {
-    return this.currentUserSubject.value?.token ?? null;
+    return (
+      this.currentUserSubject.value?.token ??
+      sessionStorage.getItem(AuthService.JWT_STORAGE_KEY)
+    );
   }
 
   /** Devuelve el rol del usuario actual para guards y navegación. */
@@ -474,12 +491,24 @@ export class AuthService {
    * @param user Perfil devuelto por el backend tras login o registro.
    * @returns No devuelve valor; actualiza el BehaviorSubject de sesión.
    */
+  private mapAuthResponse(res: AuthApiResponse): UserResponse {
+    return { ...res.data, token: res.token };
+  }
+
+  /** Persiste JWT en sessionStorage y publica el usuario en &#x60;currentUser$&#x60;. */
   private openSession(user: UserResponse): void {
-    this.currentUserSubject.next(user);
+    const token &#x3D;
+      user.token || sessionStorage.getItem(AuthService.JWT_STORAGE_KEY) || &#x27;&#x27;;
+    const sessionUser: UserResponse &#x3D; { ...user, token };
+    if (token) {
+      sessionStorage.setItem(AuthService.JWT_STORAGE_KEY, token);
+    }
+    this.currentUserSubject.next(sessionUser);
   }
 
   /** Limpia almacenamiento local y notifica logout a los observadores. */
   private closeSession(): void {
+    sessionStorage.removeItem(AuthService.JWT_STORAGE_KEY);
     localStorage.clear();
     this.currentUserSubject.next(null);
   }

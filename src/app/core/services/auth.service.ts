@@ -40,6 +40,9 @@ export interface ApiResponse<T> {
   data: T;
 }
 
+/** Login/registro: JWT en la raíz del JSON, no dentro de `data`. */
+type AuthApiResponse = ApiResponse<Omit<UserResponse, 'token'>> & { token: string };
+
 // ============================================
 // SERVICIO
 // ============================================
@@ -76,6 +79,9 @@ export interface ApiResponse<T> {
  */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  /** sessionStorage: JWT para Bearer cross-origin (Render). */
+  private static readonly JWT_STORAGE_KEY = 'ziryab_jwt';
+
   /** URL base del backend propio. */
   private readonly apiUrl = environment.apiUrl;
 
@@ -104,9 +110,9 @@ export class AuthService {
   login(email: string, password: string): Observable<UserResponse> {
     return this.firebaseAuthService.signIn(email, password).pipe(
       switchMap((token) =>
-        this.http.post<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/login`, { token })
+        this.http.post<AuthApiResponse>(`${this.apiUrl}/auth/login`, { token })
       ),
-      map((res) => res.data),
+      map((res) => this.mapAuthResponse(res)),
       tap((user) => this.openSession(user))
     );
   }
@@ -133,7 +139,7 @@ export class AuthService {
   ): Observable<UserResponse> {
     return this.firebaseAuthService.signUp(email, password).pipe(
       switchMap((token) =>
-        this.http.post<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/register`, {
+        this.http.post<AuthApiResponse>(`${this.apiUrl}/auth/register`, {
           token,
           email,
           name,
@@ -143,17 +149,25 @@ export class AuthService {
           role,
         })
       ),
-      map((res) => res.data),
+      map((res) => this.mapAuthResponse(res)),
       tap((user) => this.openSession(user))
     );
   }
 
   /** Verifica la cookie/JWT actual con el backend y rehidrata el usuario. */
   verifySession(): Observable<UserResponse> {
-    return this.http.get<ApiResponse<UserResponse>>(`${this.apiUrl}/auth/me`).pipe(
-      map((res) => res.data),
-      tap((user) => this.openSession(user))
-    );
+    return this.http
+      .get<ApiResponse<Omit<UserResponse, 'token'>>>(`${this.apiUrl}/auth/me`)
+      .pipe(
+        map((res) => {
+          const jwt = this.getToken();
+          if (!jwt) {
+            throw new Error('Sin token de sesión');
+          }
+          return { ...res.data, token: jwt };
+        }),
+        tap((user) => this.openSession(user))
+      );
   }
 
   /** Cierra la sesión en backend y limpia el estado local. */
@@ -178,7 +192,10 @@ export class AuthService {
 
   /** Devuelve el JWT del usuario en memoria, si existe. */
   getToken(): string | null {
-    return this.currentUserSubject.value?.token ?? null;
+    return (
+      this.currentUserSubject.value?.token ??
+      sessionStorage.getItem(AuthService.JWT_STORAGE_KEY)
+    );
   }
 
   /** Devuelve el rol del usuario actual para guards y navegación. */
@@ -201,12 +218,24 @@ export class AuthService {
    * @param user Perfil devuelto por el backend tras login o registro.
    * @returns No devuelve valor; actualiza el BehaviorSubject de sesión.
    */
+  private mapAuthResponse(res: AuthApiResponse): UserResponse {
+    return { ...res.data, token: res.token };
+  }
+
+  /** Persiste JWT en sessionStorage y publica el usuario en `currentUser$`. */
   private openSession(user: UserResponse): void {
-    this.currentUserSubject.next(user);
+    const token =
+      user.token || sessionStorage.getItem(AuthService.JWT_STORAGE_KEY) || '';
+    const sessionUser: UserResponse = { ...user, token };
+    if (token) {
+      sessionStorage.setItem(AuthService.JWT_STORAGE_KEY, token);
+    }
+    this.currentUserSubject.next(sessionUser);
   }
 
   /** Limpia almacenamiento local y notifica logout a los observadores. */
   private closeSession(): void {
+    sessionStorage.removeItem(AuthService.JWT_STORAGE_KEY);
     localStorage.clear();
     this.currentUserSubject.next(null);
   }

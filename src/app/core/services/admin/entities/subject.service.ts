@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, map, catchError, of } from 'rxjs';
 import { Subject, SubjectByIdResponse, SubjectCreateRequest, SubjectCreateResponse, SubjectDeleteResponse, SubjectsAllResponse, SubjectUpdateRequest, SubjectUpdateResponse } from '../../../models/subject';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Servicio encargado de gestionar las operaciones con asignaturas.
@@ -24,7 +25,7 @@ export class SubjectService {
   /**
    * URL base del endpoint de asignaturas.
    */
-  private apiUrl = 'http://localhost:3000/api/subjects';
+  private apiUrl = `${environment.apiUrl}/subjects`;
 
   /**
    * Inicializa el servicio.
@@ -140,6 +141,7 @@ getSubjectbyId(id: number): Observable<SubjectByIdResponse> {
     this.selectedSubjects.set(subjects);
   }
 
+  /** Vacía la selección de asignaturas del wizard de matriculación. */
   clearSelectedSubjects(): void {
     this.selectedSubjects.set([]);
   }

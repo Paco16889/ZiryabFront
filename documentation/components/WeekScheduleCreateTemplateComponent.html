@@ -226,12 +226,59 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#assignmentsService" >assignmentsService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#bulkGenerateApi" >bulkGenerateApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#bulkGenerating" >bulkGenerating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#bulkResult" >bulkResult</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#canSubmit" >canSubmit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#classListRefresh" >classListRefresh</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#classSelectKey" >classSelectKey</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#formValid" >formValid</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#materializeApiReady" >materializeApiReady</a>
+                                <a href="#materializeApi" >materializeApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#maxSlots" >maxSlots</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saveError" >saveError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saveSuccess" >saveSuccess</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#saving" >saving</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -254,8 +301,17 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                                 <a href="#submitted" >submitted</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#weekDays" >weekDays</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#weeklyHoursTotal" >weeklyHoursTotal</a>
                             </li>
                         </ul>
                     </td>
@@ -273,6 +329,10 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                                 <a href="#buildMaterializeRequest" >buildMaterializeRequest</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadWeeklyHoursForClass" >loadWeeklyHoursForClass</a>
+                            </li>
+                            <li>
                                 <a href="#onClassChange" >onClassChange</a>
                             </li>
                             <li>
@@ -284,11 +344,43 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                             <li>
                                 <a href="#onWeekDaysChange" >onWeekDaysChange</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#recalculateMaxSlots" >recalculateMaxSlots</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#preselectClassKey" >preselectClassKey</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#templateCreated" >templateCreated</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -297,8 +389,65 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 </section>
 
 
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="preselectClassKey"></a>
+                        <b>preselectClassKey</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:51</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Preselección tras navegar desde asignaciones docentes (EQ-309).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="templateCreated"></a>
+                        <b>templateCreated</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/WeekScheduleClassItem.html" target="_self" >WeekScheduleClassItem</a></code>
 
-
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:93</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Emitido tras POST OK con la clase materializada (CURSO-145).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
     <section data-compodoc="block-methods">
@@ -326,22 +475,92 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:182</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Construye el DTO esperado por el futuro endpoint de materialización.
-Devuelve <code>null</code> si el formulario aún no cumple las reglas mínimas.</p>
+                        <div class="io-description"><p>Construye el cuerpo del POST de materialización si el formulario es válido.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>WeekScheduleMaterializeRequest | null</code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadWeeklyHoursForClass"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadWeeklyHoursForClass</b></span>
+                        <a href="#loadWeeklyHoursForClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadWeeklyHoursForClass(cls: WeekScheduleClassItem | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Consulta asignaturas del ciclo+grade y actualiza <code>weeklyHoursTotal</code> y <code>maxSlots</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>cls</td>
+                                            <td>
+                                                        <code>WeekScheduleClassItem | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -366,15 +585,15 @@ Devuelve <code>null</code> si el formulario aún no cumple las reglas mínimas.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:130</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Sincroniza la clase emitida por el selector y su clave serializada.</p>
+                        <div class="io-description"><p>Actualiza clase seleccionada y recarga horas semanales.</p>
 </div>
 
                             <div class="io-description">
@@ -435,15 +654,15 @@ Devuelve <code>null</code> si el formulario aún no cumple las reglas mínimas.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:177</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Sustituye las franjas completas cuando cambia el subformulario de horas.</p>
+                        <div class="io-description"><p>Sincroniza filas de franjas horarias desde el hijo.</p>
 </div>
 
                             <div class="io-description">
@@ -504,16 +723,15 @@ Devuelve <code>null</code> si el formulario aún no cumple las reglas mínimas.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:199</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Marca el formulario como enviado y, cuando el endpoint esté disponible,
-enviará la plantilla validada para generar las sesiones/horarios persistidos.</p>
+                        <div class="io-description"><p>Materializa la plantilla y, si OK, lanza bulk-generate para la clase creada.</p>
 </div>
 
                         <div class="io-description">
@@ -544,15 +762,15 @@ enviará la plantilla validada para generar las sesiones/horarios persistidos.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:171</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Actualiza la selección de días recibida desde el componente de checkboxes.</p>
+                        <div class="io-description"><p>Sincroniza días de la semana desde el hijo y recalcula máximo de franjas.</p>
 </div>
 
                             <div class="io-description">
@@ -593,12 +811,323 @@ enviará la plantilla validada para generar las sesiones/horarios persistidos.</
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recalculateMaxSlots"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>recalculateMaxSlots</b></span>
+                        <a href="#recalculateMaxSlots"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>recalculateMaxSlots()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Horas semanales ÷ días marcados = máximo de franjas en la plantilla.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignmentsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>assignmentsService</b></span>
+                        <a href="#assignmentsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AssignmentsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Horas semanales del ciclo+curso para calcular máximo de franjas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bulkGenerateApi"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>bulkGenerateApi</b></span>
+                        <a href="#bulkGenerateApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(WeekScheduleBulkGenerateHttpService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>POST generar horarios en bloque tras materializar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bulkGenerating"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>bulkGenerating</b></span>
+                        <a href="#bulkGenerating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Bulk-generate de sesiones en curso tras materializar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bulkResult"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>bulkResult</b></span>
+                        <a href="#bulkResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de resultado del bulk-generate (éxito o error i18n).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canSubmit"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>canSubmit</b></span>
+                        <a href="#canSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.formValid() &amp;&amp; !this.saving())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Envío habilitado si el formulario es válido y no hay guardado en curso.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classListRefresh"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>classListRefresh</b></span>
+                        <a href="#classListRefresh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(0)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Contador para forzar recarga del selector de clases tras crear plantilla.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classSelectKey"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>classSelectKey</b></span>
+                        <a href="#classSelectKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(
+    () &#x3D;&gt; this.preselectClassKey() || this.selectedClassKey(),
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clave de clase para el selector hijo (preselección o selección actual).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -629,6 +1158,10 @@ enviará la plantilla validada para generar las sesiones/horarios persistidos.</
     if (this.slots().length &lt; 1) {
       return false;
     }
+    const max &#x3D; this.maxSlots();
+    if (max !&#x3D; null &amp;&amp; max &gt; 0 &amp;&amp; this.slots().length &gt; max) {
+      return false;
+    }
     return this.slots().every((row) &#x3D;&gt; {
       if (!isValidHhMmTime(row.startTime) || !isValidHhMmTime(row.finishTime)) {
         return false;
@@ -640,14 +1173,13 @@ enviará la plantilla validada para generar las sesiones/horarios persistidos.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:99</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Valida que exista clase, al menos un día y franjas con formato <code>HH:mm</code>
-donde la hora de inicio sea anterior a la de fin.</p>
+                    <div class="io-description"><p>Clase, días, franjas y rangos horarios coherentes.</p>
 </div>
                 </td>
             </tr>
@@ -658,11 +1190,12 @@ donde la hora de inicio sea anterior a la de fin.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="materializeApiReady"></a>
+                    <a name="materializeApi"></a>
                     <span class="name">
+                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>materializeApiReady</b></span>
-                        <a href="#materializeApiReady"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>materializeApi</b></span>
+                        <a href="#materializeApi"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -674,18 +1207,170 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
+                        <i>Default value : </i><code>inject(WeekScheduleMaterializeHttpService)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:39</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Hasta que exista POST de materialización (CURSO-71).</p>
+                    <div class="io-description"><p>POST materializar plantilla de franjas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxSlots"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>maxSlots</b></span>
+                        <a href="#maxSlots"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;number | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Máximo de franjas permitidas según horas semanales y días elegidos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveError"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saveError</b></span>
+                        <a href="#saveError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error del API o i18n tras fallo de guardado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveSuccess"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saveSuccess</b></span>
+                        <a href="#saveSuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica que la materialización terminó correctamente.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saving"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>saving</b></span>
+                        <a href="#saving"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>POST de materialización en curso.</p>
 </div>
                 </td>
             </tr>
@@ -717,13 +1402,13 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:57</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Clase académica (curso, nivel, grupo y año escolar) sobre la que se materializará la plantilla.</p>
+                    <div class="io-description"><p>Clase elegida para materializar la plantilla.</p>
 </div>
                 </td>
             </tr>
@@ -755,13 +1440,13 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:60</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Clave estable de la clase seleccionada para mantener sincronizado el selector hijo.</p>
+                    <div class="io-description"><p>Clave estable de la clase en el selector hijo.</p>
 </div>
                 </td>
             </tr>
@@ -793,13 +1478,13 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:96</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Propaga el estado de validación a los subformularios solo tras intentar enviar.</p>
+                    <div class="io-description"><p>Muestra errores de validación tras el primer intento de envío.</p>
 </div>
                 </td>
             </tr>
@@ -826,23 +1511,18 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;WeekScheduleCreateSlotRow[]&gt;([
-    {
-      startTime: defaultSlot?.startTime ?? &#x27;08:15&#x27;,
-      finishTime: defaultSlot?.finishTime ?? &#x27;09:15&#x27;,
-    },
-  ])</code>
+                        <i>Default value : </i><code>signal&lt;WeekScheduleCreateSlotRow[]&gt;([defaultWeekScheduleSlotRow()])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:63</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Franjas inicio-fin que se repetirán en cada día seleccionado.</p>
+                    <div class="io-description"><p>Filas de franjas horarias (inicio/fin) de la plantilla.</p>
 </div>
                 </td>
             </tr>
@@ -874,13 +1554,52 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:72</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Indica que el usuario ya intentó enviar, activando mensajes de validación.</p>
+                    <div class="io-description"><p>El usuario pulsó enviar al menos una vez (activa validación visual).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensajes de éxito/error i18n.</p>
 </div>
                 </td>
             </tr>
@@ -912,13 +1631,51 @@ donde la hora de inicio sea anterior a la de fin.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:54</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Días laborables elegidos para generar la plantilla (<code>1</code> = lunes, <code>5</code> = viernes).</p>
+                    <div class="io-description"><p>Días de la semana seleccionados (1 = lunes … 7 = domingo).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weeklyHoursTotal"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>weeklyHoursTotal</b></span>
+                        <a href="#weeklyHoursTotal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;number | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-template/week-schedule-create-template.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Suma de <code>hours</code> de las asignaturas del ciclo+grade (presupuesto semanal).</p>
 </div>
                 </td>
             </tr>
@@ -931,21 +1688,24 @@ donde la hora de inicio sea anterior a la de fin.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, signal } from &#x27;@angular/core&#x27;;
-import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from &#x27;@angular/core&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { AssignmentsService } from &#x27;../../../../../core/services/admin/entities/assignments.service&#x27;;
 import { WeekScheduleClassItem, weekScheduleClassKey } from &#x27;../../../../../core/models/week-schedule-flow/week-schedule-class.model&#x27;;
 import { WeekScheduleMaterializeRequest } from &#x27;../../../../../core/models/week-schedule-flow/week-schedule-materialize.model&#x27;;
+import { WeekScheduleBulkGenerateHttpService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-bulk-generate-http.service&#x27;;
+import { WeekScheduleMaterializeHttpService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-materialize-http.service&#x27;;
 import { isValidHhMmTime, timeToMinutes } from &#x27;../../../../../core/utils/time-range&#x27;;
 import { WeekScheduleCreateClassSelectComponent } from &#x27;../week-schedule-create-class-select/week-schedule-create-class-select.component&#x27;;
 import {
   WeekScheduleCreateSlotRow,
   WeekScheduleCreateSlotsComponent,
 } from &#x27;../week-schedule-create-slots/week-schedule-create-slots.component&#x27;;
+import {
+  defaultWeekScheduleSlotRow,
+  maxSlotRowsForTemplate,
+} from &#x27;../week-schedule-create-slots/week-schedule-create-slots.util&#x27;;
 import { WeekScheduleCreateWeekdaysComponent } from &#x27;../week-schedule-create-weekdays/week-schedule-create-weekdays.component&#x27;;
-
-/** Primera franja del horario del centro, usada como valor inicial de la plantilla. */
-const defaultSlot &#x3D; environment.timetableSlots[0];
 
 /**
  * Orquestador del formulario «Crear plantilla» en el builder de horarios admin.
@@ -965,36 +1725,67 @@ const defaultSlot &#x3D; environment.timetableSlots[0];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleCreateTemplateComponent {
-  /** Días laborables elegidos para generar la plantilla (&#x60;1&#x60; &#x3D; lunes, &#x60;5&#x60; &#x3D; viernes). */
+  /** POST materializar plantilla de franjas. */
+  private readonly materializeApi &#x3D; inject(WeekScheduleMaterializeHttpService);
+
+  /** POST generar horarios en bloque tras materializar. */
+  private readonly bulkGenerateApi &#x3D; inject(WeekScheduleBulkGenerateHttpService);
+
+  /** Horas semanales del ciclo+curso para calcular máximo de franjas. */
+  private readonly assignmentsService &#x3D; inject(AssignmentsService);
+
+  /** Mensajes de éxito/error i18n. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Preselección tras navegar desde asignaciones docentes (EQ-309). */
+  readonly preselectClassKey &#x3D; input(&#x27;&#x27;);
+
+  /** Días de la semana seleccionados (1 &#x3D; lunes … 7 &#x3D; domingo). */
   readonly weekDays &#x3D; signal&lt;number[]&gt;([]);
 
-  /** Clase académica (curso, nivel, grupo y año escolar) sobre la que se materializará la plantilla. */
+  /** Clase elegida para materializar la plantilla. */
   readonly selectedClass &#x3D; signal&lt;WeekScheduleClassItem | null&gt;(null);
 
-  /** Clave estable de la clase seleccionada para mantener sincronizado el selector hijo. */
+  /** Clave estable de la clase en el selector hijo. */
   readonly selectedClassKey &#x3D; signal(&#x27;&#x27;);
 
-  /** Franjas inicio-fin que se repetirán en cada día seleccionado. */
-  readonly slots &#x3D; signal&lt;WeekScheduleCreateSlotRow[]&gt;([
-    {
-      startTime: defaultSlot?.startTime ?? &#x27;08:15&#x27;,
-      finishTime: defaultSlot?.finishTime ?? &#x27;09:15&#x27;,
-    },
-  ]);
+  /** Filas de franjas horarias (inicio/fin) de la plantilla. */
+  readonly slots &#x3D; signal&lt;WeekScheduleCreateSlotRow[]&gt;([defaultWeekScheduleSlotRow()]);
 
-  /** Indica que el usuario ya intentó enviar, activando mensajes de validación. */
+  /** Máximo de franjas permitidas según horas semanales y días elegidos. */
+  readonly maxSlots &#x3D; signal&lt;number | null&gt;(null);
+
+  /** Suma de &#x60;hours&#x60; de las asignaturas del ciclo+grade (presupuesto semanal). */
+  readonly weeklyHoursTotal &#x3D; signal&lt;number | null&gt;(null);
+
+  /** El usuario pulsó enviar al menos una vez (activa validación visual). */
   readonly submitted &#x3D; signal(false);
 
-  /** Hasta que exista POST de materialización (CURSO-71). */
-  readonly materializeApiReady &#x3D; false;
+  /** POST de materialización en curso. */
+  readonly saving &#x3D; signal(false);
 
-  /** Propaga el estado de validación a los subformularios solo tras intentar enviar. */
+  /** Mensaje de error del API o i18n tras fallo de guardado. */
+  readonly saveError &#x3D; signal&lt;string | null&gt;(null);
+
+  /** Indica que la materialización terminó correctamente. */
+  readonly saveSuccess &#x3D; signal(false);
+
+  /** Contador para forzar recarga del selector de clases tras crear plantilla. */
+  readonly classListRefresh &#x3D; signal(0);
+
+  /** Bulk-generate de sesiones en curso tras materializar. */
+  readonly bulkGenerating &#x3D; signal(false);
+
+  /** Mensaje de resultado del bulk-generate (éxito o error i18n). */
+  readonly bulkResult &#x3D; signal&lt;string | null&gt;(null);
+
+  /** Emitido tras POST OK con la clase materializada (CURSO-145). */
+  readonly templateCreated &#x3D; output&lt;WeekScheduleClassItem&gt;();
+
+  /** Muestra errores de validación tras el primer intento de envío. */
   readonly showValidation &#x3D; computed(() &#x3D;&gt; this.submitted());
 
-  /**
-   * Valida que exista clase, al menos un día y franjas con formato &#x60;HH:mm&#x60;
-   * donde la hora de inicio sea anterior a la de fin.
-   */
+  /** Clase, días, franjas y rangos horarios coherentes. */
   readonly formValid &#x3D; computed(() &#x3D;&gt; {
     if (!this.selectedClass()) {
       return false;
@@ -1005,6 +1796,10 @@ export class WeekScheduleCreateTemplateComponent {
     if (this.slots().length &lt; 1) {
       return false;
     }
+    const max &#x3D; this.maxSlots();
+    if (max !&#x3D; null &amp;&amp; max &gt; 0 &amp;&amp; this.slots().length &gt; max) {
+      return false;
+    }
     return this.slots().every((row) &#x3D;&gt; {
       if (!isValidHhMmTime(row.startTime) || !isValidHhMmTime(row.finishTime)) {
         return false;
@@ -1013,26 +1808,67 @@ export class WeekScheduleCreateTemplateComponent {
     });
   });
 
-  /** Sincroniza la clase emitida por el selector y su clave serializada. */
+  /** Envío habilitado si el formulario es válido y no hay guardado en curso. */
+  readonly canSubmit &#x3D; computed(() &#x3D;&gt; this.formValid() &amp;&amp; !this.saving());
+
+  /** Clave de clase para el selector hijo (preselección o selección actual). */
+  readonly classSelectKey &#x3D; computed(
+    () &#x3D;&gt; this.preselectClassKey() || this.selectedClassKey(),
+  );
+
+  /** Actualiza clase seleccionada y recarga horas semanales. */
   onClassChange(cls: WeekScheduleClassItem | null): void {
     this.selectedClass.set(cls);
     this.selectedClassKey.set(cls ? weekScheduleClassKey(cls) : &#x27;&#x27;);
+    this.saveError.set(null);
+    this.saveSuccess.set(false);
+    this.loadWeeklyHoursForClass(cls);
   }
 
-  /** Actualiza la selección de días recibida desde el componente de checkboxes. */
+  /** Consulta asignaturas del ciclo+grade y actualiza &#x60;weeklyHoursTotal&#x60; y &#x60;maxSlots&#x60;. */
+  private loadWeeklyHoursForClass(cls: WeekScheduleClassItem | null): void {
+    if (cls &#x3D;&#x3D; null) {
+      this.weeklyHoursTotal.set(null);
+      this.recalculateMaxSlots();
+      return;
+    }
+    this.assignmentsService
+      .getSubjectsByCourseAndGrade(cls.course.id, cls.grade)
+      .subscribe((res) &#x3D;&gt; {
+        if (!res.success || res.data.length &#x3D;&#x3D;&#x3D; 0) {
+          this.weeklyHoursTotal.set(null);
+          this.recalculateMaxSlots();
+          return;
+        }
+        const sum &#x3D; res.data.reduce((acc, s) &#x3D;&gt; acc + (s.hours ?? 0), 0);
+        this.weeklyHoursTotal.set(sum &gt; 0 ? sum : null);
+        this.recalculateMaxSlots();
+      });
+  }
+
+  /** Horas semanales ÷ días marcados &#x3D; máximo de franjas en la plantilla. */
+  private recalculateMaxSlots(): void {
+    const total &#x3D; this.weeklyHoursTotal();
+    const dayCount &#x3D; this.weekDays().length;
+    const max &#x3D; total !&#x3D; null ? maxSlotRowsForTemplate(total, dayCount) : null;
+    this.maxSlots.set(max);
+    if (max !&#x3D; null &amp;&amp; this.slots().length &gt; max) {
+      this.slots.set(this.slots().slice(0, max));
+    }
+  }
+
+  /** Sincroniza días de la semana desde el hijo y recalcula máximo de franjas. */
   onWeekDaysChange(days: number[]): void {
     this.weekDays.set(days);
+    this.recalculateMaxSlots();
   }
 
-  /** Sustituye las franjas completas cuando cambia el subformulario de horas. */
+  /** Sincroniza filas de franjas horarias desde el hijo. */
   onSlotsChange(rows: WeekScheduleCreateSlotRow[]): void {
     this.slots.set(rows);
   }
 
-  /**
-   * Construye el DTO esperado por el futuro endpoint de materialización.
-   * Devuelve &#x60;null&#x60; si el formulario aún no cumple las reglas mínimas.
-   */
+  /** Construye el cuerpo del POST de materialización si el formulario es válido. */
   buildMaterializeRequest(): WeekScheduleMaterializeRequest | null {
     const cls &#x3D; this.selectedClass();
     if (!cls || !this.formValid()) {
@@ -1049,24 +1885,79 @@ export class WeekScheduleCreateTemplateComponent {
     };
   }
 
-  /**
-   * Marca el formulario como enviado y, cuando el endpoint esté disponible,
-   * enviará la plantilla validada para generar las sesiones/horarios persistidos.
-   */
+  /** Materializa la plantilla y, si OK, lanza bulk-generate para la clase creada. */
   onSubmit(): void {
     this.submitted.set(true);
+    this.saveError.set(null);
     if (!this.formValid()) {
-      return;
-    }
-    if (!this.materializeApiReady) {
       return;
     }
     const payload &#x3D; this.buildMaterializeRequest();
     if (payload &#x3D;&#x3D; null) {
       return;
     }
-    // TODO [CURSO-71]: WeekScheduleMaterializeHttpService.post(payload)
-    void payload;
+
+    this.saving.set(true);
+    this.materializeApi.materialize(payload).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.saving.set(false);
+        if (res.success &amp;&amp; res.data) {
+          const createdClass &#x3D; this.selectedClass();
+          this.saveSuccess.set(true);
+          this.selectedClass.set(null);
+          this.selectedClassKey.set(&#x27;&#x27;);
+          this.maxSlots.set(null);
+          this.weeklyHoursTotal.set(null);
+          this.weekDays.set([]);
+          this.slots.set([defaultWeekScheduleSlotRow()]);
+          this.submitted.set(false);
+          this.classListRefresh.update((v) &#x3D;&gt; v + 1);
+          if (createdClass) {
+            this.templateCreated.emit(createdClass);
+          }
+          if (createdClass) {
+            this.bulkGenerating.set(true);
+            this.bulkGenerateApi
+              .bulkGenerate({
+                label: createdClass.label,
+                schoolYear: createdClass.schoolYear,
+              })
+              .subscribe({
+                next: (bulkRes) &#x3D;&gt; {
+                  this.bulkGenerating.set(false);
+                  if (bulkRes.success) {
+                    this.bulkResult.set(
+                      this.translate.instant(&#x27;weekScheduleBuilder.create.bulkSuccess&#x27;, {
+                        created: bulkRes.created ?? 0,
+                      }),
+                    );
+                  } else {
+                    this.bulkResult.set(
+                      this.translate.instant(&#x27;weekScheduleBuilder.create.bulkError&#x27;),
+                    );
+                  }
+                },
+                error: () &#x3D;&gt; {
+                  this.bulkGenerating.set(false);
+                  this.bulkResult.set(
+                    this.translate.instant(&#x27;weekScheduleBuilder.create.bulkError&#x27;),
+                  );
+                },
+              });
+          }
+          return;
+        }
+        this.saveError.set(
+          res.error ??
+            res.message ??
+            this.translate.instant(&#x27;weekScheduleBuilder.create.saveError&#x27;),
+        );
+      },
+      error: () &#x3D;&gt; {
+        this.saving.set(false);
+        this.saveError.set(this.translate.instant(&#x27;weekScheduleBuilder.create.saveError&#x27;));
+      },
+    });
   }
 }
 </code></pre>
@@ -1075,7 +1966,8 @@ export class WeekScheduleCreateTemplateComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6&quot;&gt;
   &lt;app-week-schedule-create-class-select
-    [selectedClassKey]&#x3D;&quot;selectedClassKey()&quot;
+    [selectedClassKey]&#x3D;&quot;classSelectKey()&quot;
+    [refreshToken]&#x3D;&quot;classListRefresh()&quot;
     [showValidation]&#x3D;&quot;showValidation()&quot;
     (classChange)&#x3D;&quot;onClassChange($event)&quot;
   /&gt;
@@ -1088,26 +1980,68 @@ export class WeekScheduleCreateTemplateComponent {
 
   &lt;app-week-schedule-create-slots
     [slots]&#x3D;&quot;slots()&quot;
+    [maxSlots]&#x3D;&quot;maxSlots()&quot;
+    [weeklyHoursTotal]&#x3D;&quot;weeklyHoursTotal()&quot;
+    [selectedDayCount]&#x3D;&quot;weekDays().length&quot;
     [showValidation]&#x3D;&quot;showValidation()&quot;
     (slotsChange)&#x3D;&quot;onSlotsChange($event)&quot;
   /&gt;
 
-  &lt;p class&#x3D;&quot;text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2&quot;&gt;
-    {{ &#x27;weekScheduleBuilder.create.pendingApi&#x27; | translate }}
-  &lt;/p&gt;
+  @if (weeklyHoursTotal() !&#x3D; null &amp;&amp; weekDays().length &gt; 0 &amp;&amp; maxSlots() !&#x3D; null) {
+    &lt;p class&#x3D;&quot;text-xs text-gray-600 -mt-2&quot;&gt;
+      {{
+        &#x27;weekScheduleBuilder.create.slotLimitHint&#x27;
+          | translate
+            : {
+                total: weeklyHoursTotal(),
+                days: weekDays().length,
+                max: maxSlots()
+              }
+      }}
+    &lt;/p&gt;
+  }
+
+  @if (saveSuccess()) {
+    &lt;p class&#x3D;&quot;text-sm text-green-800 bg-green-50 border border-green-200 rounded-md px-3 py-2&quot;&gt;
+      {{ &#x27;weekScheduleBuilder.create.saveSuccess&#x27; | translate }}
+    &lt;/p&gt;
+  }
+
+  @if (saveError()) {
+    &lt;p class&#x3D;&quot;text-sm text-red-800 bg-red-50 border border-red-200 rounded-md px-3 py-2&quot;&gt;
+      {{ saveError() }}
+    &lt;/p&gt;
+  }
 
   &lt;div class&#x3D;&quot;pt-2&quot;&gt;
     &lt;button
       type&#x3D;&quot;button&quot;
-      class&#x3D;&quot;px-4 py-2 bg-purple-600 text-white rounded-md&quot;
+      class&#x3D;&quot;px-4 py-2 bg-purple-600 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed&quot;
+      [disabled]&#x3D;&quot;!canSubmit()&quot;
       (click)&#x3D;&quot;onSubmit()&quot;
     &gt;
-      {{ &#x27;weekScheduleBuilder.create.validate&#x27; | translate }}
+      @if (saving()) {
+        {{ &#x27;weekScheduleBuilder.create.saving&#x27; | translate }}
+      } @else {
+        {{ &#x27;weekScheduleBuilder.create.submit&#x27; | translate }}
+      }
     &lt;/button&gt;
     &lt;p class&#x3D;&quot;text-xs text-gray-500 mt-2&quot;&gt;
       {{ &#x27;weekScheduleBuilder.create.submitHint&#x27; | translate }}
     &lt;/p&gt;
   &lt;/div&gt;
+
+  @if (bulkGenerating()) {
+    &lt;p class&#x3D;&quot;mt-3 text-xs text-gray-500 animate-pulse&quot;&gt;
+      {{ &#x27;weekScheduleBuilder.create.bulkGenerating&#x27; | translate }}
+    &lt;/p&gt;
+  }
+
+  @if (bulkResult()) {
+    &lt;div class&#x3D;&quot;mt-3 rounded-md bg-green-50 border border-green-200 px-4 py-2 text-sm text-green-800&quot;&gt;
+      {{ bulkResult() }}
+    &lt;/div&gt;
+  }
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -1138,8 +2072,8 @@ export class WeekScheduleCreateTemplateComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">  <app-week-schedule-create-class-select    [selectedClassKey]="selectedClassKey()"    [showValidation]="showValidation()"    (classChange)="onClassChange($event)"  />  <app-week-schedule-create-weekdays    [selectedWeekDays]="weekDays()"    [showValidation]="showValidation()"    (weekDaysChange)="onWeekDaysChange($event)"  />  <app-week-schedule-create-slots    [slots]="slots()"    [showValidation]="showValidation()"    (slotsChange)="onSlotsChange($event)"  />  <p class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">    {{ \'weekScheduleBuilder.create.pendingApi\' | translate }}  </p>  <div class="pt-2">    <button      type="button"      class="px-4 py-2 bg-purple-600 text-white rounded-md"      (click)="onSubmit()"    >      {{ \'weekScheduleBuilder.create.validate\' | translate }}    </button>    <p class="text-xs text-gray-500 mt-2">      {{ \'weekScheduleBuilder.create.submitHint\' | translate }}    </p>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">  <app-week-schedule-create-class-select    [selectedClassKey]="classSelectKey()"    [refreshToken]="classListRefresh()"    [showValidation]="showValidation()"    (classChange)="onClassChange($event)"  />  <app-week-schedule-create-weekdays    [selectedWeekDays]="weekDays()"    [showValidation]="showValidation()"    (weekDaysChange)="onWeekDaysChange($event)"  />  <app-week-schedule-create-slots    [slots]="slots()"    [maxSlots]="maxSlots()"    [weeklyHoursTotal]="weeklyHoursTotal()"    [selectedDayCount]="weekDays().length"    [showValidation]="showValidation()"    (slotsChange)="onSlotsChange($event)"  />  @if (weeklyHoursTotal() != null && weekDays().length > 0 && maxSlots() != null) {    <p class="text-xs text-gray-600 -mt-2">      {{        \'weekScheduleBuilder.create.slotLimitHint\'          | translate            : {                total: weeklyHoursTotal(),                days: weekDays().length,                max: maxSlots()              }      }}    </p>  }  @if (saveSuccess()) {    <p class="text-sm text-green-800 bg-green-50 border border-green-200 rounded-md px-3 py-2">      {{ \'weekScheduleBuilder.create.saveSuccess\' | translate }}    </p>  }  @if (saveError()) {    <p class="text-sm text-red-800 bg-red-50 border border-red-200 rounded-md px-3 py-2">      {{ saveError() }}    </p>  }  <div class="pt-2">    <button      type="button"      class="px-4 py-2 bg-purple-600 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed"      [disabled]="!canSubmit()"      (click)="onSubmit()"    >      @if (saving()) {        {{ \'weekScheduleBuilder.create.saving\' | translate }}      } @else {        {{ \'weekScheduleBuilder.create.submit\' | translate }}      }    </button>    <p class="text-xs text-gray-500 mt-2">      {{ \'weekScheduleBuilder.create.submitHint\' | translate }}    </p>  </div>  @if (bulkGenerating()) {    <p class="mt-3 text-xs text-gray-500 animate-pulse">      {{ \'weekScheduleBuilder.create.bulkGenerating\' | translate }}    </p>  }  @if (bulkResult()) {    <div class="mt-3 rounded-md bg-green-50 border border-green-200 px-4 py-2 text-sm text-green-800">      {{ bulkResult() }}    </div>  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WeekScheduleCreateTemplateComponent'};
 </script>

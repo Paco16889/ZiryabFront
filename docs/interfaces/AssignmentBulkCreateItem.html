@@ -441,6 +441,41 @@ export type AssignmentBulkCreateResponse &#x3D; {
   data?: AssignmentBulkCreateResult;
   message?: string;
 };
+
+/** Cuerpo y respuesta de &#x60;POST /api/assignments/bulk&#x60; (contrato back CURSO-101). */
+export type AssignmentBulkApiBody &#x3D; {
+  assignments: AssignmentBulkCreateItem[];
+};
+
+/** Respuesta cruda de &#x60;POST /api/assignments/bulk&#x60; tal como la devuelve el backend. */
+export type AssignmentBulkApiResponse &#x3D; {
+  /** Indica si la petición se procesó correctamente. */
+  success: boolean;
+
+  /** Mensaje informativo o de error del servidor. */
+  message?: string;
+
+  /** Desglose del resultado del alta masiva. */
+  data?: {
+    /** Asignaciones creadas en la operación. */
+    created: unknown[];
+
+    /** Filas descartadas por duplicado. */
+    duplicates: unknown[];
+
+    /** Errores por índice de entrada en el array enviado. */
+    errors: Array&lt;{
+      /** Posición del ítem fallido en &#x60;assignments&#x60;. */
+      index: number;
+
+      /** Descripción del error devuelto por el backend. */
+      message: string;
+
+      /** Datos de entrada asociados al error (p. ej. asignatura conflictiva). */
+      input?: { idSubject: number };
+    }&gt;;
+  };
+};
 </code></pre>
     </div>
 </div>

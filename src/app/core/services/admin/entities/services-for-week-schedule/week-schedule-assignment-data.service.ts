@@ -28,6 +28,8 @@ export class WeekScheduleAssignmentDataService {
 
   /** Servicio de horarios usado para leer franjas ya persistidas. */
   private readonly schedules = inject(WeekScheduleService);
+
+  /** Catálogo de asignaturas del ciclo+grade para filtrar asignaciones schedulables. */
   private readonly courseAssignments = inject(AssignmentsService);
 
   /**

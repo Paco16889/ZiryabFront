@@ -21,9 +21,15 @@ import {
 } from '../../../../../core/utils/assignment-filter-options.util';
 import { CourseGroupGradeFiltersComponent } from '../../../shared/course-group-grade-filters/course-group-grade-filters.component';
 
+/** Profesor candidato a tutor en un desplegable. */
 interface TeacherOption {
+  /** Identificador del profesor. */
   id: number;
+
+  /** Nombre del profesor. */
   name: string;
+
+  /** Primer apellido. */
   surname: string;
 }
 
@@ -37,9 +43,17 @@ interface TutorClassRow {
   schoolYear: string;
   assignments: AssignmentWithIncludes[];
   selectedTutorId: number | null;
+
+  /** Guardado en curso para esta fila. */
   saving: boolean;
+
+  /** Muestra confirmación visual tras guardar. */
   saved: boolean;
+
+  /** Mensaje de error de la última operación. */
   error: string | null;
+
+  /** Profesores que pueden ser tutor de esta clase. */
   eligibleTutors: TeacherOption[];
 }
 
@@ -50,6 +64,10 @@ interface TutorSummaryItem {
   schoolYear: string;
 }
 
+/**
+ * Pantalla admin para asignar tutores a clases (ciclo + grupo + grade)
+ * y crear nuevas vinculaciones ciclo–grupo.
+ */
 @Component({
   selector: 'app-tutor-assignment',
   standalone: true,
@@ -78,6 +96,7 @@ export class TutorAssignmentComponent implements OnInit {
   selectedGroupId = signal<number | null>(null);
   selectedGrade = signal<string | null>(null);
 
+  /** Carga cursos, grupos y filas de `course_groups`. */
   ngOnInit(): void {
     this.loadAll();
   }

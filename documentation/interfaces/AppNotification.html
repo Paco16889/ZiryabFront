@@ -693,7 +693,11 @@ export class NotificationsService implements OnDestroy {
   connect(): void {
     this.disconnect();
 
-    const url &#x3D; &#x60;${this.apiUrl}/notifications/events&#x60;;
+    const token &#x3D; this.authService.getToken();
+    const baseUrl &#x3D; &#x60;${this.apiUrl}/notifications/events&#x60;;
+    const url &#x3D; token
+      ? &#x60;${baseUrl}?token&#x3D;${encodeURIComponent(token)}&#x60;
+      : baseUrl;
 
     try {
       const es &#x3D; new EventSource(url, { withCredentials: true });

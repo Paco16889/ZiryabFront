@@ -6,8 +6,10 @@ import {
 } from '../../../../../core/utils/time-range';
 import type { WeekScheduleCreateSlotRow } from './week-schedule-create-slots.component';
 
+/** Primera franja del horario del centro (`environment.timetableSlots`). */
 const firstCenterSlot = environment.timetableSlots[0];
 
+/** Primera franja horaria por defecto según `environment.timetableSlots`. */
 export function defaultWeekScheduleSlotRow(): WeekScheduleCreateSlotRow {
   return {
     startTime: firstCenterSlot?.startTime ?? '08:15',
@@ -46,6 +48,10 @@ export function nextWeekScheduleSlotRow(
   };
 }
 
+/**
+ * Comprueba que la hora de fin es válida (`HH:mm`) para encadenar la siguiente franja.
+ * @param finishTime Hora de fin de la franja anterior.
+ */
 function isValidFinishForChain(finishTime: string): boolean {
   return isValidHhMmTime(finishTime.trim());
 }

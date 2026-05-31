@@ -483,6 +483,7 @@ export class TemarioProfesorComponent implements OnInit {
     /** Controla el modal de asistencia. */
     showAttendanceModal &#x3D; signal(false);
 
+    /** Opciones de estado mostradas en el modal de asistencia. */
     readonly statusOptions: { value: AttendanceStatus; labelKey: string; color: string }[] &#x3D; [
         { value: &#x27;PRESENT&#x27;, labelKey: &#x27;teacherPages.attendance.status.present&#x27;, color: &#x27;emerald&#x27; },
         { value: &#x27;ABSENT&#x27;, labelKey: &#x27;teacherPages.attendance.status.absent&#x27;, color: &#x27;red&#x27; },
@@ -500,8 +501,8 @@ export class TemarioProfesorComponent implements OnInit {
         this.loadTasks();
     }
 
-    /** Carga tareas de la asignatura actual. */
-    loadTasks() {
+    /** Carga tareas de la asignatura actual y las agrupa por tipo. */
+    loadTasks(): void {
       this.taskService.getAllTasks().subscribe({
         next: (res) &#x3D;&gt; {
           if (res.success) {

@@ -83,6 +83,7 @@ export class SubjectCreateFormComponent {
     });
   }
 
+  /** Aplica `preselectedIdCourse` al formulario cuando el catálogo ya está cargado. */
   private applyPreselectedCourse(idCourse: number | null): void {
     if (idCourse == null || this.isLoadingCourses || this.courses.length === 0) {
       return;

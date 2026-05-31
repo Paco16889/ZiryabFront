@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Student, StudentByIdResponse,StudentsAllResponse, StudentCreateRequest, StudentCreateResponse, StudentDeleteResponse, StudentUpdateRequest, StudentUpdateResponse } from '../../../models/student';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Servicio encargado de gestionar las operaciones con estudiantes.
@@ -21,7 +22,7 @@ export class StudentsService {
    /**
    * URL base del endpoint de estudiantes.
    */
-    private apiUrl = 'http://localhost:3000/api/students';
+    private apiUrl = `${environment.apiUrl}/students`;
 
     /**
    * Inicializa el servicio.

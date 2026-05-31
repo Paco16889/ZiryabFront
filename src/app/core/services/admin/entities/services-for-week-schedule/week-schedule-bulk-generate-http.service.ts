@@ -13,12 +13,15 @@ import {
  */
 @Injectable({ providedIn: 'root' })
 export class WeekScheduleBulkGenerateHttpService {
+  /** Cliente HTTP de Angular. */
   private readonly http = inject(HttpClient);
+
+  /** Endpoint de generación masiva de sesiones. */
   private readonly apiUrl = `${environment.apiUrl}/sessions/bulk-generate`;
 
   /**
-   * POST /api/sessions/bulk-generate
-   * Genera ClassSessions en bloque para una clase y año escolar.
+   * POST /api/sessions/bulk-generate — genera ClassSessions en bloque.
+   * @param body Clase y año escolar para los que se generan sesiones.
    */
   bulkGenerate(body: WeekScheduleBulkGenerateRequest): Observable<WeekScheduleBulkGenerateResponse> {
     return this.http.post<WeekScheduleBulkGenerateResponse>(this.apiUrl, body).pipe(

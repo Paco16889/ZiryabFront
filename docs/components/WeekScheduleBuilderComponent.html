@@ -148,6 +148,12 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -224,6 +230,19 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
                                     <span class="modifier">Readonly</span>
                                 <a href="#builderMode" >builderMode</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#createPreselectClassKey" >createPreselectClassKey</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#gridPreselectClassKey" >gridPreselectClassKey</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#scheduleNav" >scheduleNav</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -237,10 +256,13 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#onCancel" >onCancel</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#onGridScheduleSaved" >onGridScheduleSaved</a>
+                            </li>
+                            <li>
+                                <a href="#onTemplateCreated" >onTemplateCreated</a>
                             </li>
                             <li>
                                 <a href="#setBuilderMode" >setBuilderMode</a>
@@ -258,9 +280,6 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#cancelCreate" >cancelCreate</a>
-                            </li>
                             <li>
                                 <a href="#scheduleCreated" >scheduleCreated</a>
                             </li>
@@ -282,33 +301,6 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="cancelCreate"></a>
-                        <b>cancelCreate</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:26</a></div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Propaga al contenedor padre la salida del flujo sin crear ni guardar horarios.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="scheduleCreated"></a>
                         <b>scheduleCreated</b>
                     </td>
@@ -321,12 +313,12 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:33</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Avisa al contenedor padre de que hay horarios nuevos o actualizados.</p>
+                        <div class="io-description"><p>Notifica al menú admin que el horario quedó guardado o materializado.</p>
 </div>
                     </td>
                 </tr>
@@ -344,31 +336,31 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onCancel"></a>
+                    <a name="ngOnInit"></a>
                     <span class="name">
-                        <span ><b>onCancel</b></span>
-                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onCancel()</code>
+<code>ngOnInit()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:45</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Cierra el builder desde cualquiera de sus pestañas.</p>
+                        <div class="io-description"><p>Aplica contexto pendiente de navegación desde asignaciones docentes.</p>
 </div>
 
                         <div class="io-description">
@@ -399,21 +391,90 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:67</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Reemite el guardado producido por el grid para refrescar listados externos.</p>
+                        <div class="io-description"><p>La rejilla guardó cambios; propaga evento al contenedor.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTemplateCreated"></a>
+                    <span class="name">
+                        <span ><b>onTemplateCreated</b></span>
+                        <a href="#onTemplateCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTemplateCreated(cls: <a href="../interfaces/WeekScheduleClassItem.html" target="_self">WeekScheduleClassItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Tras materializar: ir a rejilla y preseleccionar la clase creada (CURSO-145).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>cls</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekScheduleClassItem.html" target="_self" >WeekScheduleClassItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -438,15 +499,15 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:62</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Cambia entre creación por plantilla y edición directa en grid semanal.</p>
+                        <div class="io-description"><p>Cambia entre pestaña de plantilla y rejilla.</p>
 </div>
 
                             <div class="io-description">
@@ -518,7 +579,7 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -531,18 +592,137 @@ Shell con pestañas: plantilla por clase (create) y rejilla semanal (grid).</p>
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createPreselectClassKey"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>createPreselectClassKey</b></span>
+                        <a href="#createPreselectClassKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clase a preseleccionar en crear plantilla (EQ-309).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gridPreselectClassKey"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>gridPreselectClassKey</b></span>
+                        <a href="#gridPreselectClassKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clase a preseleccionar en rejilla tras materializar (CURSO-145).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scheduleNav"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>scheduleNav</b></span>
+                        <a href="#scheduleNav"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(WeekScheduleNavigationService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Contexto pendiente al llegar desde asignaciones docentes (EQ-309).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, output, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit, output, signal } from &#x27;@angular/core&#x27;;
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+import { WeekScheduleClassItem, weekScheduleClassKey } from &#x27;../../../../../core/models/week-schedule-flow/week-schedule-class.model&#x27;;
+import { WeekScheduleNavigationService } from &#x27;../../../../../core/services/UI/week-schedule-navigation.service&#x27;;
+import { weekScheduleClassKeyFromParts } from &#x27;../../../../../core/utils/week-schedule-class-key&#x27;;
 import { WeekScheduleCreateTemplateComponent } from &#x27;../week-schedule-create-template/week-schedule-create-template.component&#x27;;
 import { WeekScheduleGridBuilderComponent } from &#x27;../week-schedule-grid-builder/week-schedule-grid-builder.component&#x27;;
 
-/** Pestañas disponibles en el constructor de horarios de administración. */
+/** Pestaña activa del builder: crear plantilla o editar rejilla semanal. */
 export type WeekScheduleBuilderMode &#x3D; &#x27;create&#x27; | &#x27;grid&#x27;;
 
 /**
@@ -560,28 +740,53 @@ export type WeekScheduleBuilderMode &#x3D; &#x27;create&#x27; | &#x27;grid&#x27;
   templateUrl: &#x27;./week-schedule-builder.component.html&#x27;,
   styleUrl: &#x27;./week-schedule-builder.component.scss&#x27;,
 })
-export class WeekScheduleBuilderComponent {
-  /** Propaga al contenedor padre la salida del flujo sin crear ni guardar horarios. */
-  readonly cancelCreate &#x3D; output&lt;void&gt;();
+export class WeekScheduleBuilderComponent implements OnInit {
+  /** Contexto pendiente al llegar desde asignaciones docentes (EQ-309). */
+  private readonly scheduleNav &#x3D; inject(WeekScheduleNavigationService);
 
-  /** Avisa al contenedor padre de que hay horarios nuevos o actualizados. */
+  /** Notifica al menú admin que el horario quedó guardado o materializado. */
   readonly scheduleCreated &#x3D; output&lt;void&gt;();
 
   /** Pestaña por defecto: crear plantilla (CURSO-90). */
   readonly builderMode &#x3D; signal&lt;WeekScheduleBuilderMode&gt;(&#x27;create&#x27;);
 
-  /** Cierra el builder desde cualquiera de sus pestañas. */
-  onCancel(): void {
-    this.cancelCreate.emit();
+  /** Clase a preseleccionar en rejilla tras materializar (CURSO-145). */
+  readonly gridPreselectClassKey &#x3D; signal&lt;string | null&gt;(null);
+
+  /** Clase a preseleccionar en crear plantilla (EQ-309). */
+  readonly createPreselectClassKey &#x3D; signal(&#x27;&#x27;);
+
+  /** Aplica contexto pendiente de navegación desde asignaciones docentes. */
+  ngOnInit(): void {
+    const pending &#x3D; this.scheduleNav.takePendingCreate();
+    if (pending &#x3D;&#x3D; null) {
+      return;
+    }
+    this.setBuilderMode(&#x27;create&#x27;);
+    this.createPreselectClassKey.set(
+      weekScheduleClassKeyFromParts(
+        pending.idCourse,
+        pending.grade,
+        pending.idGroup,
+        environment.currentSchoolYear,
+      ),
+    );
   }
 
-  /** Cambia entre creación por plantilla y edición directa en grid semanal. */
+  /** Cambia entre pestaña de plantilla y rejilla. */
   setBuilderMode(mode: WeekScheduleBuilderMode): void {
     this.builderMode.set(mode);
   }
 
-  /** Reemite el guardado producido por el grid para refrescar listados externos. */
+  /** La rejilla guardó cambios; propaga evento al contenedor. */
   onGridScheduleSaved(): void {
+    this.scheduleCreated.emit();
+  }
+
+  /** Tras materializar: ir a rejilla y preseleccionar la clase creada (CURSO-145). */
+  onTemplateCreated(cls: WeekScheduleClassItem): void {
+    this.gridPreselectClassKey.set(weekScheduleClassKey(cls));
+    this.setBuilderMode(&#x27;grid&#x27;);
     this.scheduleCreated.emit();
   }
 }
@@ -590,16 +795,7 @@ export class WeekScheduleBuilderComponent {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;max-w-7xl mx-auto&quot;&gt;
-  &lt;div class&#x3D;&quot;flex items-center mb-6&quot;&gt;
-    &lt;button
-      type&#x3D;&quot;button&quot;
-      (click)&#x3D;&quot;onCancel()&quot;
-      class&#x3D;&quot;mr-4 text-gray-600 hover:text-gray-900&quot;
-    &gt;
-      ← {{ &#x27;common.buttons.back&#x27; | translate }}
-    &lt;/button&gt;
-    &lt;h1 class&#x3D;&quot;text-2xl font-bold&quot;&gt;{{ &#x27;weekScheduleBuilder.title&#x27; | translate }}&lt;/h1&gt;
-  &lt;/div&gt;
+  &lt;h1 class&#x3D;&quot;text-2xl font-bold mb-6&quot;&gt;{{ &#x27;weekScheduleBuilder.title&#x27; | translate }}&lt;/h1&gt;
 
   &lt;div
     class&#x3D;&quot;flex flex-wrap gap-2 mb-6&quot;
@@ -639,11 +835,14 @@ export class WeekScheduleBuilderComponent {
   &lt;/div&gt;
 
   @if (builderMode() &#x3D;&#x3D;&#x3D; &#x27;create&#x27;) {
-    &lt;app-week-schedule-create-template /&gt;
+    &lt;app-week-schedule-create-template
+      [preselectClassKey]&#x3D;&quot;createPreselectClassKey()&quot;
+      (templateCreated)&#x3D;&quot;onTemplateCreated($event)&quot;
+    /&gt;
   } @else {
     &lt;app-week-schedule-grid-builder
       [embedded]&#x3D;&quot;true&quot;
-      (cancelCreate)&#x3D;&quot;onCancel()&quot;
+      [preselectClassKey]&#x3D;&quot;gridPreselectClassKey()&quot;
       (scheduleSaved)&#x3D;&quot;onGridScheduleSaved()&quot;
     /&gt;
   }
@@ -677,8 +876,8 @@ export class WeekScheduleBuilderComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="max-w-7xl mx-auto">  <div class="flex items-center mb-6">    <button      type="button"      (click)="onCancel()"      class="mr-4 text-gray-600 hover:text-gray-900"    >      ← {{ \'common.buttons.back\' | translate }}    </button>    <h1 class="text-2xl font-bold">{{ \'weekScheduleBuilder.title\' | translate }}</h1>  </div>  <div    class="flex flex-wrap gap-2 mb-6"    role="tablist"    [attr.aria-label]="\'weekScheduleBuilder.modeLabel\' | translate"  >    <button      type="button"      role="tab"      [attr.aria-selected]="builderMode() === \'create\'"      (click)="setBuilderMode(\'create\')"      class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"      [class.bg-purple-600]="builderMode() === \'create\'"      [class.text-white]="builderMode() === \'create\'"      [class.border-purple-600]="builderMode() === \'create\'"      [class.bg-white]="builderMode() !== \'create\'"      [class.text-gray-800]="builderMode() !== \'create\'"      [class.border-gray-300]="builderMode() !== \'create\'"    >      {{ \'weekScheduleBuilder.modeCreate\' | translate }}    </button>    <button      type="button"      role="tab"      [attr.aria-selected]="builderMode() === \'grid\'"      (click)="setBuilderMode(\'grid\')"      class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"      [class.bg-purple-600]="builderMode() === \'grid\'"      [class.text-white]="builderMode() === \'grid\'"      [class.border-purple-600]="builderMode() === \'grid\'"      [class.bg-white]="builderMode() !== \'grid\'"      [class.text-gray-800]="builderMode() !== \'grid\'"      [class.border-gray-300]="builderMode() !== \'grid\'"    >      {{ \'weekScheduleBuilder.modeGrid\' | translate }}    </button>  </div>  @if (builderMode() === \'create\') {    <app-week-schedule-create-template />  } @else {    <app-week-schedule-grid-builder      [embedded]="true"      (cancelCreate)="onCancel()"      (scheduleSaved)="onGridScheduleSaved()"    />  }</div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="max-w-7xl mx-auto">  <h1 class="text-2xl font-bold mb-6">{{ \'weekScheduleBuilder.title\' | translate }}</h1>  <div    class="flex flex-wrap gap-2 mb-6"    role="tablist"    [attr.aria-label]="\'weekScheduleBuilder.modeLabel\' | translate"  >    <button      type="button"      role="tab"      [attr.aria-selected]="builderMode() === \'create\'"      (click)="setBuilderMode(\'create\')"      class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"      [class.bg-purple-600]="builderMode() === \'create\'"      [class.text-white]="builderMode() === \'create\'"      [class.border-purple-600]="builderMode() === \'create\'"      [class.bg-white]="builderMode() !== \'create\'"      [class.text-gray-800]="builderMode() !== \'create\'"      [class.border-gray-300]="builderMode() !== \'create\'"    >      {{ \'weekScheduleBuilder.modeCreate\' | translate }}    </button>    <button      type="button"      role="tab"      [attr.aria-selected]="builderMode() === \'grid\'"      (click)="setBuilderMode(\'grid\')"      class="px-4 py-2 rounded-md text-sm font-medium border transition-colors"      [class.bg-purple-600]="builderMode() === \'grid\'"      [class.text-white]="builderMode() === \'grid\'"      [class.border-purple-600]="builderMode() === \'grid\'"      [class.bg-white]="builderMode() !== \'grid\'"      [class.text-gray-800]="builderMode() !== \'grid\'"      [class.border-gray-300]="builderMode() !== \'grid\'"    >      {{ \'weekScheduleBuilder.modeGrid\' | translate }}    </button>  </div>  @if (builderMode() === \'create\') {    <app-week-schedule-create-template      [preselectClassKey]="createPreselectClassKey()"      (templateCreated)="onTemplateCreated($event)"    />  } @else {    <app-week-schedule-grid-builder      [embedded]="true"      [preselectClassKey]="gridPreselectClassKey()"      (scheduleSaved)="onGridScheduleSaved()"    />  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WeekScheduleBuilderComponent'};
 </script>

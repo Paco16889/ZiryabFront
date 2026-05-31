@@ -59,9 +59,6 @@
       "unknown": "Error desconocido",
       "connection": "Error de conexión con el servidor.",
       "userNotIdentified": "Usuario no identificado. Por favor, inicia sesión.",
-      "loadSummary": "Error al cargar el resumen",
-      "export": "Error al exportar",
-      "downloadPowerBi": "Error al descargar Power BI",
       "loadAbsences": "Error al cargar las faltas.",
       "loadTask": "Error al cargar la tarea.",
       "loadTaskDetail": "Error al cargar la tarea detallada.",
@@ -1619,13 +1616,6 @@
     "dniPlaceholder": "12345678A o X1234567A",
     "dniInvalidExtended": "DNI/NIE inválido (ej: 12345678A o X1234567A)"
   },
-  "apiErrors": {
-    "ANALYTICS_INVALID_SCHOOL_YEAR": "Parámetro año académico obligatorio (formato 2024-2025).",
-    "ANALYTICS_SUMMARY_FAILED": "Error al obtener el resumen del informe.",
-    "ANALYTICS_EXPORT_FAILED": "Error al generar el informe.",
-    "ANALYTICS_PBIX_NOT_FOUND": "Informe Power BI no disponible. Genera el fichero siguiendo la guía en el repositorio.",
-    "ANALYTICS_REPORT_EMPTY": "El informe generado está vacío."
-  },
   "assistanceStatus": {
     "PRESENT": "Presente",
     "ABSENT": "Ausente",
@@ -1635,41 +1625,6 @@
   "aria": {
     "openMenu": "Abrir menú",
     "languageEs": "Español"
-  },
-  "informe": {
-    "title": "Análisis del centro — Ziryab",
-    "subtitle": "Informe académico global (matrículas, profesores, asistencia y tareas)",
-    "backToAdmin": "Volver al panel admin",
-    "filters": "Filtros",
-    "filterYear": "Año académico",
-    "filterCourse": "Ciclo formativo",
-    "filterGroup": "Grupo",
-    "allCourses": "Todos los ciclos",
-    "allGroups": "Todos los grupos",
-    "includeInactive": "Incluir matrículas y asignaciones inactivas",
-    "applyFilters": "Aplicar filtros",
-    "loading": "Cargando…",
-    "exports": "Exportar datos",
-    "exportCsvFull": "Exportar CSV completo",
-    "exportXlsxFull": "Exportar XLSX completo",
-    "exportCsvFiltered": "Exportar CSV filtrado",
-    "exportXlsxFiltered": "Exportar XLSX filtrado",
-    "topGroups": "Top grupos por alumnos",
-    "enrollments": "Matrículas",
-    "powerBiTitle": "Informe Power BI",
-    "powerBiHint": "Descarga el informe predefinido en Power BI Desktop (mismo fichero para todos los filtros).",
-    "downloadPbix": "Descargar informe Power BI",
-    "menu": "Menú",
-    "yearPlaceholder": "2024-2025",
-    "kpi": {
-      "matriculas": "Matrículas",
-      "alumnos": "Alumnos únicos",
-      "profesores": "Profesores",
-      "ciclos": "Ciclos",
-      "grupos": "Grupos",
-      "asistencia": "Tasa asistencia",
-      "sesionesCanceladas": "Sesiones canceladas"
-    }
   },
   "studentClasses": {
     "title": "Mis asignaturas",

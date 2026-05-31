@@ -205,6 +205,8 @@ sin modificar <a href="../injectables/AuthService.html">AuthService</a> ni ning�
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inyecta la instancia de Firebase Auth usada por los métodos del servicio.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -213,6 +215,7 @@ sin modificar <a href="../injectables/AuthService.html">AuthService</a> ni ning�
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -227,6 +230,10 @@ sin modificar <a href="../injectables/AuthService.html">AuthService</a> ni ning�
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Instancia de Firebase Authentication inyectada por AngularFire.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -273,7 +280,7 @@ sin modificar <a href="../injectables/AuthService.html">AuthService</a> ni ning�
                         <div class="io-description"><p>Autentica un usuario existente contra Firebase con email y contraseña.</p>
 <p>Convierte la <code>Promise</code> nativa de Firebase en un <code>Observable</code> mediante <code>from()</code>,
 siguiendo el patrón reactivo del resto de la aplicación.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">     y completa inmediatamente, o lanza error si las credenciales son inválidas</code></pre></div></div>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -300,9 +307,7 @@ siguiendo el patrón reactivo del resto de la aplicación.</p>
 
 
                                             <td>
-                                                    <ul>
-<li>Correo electrónico del usuario</li>
-</ul>
+                                                    <p>Correo electrónico del usuario.</p>
 
                                             </td>
                                         </tr>
@@ -318,9 +323,7 @@ siguiendo el patrón reactivo del resto de la aplicación.</p>
 
 
                                             <td>
-                                                    <ul>
-<li>Contraseña del usuario</li>
-</ul>
+                                                    <p>Contraseña del usuario.</p>
 
                                             </td>
                                         </tr>
@@ -332,8 +335,7 @@ siguiendo el patrón reactivo del resto de la aplicación.</p>
 
                         </div>
                             <div class="io-description">
-                                <p><code>Observable&lt;string&gt;</code> que emite el ID token del usuario autenticado
-y completa inmediatamente, o lanza error si las credenciales son inválidas</p>
+                                <p>Observable que emite el ID token del usuario autenticado.</p>
 
                             </div>
                 </td>
@@ -360,8 +362,8 @@ y completa inmediatamente, o lanza error si las credenciales son inválidas</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/core/services/firebase-auth.service.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/core/services/firebase-auth.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -371,15 +373,14 @@ y completa inmediatamente, o lanza error si las credenciales son inválidas</p>
                         <div class="io-description"><p>Cierra la sesión del usuario activo en Firebase.</p>
 <p>Convierte la <code>Promise</code> nativa de Firebase en un <code>Observable</code> mediante <code>from()</code>.
 Tras completar, <a href="../injectables/AuthService.html">AuthService</a> se encarga de limpiar el estado local.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">     o lanza error si Firebase no está disponible</code></pre></div></div>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p><code>Observable&lt;void&gt;</code> que completa cuando Firebase confirma el cierre de sesión,
-o lanza error si Firebase no está disponible</p>
+                                <p>Observable que completa cuando Firebase confirma el cierre de sesión.</p>
 
                             </div>
                 </td>
@@ -406,8 +407,8 @@ o lanza error si Firebase no está disponible</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/core/services/firebase-auth.service.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/core/services/firebase-auth.service.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -418,7 +419,7 @@ o lanza error si Firebase no está disponible</p>
 <p>Convierte la <code>Promise</code> nativa de Firebase en un <code>Observable</code> mediante <code>from()</code>.
 El token resultante debe usarse de inmediato para registrar al usuario
 en el backend propio.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">     y completa inmediatamente, o lanza error si el email ya está en uso</code></pre></div></div>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -445,9 +446,7 @@ en el backend propio.</p>
 
 
                                             <td>
-                                                    <ul>
-<li>Correo electrónico para la nueva cuenta</li>
-</ul>
+                                                    <p>Correo electrónico para la nueva cuenta.</p>
 
                                             </td>
                                         </tr>
@@ -463,9 +462,7 @@ en el backend propio.</p>
 
 
                                             <td>
-                                                    <ul>
-<li>Contraseña para la nueva cuenta</li>
-</ul>
+                                                    <p>Contraseña para la nueva cuenta.</p>
 
                                             </td>
                                         </tr>
@@ -477,8 +474,7 @@ en el backend propio.</p>
 
                         </div>
                             <div class="io-description">
-                                <p><code>Observable&lt;string&gt;</code> que emite el ID token de la cuenta recién creada
-y completa inmediatamente, o lanza error si el email ya está en uso</p>
+                                <p>Observable que emite el ID token de la cuenta recién creada.</p>
 
                             </div>
                 </td>
@@ -521,10 +517,11 @@ import { switchMap } from &#x27;rxjs/operators&#x27;;
 @Injectable({ providedIn: &#x27;root&#x27; })
 export class FirebaseAuthService {
 
-  constructor(
-    /** Instancia de Firebase Authentication inyectada por AngularFire. */
-    private firebaseAuth: Auth,
-  ) {}
+  /**
+   * Inyecta la instancia de Firebase Auth usada por los métodos del servicio.
+   * @param firebaseAuth Instancia de Firebase Authentication inyectada por AngularFire.
+   */
+  constructor(private firebaseAuth: Auth) {}
 
   /**
    * Autentica un usuario existente contra Firebase con email y contraseña.
@@ -532,10 +529,9 @@ export class FirebaseAuthService {
    * Convierte la &#x60;Promise&#x60; nativa de Firebase en un &#x60;Observable&#x60; mediante &#x60;from()&#x60;,
    * siguiendo el patrón reactivo del resto de la aplicación.
    *
-   * @param email    - Correo electrónico del usuario
-   * @param password - Contraseña del usuario
-   * @returns &#x60;Observable&lt;string&gt;&#x60; que emite el ID token del usuario autenticado
-   *          y completa inmediatamente, o lanza error si las credenciales son inválidas
+   * @param email Correo electrónico del usuario.
+   * @param password Contraseña del usuario.
+   * @returns Observable que emite el ID token del usuario autenticado.
    */
   signIn(email: string, password: string): Observable&lt;string&gt; {
     return from(signInWithEmailAndPassword(this.firebaseAuth, email, password)).pipe(
@@ -550,10 +546,9 @@ export class FirebaseAuthService {
    * El token resultante debe usarse de inmediato para registrar al usuario
    * en el backend propio.
    *
-   * @param email    - Correo electrónico para la nueva cuenta
-   * @param password - Contraseña para la nueva cuenta
-   * @returns &#x60;Observable&lt;string&gt;&#x60; que emite el ID token de la cuenta recién creada
-   *          y completa inmediatamente, o lanza error si el email ya está en uso
+   * @param email Correo electrónico para la nueva cuenta.
+   * @param password Contraseña para la nueva cuenta.
+   * @returns Observable que emite el ID token de la cuenta recién creada.
    */
   signUp(email: string, password: string): Observable&lt;string&gt; {
     return from(createUserWithEmailAndPassword(this.firebaseAuth, email, password)).pipe(
@@ -567,8 +562,7 @@ export class FirebaseAuthService {
    * Convierte la &#x60;Promise&#x60; nativa de Firebase en un &#x60;Observable&#x60; mediante &#x60;from()&#x60;.
    * Tras completar, {@link AuthService} se encarga de limpiar el estado local.
    *
-   * @returns &#x60;Observable&lt;void&gt;&#x60; que completa cuando Firebase confirma el cierre de sesión,
-   *          o lanza error si Firebase no está disponible
+   * @returns Observable que completa cuando Firebase confirma el cierre de sesión.
    */
   signOut(): Observable&lt;void&gt; {
     return from(signOut(this.firebaseAuth));

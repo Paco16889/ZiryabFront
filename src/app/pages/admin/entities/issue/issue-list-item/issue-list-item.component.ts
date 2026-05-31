@@ -19,6 +19,10 @@ import { GroupService } from '../../../../../core/services/admin/entities/group.
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { GenericListItemComponent } from '../../../generic-list-item/generic-list-item.component';
 
+/**
+ * Etiquetas en castellano para tipos de audiencia del tablón.
+ * @see IssueAudience
+ */
 const AUDIENCE_LABELS: Record<IssueAudience, string> = {
   CENTER: 'Todo el centro',
   ALL_TEACHERS: 'Todos los profesores',
@@ -31,6 +35,10 @@ const AUDIENCE_LABELS: Record<IssueAudience, string> = {
   TARGETED: 'Audiencia acotada',
 };
 
+/**
+ * Opciones del desplegable de audiencia en edición inline.
+ * Derivadas de {@link AUDIENCE_LABELS}.
+ */
 const AUDIENCE_OPTIONS = (Object.keys(AUDIENCE_LABELS) as IssueAudience[]).map((value) => ({
   value,
   label: AUDIENCE_LABELS[value],
@@ -46,14 +54,25 @@ const AUDIENCE_OPTIONS = (Object.keys(AUDIENCE_LABELS) as IssueAudience[]).map((
   styleUrl: './issue-list-item.component.scss',
 })
 export class IssueListItemComponent {
+  /** CRUD de anuncios del tablón admin. */
   private readonly issueService = inject(AdminIssueService);
+
+  /** Rol e id de usuario para permisos de edición/borrado. */
   private readonly authService = inject(AuthService);
+  /** Carga grupos para edición de audiencia. */
   private readonly groupService = inject(GroupService);
+  /** Carga ciclos para edición de audiencia. */
   private readonly courseService = inject(CourseService);
+  /** Carga asignaturas para edición de audiencia. */
   private readonly subjectService = inject(SubjectService);
 
+  /** Anuncio mostrado en esta fila del listado. */
   @Input({ required: true }) issue!: Issue;
 
+  /**
+   * Configuración base del `GenericListItem` (campos, edición y callbacks API).
+   * Las acciones se añaden en el getter `issueConfig` según permisos.
+   */
   private readonly baseConfig: Omit<
     ListItemConfig<Issue, IssueUpdatePayload, IssueUpdateResponse, IssueDeleteResponse>,
     'actions'
@@ -164,6 +183,7 @@ export class IssueListItemComponent {
     deleteFn: (id: number) => this.issueService.deleteIssue(id),
   };
 
+  /** Campos del modal de detalle del anuncio. */
   readonly issueDetailConfig: ViewDetailConfig<Issue> = {
     fields: [
       { key: 'title', type: 'text', label: 'Título: ', className: 'text-xl font-bold' },
@@ -194,6 +214,10 @@ export class IssueListItemComponent {
     ],
   };
 
+  /**
+   * Configuración del list item con permisos de edición/borrado según rol.
+   * @returns Config completa con `actions` según `canManage()`.
+   */
   get issueConfig(): ListItemConfig<
     Issue,
     IssueUpdatePayload,
@@ -207,6 +231,7 @@ export class IssueListItemComponent {
     };
   }
 
+  /** Admin siempre; profesor solo sobre sus propios anuncios. */
   private canManage(): boolean {
     const role = this.authService.getUserRole();
     const userId = this.authService.getUserId();

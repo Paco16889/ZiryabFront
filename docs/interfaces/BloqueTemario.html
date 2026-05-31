@@ -437,7 +437,7 @@ export class TemarioAlumnoComponent implements OnInit {
           );
           this.groupTasksByType(filteredTasks);
         } else {
-          this.error.set(this.translate.instant(&#x27;common.errors.loadStudentTasksFailed&#x27;));
+          this.error.set(this.translate.instant(&#x27;studentPages.syllabus.errors.cannotFetchTasks&#x27;));
         }
         this.loading.set(false);
       },
@@ -455,11 +455,11 @@ export class TemarioAlumnoComponent implements OnInit {
    */
   groupTasksByType(tasks: StudentTask[]) {
     const configBloques &#x3D; [
-      { tipo: TaskType.THEORY, titleKey: &#x27;syllabus.sections.THEORY&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/4207/4207253.png&#x27; },
-      { tipo: TaskType.EXAM, titleKey: &#x27;syllabus.sections.EXAM&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362402.png&#x27; },
-      { tipo: TaskType.PROJECT, titleKey: &#x27;syllabus.sections.PROJECT&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/1087/1087815.png&#x27; },
-      { tipo: TaskType.PRACTICE, titleKey: &#x27;syllabus.sections.PRACTICE&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/471/471495.png&#x27; },
-      { tipo: TaskType.HOMEWORK, titleKey: &#x27;syllabus.sections.HOMEWORK&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362369.png&#x27; }
+      { tipo: TaskType.THEORY, titleKey: &#x27;studentPages.syllabus.blocks.theory&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/4207/4207253.png&#x27; },
+      { tipo: TaskType.EXAM, titleKey: &#x27;studentPages.syllabus.blocks.exam&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362402.png&#x27; },
+      { tipo: TaskType.PROJECT, titleKey: &#x27;studentPages.syllabus.blocks.project&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/1087/1087815.png&#x27; },
+      { tipo: TaskType.PRACTICE, titleKey: &#x27;studentPages.syllabus.blocks.practice&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/471/471495.png&#x27; },
+      { tipo: TaskType.HOMEWORK, titleKey: &#x27;studentPages.syllabus.blocks.homework&#x27;, icono: &#x27;https://cdn-icons-png.flaticon.com/512/3362/3362369.png&#x27; }
     ];
 
     const nuevosBloques: BloqueTemario[] &#x3D; [];

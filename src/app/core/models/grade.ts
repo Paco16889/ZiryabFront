@@ -1,12 +1,21 @@
 import { Teacher } from './teacher';
 import { Enrollment } from './enrollment';
 
-/** Clase tutorada que devuelve GET /api/grades/tutored-groups */
+/** Clase tutorada que devuelve `GET /api/grades/tutored-groups`. */
 export interface TutoredCourseGroup {
+  /** Identificador de la relación ciclo–grupo. */
   id: number;
-  grade: string; // "1" o "2"
+
+  /** Curso dentro del ciclo (`"1"` o `"2"`). */
+  grade: string;
+
+  /** Ciclo formativo del grupo. */
   course: { id: number; name: string };
+
+  /** Grupo académico tutorizado. */
   group: { id: number; name: string };
+
+  /** Matrículas de alumnos del grupo para el tutor. */
   studentEnrollments: Enrollment[];
 }
 

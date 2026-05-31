@@ -320,6 +320,7 @@ Incluye los datos del alumno anidados para mostrarlos en el listado.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, inject } from &#x27;@angular/core&#x27;;
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Observable, map } from &#x27;rxjs&#x27;;
+import { environment } from &#x27;../../../environments/environment&#x27;;
 
 /** Estados de asistencia posibles según el backend */
 export type AttendanceStatus &#x3D; &#x27;PRESENT&#x27; | &#x27;ABSENT&#x27; | &#x27;EXCUSED&#x27; | &#x27;LATE&#x27;;
@@ -367,7 +368,7 @@ export class AttendanceService {
   private http &#x3D; inject(HttpClient);
 
   /** URL base de la API. */
-  private apiUrl &#x3D; &#x27;http://localhost:3000/api&#x27;;
+  private apiUrl &#x3D; environment.apiUrl;
 
   /**
    * Obtiene o crea la sesión de clase de hoy para la asignatura y profesor indicados.

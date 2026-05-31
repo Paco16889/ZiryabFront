@@ -23,23 +23,30 @@ export type IssueUpdatePayload = IssueUpdateRequest & { id: number };
   providedIn: 'root',
 })
 export class AdminIssueService {
+  /** Cliente HTTP para el recurso `/api/issues`. */
   private readonly http = inject(HttpClient);
+
+  /** Base URL del tablón de anuncios. */
   private readonly apiUrl = `${environment.apiUrl}/issues`;
 
+  /** Anuncios cargados en memoria para el listado admin. */
   readonly issues = signal<Issue[]>([]);
 
+  /** Obtiene todos los anuncios del tablón. */
   getAllIssues(): Observable<IssuesAllResponse> {
     return this.http.get<IssuesAllResponse>(this.apiUrl).pipe(
       catchError(() => of({ success: false, data: [], count: 0 })),
     );
   }
 
+  /** Recarga `issues` desde el API y actualiza el signal. */
   loadIssues(): void {
     this.getAllIssues().subscribe((res) => {
       this.issues.set(res.success ? res.data : []);
     });
   }
 
+  /** Detalle de un anuncio por identificador. */
   getIssueById(id: number): Observable<IssueByIdResponse> {
     return this.http.get<IssueByIdResponse>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {
@@ -49,6 +56,7 @@ export class AdminIssueService {
     );
   }
 
+  /** Crea un anuncio en el tablón. */
   createIssue(payload: IssueCreateRequest): Observable<IssueCreateResponse> {
     return this.http.post<IssueCreateResponse>(this.apiUrl, payload).pipe(
       catchError((error) => {
@@ -58,6 +66,7 @@ export class AdminIssueService {
     );
   }
 
+  /** Actualiza un anuncio existente. */
   updateIssue(payload: IssueUpdatePayload): Observable<IssueUpdateResponse> {
     const { id, ...body } = payload;
     return this.http.patch<IssueUpdateResponse>(`${this.apiUrl}/${id}`, body).pipe(
@@ -68,6 +77,7 @@ export class AdminIssueService {
     );
   }
 
+  /** Elimina un anuncio del tablón. */
   deleteIssue(id: number): Observable<IssueDeleteResponse> {
     return this.http.delete<IssueDeleteResponse>(`${this.apiUrl}/${id}`).pipe(
       catchError((error) => {

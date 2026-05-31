@@ -130,6 +130,12 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#AssignmentBulkApiBody" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkApiBody</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AssignmentBulkApiResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkApiResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#AssignmentBulkCreateResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkCreateResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
                         </li>
                         <li>
@@ -140,6 +146,9 @@
                         </li>
                         <li>
                             <a href="#AttendanceStatus" title="src/app/core/services/attendance.service.ts" ><b>AttendanceStatus</b>&nbsp;&nbsp;&nbsp;(src/.../attendance.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AuthApiResponse" title="src/app/core/services/auth.service.ts" ><b>AuthApiResponse</b>&nbsp;&nbsp;&nbsp;(src/.../auth.service.ts)</a>
                         </li>
                         <li>
                             <a href="#ClassSessionUpdatePayload" title="src/app/core/services/admin/entities/class-session.service.ts" ><b>ClassSessionUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../class-session.service.ts)</a>
@@ -163,7 +172,19 @@
                             <a href="#CourseSubjectsByGradeResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>CourseSubjectsByGradeResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
                         </li>
                         <li>
+                            <a href="#EnrollmentConfirmErrorCode" title="src/app/core/services/admin/student-registration.service.ts" ><b>EnrollmentConfirmErrorCode</b>&nbsp;&nbsp;&nbsp;(src/.../student-registration.service.ts)</a>
+                        </li>
+                        <li>
                             <a href="#HttpErrorLike" title="src/app/core/i18n/api-error.util.ts" ><b>HttpErrorLike</b>&nbsp;&nbsp;&nbsp;(src/.../api-error.util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IssueAudience" title="src/app/core/models/issue.ts" ><b>IssueAudience</b>&nbsp;&nbsp;&nbsp;(src/.../issue.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IssueEmitterType" title="src/app/core/models/issue.ts" ><b>IssueEmitterType</b>&nbsp;&nbsp;&nbsp;(src/.../issue.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IssueUpdatePayload" title="src/app/core/services/admin/entities/issue.service.ts" ><b>IssueUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../issue.service.ts)</a>
                         </li>
                         <li>
                             <a href="#NotificationAction" title="src/app/core/models/notification.ts" ><b>NotificationAction</b>&nbsp;&nbsp;&nbsp;(src/.../notification.ts)</a>
@@ -210,6 +231,50 @@
 
     <h3>src/app/core/models/course-assignments/course-assignments-api.model.ts</h3>
     <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssignmentBulkApiBody"></a>
+                    <span class="name "><b>AssignmentBulkApiBody</b><a href="#AssignmentBulkApiBody"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cuerpo y respuesta de <code>POST /api/assignments/bulk</code> (contrato back CURSO-101).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssignmentBulkApiResponse"></a>
+                    <span class="name "><b>AssignmentBulkApiResponse</b><a href="#AssignmentBulkApiResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta cruda de <code>POST /api/assignments/bulk</code> tal como la devuelve el backend.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -390,6 +455,30 @@
             </tr>
         </tbody>
     </table>
+</section>    <h3>src/app/core/services/auth.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AuthApiResponse"></a>
+                    <span class="name "><b>AuthApiResponse</b><a href="#AuthApiResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Login/registro: JWT en la raíz del JSON, no dentro de <code>data</code>.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>src/app/core/services/admin/entities/class-session.service.ts</h3>
     <section data-compodoc="block-typealias">
     <table class="table table-sm table-bordered">
@@ -426,7 +515,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Resultado resumido del guardado masivo de asignaciones desde el grid.</p>
+                    <div class="io-description"><p>Resumen mostrado tras guardar asignaciones docentes en lote.</p>
 </div>
                 </td>
             </tr>
@@ -450,13 +539,42 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Vistas internas del listado de ciclos: listado, alta y flujo de asignaciones docentes.</p>
+                    <div class="io-description"><p>Vista activa del flujo de gestión de ciclos y asignaciones docentes.</p>
+<ul>
+<li><code>list</code>: listado principal</li>
+<li><code>create</code> / <code>post-create</code>: alta de ciclo</li>
+<li><code>assignments-wizard</code> / <code>assignments-grid</code>: asignaciones docentes</li>
+</ul>
 </div>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <code>    <code>&quot;list&quot; | &quot;create&quot; | &quot;assignments-wizard&quot; | &quot;assignments-grid&quot;</code>
+                    <code>    <code>&quot;list&quot; | &quot;create&quot; | &quot;post-create&quot; | &quot;assignments-wizard&quot; | &quot;assignments-grid&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/student-registration.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EnrollmentConfirmErrorCode"></a>
+                    <span class="name "><b>EnrollmentConfirmErrorCode</b><a href="#EnrollmentConfirmErrorCode"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Códigos de error lanzados por <code>confirmEnrollment</code> cuando falla la validación o el API.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;NO_SUBJECTS&quot; | &quot;NO_STUDENT&quot; | &quot;STUDENT_CREATE_FAILED&quot; | &quot;REGISTRATION_FAILED&quot;</code>
 </code>
                 </td>
             </tr>
@@ -481,6 +599,76 @@
             <tr>
                 <td class="col-md-4">
                     <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/issue.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IssueAudience"></a>
+                    <span class="name "><b>IssueAudience</b><a href="#IssueAudience"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Audiencia destino de un anuncio del tablón.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;CENTER&quot; | &quot;ALL_TEACHERS&quot; | &quot;ALL_STUDENTS&quot; | &quot;GROUP&quot; | &quot;COURSE&quot; | &quot;SUBJECT_GROUP&quot; | &quot;TEACHER&quot; | &quot;ASSIGNMENT&quot; | &quot;TARGETED&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IssueEmitterType"></a>
+                    <span class="name "><b>IssueEmitterType</b><a href="#IssueEmitterType"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tipo de emisor del anuncio.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;TEACHER&quot; | &quot;ADMIN&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/entities/issue.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IssueUpdatePayload"></a>
+                    <span class="name "><b>IssueUpdatePayload</b><a href="#IssueUpdatePayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payload de actualización incluye <code>id</code> (lo añade el modal genérico).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
 </code>
                 </td>
             </tr>
@@ -746,7 +934,7 @@ Refleja el enum <code>TaskType</code> del esquema Prisma del backend.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Pestañas disponibles en el constructor de horarios de administración.</p>
+                    <div class="io-description"><p>Pestaña activa del builder: crear plantilla o editar rejilla semanal.</p>
 </div>
                 </td>
             </tr>
@@ -770,7 +958,7 @@ Refleja el enum <code>TaskType</code> del esquema Prisma del backend.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Pasos del asistente: primero ciclo, después nivel/grade.</p>
+                    <div class="io-description"><p>Pasos del asistente: <code>1</code> = ciclo, <code>2</code> = nivel/grade dentro del ciclo.</p>
 </div>
                 </td>
             </tr>

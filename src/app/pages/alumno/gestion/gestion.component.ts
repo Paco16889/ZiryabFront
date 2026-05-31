@@ -23,6 +23,8 @@ import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.compon
 export class GestionComponent implements OnInit {
 
   private readonly router = inject(Router);
+
+  /** Rol del usuario para rutas de horario y evaluaciones. */
   private readonly authService = inject(AuthService);
   private readonly teachingContext = inject(TeacherTeachingContextService);
 

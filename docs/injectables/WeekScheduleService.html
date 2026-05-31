@@ -242,6 +242,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inyecta el cliente HTTP usado en todas las operaciones del módulo.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -250,6 +252,7 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -264,6 +267,10 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Cliente HTTP usado para acceder al módulo de horarios semanales.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -299,8 +306,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -376,8 +383,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="177"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:177</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:190</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +460,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -496,8 +503,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -573,8 +580,8 @@ y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -651,8 +658,8 @@ Lo usa el grid admin para detectar solapes con otros grupos.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -728,8 +735,8 @@ Lo usa el grid admin para detectar solapes con otros grupos.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -744,6 +751,10 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>No devuelve valor; actualiza la signal <code>schedules</code> al completar la petición.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -770,8 +781,8 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -790,6 +801,7 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -804,6 +816,10 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
                                             </td>
 
 
+                                            <td>
+                                                    <p>Respuesta cruda del listado de horarios semanales.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -813,7 +829,8 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Respuesta con cada franja ya normalizada al formato de la UI.</p>
+
                             </div>
                 </td>
             </tr>
@@ -841,8 +858,8 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -861,6 +878,7 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -875,6 +893,10 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
                                             </td>
 
 
+                                            <td>
+                                                    <p>Franja horaria tal como viene del backend.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -884,7 +906,8 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Copia de la franja con el día convertido al formato numérico de la UI.</p>
+
                             </div>
                 </td>
             </tr>
@@ -910,8 +933,8 @@ En caso de error o <code>success: false</code>, limpia la cache para evitar most
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -1098,12 +1121,17 @@ export class WeekScheduleService {
   /** Cache reactiva del listado completo que consumen los listados y el builder. */
   schedules &#x3D; signal&lt;WeekSchedule[]&gt;([]);
 
-  constructor(
-    /** Cliente HTTP usado para acceder al módulo de horarios semanales. */
-    private http: HttpClient,
-  ) { }
+  /**
+   * Inyecta el cliente HTTP usado en todas las operaciones del módulo.
+   * @param http Cliente HTTP usado para acceder al módulo de horarios semanales.
+   */
+  constructor(private http: HttpClient) { }
 
-  /** Normaliza &#x60;weekDay&#x60; del API (string enum) al 1–7 interno del front. */
+  /**
+   * Normaliza &#x60;weekDay&#x60; del API (string enum) al 1–7 interno del front.
+   * @param ws Franja horaria tal como viene del backend.
+   * @returns Copia de la franja con el día convertido al formato numérico de la UI.
+   */
   private normalizeSchedule(ws: WeekSchedule): WeekSchedule {
     return {
       ...ws,
@@ -1111,7 +1139,11 @@ export class WeekScheduleService {
     };
   }
 
-  /** Normaliza todas las franjas de una respuesta de listado. */
+  /**
+   * Normaliza todas las franjas de una respuesta de listado.
+   * @param res Respuesta cruda del listado de horarios semanales.
+   * @returns Respuesta con cada franja ya normalizada al formato de la UI.
+   */
   private normalizeList(res: WeekSchedulesAllResponse): WeekSchedulesAllResponse {
     if (!res.success || !res.data?.length) {
       return res;
@@ -1125,8 +1157,9 @@ export class WeekScheduleService {
   /**
    * Carga todas las franjas horarias y actualiza &#x60;schedules&#x60;.
    * En caso de error o &#x60;success: false&#x60;, limpia la cache para evitar mostrar datos obsoletos.
+   * @returns No devuelve valor; actualiza la signal &#x60;schedules&#x60; al completar la petición.
    */
-   loadSchedules() {
+  loadSchedules() {
     this.getAllSchedules().subscribe(res &#x3D;&gt; {
       if (res.success) {
         this.schedules.set(res.data);
@@ -1230,6 +1263,9 @@ export class WeekScheduleService {
     }
     if (data.finishTime !&#x3D;&#x3D; undefined) {
       body[&#x27;finishTime&#x27;] &#x3D; data.finishTime;
+    }
+    if (data.idTeacherAssignment !&#x3D;&#x3D; undefined) {
+      body[&#x27;idTeacherAssignment&#x27;] &#x3D; data.idTeacherAssignment;
     }
     return this.http.patch&lt;WeekScheduleUpdateResponse&gt;(&#x60;${this.apiUrl}/${id}&#x60;, body).pipe(
       map((r) &#x3D;&gt;

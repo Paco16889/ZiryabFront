@@ -225,6 +225,8 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inyecta el cliente HTTP del módulo de asistencias.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -233,6 +235,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -247,6 +250,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Cliente HTTP para consultar y actualizar asistencias del alumno.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -282,8 +289,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -297,6 +304,10 @@
                             <b>Returns : </b>    <code>Observable&lt;AssistanceResponse&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>Observable con el listado completo de registros de asistencia.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -321,8 +332,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -369,7 +380,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con las asistencias del alumno solicitado.</p>
+
                             </div>
                 </td>
             </tr>
@@ -395,8 +407,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="73"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:73</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -415,6 +427,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -429,6 +442,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del registro de asistencia consultado.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -438,7 +455,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con el estado de revisión del justificante.</p>
+
                             </div>
                 </td>
             </tr>
@@ -464,8 +482,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -487,6 +505,10 @@
                             <b>Returns : </b>        <code><a href="../interfaces/ApiSuccessResponse.html" target="_self" >Observable&lt;ApiSuccessResponse&lt;T&gt;&gt;</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>Observable con las ausencias agrupadas por alumno.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -511,8 +533,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -531,6 +553,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -545,6 +568,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del registro de asistencia a excusar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -554,7 +581,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con la confirmación de la operación.</p>
+
                             </div>
                 </td>
             </tr>
@@ -580,8 +608,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -600,6 +628,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -614,6 +643,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Identificador del registro de asistencia revisado.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -623,7 +656,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con la confirmación de la operación.</p>
+
                             </div>
                 </td>
             </tr>
@@ -649,8 +683,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/core/services/alumno/assistance.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -713,7 +747,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con la URI del justificante almacenado.</p>
+
                             </div>
                 </td>
             </tr>
@@ -796,14 +831,16 @@ export class AssistanceService {
     /** Endpoint base de asistencias. */
     private apiUrl &#x3D; &#x60;${environment.apiUrl}/assistances&#x60;;
 
-    constructor(
-        /** Cliente HTTP para consultar y actualizar asistencias del alumno. */
-        private http: HttpClient,
-    ) { }
+    /**
+     * Inyecta el cliente HTTP del módulo de asistencias.
+     * @param http Cliente HTTP para consultar y actualizar asistencias del alumno.
+     */
+    constructor(private http: HttpClient) { }
 
     /**
      * Obtiene las faltas/asistencias de un alumno concreto para su ficha.
      * @param studentId Identificador del alumno.
+     * @returns Observable con las asistencias del alumno solicitado.
      */
     getAssistancesByStudentId(studentId: number): Observable&lt;AssistanceResponse&gt; {
         return this.http.get&lt;AssistanceResponse&gt;(&#x60;${this.apiUrl}/student/${studentId}&#x60;);
@@ -813,6 +850,7 @@ export class AssistanceService {
      * Sube el documento justificante de una ausencia.
      * @param assistanceId Registro de asistencia que se va a justificar.
      * @param file Archivo seleccionado por el alumno.
+     * @returns Observable con la URI del justificante almacenado.
      */
     submitJustification(assistanceId: number, file: File): Observable&lt;{ justificationUri: string }&gt; {
         const formData &#x3D; new FormData();
@@ -825,27 +863,46 @@ export class AssistanceService {
             .pipe(map((res) &#x3D;&gt; res.data));
     }
 
-    /** Obtiene todas las asistencias; usado en pantallas compartidas/profesor. */
+    /**
+     * Obtiene todas las asistencias; usado en pantallas compartidas/profesor.
+     * @returns Observable con el listado completo de registros de asistencia.
+     */
     getAllAssistances(): Observable&lt;AssistanceResponse&gt; {
         return this.http.get&lt;AssistanceResponse&gt;(this.apiUrl);
     }
 
-    /** Marca una ausencia como justificada desde el flujo de revisión. */
+    /**
+     * Marca una ausencia como justificada desde el flujo de revisión.
+     * @param assistanceId Identificador del registro de asistencia a excusar.
+     * @returns Observable con la confirmación de la operación.
+     */
     justifyAbsence(assistanceId: number): Observable&lt;ApiSuccessResponse&gt; {
         return this.http.patch&lt;ApiSuccessResponse&gt;(&#x60;${this.apiUrl}/justify/${assistanceId}&#x60;, {});
     }
 
-    /** Rechaza una justificación y devuelve la asistencia a estado ausente. */
+    /**
+     * Rechaza una justificación y devuelve la asistencia a estado ausente.
+     * @param assistanceId Identificador del registro de asistencia revisado.
+     * @returns Observable con la confirmación de la operación.
+     */
     rejectJustification(assistanceId: number): Observable&lt;ApiSuccessResponse&gt; {
         return this.http.patch&lt;ApiSuccessResponse&gt;(&#x60;${this.apiUrl}/assistancestatus/${assistanceId}&#x60;, { status: &#x27;ABSENT&#x27; });
     }
 
-    /** Consulta el estado de revisión del justificante de una asistencia. */
+    /**
+     * Consulta el estado de revisión del justificante de una asistencia.
+     * @param assistanceId Identificador del registro de asistencia consultado.
+     * @returns Observable con el estado de revisión del justificante.
+     */
     getJustificationStatus(assistanceId: number): Observable&lt;ApiSuccessResponse&gt; {
         return this.http.get&lt;ApiSuccessResponse&gt;(&#x60;${this.apiUrl}/${assistanceId}/justification-status&#x60;);
     }
 
-    /** Obtiene ausencias de alumnos tutelados por el profesor autenticado. */
+    /**
+     * Obtiene ausencias de alumnos tutelados por el profesor autenticado.
+     * @typeParam T Forma de los datos de ausencias devueltos por el endpoint del profesor.
+     * @returns Observable con las ausencias agrupadas por alumno.
+     */
     getStudentsAbsences&lt;T &#x3D; unknown&gt;(): Observable&lt;ApiSuccessResponse&lt;T&gt;&gt; {
         return this.http.get&lt;ApiSuccessResponse&lt;T&gt;&gt;(&#x60;${environment.apiUrl}/teachers/my-students-absences&#x60;);
     }

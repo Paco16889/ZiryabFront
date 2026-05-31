@@ -81,6 +81,7 @@ export class TemarioProfesorComponent implements OnInit {
     /** Controla el modal de asistencia. */
     showAttendanceModal = signal(false);
 
+    /** Opciones de estado mostradas en el modal de asistencia. */
     readonly statusOptions: { value: AttendanceStatus; labelKey: string; color: string }[] = [
         { value: 'PRESENT', labelKey: 'teacherPages.attendance.status.present', color: 'emerald' },
         { value: 'ABSENT', labelKey: 'teacherPages.attendance.status.absent', color: 'red' },

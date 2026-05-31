@@ -32,8 +32,10 @@ import { NotificationToggleService } from '../../../core/services/notification/n
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-/** Servicio que controla el menú de perfil. */
+  /** Navegación al dashboard y rutas desde la cabecera. */
   private readonly router = inject(Router);
+
+  /** Servicio que controla el menú de perfil. */
   private readonly perfilService = inject(PerfilMenuService);
   /** Servicio de sesión para mostrar nombre/rol y reaccionar a logout. */
   private readonly authService = inject(AuthService);
@@ -116,10 +118,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return map[role] ?? 'roles.user';
   }
 
-/** Alterna menú de perfil cerrando previamente el panel de notificaciones. */
+  /** Navega al dashboard del usuario autenticado. */
   navigateToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
+
+  /** Alterna menú de perfil cerrando previamente el panel de notificaciones. */
   toggleProfileMenu(): void {
     if (this.notificationPanel.isOpen()) {
       this.notificationPanel.close();

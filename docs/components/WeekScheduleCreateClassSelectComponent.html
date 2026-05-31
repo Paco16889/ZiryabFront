@@ -142,18 +142,12 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Selector de clase para crear plantilla horaria (filtro y estados de carga).
-See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://franciscocobsan.atlassian.net/browse/CURSO-90</a></p>
+        <p>Selector de clase para crear plantilla horaria.</p>
+<p><code>GET .../classes?schoolYear=...&amp;hasWeekSchedule=false</code></p>
 
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -231,20 +225,20 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#allClasses" >allClasses</a>
+                                <a href="#classesApi" >classesApi</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#classesApi" >classesApi</a>
+                                <a href="#classesFromApi" >classesFromApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#classesWithoutSchedule" >classesWithoutSchedule</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#classKey" >classKey</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#eligibleClasses" >eligibleClasses</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -253,6 +247,11 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#preselectApplied" >preselectApplied</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -271,13 +270,18 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#classKeysMatch" >classKeysMatch</a>
+                            </li>
+                            <li>
                                 <a href="#loadClasses" >loadClasses</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                <a href="#onSelectChange" >onSelectChange</a>
                             </li>
                             <li>
-                                <a href="#onSelectChange" >onSelectChange</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#tryApplyPreselect" >tryApplyPreselect</a>
                             </li>
                         </ul>
                     </td>
@@ -293,6 +297,9 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                         <ul class="index-list">
                             <li>
                                 <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
+                                <a href="#refreshToken" >refreshToken</a>
                             </li>
                             <li>
                                 <a href="#schoolYear" >schoolYear</a>
@@ -328,6 +335,30 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:116</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Recarga clases al cambiar año o token; aplica preselección cuando hay listado.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -346,12 +377,38 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:84</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Bloquea el selector cuando la creación de plantilla no debe modificarse.</p>
+                        <div class="io-description"><p>Deshabilita el selector.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="refreshToken"></a>
+                        <b>refreshToken</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:87</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Incrementar para forzar recarga del listado.</p>
 </div>
                     </td>
                 </tr>
@@ -372,12 +429,12 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:75</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Curso escolar usado para consultar y mostrar solo clases del año activo.</p>
+                        <div class="io-description"><p>Año escolar del listado de clases sin plantilla.</p>
 </div>
                     </td>
                 </tr>
@@ -398,12 +455,12 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:78</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Clave de la clase seleccionada (<code>weekScheduleClassKey</code>).</p>
+                        <div class="io-description"><p>Clave de clase a preseleccionar al cargar.</p>
 </div>
                     </td>
                 </tr>
@@ -424,12 +481,12 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:81</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Activa el mensaje de selección obligatoria tras intentar enviar el formulario padre.</p>
+                        <div class="io-description"><p>Muestra error si no hay clase elegida.</p>
 </div>
                     </td>
                 </tr>
@@ -454,12 +511,12 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:90</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Emite la clase completa, no solo la clave, para construir luego el payload.</p>
+                        <div class="io-description"><p>Emite la clase elegida o <code>null</code> si se limpia.</p>
 </div>
                     </td>
                 </tr>
@@ -473,6 +530,89 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classKeysMatch"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>classKeysMatch</b></span>
+                        <a href="#classKeysMatch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>classKeysMatch(item: <a href="../interfaces/WeekScheduleClassItem.html" target="_self">WeekScheduleClassItem</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Compara claves de clase en distintos formatos.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekScheduleClassItem.html" target="_self" >WeekScheduleClassItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -493,54 +633,15 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:144</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Consulta el API y ordena las clases por etiqueta para facilitar la selección.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:72</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Carga las clases disponibles al montar el selector.</p>
+                        <div class="io-description"><p>Obtiene clases sin horario semanal para el año escolar.</p>
 </div>
 
                         <div class="io-description">
@@ -571,15 +672,15 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:191</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Traduce la clave seleccionada en el <code>&lt;select&gt;</code> a la clase agregada completa.</p>
+                        <div class="io-description"><p>Emite la clase correspondiente a la clave del <code>&lt;select&gt;</code>.</p>
 </div>
 
                             <div class="io-description">
@@ -620,51 +721,95 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tryApplyPreselect"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>tryApplyPreselect</b></span>
+                        <a href="#tryApplyPreselect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>tryApplyPreselect(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, classes: WeekScheduleClassItem[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:210</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Aplica preselección una sola vez cuando el listado está listo.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>classes</td>
+                                            <td>
+                                                        <code>WeekScheduleClassItem[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="allClasses"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>allClasses</b></span>
-                        <a href="#allClasses"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;WeekScheduleClassItem[]&gt;([])</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:61</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Cache local de clases devueltas por el API antes de aplicar filtros de elegibilidad.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -691,13 +836,94 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:67</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Cliente HTTP específico que devuelve las clases agregadas para crear plantillas.</p>
+                    <div class="io-description"><p>Listado de clases sin plantilla horaria (<code>hasWeekSchedule=false</code>).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classesFromApi"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>classesFromApi</b></span>
+                        <a href="#classesFromApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;WeekScheduleClassItem[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta cruda del API antes de filtrar elegibles.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="classesWithoutSchedule"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>classesWithoutSchedule</b></span>
+                        <a href="#classesWithoutSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt;
+
+    this.classesFromApi().filter(isWeekScheduleClassEligibleForCreateTemplate),
+
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clases elegibles para crear plantilla (sin horario materializado).</p>
 </div>
                 </td>
             </tr>
@@ -729,53 +955,13 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:72</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Helper expuesto al template para usar la misma clave que el formulario padre.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="eligibleClasses"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>eligibleClasses</b></span>
-                        <a href="#eligibleClasses"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>computed(() &#x3D;&gt;
-    this.allClasses().filter(isWeekScheduleClassEligibleForCreateTemplate),
-  )</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:64</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Clases con curso/grupo/año suficientes para poder materializar una plantilla.</p>
+                    <div class="io-description"><p>Función expuesta al template para clave de clase.</p>
 </div>
                 </td>
             </tr>
@@ -807,13 +993,13 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:96</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Indica que la consulta falló o devolvió una respuesta no exitosa.</p>
+                    <div class="io-description"><p>Error al obtener clases del API.</p>
 </div>
                 </td>
             </tr>
@@ -845,13 +1031,52 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:93</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Estado de carga mientras se consulta el endpoint de clases.</p>
+                    <div class="io-description"><p>Carga de clases en curso.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="preselectApplied"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>preselectApplied</b></span>
+                        <a href="#preselectApplied"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clave de preselección ya aplicada (evita emitir duplicados).</p>
 </div>
                 </td>
             </tr>
@@ -883,13 +1108,13 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-class-select/week-schedule-create-class-select.component.ts:116</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Etiqueta del año escolar que se muestra junto al selector.</p>
+                    <div class="io-description"><p>Año escolar mostrado en la UI del selector.</p>
 </div>
                 </td>
             </tr>
@@ -903,114 +1128,260 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+
   ChangeDetectionStrategy,
+
   Component,
+
   computed,
+
+  effect,
+
   inject,
+
   input,
-  OnInit,
+
   output,
+
   signal,
+
 } from &#x27;@angular/core&#x27;;
+
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+
 import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+
 import {
+
   isWeekScheduleClassEligibleForCreateTemplate,
+
   WeekScheduleClassItem,
+
   weekScheduleClassKey,
+
 } from &#x27;../../../../../core/models/week-schedule-flow/week-schedule-class.model&#x27;;
+
 import { WeekScheduleClassesHttpService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-classes-http.service&#x27;;
+import { weekScheduleClassKeyFromParts } from &#x27;../../../../../core/utils/week-schedule-class-key&#x27;;
+
+
 
 /**
- * Selector de clase para crear plantilla horaria (filtro y estados de carga).
- * @see https://franciscocobsan.atlassian.net/browse/CURSO-90
+
+ * Selector de clase para crear plantilla horaria.
+
+ * &#x60;GET .../classes?schoolYear&#x3D;...&amp;hasWeekSchedule&#x3D;false&#x60;
+
  */
+
 @Component({
+
   selector: &#x27;app-week-schedule-create-class-select&#x27;,
+
   standalone: true,
+
   imports: [TranslateModule],
+
   templateUrl: &#x27;./week-schedule-create-class-select.component.html&#x27;,
+
   styleUrl: &#x27;./week-schedule-create-class-select.component.scss&#x27;,
+
   changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
-export class WeekScheduleCreateClassSelectComponent implements OnInit {
-  /** Cliente HTTP específico que devuelve las clases agregadas para crear plantillas. */
+
+export class WeekScheduleCreateClassSelectComponent {
+
+  /** Listado de clases sin plantilla horaria (&#x60;hasWeekSchedule&#x3D;false&#x60;). */
   private readonly classesApi &#x3D; inject(WeekScheduleClassesHttpService);
 
-  /** Helper expuesto al template para usar la misma clave que el formulario padre. */
+
+
+  /** Función expuesta al template para clave de clase. */
   readonly classKey &#x3D; weekScheduleClassKey;
 
-  /** Curso escolar usado para consultar y mostrar solo clases del año activo. */
+  /** Año escolar del listado de clases sin plantilla. */
   readonly schoolYear &#x3D; input(environment.currentSchoolYear);
 
-  /** Clave de la clase seleccionada (&#x60;weekScheduleClassKey&#x60;). */
+  /** Clave de clase a preseleccionar al cargar. */
   readonly selectedClassKey &#x3D; input(&#x27;&#x27;);
 
-  /** Activa el mensaje de selección obligatoria tras intentar enviar el formulario padre. */
+  /** Muestra error si no hay clase elegida. */
   readonly showValidation &#x3D; input(false);
 
-  /** Bloquea el selector cuando la creación de plantilla no debe modificarse. */
+  /** Deshabilita el selector. */
   readonly disabled &#x3D; input(false);
 
-  /** Emite la clase completa, no solo la clave, para construir luego el payload. */
+  /** Incrementar para forzar recarga del listado. */
+  readonly refreshToken &#x3D; input(0);
+
+  /** Emite la clase elegida o &#x60;null&#x60; si se limpia. */
   readonly classChange &#x3D; output&lt;WeekScheduleClassItem | null&gt;();
 
-  /** Estado de carga mientras se consulta el endpoint de clases. */
+  /** Carga de clases en curso. */
   readonly loading &#x3D; signal(true);
 
-  /** Indica que la consulta falló o devolvió una respuesta no exitosa. */
+  /** Error al obtener clases del API. */
   readonly loadError &#x3D; signal(false);
 
-  /** Cache local de clases devueltas por el API antes de aplicar filtros de elegibilidad. */
-  private readonly allClasses &#x3D; signal&lt;WeekScheduleClassItem[]&gt;([]);
+  /** Respuesta cruda del API antes de filtrar elegibles. */
+  private readonly classesFromApi &#x3D; signal&lt;WeekScheduleClassItem[]&gt;([]);
 
-  /** Clases con curso/grupo/año suficientes para poder materializar una plantilla. */
-  readonly eligibleClasses &#x3D; computed(() &#x3D;&gt;
-    this.allClasses().filter(isWeekScheduleClassEligibleForCreateTemplate),
+
+
+  /** Clases elegibles para crear plantilla (sin horario materializado). */
+  readonly classesWithoutSchedule &#x3D; computed(() &#x3D;&gt;
+
+    this.classesFromApi().filter(isWeekScheduleClassEligibleForCreateTemplate),
+
   );
 
-  /** Etiqueta del año escolar que se muestra junto al selector. */
+  /** Clave de preselección ya aplicada (evita emitir duplicados). */
+  private readonly preselectApplied &#x3D; signal(&#x27;&#x27;);
+
+
+
+  /** Año escolar mostrado en la UI del selector. */
   readonly schoolYearLabel &#x3D; computed(() &#x3D;&gt; this.schoolYear());
 
-  /** Carga las clases disponibles al montar el selector. */
-  ngOnInit(): void {
-    this.loadClasses();
-  }
 
-  /** Consulta el API y ordena las clases por etiqueta para facilitar la selección. */
-  loadClasses(): void {
-    this.loading.set(true);
-    this.loadError.set(false);
-    this.classesApi.getAllClasses(this.schoolYear()).subscribe({
-      next: (res) &#x3D;&gt; {
-        this.loading.set(false);
-        const list &#x3D; res.success
-          ? [...res.data].sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label))
-          : [];
-        this.allClasses.set(list);
-        if (!res.success) {
-          this.loadError.set(true);
-        }
-      },
-      error: () &#x3D;&gt; {
-        this.loading.set(false);
-        this.loadError.set(true);
-        this.allClasses.set([]);
-      },
+
+  /** Recarga clases al cambiar año o token; aplica preselección cuando hay listado. */
+  constructor() {
+
+    effect(() &#x3D;&gt; {
+
+      this.schoolYear();
+
+      this.refreshToken();
+
+      this.loadClasses();
+
     });
+
+    effect(() &#x3D;&gt; {
+
+      this.tryApplyPreselect(this.selectedClassKey(), this.classesWithoutSchedule());
+
+    });
+
   }
 
-  /** Traduce la clave seleccionada en el &#x60;&lt;select&gt;&#x60; a la clase agregada completa. */
-  onSelectChange(raw: string): void {
-    if (!raw) {
-      this.classChange.emit(null);
-      return;
-    }
-    const found &#x3D;
-      this.eligibleClasses().find((c) &#x3D;&gt; weekScheduleClassKey(c) &#x3D;&#x3D;&#x3D; raw) ?? null;
-    this.classChange.emit(found);
+
+
+  /** Obtiene clases sin horario semanal para el año escolar. */
+  loadClasses(): void {
+
+    this.loading.set(true);
+
+    this.loadError.set(false);
+
+    this.classesApi.getAllClasses(this.schoolYear(), true).subscribe({
+
+      next: (res) &#x3D;&gt; {
+
+        this.loading.set(false);
+
+        const list &#x3D; res.success
+
+          ? [...res.data].sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label))
+
+          : [];
+
+        this.classesFromApi.set(list);
+
+        if (!res.success) {
+
+          this.loadError.set(true);
+
+        }
+
+        this.tryApplyPreselect(this.selectedClassKey(), this.classesWithoutSchedule());
+
+      },
+
+      error: () &#x3D;&gt; {
+
+        this.loading.set(false);
+
+        this.loadError.set(true);
+
+        this.classesFromApi.set([]);
+
+      },
+
+    });
+
   }
+
+
+
+  /** Emite la clase correspondiente a la clave del &#x60;&lt;select&gt;&#x60;. */
+  onSelectChange(raw: string): void {
+
+    if (!raw) {
+
+      this.classChange.emit(null);
+
+      return;
+
+    }
+
+    const found &#x3D;
+
+      this.classesWithoutSchedule().find((c) &#x3D;&gt; this.classKeysMatch(c, raw)) ?? null;
+
+    this.classChange.emit(found);
+
+  }
+
+  /** Aplica preselección una sola vez cuando el listado está listo. */
+  private tryApplyPreselect(key: string, classes: WeekScheduleClassItem[]): void {
+
+    if (!key || classes.length &#x3D;&#x3D;&#x3D; 0 || this.preselectApplied() &#x3D;&#x3D;&#x3D; key) {
+
+      return;
+
+    }
+
+    const found &#x3D; classes.find((c) &#x3D;&gt; this.classKeysMatch(c, key)) ?? null;
+
+    if (found) {
+
+      this.preselectApplied.set(key);
+
+      this.classChange.emit(found);
+
+    }
+
+  }
+
+  /** Compara claves de clase en distintos formatos. */
+  private classKeysMatch(item: WeekScheduleClassItem, key: string): boolean {
+
+    return (
+
+      weekScheduleClassKey(item) &#x3D;&#x3D;&#x3D; key ||
+
+      weekScheduleClassKeyFromParts(
+
+        item.course.id,
+
+        item.grade,
+
+        item.group.id,
+
+        item.schoolYear,
+
+      ) &#x3D;&#x3D;&#x3D; key
+
+    );
+
+  }
+
 }
+
+
 </code></pre>
     </div>
 
@@ -1031,19 +1402,19 @@ export class WeekScheduleCreateClassSelectComponent implements OnInit {
     &lt;select
       id&#x3D;&quot;week-schedule-create-class-select&quot;
       class&#x3D;&quot;w-full max-w-lg border border-gray-300 rounded-md px-3 py-2 bg-white disabled:opacity-50&quot;
-      [disabled]&#x3D;&quot;disabled() || eligibleClasses().length &#x3D;&#x3D;&#x3D; 0&quot;
+      [disabled]&#x3D;&quot;disabled() || classesWithoutSchedule().length &#x3D;&#x3D;&#x3D; 0&quot;
       [value]&#x3D;&quot;selectedClassKey()&quot;
       (change)&#x3D;&quot;onSelectChange($any($event.target).value)&quot;
     &gt;
       &lt;option value&#x3D;&quot;&quot;&gt;{{ &#x27;weekScheduleBuilder.grid.classPlaceholder&#x27; | translate }}&lt;/option&gt;
-      @for (c of eligibleClasses(); track classKey(c)) {
+      @for (c of classesWithoutSchedule(); track classKey(c)) {
         &lt;option [value]&#x3D;&quot;classKey(c)&quot;&gt;{{ c.label }}&lt;/option&gt;
       }
     &lt;/select&gt;
 
     @if (loadError()) {
       &lt;p class&#x3D;&quot;text-sm text-red-600 mt-1&quot;&gt;{{ &#x27;weekScheduleBuilder.grid.loadClassesError&#x27; | translate }}&lt;/p&gt;
-    } @else if (eligibleClasses().length &#x3D;&#x3D;&#x3D; 0) {
+    } @else if (classesWithoutSchedule().length &#x3D;&#x3D;&#x3D; 0) {
       &lt;p class&#x3D;&quot;text-sm text-amber-700 mt-1&quot;&gt;
         {{ &#x27;weekScheduleBuilder.create.emptyEligibleClasses&#x27; | translate }}
       &lt;/p&gt;
@@ -1085,8 +1456,8 @@ export class WeekScheduleCreateClassSelectComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="mb-6">  <p class="text-xs text-gray-500 mb-2">    {{ \'weekScheduleBuilder.grid.schoolYearLabel\' | translate }}:    <strong>{{ schoolYearLabel() }}</strong>  </p>  <label class="block text-sm font-medium text-gray-700 mb-1" for="week-schedule-create-class-select">    {{ \'weekScheduleBuilder.grid.selectClass\' | translate }}  </label>  @if (loading()) {    <p class="text-sm text-gray-600">{{ \'weekScheduleBuilder.create.loadingClasses\' | translate }}</p>  } @else {    <select      id="week-schedule-create-class-select"      class="w-full max-w-lg border border-gray-300 rounded-md px-3 py-2 bg-white disabled:opacity-50"      [disabled]="disabled() || eligibleClasses().length === 0"      [value]="selectedClassKey()"      (change)="onSelectChange($any($event.target).value)"    >      <option value="">{{ \'weekScheduleBuilder.grid.classPlaceholder\' | translate }}</option>      @for (c of eligibleClasses(); track classKey(c)) {        <option [value]="classKey(c)">{{ c.label }}</option>      }    </select>    @if (loadError()) {      <p class="text-sm text-red-600 mt-1">{{ \'weekScheduleBuilder.grid.loadClassesError\' | translate }}</p>    } @else if (eligibleClasses().length === 0) {      <p class="text-sm text-amber-700 mt-1">        {{ \'weekScheduleBuilder.create.emptyEligibleClasses\' | translate }}      </p>    }  }  @if (showValidation() && !selectedClassKey()) {    <p class="text-sm text-red-600 mt-1" role="alert">      {{ \'weekScheduleBuilder.create.validationNoClass\' | translate }}    </p>  }</div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="mb-6">  <p class="text-xs text-gray-500 mb-2">    {{ \'weekScheduleBuilder.grid.schoolYearLabel\' | translate }}:    <strong>{{ schoolYearLabel() }}</strong>  </p>  <label class="block text-sm font-medium text-gray-700 mb-1" for="week-schedule-create-class-select">    {{ \'weekScheduleBuilder.grid.selectClass\' | translate }}  </label>  @if (loading()) {    <p class="text-sm text-gray-600">{{ \'weekScheduleBuilder.create.loadingClasses\' | translate }}</p>  } @else {    <select      id="week-schedule-create-class-select"      class="w-full max-w-lg border border-gray-300 rounded-md px-3 py-2 bg-white disabled:opacity-50"      [disabled]="disabled() || classesWithoutSchedule().length === 0"      [value]="selectedClassKey()"      (change)="onSelectChange($any($event.target).value)"    >      <option value="">{{ \'weekScheduleBuilder.grid.classPlaceholder\' | translate }}</option>      @for (c of classesWithoutSchedule(); track classKey(c)) {        <option [value]="classKey(c)">{{ c.label }}</option>      }    </select>    @if (loadError()) {      <p class="text-sm text-red-600 mt-1">{{ \'weekScheduleBuilder.grid.loadClassesError\' | translate }}</p>    } @else if (classesWithoutSchedule().length === 0) {      <p class="text-sm text-amber-700 mt-1">        {{ \'weekScheduleBuilder.create.emptyEligibleClasses\' | translate }}      </p>    }  }  @if (showValidation() && !selectedClassKey()) {    <p class="text-sm text-red-600 mt-1" role="alert">      {{ \'weekScheduleBuilder.create.validationNoClass\' | translate }}    </p>  }</div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WeekScheduleCreateClassSelectComponent'};
 </script>

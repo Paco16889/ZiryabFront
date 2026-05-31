@@ -15,6 +15,12 @@ import { CourseAssignmentsWizardComponent } from '../course-assignments-wizard/c
 import { CourseAssignmentsGridComponent } from '../course-assignments-grid/course-assignments-grid.component';
 import { CourseAssignmentsContext } from '../../../../../core/models/course-assignments/course-assignments-context.model';
 
+/**
+ * Vista activa del flujo de gestión de ciclos y asignaciones docentes.
+ * - `list`: listado principal
+ * - `create` / `post-create`: alta de ciclo
+ * - `assignments-wizard` / `assignments-grid`: asignaciones docentes
+ */
 type CourseListView = 'list' | 'create' | 'post-create' | 'assignments-wizard' | 'assignments-grid';
 
 /**
@@ -36,6 +42,7 @@ type CourseListView = 'list' | 'create' | 'post-create' | 'assignments-wizard' |
   styleUrl: './course-list.component.scss'
 })
 export class CourseListComponent implements OnInit {
+  /** Navegación a alta de asignaturas con ciclo preseleccionado. */
   private readonly subjectNav = inject(SubjectCreateNavigationService);
 
     /**
@@ -43,8 +50,13 @@ export class CourseListComponent implements OnInit {
    */
     courses: Course[] = [];
 
+  /** Pantalla mostrada: listado, alta, wizard o rejilla de asignaciones. */
   readonly view = signal<CourseListView>('list');
+
+  /** Último ciclo creado, para el paso de acciones post-alta. */
   readonly lastCreatedCourse = signal<CourseCreatedPayload | null>(null);
+
+  /** Ciclo y grade seleccionados al abrir la rejilla de asignaciones. */
   readonly assignmentsContext = signal<CourseAssignmentsContext | null>(null);
 
    /**
@@ -82,25 +94,30 @@ export class CourseListComponent implements OnInit {
         this.courseService.loadCourses();
       }
 
+  /** Muestra el formulario de alta de ciclo. */
   openCreateForm() {
     this.view.set('create');
   }
 
+  /** Vuelve al listado sin guardar cambios en el formulario de alta. */
   closeCreateForm() {
     this.view.set('list');
   }
 
+  /** Tras crear un ciclo, muestra acciones post-alta y recarga el listado. */
   onCourseCreated(payload: CourseCreatedPayload) {
     this.lastCreatedCourse.set(payload);
     this.view.set('post-create');
     this.courseService.loadCourses();
   }
 
+  /** Cierra el panel post-alta y vuelve al listado. */
   closePostCreate() {
     this.lastCreatedCourse.set(null);
     this.view.set('list');
   }
 
+  /** Navega a alta de asignaturas con el ciclo recién creado preseleccionado. */
   goToCreateSubjectsForLastCourse() {
     const created = this.lastCreatedCourse();
     if (created == null) {
@@ -111,20 +128,24 @@ export class CourseListComponent implements OnInit {
     this.subjectNav.goToCreateSubjectForCourse(created.id);
   }
 
+  /** Abre el asistente ciclo → grade para asignaciones docentes. */
   openAssignmentsWizard() {
     this.assignmentsContext.set(null);
     this.view.set('assignments-wizard');
   }
 
+  /** Cancela el wizard y vuelve al listado de ciclos. */
   onAssignmentsWizardCancel() {
     this.view.set('list');
   }
 
+  /** Abre la rejilla de asignaciones con el contexto elegido en el wizard. */
   onAssignmentsWizardComplete(ctx: CourseAssignmentsContext) {
     this.assignmentsContext.set(ctx);
     this.view.set('assignments-grid');
   }
 
+  /** Sale de la rejilla de asignaciones al listado principal. */
   onAssignmentsGridBack() {
     this.assignmentsContext.set(null);
     this.view.set('list');

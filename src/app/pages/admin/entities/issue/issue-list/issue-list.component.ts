@@ -30,15 +30,26 @@ export class IssueListComponent implements OnInit {
   /** `admin`: panel del dashboard; `standalone`: ruta `/issues` (alumno/profesor). */
   readonly variant = signal<'admin' | 'standalone'>('admin');
 
+  /** Ruta activa (`issueListVariant` en `data`). */
   private readonly route = inject(ActivatedRoute);
+
+  /** Fuente de verdad del listado de anuncios. */
   private readonly issueService = inject(AdminIssueService);
+
+  /** Comprueba si el usuario puede crear anuncios. */
   private readonly authService = inject(AuthService);
+  /** Recarga listado tras borrado exitoso en modal. */
   private readonly modalDeleteService = inject(ModalDeleteService);
+  /** Recarga listado tras edición exitosa en modal. */
   private readonly modalUpdateService = inject(ModalEditService);
 
+  /** Anuncios sincronizados con `AdminIssueService.issues`. */
   issues: Issue[] = [];
+
+  /** Muestra el formulario de alta de anuncio. */
   showCreateForm = false;
 
+  /** Sincroniza listado y recarga tras modales de edición/borrado. */
   constructor() {
     effect(() => {
       this.issues = this.issueService.issues();
@@ -57,6 +68,7 @@ export class IssueListComponent implements OnInit {
     });
   }
 
+  /** Detecta variante de ruta y carga anuncios. */
   ngOnInit(): void {
     if (this.route.snapshot.data['issueListVariant'] === 'standalone') {
       this.variant.set('standalone');
@@ -64,19 +76,23 @@ export class IssueListComponent implements OnInit {
     this.issueService.loadIssues();
   }
 
+  /** Solo profesor y admin pueden crear anuncios. */
   canCreate(): boolean {
     const role = this.authService.getUserRole();
     return role === 'TEACHER' || role === 'ADMIN';
   }
 
+  /** Muestra el formulario de creación. */
   openCreateForm(): void {
     this.showCreateForm = true;
   }
 
+  /** Oculta el formulario de creación. */
   closeCreateForm(): void {
     this.showCreateForm = false;
   }
 
+  /** Tras crear: cierra formulario y recarga listado. */
   onIssueCreated(): void {
     this.closeCreateForm();
     this.issueService.loadIssues();

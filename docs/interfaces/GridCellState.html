@@ -148,7 +148,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Estado editable de una celda del horario semanal antes de persistir cambios.</p>
+                <p>Estado de una celda de la rejilla semanal (asignación + metadatos de franja).</p>
 
             </p>
 
@@ -172,18 +172,21 @@
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#idSubject" 
 >
                                             idSubject
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#idTeacher" 
 >
                                             idTeacher
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#idTeacherAssignment" 
 >
                                             idTeacherAssignment
@@ -258,7 +261,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Hora de fin de la celda, heredada de <code>environment.timetableSlots</code>.</p>
+                                    <div class="io-description"><p>Fin de la franja (<code>HH:mm</code>).</p>
 </div>
                                 </td>
                             </tr>
@@ -291,13 +294,18 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Asignatura usada para sumar horas y compararlas con las horas declaradas.</p>
+                                    <div class="io-description"><p>Asignatura de la celda.</p>
 </div>
                                 </td>
                             </tr>
@@ -330,13 +338,18 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Profesor usado para comprobar solapes contra horarios de otros grupos.</p>
+                                    <div class="io-description"><p>Profesor de la asignación seleccionada.</p>
 </div>
                                 </td>
                             </tr>
@@ -369,13 +382,18 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Asignación profesor-asignatura-grupo seleccionada para la celda.</p>
+                                    <div class="io-description"><p>Ausente en celdas de plantilla materializada aún sin asignatura.</p>
 </div>
                                 </td>
                             </tr>
@@ -414,7 +432,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Texto mostrado en el selector: asignatura y, si está disponible, profesor.</p>
+                                    <div class="io-description"><p>Texto mostrado en la celda (asignatura / profesor).</p>
 </div>
                                 </td>
                             </tr>
@@ -458,7 +476,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Identificador del WeekSchedule existente, si la celda venía del backend.</p>
+                                    <div class="io-description"><p>Id del <code>WeekSchedule</code> persistido en servidor, si existe.</p>
 </div>
                                 </td>
                             </tr>
@@ -497,7 +515,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Hora de inicio de la celda, heredada de <code>environment.timetableSlots</code>.</p>
+                                    <div class="io-description"><p>Inicio de la franja (<code>HH:mm</code>).</p>
 </div>
                                 </td>
                             </tr>
@@ -536,7 +554,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Día de la semana en formato UI (<code>1</code> lunes, <code>5</code> viernes).</p>
+                                    <div class="io-description"><p>Día de la semana (1–7).</p>
 </div>
                                 </td>
                             </tr>
@@ -548,13 +566,26 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { Component, computed, inject, input, OnInit, output, signal } from &#x27;@angular/core&#x27;;
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  Input,
+  OnChanges,
+  OnInit,
+  output,
+  signal,
+  SimpleChanges,
+} from &#x27;@angular/core&#x27;;
 import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
 import { concat, forkJoin, Observable, of, last, map, catchError, mergeMap } from &#x27;rxjs&#x27;;
 import { environment } from &#x27;../../../../../../environments/environment&#x27;;
-import { Assignment } from &#x27;../../../../../core/models/assingment&#x27;;
+import { Assignment, AssignmentWithIncludes } from &#x27;../../../../../core/models/assingment&#x27;;
 import { TimetableSlot } from &#x27;../../../../../core/models/timetable-slot&#x27;;
+import { gridLayoutFromWeekSchedules } from &#x27;../../../../../core/utils/week-schedule-grid-layout&#x27;;
 import {
+  isWeekScheduleClassEligibleForGridSelector,
   WeekScheduleClassItem,
   weekScheduleClassKey,
 } from &#x27;../../../../../core/models/week-schedule-flow/week-schedule-class.model&#x27;;
@@ -565,43 +596,51 @@ import { WeekScheduleClassesHttpService } from &#x27;../../../../../core/service
 import { TeachersService } from &#x27;../../../../../core/services/admin/entities/teachers.service&#x27;;
 import { WeekScheduleService } from &#x27;../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule.service&#x27;;
 import {
+  dedupeAssignmentRowsBySubject,
+  filterAssignmentOptionsForCellBySubjectHours,
+  wouldExceedSubjectHoursInCell,
+} from &#x27;../../../../../core/utils/week-schedule-assignment-filters&#x27;;
+import {
   hoursBetween,
   timeRangesOverlap,
 } from &#x27;../../../../../core/utils/time-range&#x27;;
-import { prismaDayOfWeekToNumber } from &#x27;../../../../../core/utils/week-day&#x27;;
 import { WeekScheduleAssignmentPickerComponent } from &#x27;../week-schedule-assignment-picker/week-schedule-assignment-picker.component&#x27;;
 import { WeekScheduleDayCardComponent } from &#x27;../week-schedule-day-card/week-schedule-day-card.component&#x27;;
 import { WeekScheduleHourCardComponent } from &#x27;../week-schedule-hour-card/week-schedule-hour-card.component&#x27;;
 
-/** Clave estable para identificar una celda del grid por día y hora de inicio. */
+/**
+ * Clave estable de celda en la rejilla: día 1–7 + hora de inicio de franja.
+ * @param weekDay Día de la semana (1 &#x3D; lunes).
+ * @param startTime Hora de inicio (&#x60;HH:mm&#x60;).
+ */
 export function weekScheduleCellKey(weekDay: number, startTime: string): string {
   return &#x60;${weekDay}|${startTime}&#x60;;
 }
 
-/** Estado editable de una celda del horario semanal antes de persistir cambios. */
+/** Estado de una celda de la rejilla semanal (asignación + metadatos de franja). */
 export interface GridCellState {
-  /** Asignación profesor-asignatura-grupo seleccionada para la celda. */
-  idTeacherAssignment: number;
+  /** Ausente en celdas de plantilla materializada aún sin asignatura. */
+  idTeacherAssignment?: number;
 
-  /** Identificador del WeekSchedule existente, si la celda venía del backend. */
+  /** Id del &#x60;WeekSchedule&#x60; persistido en servidor, si existe. */
   serverId?: number;
 
-  /** Texto mostrado en el selector: asignatura y, si está disponible, profesor. */
+  /** Texto mostrado en la celda (asignatura / profesor). */
   label: string;
 
-  /** Profesor usado para comprobar solapes contra horarios de otros grupos. */
-  idTeacher: number;
+  /** Profesor de la asignación seleccionada. */
+  idTeacher?: number;
 
-  /** Asignatura usada para sumar horas y compararlas con las horas declaradas. */
-  idSubject: number;
+  /** Asignatura de la celda. */
+  idSubject?: number;
 
-  /** Día de la semana en formato UI (&#x60;1&#x60; lunes, &#x60;5&#x60; viernes). */
+  /** Día de la semana (1–7). */
   weekDay: number;
 
-  /** Hora de inicio de la celda, heredada de &#x60;environment.timetableSlots&#x60;. */
+  /** Inicio de la franja (&#x60;HH:mm&#x60;). */
   startTime: string;
 
-  /** Hora de fin de la celda, heredada de &#x60;environment.timetableSlots&#x60;. */
+  /** Fin de la franja (&#x60;HH:mm&#x60;). */
   finishTime: string;
 }
 
@@ -622,85 +661,95 @@ export interface GridCellState {
   templateUrl: &#x27;./week-schedule-grid-builder.component.html&#x27;,
   styleUrl: &#x27;./week-schedule-grid-builder.component.scss&#x27;,
 })
-export class WeekScheduleGridBuilderComponent implements OnInit {
-  /** Servicio que agrupa asignaciones docentes y horarios existentes para una clase. */
+export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
+  /** Asignaciones y horarios existentes de la clase seleccionada. */
   private readonly assignmentData &#x3D; inject(WeekScheduleAssignmentDataService);
 
-  /** API que lista clases agregadas por curso, nivel, grupo y año escolar. */
+  /** Listado de clases con plantilla para el selector. */
   private readonly classesApi &#x3D; inject(WeekScheduleClassesHttpService);
 
-  /** API usada para resolver nombres de profesor a partir de &#x60;idTeacher&#x60;. */
+  /** Nombres de profesores para etiquetas de celdas. */
   private readonly teachersApi &#x3D; inject(TeachersService);
 
-  /** Servicio CRUD de WeekSchedule usado para crear, actualizar y borrar celdas. */
+  /** CRUD de &#x60;WeekSchedule&#x60; y recarga tras guardar. */
   private readonly schedules &#x3D; inject(WeekScheduleService);
 
-  /** Traducciones de etiquetas de días y mensajes de validación del grid. */
+  /** Etiquetas de días y mensajes de validación i18n. */
   private readonly translate &#x3D; inject(TranslateService);
 
-  /** Solicita al shell padre salir del flujo de creación/edición de horarios. */
+  /** El shell vuelve a la pestaña anterior sin guardar. */
   readonly cancelCreate &#x3D; output&lt;void&gt;();
 
-  /** Notifica que se han persistido cambios para refrescar listados externos. */
+  /** Notifica al padre que la rejilla se persistió correctamente. */
   readonly scheduleSaved &#x3D; output&lt;void&gt;();
 
   /** En pestaña grid del shell: oculta cabecera propia (atrás / título). @see CURSO-91 */
   readonly embedded &#x3D; input(false);
 
-  /** Días laborables renderizados como columnas del grid. */
-  readonly weekdays &#x3D; [1, 2, 3, 4, 5] as const;
+  /** Tras materializar en pestaña create: preseleccionar esta clase (CURSO-145). */
+  @Input() preselectClassKey: string | null &#x3D; null;
 
-  /** Franjas horarias oficiales del centro renderizadas como filas. */
-  readonly slots: TimetableSlot[] &#x3D; [...environment.timetableSlots];
+  /** Días y franjas de la plantilla de la clase seleccionada (no fijos del environment). */
+  /** Días de la semana presentes en la plantilla de la clase. */
+  readonly gridWeekdays &#x3D; signal&lt;number[]&gt;([]);
 
-  /** Clases disponibles para seleccionar el contexto del horario. */
+  /** Franjas horarias de la plantilla (inicio/fin). */
+  readonly gridSlots &#x3D; signal&lt;TimetableSlot[]&gt;([]);
+
+  /** Clases con plantilla elegibles para el desplegable. */
   readonly classes &#x3D; signal&lt;WeekScheduleClassItem[]&gt;([]);
 
-  /** Error al cargar la lista inicial de clases. */
+  /** Error al cargar el listado de clases. */
   readonly classesLoadError &#x3D; signal(false);
 
-  /** Clase seleccionada; define curso, grupo y año escolar del horario editado. */
+  /** Clase &#x60;(course, grade, group, schoolYear)&#x60; activa en la rejilla. */
   readonly selectedClass &#x3D; signal&lt;WeekScheduleClassItem | null&gt;(null);
 
-  /** Grupo de la clase seleccionada, usado en validaciones de solapes. */
+  /** Clave estable de la clase seleccionada. */
+  readonly selectedClassKey &#x3D; signal(&#x27;&#x27;);
+
+  /** Id del grupo de la clase seleccionada (validaciones y persistencia). */
   readonly selectedGroupId &#x3D; computed(() &#x3D;&gt; this.selectedClass()?.group.id ?? null);
 
-  /** Curso escolar activo usado para filtrar clases y horarios. */
+  /** Año escolar del listado y de las peticiones. */
   readonly schoolYear &#x3D; signal&lt;string&gt;(environment.currentSchoolYear);
 
-  /** Asignaciones docente-asignatura-grupo válidas para la clase seleccionada. */
+  /** Asignaciones docente–asignatura del ciclo+grade de la clase. */
   readonly assignments &#x3D; signal&lt;TeacherSubjectAssignmentRow[]&gt;([]);
 
-  /** Mapa auxiliar para pintar nombres de profesor sin repetir búsquedas. */
+  /** Mapa id profesor → nombre para etiquetas de opciones. */
   readonly teacherNameById &#x3D; signal&lt;Map&lt;number, string&gt;&gt;(new Map());
 
-  /** Celdas actualmente editadas por el usuario, indexadas por &#x60;weekScheduleCellKey&#x60;. */
+  /** Estado editable de cada celda (clave &#x60;weekScheduleCellKey&#x60;). */
   readonly cells &#x3D; signal&lt;Map&lt;string, GridCellState&gt;&gt;(new Map());
 
-  /** Snapshot de horarios tal como llegaron del backend para calcular el diff de guardado. */
+  /** Snapshot del servidor al cargar la clase (diff al guardar). */
   private initialServerSchedules &#x3D; signal&lt;WeekSchedule[]&gt;([]);
 
-  /** Indica que se está cargando contexto de asignaciones/horarios de una clase. */
+  /** Caché de &#x60;GET /horarios-semanales&#x60; de &#x60;loadClasses&#x60; (evita repetir al elegir clase). */
+  private allSchedulesCache &#x3D; signal&lt;WeekSchedule[]&gt;([]);
+
+  /** Carga de clase, asignaciones y rejilla en curso. */
   readonly loading &#x3D; signal(false);
 
   /** Error al cargar contexto de la clase seleccionada. */
   readonly loadError &#x3D; signal(false);
 
-  /** Indica que hay operaciones de persistencia en curso. */
+  /** Persistencia del diff en curso. */
   readonly saving &#x3D; signal(false);
 
-  /** Error general durante la persistencia del diff. */
+  /** Error al guardar cambios en el servidor. */
   readonly saveError &#x3D; signal(false);
 
-  /** Mensajes de validación que bloquean el guardado del grid. */
+  /** Mensajes de validación local y de solapes de profesor. */
   readonly validationMessages &#x3D; signal&lt;string[]&gt;([]);
 
-  /** Opciones del selector ordenadas por asignatura y profesor para facilitar la edición. */
+  /** Opciones de asignación ordenadas por asignatura y profesor. */
   readonly sortedAssignmentOptions &#x3D; computed(() &#x3D;&gt; {
-    const rows &#x3D; this.assignments();
+    const rows &#x3D; dedupeAssignmentRowsBySubject(this.assignments());
     const names &#x3D; this.teacherNameById();
     return [...rows].sort((a, b) &#x3D;&gt; {
-      const bySub &#x3D; a.subject.name.localeCompare(b.subject.name);
+      const bySub &#x3D; (a.subject?.name ?? &#x27;&#x27;).localeCompare(b.subject?.name ?? &#x27;&#x27;);
       if (bySub !&#x3D;&#x3D; 0) {
         return bySub;
       }
@@ -708,32 +757,67 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   });
 
-  /** Helper expuesto al template para serializar la clase seleccionada. */
+  /** La rejilla se muestra cuando hay clase, días, franjas y datos de celdas. */
+  readonly canShowGrid &#x3D; computed(
+    () &#x3D;&gt;
+      this.selectedClass() !&#x3D; null &amp;&amp;
+      this.gridWeekdays().length &gt; 0 &amp;&amp;
+      this.gridSlots().length &gt; 0 &amp;&amp;
+      (this.assignments().length &gt; 0 || this.cells().size &gt; 0),
+  );
+
+  /** Referencia a &#x60;weekScheduleClassKey&#x60; para el template. */
   readonly classKey &#x3D; weekScheduleClassKey;
 
-  /** Carga las clases del curso escolar al montar el grid. */
+  /** Carga clases al iniciar el componente. */
   ngOnInit(): void {
     this.loadClasses();
   }
 
-  /** Consulta las clases disponibles y las ordena por etiqueta legible. */
+  /** Reaplica preselección si cambia &#x60;preselectClassKey&#x60; tras cargar clases. */
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes[&#x27;preselectClassKey&#x27;] &amp;&amp; this.classes().length &gt; 0) {
+      this.tryPreselectClass();
+    }
+  }
+
+  /** Obtiene clases elegibles y caché global de horarios semanales. */
   loadClasses(): void {
     this.classesLoadError.set(false);
-    this.classesApi.getAllClasses(this.schoolYear()).subscribe({
-      next: (res) &#x3D;&gt; {
-        this.classes.set(
-          res.success ? [...res.data].sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label)) : [],
-        );
+    forkJoin({
+      classes: this.classesApi.getAllClasses(this.schoolYear()),
+      schedules: this.schedules.getAllSchedules(),
+    }).subscribe({
+      next: ({ classes, schedules }) &#x3D;&gt; {
+        const allSchedules &#x3D; schedules.success ? schedules.data : [];
+        this.allSchedulesCache.set(allSchedules);
+        const list &#x3D; classes.success
+          ? [...classes.data]
+              .filter((c) &#x3D;&gt; isWeekScheduleClassEligibleForGridSelector(c, allSchedules))
+              .sort((a, b) &#x3D;&gt; a.label.localeCompare(b.label))
+          : [];
+        this.classes.set(list);
+        this.tryPreselectClass();
       },
       error: () &#x3D;&gt; this.classesLoadError.set(true),
     });
   }
 
-  /**
-   * Cambia el contexto del grid: limpia celdas anteriores, carga asignaciones,
-   * nombres de profesores y horarios existentes para la clase seleccionada.
-   */
+  /** Selecciona la clase indicada en &#x60;preselectClassKey&#x60; si existe en el listado. */
+  private tryPreselectClass(): void {
+    const key &#x3D; this.preselectClassKey;
+    if (!key || this.selectedClassKey() &#x3D;&#x3D;&#x3D; key) {
+      return;
+    }
+    const cls &#x3D; this.classes().find((c) &#x3D;&gt; weekScheduleClassKey(c) &#x3D;&#x3D;&#x3D; key);
+    if (cls) {
+      this.onClassSelected(key);
+    }
+  }
+
+  /** Carga asignaciones, layout y celdas al elegir una clase del desplegable. */
   onClassSelected(key: string): void {
+    this.selectedClassKey.set(key);
     const cls &#x3D; key
       ? (this.classes().find((c) &#x3D;&gt; weekScheduleClassKey(c) &#x3D;&#x3D;&#x3D; key) ?? null)
       : null;
@@ -741,6 +825,8 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     this.assignments.set([]);
     this.cells.set(new Map());
     this.initialServerSchedules.set([]);
+    this.gridWeekdays.set([]);
+    this.gridSlots.set([]);
     this.validationMessages.set([]);
     this.teacherNameById.set(new Map());
     if (cls &#x3D;&#x3D; null) {
@@ -754,6 +840,8 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
         cls.grade,
         cls.group.id,
         cls.schoolYear,
+        cls.label,
+        this.allSchedulesCache(),
       ),
       teachers: this.teachersApi.getAllTeachers(),
     }).subscribe({
@@ -768,6 +856,9 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
         this.teacherNameById.set(nameMap);
         this.assignments.set(ctx.assignments);
         this.initialServerSchedules.set(ctx.weekSchedules);
+        const layout &#x3D; gridLayoutFromWeekSchedules(ctx.weekSchedules);
+        this.gridWeekdays.set(layout.weekDays);
+        this.gridSlots.set(layout.slots);
         this.cells.set(this.mapServerToCells(ctx.weekSchedules));
         this.loading.set(false);
       },
@@ -778,13 +869,23 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   }
 
-  /** Convierte WeekSchedule persistidos en celdas editables del grid. */
+  /** Convierte horarios del API en mapa de celdas editables. */
   private mapServerToCells(list: WeekSchedule[]): Map&lt;string, GridCellState&gt; {
     const m &#x3D; new Map&lt;string, GridCellState&gt;();
     for (const ws of list) {
       const ta &#x3D; ws.teacherAssignment;
-      const weekDay &#x3D; prismaDayOfWeekToNumber(ws.weekDay as string | number);
+      const weekDay &#x3D; Number(ws.weekDay);
       const key &#x3D; weekScheduleCellKey(weekDay, ws.startTime);
+      if (ta &#x3D;&#x3D; null) {
+        m.set(key, {
+          serverId: ws.id,
+          label: &#x27;&#x27;,
+          weekDay,
+          startTime: ws.startTime,
+          finishTime: ws.finishTime,
+        });
+        continue;
+      }
       m.set(key, {
         idTeacherAssignment: ta.id,
         serverId: ws.id,
@@ -799,46 +900,55 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return m;
   }
 
-  /** Reconstruye la etiqueta de una celda persistida a partir de su assignment. */
+  /** Etiqueta legible de una asignación para mostrar en celda. */
   private cellLabelFromAssignment(ta: Assignment): string {
     const rows &#x3D; this.assignments();
     const row &#x3D; rows.find((r) &#x3D;&gt; r.id &#x3D;&#x3D;&#x3D; ta.id);
     if (row) {
       return this.assignmentOptionLabel(row);
     }
+    const nested &#x3D; (ta as AssignmentWithIncludes).subject?.name?.trim();
+    if (nested) {
+      return nested;
+    }
     return &#x60;Assignment ${ta.id}&#x60;;
   }
 
-  /** Etiqueta visible para una opción del selector de celda. */
+  /** Nombre de asignatura (o fallback con id) para opciones y celdas. */
   assignmentOptionLabel(row: TeacherSubjectAssignmentRow): string {
-    const t &#x3D; this.teacherNameById().get(row.idTeacher);
-    const sub &#x3D; row.subject.name;
-    if (t) {
-      return this.translate.instant(&#x27;weekScheduleBuilder.grid.optionSubjectTeacher&#x27;, {
-        subject: sub,
-        teacher: t,
-      });
-    }
-    return sub;
+    return row.subject?.name?.trim() || &#x60;#${row.idSubject}&#x60;;
   }
 
-  /** Genera la clave de mapa para una celda concreta del grid. */
+  /** Clave de celda para día y franja. */
   cellKey(day: number, slot: TimetableSlot): string {
     return weekScheduleCellKey(day, slot.startTime);
   }
 
-  /** Devuelve la celda editada o persistida para un día y franja. */
+  /** Estado de celda en día y franja, si existe. */
   cellAt(day: number, slot: TimetableSlot): GridCellState | undefined {
     return this.cells().get(this.cellKey(day, slot));
   }
 
-  /** Valor que debe aparecer seleccionado en el &#x60;&lt;select&gt;&#x60; de una celda. */
-  cellAssignmentSelectValue(day: number, slot: TimetableSlot): string {
-    const c &#x3D; this.cellAt(day, slot);
-    return c ? String(c.idTeacherAssignment) : &#x27;&#x27;;
+  /** Todas las asignaturas del ciclo+grade con horas libres; misma lista en cada celda. */
+  optionsForCell(day: number, slot: TimetableSlot): TeacherSubjectAssignmentRow[] {
+    const key &#x3D; this.cellKey(day, slot);
+    return filterAssignmentOptionsForCellBySubjectHours(
+      this.sortedAssignmentOptions(),
+      this.cells(),
+      key,
+    );
   }
 
-  /** Añade o sustituye la asignación de una celda del grid. */
+  /** Valor del &#x60;&lt;select&gt;&#x60; de asignación (&#x60;idTeacherAssignment&#x60; como string). */
+  cellAssignmentSelectValue(day: number, slot: TimetableSlot): string {
+    const c &#x3D; this.cellAt(day, slot);
+    if (c?.idTeacherAssignment &#x3D;&#x3D; null) {
+      return &#x27;&#x27;;
+    }
+    return String(c.idTeacherAssignment);
+  }
+
+  /** Asigna o quita docente–asignatura en una celda (valida horas de asignatura). */
   onCellAssignmentChange(day: number, slot: TimetableSlot, assignmentId: number | null): void {
     if (assignmentId &#x3D;&#x3D; null) {
       this.clearCell(day, slot);
@@ -849,9 +959,36 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
       return;
     }
     const key &#x3D; this.cellKey(day, slot);
+    if (
+      wouldExceedSubjectHoursInCell(
+        row,
+        this.cells(),
+        key,
+        slot.startTime,
+        slot.finishTime,
+      )
+    ) {
+      const declared &#x3D; row.subject?.hours ?? 0;
+      let used &#x3D; 0;
+      for (const [, cell] of this.cells()) {
+        if (cell.idSubject &#x3D;&#x3D;&#x3D; row.idSubject &amp;&amp; cell.idTeacherAssignment !&#x3D; null) {
+          used +&#x3D; hoursBetween(cell.startTime, cell.finishTime);
+        }
+      }
+      this.validationMessages.set([
+        this.translate.instant(&#x27;weekScheduleBuilder.grid.validationSubjectHours&#x27;, {
+          subject: this.assignmentOptionLabel(row),
+          max: declared,
+          current: String(used + hoursBetween(slot.startTime, slot.finishTime)),
+        }),
+      ]);
+      return;
+    }
+    const prev &#x3D; this.cells().get(key);
     const next &#x3D; new Map(this.cells());
     next.set(key, {
       idTeacherAssignment: row.id,
+      serverId: prev?.serverId,
       label: this.assignmentOptionLabel(row),
       idTeacher: row.idTeacher,
       idSubject: row.idSubject,
@@ -863,24 +1000,32 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     this.validationMessages.set([]);
   }
 
-  /** Vacía una celda y la marca como eliminación si existía en backend. */
+  /** Vacía la asignación de una celda (mantiene &#x60;serverId&#x60; si ya existía en servidor). */
   clearCell(day: number, slot: TimetableSlot): void {
     const key &#x3D; this.cellKey(day, slot);
+    const prev &#x3D; this.cells().get(key);
     const next &#x3D; new Map(this.cells());
-    next.delete(key);
+    if (prev?.serverId !&#x3D; null) {
+      next.set(key, {
+        serverId: prev.serverId,
+        label: &#x27;&#x27;,
+        weekDay: day,
+        startTime: slot.startTime,
+        finishTime: slot.finishTime,
+      });
+    } else {
+      next.delete(key);
+    }
     this.cells.set(next);
     this.validationMessages.set([]);
   }
 
-  /** Traduce el nombre del día mostrado como cabecera de columna. */
+  /** Etiqueta i18n del día de la semana (1–7). */
   weekdayLabel(day: number): string {
     return this.translate.instant(&#x60;weekScheduleBuilder.days.${day}&#x60;);
   }
 
-  /**
-   * Ejecuta validaciones locales: clase seleccionada, solapes dentro del grupo
-   * y exceso de horas por asignatura respecto a las horas declaradas.
-   */
+  /** Valida solapes en grupo y horas declaradas por asignatura. */
   runValidation(): boolean {
     const msgs: string[] &#x3D; [];
     const groupId &#x3D; this.selectedGroupId();
@@ -889,7 +1034,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
       this.validationMessages.set(msgs);
       return false;
     }
-    const list &#x3D; [...this.cells().values()];
+    const list &#x3D; [...this.cells().values()].filter((c) &#x3D;&gt; c.idTeacherAssignment !&#x3D; null);
 
     for (let i &#x3D; 0; i &lt; list.length; i++) {
       for (let j &#x3D; i + 1; j &lt; list.length; j++) {
@@ -912,20 +1057,21 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
 
     const warnedSubjects &#x3D; new Set&lt;number&gt;();
     for (const c of list) {
-      if (warnedSubjects.has(c.idSubject)) {
+      const subjectId &#x3D; c.idSubject;
+      if (subjectId &#x3D;&#x3D; null || warnedSubjects.has(subjectId)) {
         continue;
       }
-      const declared &#x3D; this.assignments().find((r) &#x3D;&gt; r.idSubject &#x3D;&#x3D;&#x3D; c.idSubject)
+      const declared &#x3D; this.assignments().find((r) &#x3D;&gt; r.idSubject &#x3D;&#x3D;&#x3D; subjectId)
         ?.subject?.hours;
       if (declared !&#x3D; null &amp;&amp; declared &gt; 0) {
         let sum &#x3D; 0;
         for (const x of list) {
-          if (x.idSubject &#x3D;&#x3D;&#x3D; c.idSubject) {
+          if (x.idSubject &#x3D;&#x3D;&#x3D; subjectId) {
             sum +&#x3D; hoursBetween(x.startTime, x.finishTime);
           }
         }
         if (sum &gt; declared + 1e-6) {
-          warnedSubjects.add(c.idSubject);
+          warnedSubjects.add(subjectId);
           msgs.push(
             this.translate.instant(&#x27;weekScheduleBuilder.grid.validationSubjectHours&#x27;, {
               subject: c.label,
@@ -942,12 +1088,14 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
   }
 
   /**
-   * Consulta los horarios de cada profesor implicado para detectar solapes con
-   * otros grupos antes de persistir el horario actual.
+   * Comprueba solapes de horario del profesor en otros grupos.
+   * @param groupId Grupo de la clase actual (horarios externos se comparan con él).
    */
   validateTeachers$(groupId: number): Observable&lt;string[]&gt; {
-    const cells &#x3D; [...this.cells().values()];
-    const teacherIds &#x3D; [...new Set(cells.map((c) &#x3D;&gt; c.idTeacher))];
+    const cells &#x3D; [...this.cells().values()].filter(
+      (c) &#x3D;&gt; c.idTeacherAssignment !&#x3D; null &amp;&amp; c.idTeacher !&#x3D; null,
+    );
+    const teacherIds &#x3D; [...new Set(cells.map((c) &#x3D;&gt; c.idTeacher!))];
     if (teacherIds.length &#x3D;&#x3D;&#x3D; 0) {
       return of([]);
     }
@@ -966,7 +1114,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
             continue;
           }
           const external &#x3D; res.data.filter(
-            (s) &#x3D;&gt; s.teacherAssignment.idGroup !&#x3D;&#x3D; groupId,
+            (s) &#x3D;&gt; s.teacherAssignment?.idGroup !&#x3D;&#x3D; groupId,
           );
           for (const cell of cells.filter((c) &#x3D;&gt; c.idTeacher &#x3D;&#x3D;&#x3D; tid)) {
             for (const ex of external) {
@@ -994,7 +1142,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     );
   }
 
-  /** Valida el grid, comprueba solapes externos y persiste el diff resultante. */
+  /** Valida, comprueba profesores y persiste el diff contra el servidor. */
   save(): void {
     if (!this.runValidation()) {
       return;
@@ -1031,16 +1179,12 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     });
   }
 
-  /**
-   * Calcula operaciones mínimas comparando el snapshot inicial con las celdas actuales:
-   * borra celdas eliminadas, crea nuevas y recrea las que cambiaron de assignment.
-   */
+  /** Crea, actualiza o borra &#x60;WeekSchedule&#x60; según diferencias con &#x60;initialServerSchedules&#x60;. */
   private persistDiff$(_groupId: number): Observable&lt;unknown&gt; {
     const initial &#x3D; this.initialServerSchedules();
     const byKeyInitial &#x3D; new Map&lt;string, WeekSchedule&gt;();
     for (const ws of initial) {
-      const weekDay &#x3D; prismaDayOfWeekToNumber(ws.weekDay as string | number);
-      byKeyInitial.set(weekScheduleCellKey(weekDay, ws.startTime), ws);
+      byKeyInitial.set(weekScheduleCellKey(Number(ws.weekDay), ws.startTime), ws);
     }
     const current &#x3D; this.cells();
     const ops: Observable&lt;unknown&gt;[] &#x3D; [];
@@ -1057,11 +1201,17 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
 
     for (const [key, cell] of current) {
       const prev &#x3D; byKeyInitial.get(key);
+      const prevAssignmentId &#x3D; prev?.teacherAssignment?.id ?? null;
+      const cellAssignmentId &#x3D; cell.idTeacherAssignment ?? null;
+
       if (!prev) {
+        if (cellAssignmentId &#x3D;&#x3D; null) {
+          continue;
+        }
         ops.push(
           this.schedules
             .createSchedule({
-              idTeacherAssignment: cell.idTeacherAssignment,
+              idTeacherAssignment: cellAssignmentId,
               weekDay: cell.weekDay,
               startTime: cell.startTime,
               finishTime: cell.finishTime,
@@ -1070,12 +1220,30 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
               throw e;
             })),
         );
-      } else if (prev.teacherAssignment.id !&#x3D;&#x3D; cell.idTeacherAssignment) {
+      } else if (prevAssignmentId &#x3D;&#x3D; null &amp;&amp; cellAssignmentId !&#x3D; null) {
+        ops.push(
+          this.schedules
+            .updateSchedule(prev.id, {
+              id: prev.id,
+              idTeacherAssignment: cellAssignmentId,
+              weekDay: cell.weekDay,
+              startTime: cell.startTime,
+              finishTime: cell.finishTime,
+            })
+            .pipe(catchError((e) &#x3D;&gt; {
+              throw e;
+            })),
+        );
+      } else if (
+        prevAssignmentId !&#x3D; null &amp;&amp;
+        cellAssignmentId !&#x3D; null &amp;&amp;
+        prevAssignmentId !&#x3D;&#x3D; cellAssignmentId
+      ) {
         ops.push(
           this.schedules.deleteSchedule(prev.id).pipe(
             mergeMap(() &#x3D;&gt;
               this.schedules.createSchedule({
-                idTeacherAssignment: cell.idTeacherAssignment,
+                idTeacherAssignment: cellAssignmentId,
                 weekDay: cell.weekDay,
                 startTime: cell.startTime,
                 finishTime: cell.finishTime,
@@ -1112,7 +1280,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit {
     return concat(...ops).pipe(last());
   }
 
-  /** Cierra el builder sin guardar cambios. */
+  /** Emite cancelación al shell padre. */
   onCancel(): void {
     this.cancelCreate.emit();
   }

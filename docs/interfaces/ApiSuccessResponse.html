@@ -355,14 +355,16 @@ export class AssistanceService {
     /** Endpoint base de asistencias. */
     private apiUrl &#x3D; &#x60;${environment.apiUrl}/assistances&#x60;;
 
-    constructor(
-        /** Cliente HTTP para consultar y actualizar asistencias del alumno. */
-        private http: HttpClient,
-    ) { }
+    /**
+     * Inyecta el cliente HTTP del módulo de asistencias.
+     * @param http Cliente HTTP para consultar y actualizar asistencias del alumno.
+     */
+    constructor(private http: HttpClient) { }
 
     /**
      * Obtiene las faltas/asistencias de un alumno concreto para su ficha.
      * @param studentId Identificador del alumno.
+     * @returns Observable con las asistencias del alumno solicitado.
      */
     getAssistancesByStudentId(studentId: number): Observable&lt;AssistanceResponse&gt; {
         return this.http.get&lt;AssistanceResponse&gt;(&#x60;${this.apiUrl}/student/${studentId}&#x60;);
@@ -372,6 +374,7 @@ export class AssistanceService {
      * Sube el documento justificante de una ausencia.
      * @param assistanceId Registro de asistencia que se va a justificar.
      * @param file Archivo seleccionado por el alumno.
+     * @returns Observable con la URI del justificante almacenado.
      */
     submitJustification(assistanceId: number, file: File): Observable&lt;{ justificationUri: string }&gt; {
         const formData &#x3D; new FormData();
@@ -384,27 +387,46 @@ export class AssistanceService {
             .pipe(map((res) &#x3D;&gt; res.data));
     }
 
-    /** Obtiene todas las asistencias; usado en pantallas compartidas/profesor. */
+    /**
+     * Obtiene todas las asistencias; usado en pantallas compartidas/profesor.
+     * @returns Observable con el listado completo de registros de asistencia.
+     */
     getAllAssistances(): Observable&lt;AssistanceResponse&gt; {
         return this.http.get&lt;AssistanceResponse&gt;(this.apiUrl);
     }
 
-    /** Marca una ausencia como justificada desde el flujo de revisión. */
+    /**
+     * Marca una ausencia como justificada desde el flujo de revisión.
+     * @param assistanceId Identificador del registro de asistencia a excusar.
+     * @returns Observable con la confirmación de la operación.
+     */
     justifyAbsence(assistanceId: number): Observable&lt;ApiSuccessResponse&gt; {
         return this.http.patch&lt;ApiSuccessResponse&gt;(&#x60;${this.apiUrl}/justify/${assistanceId}&#x60;, {});
     }
 
-    /** Rechaza una justificación y devuelve la asistencia a estado ausente. */
+    /**
+     * Rechaza una justificación y devuelve la asistencia a estado ausente.
+     * @param assistanceId Identificador del registro de asistencia revisado.
+     * @returns Observable con la confirmación de la operación.
+     */
     rejectJustification(assistanceId: number): Observable&lt;ApiSuccessResponse&gt; {
         return this.http.patch&lt;ApiSuccessResponse&gt;(&#x60;${this.apiUrl}/assistancestatus/${assistanceId}&#x60;, { status: &#x27;ABSENT&#x27; });
     }
 
-    /** Consulta el estado de revisión del justificante de una asistencia. */
+    /**
+     * Consulta el estado de revisión del justificante de una asistencia.
+     * @param assistanceId Identificador del registro de asistencia consultado.
+     * @returns Observable con el estado de revisión del justificante.
+     */
     getJustificationStatus(assistanceId: number): Observable&lt;ApiSuccessResponse&gt; {
         return this.http.get&lt;ApiSuccessResponse&gt;(&#x60;${this.apiUrl}/${assistanceId}/justification-status&#x60;);
     }
 
-    /** Obtiene ausencias de alumnos tutelados por el profesor autenticado. */
+    /**
+     * Obtiene ausencias de alumnos tutelados por el profesor autenticado.
+     * @typeParam T Forma de los datos de ausencias devueltos por el endpoint del profesor.
+     * @returns Observable con las ausencias agrupadas por alumno.
+     */
     getStudentsAbsences&lt;T &#x3D; unknown&gt;(): Observable&lt;ApiSuccessResponse&lt;T&gt;&gt; {
         return this.http.get&lt;ApiSuccessResponse&lt;T&gt;&gt;(&#x60;${environment.apiUrl}/teachers/my-students-absences&#x60;);
     }

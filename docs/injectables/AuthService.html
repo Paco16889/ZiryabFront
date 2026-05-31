@@ -194,6 +194,12 @@ this.authService.currentUser$.subscribe((user) =&gt; {
                                     <span class="modifier">Private</span>
                                 <a href="#currentUserSubject" >currentUserSubject</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#JWT_STORAGE_KEY" >JWT_STORAGE_KEY</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -236,6 +242,10 @@ this.authService.currentUser$.subscribe((user) =&gt; {
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#mapAuthResponse" >mapAuthResponse</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#openSession" >openSession</a>
                             </li>
                             <li>
@@ -267,12 +277,14 @@ this.authService.currentUser$.subscribe((user) =&gt; {
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/core/services/auth.service.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/core/services/auth.service.ts:92</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inyecta las dependencias de autenticación de la aplicación.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -281,6 +293,7 @@ this.authService.currentUser$.subscribe((user) =&gt; {
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -295,6 +308,10 @@ this.authService.currentUser$.subscribe((user) =&gt; {
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Cliente HTTP para intercambiar tokens con el backend propio.</p>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>firebaseAuthService</td>
@@ -307,6 +324,10 @@ this.authService.currentUser$.subscribe((user) =&gt; {
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>Capa Firebase que valida credenciales y devuelve el ID token.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -344,8 +365,8 @@ this.authService.currentUser$.subscribe((user) =&gt; {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:237</a></div>
                         </td>
                     </tr>
 
@@ -383,8 +404,8 @@ this.authService.currentUser$.subscribe((user) =&gt; {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="152"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:152</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -423,8 +444,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:189</a></div>
                         </td>
                     </tr>
 
@@ -462,8 +483,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="162"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:162</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:194</a></div>
                         </td>
                     </tr>
 
@@ -501,8 +522,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="172"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:172</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -540,8 +561,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="167"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:167</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:202</a></div>
                         </td>
                     </tr>
 
@@ -579,8 +600,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="177"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:177</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:212</a></div>
                         </td>
                     </tr>
 
@@ -618,8 +639,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -638,6 +659,7 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -652,6 +674,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Correo electrónico del usuario.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>password</td>
@@ -664,6 +690,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contraseña del usuario.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -673,7 +703,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con el perfil autenticado y el JWT del backend.</p>
+
                             </div>
                 </td>
             </tr>
@@ -699,8 +730,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="142"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:142</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:174</a></div>
                         </td>
                     </tr>
 
@@ -714,6 +745,78 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                             <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapAuthResponse"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>mapAuthResponse</b></span>
+                        <a href="#mapAuthResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapAuthResponse(res: <a href="../miscellaneous/typealiases.html#AuthApiResponse" target="_self">AuthApiResponse</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:221</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Publica el usuario autenticado para toda la aplicación.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AuthApiResponse" target="_self" >AuthApiResponse</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/UserResponse.html" target="_self" >UserResponse</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>No devuelve valor; actualiza el BehaviorSubject de sesión.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -740,15 +843,15 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="182"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:182</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:226</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Publica el usuario autenticado para toda la aplicación.</p>
+                        <div class="io-description"><p>Persiste JWT en sessionStorage y publica el usuario en <code>currentUser$</code>.</p>
 </div>
 
                             <div class="io-description">
@@ -809,8 +912,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -829,6 +932,7 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -843,6 +947,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Correo electrónico de la nueva cuenta.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>password</td>
@@ -855,6 +963,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Contraseña de la nueva cuenta.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>name</td>
@@ -867,6 +979,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Nombre del usuario.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>surname</td>
@@ -879,6 +995,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Primer apellido del usuario.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>birthDate</td>
@@ -891,6 +1011,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Fecha de nacimiento en formato ISO.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>dni</td>
@@ -903,6 +1027,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Documento de identidad del usuario.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>role</td>
@@ -915,6 +1043,10 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                                             </td>
 
 
+                                            <td>
+                                                    <p>Rol asignado en la plataforma.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -924,7 +1056,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Observable con el perfil registrado y el JWT del backend.</p>
+
                             </div>
                 </td>
             </tr>
@@ -950,8 +1083,8 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/app/core/services/auth.service.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -1001,7 +1134,7 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/core/services/auth.service.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/core/services/auth.service.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -1039,7 +1172,7 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/core/services/auth.service.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/core/services/auth.service.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -1077,13 +1210,53 @@ Centraliza la limpieza del estado de autenticación y del almacenamiento local.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/core/services/auth.service.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/core/services/auth.service.ts:89</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Estado interno de sesión; <code>null</code> representa usuario no autenticado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_STORAGE_KEY"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>JWT_STORAGE_KEY</b></span>
+                        <a href="#JWT_STORAGE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;ziryab_jwt&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/core/services/auth.service.ts:83</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>sessionStorage: JWT para Bearer cross-origin (Render).</p>
 </div>
                 </td>
             </tr>
@@ -1138,6 +1311,9 @@ export interface ApiResponse&lt;T&gt; {
   data: T;
 }
 
+/** Login/registro: JWT en la raíz del JSON, no dentro de &#x60;data&#x60;. */
+type AuthApiResponse &#x3D; ApiResponse&lt;Omit&lt;UserResponse, &#x27;token&#x27;&gt;&gt; &amp; { token: string };
+
 // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
 // SERVICIO
 // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
@@ -1174,6 +1350,9 @@ export interface ApiResponse&lt;T&gt; {
  */
 @Injectable({ providedIn: &#x27;root&#x27; })
 export class AuthService {
+  /** sessionStorage: JWT para Bearer cross-origin (Render). */
+  private static readonly JWT_STORAGE_KEY &#x3D; &#x27;ziryab_jwt&#x27;;
+
   /** URL base del backend propio. */
   private readonly apiUrl &#x3D; environment.apiUrl;
 
@@ -1183,25 +1362,43 @@ export class AuthService {
   /** Flujo público para reaccionar a login/logout en componentes y servicios. */
   public currentUser$ &#x3D; this.currentUserSubject.asObservable();
 
+  /**
+   * Inyecta las dependencias de autenticación de la aplicación.
+   * @param http Cliente HTTP para intercambiar tokens con el backend propio.
+   * @param firebaseAuthService Capa Firebase que valida credenciales y devuelve el ID token.
+   */
   constructor(
-    /** Cliente HTTP para intercambiar tokens con el backend propio. */
     private http: HttpClient,
-    /** Capa Firebase que valida credenciales y devuelve el ID token. */
     @Inject(FirebaseAuthService) private firebaseAuthService: FirebaseAuthService,
   ) {}
 
-  /** Autentica con Firebase y abre sesión en el backend usando el token obtenido. */
+  /**
+   * Autentica con Firebase y abre sesión en el backend usando el token obtenido.
+   * @param email Correo electrónico del usuario.
+   * @param password Contraseña del usuario.
+   * @returns Observable con el perfil autenticado y el JWT del backend.
+   */
   login(email: string, password: string): Observable&lt;UserResponse&gt; {
     return this.firebaseAuthService.signIn(email, password).pipe(
       switchMap((token) &#x3D;&gt;
-        this.http.post&lt;ApiResponse&lt;UserResponse&gt;&gt;(&#x60;${this.apiUrl}/auth/login&#x60;, { token })
+        this.http.post&lt;AuthApiResponse&gt;(&#x60;${this.apiUrl}/auth/login&#x60;, { token })
       ),
-      map((res) &#x3D;&gt; res.data),
+      map((res) &#x3D;&gt; this.mapAuthResponse(res)),
       tap((user) &#x3D;&gt; this.openSession(user))
     );
   }
 
-  /** Registra usuario en Firebase y crea su perfil en el backend propio. */
+  /**
+   * Registra usuario en Firebase y crea su perfil en el backend propio.
+   * @param email Correo electrónico de la nueva cuenta.
+   * @param password Contraseña de la nueva cuenta.
+   * @param name Nombre del usuario.
+   * @param surname Primer apellido del usuario.
+   * @param birthDate Fecha de nacimiento en formato ISO.
+   * @param dni Documento de identidad del usuario.
+   * @param role Rol asignado en la plataforma.
+   * @returns Observable con el perfil registrado y el JWT del backend.
+   */
   register(
     email: string,
     password: string,
@@ -1213,7 +1410,7 @@ export class AuthService {
   ): Observable&lt;UserResponse&gt; {
     return this.firebaseAuthService.signUp(email, password).pipe(
       switchMap((token) &#x3D;&gt;
-        this.http.post&lt;ApiResponse&lt;UserResponse&gt;&gt;(&#x60;${this.apiUrl}/auth/register&#x60;, {
+        this.http.post&lt;AuthApiResponse&gt;(&#x60;${this.apiUrl}/auth/register&#x60;, {
           token,
           email,
           name,
@@ -1223,17 +1420,25 @@ export class AuthService {
           role,
         })
       ),
-      map((res) &#x3D;&gt; res.data),
+      map((res) &#x3D;&gt; this.mapAuthResponse(res)),
       tap((user) &#x3D;&gt; this.openSession(user))
     );
   }
 
   /** Verifica la cookie/JWT actual con el backend y rehidrata el usuario. */
   verifySession(): Observable&lt;UserResponse&gt; {
-    return this.http.get&lt;ApiResponse&lt;UserResponse&gt;&gt;(&#x60;${this.apiUrl}/auth/me&#x60;).pipe(
-      map((res) &#x3D;&gt; res.data),
-      tap((user) &#x3D;&gt; this.openSession(user))
-    );
+    return this.http
+      .get&lt;ApiResponse&lt;Omit&lt;UserResponse, &#x27;token&#x27;&gt;&gt;&gt;(&#x60;${this.apiUrl}/auth/me&#x60;)
+      .pipe(
+        map((res) &#x3D;&gt; {
+          const jwt &#x3D; this.getToken();
+          if (!jwt) {
+            throw new Error(&#x27;Sin token de sesión&#x27;);
+          }
+          return { ...res.data, token: jwt };
+        }),
+        tap((user) &#x3D;&gt; this.openSession(user))
+      );
   }
 
   /** Cierra la sesión en backend y limpia el estado local. */
@@ -1258,7 +1463,10 @@ export class AuthService {
 
   /** Devuelve el JWT del usuario en memoria, si existe. */
   getToken(): string | null {
-    return this.currentUserSubject.value?.token ?? null;
+    return (
+      this.currentUserSubject.value?.token ??
+      sessionStorage.getItem(AuthService.JWT_STORAGE_KEY)
+    );
   }
 
   /** Devuelve el rol del usuario actual para guards y navegación. */
@@ -1276,13 +1484,29 @@ export class AuthService {
     return !!this.currentUserSubject.value;
   }
 
-  /** Publica el usuario autenticado para toda la aplicación. */
+  /**
+   * Publica el usuario autenticado para toda la aplicación.
+   * @param user Perfil devuelto por el backend tras login o registro.
+   * @returns No devuelve valor; actualiza el BehaviorSubject de sesión.
+   */
+  private mapAuthResponse(res: AuthApiResponse): UserResponse {
+    return { ...res.data, token: res.token };
+  }
+
+  /** Persiste JWT en sessionStorage y publica el usuario en &#x60;currentUser$&#x60;. */
   private openSession(user: UserResponse): void {
-    this.currentUserSubject.next(user);
+    const token &#x3D;
+      user.token || sessionStorage.getItem(AuthService.JWT_STORAGE_KEY) || &#x27;&#x27;;
+    const sessionUser: UserResponse &#x3D; { ...user, token };
+    if (token) {
+      sessionStorage.setItem(AuthService.JWT_STORAGE_KEY, token);
+    }
+    this.currentUserSubject.next(sessionUser);
   }
 
   /** Limpia almacenamiento local y notifica logout a los observadores. */
   private closeSession(): void {
+    sessionStorage.removeItem(AuthService.JWT_STORAGE_KEY);
     localStorage.clear();
     this.currentUserSubject.next(null);
   }

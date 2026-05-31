@@ -46,9 +46,13 @@ export class GestionNotasComponent implements OnInit {
   /** Traducciones de mensajes. */
   private readonly translate = inject(TranslateService);
 
+  /** Grupo tutorizado activo en el selector. */
   public selectedGroup = signal<TutoredCourseGroup | null>(null);
+
+  /** Periodo de evaluación activo (trimestres). */
   public selectedPeriod = signal<EvaluationPeriod>(EvaluationPeriod.FIRST_TRIMESTER);
-  /** Periodos disponibles para selector. */
+
+  /** Periodos disponibles para el selector. */
   public periods = Object.values(EvaluationPeriod);
   
   /** Alumnos agrupados con asignaturas del grupo. */

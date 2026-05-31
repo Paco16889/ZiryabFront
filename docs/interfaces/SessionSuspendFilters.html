@@ -624,12 +624,9 @@ export interface ClassSessionUpdateRequest {
 
 /**
  * Respuesta de la API tras actualizar una sesión de clase.
- * El campo message lo devuelve tu backend, consúltalo en el controlador
- * correspondiente a la ruta PUT de class-sessions.
  * @example
  * const response: ClassSessionUpdateResponse &#x3D; {
  *   success: true,
- *   message: &#x27;MENSAJE_BACKEND_UPDATE_CLASSSESSION&#x27;,
  *   data: {
  *     id: ID_SESION,
  *     date: &#x27;FECHA_SESION&#x27;,
@@ -644,8 +641,6 @@ export interface ClassSessionUpdateRequest {
 export interface ClassSessionUpdateResponse {
   /** Indica si la operación se ha completado correctamente */
   success: boolean;
-  /** Mensaje descriptivo del resultado devuelto por el backend */
-  message: string;
   /** Datos de la sesión de clase actualizada */
   data: ClassSession;
 }

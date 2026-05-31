@@ -13,6 +13,7 @@ import {
   StudentTaskUpdateResponse,
   StudentTaskDeleteResponse,
 } from '../../models/studentTask';
+import { environment } from '../../../../environments/environment';
 
 /** Servicio de entregas de alumno: consulta, subida, entrega, retirada y calificación. */
 @Injectable({
@@ -21,7 +22,7 @@ import {
 export class StudentTaskService {
 
   /** Endpoint base de StudentTasks. */
-  private apiUrl = 'http://localhost:3000/api/student-tasks';
+  private apiUrl = `${environment.apiUrl}/student-tasks`;
 
   /**
    * Inyecta el cliente HTTP del módulo de entregas de alumno.

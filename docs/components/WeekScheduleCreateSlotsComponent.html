@@ -214,21 +214,6 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#timePlaceholder" >timePlaceholder</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -239,7 +224,13 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#effectiveMaxSlots" >effectiveMaxSlots</a>
+                            </li>
+                            <li>
                                 <a href="#hasInvalidSlots" >hasInvalidSlots</a>
+                            </li>
+                            <li>
+                                <a href="#isAtMaxSlots" >isAtMaxSlots</a>
                             </li>
                             <li>
                                 <a href="#isFieldFormatInvalid" >isFieldFormatInvalid</a>
@@ -262,6 +253,9 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                             <li>
                                 <a href="#slotCount" >slotCount</a>
                             </li>
+                            <li>
+                                <a href="#startPlaceholder" >startPlaceholder</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -278,10 +272,19 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                                 <a href="#disabled" >disabled</a>
                             </li>
                             <li>
+                                <a href="#maxSlots" >maxSlots</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDayCount" >selectedDayCount</a>
+                            </li>
+                            <li>
                                 <a href="#showValidation" >showValidation</a>
                             </li>
                             <li>
                                 <a href="#slots" >slots</a>
+                            </li>
+                            <li>
+                                <a href="#weeklyHoursTotal" >weeklyHoursTotal</a>
                             </li>
                         </ul>
                     </td>
@@ -326,12 +329,70 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:39</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Bloquea edición de franjas.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="maxSlots"></a>
+                        <b>maxSlots</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:42</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Máximo de filas de franja (horas semanales ÷ días seleccionados).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedDayCount"></a>
+                        <b>selectedDayCount</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:48</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Bloquea cambios mientras la plantilla no debe editarse o se está enviando.</p>
+                        <div class="io-description"><p>Días laborables seleccionados en la plantilla.</p>
 </div>
                     </td>
                 </tr>
@@ -352,12 +413,12 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:36</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Activa los mensajes visuales cuando el padre ya intentó enviar el formulario.</p>
+                        <div class="io-description"><p>Muestra errores de validación en plantilla.</p>
 </div>
                     </td>
                 </tr>
@@ -379,17 +440,49 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[{ ...DEFAULT_SLOT_ROW }]</code>
+                        <i>Default value : </i><code>[defaultWeekScheduleSlotRow()]</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:33</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Lista de franjas controlada por el componente padre.</p>
+                        <div class="io-description"><p>Franjas horarias editables de la plantilla.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="weeklyHoursTotal"></a>
+                        <b>weeklyHoursTotal</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:45</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Horas semanales del centro para calcular <code>maxSlots</code>.</p>
 </div>
                     </td>
                 </tr>
@@ -419,7 +512,7 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Emite una copia completa de las franjas cada vez que cambia cantidad u horas.</p>
+                        <div class="io-description"><p>Emite el array de franjas cuando el usuario edita filas u horas.</p>
 </div>
                     </td>
                 </tr>
@@ -433,6 +526,45 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="effectiveMaxSlots"></a>
+                    <span class="name">
+                        <span ><b>effectiveMaxSlots</b></span>
+                        <a href="#effectiveMaxSlots"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>effectiveMaxSlots()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Máximo de franjas permitido según horas semanales y días.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -453,15 +585,54 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:126</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:138</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Resume si hay cualquier franja inválida para bloquear el envío del padre.</p>
+                        <div class="io-description"><p>Indica si alguna franja tiene error de formato u orden.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAtMaxSlots"></a>
+                    <span class="name">
+                        <span ><b>isAtMaxSlots</b></span>
+                        <a href="#isAtMaxSlots"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAtMaxSlots()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Indica si no se pueden añadir más franjas.</p>
 </div>
 
                         <div class="io-description">
@@ -492,15 +663,15 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="106"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:106</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:118</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Comprueba si un campo individual incumple el formato <code>HH:mm</code>.</p>
+                        <div class="io-description"><p><code>true</code> si el texto no es una hora <code>HH:mm</code> válida.</p>
 </div>
 
                             <div class="io-description">
@@ -561,15 +732,15 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:123</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Indica si inicio o fin de una fila tienen formato horario inválido.</p>
+                        <div class="io-description"><p>Valida formato de inicio y fin de una fila.</p>
 </div>
 
                             <div class="io-description">
@@ -630,15 +801,15 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:130</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Detecta franjas donde el fin no es posterior al inicio.</p>
+                        <div class="io-description"><p><code>true</code> si la hora de fin no es posterior al inicio.</p>
 </div>
 
                             <div class="io-description">
@@ -699,16 +870,15 @@ See <a href="https://franciscocobsan.atlassian.net/browse/CURSO-90">https://fran
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:76</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Ajusta el tamaño de la lista de franjas sin mutar el input original:
-añade filas con la franja base o elimina desde el final.</p>
+                        <div class="io-description"><p>Ajusta el número de filas de franja (añadir o quitar).</p>
 </div>
 
                             <div class="io-description">
@@ -769,16 +939,15 @@ añade filas con la franja base o elimina desde el final.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:107</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Normaliza la hora al perder foco solo si el valor sigue siendo <code>HH:mm</code> válido;
-los valores inválidos se mantienen para que el usuario vea y corrija el error.</p>
+                        <div class="io-description"><p>Normaliza formato <code>HH:mm</code> al salir del campo.</p>
 </div>
 
                             <div class="io-description">
@@ -863,15 +1032,15 @@ los valores inválidos se mantienen para que el usuario vea y corrija el error.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:96</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Actualiza una celda concreta de hora y emite la lista completa al padre.</p>
+                        <div class="io-description"><p>Actualiza inicio o fin de una franja mientras se escribe.</p>
 </div>
 
                             <div class="io-description">
@@ -956,15 +1125,15 @@ los valores inválidos se mantienen para que el usuario vea y corrija el error.<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:54</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Número actual de franjas que se muestra en el selector de cantidad.</p>
+                        <div class="io-description"><p>Número actual de filas de franja.</p>
 </div>
 
                         <div class="io-description">
@@ -975,48 +1144,73 @@ los valores inválidos se mantienen para que el usuario vea y corrija el error.<
             </tr>
         </tbody>
     </table>
-</section>
-    <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="timePlaceholder"></a>
+                    <a name="startPlaceholder"></a>
                     <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>timePlaceholder</b></span>
-                        <a href="#timePlaceholder"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>startPlaceholder</b></span>
+                        <a href="#startPlaceholder"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;08:15&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:54</a></div>
-                        </td>
-                    </tr>
-
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Placeholder que enseña el formato de hora exigido por las validaciones.</p>
-</div>
+<code>startPlaceholder(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Placeholder de inicio sugerido para la fila <code>index</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </section>
@@ -1027,30 +1221,21 @@ los valores inválidos se mantienen para que el usuario vea y corrija el error.<
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, output } from &#x27;@angular/core&#x27;;
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+import { isValidHhMmTime, normalizeHhMmTime, timeToMinutes } from &#x27;../../../../../core/utils/time-range&#x27;;
 import {
-  isValidHhMmTime,
-  normalizeHhMmTime,
-  timeToMinutes,
-} from &#x27;../../../../../core/utils/time-range&#x27;;
+  defaultWeekScheduleSlotRow,
+  nextWeekScheduleSlotRow,
+  weekScheduleSlotStartPlaceholder,
+} from &#x27;./week-schedule-create-slots.util&#x27;;
 
 /** Una franja horaria de la plantilla (inicio–fin en &#x60;HH:mm&#x60;). */
 export interface WeekScheduleCreateSlotRow {
-  /** Hora de inicio de la franja en formato estricto &#x60;HH:mm&#x60;. */
+  /** Hora de inicio (&#x60;HH:mm&#x60;). */
   startTime: string;
 
-  /** Hora final de la franja en formato estricto &#x60;HH:mm&#x60;. */
+  /** Hora de fin (&#x60;HH:mm&#x60;). */
   finishTime: string;
 }
-
-/** Primera franja configurada para el centro, usada al añadir filas nuevas. */
-const firstCenterSlot &#x3D; environment.timetableSlots[0];
-
-/** Fila base para mantener una hora inicial válida antes de que el usuario edite. */
-const DEFAULT_SLOT_ROW: WeekScheduleCreateSlotRow &#x3D; {
-  startTime: firstCenterSlot?.startTime ?? &#x27;08:15&#x27;,
-  finishTime: firstCenterSlot?.finishTime ?? &#x27;09:15&#x27;,
-};
 
 /**
  * Número de franjas y filas dinámicas inicio/fin para la plantilla horaria.
@@ -1065,38 +1250,62 @@ const DEFAULT_SLOT_ROW: WeekScheduleCreateSlotRow &#x3D; {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeekScheduleCreateSlotsComponent {
-  /** Lista de franjas controlada por el componente padre. */
-  readonly slots &#x3D; input&lt;WeekScheduleCreateSlotRow[]&gt;([{ ...DEFAULT_SLOT_ROW }]);
+  /** Franjas horarias editables de la plantilla. */
+  readonly slots &#x3D; input&lt;WeekScheduleCreateSlotRow[]&gt;([defaultWeekScheduleSlotRow()]);
 
-  /** Activa los mensajes visuales cuando el padre ya intentó enviar el formulario. */
+  /** Muestra errores de validación en plantilla. */
   readonly showValidation &#x3D; input(false);
 
-  /** Bloquea cambios mientras la plantilla no debe editarse o se está enviando. */
+  /** Bloquea edición de franjas. */
   readonly disabled &#x3D; input(false);
 
-  /** Emite una copia completa de las franjas cada vez que cambia cantidad u horas. */
+  /** Máximo de filas de franja (horas semanales ÷ días seleccionados). */
+  readonly maxSlots &#x3D; input&lt;number | null&gt;(null);
+
+  /** Horas semanales del centro para calcular &#x60;maxSlots&#x60;. */
+  readonly weeklyHoursTotal &#x3D; input&lt;number | null&gt;(null);
+
+  /** Días laborables seleccionados en la plantilla. */
+  readonly selectedDayCount &#x3D; input(0);
+
+  /** Emite el array de franjas cuando el usuario edita filas u horas. */
   readonly slotsChange &#x3D; output&lt;WeekScheduleCreateSlotRow[]&gt;();
 
-  /** Placeholder que enseña el formato de hora exigido por las validaciones. */
-  readonly timePlaceholder &#x3D; &#x27;08:15&#x27;;
-
-  /** Número actual de franjas que se muestra en el selector de cantidad. */
+  /** Número actual de filas de franja. */
   slotCount(): number {
     return this.slots().length;
   }
 
-  /**
-   * Ajusta el tamaño de la lista de franjas sin mutar el input original:
-   * añade filas con la franja base o elimina desde el final.
-   */
+  /** Máximo de franjas permitido según horas semanales y días. */
+  effectiveMaxSlots(): number | null {
+    const max &#x3D; this.maxSlots();
+    return max !&#x3D; null &amp;&amp; max &gt; 0 ? max : null;
+  }
+
+  /** Indica si no se pueden añadir más franjas. */
+  isAtMaxSlots(): boolean {
+    const max &#x3D; this.effectiveMaxSlots();
+    return max !&#x3D; null &amp;&amp; this.slots().length &gt;&#x3D; max;
+  }
+
+  /** Placeholder de inicio sugerido para la fila &#x60;index&#x60;. */
+  startPlaceholder(index: number): string {
+    return weekScheduleSlotStartPlaceholder(this.slots(), index);
+  }
+
+  /** Ajusta el número de filas de franja (añadir o quitar). */
   onSlotCountChange(raw: string): void {
     if (this.disabled()) {
       return;
     }
-    const count &#x3D; Math.max(1, Math.floor(Number(raw)) || 1);
+    let count &#x3D; Math.max(1, Math.floor(Number(raw)) || 1);
+    const max &#x3D; this.effectiveMaxSlots();
+    if (max !&#x3D; null) {
+      count &#x3D; Math.min(count, max);
+    }
     const next &#x3D; [...this.slots()];
     while (next.length &lt; count) {
-      next.push({ ...DEFAULT_SLOT_ROW });
+      next.push(nextWeekScheduleSlotRow(next));
     }
     while (next.length &gt; count) {
       next.pop();
@@ -1104,7 +1313,7 @@ export class WeekScheduleCreateSlotsComponent {
     this.slotsChange.emit(next);
   }
 
-  /** Actualiza una celda concreta de hora y emite la lista completa al padre. */
+  /** Actualiza inicio o fin de una franja mientras se escribe. */
   onSlotTimeInput(index: number, field: keyof WeekScheduleCreateSlotRow, value: string): void {
     if (this.disabled()) {
       return;
@@ -1115,10 +1324,7 @@ export class WeekScheduleCreateSlotsComponent {
     this.slotsChange.emit(next);
   }
 
-  /**
-   * Normaliza la hora al perder foco solo si el valor sigue siendo &#x60;HH:mm&#x60; válido;
-   * los valores inválidos se mantienen para que el usuario vea y corrija el error.
-   */
+  /** Normaliza formato &#x60;HH:mm&#x60; al salir del campo. */
   onSlotTimeBlur(index: number, field: keyof WeekScheduleCreateSlotRow, value: string): void {
     if (this.disabled()) {
       return;
@@ -1129,19 +1335,19 @@ export class WeekScheduleCreateSlotsComponent {
     }
   }
 
-  /** Comprueba si un campo individual incumple el formato &#x60;HH:mm&#x60;. */
+  /** &#x60;true&#x60; si el texto no es una hora &#x60;HH:mm&#x60; válida. */
   isFieldFormatInvalid(value: string): boolean {
     return !isValidHhMmTime(value.trim());
   }
 
-  /** Indica si inicio o fin de una fila tienen formato horario inválido. */
+  /** Valida formato de inicio y fin de una fila. */
   isRowFormatInvalid(row: WeekScheduleCreateSlotRow): boolean {
     return (
       this.isFieldFormatInvalid(row.startTime) || this.isFieldFormatInvalid(row.finishTime)
     );
   }
 
-  /** Detecta franjas donde el fin no es posterior al inicio. */
+  /** &#x60;true&#x60; si la hora de fin no es posterior al inicio. */
   isRowTimeOrderInvalid(row: WeekScheduleCreateSlotRow): boolean {
     if (!isValidHhMmTime(row.startTime) || !isValidHhMmTime(row.finishTime)) {
       return false;
@@ -1149,7 +1355,7 @@ export class WeekScheduleCreateSlotsComponent {
     return timeToMinutes(row.startTime) &gt;&#x3D; timeToMinutes(row.finishTime);
   }
 
-  /** Resume si hay cualquier franja inválida para bloquear el envío del padre. */
+  /** Indica si alguna franja tiene error de formato u orden. */
   hasInvalidSlots(): boolean {
     return this.slots().some(
       (row) &#x3D;&gt; this.isRowFormatInvalid(row) || this.isRowTimeOrderInvalid(row),
@@ -1169,11 +1375,39 @@ export class WeekScheduleCreateSlotsComponent {
       id&#x3D;&quot;week-schedule-create-slot-count&quot;
       type&#x3D;&quot;number&quot;
       min&#x3D;&quot;1&quot;
+      [max]&#x3D;&quot;effectiveMaxSlots() ?? null&quot;
       class&#x3D;&quot;w-24 border border-gray-300 rounded-md px-3 py-2 disabled:opacity-50&quot;
       [value]&#x3D;&quot;slotCount()&quot;
       [disabled]&#x3D;&quot;disabled()&quot;
       (change)&#x3D;&quot;onSlotCountChange($any($event.target).value)&quot;
     /&gt;
+    @if (effectiveMaxSlots(); as max) {
+      &lt;p class&#x3D;&quot;text-xs text-gray-600 mt-1&quot;&gt;
+        {{
+          &#x27;weekScheduleBuilder.create.slotCountProgress&#x27;
+            | translate
+              : {
+                  current: slotCount(),
+                  max,
+                  total: weeklyHoursTotal() ?? max,
+                  days: selectedDayCount() || 1
+                }
+        }}
+      &lt;/p&gt;
+    }
+    @if (isAtMaxSlots()) {
+      &lt;p class&#x3D;&quot;text-xs text-amber-800 mt-1&quot; role&#x3D;&quot;status&quot;&gt;
+        {{
+          &#x27;weekScheduleBuilder.create.slotCountMaxReached&#x27;
+            | translate
+              : {
+                  max: effectiveMaxSlots(),
+                  total: weeklyHoursTotal() ?? effectiveMaxSlots(),
+                  days: selectedDayCount() || 1
+                }
+        }}
+      &lt;/p&gt;
+    }
     @if (showValidation() &amp;&amp; slotCount() &lt; 1) {
       &lt;p class&#x3D;&quot;text-sm text-red-600 mt-1&quot; role&#x3D;&quot;alert&quot;&gt;
         {{ &#x27;weekScheduleBuilder.create.validationMinSlots&#x27; | translate }}
@@ -1207,7 +1441,7 @@ export class WeekScheduleCreateSlotsComponent {
               inputmode&#x3D;&quot;numeric&quot;
               maxlength&#x3D;&quot;5&quot;
               pattern&#x3D;&quot;([01][0-9]|2[0-3]):[0-5][0-9]&quot;
-              [attr.placeholder]&#x3D;&quot;timePlaceholder&quot;
+              [attr.placeholder]&#x3D;&quot;startPlaceholder($index)&quot;
               [attr.title]&#x3D;&quot;&#x27;weekScheduleBuilder.create.timeFormatHint&#x27; | translate&quot;
               autocomplete&#x3D;&quot;off&quot;
               class&#x3D;&quot;w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50&quot;
@@ -1233,7 +1467,7 @@ export class WeekScheduleCreateSlotsComponent {
               inputmode&#x3D;&quot;numeric&quot;
               maxlength&#x3D;&quot;5&quot;
               pattern&#x3D;&quot;([01][0-9]|2[0-3]):[0-5][0-9]&quot;
-              [attr.placeholder]&#x3D;&quot;timePlaceholder&quot;
+              [attr.placeholder]&#x3D;&quot;startPlaceholder($index)&quot;
               [attr.title]&#x3D;&quot;&#x27;weekScheduleBuilder.create.timeFormatHint&#x27; | translate&quot;
               autocomplete&#x3D;&quot;off&quot;
               class&#x3D;&quot;w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50&quot;
@@ -1288,8 +1522,8 @@ export class WeekScheduleCreateSlotsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="space-y-4 max-w-2xl">  <div>    <label class="block text-sm font-medium text-gray-700 mb-1" for="week-schedule-create-slot-count">      {{ \'weekScheduleBuilder.create.slotCount\' | translate }}    </label>    <input      id="week-schedule-create-slot-count"      type="number"      min="1"      class="w-24 border border-gray-300 rounded-md px-3 py-2 disabled:opacity-50"      [value]="slotCount()"      [disabled]="disabled()"      (change)="onSlotCountChange($any($event.target).value)"    />    @if (showValidation() && slotCount() < 1) {      <p class="text-sm text-red-600 mt-1" role="alert">        {{ \'weekScheduleBuilder.create.validationMinSlots\' | translate }}      </p>    }  </div>  <div>    <h2 class="text-sm font-medium text-gray-700 mb-2">      {{ \'weekScheduleBuilder.create.slotsTitle\' | translate }}    </h2>    <p class="text-xs text-gray-500 mb-3">      {{ \'weekScheduleBuilder.create.timeFormatHint\' | translate }}    </p>    <ul class="space-y-3">      @for (row of slots(); track $index) {        <li          class="grid grid-cols-1 sm:grid-cols-[auto_1fr_1fr] gap-3 items-end border border-gray-200 rounded-lg p-3 bg-white"        >          <span class="text-xs font-medium text-gray-500 sm:pb-2">            {{ \'weekScheduleBuilder.create.slotRow\' | translate: { n: $index + 1 } }}          </span>          <div>            <label class="block text-sm font-medium text-gray-700 mb-1" [for]="\'slot-start-\' + $index">              {{ \'weekScheduleBuilder.startTime\' | translate }}            </label>            <input              [id]="\'slot-start-\' + $index"              type="text"              inputmode="numeric"              maxlength="5"              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"              [attr.placeholder]="timePlaceholder"              [attr.title]="\'weekScheduleBuilder.create.timeFormatHint\' | translate"              autocomplete="off"              class="w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50"              [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.startTime)"              [value]="row.startTime"              [disabled]="disabled()"              (input)="onSlotTimeInput($index, \'startTime\', $any($event.target).value)"              (blur)="onSlotTimeBlur($index, \'startTime\', $any($event.target).value)"            />            @if (showValidation() && isFieldFormatInvalid(row.startTime)) {              <p class="text-xs text-red-600 mt-1" role="alert">                {{ \'weekScheduleBuilder.create.validationTimeFormat\' | translate }}              </p>            }          </div>          <div>            <label class="block text-sm font-medium text-gray-700 mb-1" [for]="\'slot-end-\' + $index">              {{ \'weekScheduleBuilder.endTime\' | translate }}            </label>            <input              [id]="\'slot-end-\' + $index"              type="text"              inputmode="numeric"              maxlength="5"              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"              [attr.placeholder]="timePlaceholder"              [attr.title]="\'weekScheduleBuilder.create.timeFormatHint\' | translate"              autocomplete="off"              class="w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50"              [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.finishTime)"              [value]="row.finishTime"              [disabled]="disabled()"              (input)="onSlotTimeInput($index, \'finishTime\', $any($event.target).value)"              (blur)="onSlotTimeBlur($index, \'finishTime\', $any($event.target).value)"            />            @if (showValidation() && isFieldFormatInvalid(row.finishTime)) {              <p class="text-xs text-red-600 mt-1" role="alert">                {{ \'weekScheduleBuilder.create.validationTimeFormat\' | translate }}              </p>            }          </div>          @if (showValidation() && isRowTimeOrderInvalid(row)) {            <p class="text-sm text-red-600 sm:col-span-3" role="alert">              {{ \'weekScheduleBuilder.timeOrderError\' | translate }}            </p>          }        </li>      }    </ul>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'InformeAdminComponent', 'selector': 'app-informe-admin'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'},{'name': 'WeekScheduleListItemComponent', 'selector': 'app-week-schedule-list-item'}];
+        var COMPONENT_TEMPLATE = '<div><div class="space-y-4 max-w-2xl">  <div>    <label class="block text-sm font-medium text-gray-700 mb-1" for="week-schedule-create-slot-count">      {{ \'weekScheduleBuilder.create.slotCount\' | translate }}    </label>    <input      id="week-schedule-create-slot-count"      type="number"      min="1"      [max]="effectiveMaxSlots() ?? null"      class="w-24 border border-gray-300 rounded-md px-3 py-2 disabled:opacity-50"      [value]="slotCount()"      [disabled]="disabled()"      (change)="onSlotCountChange($any($event.target).value)"    />    @if (effectiveMaxSlots(); as max) {      <p class="text-xs text-gray-600 mt-1">        {{          \'weekScheduleBuilder.create.slotCountProgress\'            | translate              : {                  current: slotCount(),                  max,                  total: weeklyHoursTotal() ?? max,                  days: selectedDayCount() || 1                }        }}      </p>    }    @if (isAtMaxSlots()) {      <p class="text-xs text-amber-800 mt-1" role="status">        {{          \'weekScheduleBuilder.create.slotCountMaxReached\'            | translate              : {                  max: effectiveMaxSlots(),                  total: weeklyHoursTotal() ?? effectiveMaxSlots(),                  days: selectedDayCount() || 1                }        }}      </p>    }    @if (showValidation() && slotCount() < 1) {      <p class="text-sm text-red-600 mt-1" role="alert">        {{ \'weekScheduleBuilder.create.validationMinSlots\' | translate }}      </p>    }  </div>  <div>    <h2 class="text-sm font-medium text-gray-700 mb-2">      {{ \'weekScheduleBuilder.create.slotsTitle\' | translate }}    </h2>    <p class="text-xs text-gray-500 mb-3">      {{ \'weekScheduleBuilder.create.timeFormatHint\' | translate }}    </p>    <ul class="space-y-3">      @for (row of slots(); track $index) {        <li          class="grid grid-cols-1 sm:grid-cols-[auto_1fr_1fr] gap-3 items-end border border-gray-200 rounded-lg p-3 bg-white"        >          <span class="text-xs font-medium text-gray-500 sm:pb-2">            {{ \'weekScheduleBuilder.create.slotRow\' | translate: { n: $index + 1 } }}          </span>          <div>            <label class="block text-sm font-medium text-gray-700 mb-1" [for]="\'slot-start-\' + $index">              {{ \'weekScheduleBuilder.startTime\' | translate }}            </label>            <input              [id]="\'slot-start-\' + $index"              type="text"              inputmode="numeric"              maxlength="5"              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"              [attr.placeholder]="startPlaceholder($index)"              [attr.title]="\'weekScheduleBuilder.create.timeFormatHint\' | translate"              autocomplete="off"              class="w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50"              [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.startTime)"              [value]="row.startTime"              [disabled]="disabled()"              (input)="onSlotTimeInput($index, \'startTime\', $any($event.target).value)"              (blur)="onSlotTimeBlur($index, \'startTime\', $any($event.target).value)"            />            @if (showValidation() && isFieldFormatInvalid(row.startTime)) {              <p class="text-xs text-red-600 mt-1" role="alert">                {{ \'weekScheduleBuilder.create.validationTimeFormat\' | translate }}              </p>            }          </div>          <div>            <label class="block text-sm font-medium text-gray-700 mb-1" [for]="\'slot-end-\' + $index">              {{ \'weekScheduleBuilder.endTime\' | translate }}            </label>            <input              [id]="\'slot-end-\' + $index"              type="text"              inputmode="numeric"              maxlength="5"              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"              [attr.placeholder]="startPlaceholder($index)"              [attr.title]="\'weekScheduleBuilder.create.timeFormatHint\' | translate"              autocomplete="off"              class="w-full border border-gray-300 rounded-md px-3 py-2 font-mono disabled:opacity-50"              [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.finishTime)"              [value]="row.finishTime"              [disabled]="disabled()"              (input)="onSlotTimeInput($index, \'finishTime\', $any($event.target).value)"              (blur)="onSlotTimeBlur($index, \'finishTime\', $any($event.target).value)"            />            @if (showValidation() && isFieldFormatInvalid(row.finishTime)) {              <p class="text-xs text-red-600 mt-1" role="alert">                {{ \'weekScheduleBuilder.create.validationTimeFormat\' | translate }}              </p>            }          </div>          @if (showValidation() && isRowTimeOrderInvalid(row)) {            <p class="text-sm text-red-600 sm:col-span-3" role="alert">              {{ \'weekScheduleBuilder.timeOrderError\' | translate }}            </p>          }        </li>      }    </ul>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'WeekScheduleCreateSlotsComponent'};
 </script>

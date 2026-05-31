@@ -228,8 +228,8 @@ los estados de asistencia de todos los alumnos de golpe.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/core/services/attendance.service.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/core/services/attendance.service.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -305,8 +305,8 @@ los estados de asistencia de todos los alumnos de golpe.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/core/services/attendance.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/core/services/attendance.service.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -382,8 +382,8 @@ los estados de asistencia de todos los alumnos de golpe.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/core/services/attendance.service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/core/services/attendance.service.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -477,18 +477,18 @@ los estados de asistencia de todos los alumnos de golpe.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>unknown</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;http://localhost:3000/api&#x27;</code>
+                        <i>Default value : </i><code>environment.apiUrl</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/core/services/attendance.service.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/core/services/attendance.service.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -526,7 +526,7 @@ los estados de asistencia de todos los alumnos de golpe.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/core/services/attendance.service.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/core/services/attendance.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -548,6 +548,7 @@ los estados de asistencia de todos los alumnos de golpe.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, inject } from &#x27;@angular/core&#x27;;
 import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Observable, map } from &#x27;rxjs&#x27;;
+import { environment } from &#x27;../../../environments/environment&#x27;;
 
 /** Estados de asistencia posibles según el backend */
 export type AttendanceStatus &#x3D; &#x27;PRESENT&#x27; | &#x27;ABSENT&#x27; | &#x27;EXCUSED&#x27; | &#x27;LATE&#x27;;
@@ -595,7 +596,7 @@ export class AttendanceService {
   private http &#x3D; inject(HttpClient);
 
   /** URL base de la API. */
-  private apiUrl &#x3D; &#x27;http://localhost:3000/api&#x27;;
+  private apiUrl &#x3D; environment.apiUrl;
 
   /**
    * Obtiene o crea la sesión de clase de hoy para la asignatura y profesor indicados.

@@ -6,7 +6,10 @@ import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 
 /** Payload emitido tras crear ciclo (CURSO-139). */
 export interface CourseCreatedPayload {
+  /** Identificador del ciclo recién creado. */
   id: number;
+
+  /** Nombre del ciclo mostrado en el flujo post-alta. */
   name: string;
 }
 
