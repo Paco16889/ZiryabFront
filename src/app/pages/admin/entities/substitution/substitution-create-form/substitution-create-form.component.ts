@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit, output, signal } from '@angular/co
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { catchError, concatMap, forkJoin, from, map, of, toArray } from 'rxjs';
+import { AssignmentSubstitution } from '../../../../../core/models/assignment-substitution';
 import { AssignmentWithIncludes } from '../../../../../core/models/assingment';
 import { resolveApiError } from '../../../../../core/i18n/api-error.util';
 import { AssignmentSubstitutionsService } from '../../../../../core/services/admin/entities/assignment-substitutions.service';
@@ -17,6 +18,10 @@ import {
   matchesAssignmentFilters,
 } from '../../../../../core/utils/assignment-filter-options.util';
 import { environment } from '../../../../../../environments/environment';
+import {
+  isEligibleSubstituteTeacher,
+  teacherOwnLoadFromAssignments,
+} from '../../../../../core/utils/substitute-eligibility.util';
 import { CourseGroupGradeFiltersComponent } from '../../../shared/course-group-grade-filters/course-group-grade-filters.component';
 
 interface TeacherOption {
@@ -50,6 +55,7 @@ export class SubstitutionCreateFormComponent implements OnInit {
   readonly bulkSummary = signal<string | null>(null);
 
   readonly allAssignments = signal<AssignmentWithIncludes[]>([]);
+  readonly activeSubstitutions = signal<AssignmentSubstitution[]>([]);
   readonly activeAssignmentIds = signal<Set<number>>(new Set());
   readonly allTeachers = signal<TeacherOption[]>([]);
 
@@ -115,9 +121,31 @@ export class SubstitutionCreateFormComponent implements OnInit {
     return this.eligibleAssignments().filter((a) => a.idTeacher === titularId);
   });
 
+  readonly substituteEligibility = environment.substituteEligibility;
+
   readonly substituteTeacherOptions = computed(() => {
     const titularId = this.selectedTitularId();
-    return this.allTeachers().filter((t) => t.id !== titularId);
+    const schoolYear = environment.currentSchoolYear;
+    const thresholds = this.substituteEligibility;
+    const assignments = this.allAssignments();
+    const activeSubs = this.activeSubstitutions();
+
+    return this.allTeachers()
+      .filter((t) =>
+        isEligibleSubstituteTeacher(
+          t.id,
+          assignments,
+          activeSubs,
+          schoolYear,
+          titularId,
+          thresholds,
+        ),
+      )
+      .map((t) => ({
+        id: t.id,
+        label: this.substituteOptionLabel(t.id, t.label, assignments, activeSubs, schoolYear),
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
   });
 
   ngOnInit(): void {
@@ -240,12 +268,11 @@ export class SubstitutionCreateFormComponent implements OnInit {
     }).subscribe({
       next: ({ subs, assignments }) => {
         this.loading.set(false);
-        const activeIds = new Set(
-          subs.success
-            ? subs.data.filter((s) => s.endDate == null).map((s) => s.idTeacherAssignment)
-            : [],
+        const activeSubs = subs.success ? subs.data.filter((s) => s.endDate == null) : [];
+        this.activeSubstitutions.set(activeSubs);
+        this.activeAssignmentIds.set(
+          new Set(activeSubs.map((s) => s.idTeacherAssignment)),
         );
-        this.activeAssignmentIds.set(activeIds);
 
         if (!assignments.success) {
           this.loadError.set(true);
@@ -288,6 +315,20 @@ export class SubstitutionCreateFormComponent implements OnInit {
     return [...byId.entries()]
       .map(([id, label]) => ({ id, label }))
       .sort((a, b) => a.label.localeCompare(b.label));
+  }
+
+  private substituteOptionLabel(
+    teacherId: number,
+    name: string,
+    assignments: AssignmentWithIncludes[],
+    activeSubstitutions: AssignmentSubstitution[],
+    schoolYear: string,
+  ): string {
+    const load = teacherOwnLoadFromAssignments(assignments, teacherId, schoolYear);
+    if (load.ownWeeklyHours === 0 && load.ownAssignmentCount === 0) {
+      return `${name} (0 h)`;
+    }
+    return `${name} (${load.ownWeeklyHours} h, ${load.ownAssignmentCount} imp.)`;
   }
 
   private teacherLabel(name: string, surname?: string): string {

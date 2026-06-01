@@ -458,6 +458,8 @@
       "filterAssignments": "Filtrar asignaciones (impartición)",
       "selectAssignment": "Asignación a sustituir",
       "selectSubstitute": "Profesor sustituto",
+      "substituteEligibilityHint": "Profesores con carga baja (máx. {{maxHours}} h y {{maxAssignments}} imparticiones). No aparecen el titular elegido, quien ya sustituye a otro ni quien esté siendo sustituido.",
+      "noEligibleSubstitutes": "Ningún profesor cumple esos límites de carga. Revisa imparticiones u horarios.",
       "startDate": "Fecha de inicio",
       "notes": "Notas (opcional)",
       "createConfirm": "Registrar sustitución",

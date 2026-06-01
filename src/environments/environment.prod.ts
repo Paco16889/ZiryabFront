@@ -6,6 +6,10 @@ export const environment = {
     production: true,
     apiUrl: 'https://ziryabback.onrender.com/api',
     currentSchoolYear: '2024-2025',
+    substituteEligibility: {
+        maxWeeklyHours: 10,
+        maxActiveAssignments: 2,
+    },
     timetableSlots: [
         { startTime: '08:15', finishTime: '09:15' },
         { startTime: '09:15', finishTime: '10:15' },

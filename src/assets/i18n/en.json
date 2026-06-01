@@ -459,6 +459,8 @@
       "filterAssignments": "Filter assignments (teaching)",
       "selectAssignment": "Assignment to substitute",
       "selectSubstitute": "Substitute teacher",
+      "substituteEligibilityHint": "Teachers with low load (max. {{maxHours}} h and {{maxAssignments}} assignments). Excluded: selected titular, active substitutes, and teachers currently being substituted.",
+      "noEligibleSubstitutes": "No teacher meets those load limits. Review assignments or schedules.",
       "startDate": "Start date",
       "notes": "Notes (optional)",
       "createConfirm": "Register substitution",

@@ -457,6 +457,8 @@
       "filterAssignments": "Zuweisungen filtern (Unterricht)",
       "selectAssignment": "Zu vertretende Zuweisung",
       "selectSubstitute": "Vertretungslehrer",
+      "substituteEligibilityHint": "Lehrer mit geringer Last (max. {{maxHours}} Std. und {{maxAssignments}} Zuweisungen). Ausgeschlossen: gewählter Hauptlehrer, aktive Vertretungslehrer und derzeit vertretene Lehrer.",
+      "noEligibleSubstitutes": "Kein Lehrer erfüllt diese Grenzen. Zuweisungen oder Stundenpläne prüfen.",
       "startDate": "Startdatum",
       "notes": "Notizen (optional)",
       "createConfirm": "Vertretung registrieren",

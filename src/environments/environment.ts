@@ -8,6 +8,14 @@ export const environment = {
     /** Año académico por defecto para filtros admin (assignments, horarios). Ajustar por centro/curso. */
     currentSchoolYear: '2024-2025',
     /**
+     * Umbrales para el selector de sustituto (carga desde assignments ACTIVE + subject.hours).
+     * Afinar por centro; el horario real puede validarse después en backend.
+     */
+    substituteEligibility: {
+        maxWeeklyHours: 10,
+        maxActiveAssignments: 2,
+    },
+    /**
      * Franjas del centro para el builder en modo rejilla (L–V × filas).
      * Deben ser coherentes con el calendario lectivo (no solapadas).
      */
