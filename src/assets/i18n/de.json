@@ -646,6 +646,7 @@
     "aboutUs": "Über uns"
   },
   "aboutPage": {
+    "pageTitle": "Über Ziryab",
     "subtitle": "Innovation und Einfachheit für das Bildungsmanagement.",
     "section1": {
       "title": "Ihre Schule, vernetzt.",
@@ -667,9 +668,15 @@
     },
     "team": {
       "title": "Ziryab-Team",
-      "role": "Full Stack"
+      "role": "Full Stack",
+      "angelaName": "Ángela Mora Mata",
+      "antonioName": "Antonio Salces Alcaraz",
+      "franciscoName": "Francisco de Asís Cobo Sánchez",
+      "angelaAlt": "Porträt von Ángela Mora Mata",
+      "antonioAlt": "Porträt von Antonio Salces Alcaraz",
+      "franciscoAlt": "Porträt von Francisco de Asís Cobo Sánchez"
     },
-    "backToHome": "Zurück zur Startseite"
+    "backToHome": "Zurück zum Dashboard"
   },
   "login": {
     "title": "Anmelden",
