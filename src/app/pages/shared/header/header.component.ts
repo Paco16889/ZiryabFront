@@ -4,14 +4,16 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PerfilMenuService } from '../../../core/services/perfil-menu.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { AppNotification, NotificationsService } from '../../../core/services/notifications.service';
+import {
+  AppNotification,
+  NotificationsService,
+} from '../../../core/services/notifications.service';
 import type { UserResponse } from '../../../core/services/auth.service';
 import { SelectorIdiomaComponent } from '../selector-idioma/selector-idioma.component';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotificationBadgeComponent } from '../notification/notification-badge/notification-badge.component';
 import { NotificationListComponent } from '../notification/notification-list/notification-list.component';
-import { NotificationService } from '../../../core/services/notification/notification.service';
 import { NotificationToggleService } from '../../../core/services/notification/notification-toggle.service';
 
 /**
@@ -39,10 +41,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private readonly perfilService = inject(PerfilMenuService);
   /** Servicio de sesión para mostrar nombre/rol y reaccionar a logout. */
   private readonly authService = inject(AuthService);
-  /** Servicio SSE de notificaciones entrantes. */
-  private readonly notificationsService = inject(NotificationsService);
-  /** Bandeja REST de notificaciones. */
-  protected readonly notificationService = inject(NotificationService);
+  /** Notificaciones: REST, SSE y bandeja de la cabecera. */
+  protected readonly notificationsService = inject(NotificationsService);
   /** Estado del panel desplegable de notificaciones. */
   protected readonly notificationPanel = inject(NotificationToggleService);
 
@@ -70,7 +70,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.userName = user.name;
           this.userRoleKey = this.getRoleKey(user.role);
           this.showThemeToggle = user.role === 'ADMIN';
-          this.notificationService.load();
         } else {
           this.userName = '';
           this.userRoleKey = 'roles.user';
@@ -84,7 +83,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.notificationsService.notification$.subscribe((notification: AppNotification) => {
         this.showToast(notification);
-        this.notificationService.load();
       })
     );
   }
@@ -104,7 +102,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userName = currentUser.name;
       this.userRoleKey = this.getRoleKey(currentUser.role);
       this.showThemeToggle = currentUser.role === 'ADMIN';
-      this.notificationService.load();
+      this.notificationsService.load();
     }
   }
 

@@ -17,11 +17,8 @@ if [[ -z "$file" || ! -f "$file" ]]; then
   exit 0
 fi
 
-case "$file" in 
-zy5qç
-+3yq3çh r
-h
-5wq53  *.ts)
+case "$file" in
+  *.ts)
     npx --no-install prettier --write "$file" >/dev/null 2>&1
     npx --no-install eslint --fix "$file" >/dev/null 2>&1
     ;;

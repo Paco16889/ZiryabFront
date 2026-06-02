@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { Notification } from '../../../../core/models/notification';
+import { AppNotification } from '../../../../core/services/notifications.service';
 import { DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class NotificationListItemComponent {
   /** Notificación renderizada por la fila. */
-  notification = input.required<Notification>();
+  notification = input.required<AppNotification>();
 
   /** Id de la notificación (para marcar leída en API). */
   notificationClick = output<number>();

@@ -29,7 +29,6 @@ export const environment = {
         { startTime: '12:45', finishTime: '13:45' },
         { startTime: '13:45', finishTime: '14:45' },
     ] as const satisfies ReadonlyArray<{ startTime: string; finishTime: string }>,
-    useMockNotifications: true,
     /** Calendario de Google embebido (vista pública, sin login). */
     googleCalendar: {
         embedUrl:
