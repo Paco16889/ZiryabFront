@@ -18,10 +18,7 @@ import {
   matchesAssignmentFilters,
 } from '../../../../../core/utils/assignment-filter-options.util';
 import { environment } from '../../../../../../environments/environment';
-import {
-  isEligibleSubstituteTeacher,
-  teacherOwnLoadFromAssignments,
-} from '../../../../../core/utils/substitute-eligibility.util';
+import { buildSubstituteTeacherSelectOptions } from '../../../../../core/utils/substitute-eligibility.util';
 import { CourseGroupGradeFiltersComponent } from '../../../shared/course-group-grade-filters/course-group-grade-filters.component';
 
 interface TeacherOption {
@@ -123,30 +120,16 @@ export class SubstitutionCreateFormComponent implements OnInit {
 
   readonly substituteEligibility = environment.substituteEligibility;
 
-  readonly substituteTeacherOptions = computed(() => {
-    const titularId = this.selectedTitularId();
-    const schoolYear = environment.currentSchoolYear;
-    const thresholds = this.substituteEligibility;
-    const assignments = this.allAssignments();
-    const activeSubs = this.activeSubstitutions();
-
-    return this.allTeachers()
-      .filter((t) =>
-        isEligibleSubstituteTeacher(
-          t.id,
-          assignments,
-          activeSubs,
-          schoolYear,
-          titularId,
-          thresholds,
-        ),
-      )
-      .map((t) => ({
-        id: t.id,
-        label: this.substituteOptionLabel(t.id, t.label, assignments, activeSubs, schoolYear),
-      }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-  });
+  readonly substituteTeacherOptions = computed(() =>
+    buildSubstituteTeacherSelectOptions(
+      this.allTeachers(),
+      this.allAssignments(),
+      this.activeSubstitutions(),
+      environment.currentSchoolYear,
+      this.selectedTitularId(),
+      this.substituteEligibility,
+    ),
+  );
 
   ngOnInit(): void {
     this.loadData();
@@ -315,20 +298,6 @@ export class SubstitutionCreateFormComponent implements OnInit {
     return [...byId.entries()]
       .map(([id, label]) => ({ id, label }))
       .sort((a, b) => a.label.localeCompare(b.label));
-  }
-
-  private substituteOptionLabel(
-    teacherId: number,
-    name: string,
-    assignments: AssignmentWithIncludes[],
-    activeSubstitutions: AssignmentSubstitution[],
-    schoolYear: string,
-  ): string {
-    const load = teacherOwnLoadFromAssignments(assignments, teacherId, schoolYear);
-    if (load.ownWeeklyHours === 0 && load.ownAssignmentCount === 0) {
-      return `${name} (0 h)`;
-    }
-    return `${name} (${load.ownWeeklyHours} h, ${load.ownAssignmentCount} imp.)`;
   }
 
   private teacherLabel(name: string, surname?: string): string {

@@ -9,9 +9,14 @@ import { CourseAssignmentsContext } from '../../../../../core/models/course-assi
 import { CourseAssignmentGridRow } from '../../../../../core/models/course-assignments/course-assignment-grid-row.model';
 import { Group } from '../../../../../core/models/group';
 import { Teacher } from '../../../../../core/models/teacher';
+import { AssignmentSubstitution } from '../../../../../core/models/assignment-substitution';
 import { AssignmentsService } from '../../../../../core/services/admin/entities/assignments.service';
+import { AssignmentSubstitutionsService } from '../../../../../core/services/admin/entities/assignment-substitutions.service';
 import { GroupService } from '../../../../../core/services/admin/entities/group.service';
+import { AssignmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/teacher-assignment-http.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
+import { assignmentsForCurrentSchoolYear } from '../../../../../core/utils/assignment-filter-options.util';
+import { buildSubstituteTeacherSelectOptions } from '../../../../../core/utils/substitute-eligibility.util';
 import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
 import { environment } from '../../../../../../environments/environment';
 /** Resumen mostrado tras guardar asignaciones docentes en lote. */
@@ -45,6 +50,15 @@ export class CourseAssignmentsGridComponent implements OnInit {
 
   /** Profesores en los desplegables de la rejilla. */
   private readonly teachersService = inject(TeachersService);
+
+  /** Asignaciones del año (carga horaria para filtrar profesores). */
+  private readonly assignmentHttp = inject(AssignmentHttpService);
+
+  /** Sustituciones activas (mismo criterio que el alta de sustituciones). */
+  private readonly substitutionService = inject(AssignmentSubstitutionsService);
+
+  /** Mismos umbrales que el selector de sustituto en sustituciones. */
+  readonly substituteEligibility = environment.substituteEligibility;
 
   /** Grupos en los desplegables de la rejilla. */
   private readonly groupService = inject(GroupService);
@@ -134,8 +148,33 @@ export class CourseAssignmentsGridComponent implements OnInit {
   /** Filas editables del datagrid (una por asignatura). */
   readonly rows = signal<CourseAssignmentGridRow[]>([]);
 
-  /** Profesores disponibles en los desplegables. */
+  /** Profesores del catálogo (`GET /api/teachers`). */
   readonly teachers = signal<Teacher[]>([]);
+
+  /** Opciones `{ id, label }` para el filtro (como `allTeachers` en sustituciones). */
+  readonly allTeacherOptions = signal<{ id: number; label: string }[]>([]);
+
+  /** Igual que `allAssignments` en sustituciones (`GET /api/assignments` + año escolar). */
+  readonly allAssignments = signal<AssignmentWithIncludes[]>([]);
+
+  /** Igual que `activeSubstitutions` en sustituciones. */
+  readonly activeSubstitutions = signal<AssignmentSubstitution[]>([]);
+
+  /** Idéntico a `substituteTeacherOptions` en sustituciones (`titular` = null). */
+  readonly teacherSelectOptions = computed(() =>
+    buildSubstituteTeacherSelectOptions(
+      this.allTeacherOptions(),
+      this.allAssignments(),
+      this.activeSubstitutions(),
+      environment.currentSchoolYear,
+      null,
+      this.substituteEligibility,
+    ),
+  );
+
+  readonly eligibleWithNoLoadCount = computed(() =>
+    this.teacherSelectOptions().filter((o) => o.label.includes('(0 h)')).length,
+  );
 
   /** Grupos disponibles en los desplegables. */
   readonly groups = signal<Group[]>([]);
@@ -148,6 +187,8 @@ export class CourseAssignmentsGridComponent implements OnInit {
 
   /** Carga asignaturas, asignaciones existentes, profesores y grupos. */
   ngOnInit(): void {
+    this.loadTeacherEligibilityData();
+    this.loadTeachers();
     this.loadGrid();
   }
 
@@ -379,7 +420,42 @@ export class CourseAssignmentsGridComponent implements OnInit {
     return !!f && (f.duplicates > 0 || f.incomplete > 0) && !f.hasErrors;
   }
 
-  /** Carga paralela de datos de la rejilla. */
+  /** Misma carga que `loadData()` en sustituciones (subs + assignments). */
+  private loadTeacherEligibilityData(): void {
+    forkJoin({
+      subs: this.substitutionService.getAll(),
+      assignments: this.assignmentHttp.getAll(),
+    }).subscribe({
+      next: ({ subs, assignments }) => {
+        const activeSubs = subs.success ? subs.data.filter((s) => s.endDate == null) : [];
+        this.activeSubstitutions.set(activeSubs);
+
+        if (!assignments.success) {
+          this.loadError.set(true);
+          this.allAssignments.set([]);
+          return;
+        }
+        this.applyAssignmentsList(assignments.data);
+      },
+      error: () => {
+        this.loadError.set(true);
+        this.allAssignments.set([]);
+      },
+    });
+  }
+
+  /** `GET /api/teachers` — aparte, como en sustituciones. */
+  private loadTeachers(): void {
+    this.teachersService.getAllTeachers().subscribe((res) => {
+      const list = res.success ? res.data : [];
+      this.teachers.set(list);
+      this.allTeacherOptions.set(
+        list.map((t) => ({ id: t.id, label: this.teacherLabel(t) })),
+      );
+    });
+  }
+
+  /** Asignaturas y grupos del wizard (el filtro de profesores usa `loadTeacherEligibilityData`). */
   private loadGrid(): void {
     const ctx = this.context();
     this.loading.set(true);
@@ -387,16 +463,11 @@ export class CourseAssignmentsGridComponent implements OnInit {
 
     forkJoin({
       subjects: this.assignmentsService.getSubjectsByCourseAndGrade(ctx.idCourse, ctx.grade),
-      existing: this.assignmentsService.getAssignmentsByCourseAndGrade(
-        ctx.idCourse,
-        ctx.grade,
-        this.schoolYear(),
-      ),
-      teachers: this.teachersService.getAllTeachers(),
       groups: this.groupService.getAllGroups(),
     }).subscribe({
-      next: ({ subjects, existing, teachers, groups }) => {
+      next: ({ subjects, groups }) => {
         this.loading.set(false);
+
         if (!subjects.success) {
           this.loadError.set(true);
           this.rows.set([]);
@@ -411,11 +482,9 @@ export class CourseAssignmentsGridComponent implements OnInit {
             })),
           );
         }
-        this.existingAssignments.set(existing.success ? existing.data : []);
-        this.initialTutorAssignmentByGroup.set(this.buildTutorAssignmentByGroup(existing.success ? existing.data : []));
+
         this.tutorUpdateSuccess.set(false);
         this.tutorUpdateError.set(null);
-        this.teachers.set(teachers.success ? teachers.data : []);
         this.groups.set(groups.success ? groups.data : []);
       },
       error: () => {
@@ -425,17 +494,28 @@ export class CourseAssignmentsGridComponent implements OnInit {
     });
   }
 
-  /** Recarga asignaciones existentes tras un guardado. */
-  private refreshExistingAssignments(): void {
+  private applyAssignmentsList(data: AssignmentWithIncludes[]): void {
     const ctx = this.context();
-    this.assignmentsService
-      .getAssignmentsByCourseAndGrade(ctx.idCourse, ctx.grade, this.schoolYear())
-      .subscribe((res) => {
-        if (res.success) {
-          this.existingAssignments.set(res.data);
-          this.initialTutorAssignmentByGroup.set(this.buildTutorAssignmentByGroup(res.data));
-        }
-      });
+    const schoolYear = environment.currentSchoolYear;
+    this.allAssignments.set(assignmentsForCurrentSchoolYear(data, schoolYear));
+    const existing = this.assignmentsService.filterByCourseGradeAndYear(
+      data,
+      ctx.idCourse,
+      ctx.grade,
+      schoolYear,
+    );
+    this.existingAssignments.set(existing);
+    this.initialTutorAssignmentByGroup.set(this.buildTutorAssignmentByGroup(existing));
+  }
+
+  /** Recarga asignaciones existentes y datos del filtro tras un guardado. */
+  private refreshExistingAssignments(): void {
+    this.assignmentHttp.getAll().subscribe((assignments) => {
+      if (!assignments.success) {
+        return;
+      }
+      this.applyAssignmentsList(assignments.data);
+    });
   }
 
   /** Fila lista para incluirse en el payload bulk. */

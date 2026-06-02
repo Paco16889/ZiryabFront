@@ -103,23 +103,32 @@ export class AssignmentsService {
         if (!res.success) {
           return { success: false, data: [] as AssignmentWithIncludes[] };
         }
-        const gradeNorm = normalizeGradeValue(grade);
-        const filtered = res.data.filter((a) => {
-          const sub = a.subject;
-          if (!sub) {
-            return false;
-          }
-          const courseId = sub.course?.id ?? (sub as { idCourse?: number }).idCourse;
-          return (
-            courseId === idCourse &&
-            normalizeGradeValue(sub.grade ?? '') === gradeNorm &&
-            a.schoolYear === schoolYear
-          );
-        });
+        const filtered = this.filterByCourseGradeAndYear(res.data, idCourse, grade, schoolYear);
         return { success: true, data: filtered, count: filtered.length };
       }),
       catchError(() => of({ success: false, data: [] as AssignmentWithIncludes[] })),
     );
+  }
+
+  /** Filtra asignaciones por ciclo, grade y año (misma lógica que el grid de asignaciones). */
+  filterByCourseGradeAndYear(
+    data: AssignmentWithIncludes[],
+    idCourse: number,
+    grade: string,
+    schoolYear: string,
+  ): AssignmentWithIncludes[] {
+    const gradeNorm = normalizeGradeValue(grade);
+    return data.filter((a) => {
+      if (a.schoolYear !== schoolYear) {
+        return false;
+      }
+      const sub = a.subject;
+      if (!sub) {
+        return false;
+      }
+      const courseId = sub.course?.id ?? (sub as { idCourse?: number }).idCourse;
+      return courseId === idCourse && normalizeGradeValue(sub.grade ?? '') === gradeNorm;
+    });
   }
 
   /** Crea una asignación docente individual. */

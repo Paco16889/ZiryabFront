@@ -15,6 +15,8 @@ export const environment = {
         maxWeeklyHours: 10,
         maxActiveAssignments: 2,
     },
+    /** Grid asignaciones ciclo: solo filtra por horas semanales totales (no por nº de imparticiones). */
+    courseAssignmentTeacherMaxWeeklyHours: 10,
     /**
      * Franjas del centro para el builder en modo rejilla (L–V × filas).
      * Deben ser coherentes con el calendario lectivo (no solapadas).

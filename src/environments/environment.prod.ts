@@ -10,6 +10,7 @@ export const environment = {
         maxWeeklyHours: 10,
         maxActiveAssignments: 2,
     },
+    courseAssignmentTeacherMaxWeeklyHours: 10,
     timetableSlots: [
         { startTime: '08:15', finishTime: '09:15' },
         { startTime: '09:15', finishTime: '10:15' },
