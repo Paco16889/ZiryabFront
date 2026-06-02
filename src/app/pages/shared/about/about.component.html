@@ -101,7 +101,7 @@
             </section>
         </div>
 
-        <nav class="text-center pt-6" aria-label="{{ 'aboutPage.backToHome' | translate }}">
+        <nav class="text-center pt-6" [attr.aria-label]="'aboutPage.backToHome' | translate">
             <a routerLink="/dashboard" class="inline-flex items-center gap-2 text-gray-600 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 rounded transition-colors font-medium text-sm">
                 <span aria-hidden="true">←</span>
                 {{ 'aboutPage.backToHome' | translate }}

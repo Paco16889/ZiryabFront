@@ -80,11 +80,12 @@ export class LoginComponent {
    * Valida el formulario y ejecuta el inicio de sesión.
    * Redirige a dashboard-admin si el rol es ADMIN, o a dashboard en cualquier otro caso.
    */
-  async onSubmit() {
-    console.log('Formulario:', this.formLogin.value);
-
+  onSubmit() {
+    if (this.loading()) {
+      return;
+    }
     if (this.formLogin.invalid) {
-      console.log('❌ Formulario inválido');
+      this.formLogin.markAllAsTouched();
       return;
     }
 
@@ -99,14 +100,9 @@ export class LoginComponent {
         throw new Error('Email y contraseña son requeridos');
       }
 
-      console.log('Iniciando sesión con AuthService...');
-
       // Inicio de sesión mediante AuthService (Firebase + Backend con Cookies)
       this.authService.login(email, password).subscribe({
         next: (response) => {
-          console.log('Login exitoso:', response);
-          console.log('Sesión establecida mediante cookies segura');
-          
           this.loading.set(false);
           
           // Redirigir a dashboard
@@ -119,7 +115,6 @@ export class LoginComponent {
 
         },
         error: (err: { error?: { message?: string }; message?: string; code?: string }) => {
-          console.error('❌ Error en login:', err);
           const backendMsg = err?.error?.message;
           const firebaseCodes = new Set([
             'auth/invalid-credential',
@@ -141,7 +136,7 @@ export class LoginComponent {
 
     } catch (error) {
       const err = error as Error;
-      console.error('❌ Error:', err.message);
+      this.errorMessage.set(err.message || null);
       this.error.set(true);
       this.loading.set(false);
     }
