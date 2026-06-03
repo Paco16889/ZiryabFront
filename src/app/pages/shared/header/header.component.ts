@@ -116,8 +116,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return map[role] ?? 'roles.user';
   }
 
-  /** Navega al dashboard del usuario autenticado. */
+  /** Navega al dashboard del usuario autenticado (no aplica en panel admin). */
   navigateToDashboard(): void {
+    const user = this.authService.getCurrentUser();
+    if (user?.role === 'ADMIN') {
+      return;
+    }
     this.router.navigate(['/dashboard']);
   }
 

@@ -12,6 +12,5 @@
   <button [class]="menuButtonClass('notifications')" (click)="onClick('notifications')">{{ 'adminMenu.notifications' | translate }}</button>
   <button [class]="menuButtonClass('tutors')" (click)="onClick('tutors')">{{ 'adminMenu.tutors' | translate }}</button>
   <button [class]="menuButtonClass('substitutions')" (click)="onClick('substitutions')">{{ 'adminMenu.substitutions' | translate }}</button>
-  <a routerLink="/informe" [class]="menuButtonClass('reports')" (click)="openedMenu = 'reports'; optionClicked.emit()">{{ 'adminMenu.reports' | translate }}</a>
   <button [class]="menuButtonClass('issues')" (click)="onClick('issues')">{{ 'adminMenu.issues' | translate }}</button>
 </div>
