@@ -1,0 +1,12 @@
+<select
+  [id]="selectId()"
+  [class]="selectClass()"
+  [ngModel]="selectedId()"
+  [disabled]="disabled()"
+  (ngModelChange)="onModelChange($event)"
+>
+  <option value="">{{ 'weekScheduleBuilder.grid.cellSelectPlaceholder' | translate }}</option>
+  @for (row of options(); track row.id) {
+    <option [value]="row.id">{{ optionLabel(row) }}</option>
+  }
+</select>

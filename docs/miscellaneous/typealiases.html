@@ -1,0 +1,1046 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-typealiases">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Type aliases</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#AssignmentBulkApiBody" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkApiBody</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AssignmentBulkApiResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkApiResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AssignmentBulkCreateResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkCreateResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AssignmentBulkCreateResult" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>AssignmentBulkCreateResult</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AssistanceUpdatePayload" title="src/app/core/services/admin/entities/assistance.service.ts" ><b>AssistanceUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../assistance.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AttendanceStatus" title="src/app/core/services/attendance.service.ts" ><b>AttendanceStatus</b>&nbsp;&nbsp;&nbsp;(src/.../attendance.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AuthApiResponse" title="src/app/core/services/auth.service.ts" ><b>AuthApiResponse</b>&nbsp;&nbsp;&nbsp;(src/.../auth.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ClassSessionUpdatePayload" title="src/app/core/services/admin/entities/class-session.service.ts" ><b>ClassSessionUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../class-session.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CourseAssignmentsByOfferResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>CourseAssignmentsByOfferResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CourseAssignmentsSaveFeedback" title="src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts" ><b>CourseAssignmentsSaveFeedback</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-grid.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CourseGradesResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>CourseGradesResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CourseListView" title="src/app/pages/admin/entities/course/course-list/course-list.component.ts" ><b>CourseListView</b>&nbsp;&nbsp;&nbsp;(src/.../course-list.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CourseSubjectOfferItem" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>CourseSubjectOfferItem</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CourseSubjectsByGradeResponse" title="src/app/core/models/course-assignments/course-assignments-api.model.ts" ><b>CourseSubjectsByGradeResponse</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-api.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EnrollmentConfirmErrorCode" title="src/app/core/services/admin/student-registration.service.ts" ><b>EnrollmentConfirmErrorCode</b>&nbsp;&nbsp;&nbsp;(src/.../student-registration.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HttpErrorLike" title="src/app/core/i18n/api-error.util.ts" ><b>HttpErrorLike</b>&nbsp;&nbsp;&nbsp;(src/.../api-error.util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IssueAudience" title="src/app/core/models/issue.ts" ><b>IssueAudience</b>&nbsp;&nbsp;&nbsp;(src/.../issue.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IssueEmitterType" title="src/app/core/models/issue.ts" ><b>IssueEmitterType</b>&nbsp;&nbsp;&nbsp;(src/.../issue.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IssueUpdatePayload" title="src/app/core/services/admin/entities/issue.service.ts" ><b>IssueUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../issue.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#NotificationAction" title="src/app/core/models/notification.ts" ><b>NotificationAction</b>&nbsp;&nbsp;&nbsp;(src/.../notification.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#NotificationEntityType" title="src/app/core/models/notification.ts" ><b>NotificationEntityType</b>&nbsp;&nbsp;&nbsp;(src/.../notification.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PrismaWeekDay" title="src/app/core/models/week-schedule-flow/week-schedule.enums.ts" ><b>PrismaWeekDay</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule.enums.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RecipientRole" title="src/app/pages/admin/entities/notification/notification-create-form/notification-create-form.component.ts" ><b>RecipientRole</b>&nbsp;&nbsp;&nbsp;(src/.../notification-create-form.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#StudentTaskStatus" title="src/app/core/models/teacher/tasks.ts" ><b>StudentTaskStatus</b>&nbsp;&nbsp;&nbsp;(src/.../tasks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#StudentTaskUpdatePayload" title="src/app/core/services/admin/entities/student-task.service.ts" ><b>StudentTaskUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../student-task.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SubjectTeacherAssignment" title="src/app/core/models/teacher/subjectforteacher.ts" ><b>SubjectTeacherAssignment</b>&nbsp;&nbsp;&nbsp;(src/.../subjectforteacher.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TaskType" title="src/app/core/models/teacher/tasks.ts" ><b>TaskType</b>&nbsp;&nbsp;&nbsp;(src/.../tasks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TaskUpdatePayload" title="src/app/core/services/admin/entities/task.service.ts" ><b>TaskUpdatePayload</b>&nbsp;&nbsp;&nbsp;(src/.../task.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TeacherAssignmentStatus" title="src/app/core/models/teacher/tasks.ts" ><b>TeacherAssignmentStatus</b>&nbsp;&nbsp;&nbsp;(src/.../tasks.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WeekScheduleBuilderMode" title="src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts" ><b>WeekScheduleBuilderMode</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-builder.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WizardStep" title="src/app/pages/admin/entities/course/course-assignments-wizard/course-assignments-wizard.component.ts" ><b>WizardStep</b>&nbsp;&nbsp;&nbsp;(src/.../course-assignments-wizard.component.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/core/models/course-assignments/course-assignments-api.model.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssignmentBulkApiBody"></a>
+                    <span class="name "><b>AssignmentBulkApiBody</b><a href="#AssignmentBulkApiBody"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cuerpo y respuesta de <code>POST /api/assignments/bulk</code> (contrato back CURSO-101).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssignmentBulkApiResponse"></a>
+                    <span class="name "><b>AssignmentBulkApiResponse</b><a href="#AssignmentBulkApiResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta cruda de <code>POST /api/assignments/bulk</code> tal como la devuelve el backend.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssignmentBulkCreateResponse"></a>
+                    <span class="name "><b>AssignmentBulkCreateResponse</b><a href="#AssignmentBulkCreateResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta del endpoint bulk de asignaciones docentes.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssignmentBulkCreateResult"></a>
+                    <span class="name "><b>AssignmentBulkCreateResult</b><a href="#AssignmentBulkCreateResult"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resultado agregado de crear asignaciones docentes en lote.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CourseAssignmentsByOfferResponse"></a>
+                    <span class="name "><b>CourseAssignmentsByOfferResponse</b><a href="#CourseAssignmentsByOfferResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta con asignaciones existentes para una oferta de ciclo, grade y curso escolar.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CourseGradesResponse"></a>
+                    <span class="name "><b>CourseGradesResponse</b><a href="#CourseGradesResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta con grades distintos de <code>Subject.grade</code> en un ciclo (p. ej. <code>&quot;1&quot;</code>, <code>&quot;2&quot;</code>).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CourseSubjectOfferItem"></a>
+                    <span class="name "><b>CourseSubjectOfferItem</b><a href="#CourseSubjectOfferItem"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asignatura ofertada para un ciclo y grade dentro del flujo de asignaciones docentes.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CourseSubjectsByGradeResponse"></a>
+                    <span class="name "><b>CourseSubjectsByGradeResponse</b><a href="#CourseSubjectsByGradeResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Respuesta con asignaturas de un ciclo filtradas por grade.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/entities/assistance.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AssistanceUpdatePayload"></a>
+                    <span class="name "><b>AssistanceUpdatePayload</b><a href="#AssistanceUpdatePayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payload de actualización de asistencia con id añadido por el modal genérico.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/attendance.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AttendanceStatus"></a>
+                    <span class="name "><b>AttendanceStatus</b><a href="#AttendanceStatus"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estados de asistencia posibles según el backend</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;PRESENT&quot; | &quot;ABSENT&quot; | &quot;EXCUSED&quot; | &quot;LATE&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/auth.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AuthApiResponse"></a>
+                    <span class="name "><b>AuthApiResponse</b><a href="#AuthApiResponse"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Login/registro: JWT en la raíz del JSON, no dentro de <code>data</code>.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/entities/class-session.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ClassSessionUpdatePayload"></a>
+                    <span class="name "><b>ClassSessionUpdatePayload</b><a href="#ClassSessionUpdatePayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payload de actualización de sesión con id añadido por el modal genérico.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/course/course-assignments-grid/course-assignments-grid.component.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CourseAssignmentsSaveFeedback"></a>
+                    <span class="name "><b>CourseAssignmentsSaveFeedback</b><a href="#CourseAssignmentsSaveFeedback"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resumen mostrado tras guardar asignaciones docentes en lote.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/course/course-list/course-list.component.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CourseListView"></a>
+                    <span class="name "><b>CourseListView</b><a href="#CourseListView"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Vista activa del flujo de gestión de ciclos y asignaciones docentes.</p>
+<ul>
+<li><code>list</code>: listado principal</li>
+<li><code>create</code> / <code>post-create</code>: alta de ciclo</li>
+<li><code>assignments-wizard</code> / <code>assignments-grid</code>: asignaciones docentes</li>
+</ul>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;list&quot; | &quot;create&quot; | &quot;post-create&quot; | &quot;assignments-wizard&quot; | &quot;assignments-grid&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/student-registration.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EnrollmentConfirmErrorCode"></a>
+                    <span class="name "><b>EnrollmentConfirmErrorCode</b><a href="#EnrollmentConfirmErrorCode"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Códigos de error lanzados por <code>confirmEnrollment</code> cuando falla la validación o el API.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;NO_SUBJECTS&quot; | &quot;NO_STUDENT&quot; | &quot;STUDENT_CREATE_FAILED&quot; | &quot;REGISTRATION_FAILED&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/i18n/api-error.util.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HttpErrorLike"></a>
+                    <span class="name "><b>HttpErrorLike</b><a href="#HttpErrorLike"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Forma mínima de los errores HTTP que usan los componentes para mostrar mensajes.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>literal type</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/issue.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IssueAudience"></a>
+                    <span class="name "><b>IssueAudience</b><a href="#IssueAudience"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Audiencia destino de un anuncio del tablón.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;CENTER&quot; | &quot;ALL_TEACHERS&quot; | &quot;ALL_STUDENTS&quot; | &quot;GROUP&quot; | &quot;COURSE&quot; | &quot;SUBJECT_GROUP&quot; | &quot;TEACHER&quot; | &quot;ASSIGNMENT&quot; | &quot;TARGETED&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IssueEmitterType"></a>
+                    <span class="name "><b>IssueEmitterType</b><a href="#IssueEmitterType"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tipo de emisor del anuncio.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;TEACHER&quot; | &quot;ADMIN&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/entities/issue.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IssueUpdatePayload"></a>
+                    <span class="name "><b>IssueUpdatePayload</b><a href="#IssueUpdatePayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payload de actualización incluye <code>id</code> (lo añade el modal genérico).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/notification.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NotificationAction"></a>
+                    <span class="name "><b>NotificationAction</b><a href="#NotificationAction"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Acción de negocio que originó una notificación.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;TASK_CREATED&quot; | &quot;TASK_DEADLINE_APPROACHING&quot; | &quot;TASK_FINISHED&quot; | &quot;TASK_GRADED&quot; | &quot;TASK_SUBMITTED&quot; | &quot;JUSTIFICATION_SUBMITTED&quot; | &quot;JUSTIFICATION_REVIEWED&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NotificationEntityType"></a>
+                    <span class="name "><b>NotificationEntityType</b><a href="#NotificationEntityType"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tipo de recurso del dominio al que puede apuntar una notificación.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;TASK&quot; | &quot;STUDENT_TASK&quot; | &quot;ASSISTANCE&quot; | &quot;SYSTEM&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/week-schedule-flow/week-schedule.enums.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PrismaWeekDay"></a>
+                    <span class="name "><b>PrismaWeekDay</b><a href="#PrismaWeekDay"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unión TypeScript derivada de los literales Prisma válidos para <code>weekDay</code>.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/notification/notification-create-form/notification-create-form.component.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RecipientRole"></a>
+                    <span class="name "><b>RecipientRole</b><a href="#RecipientRole"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Roles que administración puede elegir como destinatarios de una notificación manual.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;STUDENT&quot; | &quot;TEACHER&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/teacher/tasks.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="StudentTaskStatus"></a>
+                    <span class="name "><b>StudentTaskStatus</b><a href="#StudentTaskStatus"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estados posibles de la entrega de un alumno para una tarea.
+Refleja el enum <code>SubmissionStatus</code> del esquema Prisma del backend.</p>
+<ul>
+<li><code>PENDING</code>       — Pendiente de entregar.</li>
+<li><code>SUBMITTED</code>     — Entregada en plazo.</li>
+<li><code>LATE</code>          — Entregada fuera de plazo.</li>
+<li><code>GRADED</code>        — Calificada por el profesor.</li>
+<li><code>NOT_SUBMITTED</code> — No entregada tras superar la fecha límite.</li>
+</ul>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;PENDING&quot; | &quot;SUBMITTED&quot; | &quot;LATE&quot; | &quot;GRADED&quot; | &quot;NOT_SUBMITTED&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TaskType"></a>
+                    <span class="name "><b>TaskType</b><a href="#TaskType"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Tipos de tarea disponibles en el sistema.
+Refleja el enum <code>TaskType</code> del esquema Prisma del backend.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;PRACTICE&quot; | &quot;THEORY&quot; | &quot;EXAM&quot; | &quot;PROJECT&quot; | &quot;HOMEWORK&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TeacherAssignmentStatus"></a>
+                    <span class="name "><b>TeacherAssignmentStatus</b><a href="#TeacherAssignmentStatus"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de la asignación de un profesor a una asignatura y grupo.</p>
+<ul>
+<li><code>ACTIVE</code>   — La asignación está en curso.</li>
+<li><code>STANDBY</code>  — La asignación está en pausa o pendiente de activación.</li>
+<li><code>INACTIVE</code> — La asignación ha finalizado.</li>
+</ul>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;ACTIVE&quot; | &quot;STANDBY&quot; | &quot;INACTIVE&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/entities/student-task.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="StudentTaskUpdatePayload"></a>
+                    <span class="name "><b>StudentTaskUpdatePayload</b><a href="#StudentTaskUpdatePayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payload de actualización de StudentTask con id añadido por el modal genérico.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/models/teacher/subjectforteacher.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SubjectTeacherAssignment"></a>
+                    <span class="name "><b>SubjectTeacherAssignment</b><a href="#SubjectTeacherAssignment"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Asignación de profesor a asignatura tal como viene en GET /api/subjects/:id (include teacher).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/core/services/admin/entities/task.service.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TaskUpdatePayload"></a>
+                    <span class="name "><b>TaskUpdatePayload</b><a href="#TaskUpdatePayload"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payload de actualización incluye <code>id</code> porque lo añade el modal genérico de administración.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>unknown</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/weekSchedule/week-schedule-builder/week-schedule-builder.component.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WeekScheduleBuilderMode"></a>
+                    <span class="name "><b>WeekScheduleBuilderMode</b><a href="#WeekScheduleBuilderMode"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Pestaña activa del builder: crear plantilla o editar rejilla semanal.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;create&quot; | &quot;grid&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/pages/admin/entities/course/course-assignments-wizard/course-assignments-wizard.component.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WizardStep"></a>
+                    <span class="name "><b>WizardStep</b><a href="#WizardStep"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Pasos del asistente: <code>1</code> = ciclo, <code>2</code> = nivel/grade dentro del ciclo.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;1&quot; | &quot;2&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-typealiases';
+            var COMPODOC_CURRENT_PAGE_URL = 'typealiases.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

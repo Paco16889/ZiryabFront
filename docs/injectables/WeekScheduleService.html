@@ -1,0 +1,1384 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >WeekScheduleService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio CRUD de franjas horarias semanales.</p>
+<p>Centraliza la conversión entre el día numérico que usa la UI (<code>1</code> lunes…<code>7</code> domingo)
+y el literal Prisma que espera el backend (<code>MONDAY</code>…<code>SUNDAY</code>).</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#apiUrl" >apiUrl</a>
+                            </li>
+                            <li>
+                                <a href="#schedules" >schedules</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createSchedule" >createSchedule</a>
+                            </li>
+                            <li>
+                                <a href="#deleteSchedule" >deleteSchedule</a>
+                            </li>
+                            <li>
+                                <a href="#getAllSchedules" >getAllSchedules</a>
+                            </li>
+                            <li>
+                                <a href="#getSchedulesByStudent" >getSchedulesByStudent</a>
+                            </li>
+                            <li>
+                                <a href="#getSchedulesByTeacher" >getSchedulesByTeacher</a>
+                            </li>
+                            <li>
+                                <a href="#getWeekSchedulebyId" >getWeekSchedulebyId</a>
+                            </li>
+                            <li>
+                                <a href="#loadSchedules" >loadSchedules</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#normalizeList" >normalizeList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#normalizeSchedule" >normalizeSchedule</a>
+                            </li>
+                            <li>
+                                <a href="#updateSchedule" >updateSchedule</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Inyecta el cliente HTTP usado en todas las operaciones del módulo.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Cliente HTTP usado para acceder al módulo de horarios semanales.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSchedule"></a>
+                    <span class="name">
+                        <span ><b>createSchedule</b></span>
+                        <a href="#createSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createSchedule(data: <a href="../interfaces/WeekScheduleCreateRequest.html" target="_self">WeekScheduleCreateRequest</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Crea una franja semanal convirtiendo <code>weekDay</code> de número UI a literal Prisma.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekScheduleCreateRequest.html" target="_self" >WeekScheduleCreateRequest</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Datos necesarios para crear la franja horaria</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekScheduleCreateResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con la respuesta que contiene la franja horaria creada</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteSchedule"></a>
+                    <span class="name">
+                        <span ><b>deleteSchedule</b></span>
+                        <a href="#deleteSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteSchedule(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Elimina una franja horaria semanal por su identificador.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador único de la franja horaria a eliminar</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekScheduleDeleteResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con la respuesta de confirmación de eliminación</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllSchedules"></a>
+                    <span class="name">
+                        <span ><b>getAllSchedules</b></span>
+                        <a href="#getAllSchedules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAllSchedules()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene todas las franjas horarias semanales normalizadas al formato de la UI.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekSchedulesAllResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con la respuesta que contiene el listado de franjas horarias</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSchedulesByStudent"></a>
+                    <span class="name">
+                        <span ><b>getSchedulesByStudent</b></span>
+                        <a href="#getSchedulesByStudent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSchedulesByStudent(idStudent: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene el horario semanal visible para un estudiante concreto.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idStudent</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador del estudiante autenticado</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekSchedulesAllResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con las franjas horarias del estudiante</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSchedulesByTeacher"></a>
+                    <span class="name">
+                        <span ><b>getSchedulesByTeacher</b></span>
+                        <a href="#getSchedulesByTeacher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSchedulesByTeacher(idTeacher: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene todas las franjas en las que participa un profesor.
+Lo usa el grid admin para detectar solapes con otros grupos.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idTeacher</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador del profesor autenticado</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekSchedulesAllResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con las franjas horarias del profesor</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWeekSchedulebyId"></a>
+                    <span class="name">
+                        <span ><b>getWeekSchedulebyId</b></span>
+                        <a href="#getWeekSchedulebyId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getWeekSchedulebyId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene una franja semanal por id y normaliza su día antes de entregarla al formulario.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador único de la franja horaria</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekScheduleByIdResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con la respuesta que contiene la franja horaria encontrada</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSchedules"></a>
+                    <span class="name">
+                        <span ><b>loadSchedules</b></span>
+                        <a href="#loadSchedules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadSchedules()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga todas las franjas horarias y actualiza <code>schedules</code>.
+En caso de error o <code>success: false</code>, limpia la cache para evitar mostrar datos obsoletos.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>No devuelve valor; actualiza la signal <code>schedules</code> al completar la petición.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizeList"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>normalizeList</b></span>
+                        <a href="#normalizeList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>normalizeList(res: <a href="../interfaces/WeekSchedulesAllResponse.html" target="_self">WeekSchedulesAllResponse</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Normaliza todas las franjas de una respuesta de listado.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekSchedulesAllResponse.html" target="_self" >WeekSchedulesAllResponse</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Respuesta cruda del listado de horarios semanales.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/WeekSchedulesAllResponse.html" target="_self" >WeekSchedulesAllResponse</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Respuesta con cada franja ya normalizada al formato de la UI.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizeSchedule"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>normalizeSchedule</b></span>
+                        <a href="#normalizeSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>normalizeSchedule(ws: <a href="../interfaces/WeekSchedule.html" target="_self">WeekSchedule</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Normaliza <code>weekDay</code> del API (string enum) al 1–7 interno del front.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ws</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekSchedule.html" target="_self" >WeekSchedule</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Franja horaria tal como viene del backend.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/WeekSchedule.html" target="_self" >WeekSchedule</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Copia de la franja con el día convertido al formato numérico de la UI.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSchedule"></a>
+                    <span class="name">
+                        <span ><b>updateSchedule</b></span>
+                        <a href="#updateSchedule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSchedule(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, data: <a href="../interfaces/WeekScheduleUpdateRequest.html" target="_self">WeekScheduleUpdateRequest</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:158</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza una franja semanal enviando solo los campos presentes y traduciendo el día a Prisma.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador único de la franja horaria a actualizar</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../interfaces/WeekScheduleUpdateRequest.html" target="_self" >WeekScheduleUpdateRequest</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Datos de la franja horaria a actualizar</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;WeekScheduleUpdateResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Observable con la respuesta que contiene la franja horaria actualizada</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="apiUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>apiUrl</b></span>
+                        <a href="#apiUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${environment.apiUrl}/horarios-semanales&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:21</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>URL base del módulo de horarios semanales en el backend.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="schedules"></a>
+                    <span class="name">
+                        <span ><b>schedules</b></span>
+                        <a href="#schedules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;WeekSchedule[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/services/admin/entities/services-for-week-schedule/week-schedule.service.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cache reactiva del listado completo que consumen los listados y el builder.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Injectable, signal } from &#x27;@angular/core&#x27;;
+import { WeekSchedule, WeekScheduleByIdResponse, WeekScheduleCreateRequest, WeekScheduleCreateResponse, WeekScheduleDeleteResponse, WeekSchedulesAllResponse, WeekScheduleUpdateRequest, WeekScheduleUpdateResponse } from &#x27;../../../../models/week-schedule&#x27;;
+import { catchError, map, Observable, of } from &#x27;rxjs&#x27;;
+import { environment } from &#x27;../../../../../../environments/environment&#x27;;
+import { numberToPrismaDayOfWeek, prismaDayOfWeekToNumber } from &#x27;../../../../utils/week-day&#x27;;
+
+/**
+ * Servicio CRUD de franjas horarias semanales.
+ *
+ * Centraliza la conversión entre el día numérico que usa la UI (&#x60;1&#x60; lunes…&#x60;7&#x60; domingo)
+ * y el literal Prisma que espera el backend (&#x60;MONDAY&#x60;…&#x60;SUNDAY&#x60;).
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class WeekScheduleService {
+
+
+  /** URL base del módulo de horarios semanales en el backend. */
+  private readonly apiUrl &#x3D; &#x60;${environment.apiUrl}/horarios-semanales&#x60;;
+
+  /** Cache reactiva del listado completo que consumen los listados y el builder. */
+  schedules &#x3D; signal&lt;WeekSchedule[]&gt;([]);
+
+  /**
+   * Inyecta el cliente HTTP usado en todas las operaciones del módulo.
+   * @param http Cliente HTTP usado para acceder al módulo de horarios semanales.
+   */
+  constructor(private http: HttpClient) { }
+
+  /**
+   * Normaliza &#x60;weekDay&#x60; del API (string enum) al 1–7 interno del front.
+   * @param ws Franja horaria tal como viene del backend.
+   * @returns Copia de la franja con el día convertido al formato numérico de la UI.
+   */
+  private normalizeSchedule(ws: WeekSchedule): WeekSchedule {
+    return {
+      ...ws,
+      weekDay: prismaDayOfWeekToNumber(ws.weekDay as unknown as string | number),
+    };
+  }
+
+  /**
+   * Normaliza todas las franjas de una respuesta de listado.
+   * @param res Respuesta cruda del listado de horarios semanales.
+   * @returns Respuesta con cada franja ya normalizada al formato de la UI.
+   */
+  private normalizeList(res: WeekSchedulesAllResponse): WeekSchedulesAllResponse {
+    if (!res.success || !res.data?.length) {
+      return res;
+    }
+    return {
+      ...res,
+      data: res.data.map((s) &#x3D;&gt; this.normalizeSchedule(s)),
+    };
+  }
+
+  /**
+   * Carga todas las franjas horarias y actualiza &#x60;schedules&#x60;.
+   * En caso de error o &#x60;success: false&#x60;, limpia la cache para evitar mostrar datos obsoletos.
+   * @returns No devuelve valor; actualiza la signal &#x60;schedules&#x60; al completar la petición.
+   */
+  loadSchedules() {
+    this.getAllSchedules().subscribe(res &#x3D;&gt; {
+      if (res.success) {
+        this.schedules.set(res.data);
+      } else {
+        this.schedules.set([]);
+      }
+    });
+  }
+
+  /**
+   * Obtiene todas las franjas horarias semanales normalizadas al formato de la UI.
+   * @returns Observable con la respuesta que contiene el listado de franjas horarias
+   */
+   getAllSchedules(): Observable&lt;WeekSchedulesAllResponse&gt;{
+    return this.http.get&lt;WeekSchedulesAllResponse&gt;(this.apiUrl).pipe(
+      map((res) &#x3D;&gt; this.normalizeList(res)),
+      catchError(() &#x3D;&gt; of({success: false, data: [], count: 0}))
+    );
+  }
+
+  /**
+   * Obtiene el horario semanal visible para un estudiante concreto.
+   * @param idStudent - Identificador del estudiante autenticado
+   * @returns Observable con las franjas horarias del estudiante
+   */
+  getSchedulesByStudent(idStudent: number): Observable&lt;WeekSchedulesAllResponse&gt; {
+    return this.http.get&lt;WeekSchedulesAllResponse&gt;(&#x60;${this.apiUrl}/student/${idStudent}&#x60;).pipe(
+      map((res) &#x3D;&gt; this.normalizeList(res)),
+      catchError(() &#x3D;&gt; of({ success: false, data: [], count: 0 }))
+    );
+  }
+
+  /**
+   * Obtiene todas las franjas en las que participa un profesor.
+   * Lo usa el grid admin para detectar solapes con otros grupos.
+   * @param idTeacher - Identificador del profesor autenticado
+   * @returns Observable con las franjas horarias del profesor
+   */
+  getSchedulesByTeacher(idTeacher: number): Observable&lt;WeekSchedulesAllResponse&gt; {
+    return this.http.get&lt;WeekSchedulesAllResponse&gt;(&#x60;${this.apiUrl}/teacher/${idTeacher}&#x60;).pipe(
+      map((res) &#x3D;&gt; this.normalizeList(res)),
+      catchError(() &#x3D;&gt; of({ success: false, data: [], count: 0 }))
+    );
+  }
+
+  /**
+   * Obtiene una franja semanal por id y normaliza su día antes de entregarla al formulario.
+   * @param id - Identificador único de la franja horaria
+   * @returns Observable con la respuesta que contiene la franja horaria encontrada
+   */
+  getWeekSchedulebyId(id: number): Observable&lt;WeekScheduleByIdResponse&gt; {
+    return this.http.get&lt;WeekScheduleByIdResponse&gt;(&#x60;${this.apiUrl}/${id}&#x60;).pipe(
+      map((r) &#x3D;&gt;
+        r.success &amp;&amp; r.data
+          ? { ...r, data: this.normalizeSchedule(r.data) }
+          : r,
+      ),
+      catchError((error) &#x3D;&gt; {
+        console.error(&#x27;Error:&#x27;, error);
+        throw error;
+      })
+    );
+  }
+
+  /**
+   * Crea una franja semanal convirtiendo &#x60;weekDay&#x60; de número UI a literal Prisma.
+   * @param data - Datos necesarios para crear la franja horaria
+   * @returns Observable con la respuesta que contiene la franja horaria creada
+   */
+   createSchedule(data: WeekScheduleCreateRequest): Observable&lt;WeekScheduleCreateResponse&gt; {
+    const body &#x3D; {
+      ...data,
+      weekDay: numberToPrismaDayOfWeek(data.weekDay),
+    };
+    return this.http.post&lt;WeekScheduleCreateResponse&gt;(this.apiUrl, body).pipe(
+      map((r) &#x3D;&gt;
+        r.success &amp;&amp; r.data
+          ? { ...r, data: this.normalizeSchedule(r.data) }
+          : r,
+      ),
+      catchError((error) &#x3D;&gt; {
+        console.error(&#x27;Error creating schedule:&#x27;, error);
+        throw error;
+      })
+    );
+  }
+
+  /**
+   * Actualiza una franja semanal enviando solo los campos presentes y traduciendo el día a Prisma.
+   * @param id - Identificador único de la franja horaria a actualizar
+   * @param data - Datos de la franja horaria a actualizar
+   * @returns Observable con la respuesta que contiene la franja horaria actualizada
+   */
+  updateSchedule(id: number, data: WeekScheduleUpdateRequest): Observable&lt;WeekScheduleUpdateResponse&gt; {
+    const body: Record&lt;string, string | number | undefined&gt; &#x3D; { id: data.id };
+    if (data.weekDay !&#x3D;&#x3D; undefined) {
+      body[&#x27;weekDay&#x27;] &#x3D; numberToPrismaDayOfWeek(data.weekDay);
+    }
+    if (data.startTime !&#x3D;&#x3D; undefined) {
+      body[&#x27;startTime&#x27;] &#x3D; data.startTime;
+    }
+    if (data.finishTime !&#x3D;&#x3D; undefined) {
+      body[&#x27;finishTime&#x27;] &#x3D; data.finishTime;
+    }
+    if (data.idTeacherAssignment !&#x3D;&#x3D; undefined) {
+      body[&#x27;idTeacherAssignment&#x27;] &#x3D; data.idTeacherAssignment;
+    }
+    return this.http.patch&lt;WeekScheduleUpdateResponse&gt;(&#x60;${this.apiUrl}/${id}&#x60;, body).pipe(
+      map((r) &#x3D;&gt;
+        r.success &amp;&amp; r.data
+          ? { ...r, data: this.normalizeSchedule(r.data) }
+          : r,
+      ),
+      catchError((error) &#x3D;&gt; {
+        console.error(&#x27;Error updating schedule:&#x27;, error);
+        throw error;
+      })
+    );
+  }
+
+  /**
+   * Elimina una franja horaria semanal por su identificador.
+   * @param id - Identificador único de la franja horaria a eliminar
+   * @returns Observable con la respuesta de confirmación de eliminación
+   */
+  deleteSchedule(id: number): Observable&lt;WeekScheduleDeleteResponse&gt; {
+    return this.http.delete&lt;WeekScheduleDeleteResponse&gt;(&#x60;${this.apiUrl}/${id}&#x60;).pipe(
+      catchError((error) &#x3D;&gt; {
+        console.error(&#x27;Error deleting schedule:&#x27;, error);
+        throw error;
+      })
+    );
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'WeekScheduleService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

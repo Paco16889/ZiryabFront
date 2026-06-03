@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": "rtk hook cursor",
+        "matcher": "Shell"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/lint-and-format.sh"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "rtk hook cursor",
+        "matcher": ".*"
+      },
+      {
+        "command": ".cursor/hooks/guard-commands.sh",
+        "matcher": "rm -rf|git push --force|ng build --configuration production|npm publish",
+        "failClosed": true
+      },
+      {
+        "command": ".cursor/hooks/validate-commit.sh",
+        "matcher": "git commit"
+      }
+    ],
+    "afterMCPExecution": [
+      {
+        "command": ".cursor/hooks/audit-mcp.sh"
+      }
+    ]
+  }
+}

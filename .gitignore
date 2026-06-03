@@ -40,3 +40,24 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+.env
+
+# Documentación
+asistencias-alumno.md
+diseno-ficha-usuario.md
+documentacion-visualizacion-faltas.md
+documentacion-subida-justificante.md
+documentacion-validaciones-subida.md
+documentacion-confirmacion-visual.md
+reporte_errores.md
+code_review_clasesProfesor.md
+code_review_general_front.md
+documentacion_limpieza_codigo.md
+implementacion_estado_justificacion.md
+documentacion-temario-separado.md
+student-task-frontend.md
+documentacion-calificar-tarea.md
+REFACTORING_ISSUE_11.md
+DECISION_ASSIGNMENT_CRUD.md
+code_review_refactorizacion_reparaciones.md

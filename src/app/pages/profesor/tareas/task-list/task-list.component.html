@@ -1,0 +1,59 @@
+<!-- Estado de carga -->
+<div *ngIf="loading()" class="flex flex-col gap-3 p-4">
+    <div *ngFor="let i of [1,2,3]"
+         class="h-20 rounded-xl bg-gray-100 animate-pulse">
+    </div>
+  </div>
+  
+  <!-- Lista agrupada -->
+  <div *ngIf="!loading()" class="flex flex-col gap-4 p-4">
+  
+    <!-- Cabecera -->
+    <div class="flex items-center justify-between mb-2 gap-4">
+      <div>
+        <p class="text-sm text-gray-400">
+          {{ tasks().length }} {{ 'tareas.countLabel' | translate }}
+        </p>
+      </div>
+      <button
+        type="button"
+        (click)="openTaskForm()"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-xl shadow-sm hover:bg-indigo-700 transition-colors shrink-0"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        {{ 'tareas.createButton' | translate }}
+      </button>
+    </div>
+  
+    <!-- Sin tareas -->
+    <div *ngIf="tasks().length === 0"
+         class="flex flex-col items-center justify-center py-16 text-gray-400">
+      <p class="text-sm">{{ 'tareas.empty' | translate }}</p>
+    </div>
+  
+    <!-- Grupos -->
+    <app-task-group-item
+      *ngFor="let group of groupedTasks()"
+      [groupKey]="group.key"
+      [groupName]="group.name"
+      [color]="group.color"
+      [tasks]="group.tasks"
+    />
+  
+  </div>
+
+@if (showTaskForm()) {
+  <div class="fixed inset-0 z-50 overflow-y-auto bg-black/50 flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl relative shadow-2xl rounded-lg">
+      <app-task-form
+        [idTeacherAssignment]="idTeacherAssignment"
+        (taskCreated)="onTaskCreated()"
+        (cancel)="closeTaskForm()"
+      />
+    </div>
+  </div>
+}
+
+<app-boton-atras></app-boton-atras>

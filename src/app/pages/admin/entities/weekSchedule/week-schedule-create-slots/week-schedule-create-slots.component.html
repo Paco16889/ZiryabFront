@@ -1,0 +1,127 @@
+﻿<div class="space-y-4 max-w-2xl">
+  <div>
+    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" for="week-schedule-create-slot-count">
+      {{ 'weekScheduleBuilder.create.slotCount' | translate }}
+    </label>
+    <input
+      id="week-schedule-create-slot-count"
+      type="number"
+      min="1"
+      [max]="effectiveMaxSlots() ?? null"
+      class="w-24 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-800 dark:text-gray-100 disabled:opacity-50"
+      [value]="slotCount()"
+      [disabled]="disabled()"
+      (change)="onSlotCountChange($any($event.target).value)"
+    />
+    @if (effectiveMaxSlots(); as max) {
+      <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+        {{
+          'weekScheduleBuilder.create.slotCountProgress'
+            | translate
+              : {
+                  current: slotCount(),
+                  max,
+                  total: weeklyHoursTotal() ?? max,
+                  days: selectedDayCount() || 1
+                }
+        }}
+      </p>
+    }
+    @if (isAtMaxSlots()) {
+      <p class="text-xs text-amber-800 mt-1" role="status">
+        {{
+          'weekScheduleBuilder.create.slotCountMaxReached'
+            | translate
+              : {
+                  max: effectiveMaxSlots(),
+                  total: weeklyHoursTotal() ?? effectiveMaxSlots(),
+                  days: selectedDayCount() || 1
+                }
+        }}
+      </p>
+    }
+    @if (showValidation() && slotCount() < 1) {
+      <p class="text-sm text-red-600 mt-1" role="alert">
+        {{ 'weekScheduleBuilder.create.validationMinSlots' | translate }}
+      </p>
+    }
+  </div>
+
+  <div>
+    <h2 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+      {{ 'weekScheduleBuilder.create.slotsTitle' | translate }}
+    </h2>
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
+      {{ 'weekScheduleBuilder.create.timeFormatHint' | translate }}
+    </p>
+
+    <ul class="space-y-3">
+      @for (row of slots(); track $index) {
+        <li
+          class="grid grid-cols-1 sm:grid-cols-[auto_1fr_1fr] gap-3 items-end border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-900"
+        >
+          <span class="text-xs font-medium text-gray-500 dark:text-gray-400 sm:pb-2">
+            {{ 'weekScheduleBuilder.create.slotRow' | translate: { n: $index + 1 } }}
+          </span>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" [for]="'slot-start-' + $index">
+              {{ 'weekScheduleBuilder.startTime' | translate }}
+            </label>
+            <input
+              [id]="'slot-start-' + $index"
+              type="text"
+              inputmode="numeric"
+              maxlength="5"
+              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"
+              [attr.placeholder]="startPlaceholder($index)"
+              [attr.title]="'weekScheduleBuilder.create.timeFormatHint' | translate"
+              autocomplete="off"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 font-mono bg-white dark:bg-gray-800 dark:text-gray-100 disabled:opacity-50"
+              [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.startTime)"
+              [value]="row.startTime"
+              [disabled]="disabled()"
+              (input)="onSlotTimeInput($index, 'startTime', $any($event.target).value)"
+              (blur)="onSlotTimeBlur($index, 'startTime', $any($event.target).value)"
+            />
+            @if (showValidation() && isFieldFormatInvalid(row.startTime)) {
+              <p class="text-xs text-red-600 mt-1" role="alert">
+                {{ 'weekScheduleBuilder.create.validationTimeFormat' | translate }}
+              </p>
+            }
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" [for]="'slot-end-' + $index">
+              {{ 'weekScheduleBuilder.endTime' | translate }}
+            </label>
+            <input
+              [id]="'slot-end-' + $index"
+              type="text"
+              inputmode="numeric"
+              maxlength="5"
+              pattern="([01][0-9]|2[0-3]):[0-5][0-9]"
+              [attr.placeholder]="startPlaceholder($index)"
+              [attr.title]="'weekScheduleBuilder.create.timeFormatHint' | translate"
+              autocomplete="off"
+              class="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 font-mono bg-white dark:bg-gray-800 dark:text-gray-100 disabled:opacity-50"
+              [class.border-red-500]="showValidation() && isFieldFormatInvalid(row.finishTime)"
+              [value]="row.finishTime"
+              [disabled]="disabled()"
+              (input)="onSlotTimeInput($index, 'finishTime', $any($event.target).value)"
+              (blur)="onSlotTimeBlur($index, 'finishTime', $any($event.target).value)"
+            />
+            @if (showValidation() && isFieldFormatInvalid(row.finishTime)) {
+              <p class="text-xs text-red-600 mt-1" role="alert">
+                {{ 'weekScheduleBuilder.create.validationTimeFormat' | translate }}
+              </p>
+            }
+          </div>
+          @if (showValidation() && isRowTimeOrderInvalid(row)) {
+            <p class="text-sm text-red-600 sm:col-span-3" role="alert">
+              {{ 'weekScheduleBuilder.timeOrderError' | translate }}
+            </p>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</div>

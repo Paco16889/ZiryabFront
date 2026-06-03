@@ -1,0 +1,45 @@
+<div class="schedule-wrapper">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="title-main">{{ 'horario.titleTeacher' | translate }}</h1>
+      <p class="subtitle-main">{{ 'horario.subtitle' | translate }}</p>
+    </header>
+
+    @if (isLoading) {
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+      </div>
+    } @else {
+      <div class="schedule-grid">
+        @for (day of weekDays; track day) {
+          <div class="day-column">
+            <div class="day-title">
+              {{ ('horario.days.' + day) | translate }}
+            </div>
+            
+            <div class="day-entries">
+              @if (getDaySchedules(day).length === 0) {
+                <div class="no-classes">
+                  {{ 'horario.noData' | translate }}
+                </div>
+              } @else {
+                @for (schedule of getDaySchedules(day); track schedule.id) {
+                  <div class="class-item">
+                    <div class="class-time">
+                      {{ schedule.startTime }} - {{ schedule.finishTime }}
+                    </div>
+                    <div class="class-name">
+                      {{ getSubjectName(schedule) }}
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<app-boton-atras></app-boton-atras>

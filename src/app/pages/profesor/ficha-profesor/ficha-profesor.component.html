@@ -1,0 +1,128 @@
+<div class="w-full bg-gray-50 flex flex-col items-center p-4 sm:p-6 lg:p-8 pt-8 sm:pt-12 pb-16">
+  <div class="w-full max-w-4xl">
+
+    <!-- Encabezado -->
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-center sm:text-left">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2">
+          {{ 'teacherPages.justifications.title' | translate }}
+        </h1>
+        <p class="text-gray-500 text-lg font-medium">{{ 'teacherPages.justifications.subtitle' | translate }}</p>
+      </div>
+
+      <div class="flex justify-center sm:justify-end flex-shrink-0">
+        <button
+          (click)="isAbsencesModalOpen.set(true)"
+          class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-colors shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+{{ 'teacherPages.justifications.viewAbsencesByStudent' | translate }}
+        </button>
+      </div>
+    </div>
+  
+    <!-- Mensajes de estado -->
+    @if (statusMessage()) {
+        <div class="mb-6 p-4 rounded-xl border flex items-center gap-3 transition-all"
+             [ngClass]="{
+                 'bg-red-50 border-red-200 text-red-700': statusMessage()?.type === 'error',
+                 'bg-green-50 border-green-200 text-green-700': statusMessage()?.type === 'success',
+                 'bg-blue-50 border-blue-200 text-blue-700': statusMessage()?.type === 'info'
+             }">
+            <span>{{ statusMessage()?.text }}</span>
+        </div>
+    }
+  
+    <!-- Estado de Carga -->
+    @if (loading()) {
+      <div class="flex flex-col items-center justify-center py-20">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600 mb-4"></div>
+<p class="text-gray-500 font-medium">{{ 'teacherPages.justifications.loading' | translate }}</p>
+      </div>
+    } @else {
+  
+      <!-- Lista de Justificaciones -->
+      @if (justificacionesPendientes().length > 0) {
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <ul class="divide-y divide-gray-100">
+            @for (falta of justificacionesPendientes(); track falta.id) {
+              <li class="p-6 transition-all hover:bg-slate-50 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                
+                <div class="flex flex-col gap-1">
+                  <!-- Información del Alumno -->
+                  <div class="font-semibold text-lg text-slate-800">
+                    {{ falta.studentEnrollment?.student?.name }} {{ falta.studentEnrollment?.student?.surname }}
+                  </div>
+                  <!-- Información de la sesión -->
+                  <div class="text-sm text-slate-500 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                      </svg>
+                      {{ falta.session.date | date:'dd/MM/yyyy' }} a las {{ falta.session.schedule.startTime }}
+                    </span>
+                    <span class="hidden sm:inline text-slate-300">•</span>
+                    <span class="font-medium text-slate-700">
+                      {{ falta.session.schedule.teacherAssignment.subject.name }}
+                    </span>
+                  </div>
+                </div>
+  
+                <!-- Acciones -->
+                <div class="flex flex-wrap items-center gap-2 mt-3 sm:mt-0 w-full sm:w-auto">
+                  <button 
+                    (click)="verJustificante(falta.justificationUri!)"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
+                      <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+                    </svg>
+{{ 'teacherPages.justifications.viewFile' | translate }}
+                  </button>
+                  
+                  <button 
+                    (click)="aceptarJustificacion(falta.id)"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-xl transition-colors shadow-sm shadow-green-600/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+{{ 'teacherPages.justifications.accept' | translate }}
+                  </button>
+  
+                  <button 
+                    (click)="rechazarJustificacion(falta.id)"
+                    class="flex-none inline-flex items-center justify-center p-2 text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+title="{{ 'teacherPages.justifications.reject' | translate }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+  
+              </li>
+            }
+          </ul>
+        </div>
+      } @else if (!statusMessage()) {
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 mb-4 text-slate-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+<h3 class="text-xl font-semibold text-slate-800 mb-2">{{ 'teacherPages.justifications.allUpToDate' | translate }}</h3>
+          <p class="text-slate-500">{{ 'teacherPages.justifications.noPending' | translate }}</p>
+        </div>
+      }
+    }
+
+    <app-boton-atras></app-boton-atras>
+  </div>
+</div>
+
+@if (isAbsencesModalOpen()) {
+    <app-student-absences-modal
+      (closeModal)="isAbsencesModalOpen.set(false)">
+    </app-student-absences-modal>
+  }

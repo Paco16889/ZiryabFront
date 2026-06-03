@@ -1,0 +1,1655 @@
+{
+  "common": {
+    "buttons": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen",
+      "back": "Zurück",
+      "search": "Suchen",
+      "close": "Schließen"
+    },
+    "fields": {
+      "email": "E-Mail",
+      "name": "Vorname",
+      "surname": "Nachname",
+      "ndSurname": "Zweiter Nachname",
+      "dni": "Ausweisnummer",
+      "birthDate": "Geburtsdatum"
+    },
+    "placeholders": {
+      "email": "lehrer@ziryab.es",
+      "name": "Vorname",
+      "surname": "Nachname",
+      "ndSurname": "Zweiter Nachname",
+      "dni": "12345678A",
+      "selectOption": "Option auswählen"
+    },
+    "validation": {
+      "emailInvalid": "Ungültige E-Mail",
+      "required": "Dieses Feld ist erforderlich",
+      "nameRequired": "Der Vorname ist erforderlich",
+      "surnameRequired": "Der Nachname ist erforderlich",
+      "ndSurnameRequired": "Der zweite Nachname ist erforderlich",
+      "birthDateRequired": "Das Geburtsdatum ist erforderlich",
+      "dniInvalid": "Ungültige Ausweisnummer (Format: 12345678A)"
+    },
+    "messages": {
+      "loading": "Lädt",
+      "loadingOptions": "Optionen werden geladen...",
+      "loadingEllipsis": "Lädt...",
+      "emptyList": "Keine Einträge anzuzeigen.",
+      "saving": "Speichern...",
+      "subject": "Fach",
+      "unassigned": "Nicht zugewiesen",
+      "loadingTeacher": "Lädt...",
+      "unknown": "Unbekannt",
+      "optional": "optional",
+      "total": "Gesamt",
+      "required": "Pflichtfeld",
+      "between0And10": "Muss zwischen 0 und 10 liegen",
+      "gradeBetween0And10": "Gib eine Note zwischen 0 und 10 ein",
+      "noDescription": "Keine Beschreibung",
+      "enrollment": "Einschreibung"
+    },
+    "noData": "—",
+    "errors": {
+      "unknown": "Unbekannter Fehler",
+      "connection": "Verbindungsfehler mit dem Server.",
+      "userNotIdentified": "Benutzer nicht identifiziert. Bitte anmelden.",
+      "loadAbsences": "Fehler beim Laden der Fehlzeiten.",
+      "loadTask": "Fehler beim Laden der Aufgabe.",
+      "loadTaskDetail": "Fehler beim Laden der Aufgabendetails.",
+      "loadGrades": "Fehler beim Laden deiner Noten",
+      "loadTutorGroups": "Fehler beim Laden der betreuten Gruppen",
+      "loadNotes": "Fehler beim Laden der Noten",
+      "saveNotes": "Fehler beim Speichern der Noten",
+      "createTask": "Fehler beim Erstellen der Aufgabe",
+      "createTeacher": "Fehler beim Erstellen des Lehrers",
+      "createGroup": "Fehler beim Erstellen der Gruppe",
+      "createCourse": "Fehler beim Erstellen des Bildungsgangs",
+      "createSubject": "Fehler beim Erstellen des Fachs",
+      "createStudent": "Fehler beim Erstellen des Schülers",
+      "createEnrollment": "Fehler beim Erstellen der Abgabe",
+      "createNotification": "Fehler beim Erstellen der Benachrichtigung",
+      "createSession": "Fehler beim Erstellen der Sitzung",
+      "createAssistance": "Fehler beim Erstellen der Anwesenheit",
+      "uploadJustification": "Fehler beim Hochladen der Begründung. Bitte erneut versuchen.",
+      "loadJustifications": "Fehler beim Laden ausstehender Begründungen.",
+      "noSubjectsAssigned": "Du hast keine zugewiesenen Fächer.",
+      "noSubjectsEnrolled": "Du bist in keinem Fach eingeschrieben.",
+      "noTutorGroups": "Du bist derzeit Tutor keiner Gruppe.",
+      "noStudentsInGroup": "Diese Gruppe hat keine eingeschriebenen Schüler.",
+      "allGradesRequired": "Alle Fächer aller Schüler müssen mit einer Note zwischen 1 und 10 bewertet werden.",
+      "taskIdMissing": "Aufgaben-ID nicht angegeben.",
+      "couldNotLoadTask": "Aufgabe konnte nicht geladen werden.",
+      "folderNotAllowed": "Ganze Ordner sind nicht erlaubt. Bitte als .ZIP komprimieren",
+      "folderNotAllowedDetail": "Ganze Ordner sind nicht erlaubt. Bitte als .ZIP komprimieren (Rechtsklick -> Komprimieren).",
+      "fileTooLarge50": "Datei überschreitet die maximale Größe von 50 MB.",
+      "fileTooLarge10": "Datei überschreitet das Limit von 10 MB.",
+      "fileTooLarge1": "Datei darf nicht mehr als 1 MB groß sein.",
+      "invalidFileFormat": "Ungültiges Format. Lade PDF, JPG oder PNG hoch.",
+      "selectValidJustification": "Bitte wähle eine gültige Begründung.",
+      "provideUrl": "Du musst eine URL angeben.",
+      "provideFile": "Du musst eine Datei / ZIP auswählen oder ablegen.",
+      "invalidUploadLink": "Server hat die Datei verarbeitet, aber keinen gültigen Link zurückgegeben.",
+      "uploadFailed": "Interner Fehler beim Hochladen der Datei.",
+      "deleteSubmission": "Fehler beim Löschen der Abgabe.",
+      "studentNotFound": "Schüler nicht gefunden",
+      "invalidDni": "Gib eine gültige Ausweisnummer ein",
+      "existingStudent": "Bestehender Schüler. Über bestehenden Schüler einschreiben.",
+      "loadStudentTasksFailed": "Aufgaben konnten nicht geladen werden.",
+      "loadCoursesFailed": "Bildungsgänge konnten nicht geladen werden",
+      "saveAttendance": "Fehler beim Speichern der Anwesenheit",
+      "sessionError": "Fehler beim Abrufen der Sitzung",
+      "deadlineExpiredNoLate": "Die Abgabefrist ist abgelaufen und der Lehrer erlaubt keine verspäteten Abgaben.",
+      "submitNotifyFailed": "Deine Datei wurde hochgeladen, aber die Abgabemeldung an die Datenbank ist fehlgeschlagen."
+    }
+  },
+  "entities": {
+    "student": {
+      "singular": "Schüler",
+      "plural": "Schüler",
+      "singularArticle": "der Schüler",
+      "title": "Schüler"
+    },
+    "teacher": {
+      "singular": "Lehrer",
+      "plural": "Lehrer",
+      "singularArticle": "der Lehrer",
+      "title": "Lehrer"
+    },
+    "subject": {
+      "singular": "Fach",
+      "plural": "Fächer",
+      "singularArticle": "das Fach",
+      "title": "Fächer"
+    },
+    "course": {
+      "singular": "Bildungsgang",
+      "plural": "Bildungsgänge",
+      "singularArticle": "der Bildungsgang",
+      "title": "Bildungsgänge"
+    },
+    "group": {
+      "singular": "Gruppe",
+      "plural": "Gruppen",
+      "title": "Gruppen"
+    },
+    "task": {
+      "singular": "Aufgabe",
+      "plural": "Aufgaben",
+      "singularArticle": "die Aufgabe",
+      "title": "Aufgaben"
+    },
+    "classSession": {
+      "singular": "Unterrichtsstunde",
+      "plural": "Unterrichtsstunden",
+      "title": "Unterrichtsstunden"
+    },
+    "studentTask": {
+      "singular": "Abgabe",
+      "plural": "Abgaben",
+      "title": "Schülerabgaben"
+    },
+    "assistance": {
+      "singular": "Anwesenheit",
+      "plural": "Anwesenheiten",
+      "title": "Anwesenheit"
+    },
+    "notification": {
+      "singular": "Benachrichtigung",
+      "plural": "Benachrichtigungen",
+      "title": "Benachrichtigungen"
+    },
+    "weekSchedule": {
+      "singular": "Zeitslot",
+      "plural": "Zeitslots",
+      "title": "Stundenpläne"
+    },
+    "issue": {
+      "singular": "Ankündigung",
+      "plural": "Ankündigungen",
+      "singularArticle": "die Ankündigung",
+      "title": "Anschlagtafel"
+    }
+  },
+  "gestion": {
+    "title": "Akademische Verwaltung",
+    "subtitle": "Verwalte dein Profil und deine Aktivitäten",
+    "cards": {
+      "profile": {
+        "title": "Benutzerprofil",
+        "action": "Profil anzeigen"
+      },
+      "schedule": {
+        "title": "Stundenplan",
+        "action": "Anzeigen"
+      },
+      "calendar": {
+        "title": "Kalender",
+        "action": "Termine anzeigen"
+      },
+      "issues": {
+        "action": "Ankündigungen anzeigen"
+      }
+    }
+  },
+  "studentEnrollment": {
+    "title": "Schüler einschreiben",
+    "enrollButton": "Schüler einschreiben",
+    "modeSelector": {
+      "title": "Einschreibungsart",
+      "newStudent": "Neuer Schüler",
+      "existingStudent": "Bestehender Schüler"
+    },
+    "newStudentForm": {
+      "instructions": "Geben Sie die Daten des neuen Schülers ein"
+    },
+    "existingStudentForm": {
+      "instructions": "Wählen Sie einen bestehenden Schüler zur Einschreibung aus",
+      "dniLabel": "Ausweisnummer des Schülers eingeben",
+      "searchButton": "Schüler suchen"
+    },
+    "courseSelection": {
+      "label": "Für welchen Bildungsgang möchten Sie den Schüler einschreiben?"
+    },
+    "groupSelection": {
+      "label": "Gruppe / Unterrichtszeit wählen",
+      "placeholder": "Gruppe auswählen"
+    },
+    "subjectSelection": {
+      "label": "Fächer auswählen",
+      "fullOfferGrade": "Vollständiges Angebot des {{grade}}. Jahres",
+      "fullOffer": "Vollständiges Angebot des 1. Jahres"
+    },
+    "confirmButton": "Auswahl bestätigen",
+    "setRegistration": {
+      "studentLabel": "Schüler",
+      "studentPending": "(Bestätigung ausstehend)",
+      "saving": "Einschreibungen werden gespeichert…",
+      "saveErrorRegistration": "Die Einschreibungen konnten nicht gespeichert werden. Bitte erneut versuchen.",
+      "saveErrorStudent": "Der Schüler konnte nicht angelegt werden. Daten prüfen und erneut versuchen.",
+      "saveErrorGeneric": "Die Einschreibung konnte nicht abgeschlossen werden. Bitte erneut versuchen."
+    }
+  },
+  "weekScheduleBuilder": {
+    "title": "Stundenplan anlegen",
+    "modeLabel": "Erstellungsmodus",
+    "modeCreate": "Vorlage anlegen",
+    "modeGrid": "Wochenraster",
+    "create": {
+      "daysLabel": "Wochentage (Mo–Fr)",
+      "validationNoDay": "Wähle mindestens einen Tag.",
+      "selectClass": "Klasse (Gruppe ohne Stundenplan)",
+      "selectClassHint": "Nur Gruppen mit Fächern, die noch keine Wochenstundenplan-Vorlage haben.",
+      "classPlaceholder": "Gruppe ohne Stundenplan wählen…",
+      "loadingClasses": "Klassen werden geladen…",
+      "emptyEligibleClasses": "Keine Klassen mit Fächern und ohne Wochenstundenplan für dieses Schuljahr.",
+      "validationNoClass": "Wähle eine Klasse.",
+      "slotCount": "Anzahl der Unterrichtseinheiten",
+      "slotsTitle": "Zeiten je Einheit",
+      "slotRow": "Einheit {{n}}",
+      "validationMinSlots": "Mindestens eine Einheit angeben.",
+      "slotCountProgress": "{{current}} / {{max}} Einheiten pro Tag ({{total}} h auf {{days}} Tag(e))",
+      "slotCountMaxReached": "Maximal {{max}} Einheiten pro Tag ({{total}} Wochenstunden ÷ {{days}} Tag(e)).",
+      "slotLimitHint": "Jede Einheit gilt an allen {{days}} gewaehlten Tagen. Bei {{total}} Wochenstunden maximal {{max}} Einheiten (Reststunde ggf. nur an einem Tag).",
+      "timeFormatHint": "Pflichtformat HH:mm mit zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
+      "validationTimeFormat": "Ungültiges Format. Zwei Ziffern für Stunde und Minute (z. B. 08:15, nicht 8:15).",
+      "submit": "Wochenstundenplan-Vorlage erstellen",
+      "saving": "Vorlage wird erstellt…",
+      "saveSuccess": "Vorlage erstellt. Diese Klasse erscheint in dieser Auswahl nicht mehr. Das Wochenraster wird geöffnet, um Lehrkräfte zuzuweisen.",
+      "saveError": "Die Wochenstundenplan-Vorlage konnte nicht erstellt werden.",
+      "submitHint": "Speichern wird freigeschaltet, sobald das Backend den Endpunkt bereitstellt (CURSO-71).",
+      "bulkGenerating": "Unterrichtssitzungen werden im Hintergrund vorbereitet…",
+      "bulkSuccess": "{{created}} Unterrichtssitzungen wurden für dieses Schuljahr generiert.",
+      "bulkError": "Unterrichtssitzungen konnten nicht generiert werden. Versuche es über das Sitzungen-Panel.",
+      "pendingApi": "Das Speichern der Vorlage ist verfügbar, sobald das Backend den Materialisierungs-Endpunkt bereitstellt.",
+      "validate": "Formular prüfen"
+    },
+    "placeholder": "Hier wird der Editor für Wochenstundenpläne eingerichtet.",
+    "selectGroup": "Gruppe (noch keine Einheiten)",
+    "selectTeacher": "Lehrer",
+    "selectAssignment": "Lehrzuordnung in der Gruppe",
+    "professorSlot": "Lehrer für diese Einheit",
+    "weekDay": "Wochentag",
+    "startTime": "Beginn",
+    "endTime": "Ende",
+    "submit": "Zeitslot speichern",
+    "saving": "Speichern...",
+    "saveError": "Zeitslot konnte nicht gespeichert werden.",
+    "emptyEligibleGroups": "Keine berechtigte Gruppe: alle haben mindestens eine Einheit oder Gruppen nicht ladbar.",
+    "loadEligibleGroupsError": "Berechtigte Gruppen konnten nicht geladen werden.",
+    "emptyTeachers": "Keine Lehrer geladen. API prüfen oder neu laden.",
+    "emptyAssignments": "Dieser Lehrer hat keine sichtbaren Zuordnungen.",
+    "emptyAssignmentsForGroup": "Keine Lehrzuordnungen für diese Gruppe. Einschreibungen oder API prüfen.",
+    "emptyPeers": "Keine passenden Lehrer für Fach/Gruppe/J Schuljahr.",
+    "loadAssignmentsError": "Zuordnungen der Gruppe konnten nicht geladen werden.",
+    "loadPeersError": "Lehrer der Fachzuordnung konnten nicht geladen werden.",
+    "timeOrderError": "Ende muss nach Beginn liegen.",
+    "days": {
+      "1": "Montag",
+      "2": "Dienstag",
+      "3": "Mittwoch",
+      "4": "Donnerstag",
+      "5": "Freitag",
+      "6": "Samstag",
+      "7": "Sonntag"
+    },
+    "grid": {
+      "title": "Wochenraster (Mo–Fr)",
+      "intro": "Zyklus, Jahrgang und Schicht wählen; pro Slot Lehrkraft–Fach wählen.",
+      "introClass": "Die Klasse umfasst Fächer desselben Bildungsgangs (course) und Jahrgangs (grade) in einer Schicht (Group, z. B. Vormittag/Nachmittag). Jede Zelle listet Lehrkräfte mit Zuordnung zu diesem Fach, Gruppe und Schuljahr.",
+      "selectClass": "Klasse",
+      "classPlaceholder": "— Klasse wählen —",
+      "loadClassesError": "Klassen konnten nicht geladen werden.",
+      "emptyClasses": "Keine Klassen mit Lehrzuordnungen für dieses Schuljahr.",
+      "schoolYearLabel": "Schuljahr",
+      "selectCourse": "Bildungsgang (course)",
+      "coursePlaceholder": "— Bildungsgang —",
+      "loadCoursesError": "Bildungsgänge konnten nicht geladen werden.",
+      "selectGrade": "Jahrgang (grade)",
+      "gradePlaceholder": "— Jahrgang —",
+      "selectShiftGroup": "Schicht (Gruppe)",
+      "shiftGroupHint": "Entspricht Group in der DB; nur Schichten mit Unterricht für Zyklus+Jahrgang+Jahr.",
+      "shiftPlaceholder": "— Schicht —",
+      "loadContextError": "Kontext des Stundenplans konnte nicht geladen werden.",
+      "cellSelectPlaceholder": "— Frei —",
+      "cellSelectPlaceholderMultiple": "— {{count}} Fächer —",
+      "emptyClassAssignments": "Keine Lehrzuordnungen für diese Klasse im Schuljahr. Gruppe–Fach prüfen.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Gruppe",
+      "groupPlaceholder": "— Gruppe wählen —",
+      "loadError": "Gruppen konnten nicht geladen werden.",
+      "emptyGroups": "Keine Gruppen verfügbar.",
+      "loading": "Lehrzuordnungen werden geladen…",
+      "paletteTitle": "Fächer dieser Gruppe",
+      "paletteHint": "Klick zum Auswählen; Enter oder Zelle klicken zum Setzen. Ins Raster ziehen.",
+      "slotColumn": "Zeitslot",
+      "dropHint": "Hier ablegen",
+      "clearCell": "Entfernen",
+      "save": "Stundenplan speichern",
+      "saving": "Speichern…",
+      "saveError": "Stundenplan konnte nicht gespeichert werden.",
+      "keyboardHint": "Tastatur: Tab durch Zellen; Fach wählen und Enter in leerer Zelle.",
+      "peerResolveError": "Lehrzuordnung für diese Gruppe und dieses Fach konnte nicht ermittelt werden.",
+      "validationNoGroup": "Bitte eine Gruppe wählen.",
+      "validationNoClass": "Bitte eine Klasse wählen.",
+      "validationIncompleteClass": "Bitte Bildungsgang, Jahrgang und Schicht (Gruppe) wählen.",
+      "validationGroupOverlap": "Überschneidung in derselben Gruppe: «{{a}}» und «{{b}}» am Tag {{day}}.",
+      "validationSubjectHours": "Fach «{{subject}}» übersteigt die Wochenstunden (max. {{max}} h, aktuell {{current}} h).",
+      "validationTeacherOverlap": "Mögliche Überschneidung: «{{label}}» am Tag {{day}} mit einer anderen Gruppe."
+    }
+  },
+  "nav": {
+    "issues": "Anschlagtafel"
+  },
+  "adminFilters": {
+    "course": "Bildungsgang",
+    "group": "Gruppe (Zeit)",
+    "grade": "Jahrgang",
+    "selectCourse": "Bildungsgang wählen",
+    "selectGroup": "Gruppe wählen",
+    "selectGrade": "Jahrgang wählen",
+    "clear": "Filter zurücksetzen"
+  },
+  "adminMenu": {
+    "students": "Schüler",
+    "teachers": "Lehrer",
+    "subjects": "Fächer",
+    "groups": "Gruppen",
+    "courses": "Bildungsgänge",
+    "schedules": "Stundenpläne",
+    "tasks": "Aufgaben",
+    "classSessions": "Stunden",
+    "studentTasks": "Abgaben",
+    "assistances": "Anwesenheit",
+    "notifications": "Benachrichtigungen",
+    "issues": "Anschlagtafel",
+    "tutors": "Tutoren",
+    "substitutions": "Vertretungen",
+    "reports": "Berichte"
+  },
+  "deleteModal": {
+    "title": "Löschen bestätigen",
+    "confirmMessage": "Sind Sie sicher, dass Sie löschen möchten",
+    "warningMessage": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "deleting": "Wird gelöscht",
+    "deleted": "gelöscht",
+    "successMessage": "wurde erfolgreich gelöscht."
+  },
+  "editModal": {
+    "title": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "updating": "Wird aktualisiert",
+    "updated": "aktualisiert",
+    "successMessage": "wurde erfolgreich aktualisiert.",
+    "fieldInvalid": "Ungültiges Feld",
+    "updateError": "Fehler beim Aktualisieren von {{type}}."
+  },
+  "lists": {
+    "students": {
+      "title": "Schüler",
+      "createButton": "Schüler einschreiben",
+      "emptyList": "Keine Schüler registriert."
+    },
+    "subjects": {
+      "title": "Fächer",
+      "createButton": "Neues Fach"
+    },
+    "teachers": {
+      "title": "Lehrer",
+      "createButton": "Lehrer registrieren"
+    },
+    "courses": {
+      "title": "Zyklen",
+      "createButton": "Neuer Bildungsgang",
+      "createSuccess": "Bildungsgang «{{name}}» wurde erfolgreich angelegt.",
+      "createSubjectsPrompt": "Möchten Sie Fächer für diesen Bildungsgang anlegen?",
+      "createSubjectsCta": "Fächer für diesen Bildungsgang anlegen",
+      "backToList": "Zurück zur Bildungsgangsliste"
+    },
+    "groups": {
+      "title": "Gruppen",
+      "createButton": "Neue Gruppe"
+    },
+    "schedules": {
+      "createButton": "Stundenplan anlegen",
+      "createPlaceholder": "Das Formular zur Erstellung des Stundenplans wird hier angezeigt."
+    },
+    "substitutions": {
+      "title": "Vertretungen",
+      "createButton": "Lehrer vertreten",
+      "closeButton": "Vertretung beenden",
+      "createTitle": "Lehrer vertreten",
+      "createSubtitle": "Pro Zuweisung des Hauptlehrers im aktuellen Schuljahr wird eine Vertretung angelegt (gleiche Daten und Notizen).",
+      "filterFindTeacher": "Hilfe: Filter wer unterrichtet (Hauptlehrer finden)",
+      "selectTitular": "Zu vertretender Lehrer (Hauptlehrer)",
+      "previewTitle": "Es werden {{count}} Zuweisungen vertreten:",
+      "noTeachersForFilters": "Kein Lehrer entspricht den Filtern.",
+      "noAssignmentsForTitular": "Dieser Lehrer hat keine verfügbaren Zuweisungen (oder alle sind bereits vertreten).",
+      "bulkSaving": "Vertretungen werden registriert…",
+      "bulkPartialSuccess": "{{ok}} von {{total}} registriert. Liste prüfen (z. B. bereits aktive Vertretung).",
+      "createPlaceholder": "Das Anlageformular (Zuweisung, Vertretungslehrer, Daten und Notizen) folgt in der nächsten Iteration.",
+      "closeTitle": "Vertretung beenden",
+      "closeSelectLabel": "Aktive Vertretung",
+      "closeEndDate": "Enddatum",
+      "closeConfirm": "Beenden und Hauptlehrer reaktivieren",
+      "closeEmpty": "Es gibt keine aktiven Vertretungen zum Beenden.",
+      "closeError": "Die Vertretung konnte nicht beendet werden.",
+      "empty": "Keine Vertretungen registriert.",
+      "loadError": "Fehler beim Laden der Vertretungen.",
+      "badgeActive": "Aktiv",
+      "badgeClosed": "Beendet",
+      "entityType": "die Vertretung",
+      "colTitular": "Hauptlehrer",
+      "colSubstitute": "Vertretung",
+      "colClass": "Klasse",
+      "colStart": "Beginn",
+      "colEnd": "Ende",
+      "colStatus": "Status",
+      "colDates": "Zeitraum",
+      "filterAssignments": "Zuweisungen filtern (Unterricht)",
+      "selectAssignment": "Zu vertretende Zuweisung",
+      "selectSubstitute": "Vertretungslehrer",
+      "substituteEligibilityHint": "Lehrer mit geringer Last (max. {{maxHours}} Std. und {{maxAssignments}} Zuweisungen). Ausgeschlossen: gewählter Hauptlehrer, aktive Vertretungslehrer und derzeit vertretene Lehrer.",
+      "noEligibleSubstitutes": "Kein Lehrer erfüllt diese Grenzen. Zuweisungen oder Stundenpläne prüfen.",
+      "startDate": "Startdatum",
+      "notes": "Notizen (optional)",
+      "createConfirm": "Vertretung registrieren",
+      "createError": "Die Vertretung konnte nicht registriert werden.",
+      "createConflict": "Für diese Klasse existiert bereits eine aktive Vertretung.",
+      "loadAssignmentsError": "Fehler beim Laden der Zuweisungen.",
+      "noEligibleAssignments": "Keine Zuweisungen zur Vertretung verfügbar.",
+      "noAssignmentsForFilters": "Keine Zuweisung entspricht den Filtern.",
+      "createPlaceholder": ""
+    },
+    "issues": {
+      "title": "Anschlagtafel",
+      "createTitle": "Ankündigung erstellen",
+      "createButton": "Neue Ankündigung",
+      "loading": "Ankündigungen werden geladen…",
+      "empty": "Keine veröffentlichten Ankündigungen.",
+      "emitter": "Absender",
+      "emitterTeacher": "Lehrer #{{id}}",
+      "emitterAdmin": "Verwaltung #{{id}}",
+      "audience": {
+        "CENTER": "Gesamtes Zentrum",
+        "ALL_TEACHERS": "Alle Lehrer",
+        "ALL_STUDENTS": "Alle Schüler",
+        "GROUP": "Gruppe (Schicht)",
+        "COURSE": "Bildungsgang und/oder Jahrgang",
+        "SUBJECT_GROUP": "Bildungsgang, Jahrgang, Gruppe und/oder Fach",
+        "TEACHER": "Lehrer",
+        "ASSIGNMENT": "Konkrete Lehrerzuweisung",
+        "TARGETED": "Nach Bildungsgang, Jahrgang und/oder Gruppe"
+      },
+      "dialog": {
+        "createTitle": "Neue Ankündigung",
+        "editTitle": "Ankündigung bearbeiten",
+        "close": "Schließen"
+      },
+      "form": {
+        "title": "Titel",
+        "body": "Text",
+        "audience": "Zielgruppe",
+        "idGroup": "Gruppe",
+        "idCourse": "Bildungsgang",
+        "grade": "Jahrgang (1. / 2.)",
+        "gradeOption1": "1.",
+        "gradeOption2": "2.",
+        "idSubject": "Fach",
+        "idTeacher": "Lehrer",
+        "idTeacherFilter": "Nach Lehrer filtern (optional)",
+        "idTeacherAssignment": "Lehrerzuweisung",
+        "optional": "(optional)",
+        "anyOption": "— Beliebig —",
+        "targetedHint": "Kombinieren Sie die benötigten Filter: Bildungsgang, Jahrgang, Schicht und/oder Fach. Mindestens einer ist Pflicht.",
+        "assignmentHint": "Nach Lehrer filtern und die konkrete Zuweisung wählen (Schüler dieser Gruppe und Fach).",
+        "teacherHint": "Mitteilung an einen bestimmten Lehrer (Kollege im Zentrum).",
+        "attachmentUrl": "Anhang-URL",
+        "attachmentPlaceholder": "https://…",
+        "isPublished": "Jetzt veröffentlichen",
+        "publishAt": "Veröffentlichungsdatum",
+        "expiresAt": "Ablaufdatum",
+        "selectPlaceholder": "Option auswählen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert…",
+        "validation": {
+          "title": "Titel ist erforderlich (max. 120 Zeichen)",
+          "body": "Text ist erforderlich (max. 2000 Zeichen)",
+          "idGroup": "Gruppe auswählen",
+          "idCourse": "Bildungsgang auswählen",
+          "grade": "1. oder 2. Jahrgang auswählen",
+          "idSubject": "Fach auswählen",
+          "idTeacher": "Lehrer auswählen",
+          "idTeacherAssignment": "Lehrerzuweisung auswählen",
+          "targeted": "Mindestens einen Filter wählen: Bildungsgang, Jahrgang, Gruppe oder Fach",
+          "attachmentUrl": "URL muss mit http:// oder https:// beginnen"
+        },
+        "errors": {
+          "create": "Fehler beim Erstellen der Ankündigung",
+          "update": "Fehler beim Aktualisieren der Ankündigung"
+        }
+      }
+    },
+    "tasks": {
+      "title": "Aufgaben",
+      "createButton": "Neue Aufgabe",
+      "createTitle": "Aufgabe anlegen",
+      "creating": "Wird erstellt…",
+      "fields": {
+        "assignment": "Lehrerzuordnung",
+        "assignmentPlaceholder": "Zuordnung auswählen",
+        "title": "Titel",
+        "type": "Typ",
+        "startDate": "Startdatum",
+        "dueDate": "Abgabedatum",
+        "schoolYear": "Schuljahr",
+        "description": "Beschreibung"
+      },
+      "validation": {
+        "assignment": "Bitte eine Zuordnung wählen",
+        "title": "Titel ist erforderlich"
+      }
+    },
+    "classSessions": {
+      "title": "Stunden",
+      "createButton": "Neue Stunde",
+      "createTitle": "Unterrichtsstunde anlegen",
+      "creating": "Wird erstellt…",
+      "cancelClassesButton": "Stunden absagen",
+      "cancelDialog": {
+        "title": "Stunden massenhaft absagen",
+        "dateFrom": "Von Datum",
+        "dateTo": "Bis Datum",
+        "invalidDates": "Das Enddatum muss am oder nach dem Startdatum liegen.",
+        "filtersHint": "Optionale Filter (keine Auswahl = alle Stunden im Zeitraum):",
+        "filterCourse": "Zyklus",
+        "filterSubject": "Fach",
+        "filterGroup": "Gruppe",
+        "filterTeacher": "Lehrkraft",
+        "filterAll": "Alle",
+        "previewLoading": "Betroffene Stunden werden berechnet…",
+        "previewError": "Vorschau nicht möglich. Daten und API prüfen.",
+        "previewCount": "Es werden {{count}} Stunden ausgesetzt.",
+        "previewWaiting": "Gültige Daten eingeben für die Vorschau.",
+        "previewNeedDates": "Von- und Bis-Datum angeben.",
+        "cancel": "Abbrechen",
+        "confirm": "Aussetzung bestätigen",
+        "confirming": "Wird ausgesetzt…",
+        "success": "{{count}} Stunden wurden erfolgreich ausgesetzt.",
+        "error": "Fehler beim Aussetzen. Bitte erneut versuchen."
+      },
+      "fields": {
+        "schedule": "Zeitslot",
+        "schedulePlaceholder": "Zeitslot wählen",
+        "date": "Datum",
+        "status": "Status",
+        "appointments": "Notizen"
+      }
+    },
+    "studentTasks": {
+      "title": "Abgaben",
+      "createButton": "Neue Abgabe",
+      "createTitle": "Abgabe anlegen",
+      "fields": {
+        "task": "Aufgabe",
+        "enrollmentHint": "Einschreibungen nach Gruppe, Fach und Jahr filtern",
+        "group": "Gruppe",
+        "subject": "Fach",
+        "loadEnrollments": "Einschreibungen laden",
+        "enrollment": "Schülereinschreibung"
+      }
+    },
+    "assistances": {
+      "title": "Anwesenheit",
+      "createButton": "Neue Anwesenheit",
+      "createTitle": "Anwesenheit erfassen",
+      "fields": {
+        "session": "Unterrichtsstunde",
+        "enrollmentHint": "Einschreibungen nach Gruppe, Fach und Jahr filtern",
+        "group": "Gruppe",
+        "subject": "Fach",
+        "loadEnrollments": "Einschreibungen laden",
+        "enrollment": "Schülereinschreibung",
+        "status": "Status"
+      }
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "createButton": "Neue Benachrichtigung",
+      "createTitle": "Benachrichtigung anlegen",
+      "fields": {
+        "recipientHint": "Schüler oder Lehrer wählen; das System sendet die Benachrichtigung an dessen Konto.",
+        "recipientRole": "Empfängertyp",
+        "roleStudent": "Schüler",
+        "roleTeacher": "Lehrer",
+        "recipient": "Empfänger",
+        "recipientPlaceholder": "Benutzer auswählen",
+        "noRecipients": "Keine Benutzer mit verknüpftem Firebase-Konto in dieser Liste.",
+        "title": "Titel",
+        "message": "Nachricht",
+        "type": "Typ"
+      }
+    }
+  },
+  "LANG": {
+    "ES": "Spanisch",
+    "EN": "Englisch",
+    "DE": "Deutsch"
+  },
+  "footer": {
+    "aboutUs": "Über uns"
+  },
+  "aboutPage": {
+    "pageTitle": "Über Ziryab",
+    "subtitle": "Innovation und Einfachheit für das Bildungsmanagement.",
+    "section1": {
+      "title": "Ihre Schule, vernetzt.",
+      "description": "Vergessen Sie Papier und Bürokratie. Ziryab zentralisiert Unterricht, Fehlzeiten und Kommunikation auf einer intuitiven Plattform, die Lehrer und Schüler verbindet.",
+      "stats": {
+        "digital": "Digital",
+        "access": "Zugang",
+        "secure": "Rollen",
+        "secureLabel": "Sicher"
+      }
+    },
+    "techStack": {
+      "title": "Technologie-Stack",
+      "angular": "Angular 19 + Standalone",
+      "node": "Node.js Express",
+      "tailwind": "Tailwind CSS",
+      "prisma": "Prisma & PostgreSQL",
+      "firebase": "Firebase (Auth/Storage)"
+    },
+    "team": {
+      "title": "Ziryab-Team",
+      "role": "Full Stack",
+      "angelaName": "Ángela Mora Mata",
+      "antonioName": "Antonio Salces Alcaraz",
+      "franciscoName": "Francisco de Asís Cobo Sánchez",
+      "angelaAlt": "Porträt von Ángela Mora Mata",
+      "antonioAlt": "Porträt von Antonio Salces Alcaraz",
+      "franciscoAlt": "Porträt von Francisco de Asís Cobo Sánchez"
+    },
+    "backToHome": "Zurück zum Dashboard"
+  },
+  "login": {
+    "title": "Anmelden",
+    "subtitle": "Melden Sie sich mit Ihren Zugangsdaten an",
+    "email": "E-Mail",
+    "emailPlaceholder": "deine@email",
+    "password": "Passwort",
+    "passwordPlaceholder": "dein Passwort",
+    "submit": "Anmelden",
+    "error": "Falsche E-Mail oder falsches Passwort. Bitte erneut versuchen."
+  },
+  "notifications": {
+    "bellAria": "Benachrichtigungen",
+    "unreadAria": "Ungelesene Benachrichtigungen",
+    "toastClose": "Hinweis schließen",
+    "title": "Benachrichtigungen",
+    "markAllRead": "Alle als gelesen markieren",
+    "empty": "Keine Benachrichtigungen",
+    "mock": {
+      "taskAssigned": {
+        "title": "Neue Aufgabe zugewiesen",
+        "message": "Dir wurde die Aufgabe \"Übungen Kapitel 3\" zugewiesen."
+      },
+      "dueSoon": {
+        "title": "Abgabe bald fällig",
+        "message": "Die Aufgabe \"Übungen Kapitel 3\" ist morgen fällig."
+      }
+    }
+  },
+  "theme": {
+    "toggleToDark": "Dunklen Modus aktivieren",
+    "toggleToLight": "Hellen Modus aktivieren"
+  },
+  "perfil": {
+    "logout": "Abmelden",
+    "loggingOut": "Abmeldung läuft..."
+  },
+  "roles": {
+    "student": "Student",
+    "teacher": "Lehrer",
+    "admin": "Administrator",
+    "user": "Aktiver Benutzer"
+  },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Zuweisungen erstellen",
+      "title": "Lehrerzuweisungen erstellen",
+      "stepLabel": "Schritt {{step}} von 2",
+      "courseLabel": "Ausbildungszyklus",
+      "coursePlaceholder": "Zyklus waehlen",
+      "courseSelected": "Zyklus: {{name}}",
+      "gradeLabel": "Welches Jahr?",
+      "loadingGrades": "Verfuegbare Jahre werden geladen…",
+      "emptyGrades": "Keine Jahre (grades) fuer diesen Zyklus. Pruefen Sie die Faecher des Zyklus.",
+      "createSubjectsLink": "Faecher fuer diesen Bildungsgang anlegen",
+      "validationCourse": "Waehlen Sie einen Ausbildungszyklus.",
+      "validationGrade": "Waehlen Sie das Jahr (1. oder 2.).",
+      "next": "Weiter",
+      "continueToGrid": "Weiter zum Datagrid"
+    },
+    "grid": {
+      "title": "Lehrerzuweisungen",
+      "subtitle": "{{course}} — {{grade}}",
+      "schoolYear": "Schuljahr",
+      "loading": "Faecher und Zuweisungen werden geladen…",
+      "loadError": "Datagrid konnte nicht geladen werden.",
+      "existingTitle": "Bestehende Zuweisungen",
+      "existingEmpty": "Keine Zuweisungen fuer dieses Angebot.",
+      "newTitle": "Neue Zuweisungen (eine Zeile pro Fach)",
+      "teacherFilterHoursHint": "Lehrkraefte ohne Zuweisung im Zentrum oder ≤ {{maxHours}} Wochenstunden insgesamt (Summe aktiver Zuweisungen).",
+      "noAssignmentsForFilter": "Keine Zuweisungen vom API geladen; der Lehrerfilter kann nicht angewendet werden.",
+      "teacherFilterStats": "{{eligible}} / {{total}} Lehrkraefte ({{withoutAssignments}} ohne Zuweisung, {{assignments}} Zeilen im API)",
+      "rowsEmpty": "Keine Faecher fuer diesen Zyklus und dieses Jahr.",
+      "colSubject": "Fach",
+      "colTeacher": "Lehrer",
+      "colGroup": "Gruppe",
+      "colTutor": "Tutor",
+      "selectTeacher": "Lehrer waehlen",
+      "selectGroup": "Gruppe waehlen",
+      "tutorBadge": "Tutor",
+      "tutorCheckbox": "Ist Tutor",
+      "tutorUpdateButton": "Tutorenzuweisung aktualisieren",
+      "tutorUpdating": "Aktualisierung...",
+      "tutorUpdateSuccess": "Tutorenzuweisungen erfolgreich aktualisiert.",
+      "tutorUpdateError": "Tutorenzuweisungen konnten nicht aktualisiert werden.",
+      "saveButton": "Zuweisungen speichern",
+      "saving": "Speichern…",
+      "saveNone": "Mindestens eine Zeile mit Lehrer und Gruppe ausfuellen.",
+      "saveCreated": "{{count}} Zuweisung(en) erstellt.",
+      "saveDuplicates": "{{count}} Duplikat(e) (bereits vorhanden).",
+      "saveIncomplete": "{{count}} unvollstaendige Zeile(n) uebersprungen.",
+      "saveError": "Zuweisungen konnten nicht gespeichert werden.",
+      "schedulePromptTitle": "Wochenplan erstellen?",
+      "schedulePromptBody": "Zuweisungen gespeichert. Moechten Sie jetzt die Stundenplanvorlage fuer diese Gruppe erstellen?",
+      "schedulePromptGo": "Zur Planerstellung",
+      "schedulePromptStay": "Hier bleiben"
+    }
+  },
+  "horario": {
+    "titleStudent": "Mein Stundenplan",
+    "titleTeacher": "Lehrerstundenplan",
+    "subtitle": "Pruefen Sie Ihre woechentliche Unterrichtsplanung",
+    "noData": "Es sind keine Klassen zugewiesen",
+    "group": "Gruppe",
+    "days": {
+      "1": "Montag",
+      "2": "Dienstag",
+      "3": "Mittwoch",
+      "4": "Donnerstag",
+      "5": "Freitag"
+    }
+  },
+  "tareas": {
+    "countLabel": "Aufgaben",
+    "createButton": "Aufgabe erstellen",
+    "empty": "In dieser Zuordnung gibt es keine Aufgaben"
+  },
+  "calendario": {
+    "title": "Akademischer Kalender",
+    "subtitle": "Wichtige Schultermine und Ereignisse",
+    "iframeTitle": "Google Kalender"
+  },
+  "teacherClasses": {
+    "title": "Meine Klassen",
+    "loading": "Klassen werden geladen...",
+    "empty": "Keine zugewiesenen Faecher.",
+    "manageSyllabus": "Lehrplan verwalten",
+    "classMenu": "Klassenmenue",
+    "courseLabel": "Kurs",
+    "groupLabel": "Stufe/Gruppe",
+    "noAssigned": "Keine Faecher zugewiesen.",
+    "errorConnection": "Verbindungsfehler mit dem Server.",
+    "errorUser": "Benutzer nicht erkannt. Bitte melde dich an.",
+    "labels": {
+      "course": "Kurs",
+      "group": "Jahrgang/Gruppe"
+    },
+    "substitutingBadge": "Vertretung fuer {{name}}"
+  },
+  "teacherPages": {
+    "grades": {
+      "title": "Bewertungen",
+      "subtitle": "Gib als Tutor die Noten deiner Schueler ein",
+      "tutoredGroup": "Tutorisierte Gruppe",
+      "period": "Bewertungszeitraum",
+      "average": "Durchschnitt",
+      "subjects": "Faecher",
+      "loading": "Gruppendaten werden geladen...",
+      "emptyGroup": "Keine Gruppe gefunden, bei der du Tutor bist",
+      "saving": "Speichern...",
+      "save": "Bewertungen speichern"
+    },
+    "profile": {
+      "title": "Benutzerprofil",
+      "subtitle": "Deine Lehrerdaten einsehen",
+      "loadError": "Lehrerprofil konnte nicht geladen werden."
+    },
+    "classMenu": {
+      "title": "Klassenmenue",
+      "tasksTitle": "Aufgaben",
+      "tasksSubtitle": "Klassenaufgaben verwalten",
+      "justificationsTitle": "Begruendungen",
+      "justificationsSubtitle": "Fehlzeitenbelege pruefen"
+    },
+    "justifications": {
+      "title": "Begruendungen",
+      "subtitle": "Fehlzeiten deiner Schueler pruefen und verwalten",
+      "viewAbsencesByStudent": "Fehlzeiten nach Schueler anzeigen",
+      "loading": "Begruendungen werden geladen...",
+      "viewFile": "Datei ansehen",
+      "accept": "Akzeptieren",
+      "reject": "Ablehnen",
+      "allUpToDate": "Alles erledigt",
+      "noPending": "Es gibt keine offenen Begruendungen.",
+      "loadError": "Fehler beim Laden der offenen Begruendungen.",
+      "successAccept": "Fehlzeit erfolgreich entschuldigt.",
+      "errorAccept": "Fehler beim Entschuldigen der Fehlzeit.",
+      "successReject": "Begruendung abgelehnt.",
+      "errorReject": "Fehler beim Ablehnen der Begruendung."
+    },
+    "attendance": {
+      "noStudents": "Keine Schueler geladen.",
+      "status": {
+        "present": "Anwesend",
+        "absent": "Abwesend",
+        "late": "Verspaetet",
+        "excused": "Entschuldigt"
+      }
+    },
+    "taskTypes": {
+      "homework": "Hausaufgabe",
+      "practice": "Praxis",
+      "theory": "Theorie/Material",
+      "project": "Projekt",
+      "exam": "Pruefung"
+    },
+    "taskForm": {
+      "title": "Neue Aufgabe erstellen",
+      "taskTitle": "Aufgabentitel",
+      "titlePlaceholder": "Bsp: Praxisabgabe 1",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Anweisungen fuer Schueler...",
+      "type": "Typ",
+      "startDate": "Startdatum",
+      "dueDate": "Abgabedatum",
+      "attachment": "Anhang (optional)",
+      "uploadFile": "Datei hochladen",
+      "dragDrop": "oder hierher ziehen",
+      "formats": "PDF, DOCX, ZIP, PNG, JPG bis 10MB",
+      "selected": "Ausgewaehlt",
+      "saving": "Speichern...",
+      "submit": "Aufgabe erstellen",
+      "errorMaxSize": "Die Datei ueberschreitet 10 MB.",
+      "successCreated": "Aufgabe mit Anhang erfolgreich erstellt.",
+      "errorCreate": "Fehler beim Erstellen der Aufgabe."
+    },
+    "tasks": {
+      "delivery": "Abgabe",
+      "students": "Schueler",
+      "ungrouped": "Nicht gruppiert"
+    },
+    "deliveries": {
+      "backToSyllabus": "Zurueck zum Lehrplan",
+      "loading": "Abgaben werden geladen...",
+      "deadline": "Abgabefrist",
+      "studentList": "Schuelerliste",
+      "empty": "Keine Abgaben fuer diese Aufgabe gefunden.",
+      "openAttachment": "Abgabe-Datei/Link oeffnen",
+      "editScore": "Note bearbeiten",
+      "grade": "Bewerten",
+      "errorInvalidTaskId": "Keine gueltige Aufgaben-ID angegeben.",
+      "errorLoad": "Abgaben konnten nicht geladen werden",
+      "errorDownload": "Fehler beim Laden der Abgabeliste",
+      "columns": {
+        "student": "Schueler",
+        "status": "Status",
+        "submissionDate": "Abgabedatum",
+        "score": "Note",
+        "actions": "Aktionen"
+      }
+    },
+    "status": {
+      "submitted": "Abgegeben",
+      "late": "Verspaetet",
+      "lateLong": "Verspaetet abgegeben",
+      "notSubmitted": "Nicht abgegeben",
+      "pending": "Ausstehend",
+      "graded": "Bewertet"
+    },
+    "gradeDelivery": {
+      "title": "Abgabe bewerten",
+      "loading": "Abgabedetails werden geladen...",
+      "backToDeliveries": "Zurueck zu den Abgaben",
+      "student": "Schueler",
+      "taskToEvaluate": "Aufgabe zur Bewertung",
+      "submissionMoment": "Abgabezeitpunkt",
+      "noDate": "Kein Datum vorhanden",
+      "attachedFile": "Abgegebene Datei",
+      "viewDownload": "Anhang ansehen / herunterladen",
+      "notAttached": "Noch nichts angehaengt",
+      "correctionForm": "Korrekturformular",
+      "scoreLabel": "Note (0 - 10)",
+      "required": "Pflichtfeld",
+      "rangeError": "Muss zwischen 0 und 10 liegen",
+      "feedback": "Kommentare und Feedback",
+      "optional": "Optional",
+      "feedbackPlaceholder": "Korrekturen oder Notizen fuer den Schueler...",
+      "saveScore": "Note speichern",
+      "saving": "Speichern...",
+      "errorInvalidId": "Keine gueltige Abgabe-ID angegeben",
+      "errorLoad": "Abgabe konnte nicht geladen werden",
+      "errorConnection": "Verbindungsfehler beim Laden der Abgabe",
+      "errorSubmit": "Fehler beim Bewerten der Abgabe."
+    },
+    "taskDetail": {
+      "start": "Start",
+      "delivery": "Abgabe",
+      "allowLate": "Verspaetete Abgabe erlaubt",
+      "submittedAt": "Abgegeben",
+      "gradeSubmission": "Abgabe bewerten",
+      "score": "Note (0-10)",
+      "scoreError": "Bitte eine Note zwischen 0 und 10 eingeben",
+      "feedback": "Feedback (optional)",
+      "selectTask": "Waehle eine Aufgabe, um Details zu sehen.",
+      "stats": {
+        "total": "Gesamt",
+        "submitted": "Abgegeben",
+        "graded": "Bewertet",
+        "notSubmitted": "Nicht abgegeben"
+      }
+    },
+    "syllabus": {
+      "title": "Planung",
+      "takeAttendance": "Anwesenheit erfassen",
+      "tasksLoadError": "Aufgaben fuer dieses Fach konnten nicht geladen werden.",
+      "empty": "Fuer dieses Fach wurde noch kein Material erstellt.",
+      "tasks": "Aufgaben",
+      "noDescription": "Keine Beschreibung",
+      "viewBaseFile": "Basisdatei ansehen",
+      "viewDeliveries": "Abgaben ansehen",
+      "attendanceHelp": "Status jedes Schuelers waehlen und Anwesenheit speichern.",
+      "loadingStudents": "Schueler werden geladen...",
+      "noStudents": "Keine Schueler in diesem Fach eingeschrieben.",
+      "savingAttendance": "Speichern...",
+      "saveAttendance": "Anwesenheit speichern",
+      "attendanceSaved": "Anwesenheit erfolgreich gespeichert",
+      "attendanceSaveError": "Fehler beim Speichern der Anwesenheit",
+      "sessionError": "Fehler beim Abrufen der Sitzung",
+      "blocks": {
+        "theory": "Theoriematerial und Dokumente",
+        "exam": "Pruefungen und Tests",
+        "project": "Bewertbare Projekte",
+        "practice": "Praktische Uebungen",
+        "homework": "Allgemeine Hausaufgaben"
+      }
+    },
+    "credentials": {
+      "title": "Zugangsdaten",
+      "subtitle": "Pruefe die Zugangsdaten deiner zugewiesenen Schueler",
+      "loading": "Zugangsdaten werden geladen...",
+      "empty": "Deiner Tutorengruppe sind keine Zugangsdaten zugewiesen.",
+      "show": "Anzeigen",
+      "hide": "Ausblenden",
+      "showPasswordAria": "Passwort von {{name}} anzeigen",
+      "hidePasswordAria": "Passwort von {{name}} ausblenden",
+      "columns": {
+        "studentName": "Name des Schuelers",
+        "password": "Passwort"
+      },
+      "errors": {
+        "load": "Die Zugangsdaten konnten nicht geladen werden.",
+        "userNotFound": "Der angemeldete Tutor konnte nicht identifiziert werden."
+      }
+    }
+  },
+  "adminPages": {
+    "tutors": {
+      "title": "Tutorenvergebung",
+      "subtitle": "Klassen (Zyklus + Gruppe) definieren und jeweils einen Tutor zuweisen",
+      "colCourse": "Zyklus",
+      "colGroup": "Gruppe (Schicht)",
+      "colCurrentTutor": "Aktueller Tutor",
+      "colAssign": "Tutor zuweisen",
+      "noTutor": "Kein Tutor",
+      "save": "Speichern",
+      "saved": "Gespeichert",
+      "addClass": "Klasse hinzufügen",
+      "addClassBtn": "Hinzufügen",
+      "colGrade": "Jahrgang",
+      "selectCourse": "Zyklus auswählen",
+      "selectGroup": "Gruppe auswählen",
+      "selectGrade": "Jahrgang auswählen",
+      "deleteClass": "Klasse löschen",
+      "empty": "Noch keine Klassen definiert. Fügen Sie oben eine hinzu.",
+      "activeTutorsTitle": "Aktive Tutoren",
+      "activeTutorsEmpty": "Keine Lehrkraft ist im aktuellen Jahr als Tutor markiert.",
+      "openEditor": "Tutorenzuweisung aktualisieren",
+      "hideEditor": "Editor ausblenden",
+      "listTeacher": "Tutor-Lehrkraft",
+      "listClass": "Klasse",
+      "listYear": "Schuljahr",
+      "errorLoading": "Fehler beim Laden",
+      "errorSaving": "Fehler beim Speichern",
+      "errorCreating": "Fehler beim Erstellen"
+    },
+    "dashboard": {
+      "menu": "Menü"
+    },
+    "filters": {
+      "title": "Filter:"
+    },
+    "forms": {
+      "common": {
+        "optional": "optional",
+        "creating": "Wird erstellt...",
+        "dniNie": "DNI / NIE",
+        "dniNiePlaceholder": "12345678A oder X1234567A",
+        "dniNieInvalid": "Ungueltige DNI/NIE (z. B. 12345678A oder X1234567A)"
+      },
+      "teacher": {
+        "title": "Neuen Lehrer erstellen",
+        "submit": "Lehrer erstellen",
+        "createError": "Fehler beim Erstellen des Lehrers"
+      },
+      "student": {
+        "alreadyExists": "Der Schueler existiert bereits. Bitte ueber den Modus fuer bestehende Schueler einschreiben.",
+        "createError": "Fehler beim Erstellen des Schuelers"
+      },
+      "subject": {
+        "title": "Neues Fach erstellen",
+        "nameLabel": "Fachname",
+        "namePlaceholder": "z. B. Programmierung",
+        "gradeLabel": "Stufe",
+        "gradePlaceholder": "Stufe auswaehlen",
+        "gradeRequired": "Du musst eine Stufe auswaehlen",
+        "hoursLabel": "Wochenstunden",
+        "hoursPlaceholder": "z. B. 6",
+        "hoursInvalid": "Die Stunden muessen zwischen 1 und 30 liegen",
+        "descriptionPlaceholder": "Kurze Beschreibung des Fachs",
+        "descriptionInvalid": "Die Beschreibung darf maximal 255 Zeichen haben",
+        "courseLabel": "Zugehoeriger Bildungsgang",
+        "loadingCourses": "Bildungsgaenge werden geladen...",
+        "coursePlaceholder": "Bildungsgang auswaehlen",
+        "courseRequired": "Du musst einen Bildungsgang auswaehlen",
+        "submit": "Fach erstellen",
+        "loadCoursesError": "Bildungsgaenge konnten nicht geladen werden",
+        "createError": "Fehler beim Erstellen des Fachs"
+      },
+      "group": {
+        "title": "Neue Gruppe erstellen",
+        "nameLabel": "Gruppenname",
+        "namePlaceholder": "z. B. 2. DAM Morgen",
+        "submit": "Gruppe erstellen",
+        "createError": "Fehler beim Erstellen der Gruppe"
+      },
+      "course": {
+        "title": "Neuen Bildungsgang erstellen",
+        "nameLabel": "Name des Bildungsgangs",
+        "namePlaceholder": "z. B. Entwicklung von plattformuebergreifenden Anwendungen",
+        "submit": "Bildungsgang erstellen",
+        "createError": "Fehler beim Erstellen des Bildungsgangs"
+      }
+    },
+    "errors": {
+      "taskCreate": "Fehler beim Erstellen der Aufgabe",
+      "studentTaskCreate": "Fehler beim Erstellen der Abgabe",
+      "notificationCreate": "Fehler beim Erstellen der Benachrichtigung",
+      "classSessionCreate": "Fehler beim Erstellen der Unterrichtsstunde",
+      "assistanceCreate": "Fehler beim Erstellen der Anwesenheit"
+    },
+    "classSessions": {
+      "scheduleOption": "Tag {{day}} · {{start}}-{{end}} (#{{id}})"
+    },
+    "subjectDetail": {
+      "name": "Fachname:",
+      "grade": "Unterrichtsstufe:",
+      "course": "Zugehoeriger Bildungsgang:",
+      "hours": "Wochenstunden:",
+      "description": "Beschreibung:"
+    },
+    "assistance": {
+      "enrollmentFallback": "Einschreibung {{id}}",
+      "enrollmentId": "Einschreibungs-ID"
+    }
+  },
+  "sharedPages": {
+    "login": {
+      "platform": "Bildungsplattform"
+    },
+    "cardGrid": {
+      "empty": "Keine Elemente zum Anzeigen."
+    },
+    "header": {
+      "defaultUser": "Benutzer"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "markAllRead": "Alle als gelesen markieren",
+      "empty": "Keine Benachrichtigungen"
+    },
+    "about": {
+      "connectionAlt": "Verbindung",
+      "angularAlt": "Angular",
+      "nodeAlt": "Node",
+      "tailwindAlt": "Tailwind",
+      "sqlAlt": "SQL",
+      "firebaseAlt": "Firebase",
+      "stack": {
+        "angular": "Angular 19 + Standalone",
+        "node": "Node.js Express",
+        "tailwind": "Tailwind CSS",
+        "prisma": "Prisma & PostgreSQL",
+        "firebase": "Firebase (Auth/Storage)"
+      }
+    }
+  },
+  "studentPages": {
+    "common": {
+      "access": "Zugreifen"
+    },
+    "classes": {
+      "title": "Faecher",
+      "loading": "Deine Kurse werden geladen...",
+      "empty": "Du bist in keinem Fach eingeschrieben.",
+      "subjectFallback": "Fach",
+      "levelLabel": "Stufe/Kurs",
+      "generalGroup": "Allgemein",
+      "teacherLabel": "Lehrer",
+      "loadingTeacher": "Wird geladen..."
+    },
+    "dashboard": {
+      "title": "Mein Bereich",
+      "subtitle": "Was moechtest du heute tun?",
+      "cards": {
+        "classes": {
+          "title": "Klassen",
+          "description": "Greife auf deine Faecher zu"
+        },
+        "management": {
+          "title": "Verwaltung",
+          "description": "Verwalte deine Akte"
+        }
+      }
+    },
+    "management": {
+      "title": "Akademische Verwaltung",
+      "subtitle": "Verwalte dein Profil und deine Aktivitaeten",
+      "cards": {
+        "record": {
+          "title": "Benutzerakte",
+          "cta": "Profil ansehen"
+        },
+        "schedule": {
+          "title": "Stundenplan",
+          "cta": "Ansehen"
+        },
+        "calendar": {
+          "title": "Kalender",
+          "cta": "Ereignisse ansehen"
+        },
+        "board": {
+          "title": "Schwarzes Brett",
+          "cta": "Hinweise ansehen"
+        },
+        "passwords": {
+          "title": "Passwörter"
+        }
+      }
+    },
+    "record": {
+      "title": "Benutzerakte",
+      "subtitle": "Hier kannst du deinen Fehlzeitenverlauf sehen.",
+      "empty": "Du hast keine registrierten Fehlzeiten.",
+      "unknownSubject": "Unbekannt",
+      "attendanceLabel": "Anwesenheit",
+      "justificationLabel": "Beleg",
+      "status": {
+        "absent": "FEHLT",
+        "late": "VERSPAETET",
+        "excused": "ENTSCHULDIGT"
+      },
+      "justification": {
+        "pending": "AUSSTEHEND",
+        "rejected": "ABGELEHNT",
+        "accepted": "AKZEPTIERT",
+        "notSent": "NICHT GESENDET"
+      }
+    },
+    "justificationModal": {
+      "title": "Fehlzeit entschuldigen",
+      "selectDocument": "Dokument auswaehlen",
+      "allowedFormats": "PNG, JPG, PDF (Max. 1MB)",
+      "submit": "Beleg hochladen",
+      "sending": "Wird gesendet...",
+      "successTitle": "Beleg gesendet!",
+      "successMessage": "Der Lehrer prueft das Dokument zur Entschuldigung."
+    },
+    "grades": {
+      "title": "Meine Bewertungen",
+      "subtitle": "Sieh dir deine Noten pro Trimester an",
+      "subjectColumn": "Fach",
+      "averageRow": "Durchschnittsnote",
+      "loading": "Deine Noten werden geladen...",
+      "empty": "Du hast noch keine Noten"
+    },
+    "tasks": {
+      "loading": "Aufgaben werden geladen...",
+      "empty": "Du hast keine zugewiesenen Aufgaben.",
+      "noGroup": "Keine Gruppe",
+      "item": {
+        "due": "Abgabe",
+        "submitted": "Eingereicht",
+        "score": "Note"
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "submitted": "Eingereicht",
+        "late": "Verspaetet eingereicht",
+        "lateShort": "Verspaetet",
+        "graded": "Bewertet",
+        "notSubmitted": "Nicht eingereicht",
+        "pendingUpper": "AUSSTEHEND",
+        "submittedUpper": "EINGEREICHT",
+        "gradedUpper": "BEWERTET",
+        "expiredUpper": "ABGELAUFEN"
+      }
+    },
+    "taskDetail": {
+      "errorTitle": "Problem erkannt",
+      "deadline": "Abgabefrist",
+      "noDescription": "Der Lehrer hat keine Beschreibung angegeben.",
+      "supportMaterial": "Unterstuetzungsmaterial",
+      "openDownload": "Ansehen / Herunterladen",
+      "teacherEvaluation": "Bewertung des Lehrers",
+      "finalScore": "Endnote",
+      "comments": "Angehaengte Kommentare",
+      "noComments": "Deine Note wurde ohne Kommentare verarbeitet.",
+      "deliveryArea": "Abgabebereich",
+      "importantNotice": "Wichtiger Hinweis",
+      "deadlinePassed": "Du hast die Frist ueberschritten ({{date}}). Bei Abgabe wird markiert als",
+      "lateTag": "Verspaetet (LATE)",
+      "sentOk": "Erfolgreich gesendet",
+      "savedAt": "Deine Abgabe wurde erfolgreich gespeichert am",
+      "deleteDelivery": "Abgabe loeschen",
+      "openOriginalLink": "Original-Link oeffnen",
+      "dropzone": "Dropzone",
+      "uploadLink": "Link hochladen",
+      "dragHint": "Klicke oder ziehe dein Dokument hierher",
+      "zipHint": "Wenn deine Abgabe ein Ordner ist, akzeptieren wir ihn nicht direkt. Erstelle eine .ZIP und lade sie hoch.",
+      "maxSize": "Maximale Dateigroesse: 50MB",
+      "localUploadOk": "Lokaler Upload gesichert",
+      "linkResourceLabel": "Web-Ressource per URL verlinken",
+      "linkPlaceholder": "Bsp: https://docs.google.com/document/d/mein-dokument1/",
+      "invalidUrl": "Bitte gib einen gueltigen Link ein, der mit http:// oder https:// beginnt",
+      "processing": "Datei/Link wird verarbeitet...",
+      "confirmSend": "Senden an Server bestaetigen",
+      "confirmDeleteDelivery": "Moechtest du deine aktuelle Abgabe wirklich loeschen? Du musst sie erneut hochladen.",
+      "success": {
+        "deliveryRegistered": "Deine Abgabe wurde erfolgreich registriert."
+      },
+      "errors": {
+        "missingTaskId": "Aufgaben-ID fehlt.",
+        "cannotLoadTask": "Aufgabe konnte nicht geladen werden.",
+        "loadTaskDetail": "Fehler beim Laden der Aufgaben-Details.",
+        "foldersNotAllowedZip": "Komplette Ordner sind nicht erlaubt. Bitte als .ZIP komprimieren.",
+        "folderBlockedSecurity": "Komplette Ordner sind aus Sicherheitsgruenden nicht erlaubt. Bitte als einzelne .ZIP-Datei komprimieren.",
+        "maxFileSize": "Die Datei uebersteigt 50 MB.",
+        "urlRequired": "Du musst eine URL angeben.",
+        "fileRequired": "Du musst eine Datei / ZIP auswaehlen oder ziehen.",
+        "serverNoLink": "Der Server hat die Datei verarbeitet, aber keinen gueltigen Link zurueckgegeben.",
+        "uploadServerError": "Interner Fehler beim Hochladen der Datei.",
+        "deliveryNotifyFailed": "Datei hochgeladen, aber Benachrichtigung an die Datenbank fehlgeschlagen.",
+        "deleteDeliveryError": "Fehler beim Loeschen der Abgabe."
+      }
+    },
+    "subject": {
+      "idLabel": "ID"
+    },
+    "syllabus": {
+      "title": "Lehrplan",
+      "subtitle": "Klassenmaterial, Dokumente, Uebungen und Aufgaben.",
+      "items": "Elemente",
+      "due": "Faellig",
+      "emptyTitle": "Der Lehrplan ist leer",
+      "emptyDescription": "Dein Lehrer hat noch kein Material oder Aufgaben fuer diesen Block aktiviert.",
+      "blocks": {
+        "theory": "Theoriematerial und Dokumente",
+        "exam": "Pruefungen und Tests",
+        "project": "Bewertbare Projekte",
+        "practice": "Praktische Uebungen",
+        "homework": "Allgemeine Hausaufgaben"
+      },
+      "errors": {
+        "cannotFetchTasks": "Aufgaben konnten nicht geladen werden.",
+        "serverTasksError": "Serverfehler beim Laden der Aufgaben."
+      }
+    }
+  },
+  "INITIAL": "Erste Bewertung",
+  "FIRST_TRIMESTER": "1. Trimester",
+  "SECOND_TRIMESTER": "2. Trimester",
+  "THIRD_TRIMESTER": "3. Trimester",
+  "FINAL": "Endnote",
+  "evaluaciones": {
+    "title": "Bewertungen",
+    "subtitle": "Noten ansehen",
+    "description": "Akademische Noten einsehen und verwalten"
+  },
+  "studentTaskDetail": {
+    "problemDetected": "Problem erkannt",
+    "status": {
+      "SUBMITTED": "Abgegeben",
+      "LATE": "Verspätet",
+      "NOT_SUBMITTED": "Nicht abgegeben",
+      "PENDING": "Ausstehend",
+      "GRADED": "Bewertet"
+    },
+    "dueDate": "Abgabefrist",
+    "noDescription": "Der Lehrer hat keine Beschreibung angegeben.",
+    "consultMaterial": "Referenzmaterial",
+    "viewDownload": "Ansehen / herunterladen",
+    "teacherEvaluation": "Bewertung des Lehrers",
+    "finalGrade": "Endnote",
+    "attachedComments": "Angehängte Kommentare",
+    "noFeedback": "Deine Note wurde ohne Kommentare verarbeitet.",
+    "submissionArea": "Abgabebereich",
+    "deadlineClosed": "Abgabefrist geschlossen",
+    "deadlineClosedBody": "Die Frist war der <strong>{{date}}</strong> und der Lehrer <strong>erlaubt keine verspäteten Abgaben</strong> für diese Aufgabe. Du kannst keine Dateien oder Links senden.",
+    "deadlineClosedHint": "Wenn du glaubst, dass es ein Fehler ist, wende dich an deinen Lehrer, um die Frist zu verlängern oder verspätete Abgaben zu erlauben.",
+    "lateWarning": "Frist überschritten",
+    "lateWarningBody": "Du hast die Frist ({{date}}) überschritten. Du kannst noch abgeben: es wird als <span class=\"font-bold\">Verspätet (LATE)</span> markiert.",
+    "sentOk": "Erfolgreich gesendet",
+    "savedOn": "Deine Abgabe wurde erfolgreich gespeichert am <strong>{{date}}</strong>.",
+    "deleteSubmission": "Abgabe löschen",
+    "openOriginalLink": "Original-Link öffnen",
+    "tabDropzone": "Dropzone",
+    "tabUrl": "Link hochladen",
+    "dropHint": "Klicke oder ziehe dein Dokument hierher",
+    "dropZipHint": "Wenn deine Abgabe ein Ordner mit mehreren Dateien ist, akzeptieren wir ihn nicht direkt. Erstelle eine .ZIP-Datei und lade sie hier hoch.",
+    "maxWeight": "Maximale Größe: 50 MB",
+    "localUploadOk": "Lokaler Upload bereit",
+    "removeFileTitle": "Entfernen und andere auswählen",
+    "urlLabel": "Web-URL verknüpfen",
+    "urlPlaceholder": "Z. B. https://docs.google.com/document/d/meine-arbeit/",
+    "urlInvalid": "Bitte gib einen gültigen Weblink ein, der mit http:// oder https:// beginnt",
+    "processing": "Datei/Link wird verarbeitet...",
+    "confirmSubmit": "Abgabe an Server bestätigen",
+    "submitSuccess": "Deine Aufgabe wurde erfolgreich hochgeladen und abgegeben.",
+    "unsubmitConfirm": "Möchtest du deine aktuelle Abgabe wirklich löschen? Du musst sie erneut hochladen."
+  },
+  "fichaProfesor": {
+    "noPendingJustifications": "Du hast keine ausstehenden Begründungen zur Prüfung.",
+    "justifySuccess": "Fehlzeit erfolgreich begründet.",
+    "justifyError": "Fehler beim Begründen der Fehlzeit.",
+    "rejectSuccess": "Begründung abgelehnt.",
+    "rejectError": "Fehler beim Ablehnen der Begründung."
+  },
+  "taskForm": {
+    "createSuccessWithFile": "Aufgabe erfolgreich mit angehängter Datei erstellt."
+  },
+  "grades": {
+    "title": "Bewertungen",
+    "subtitle": "Trage die Noten deiner Schüler als Tutor ein",
+    "tutoredGroup": "Betreute Gruppe",
+    "evaluationPeriod": "Bewertungszeitraum",
+    "average": "Durchschnitt",
+    "subjectsCount": "{{count}} Fächer",
+    "loadingGroup": "Gruppendaten werden geladen...",
+    "noTutorGroup": "Keine betreute Gruppe gefunden",
+    "saveEvaluations": "Bewertungen speichern",
+    "saving": "Speichern...",
+    "savedSuccess": "Noten erfolgreich gespeichert"
+  },
+  "misGrades": {
+    "title": "Meine Bewertungen",
+    "subtitle": "Sieh dir deine Noten pro Trimester an",
+    "subjectColumn": "Fach",
+    "averageGrade": "Durchschnittsnote",
+    "loading": "Deine Noten werden geladen...",
+    "empty": "Du hast noch keine eingetragenen Noten"
+  },
+  "studentDashboard": {
+    "title": "Mein Bereich",
+    "subtitle": "Was möchtest du heute tun?",
+    "classesCard": "Klassen",
+    "classesDesc": "Zu deinen Fächern",
+    "managementCard": "Verwaltung",
+    "managementDesc": "Verwalte deine Akte",
+    "access": "Öffnen"
+  },
+  "studentManagement": {
+    "title": "Akademische Verwaltung",
+    "subtitle": "Verwalte dein Profil und deine Aktivitäten",
+    "profileCard": "Benutzerprofil",
+    "scheduleCard": "Stundenplan",
+    "calendarCard": "Kalender",
+    "boardCard": "Pinnwand",
+    "viewProfile": "Profil ansehen",
+    "consult": "Öffnen",
+    "viewEvents": "Termine ansehen",
+    "viewNotices": "Mitteilungen ansehen"
+  },
+  "studentProfile": {
+    "title": "Benutzerprofil",
+    "subtitle": "Hier siehst du deinen Fehlzeitenverlauf.",
+    "noAbsences": "Du hast keine Fehlzeiten auf dem Server.",
+    "attendance": "Anwesenheit",
+    "justification": "Begründung",
+    "statusAbsent": "FEHLEND",
+    "statusLate": "VERSPÄTET",
+    "statusExcused": "ENTSCHULDIGT",
+    "justificationPending": "AUSSTEHEND",
+    "justificationRejected": "ABGELEHNT",
+    "justificationAccepted": "AKZEPTIERT",
+    "justificationNotSent": "NICHT GESENDET"
+  },
+  "justifyAbsence": {
+    "title": "Fehlzeit begründen",
+    "selectDocument": "Dokument auswählen",
+    "fileHint": "PNG, JPG, PDF (max. 1 MB)",
+    "upload": "Begründung hochladen",
+    "uploading": "Wird gesendet...",
+    "successTitle": "Begründung gesendet!",
+    "successHint": "Dein Lehrer prüft das Dokument zur Entschuldigung."
+  },
+  "teacherProfile": {
+    "title": "Begründungen",
+    "subtitle": "Prüfe und verwalte Fehlzeiten deiner Schüler",
+    "loading": "Begründungen werden geladen...",
+    "allCaughtUp": "Alles erledigt",
+    "noPending": "Keine neuen Begründungen zur Prüfung.",
+    "viewAbsencesByStudent": "Fehlzeiten nach Schüler anzeigen",
+    "viewFile": "Datei ansehen",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen",
+    "absencesSummary": {
+      "title": "Fehlzeitenübersicht nach Schüler",
+      "loading": "Schülerdaten werden geladen...",
+      "loadError": "Daten konnten nicht geladen werden.",
+      "fetchError": "Beim Laden der Fehlzeiten ist ein Fehler aufgetreten.",
+      "empty": "Du hast keine registrierten Schüler oder es sind keine Daten verfügbar.",
+      "student": "Schüler",
+      "subjects": "Fächer",
+      "absencesPerSubject": "Fehlzeiten pro Fach",
+      "totalAbsences": "Fehlzeiten gesamt",
+      "close": "Schließen"
+    }
+  },
+  "classMenu": {
+    "youAreIn": "Du bist in",
+    "tasksTitle": "Aufgaben",
+    "tasksDesc": "Aufgaben der Klasse verwalten",
+    "justificationsTitle": "Begründungen",
+    "justificationsDesc": "Fehlzeiten-Begründungen prüfen"
+  },
+  "syllabus": {
+    "titlePrefix": "Lehrplan:",
+    "studentIntro": "Unterrichtsmaterial, Dokumente, Übungen und Aufgaben.",
+    "loadTasksError": "Aufgaben für dieses Fach konnten nicht geladen werden.",
+    "emptyTeacher": "Du hast noch kein Material für dieses Fach erstellt.",
+    "tasksCount": "{{count}} Aufgaben",
+    "itemsCount": "{{count}} Einträge",
+    "dueLabel": "Fällig:",
+    "viewBaseFile": "Basisdatei ansehen",
+    "viewSubmissions": "Abgaben ansehen",
+    "saveAttendance": "Anwesenheit speichern",
+    "emptyTitle": "Themenplan ist leer",
+    "emptyBody": "Dein Lehrer hat noch kein Material oder keine Aufgaben für diesen Block hochgeladen.",
+    "noDescription": "Keine Beschreibung",
+    "takeAttendance": "Anwesenheit erfassen",
+    "attendanceHint": "Wähle den Status jedes Schülers und speichere die Anwesenheit.",
+    "loadingStudents": "Schüler werden geladen...",
+    "noStudents": "Keine Schüler in diesem Fach eingeschrieben.",
+    "attendanceSaved": "Anwesenheit erfolgreich gespeichert",
+    "sections": {
+      "THEORY": "Theoriematerial und Dokumente",
+      "EXAM": "Prüfungen und Tests",
+      "PROJECT": "Bewertbare Projekte",
+      "PRACTICE": "Praktische Übungen",
+      "HOMEWORK": "Allgemeine Hausaufgaben"
+    }
+  },
+  "taskTypes": {
+    "HOMEWORK": "Hausaufgaben",
+    "PRACTICE": "Übung",
+    "THEORY": "Theorie / Material",
+    "PROJECT": "Projekt",
+    "EXAM": "Prüfung"
+  },
+  "taskFormPage": {
+    "title": "Neue Aufgabe erstellen",
+    "taskTitle": "Aufgabentitel",
+    "description": "Beschreibung",
+    "type": "Typ",
+    "startDate": "Startdatum",
+    "dueDate": "Abgabefrist",
+    "attachmentOptional": "Anhang (optional)",
+    "uploadFile": "Datei hochladen",
+    "orDragDrop": "oder hier ablegen",
+    "createTask": "Aufgabe erstellen",
+    "titlePlaceholder": "z. B. Abgabe Übung 1",
+    "descriptionPlaceholder": "Anweisungen für Schüler hinzufügen...",
+    "fileTypesHint": "PDF, DOCX, ZIP, PNG, JPG bis 10 MB",
+    "fileSelected": "Ausgewählt: {{name}}"
+  },
+  "submissions": {
+    "loading": "Schülerabgaben werden geladen...",
+    "dueDate": "Abgabefrist",
+    "student": "Schüler",
+    "status": "Status",
+    "submittedAt": "Abgabedatum",
+    "grade": "Note",
+    "actions": "Aktionen",
+    "loadingDetail": "Abgabedetails werden geladen...",
+    "studentLabel": "Schüler",
+    "taskLabel": "Zu bewertende Aufgabe",
+    "submittedAtLabel": "Abgabezeitpunkt",
+    "fileLabel": "Abgegebene Datei",
+    "gradeFormTitle": "Bewertungsformular",
+    "gradeLabel": "Note (0-10)",
+    "feedbackOptional": "Feedback (optional)",
+    "gradeTask": "Abgabe bewerten",
+    "submitted": "Abgegeben",
+    "graded": "Bewertet",
+    "notSubmitted": "Nicht abgegeben",
+    "backToSyllabus": "Zurück zum Lehrplan",
+    "backToSubmissions": "Zurück zu den Abgaben",
+    "studentList": "Schülerliste ({{count}})",
+    "noSubmissions": "Keine Abgaben für diese Aufgabe gefunden.",
+    "editGrade": "Note bearbeiten",
+    "gradeAction": "Bewerten",
+    "openAttachmentTitle": "Datei/Link der Lösung öffnen",
+    "gradeDeliveryTitle": "Abgabe bewerten",
+    "noDateRecorded": "Kein Datum erfasst",
+    "notAttachedYet": "Noch nicht angehängt",
+    "viewDownloadAttachment": "Anhang ansehen / herunterladen",
+    "feedbackPlaceholder": "Schreibe hier Korrekturen oder Anmerkungen für den Schüler...",
+    "saveGrade": "Bewertung speichern",
+    "gradeRangeLabel": "Bewertung (0 - 10)",
+    "commentsFeedback": "Kommentare und Feedback",
+    "submittedAtShort": "Abgegeben:",
+    "gradeError": "Fehler beim Bewerten der Abgabe. Bitte erneut versuchen."
+  },
+  "taskDetail": {
+    "selectTask": "Wähle eine Aufgabe aus, um Details anzuzeigen.",
+    "startLabel": "Beginn:",
+    "dueLabel": "Abgabe:",
+    "allowLate": "Verspätete Abgabe erlaubt"
+  },
+  "studentTasks": {
+    "loading": "Aufgaben werden geladen...",
+    "empty": "Du hast keine zugewiesenen Aufgaben."
+  },
+  "adminDashboard": {
+    "menu": "Menü"
+  },
+  "filters": {
+    "label": "Filter:"
+  },
+  "forms": {
+    "createTeacher": "Neuen Lehrer erstellen",
+    "createGroup": "Neue Gruppe erstellen",
+    "createCourse": "Neuen Bildungsgang erstellen",
+    "createSubject": "Neues Fach erstellen",
+    "selectCourse": "Bildungsgang auswählen",
+    "selectCourseRequired": "Du musst einen Bildungsgang auswählen",
+    "weeklyHours": "Wochenstunden",
+    "weeklyHoursRange": "Stunden müssen zwischen 1 und 30 liegen",
+    "descriptionMax": "Beschreibung darf 255 Zeichen nicht überschreiten",
+    "selectCycle": "Bildungsgang auswählen",
+    "creating": "Wird erstellt...",
+    "createTeacherBtn": "Lehrer erstellen",
+    "createGroupBtn": "Gruppe erstellen",
+    "createCourseBtn": "Bildungsgang erstellen",
+    "createSubjectBtn": "Fach erstellen",
+    "groupName": "Gruppenname",
+    "courseName": "Name des Bildungsgangs",
+    "subjectName": "Fachname",
+    "gradeLabel": "Jahrgang",
+    "grade1": "1.",
+    "grade2": "2.",
+    "description": "Beschreibung",
+    "descriptionPlaceholder": "Kurze Beschreibung des Fachs",
+    "hoursPlaceholder": "z. B. 6",
+    "courseNamePlaceholder": "z. B. Multiplattform-Anwendungsentwicklung",
+    "groupNamePlaceholder": "z. B. 2. DAM Vormittag",
+    "subjectNamePlaceholder": "z. B. Programmierung",
+    "belongsToCycle": "Zugehöriger Bildungsgang",
+    "loadingCycles": "Bildungsgänge werden geladen...",
+    "dniLabel": "Ausweisnummer / NIE",
+    "dniPlaceholder": "12345678A oder X1234567A",
+    "dniInvalidExtended": "Ungültige Ausweisnummer/NIE (z. B. 12345678A oder X1234567A)"
+  },
+  "assistanceStatus": {
+    "PRESENT": "Anwesend",
+    "ABSENT": "Abwesend",
+    "LATE": "Verspätet",
+    "EXCUSED": "Entschuldigt"
+  },
+  "aria": {
+    "openMenu": "Menü öffnen",
+    "languageEs": "Spanisch"
+  },
+  "studentClasses": {
+    "title": "Meine Faecher",
+    "loading": "Klassen werden geladen...",
+    "empty": "In keinem Fach eingeschrieben.",
+    "access": "Oeffnen",
+    "labels": {
+      "grade": "Jahrgang/Kurs",
+      "teacher": "Lehrer"
+    }
+  }
+}

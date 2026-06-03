@@ -1,0 +1,13 @@
+<div class="flex flex-col gap-3 p-4">
+
+  @if (studentsService.students().length === 0) {
+    <p class="text-center text-gray-400 text-sm py-8">
+      {{ 'teacherPages.attendance.noStudents' | translate }}
+    </p>
+  }
+
+  @for (student of studentsService.students(); track student.id) {
+    <app-tarjetaasistencia [student]="student" />
+  }
+
+</div>

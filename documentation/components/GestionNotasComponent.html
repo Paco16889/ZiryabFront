@@ -1,0 +1,1921 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GestionNotasComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/profesor/gestion-notas/gestion-notas.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Pantalla de profesor para introducir notas por grupo y periodo.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-gestion-notas</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+                                <code><a href="https://angular.io/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                <code><a href="../components/BotonAtrasComponent.html" target="_self" >BotonAtrasComponent</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./gestion-notas.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./gestion-notas.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#gradeService" >gradeService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#gradesMap" >gradesMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#periods" >periods</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#saving" >saving</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#selectedGroup" >selectedGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#selectedPeriod" >selectedPeriod</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#students" >students</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#successMessage" >successMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getAverage" >getAverage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getGradeKey" >getGradeKey</a>
+                            </li>
+                            <li>
+                                <a href="#getGradeValue" >getGradeValue</a>
+                            </li>
+                            <li>
+                                <a href="#loadGrades" >loadGrades</a>
+                            </li>
+                            <li>
+                                <a href="#loadGroups" >loadGroups</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onGradeChange" >onGradeChange</a>
+                            </li>
+                            <li>
+                                <a href="#onPeriodChange" >onPeriodChange</a>
+                            </li>
+                            <li>
+                                <a href="#saveGrades" >saveGrades</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAverage"></a>
+                    <span class="name">
+                        <span ><b>getAverage</b></span>
+                        <a href="#getAverage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAverage(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:271</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Calcula la media de un alumno en el periodo seleccionado.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGradeKey"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getGradeKey</b></span>
+                        <a href="#getGradeKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGradeKey(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, subjectId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, period: unknown)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Genera una clave estable para localizar una nota en el mapa editable.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>subjectId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>period</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>this.selectedPeriod()</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGradeValue"></a>
+                    <span class="name">
+                        <span ><b>getGradeValue</b></span>
+                        <a href="#getGradeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getGradeValue(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, subjectId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Devuelve el valor visible de una nota en la tabla.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>subjectId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number | string</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadGrades"></a>
+                    <span class="name">
+                        <span ><b>loadGrades</b></span>
+                        <a href="#loadGrades"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadGrades()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga notas del grupo/periodo y construye la tabla por alumno-asignatura.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadGroups"></a>
+                    <span class="name">
+                        <span ><b>loadGroups</b></span>
+                        <a href="#loadGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadGroups()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga grupos donde el profesor actúa como tutor.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga grupos tutorizados al montar la pantalla.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onGradeChange"></a>
+                    <span class="name">
+                        <span ><b>onGradeChange</b></span>
+                        <a href="#onGradeChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onGradeChange(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, subjectId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, enrollmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza localmente una nota, limitándola al rango 1-10.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>subjectId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>enrollmentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPeriodChange"></a>
+                    <span class="name">
+                        <span ><b>onPeriodChange</b></span>
+                        <a href="#onPeriodChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPeriodChange(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cambia el periodo y recarga notas del grupo seleccionado.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveGrades"></a>
+                    <span class="name">
+                        <span ><b>saveGrades</b></span>
+                        <a href="#saveGrades"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveGrades()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Valida que todas las celdas tengan nota y guarda en lote.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de error visible.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constructor de formularios, reservado para controles reactivos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradeService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>gradeService</b></span>
+                        <a href="#gradeService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(GradeService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio de calificaciones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradesMap"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>gradesMap</b></span>
+                        <a href="#gradesMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, Grade&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mapa editable de notas indexado por periodo, alumno y asignatura.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de carga de grupos/notas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="periods"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>periods</b></span>
+                        <a href="#periods"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Object.values(EvaluationPeriod)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Periodos disponibles para el selector.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saving"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>saving</b></span>
+                        <a href="#saving"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de guardado bulk.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedGroup"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>selectedGroup</b></span>
+                        <a href="#selectedGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;TutoredCourseGroup | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Grupo tutorizado activo en el selector.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedPeriod"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>selectedPeriod</b></span>
+                        <a href="#selectedPeriod"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;EvaluationPeriod&gt;(EvaluationPeriod.FIRST_TRIMESTER)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Periodo de evaluación activo (trimestres).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="students"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>students</b></span>
+                        <a href="#students"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;StudentWithSubjects[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Alumnos agrupados con asignaturas del grupo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>successMessage</b></span>
+                        <a href="#successMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mensaje de éxito temporal.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/profesor/gestion-notas/gestion-notas.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de mensajes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, inject, signal } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { GradeService } from &#x27;../../../core/services/profesor/grade.service&#x27;;
+import { EvaluationPeriod, Grade, CreateGradeRequest, TutoredCourseGroup } from &#x27;../../../core/models/grade&#x27;;
+import { BotonAtrasComponent } from &#x27;../../shared/boton-atras/boton-atras.component&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { resolveApiError } from &#x27;../../../core/i18n/api-error.util&#x27;;
+
+/** Alumno con sus asignaturas matriculadas para la tabla de notas del profesor. */
+interface StudentWithSubjects {
+  /** Identificador del alumno. */
+  id: number;
+  /** Nombre del alumno. */
+  name: string;
+  /** Apellido del alumno. */
+  surname: string;
+  /** Asignaturas del alumno dentro del grupo tutorado. */
+  subjects: {
+    /** Identificador de asignatura. */
+    id: number;
+    /** Nombre de asignatura. */
+    name: string;
+    /** Matrícula que recibirá la nota. */
+    enrollmentId: number;
+  }[];
+}
+
+/** Pantalla de profesor para introducir notas por grupo y periodo. */
+@Component({
+  selector: &#x27;app-gestion-notas&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, BotonAtrasComponent, TranslateModule],
+  templateUrl: &#x27;./gestion-notas.component.html&#x27;,
+  styleUrl: &#x27;./gestion-notas.component.scss&#x27;
+})
+export class GestionNotasComponent implements OnInit {
+  /** Servicio de calificaciones. */
+  private gradeService &#x3D; inject(GradeService);
+  /** Constructor de formularios, reservado para controles reactivos. */
+  private fb &#x3D; inject(FormBuilder);
+  /** Traducciones de mensajes. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Grupo tutorizado activo en el selector. */
+  public selectedGroup &#x3D; signal&lt;TutoredCourseGroup | null&gt;(null);
+
+  /** Periodo de evaluación activo (trimestres). */
+  public selectedPeriod &#x3D; signal&lt;EvaluationPeriod&gt;(EvaluationPeriod.FIRST_TRIMESTER);
+
+  /** Periodos disponibles para el selector. */
+  public periods &#x3D; Object.values(EvaluationPeriod);
+  
+  /** Alumnos agrupados con asignaturas del grupo. */
+  public students &#x3D; signal&lt;StudentWithSubjects[]&gt;([]);
+  /** Mapa editable de notas indexado por periodo, alumno y asignatura. */
+  public gradesMap &#x3D; new Map&lt;string, Grade&gt;(); 
+
+  /** Estado de carga de grupos/notas. */
+  public loading &#x3D; signal&lt;boolean&gt;(false);
+  /** Estado de guardado bulk. */
+  public saving &#x3D; signal&lt;boolean&gt;(false);
+  /** Mensaje de éxito temporal. */
+  public successMessage &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+  /** Mensaje de error visible. */
+  public errorMessage &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Carga grupos tutorizados al montar la pantalla. */
+  ngOnInit(): void {
+    this.loadGroups();
+  }
+
+  /** Carga grupos donde el profesor actúa como tutor. */
+  loadGroups(): void {
+    this.loading.set(true);
+    this.gradeService.getTutoredGroups().subscribe({
+      next: (res) &#x3D;&gt; {
+        if (res.data &amp;&amp; res.data.length &gt; 0) {
+          this.selectedGroup.set(res.data[0]);
+          this.loadGrades();
+        } else {
+          this.errorMessage.set(this.translate.instant(&#x27;common.errors.noTutorGroups&#x27;));
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al cargar grupos:&#x27;, err);
+        this.errorMessage.set(resolveApiError(this.translate, err, &#x27;common.errors.loadTutorGroups&#x27;));
+        this.loading.set(false);
+      }
+    });
+  }
+
+  /** Cambia el periodo y recarga notas del grupo seleccionado. */
+  onPeriodChange(event: Event): void {
+    const select &#x3D; event.target as HTMLSelectElement;
+    this.selectedPeriod.set(select.value as EvaluationPeriod);
+    if (this.selectedGroup()) {
+      this.loadGrades();
+    }
+  }
+
+  /** Genera una clave estable para localizar una nota en el mapa editable. */
+  private getGradeKey(studentId: number, subjectId: number, period &#x3D; this.selectedPeriod()): string {
+    return &#x60;${period}-${studentId}-${subjectId}&#x60;;
+  }
+
+  /** Carga notas del grupo/periodo y construye la tabla por alumno-asignatura. */
+  loadGrades(): void {
+    const group &#x3D; this.selectedGroup();
+    if (!group) return;
+
+    const period &#x3D; this.selectedPeriod();
+    this.loading.set(true);
+    this.gradeService.getGradesByCourseGroupAndPeriod(group.id, period).subscribe({
+      next: (res) &#x3D;&gt; {
+        if (period !&#x3D;&#x3D; this.selectedPeriod()) {
+          return;
+        }
+
+        console.log(&#x27;Notas del grupo recibidas:&#x27;, res.data);
+        
+        const enrollments &#x3D; group.studentEnrollments || [];
+        
+        if (enrollments.length &#x3D;&#x3D;&#x3D; 0) {
+          this.errorMessage.set(this.translate.instant(&#x27;common.errors.noStudentsInGroup&#x27;));
+          this.students.set([]);
+        } else {
+          this.errorMessage.set(&#x27;&#x27;);
+          
+          // Agrupar asignaturas por alumno
+          const studentMap &#x3D; new Map&lt;number, StudentWithSubjects&gt;();
+          
+          enrollments.forEach((e) &#x3D;&gt; {
+            if (!studentMap.has(e.student!.id)) {
+              studentMap.set(e.student!.id, {
+                id: e.student!.id,
+                name: e.student!.name,
+                surname: e.student!.surname,
+                subjects: []
+              });
+            }
+            studentMap.get(e.student!.id)!.subjects.push({
+              id: e.subject!.id,
+              name: e.subject!.name,
+              enrollmentId: e.id
+            });
+          });
+
+          this.students.set(Array.from(studentMap.values()));
+        }
+
+        // Mapear notas existentes
+        this.gradesMap.clear();
+        res.data.forEach((grade: Grade) &#x3D;&gt; {
+          const studentId &#x3D; grade.studentEnrollment?.idStudent;
+          const subjectId &#x3D; grade.studentEnrollment?.idSubject;
+          if (studentId &amp;&amp; subjectId) {
+            const key &#x3D; this.getGradeKey(studentId, subjectId, grade.period);
+            this.gradesMap.set(key, grade);
+          }
+        });
+
+        this.loading.set(false);
+      },
+      error: (err) &#x3D;&gt; {
+        if (period !&#x3D;&#x3D; this.selectedPeriod()) {
+          return;
+        }
+
+        console.error(&#x27;Error al cargar notas:&#x27;, err);
+        this.errorMessage.set(resolveApiError(this.translate, err, &#x27;common.errors.loadNotes&#x27;));
+        this.loading.set(false);
+      }
+    });
+  }
+
+  /** Devuelve el valor visible de una nota en la tabla. */
+  getGradeValue(studentId: number, subjectId: number): number | string {
+    const key &#x3D; this.getGradeKey(studentId, subjectId);
+    return this.gradesMap.get(key)?.value || &#x27;&#x27;;
+  }
+
+  /** Actualiza localmente una nota, limitándola al rango 1-10. */
+  onGradeChange(studentId: number, subjectId: number, enrollmentId: number, event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    let value &#x3D; parseInt(input.value);
+    
+    // la nota minima debe ser 1 (si o si)
+    if (!isNaN(value) &amp;&amp; value &lt; 1) {
+      value &#x3D; 1;
+      input.value &#x3D; &#x27;1&#x27;;
+    }
+    
+    // la nota maxima debe ser 10 (si o si)
+    if (!isNaN(value) &amp;&amp; value &gt; 10) {
+      value &#x3D; 10;
+      input.value &#x3D; &#x27;10&#x27;;
+    }
+    
+    const key &#x3D; this.getGradeKey(studentId, subjectId);
+    
+    const currentGrade &#x3D; this.gradesMap.get(key);
+    if (currentGrade) {
+      currentGrade.value &#x3D; isNaN(value) ? undefined : value;
+    } else {
+      this.gradesMap.set(key, {
+        id: 0,
+        idStudentEnrollment: enrollmentId,
+        period: this.selectedPeriod(),
+        value: isNaN(value) ? undefined : value,
+        idTeacher: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      } as Grade);
+    }
+  }
+
+  /** Valida que todas las celdas tengan nota y guarda en lote. */
+  saveGrades(): void {
+    const studentsList &#x3D; this.students();
+    const gradesToSave: CreateGradeRequest[] &#x3D; [];
+    let allGraded &#x3D; true;
+
+    for (const student of studentsList) {
+      for (const subject of student.subjects) {
+        const key &#x3D; this.getGradeKey(student.id, subject.id);
+        const grade &#x3D; this.gradesMap.get(key);
+        
+        if (!grade || grade.value &#x3D;&#x3D;&#x3D; undefined || grade.value &#x3D;&#x3D;&#x3D; null || isNaN(grade.value)) {
+          console.warn(&#x60;Asignatura sin calificar: Alumno ${student.name}, Asignatura ${subject.name}&#x60;);
+          allGraded &#x3D; false;
+          break;
+        }
+        
+        gradesToSave.push({
+          idStudentEnrollment: subject.enrollmentId,
+          period: this.selectedPeriod(),
+          value: Number(grade.value),
+          observations: grade.observations
+        });
+      }
+      if (!allGraded) break;
+    }
+
+    if (!allGraded) {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.allGradesRequired&#x27;));
+      setTimeout(() &#x3D;&gt; this.errorMessage.set(&#x27;&#x27;), 5000);
+      return;
+    }
+
+    this.saving.set(true);
+    this.gradeService.bulkUpsertGrades({ grades: gradesToSave }).subscribe({
+      next: () &#x3D;&gt; {
+        this.successMessage.set(this.translate.instant(&#x27;grades.savedSuccess&#x27;));
+        this.saving.set(false);
+        setTimeout(() &#x3D;&gt; this.successMessage.set(&#x27;&#x27;), 3000);
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al guardar notas:&#x27;, err);
+        const errorMsg &#x3D;
+          err.error?.message ||
+          err.error?.errors?.formErrors?.[0] ||
+          this.translate.instant(&#x27;common.errors.saveNotes&#x27;);
+        this.errorMessage.set(errorMsg);
+        this.saving.set(false);
+      }
+    });
+  }
+
+  /** Calcula la media de un alumno en el periodo seleccionado. */
+  getAverage(studentId: number): string {
+    const student &#x3D; this.students().find(s &#x3D;&gt; s.id &#x3D;&#x3D;&#x3D; studentId);
+    if (!student || !student.subjects || student.subjects.length &#x3D;&#x3D;&#x3D; 0) return &#x27;0&#x27;;
+    
+    let sum &#x3D; 0;
+    let count &#x3D; 0;
+    
+    student.subjects.forEach((sub) &#x3D;&gt; {
+      const val &#x3D; this.getGradeValue(studentId, sub.id);
+      if (val !&#x3D;&#x3D; &#x27;&#x27; &amp;&amp; !isNaN(Number(val))) {
+        sum +&#x3D; Number(val);
+        count++;
+      }
+    });
+    
+    return count &gt; 0 ? (sum / count).toFixed(2) : &#x27;0&#x27;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;min-h-screen bg-slate-50 p-4 md:p-8&quot;&gt;
+  &lt;div class&#x3D;&quot;max-w-7xl mx-auto&quot;&gt;
+    &lt;div class&#x3D;&quot;mb-10 text-center relative&quot;&gt;
+      &lt;h1 class&#x3D;&quot;text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3&quot;&gt;
+{{ &#x27;teacherPages.grades.title&#x27; | translate }}
+      &lt;/h1&gt;
+      &lt;p class&#x3D;&quot;text-gray-500 text-lg font-medium&quot;&gt;{{ &#x27;teacherPages.grades.subtitle&#x27; | translate }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;grid grid-cols-1 gap-6 mb-8&quot;&gt;
+      &lt;div class&#x3D;&quot;bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;selectedGroup()&quot;&gt;
+&lt;label class&#x3D;&quot;block text-sm font-medium text-slate-500 mb-1&quot;&gt;{{ &#x27;teacherPages.grades.tutoredGroup&#x27; | translate }}&lt;/label&gt;
+          &lt;h2 class&#x3D;&quot;text-xl font-bold text-slate-800&quot;&gt;
+            {{ selectedGroup()?.group?.name }}
+          &lt;/h2&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;flex-1 max-w-md&quot;&gt;
+          &lt;label class&#x3D;&quot;block text-sm font-medium text-slate-700 mb-2&quot;&gt;{{ &#x27;teacherPages.grades.period&#x27; | translate }}&lt;/label&gt;
+          &lt;select
+            (change)&#x3D;&quot;onPeriodChange($event)&quot;
+            [value]&#x3D;&quot;selectedPeriod()&quot;
+            class&#x3D;&quot;w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all&quot;
+          &gt;
+            &lt;option *ngFor&#x3D;&quot;let period of periods&quot; [value]&#x3D;&quot;period&quot;&gt;{{ period | translate }}&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;successMessage()&quot; class&#x3D;&quot;mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl flex items-center gap-3 animate-fade-in&quot;&gt;
+      &lt;svg class&#x3D;&quot;w-5 h-5&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M5 13l4 4L19 7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+      {{ successMessage() }}
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;errorMessage()&quot; class&#x3D;&quot;mb-6 p-4 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl flex items-center gap-3 animate-fade-in&quot;&gt;
+      &lt;svg class&#x3D;&quot;w-5 h-5&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+      {{ errorMessage() }}
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;selectedGroup() &amp;&amp; !loading()&quot; class&#x3D;&quot;space-y-6&quot;&gt;
+      &lt;div *ngFor&#x3D;&quot;let student of students()&quot; class&#x3D;&quot;bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-fade-in&quot;&gt;
+        &lt;div class&#x3D;&quot;bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between&quot;&gt;
+          &lt;h3 class&#x3D;&quot;font-bold text-slate-800 flex items-center gap-2&quot;&gt;
+            &lt;div class&#x3D;&quot;w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xs&quot;&gt;
+              {{ student.name.charAt(0) }}{{ student.surname.charAt(0) }}
+            &lt;/div&gt;
+            {{ student.name }} {{ student.surname }}
+          &lt;/h3&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4&quot;&gt;
+            &lt;div class&#x3D;&quot;flex flex-col items-end&quot;&gt;
+&lt;span class&#x3D;&quot;text-[10px] uppercase text-slate-400 font-bold tracking-wider&quot;&gt;{{ &#x27;teacherPages.grades.average&#x27; | translate }}&lt;/span&gt;
+              &lt;span class&#x3D;&quot;text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg border border-indigo-100&quot;&gt;
+                {{ getAverage(student.id) }}
+              &lt;/span&gt;
+            &lt;/div&gt;
+            &lt;span class&#x3D;&quot;text-xs font-medium text-slate-500 bg-slate-200 px-2 py-1 rounded-full&quot;&gt;
+{{ student.subjects.length }} {{ &#x27;teacherPages.grades.subjects&#x27; | translate }}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;p-4&quot;&gt;
+          &lt;div class&#x3D;&quot;grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let subject of student.subjects&quot; class&#x3D;&quot;p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between gap-4&quot;&gt;
+              &lt;span class&#x3D;&quot;text-sm font-medium text-slate-700 truncate&quot; [title]&#x3D;&quot;subject.name&quot;&gt;
+                {{ subject.name }}
+              &lt;/span&gt;
+              &lt;input
+                type&#x3D;&quot;number&quot;
+                min&#x3D;&quot;1&quot;
+                max&#x3D;&quot;10&quot;
+                step&#x3D;&quot;1&quot;
+                [value]&#x3D;&quot;getGradeValue(student.id, subject.id)&quot;
+                (input)&#x3D;&quot;onGradeChange(student.id, subject.id, subject.enrollmentId, $event)&quot;
+                placeholder&#x3D;&quot;-&quot;
+                class&#x3D;&quot;w-16 p-2 text-center bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm font-bold&quot;
+              /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;loading()&quot; class&#x3D;&quot;flex flex-col items-center justify-center py-20&quot;&gt;
+      &lt;div class&#x3D;&quot;w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin mb-4&quot;&gt;&lt;/div&gt;
+&lt;p class&#x3D;&quot;text-slate-500 font-medium&quot;&gt;{{ &#x27;teacherPages.grades.loading&#x27; | translate }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;!selectedGroup() &amp;&amp; !loading()&quot; class&#x3D;&quot;flex flex-col items-center justify-center py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200&quot;&gt;
+      &lt;div class&#x3D;&quot;w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4&quot;&gt;
+        &lt;svg class&#x3D;&quot;w-8 h-8 text-slate-400&quot; fill&#x3D;&quot;none&quot; stroke&#x3D;&quot;currentColor&quot; viewBox&#x3D;&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+      &lt;/div&gt;
+&lt;p class&#x3D;&quot;text-slate-500 font-medium&quot;&gt;{{ &#x27;teacherPages.grades.emptyGroup&#x27; | translate }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;mt-8 flex justify-between items-center pb-8&quot;&gt;
+      &lt;app-boton-atras&gt;&lt;/app-boton-atras&gt;
+
+      &lt;button
+        (click)&#x3D;&quot;saveGrades()&quot;
+        [disabled]&#x3D;&quot;saving() || !selectedGroup()&quot;
+        class&#x3D;&quot;px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3&quot;
+      &gt;
+        &lt;span *ngIf&#x3D;&quot;saving()&quot; class&#x3D;&quot;w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin&quot;&gt;&lt;/span&gt;
+        &lt;svg *ngIf&#x3D;&quot;!saving()&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-5 w-5&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+          &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4&quot; /&gt;
+        &lt;/svg&gt;
+{{ saving() ? (&#x27;teacherPages.grades.saving&#x27; | translate) : (&#x27;teacherPages.grades.save&#x27; | translate) }}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="min-h-screen bg-slate-50 p-4 md:p-8">  <div class="max-w-7xl mx-auto">    <div class="mb-10 text-center relative">      <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">{{ \'teacherPages.grades.title\' | translate }}      </h1>      <p class="text-gray-500 text-lg font-medium">{{ \'teacherPages.grades.subtitle\' | translate }}</p>    </div>    <div class="grid grid-cols-1 gap-6 mb-8">      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">        <div *ngIf="selectedGroup()"><label class="block text-sm font-medium text-slate-500 mb-1">{{ \'teacherPages.grades.tutoredGroup\' | translate }}</label>          <h2 class="text-xl font-bold text-slate-800">            {{ selectedGroup()?.group?.name }}          </h2>        </div>        <div class="flex-1 max-w-md">          <label class="block text-sm font-medium text-slate-700 mb-2">{{ \'teacherPages.grades.period\' | translate }}</label>          <select            (change)="onPeriodChange($event)"            [value]="selectedPeriod()"            class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"          >            <option *ngFor="let period of periods" [value]="period">{{ period | translate }}</option>          </select>        </div>      </div>    </div>    <div *ngIf="successMessage()" class="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl flex items-center gap-3 animate-fade-in">      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>      {{ successMessage() }}    </div>    <div *ngIf="errorMessage()" class="mb-6 p-4 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl flex items-center gap-3 animate-fade-in">      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>      {{ errorMessage() }}    </div>    <div *ngIf="selectedGroup() && !loading()" class="space-y-6">      <div *ngFor="let student of students()" class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-fade-in">        <div class="bg-slate-50 p-4 border-b border-slate-100 flex items-center justify-between">          <h3 class="font-bold text-slate-800 flex items-center gap-2">            <div class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xs">              {{ student.name.charAt(0) }}{{ student.surname.charAt(0) }}            </div>            {{ student.name }} {{ student.surname }}          </h3>          <div class="flex items-center gap-4">            <div class="flex flex-col items-end"><span class="text-[10px] uppercase text-slate-400 font-bold tracking-wider">{{ \'teacherPages.grades.average\' | translate }}</span>              <span class="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg border border-indigo-100">                {{ getAverage(student.id) }}              </span>            </div>            <span class="text-xs font-medium text-slate-500 bg-slate-200 px-2 py-1 rounded-full">{{ student.subjects.length }} {{ \'teacherPages.grades.subjects\' | translate }}            </span>          </div>        </div>        <div class="p-4">          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">            <div *ngFor="let subject of student.subjects" class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-between gap-4">              <span class="text-sm font-medium text-slate-700 truncate" [title]="subject.name">                {{ subject.name }}              </span>              <input                type="number"                min="1"                max="10"                step="1"                [value]="getGradeValue(student.id, subject.id)"                (input)="onGradeChange(student.id, subject.id, subject.enrollmentId, $event)"                placeholder="-"                class="w-16 p-2 text-center bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm font-bold"              />            </div>          </div>        </div>      </div>    </div>    <div *ngIf="loading()" class="flex flex-col items-center justify-center py-20">      <div class="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin mb-4"></div><p class="text-slate-500 font-medium">{{ \'teacherPages.grades.loading\' | translate }}</p>    </div>    <div *ngIf="!selectedGroup() && !loading()" class="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200">      <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">        <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>      </div><p class="text-slate-500 font-medium">{{ \'teacherPages.grades.emptyGroup\' | translate }}</p>    </div>    <div class="mt-8 flex justify-between items-center pb-8">      <app-boton-atras></app-boton-atras>      <button        (click)="saveGrades()"        [disabled]="saving() || !selectedGroup()"        class="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"      >        <span *ngIf="saving()" class="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin"></span>        <svg *ngIf="!saving()" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />        </svg>{{ saving() ? (\'teacherPages.grades.saving\' | translate) : (\'teacherPages.grades.save\' | translate) }}      </button>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GestionNotasComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GestionNotasComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

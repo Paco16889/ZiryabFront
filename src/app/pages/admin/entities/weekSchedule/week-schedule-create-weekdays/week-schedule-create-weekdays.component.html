@@ -1,0 +1,30 @@
+<fieldset class="border-0 p-0 m-0">
+  <legend class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+    {{ 'weekScheduleBuilder.create.daysLabel' | translate }}
+  </legend>
+
+  <div class="flex flex-wrap gap-4">
+    @for (day of weekdays; track day) {
+      <label
+        class="inline-flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200 cursor-pointer select-none"
+        [class.opacity-50]="disabled()"
+        [class.cursor-not-allowed]="disabled()"
+      >
+        <input
+          type="checkbox"
+          class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+          [checked]="isSelected(day)"
+          [disabled]="disabled()"
+          (change)="toggleDay(day)"
+        />
+        <span>{{ dayTranslateKey(day) | translate }}</span>
+      </label>
+    }
+  </div>
+
+  @if (showValidation() && selectedWeekDays().length === 0) {
+    <p class="text-sm text-red-600 mt-2" role="alert">
+      {{ 'weekScheduleBuilder.create.validationNoDay' | translate }}
+    </p>
+  }
+</fieldset>

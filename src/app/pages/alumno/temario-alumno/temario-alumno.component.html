@@ -1,0 +1,122 @@
+<div class="w-full max-w-4xl mx-auto p-6 font-sans text-slate-600 bg-slate-50 min-h-screen relative overflow-hidden">
+  
+  <div class="mb-4">
+    <app-boton-atras class="relative z-10"></app-boton-atras>
+  </div>
+
+  <div class="text-center mb-10 relative">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-2 pb-2 leading-normal capitalize">
+{{ 'studentPages.syllabus.title' | translate }}: {{ claseEnCurso }}
+    </h1>
+    <p class="text-slate-500">{{ 'studentPages.syllabus.subtitle' | translate }}</p>
+  </div>
+
+  @if (loading()) {
+    <div class="flex justify-center items-center py-20">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    </div>
+  } @else if (error()) {
+    <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4 rounded shadow-sm text-red-700">
+      {{ error() }}
+    </div>
+  } @else {
+    <div class="flex flex-col gap-5 pb-6">
+        @for (bloque of bloques(); track bloque.titleKey; let i = $index) {
+        
+        <div class="rounded-3xl border transition-all duration-300 overflow-hidden bg-white hover:shadow-md" [ngClass]="{
+            'shadow-xl border-indigo-200 ring-2 ring-indigo-50': bloque.abierto,
+            'border-slate-200': !bloque.abierto
+            }">
+
+            <button (click)="toggleBloque(i)"
+                class="w-full flex items-center justify-between p-5 cursor-pointer focus:outline-none group select-none">
+                
+                <div class="flex items-center gap-5">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300"
+                        [class]="bloque.abierto ? 'bg-indigo-50 border-indigo-100 scale-105 shadow-sm' : 'bg-slate-50 border-transparent'">
+                        <img [src]="bloque.icono" alt="Icono" class="w-8 h-8 object-contain transition-opacity duration-300" [class.opacity-100]="bloque.abierto" [class.opacity-60]="!bloque.abierto">
+                    </div>
+
+                    <div class="text-left">
+                        <h3 class="font-bold text-lg text-slate-800 leading-snug" [class.text-indigo-700]="bloque.abierto">
+                            {{ bloque.titleKey | translate }}
+                        </h3>
+                        <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md mt-1 bg-slate-100 text-slate-500">
+{{ bloque.tareas.length }} {{ 'studentPages.syllabus.items' | translate }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 bg-slate-50 border border-slate-100 shrink-0"
+                    [class.rotate-180]="bloque.abierto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-400" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+            </button>
+
+            @if (bloque.abierto) {
+            <div class="p-4 bg-slate-50/50 border-t border-slate-100">
+                <ul class="flex flex-col gap-3">
+                    @for (st of bloque.tareas; track st.id) {
+                    
+                    <a [routerLink]="['/tarea', st.id]" 
+                       class="flex items-center gap-4 p-4 rounded-xl hover:bg-white transition-all cursor-pointer group/tema border border-transparent hover:border-slate-200 hover:shadow-sm">
+                        
+                        <div class="flex flex-col flex-grow">
+                          <span class="text-slate-800 font-bold text-base group-hover/tema:text-indigo-600 transition-colors">
+                              {{ st.task.title }}
+                          </span>
+                          <span class="text-xs text-slate-500 mt-1 line-clamp-1">
+{{ 'studentPages.syllabus.due' | translate }}: {{ st.task.dueDate | date:'medium' }}
+                          </span>
+                        </div>
+
+                        <div class="shrink-0 flex items-center">
+                            @switch (st.status) {
+                                @case (SubmissionStatus.PENDING) {
+                                    <span class="px-3 py-1 bg-white border border-amber-200 text-amber-700 rounded-full text-xs font-bold shadow-sm shadow-amber-50 flex items-center gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></div>
+{{ 'studentPages.tasks.status.pendingUpper' | translate }}
+                                    </span>
+                                }
+                                @case (SubmissionStatus.SUBMITTED) {
+                                    <span class="px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-full text-xs font-bold shadow-sm shadow-emerald-50 flex items-center gap-1.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+{{ 'studentPages.tasks.status.submittedUpper' | translate }}
+                                    </span>
+                                }
+                                @case (SubmissionStatus.GRADED) {
+                                    <span class="px-3 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-full text-xs font-bold shadow-sm shadow-indigo-50 flex items-center gap-1.5">
+                                        <span class="bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded mr-0.5">{{ st.score }}</span>
+{{ 'studentPages.tasks.status.gradedUpper' | translate }}
+                                    </span>
+                                }
+                                @default {
+                                    <span class="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-full text-xs font-bold flex items-center gap-1.5 line-through decoration-slate-400 opacity-80">
+{{ 'studentPages.tasks.status.expiredUpper' | translate }}
+                                    </span>
+                                }
+                            }
+                        </div>
+                    </a>
+                    }
+                </ul>
+            </div>
+            }
+        </div>
+        }
+
+        @if (bloques().length === 0 && !loading() && !error()) {
+            <div class="text-center py-16 px-4 bg-white rounded-3xl border border-dashed border-slate-300">
+            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            </div>
+<h3 class="text-xl font-bold text-slate-700 mb-1">{{ 'studentPages.syllabus.emptyTitle' | translate }}</h3>
+            <p class="text-slate-500">{{ 'studentPages.syllabus.emptyDescription' | translate }}</p>
+            </div>
+        }
+    </div>
+  }
+</div>

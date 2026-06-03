@@ -1,0 +1,27 @@
+﻿<div class="p-4">
+  
+@if(!showCreateForm){
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100">{{'entities.teacher.title' | translate }}</h1>
+      <app-boton-create 
+      label="{{'lists.teachers.createButton' | translate}}"
+      (clickAction)="openCreateForm()"> 
+      </app-boton-create>
+    </div>
+
+    @for (tea of teachers; track tea.id){
+        <app-teacher-list-item [teacher]="tea"  ></app-teacher-list-item>
+    }
+}
+
+
+  @if(showCreateForm){
+    <app-teacher-create-form 
+      (cancelCreate)="closeCreateForm()" 
+      (teacherCreated)="onTeacherCreated()">
+    </app-teacher-create-form>
+  }
+
+
+
+</div>

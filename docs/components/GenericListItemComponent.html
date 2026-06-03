@@ -1,0 +1,1634 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GenericListItemComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/admin/generic-list-item/generic-list-item.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente genérico que representa un elemento de una lista.
+Soporta visualización de campos configurables, acciones de edición,
+eliminación y vista de detalle para cualquier entidad del sistema.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-generic-list-item</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/BotonEditComponent.html" target="_self" >BotonEditComponent</a></code>
+                                <code><a href="../components/BotonDeleteComponent.html" target="_self" >BotonDeleteComponent</a></code>
+                                <code><a href="../components/BotonViewdetailComponent.html" target="_self" >BotonViewdetailComponent</a></code>
+                                <code><a href="../components/GenericViewDetailComponent.html" target="_self" >GenericViewDetailComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./generic-list-item.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./generic-list-item.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#itemToEdit" >itemToEdit</a>
+                            </li>
+                            <li>
+                                <a href="#selectedItem" >selectedItem</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatDateFields" >formatDateFields</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatDateForInput" >formatDateForInput</a>
+                            </li>
+                            <li>
+                                <a href="#getEntityName" >getEntityName</a>
+                            </li>
+                            <li>
+                                <a href="#getFieldClasses" >getFieldClasses</a>
+                            </li>
+                            <li>
+                                <a href="#getFieldValue" >getFieldValue</a>
+                            </li>
+                            <li>
+                                <a href="#getFormattedValue" >getFormattedValue</a>
+                            </li>
+                            <li>
+                                <a href="#toggleDetail" >toggleDetail</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#config" >config</a>
+                            </li>
+                            <li>
+                                <a href="#detailConfig" >detailConfig</a>
+                            </li>
+                            <li>
+                                <a href="#item" >item</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#hasActions" >hasActions</a>
+                                </li>
+                                <li>
+                                    <a href="#containerClass" >containerClass</a>
+                                </li>
+                                <li>
+                                    <a href="#fieldsContainerClass" >fieldsContainerClass</a>
+                                </li>
+                                <li>
+                                    <a href="#actionsContainerClass" >actionsContainerClass</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="config"></a>
+                        <b>config</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ListItemConfig.html" target="_self" >ListItemConfig&lt;T | U | R | S&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:35</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Configuración del elemento de lista con campos, acciones y layout.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="detailConfig"></a>
+                        <b>detailConfig</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ViewDetailConfig.html" target="_self" >ViewDetailConfig&lt;T&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Configuración opcional de la vista de detalle de la entidad.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="item"></a>
+                        <b>item</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:30</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Entidad a mostrar en el elemento de lista.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatDateFields"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatDateFields</b></span>
+                        <a href="#formatDateFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatDateFields(item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formatea los campos de tipo fecha de una entidad para su uso en inputs de formulario.
+Convierte el formato ISO a formato YYYY-MM-DD requerido por los inputs de tipo date.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Entidad cuyos campos de fecha se van a formatear</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Copia de la entidad con los campos de fecha formateados</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatDateForInput"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatDateForInput</b></span>
+                        <a href="#formatDateForInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatDateForInput(isoDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Convierte una fecha en formato ISO al formato YYYY-MM-DD para inputs de tipo date.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isoDate</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Fecha en formato ISO</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Fecha en formato YYYY-MM-DD o cadena vacía si no hay fecha</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEntityName"></a>
+                    <span class="name">
+                        <span ><b>getEntityName</b></span>
+                        <a href="#getEntityName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEntityName(item: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene el nombre representativo de la entidad para mostrar en los modales.
+Usa la función entityNameFormat de la configuración o el campo name por defecto.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Entidad de la que obtener el nombre</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Nombre representativo de la entidad</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFieldClasses"></a>
+                    <span class="name">
+                        <span ><b>getFieldClasses</b></span>
+                        <a href="#getFieldClasses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFieldClasses(field: <a href="../interfaces/ListItemFieldConfig.html" target="_self">ListItemFieldConfig</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="217"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Devuelve las clases CSS de un campo incluyendo la ocultación en móvil si procede.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ListItemFieldConfig.html" target="_self" >ListItemFieldConfig</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Configuración del campo</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Cadena de clases CSS a aplicar al campo</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFieldValue"></a>
+                    <span class="name">
+                        <span ><b>getFieldValue</b></span>
+                        <a href="#getFieldValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFieldValue(item: T, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene el valor de un campo de la entidad.
+Soporta notación anidada separada por puntos, por ejemplo &#39;course.name&#39;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Entidad de la que obtener el valor</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Clave del campo, soporta notación anidada</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>El valor del campo o cadena vacía si no existe</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFormattedValue"></a>
+                    <span class="name">
+                        <span ><b>getFormattedValue</b></span>
+                        <a href="#getFormattedValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFormattedValue(item: T, fieldConfig: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene el valor formateado de un campo según su configuración.
+Si el campo tiene función de formato la aplica, si no devuelve el valor como texto.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Entidad de la que obtener el valor</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fieldConfig</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Configuración del campo</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>El valor formateado como cadena de texto</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleDetail"></a>
+                    <span class="name">
+                        <span ><b>toggleDetail</b></span>
+                        <a href="#toggleDetail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleDetail(itemId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Alterna la vista de detalle de un elemento.
+Si el elemento ya está seleccionado lo cierra, si no llama al backend para obtener sus datos.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>itemId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Identificador del elemento cuyo detalle se quiere mostrar</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemToEdit"></a>
+                    <span class="name">
+                        <span ><b>itemToEdit</b></span>
+                        <a href="#itemToEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>U | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Entidad actualmente seleccionada para editar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedItem"></a>
+                    <span class="name">
+                        <span ><b>selectedItem</b></span>
+                        <a href="#selectedItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Entidad actualmente seleccionada para mostrar su detalle.
+Es null cuando no hay ningún detalle abierto.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hasActions"></a>
+                        <span class="name"><b>hasActions</b><a href="#hasActions"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>hasActions()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:169</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Indica si el elemento tiene alguna acción disponible.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="containerClass"></a>
+                        <span class="name"><b>containerClass</b><a href="#containerClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>containerClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:177</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Devuelve las clases CSS del contenedor principal del elemento.
+Usa las clases de la configuración o las clases por defecto.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fieldsContainerClass"></a>
+                        <span class="name"><b>fieldsContainerClass</b><a href="#fieldsContainerClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>fieldsContainerClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:186</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Devuelve las clases CSS del contenedor de campos del elemento.
+Usa las clases de la configuración o las clases por defecto.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="actionsContainerClass"></a>
+                        <span class="name"><b>actionsContainerClass</b><a href="#actionsContainerClass"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>actionsContainerClass()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/app/pages/admin/generic-list-item/generic-list-item.component.ts:195</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Devuelve las clases CSS del contenedor de acciones del elemento.
+Si responsive es true usa grid en móvil, si no usa flex siempre.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output, TemplateRef } from &#x27;@angular/core&#x27;;
+import { GenericEditModalComponent } from &quot;../modales/generic-edit-modal/generic-edit-modal.component&quot;;
+import { GenericDeleteModalComponent } from &quot;../modales/generic-delete-modal/generic-delete-modal.component&quot;;
+import { BotonEditComponent } from &quot;../botones/boton-edit/boton-edit.component&quot;;
+import { BotonDeleteComponent } from &quot;../botones/boton-delete/boton-delete.component&quot;;
+import { BotonViewdetailComponent } from &quot;../botones/boton-viewdetail/boton-viewdetail.component&quot;;
+import { ListItemConfig, ListItemFieldConfig } from &#x27;../../../core/configs/list-item-config&#x27;;
+import { GenericViewDetailComponent } from &#x27;../generic-view-detail/generic-view-detail.component&#x27;;
+import { ViewDetailConfig } from &#x27;../../../core/configs/view-detail-config&#x27;;
+import { WithId } from &#x27;../../../core/models/withId&#x27;;
+
+/**
+ * Componente genérico que representa un elemento de una lista.
+ * Soporta visualización de campos configurables, acciones de edición,
+ * eliminación y vista de detalle para cualquier entidad del sistema.
+ * @template T - Tipo de la entidad que debe tener al menos un campo id
+ */
+
+@Component({
+  selector: &#x27;app-generic-list-item&#x27;,
+  imports: [ BotonEditComponent, BotonDeleteComponent, BotonViewdetailComponent, GenericViewDetailComponent],
+  templateUrl: &#x27;./generic-list-item.component.html&#x27;,
+  styleUrl: &#x27;./generic-list-item.component.scss&#x27;
+})
+export class GenericListItemComponent&lt;T extends WithId, U, R, S&gt; {
+
+  /**
+   * Entidad a mostrar en el elemento de lista.
+   */
+  @Input() item!: T;  
+
+  /**
+   * Configuración del elemento de lista con campos, acciones y layout.
+   */
+  @Input() config!: ListItemConfig&lt;T, U, R, S&gt;;  
+
+  /**
+   * Configuración opcional de la vista de detalle de la entidad.
+   */
+  @Input() detailConfig?: ViewDetailConfig&lt;T&gt;
+  
+  
+  
+  
+
+   /**
+   * Entidad actualmente seleccionada para mostrar su detalle.
+   * Es null cuando no hay ningún detalle abierto.
+   */
+  selectedItem: T | null &#x3D; null;  
+
+    /**
+   * Entidad actualmente seleccionada para editar.
+   */
+  itemToEdit: U | null &#x3D; null;  
+  
+
+  /**
+   * Obtiene el valor de un campo de la entidad.
+   * Soporta notación anidada separada por puntos, por ejemplo &#x27;course.name&#x27;.
+   * @param item - Entidad de la que obtener el valor
+   * @param key - Clave del campo, soporta notación anidada
+   * @returns El valor del campo o cadena vacía si no existe
+   */
+  getFieldValue(item: T, key: string): any { 
+    const keys &#x3D; key.split(&#x27;.&#x27;);
+    let value: any &#x3D; item;
+    
+    for (const k of keys) {
+      if (value &amp;&amp; typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; k in value) {
+        value &#x3D; value[k];
+      } else {
+        return &#x27;&#x27;;
+      }
+    }
+    
+    return value;
+  }
+
+   /**
+   * Obtiene el valor formateado de un campo según su configuración.
+   * Si el campo tiene función de formato la aplica, si no devuelve el valor como texto.
+   * @param item - Entidad de la que obtener el valor
+   * @param fieldConfig - Configuración del campo
+   * @returns El valor formateado como cadena de texto
+   */
+  getFormattedValue(item: T, fieldConfig: any): string {  // ✅ item: any
+    const value &#x3D; this.getFieldValue(item, fieldConfig.key);
+    
+    if (fieldConfig.format) {
+      return fieldConfig.format(value);
+    }
+    
+    return value?.toString() || &#x27;&#x27;;
+  }
+
+  /**
+   * Obtiene el nombre representativo de la entidad para mostrar en los modales.
+   * Usa la función entityNameFormat de la configuración o el campo name por defecto.
+   * @param item - Entidad de la que obtener el nombre
+   * @returns Nombre representativo de la entidad
+   */
+  getEntityName(item: T): string {  // ✅ item: any
+    if (this.config.entityNameFormat) {
+      return this.config.entityNameFormat(item);
+    }
+    
+    // Por defecto, intenta usar &#x27;name&#x27;
+    return this.getFieldValue(item, &#x27;name&#x27;);
+  }
+
+    /**
+   * Alterna la vista de detalle de un elemento.
+   * Si el elemento ya está seleccionado lo cierra, si no llama al backend para obtener sus datos.
+   * @param itemId - Identificador del elemento cuyo detalle se quiere mostrar
+   */
+  toggleDetail(itemId: number) {
+    if (this.selectedItem &amp;&amp; this.getFieldValue(this.selectedItem, &#x27;id&#x27;) &#x3D;&#x3D;&#x3D; itemId) {
+      this.selectedItem &#x3D; null;
+      return;
+    }
+
+    if (this.config.getByIdFn) {
+      this.config.getByIdFn(itemId).subscribe({
+        next: (res: any) &#x3D;&gt; this.selectedItem &#x3D; res.data,  // ✅ data: any
+        error: (err: any) &#x3D;&gt; console.error(&#x27;Error al obtener detalle:&#x27;, err)
+      });
+    }
+  }
+
+ 
+
+  /**
+   * Formatea los campos de tipo fecha de una entidad para su uso en inputs de formulario.
+   * Convierte el formato ISO a formato YYYY-MM-DD requerido por los inputs de tipo date.
+   * @param item - Entidad cuyos campos de fecha se van a formatear
+   * @returns Copia de la entidad con los campos de fecha formateados
+   */
+    private formatDateFields(item: any): any {  // ✅ item: any, return: any
+    const formatted &#x3D; { ...item };
+    
+    if (this.config.editFields) {
+      this.config.editFields.forEach(field &#x3D;&gt; {
+        if (field.type &#x3D;&#x3D;&#x3D; &#x27;date&#x27; &amp;&amp; formatted[field.name]) {
+          const dateValue &#x3D; formatted[field.name];
+          formatted[field.name] &#x3D; this.formatDateForInput(dateValue);
+        }
+      });
+    }
+    
+    return formatted;
+  }
+
+    /**
+   * Convierte una fecha en formato ISO al formato YYYY-MM-DD para inputs de tipo date.
+   * @param isoDate - Fecha en formato ISO
+   * @returns Fecha en formato YYYY-MM-DD o cadena vacía si no hay fecha
+   */
+  private formatDateForInput(isoDate: string): string {
+    if (!isoDate) return &#x27;&#x27;;
+    return new Date(isoDate).toISOString().split(&#x27;T&#x27;)[0];
+  }
+
+ 
+
+  /**
+   * Indica si el elemento tiene alguna acción disponible.
+   */
+  get hasActions(): boolean {
+    return !!(this.config.actions?.edit || this.config.actions?.delete || this.config.actions?.detail);
+  }
+
+   /**
+   * Devuelve las clases CSS del contenedor principal del elemento.
+   * Usa las clases de la configuración o las clases por defecto.
+   */
+  get containerClass(): string {
+    return this.config.layout?.containerClass || 
+           &#x27;flex flex-col md:flex-row md:justify-between md:items-center m-2 bg-purple-300 rounded px-2 py-2 gap-2&#x27;;
+  }
+
+  /**
+   * Devuelve las clases CSS del contenedor de campos del elemento.
+   * Usa las clases de la configuración o las clases por defecto.
+   */
+  get fieldsContainerClass(): string {
+    return this.config.layout?.fieldsContainerClass || 
+           &#x27;flex flex-col md:flex-row md:gap-4&#x27;;
+  }
+
+    /**
+   * Devuelve las clases CSS del contenedor de acciones del elemento.
+   * Si responsive es true usa grid en móvil, si no usa flex siempre.
+   */
+  get actionsContainerClass(): string {
+  // Si hay una clase personalizada, úsala
+  if (this.config.layout?.actionsContainerClass) {
+    return this.config.layout.actionsContainerClass;
+  }
+  
+  // Si responsive es TRUE, usa grid en móvil
+  if (this.config.layout?.responsive &#x3D;&#x3D;&#x3D; true) {
+    return &#x27;grid grid-cols-3 gap-2 w-full md:flex md:w-auto md:gap-1&#x27;;
+  }
+  
+  // Si responsive es FALSE (o undefined), usa flex siempre
+  return &#x27;flex gap-1 py-1&#x27;;
+}
+
+
+ /**
+   * Devuelve las clases CSS de un campo incluyendo la ocultación en móvil si procede.
+   * @param field - Configuración del campo
+   * @returns Cadena de clases CSS a aplicar al campo
+   */
+
+getFieldClasses(field: ListItemFieldConfig): string {
+  let classes &#x3D; field.className || &#x27;&#x27;;
+  
+  // Si debe ocultarse en móvil, añadimos la clase de Tailwind
+  if (field.hideOnMobile) {
+    classes +&#x3D; &#x27; hidden md:block&#x27;;
+  }
+  
+  return classes;
+}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Contenedor principal del list-item --&gt;
+&lt;div [class]&#x3D;&quot;containerClass&quot;&gt;
+  &lt;!-- Campos de información --&gt;
+  &lt;div [class]&#x3D;&quot;fieldsContainerClass&quot;&gt;
+  @for (field of config.fields; track field.key) {
+    &lt;p [class]&#x3D;&quot;getFieldClasses(field)&quot;&gt;
+      @if (field.label) {
+        &lt;span class&#x3D;&quot;font-medium&quot;&gt;{{ field.label }}: &lt;/span&gt;
+      }
+      {{ getFormattedValue(item, field) }}
+    &lt;/p&gt;
+  }
+&lt;/div&gt;
+
+  &lt;!-- Botones de acción --&gt;
+  @if (hasActions) {
+    &lt;div [class]&#x3D;&quot;actionsContainerClass&quot;&gt;
+      @if (config.actions?.edit) {
+        &lt;app-boton-edit
+          class&#x3D;&quot;w-full&quot;
+          [id]&#x3D;&quot;item.id&quot;
+          [name]&#x3D;&quot;getEntityName(item)&quot;
+          [type]&#x3D;&quot;config.entityType || &#x27;el elemento&#x27;&quot;
+          [entityData]&#x3D;&quot;item&quot;
+          [fields]&#x3D;&quot;config.editFields!&quot;
+          [updateFn]&#x3D;&quot;config.updateFn!&quot;
+          &gt;
+        &lt;/app-boton-edit&gt;
+      }
+
+      @if (config.actions?.delete) {
+        &lt;app-boton-delete
+          class&#x3D;&quot;w-full&quot;
+          [id]&#x3D;&quot;item.id&quot;
+          [name]&#x3D;&quot;getEntityName(item)&quot;
+          [type]&#x3D;&quot;config.entityType || &#x27;el elemento&#x27;&quot;
+          [deleteFn]&#x3D;&quot;config.deleteFn!&quot;&gt;
+          &gt;
+        &lt;/app-boton-delete&gt;
+      }
+
+      @if (config.actions?.detail) {
+        &lt;app-boton-viewdetail
+          class&#x3D;&quot;w-full&quot;
+          [id]&#x3D;&quot;item.id&quot;
+          (showDetail)&#x3D;&quot;toggleDetail($event)&quot;&gt;
+        &lt;/app-boton-viewdetail&gt;
+      }
+    &lt;/div&gt;
+  }
+&lt;/div&gt;
+
+
+&lt;div&gt;
+ @if (selectedItem &amp;&amp; detailConfig) {
+  &lt;app-generic-view-detail 
+    [item]&#x3D;&quot;selectedItem&quot; 
+    [config]&#x3D;&quot;detailConfig&quot;&gt;
+  &lt;/app-generic-view-detail&gt;
+}
+  
+&lt;/div&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Contenedor principal del list-item --><div [class]="containerClass">  <!-- Campos de información -->  <div [class]="fieldsContainerClass">  @for (field of config.fields; track field.key) {    <p [class]="getFieldClasses(field)">      @if (field.label) {        <span class="font-medium">{{ field.label }}: </span>      }      {{ getFormattedValue(item, field) }}    </p>  }</div>  <!-- Botones de acción -->  @if (hasActions) {    <div [class]="actionsContainerClass">      @if (config.actions?.edit) {        <app-boton-edit          class="w-full"          [id]="item.id"          [name]="getEntityName(item)"          [type]="config.entityType || \'el elemento\'"          [entityData]="item"          [fields]="config.editFields!"          [updateFn]="config.updateFn!"          >        </app-boton-edit>      }      @if (config.actions?.delete) {        <app-boton-delete          class="w-full"          [id]="item.id"          [name]="getEntityName(item)"          [type]="config.entityType || \'el elemento\'"          [deleteFn]="config.deleteFn!">          >        </app-boton-delete>      }      @if (config.actions?.detail) {        <app-boton-viewdetail          class="w-full"          [id]="item.id"          (showDetail)="toggleDetail($event)">        </app-boton-viewdetail>      }    </div>  }</div><div> @if (selectedItem && detailConfig) {  <app-generic-view-detail     [item]="selectedItem"     [config]="detailConfig">  </app-generic-view-detail>}  </div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GenericListItemComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GenericListItemComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,94 @@
+---
+description: Convenciones para servicios Angular del proyecto Ziryab
+globs: **/*.service.ts
+alwaysApply: false
+---
+
+# Convenciones de servicios Angular
+
+Aplica a cualquier fichero `*.service.ts`.
+
+## Decorator `@Injectable`
+
+Siempre `providedIn: 'root'` para que Angular haga tree-shaking automático.
+
+```typescript
+// GOOD — patrón del proyecto (auth.service.ts)
+@Injectable({ providedIn: 'root' })
+export class AuthService {}
+```
+
+## Ubicación
+
+- Servicios generales → `src/app/core/services/`
+- Servicios específicos por rol → `core/services/{admin,alumno,profesor}/`
+- Servicios puramente de UI (modales, menús) → `core/services/UI/`
+
+## Peticiones HTTP
+
+Usar `HttpClient` con tipado genérico y la interfaz `ApiResponse<T>` que ya existe
+en `auth.service.ts`:
+
+```typescript
+interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
+
+getUser(id: number): Observable<User> {
+  return this.http.get<ApiResponse<User>>(`${this.apiUrl}/users/${id}`).pipe(
+    map((res) => res.data)
+  );
+}
+```
+
+La base de la API se obtiene de `environment.apiUrl` (nunca hardcodear URLs).
+
+## Estado reactivo
+
+El proyecto usa `BehaviorSubject` + observables expuestos con `asObservable()`
+(ver `AuthService.currentUser$`). Mantener ese patrón en código existente.
+
+```typescript
+private currentUserSubject = new BehaviorSubject<UserResponse | null>(null);
+public currentUser$ = this.currentUserSubject.asObservable();
+```
+
+En servicios **nuevos** se puede preferir `signal()` para estado simple:
+
+```typescript
+private user = signal<User | null>(null);
+readonly user$ = this.user.asReadonly();
+```
+
+## Interceptor de autenticación
+
+El JWT se añade automáticamente por `core/interceptors/auth.interceptor.ts`.
+No incluir cabeceras `Authorization` a mano en cada petición.
+
+## Manejo de errores
+
+Capturar errores HTTP con `catchError` cuando haya lógica de recuperación o
+notificación. Para errores genéricos, dejarlos subir para que los gestione
+el componente o un interceptor global.
+
+```typescript
+this.http.get<ApiResponse<User>>(url).pipe(
+  map((res) => res.data),
+  catchError((err) => {
+    console.error('Error cargando usuario', err);
+    return throwError(() => err);
+  })
+);
+```
+
+## Documentación JSDoc
+
+Todo método público del servicio debe llevar JSDoc explicando qué hace,
+parámetros y valor devuelto. Los servicios del proyecto siguen este estilo
+(ver `AuthService` con `@example` incluido).
+
+## Tests
+
+Cada servicio nuevo debe tener su `*.service.spec.ts` (hay ejemplos: `auth.service.spec.ts`,
+`clases.service.spec.ts`, etc.).

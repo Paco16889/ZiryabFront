@@ -1,0 +1,45 @@
+<div (click)="onTaskClick()"
+class="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white cursor-pointer hover:border-gray-200 transition-colors">
+
+    <!-- Banda de color del grupo -->
+    <div class="h-1 w-full" [style.background]="color()"></div>
+  
+    <!-- Cuerpo de la tarjeta -->
+    <div class="flex flex-col gap-1.5 px-4 py-3">
+  
+      <!-- Título + chip tipo -->
+      <div class="flex items-center justify-between gap-2">
+        <span class="text-sm font-medium text-gray-800 truncate">
+          {{ task().title }}
+        </span>
+        <span
+          class="text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0"
+          [style.background]="chipBg()"
+          [style.color]="color()"
+        >
+          {{ typeLabel() }}
+        </span>
+      </div>
+  
+      <!-- Descripción -->
+      <p *ngIf="task().description"
+         class="text-xs text-gray-400 line-clamp-1">
+        {{ task().description }}
+      </p>
+  
+      <!-- Meta: fecha + alumnos -->
+      <div class="flex items-center gap-4 mt-1">
+        <span class="flex items-center gap-1 text-xs text-gray-400">
+          <span
+            class="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+            [style.background]="color()">
+          </span>
+          {{ 'teacherPages.tasks.delivery' | translate }} {{ formattedDueDate() }}
+        </span>
+        <span class="text-xs text-gray-400">
+          {{ studentCount() }} {{ 'teacherPages.tasks.students' | translate }}
+        </span>
+      </div>
+  
+    </div>
+  </div>

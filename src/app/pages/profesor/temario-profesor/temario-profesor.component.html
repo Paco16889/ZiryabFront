@@ -1,0 +1,188 @@
+<div class="w-full max-w-2xl mx-auto p-6 font-sans text-slate-600 bg-white h-auto overflow-hidden">
+    <div class="text-center mb-10 mt-2 relative">
+        <h1
+class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-5 pb-3 leading-normal">
+            {{ 'teacherPages.syllabus.title' | translate }}
+        </h1>
+        <button (click)="openAttendanceModal()" 
+            class="absolute top-0 right-0 p-3 bg-indigo-50 text-indigo-600 rounded-2xl hover:bg-indigo-100 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 flex items-center gap-2 group">
+            <span class="text-sm font-bold hidden md:block">{{ 'teacherPages.syllabus.takeAttendance' | translate }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="flex flex-col gap-5 pb-6">
+        
+        <div *ngIf="tasksLoadError()" class="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200 mt-4">
+{{ 'teacherPages.syllabus.tasksLoadError' | translate }}
+        </div>
+        <div *ngIf="bloques().length === 0 && !tasksLoadError()" class="bg-white/60 text-slate-500 p-8 text-center rounded-3xl border border-slate-200 mt-4 shadow-sm">
+            {{ 'teacherPages.syllabus.empty' | translate }}
+        </div>
+
+        @for (bloque of bloques(); track bloque.id; let i = $index) {
+        <div class="rounded-3xl border-2 transition-all duration-300 overflow-hidden" [ngClass]="{
+            'bg-blue-50/70 border-blue-100': i % 4 === 0,
+            'bg-fuchsia-50/70 border-fuchsia-100': i % 4 === 1,
+            'bg-emerald-50/70 border-emerald-100': i % 4 === 2,
+            'bg-amber-50/70 border-amber-100': i % 4 === 3,
+            'shadow-xl scale-[1.02] z-10': bloque.abierta,
+            'hover:shadow-md hover:scale-[1.01]': !bloque.abierta
+            }">
+            <button (click)="toggleBloque(bloque.id)"
+                class="w-full flex items-center justify-between p-5 cursor-pointer focus:outline-none group select-none">
+                <div class="flex items-center gap-5">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 border-2 shadow-sm bg-white"
+                        [class]="bloque.abierta 
+                        ? 'border-indigo-400 shadow-indigo-200 scale-110' 
+                        : 'border-white/50 group-hover:border-white group-hover:scale-105'">
+                        <img [src]="bloque.icono" class="w-8 h-8 opacity-80" alt="">
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-lg text-slate-700/90 leading-snug">
+                            {{ bloque.titleKey | translate }}
+                        </h3>
+                        <span
+                            class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md mt-1 bg-white/60 text-slate-500">
+{{ bloque.tareas.length }} {{ 'teacherPages.syllabus.tasks' | translate }}
+                        </span>
+                    </div>
+                </div>
+                <div class="w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 bg-white/50 shrink-0"
+                    [class.rotate-180]="bloque.abierta" [class.text-indigo-600]="bloque.abierta"
+                    [class.text-slate-400]="!bloque.abierta">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+            </button>
+            @if (bloque.abierta) {
+            <div class="p-2 pb-6 animate-fadeIn border-t border-white/40">
+                <ul class="space-y-2 ml-4 md:ml-24 mr-4">
+                    @for (tarea of bloque.tareas; track tarea.id) {
+                    <li class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-white/80 hover:bg-white shadow-sm border border-slate-100 transition-all">
+                        
+                        <div class="flex items-start gap-3">
+                            <span class="mt-1">
+                                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </span>
+                            <div>
+                                <h4 class="text-slate-700 font-bold text-sm">{{ tarea.title }}</h4>
+<p class="text-xs text-slate-500 mt-1 line-clamp-1" [title]="tarea.description">{{ tarea.description || ('teacherPages.syllabus.noDescription' | translate) }}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 self-end sm:self-auto shrink-0 mt-2 sm:mt-0">
+                            <a *ngIf="tarea.attachmentUrl" [href]="tarea.attachmentUrl" target="_blank"
+                               class="text-xs font-bold uppercase px-3 py-1.5 rounded-lg text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">
+{{ 'teacherPages.syllabus.viewBaseFile' | translate }}
+                            </a>
+                            <button (click)="goToEntregas(tarea.id)"
+                               class="text-xs font-bold uppercase px-4 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm transition-all active:scale-95">
+                                {{ 'teacherPages.syllabus.viewDeliveries' | translate }}
+                            </button>
+                        </div>
+
+                    </li>
+                    }
+                </ul>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>
+
+@if (showAttendanceModal()) {
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" (click)="closeAttendanceModal()"></div>
+    
+    <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-6 md:p-8 transform transition-all animate-fade-in-up max-h-[90vh] overflow-y-auto">
+        <button (click)="closeAttendanceModal()" 
+            class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <div class="mb-6">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-1 flex items-center gap-2">
+📋 {{ 'teacherPages.syllabus.takeAttendance' | translate }}
+            </h2>
+            <p class="text-sm text-slate-500">{{ 'teacherPages.syllabus.attendanceHelp' | translate }}</p>
+        </div>
+
+        @if (loadingAlumnos()) {
+        <div class="py-10 text-center">
+<p class="text-indigo-400 animate-pulse font-medium">{{ 'teacherPages.syllabus.loadingStudents' | translate }}</p>
+        </div>
+        }
+
+        @if (!loadingAlumnos() && alumnos().length === 0) {
+        <div class="py-10 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+<p class="text-slate-400 text-sm">{{ 'teacherPages.syllabus.noStudents' | translate }}</p>
+        </div>
+        }
+
+        <div class="space-y-4 mb-8">
+            @for (alumno of alumnos(); track alumno.enrollmentId) {
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-slate-50/50 rounded-2xl border border-slate-100 hover:bg-slate-50 transition-colors">
+                <span class="font-semibold text-slate-700">
+                    {{ alumno.name }} {{ alumno.surname }}
+                </span>
+
+                <div class="flex flex-wrap gap-2">
+                    @for (opt of statusOptions; track opt.value) {
+                    <button id="attendance-{{ alumno.enrollmentId }}-{{ opt.value }}"
+                        (click)="setStatus(alumno.enrollmentId, opt.value)"
+                        class="px-3 py-1.5 rounded-full text-[10px] font-bold border-2 transition-all duration-150" [ngClass]="{
+                            'border-emerald-400 bg-emerald-400 text-white shadow-md scale-105': attendanceMap[alumno.enrollmentId] === opt.value && opt.color === 'emerald',
+                            'border-emerald-200 bg-white text-emerald-600': attendanceMap[alumno.enrollmentId] !== opt.value && opt.color === 'emerald',
+                            'border-red-400 bg-red-400 text-white shadow-md scale-105': attendanceMap[alumno.enrollmentId] === opt.value && opt.color === 'red',
+                            'border-red-200 bg-white text-red-600': attendanceMap[alumno.enrollmentId] !== opt.value && opt.color === 'red',
+                            'border-amber-400 bg-amber-400 text-white shadow-md scale-105': attendanceMap[alumno.enrollmentId] === opt.value && opt.color === 'amber',
+                            'border-amber-200 bg-white text-amber-600': attendanceMap[alumno.enrollmentId] !== opt.value && opt.color === 'amber',
+                            'border-blue-400 bg-blue-400 text-white shadow-md scale-105': attendanceMap[alumno.enrollmentId] === opt.value && opt.color === 'blue',
+                            'border-blue-200 bg-white text-blue-600': attendanceMap[alumno.enrollmentId] !== opt.value && opt.color === 'blue'
+                        }">
+                        {{ opt.labelKey | translate }}
+                    </button>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+
+        @if (alumnos().length > 0) {
+        <div class="sticky bottom-0 bg-white pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <button id="btn-guardar-asistencia" (click)="guardarAsistencia()" [disabled]="saving()"
+                    class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-bold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2">
+                    @if (saving()) { 
+                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+{{ 'teacherPages.syllabus.savingAttendance' | translate }} 
+                    } @else { 
+                        {{ 'teacherPages.syllabus.saveAttendance' | translate }}
+                    }
+                </button>
+            </div>
+
+            @if (saveMessage()) {
+            <span class="text-sm font-bold animate-fade-in" [class.text-emerald-600]="!saveError()"
+                [class.text-red-500]="saveError()">
+                {{ saveMessage() }}
+            </span>
+            }
+        </div>
+        }
+    </div>
+</div>
+}
+
+<app-boton-atras></app-boton-atras>

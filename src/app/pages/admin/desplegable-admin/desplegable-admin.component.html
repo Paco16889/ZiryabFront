@@ -1,0 +1,49 @@
+
+@if(toggleservice.openedMenu()==='students'){
+    
+    <app-list></app-list>
+}
+@if(toggleservice.openedMenu()=== 'teachers'){
+    
+    <app-teacher-list></app-teacher-list>
+}
+@if(toggleservice.openedMenu() === 'subjects') {
+    
+    <app-asignatura-list></app-asignatura-list>
+}
+@if(toggleservice.openedMenu() === 'groups'){
+    
+    <app-group-list></app-group-list>
+}
+@if (toggleservice.openedMenu() === 'ciclos') {
+
+    <app-course-list></app-course-list>
+}
+@if (toggleservice.openedMenu() === 'schedules') {
+
+    <app-week-schedule-list></app-week-schedule-list>
+}
+@if (toggleservice.openedMenu() === 'tasks') {
+    <app-task-list></app-task-list>
+}
+@if (toggleservice.openedMenu() === 'classSessions') {
+    <app-class-session-list></app-class-session-list>
+}
+@if (toggleservice.openedMenu() === 'studentTasks') {
+    <app-student-task-list></app-student-task-list>
+}
+@if (toggleservice.openedMenu() === 'assistances') {
+    <app-assistance-list></app-assistance-list>
+}
+@if (toggleservice.openedMenu() === 'notifications') {
+    <app-notification-list></app-notification-list>
+}
+@if (toggleservice.openedMenu() === 'tutors') {
+    <app-tutor-assignment></app-tutor-assignment>
+}
+@if (toggleservice.openedMenu() === 'substitutions') {
+    <app-substitution-list />
+}
+@if (toggleservice.openedMenu() === 'issues') {
+    <app-issue-list />
+}

@@ -1,0 +1,1656 @@
+{
+  "common": {
+    "buttons": {
+      "create": "Crear",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "back": "Volver",
+      "search": "Buscar",
+      "close": "Cerrar"
+    },
+    "fields": {
+      "email": "Email",
+      "name": "Nombre",
+      "surname": "Primer apellido",
+      "ndSurname": "Segundo apellido",
+      "dni": "DNI",
+      "birthDate": "Fecha de nacimiento"
+    },
+    "placeholders": {
+      "email": "profesor@ziryab.es",
+      "name": "Nombre",
+      "surname": "Primer apellido",
+      "ndSurname": "Segundo apellido",
+      "dni": "12345678A",
+      "selectOption": "Selecciona una opción"
+    },
+    "validation": {
+      "emailInvalid": "Email inválido",
+      "required": "Este campo es requerido",
+      "nameRequired": "El nombre es requerido",
+      "surnameRequired": "El primer apellido es requerido",
+      "ndSurnameRequired": "El segundo apellido es requerido",
+      "birthDateRequired": "La fecha de nacimiento es requerida",
+      "dniInvalid": "DNI inválido (formato: 12345678A)"
+    },
+    "messages": {
+      "loading": "Cargando",
+      "loadingOptions": "Cargando opciones...",
+      "loadingEllipsis": "Cargando...",
+      "emptyList": "No hay elementos para mostrar.",
+      "saving": "Guardando...",
+      "subject": "Asignatura",
+      "unassigned": "Sin asignar",
+      "loadingTeacher": "Consultando...",
+      "unknown": "Desconocida",
+      "optional": "opcional",
+      "total": "Total",
+      "required": "Obligatorio",
+      "between0And10": "Debe estar entre 0 y 10",
+      "gradeBetween0And10": "Introduce una nota entre 0 y 10",
+      "noDescription": "Sin descripción",
+      "enrollment": "Matrícula"
+    },
+    "noData": "—",
+    "errors": {
+      "unknown": "Error desconocido",
+      "connection": "Error de conexión con el servidor.",
+      "userNotIdentified": "Usuario no identificado. Por favor, inicia sesión.",
+      "loadAbsences": "Error al cargar las faltas.",
+      "loadTask": "Error al cargar la tarea.",
+      "loadTaskDetail": "Error al cargar la tarea detallada.",
+      "loadGrades": "Error al cargar tus notas",
+      "loadTutorGroups": "Error al cargar grupos tutorados",
+      "loadNotes": "Error al cargar notas",
+      "saveNotes": "Error al guardar notas",
+      "createTask": "Error al crear la tarea",
+      "createTeacher": "Error al crear el profesor",
+      "createGroup": "Error al crear el grupo",
+      "createCourse": "Error al crear el ciclo",
+      "createSubject": "Error al crear la asignatura",
+      "createStudent": "Error al crear el estudiante",
+      "createEnrollment": "Error al crear la entrega",
+      "createNotification": "Error al crear la notificación",
+      "createSession": "Error al crear la sesión",
+      "createAssistance": "Error al crear la asistencia",
+      "uploadJustification": "Error al subir el justificante. Inténtalo de nuevo.",
+      "loadJustifications": "Error al cargar las justificaciones pendientes.",
+      "noSubjectsAssigned": "No tienes asignaturas asignadas.",
+      "noSubjectsEnrolled": "No tienes asignaturas matriculadas.",
+      "noTutorGroups": "No eres tutor de ningún grupo actualmente.",
+      "noStudentsInGroup": "Este grupo no tiene alumnos matriculados.",
+      "allGradesRequired": "Todas las asignaturas de todos los alumnos deben ser calificadas con una nota entre 1 y 10.",
+      "taskIdMissing": "ID de tarea no proporcionado.",
+      "couldNotLoadTask": "No se pudo cargar la tarea.",
+      "folderNotAllowed": "Las carpetas enteras no están permitidas. Por favor, comprímela a un solo archivo .ZIP",
+      "folderNotAllowedDetail": "Las carpetas enteras no están permitidas. Por favor, comprímela a .ZIP haciendo \"Click Derecho -> Comprimir\".",
+      "fileTooLarge50": "El archivo supera los 50 MB de peso máximo permitido.",
+      "fileTooLarge10": "El archivo supera el límite de 10 MB.",
+      "fileTooLarge1": "El archivo no puede pesar más de 1 MB.",
+      "invalidFileFormat": "El formato no es válido. Sube un PDF, JPG o PNG.",
+      "selectValidJustification": "Por favor, selecciona un justificante válido.",
+      "provideUrl": "Debes proveer una URL.",
+      "provideFile": "Debes seleccionar o arrastrar un archivo / ZIP.",
+      "invalidUploadLink": "El servidor procesó el archivo, pero no devolvió un enlace válido.",
+      "uploadFailed": "Hubo un error internamente al subir el archivo al servidor.",
+      "deleteSubmission": "Error al borrar la entrega.",
+      "studentNotFound": "Alumno no encontrado",
+      "invalidDni": "Introduce un DNI / NIE válido",
+      "existingStudent": "Estudiante existente. Matricular desde estudiante existente.",
+      "loadCoursesFailed": "No se pudieron cargar los ciclos",
+      "loadStudentTasksFailed": "No se pudieron obtener las tareas.",
+      "saveAttendance": "Error al guardar la asistencia",
+      "sessionError": "Error al obtener la sesión",
+      "deadlineExpiredNoLate": "El plazo de entrega ha expirado y el profesor no permite entregas tardías.",
+      "submitNotifyFailed": "Tu archivo fue subido pero falló la notificación de entrega a la BBDD."
+    }
+  },
+  "entities": {
+    "student": {
+      "singular": "alumno",
+      "plural": "alumnos",
+      "singularArticle": "el estudiante",
+      "title": "Alumnos"
+    },
+    "teacher": {
+      "singular": "profesor",
+      "plural": "profesores",
+      "singularArticle": "el profesor",
+      "title": "Profesores"
+    },
+    "subject": {
+      "singular": "asignatura",
+      "plural": "asignaturas",
+      "singularArticle": "la asignatura",
+      "title": "Asignaturas"
+    },
+    "course": {
+      "singular": "ciclo",
+      "plural": "ciclos",
+      "singularArticle": "el ciclo",
+      "title": "Ciclos"
+    },
+    "group": {
+      "singular": "grupo",
+      "plural": "grupos",
+      "title": "Grupos"
+    },
+    "task": {
+      "singular": "tarea",
+      "plural": "tareas",
+      "singularArticle": "la tarea",
+      "title": "Tareas"
+    },
+    "classSession": {
+      "singular": "sesión",
+      "plural": "sesiones",
+      "title": "Sesiones de clase"
+    },
+    "studentTask": {
+      "singular": "entrega",
+      "plural": "entregas",
+      "title": "Entregas de alumnos"
+    },
+    "assistance": {
+      "singular": "asistencia",
+      "plural": "asistencias",
+      "title": "Asistencias"
+    },
+    "notification": {
+      "singular": "notificación",
+      "plural": "notificaciones",
+      "title": "Notificaciones"
+    },
+    "weekSchedule": {
+      "singular": "franja horaria",
+      "plural": "franjas horarias",
+      "title": "Horarios"
+    },
+    "issue": {
+      "singular": "anuncio",
+      "plural": "anuncios",
+      "singularArticle": "el anuncio",
+      "title": "Tablón de anuncios"
+    }
+  },
+  "gestion": {
+    "title": "Gestión Académica",
+    "subtitle": "Administra tu perfil y actividades",
+    "cards": {
+      "profile": {
+        "title": "Ficha Usuario",
+        "action": "Ver Perfil"
+      },
+      "schedule": {
+        "title": "Horario",
+        "action": "Consultar"
+      },
+      "calendar": {
+        "title": "Calendario",
+        "action": "Ver Eventos"
+      },
+      "issues": {
+        "action": "Ver Avisos"
+      }
+    }
+  },
+  "studentEnrollment": {
+    "title": "Matricular Alumno",
+    "enrollButton": "Matricular Alumno",
+    "modeSelector": {
+      "title": "Tipo de matrícula",
+      "newStudent": "Alumno nuevo",
+      "existingStudent": "Alumno existente"
+    },
+    "newStudentForm": {
+      "instructions": "Introduce los datos del nuevo alumno"
+    },
+    "existingStudentForm": {
+      "instructions": "Selecciona un alumno existente para matricular",
+      "dniLabel": "Introduce DNI del alumno",
+      "searchButton": "Buscar alumno"
+    },
+    "courseSelection": {
+      "label": "¿Qué ciclo quieres matricular al alumno?"
+    },
+    "groupSelection": {
+      "label": "Selecciona el grupo / turno",
+      "placeholder": "Elige un grupo"
+    },
+    "subjectSelection": {
+      "label": "Selecciona las asignaturas",
+      "fullOfferGrade": "Oferta Completa de {{grade}}º",
+      "fullOffer": "Oferta Completa de 1º"
+    },
+    "confirmButton": "Confirmar selección",
+    "setRegistration": {
+      "studentLabel": "Alumno",
+      "studentPending": "(pendiente de confirmar)",
+      "saving": "Guardando matrículas…",
+      "saveErrorRegistration": "No se pudieron guardar las matrículas. Inténtalo de nuevo.",
+      "saveErrorStudent": "No se pudo crear el alumno. Revisa los datos e inténtalo de nuevo.",
+      "saveErrorGeneric": "No se pudo completar la matriculación. Inténtalo de nuevo."
+    }
+  },
+  "weekScheduleBuilder": {
+    "title": "Crear horario",
+    "modeLabel": "Modo de creación",
+    "modeCreate": "Crear plantilla",
+    "modeGrid": "Rejilla semanal",
+    "create": {
+      "daysLabel": "Días de la semana (L–V)",
+      "validationNoDay": "Selecciona al menos un día.",
+      "selectClass": "Clase (grupo sin horario creado)",
+      "selectClassHint": "Solo grupos con asignaturas que aún no tienen plantilla horaria.",
+      "classPlaceholder": "Elige un grupo sin horario…",
+      "loadingClasses": "Cargando clases…",
+      "emptyEligibleClasses": "No hay clases con asignaturas y sin horario semanal para este año escolar.",
+      "validationNoClass": "Selecciona una clase.",
+      "slotCount": "Número de franjas horarias",
+      "slotsTitle": "Horario de cada franja",
+      "slotRow": "Franja {{n}}",
+      "validationMinSlots": "Indica al menos una franja.",
+      "slotCountProgress": "{{current}} / {{max}} franjas por día ({{total}} h en {{days}} día(s))",
+      "slotCountMaxReached": "Máximo {{max}} franjas por día ({{total}} h semanales ÷ {{days}} día(s)).",
+      "slotLimitHint": "Cada franja se repite en los {{days}} día(s) elegidos. Con {{total}} h semanales puedes definir hasta {{max}} franjas (si no divide exacto, la última cubre el resto en un día).",
+      "timeFormatHint": "Formato obligatorio HH:mm con dos dígitos en hora y minutos (ej. 08:15, 09:00, 14:45). No uses 8:15.",
+      "validationTimeFormat": "Formato inválido. Usa dos cifras en hora y minutos (ej. 08:15, no 8:15).",
+      "submit": "Crear plantilla horaria",
+      "saving": "Creando plantilla…",
+      "saveSuccess": "Plantilla creada. Esa clase ya no aparecerá en este selector. Se abrirá la rejilla semanal para asignar docentes.",
+      "saveError": "No se pudo crear la plantilla horaria.",
+      "submitHint": "El guardado se habilitará cuando el backend exponga el endpoint (CURSO-71).",
+      "bulkGenerating": "Preparando sesiones de clase en segundo plano…",
+      "bulkSuccess": "Se han generado {{created}} sesiones de clase para este curso.",
+      "bulkError": "No se pudieron generar las sesiones de clase. Inténtalo desde el panel de sesiones.",
+      "pendingApi": "El guardado de la plantilla estará disponible cuando el backend exponga el endpoint de materialización.",
+      "validate": "Comprobar formulario"
+    },
+    "placeholder": "Aquí se configurará el constructor de franjas horarias.",
+    "selectGroup": "Grupo (sin franjas todavía)",
+    "selectTeacher": "Profesor",
+    "selectAssignment": "Asignatura docente en el grupo",
+    "professorSlot": "Profesor asignado a la franja",
+    "weekDay": "Día de la semana",
+    "startTime": "Hora inicio",
+    "endTime": "Hora fin",
+    "submit": "Guardar franja",
+    "saving": "Guardando...",
+    "saveError": "No se pudo guardar la franja.",
+    "emptyEligibleGroups": "No hay grupos sin horario: todos tienen al menos una franja, o no se pudieron cargar grupos.",
+    "loadEligibleGroupsError": "No se pudieron cargar grupos elegibles.",
+    "emptyTeachers": "No hay profesores cargados. Comprueba la API o recarga.",
+    "emptyAssignments": "Este profesor no tiene asignaciones para este periodo.",
+    "emptyAssignmentsForGroup": "No hay asignaciones docentes para este grupo. Comprueba matrículas o la API.",
+    "emptyPeers": "No hay profesores en esa asignatura/grupo/año para elegir la franja.",
+    "loadAssignmentsError": "No se pudieron cargar las asignaciones del grupo.",
+    "loadPeersError": "No se pudieron cargar los profesores de la asignatura.",
+    "timeOrderError": "La hora de fin debe ser posterior a la de inicio.",
+    "days": {
+      "1": "Lunes",
+      "2": "Martes",
+      "3": "Miércoles",
+      "4": "Jueves",
+      "5": "Viernes",
+      "6": "Sábado",
+      "7": "Domingo"
+    },
+    "grid": {
+      "title": "Rejilla semanal (L–V)",
+      "intro": "Elige un grupo y asigna cada franja a un docente–asignatura (Assignment).",
+      "introClass": "La clase son las asignaturas del mismo ciclo (course) y curso (grade), impartidas en un turno concreto (entidad Group: Mañana, Tarde…). El desplegable de cada celda lista los docentes dados de alta en esa asignatura para ese grupo y año escolar.",
+      "introSingleGroup": "Un único listado: el **grupo** (tabla `Group`, ej. Mañana o Tarde) determina el conjunto de assignments (`TeacherOnSubjectOnGroup`) del año escolar. Cada día muestra las franjas del centro; en cada una eliges qué assignment ocupa esa hora.",
+      "selectGroupAssignmentSet": "Grupo (conjunto de assignments)",
+      "selectClass": "Clase",
+      "classPlaceholder": "— Selecciona clase —",
+      "loadClassesError": "No se pudieron cargar las clases.",
+      "emptyClasses": "No hay clases con oferta docente para este año escolar.",
+      "schoolYearLabel": "Año escolar",
+      "selectCourse": "Ciclo formativo",
+      "coursePlaceholder": "— Ciclo —",
+      "loadCoursesError": "No se pudieron cargar los ciclos.",
+      "selectGrade": "Curso (grade)",
+      "gradePlaceholder": "— Curso —",
+      "selectShiftGroup": "Turno (grupo)",
+      "shiftGroupHint": "Coincide con Group en BD; solo aparecen turnos con oferta docente para ciclo+grade+año.",
+      "shiftPlaceholder": "— Turno —",
+      "loadContextError": "No se pudo cargar el horario de este grupo.",
+      "cellSelectPlaceholder": "— Libre —",
+      "cellSelectPlaceholderMultiple": "— {{count}} asignaturas —",
+      "emptyClassAssignments": "No hay docentes asignados a esta clase en el año escolar. Revisa asignaciones grupo–asignatura.",
+      "optionSubjectTeacher": "{{subject}} — {{teacher}}",
+      "selectGroup": "Grupo",
+      "groupPlaceholder": "— Selecciona grupo —",
+      "loadError": "No se pudieron cargar los grupos.",
+      "emptyGroups": "No hay grupos disponibles.",
+      "loading": "Cargando oferta docente…",
+      "paletteTitle": "Asignaturas del grupo",
+      "paletteHint": "Clic para seleccionar; Enter o clic en celda para colocar. Arrastra al calendario.",
+      "slotColumn": "Franja",
+      "dropHint": "Soltar aquí",
+      "clearCell": "Quitar",
+      "save": "Guardar horario",
+      "saving": "Guardando…",
+      "saveError": "No se pudo guardar el horario.",
+      "keyboardHint": "Accesible: Tab por celdas; selecciona una asignatura y pulsa Enter en una celda vacía.",
+      "peerResolveError": "No se pudo resolver la asignación docente para este grupo y asignatura.",
+      "validationNoGroup": "Selecciona un grupo.",
+      "validationNoClass": "Selecciona una clase.",
+      "validationIncompleteClass": "Selecciona ciclo, curso (grade) y turno (grupo).",
+      "validationGroupOverlap": "Solape en el mismo grupo: «{{a}}» y «{{b}}» el día {{day}}.",
+      "validationSubjectHours": "La asignatura «{{subject}}» supera sus horas semanales (máx. {{max}} h, actual {{current}} h).",
+      "validationTeacherOverlap": "Posible solape: «{{label}}» el día {{day}} con otro grupo."
+    }
+  },
+  "nav": {
+    "issues": "Tablón"
+  },
+  "adminFilters": {
+    "course": "Ciclo",
+    "group": "Grupo (turno)",
+    "grade": "Curso",
+    "selectCourse": "Seleccionar ciclo",
+    "selectGroup": "Seleccionar grupo",
+    "selectGrade": "Seleccionar curso",
+    "clear": "Limpiar filtros"
+  },
+  "adminMenu": {
+    "students": "Alumnos",
+    "teachers": "Profesores",
+    "subjects": "Asignaturas",
+    "groups": "Grupos",
+    "courses": "Ciclos",
+    "schedules": "Horarios",
+    "tasks": "Tareas",
+    "classSessions": "Sesiones",
+    "studentTasks": "Entregas",
+    "assistances": "Asistencias",
+    "notifications": "Notificaciones",
+    "issues": "Tablón de anuncios",
+    "tutors": "Tutores",
+    "substitutions": "Sustituciones",
+    "reports": "Informes"
+  },
+  "deleteModal": {
+    "title": "Confirmar eliminación",
+    "confirmMessage": "¿Estás seguro de que quieres eliminar",
+    "warningMessage": "Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "deleting": "Eliminando",
+    "deleted": "eliminado",
+    "successMessage": "ha sido eliminado correctamente."
+  },
+  "editModal": {
+    "title": "Editar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "updating": "Actualizando",
+    "updated": "actualizado",
+    "successMessage": "ha sido actualizado correctamente.",
+    "fieldInvalid": "Campo inválido",
+    "updateError": "Error al actualizar {{type}}."
+  },
+  "lists": {
+    "students": {
+      "title": "Alumnos",
+      "createButton": "Matricular Alumno",
+      "emptyList": "No hay alumnos registrados."
+    },
+    "subjects": {
+      "title": "Asignaturas",
+      "createButton": "Nueva Asignatura"
+    },
+    "teachers": {
+      "title": "Profesores",
+      "createButton": "Registrar Profesor"
+    },
+    "courses": {
+      "title": "Ciclos",
+      "createButton": "Nuevo Ciclo",
+      "createSuccess": "Ciclo «{{name}}» creado correctamente.",
+      "createSubjectsPrompt": "¿Quieres crear asignaturas para este ciclo?",
+      "createSubjectsCta": "Crear asignaturas para este ciclo",
+      "backToList": "Volver al listado de ciclos"
+    },
+    "groups": {
+      "title": "Grupos",
+      "createButton": "Nuevo Grupo"
+    },
+    "schedules": {
+      "createButton": "Crear horario",
+      "createPlaceholder": "El formulario de creación de horarios se mostrará aquí."
+    },
+    "substitutions": {
+      "title": "Sustituciones",
+      "createButton": "Sustituir profesor",
+      "closeButton": "Cerrar sustitución",
+      "createTitle": "Sustituir profesor",
+      "createSubtitle": "Se creará una sustitución por cada impartición del titular en el año actual (mismas fechas y notas).",
+      "filterFindTeacher": "Ayuda: filtrar quién imparte (para localizar al titular)",
+      "selectTitular": "Profesor a sustituir (titular)",
+      "previewTitle": "Se sustituirán {{count}} imparticiones:",
+      "noTeachersForFilters": "Ningún profesor coincide con los filtros.",
+      "noAssignmentsForTitular": "Este profesor no tiene imparticiones disponibles (o ya están todas sustituidas).",
+      "bulkSaving": "Registrando sustituciones…",
+      "bulkPartialSuccess": "Registradas {{ok}} de {{total}}. Revisa el listado y las que fallaron (p. ej. ya tenían sustitución activa).",
+      "closeTitle": "Cerrar sustitución",
+      "closeSelectLabel": "Sustitución activa",
+      "closeEndDate": "Fecha de fin",
+      "closeConfirm": "Cerrar y reactivar titular",
+      "closeEmpty": "No hay sustituciones activas para cerrar.",
+      "closeError": "No se pudo cerrar la sustitución.",
+      "empty": "No hay sustituciones registradas.",
+      "loadError": "Error al cargar las sustituciones.",
+      "badgeActive": "Activa",
+      "badgeClosed": "Cerrada",
+      "entityType": "la sustitución",
+      "colTitular": "Titular",
+      "colSubstitute": "Sustituto",
+      "colClass": "Clase",
+      "colStart": "Inicio",
+      "colEnd": "Fin",
+      "colStatus": "Estado",
+      "colDates": "Periodo",
+      "filterAssignments": "Filtrar asignaciones (impartición)",
+      "selectAssignment": "Asignación a sustituir",
+      "selectSubstitute": "Profesor sustituto",
+      "substituteEligibilityHint": "Profesores con carga baja (máx. {{maxHours}} h y {{maxAssignments}} imparticiones). No aparecen el titular elegido, quien ya sustituye a otro ni quien esté siendo sustituido.",
+      "noEligibleSubstitutes": "Ningún profesor cumple esos límites de carga. Revisa imparticiones u horarios.",
+      "startDate": "Fecha de inicio",
+      "notes": "Notas (opcional)",
+      "createConfirm": "Registrar sustitución",
+      "createError": "No se pudo registrar la sustitución.",
+      "createConflict": "Ya existe una sustitución activa para esa clase.",
+      "loadAssignmentsError": "Error al cargar las asignaciones.",
+      "noEligibleAssignments": "No hay asignaciones disponibles para sustituir.",
+      "noAssignmentsForFilters": "Ninguna asignación coincide con los filtros."
+    },
+    "issues": {
+      "title": "Tablón de anuncios",
+      "createTitle": "Crear anuncio",
+      "createButton": "Nuevo anuncio",
+      "loading": "Cargando anuncios…",
+      "empty": "No hay anuncios publicados.",
+      "emitter": "Emisor",
+      "emitterTeacher": "Profesor #{{id}}",
+      "emitterAdmin": "Administración #{{id}}",
+      "audience": {
+        "CENTER": "Todo el centro",
+        "ALL_TEACHERS": "Todos los profesores",
+        "ALL_STUDENTS": "Todos los alumnos",
+        "GROUP": "Grupo (turno)",
+        "COURSE": "Ciclo y/o curso",
+        "SUBJECT_GROUP": "Ciclo, curso, grupo y/o asignatura",
+        "TEACHER": "Profesor",
+        "ASSIGNMENT": "Asignación docente concreta",
+        "TARGETED": "Por ciclo, curso y/o grupo"
+      },
+      "dialog": {
+        "createTitle": "Nuevo anuncio",
+        "editTitle": "Editar anuncio",
+        "close": "Cerrar"
+      },
+      "form": {
+        "title": "Título",
+        "body": "Cuerpo",
+        "audience": "Audiencia",
+        "idGroup": "Grupo",
+        "idCourse": "Ciclo",
+        "grade": "Curso (1º / 2º)",
+        "gradeOption1": "1º",
+        "gradeOption2": "2º",
+        "idSubject": "Asignatura",
+        "idTeacher": "Profesor",
+        "idTeacherFilter": "Filtrar por profesor (opcional)",
+        "idTeacherAssignment": "Asignación docente",
+        "optional": "(opcional)",
+        "anyOption": "— Cualquiera —",
+        "targetedHint": "Combina los filtros que necesites: ciclo, curso (1º/2º), turno y/o asignatura. Al menos uno es obligatorio.",
+        "assignmentHint": "Filtra por profesor y elige la impartición concreta (alumnos de ese grupo y asignatura).",
+        "teacherHint": "Comunicación dirigida a un profesor concreto (como compañero de centro).",
+        "attachmentUrl": "URL del adjunto",
+        "attachmentPlaceholder": "https://…",
+        "isPublished": "Publicar ahora",
+        "publishAt": "Fecha de publicación",
+        "expiresAt": "Fecha de expiración",
+        "selectPlaceholder": "Selecciona una opción",
+        "save": "Guardar",
+        "saving": "Guardando…",
+        "validation": {
+          "title": "El título es obligatorio (máx. 120 caracteres)",
+          "body": "El cuerpo es obligatorio (máx. 2000 caracteres)",
+          "idGroup": "Selecciona un grupo",
+          "idCourse": "Selecciona un ciclo",
+          "grade": "Selecciona 1º o 2º",
+          "idSubject": "Selecciona una asignatura",
+          "idTeacher": "Selecciona un profesor",
+          "idTeacherAssignment": "Selecciona una asignación docente",
+          "targeted": "Indica al menos un filtro: ciclo, curso, grupo o asignatura",
+          "attachmentUrl": "La URL debe comenzar por http:// o https://"
+        },
+        "errors": {
+          "create": "Error al crear el anuncio",
+          "update": "Error al actualizar el anuncio"
+        }
+      }
+    },
+    "tasks": {
+      "title": "Tareas",
+      "createButton": "Nueva tarea",
+      "createTitle": "Crear tarea",
+      "creating": "Creando…",
+      "fields": {
+        "assignment": "Asignación docente",
+        "assignmentPlaceholder": "Selecciona una asignación",
+        "title": "Título",
+        "type": "Tipo",
+        "startDate": "Fecha de inicio",
+        "dueDate": "Fecha de entrega",
+        "schoolYear": "Año escolar",
+        "description": "Descripción"
+      },
+      "validation": {
+        "assignment": "Selecciona una asignación",
+        "title": "El título es obligatorio"
+      }
+    },
+    "classSessions": {
+      "title": "Sesiones",
+      "createButton": "Nueva sesión",
+      "createTitle": "Crear sesión de clase",
+      "creating": "Creando…",
+      "cancelClassesButton": "Cancelar clases",
+      "cancelDialog": {
+        "title": "Cancelar clases en bloque",
+        "dateFrom": "Fecha desde",
+        "dateTo": "Fecha hasta",
+        "invalidDates": "La fecha hasta debe ser igual o posterior a la fecha desde.",
+        "filtersHint": "Filtros opcionales (sin selección = todas las sesiones del periodo):",
+        "filterCourse": "Ciclo",
+        "filterSubject": "Asignatura",
+        "filterGroup": "Grupo",
+        "filterTeacher": "Profesor",
+        "filterAll": "Todos",
+        "previewLoading": "Calculando sesiones afectadas…",
+        "previewError": "No se pudo obtener la vista previa. Comprueba fechas y API.",
+        "previewCount": "Se suspenderán {{count}} sesiones.",
+        "previewWaiting": "Introduce fechas válidas para ver la vista previa.",
+        "previewNeedDates": "Indica fecha desde y hasta.",
+        "cancel": "Cancelar",
+        "confirm": "Confirmar suspensión",
+        "confirming": "Suspendiendo…",
+        "success": "Se han suspendido {{count}} sesiones correctamente.",
+        "error": "Error al suspender las sesiones. Inténtalo de nuevo."
+      },
+      "fields": {
+        "schedule": "Franja horaria",
+        "schedulePlaceholder": "Selecciona horario",
+        "date": "Fecha",
+        "status": "Estado",
+        "appointments": "Anotaciones"
+      }
+    },
+    "studentTasks": {
+      "title": "Entregas",
+      "createButton": "Nueva entrega",
+      "createTitle": "Crear entrega",
+      "fields": {
+        "task": "Tarea",
+        "enrollmentHint": "Filtra matrículas por grupo, asignatura y año",
+        "group": "Grupo",
+        "subject": "Asignatura",
+        "loadEnrollments": "Cargar matrículas",
+        "enrollment": "Matrícula del alumno"
+      }
+    },
+    "assistances": {
+      "title": "Asistencias",
+      "createButton": "Nueva asistencia",
+      "createTitle": "Registrar asistencia",
+      "fields": {
+        "session": "Sesión de clase",
+        "enrollmentHint": "Filtra matrículas por grupo, asignatura y año",
+        "group": "Grupo",
+        "subject": "Asignatura",
+        "loadEnrollments": "Cargar matrículas",
+        "enrollment": "Matrícula del alumno",
+        "status": "Estado"
+      }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "createButton": "Nueva notificación",
+      "createTitle": "Crear notificación",
+      "fields": {
+        "recipientHint": "Elige alumno o profesor; el POST usa recipientFirebaseUID del contrato API.",
+        "recipientRole": "Tipo de destinatario",
+        "roleStudent": "Alumno",
+        "roleTeacher": "Profesor",
+        "recipient": "Destinatario",
+        "recipientPlaceholder": "Selecciona un usuario",
+        "noRecipients": "No hay usuarios en esta lista.",
+        "title": "Título",
+        "message": "Mensaje",
+        "type": "Tipo"
+      }
+    }
+  },
+  "LANG": {
+    "ES": "Español",
+    "EN": "Inglés",
+    "DE": "Alemán"
+  },
+  "footer": {
+    "aboutUs": "Sobre nosotros"
+  },
+  "aboutPage": {
+    "pageTitle": "Sobre Ziryab",
+    "subtitle": "Innovación y simplicidad para la gestión educativa.",
+    "section1": {
+      "title": "Tu centro, conectado.",
+      "description": "Olvídate del papel y la burocracia. Ziryab centraliza clases, faltas y comunicaciones en una plataforma intuitiva diseñada para que profesores y alumnos fluyan juntos.",
+      "stats": {
+        "digital": "Digital",
+        "access": "Acceso",
+        "secure": "Roles",
+        "secureLabel": "Seguro"
+      }
+    },
+    "techStack": {
+      "title": "Stack Tecnológico",
+      "angular": "Angular 19 + Standalone",
+      "node": "Node.js Express",
+      "tailwind": "Tailwind CSS",
+      "prisma": "Prisma & PostgreSQL",
+      "firebase": "Firebase (Auth/Storage)"
+    },
+    "team": {
+      "title": "Equipo Ziryab",
+      "role": "Full Stack",
+      "angelaName": "Ángela Mora Mata",
+      "antonioName": "Antonio Salces Alcaraz",
+      "franciscoName": "Francisco de Asís Cobo Sánchez",
+      "angelaAlt": "Retrato de Ángela Mora Mata",
+      "antonioAlt": "Retrato de Antonio Salces Alcaraz",
+      "franciscoAlt": "Retrato de Francisco de Asís Cobo Sánchez"
+    },
+    "backToHome": "Volver al panel"
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "subtitle": "Accede con tus credenciales",
+    "email": "Email",
+    "emailPlaceholder": "tu@email",
+    "password": "Contraseña",
+    "passwordPlaceholder": "tu contraseña",
+    "submit": "Acceder",
+    "error": "Correo o contraseña incorrectos. Inténtalo de nuevo."
+  },
+  "notifications": {
+    "bellAria": "Notificaciones",
+    "unreadAria": "Hay notificaciones sin leer",
+    "toastClose": "Cerrar aviso",
+    "title": "Notificaciones",
+    "markAllRead": "Marcar todas como leídas",
+    "empty": "Sin notificaciones",
+    "mock": {
+      "taskAssigned": {
+        "title": "Nueva tarea asignada",
+        "message": "Se te ha asignado la tarea \"Ejercicios tema 3\"."
+      },
+      "dueSoon": {
+        "title": "Entrega próxima",
+        "message": "La tarea \"Ejercicios tema 3\" vence mañana."
+      }
+    }
+  },
+  "theme": {
+    "toggleToDark": "Activar modo oscuro",
+    "toggleToLight": "Activar modo claro"
+  },
+  "perfil": {
+    "logout": "Cerrar sesión",
+    "loggingOut": "Cerrando sesión..."
+  },
+  "roles": {
+    "student": "Estudiante",
+    "teacher": "Profesor",
+    "admin": "Administrador",
+    "user": "Usuario activo"
+  },
+  "courseAssignments": {
+    "wizard": {
+      "openButton": "Crear asignaciones",
+      "title": "Crear asignaciones docentes",
+      "stepLabel": "Paso {{step}} de 2",
+      "courseLabel": "Ciclo formativo",
+      "coursePlaceholder": "Selecciona un ciclo",
+      "courseSelected": "Ciclo: {{name}}",
+      "gradeLabel": "¿Qué curso?",
+      "loadingGrades": "Cargando cursos disponibles…",
+      "emptyGrades": "No hay cursos (grades) definidos para este ciclo. Revisa las asignaturas del ciclo.",
+      "createSubjectsLink": "Crear asignaturas para este ciclo",
+      "validationCourse": "Selecciona un ciclo formativo.",
+      "validationGrade": "Selecciona el curso (1º o 2º).",
+      "next": "Siguiente",
+      "continueToGrid": "Continuar al datagrid"
+    },
+    "grid": {
+      "title": "Asignaciones docentes",
+      "subtitle": "{{course}} — {{grade}}",
+      "schoolYear": "Año escolar",
+      "loading": "Cargando asignaturas y asignaciones…",
+      "loadError": "No se pudo cargar el datagrid.",
+      "existingTitle": "Asignaciones ya creadas",
+      "existingEmpty": "No hay asignaciones para esta oferta.",
+      "newTitle": "Nuevas asignaciones (una fila por asignatura)",
+      "teacherFilterHoursHint": "Profesores sin ninguna impartición en el centro, o con ≤ {{maxHours}} h semanales en total (suma de sus imparticiones activas).",
+      "noAssignmentsForFilter": "No se han cargado imparticiones desde el API; el filtro de profesores no puede aplicarse.",
+      "teacherFilterStats": "{{eligible}} / {{total}} profesores ({{withoutAssignments}} sin imparticiones, {{assignments}} filas en API)",
+      "rowsEmpty": "No hay asignaturas para este ciclo y curso.",
+      "colSubject": "Asignatura",
+      "colTeacher": "Profesor",
+      "colGroup": "Grupo",
+      "colTutor": "Tutor",
+      "selectTeacher": "Seleccionar profesor",
+      "selectGroup": "Seleccionar grupo",
+      "tutorBadge": "Tutor",
+      "tutorCheckbox": "Es tutor",
+      "tutorUpdateButton": "Actualizar tutorías",
+      "tutorUpdating": "Actualizando...",
+      "tutorUpdateSuccess": "Tutorías actualizadas correctamente.",
+      "tutorUpdateError": "No se pudieron actualizar las tutorías.",
+      "saveButton": "Guardar asignaciones",
+      "saving": "Guardando…",
+      "saveNone": "Selecciona al menos una fila con profesor y grupo.",
+      "saveCreated": "{{count}} asignación(es) creada(s).",
+      "saveDuplicates": "{{count}} duplicada(s) (ya existían).",
+      "saveIncomplete": "{{count}} fila(s) incompleta(s) omitida(s).",
+      "saveError": "No se pudieron guardar las asignaciones.",
+      "schedulePromptTitle": "¿Crear horario semanal?",
+      "schedulePromptBody": "Las asignaciones se guardaron correctamente. ¿Quieres ir ahora a crear la plantilla horaria para este grupo?",
+      "schedulePromptGo": "Ir a crear horario",
+      "schedulePromptStay": "Quedarme aquí"
+    }
+  },
+  "horario": {
+    "titleStudent": "Mi horario",
+    "titleTeacher": "Horario docente",
+    "subtitle": "Consulta tu horario semanal de clases",
+    "noData": "No hay clases asignadas",
+    "group": "Grupo",
+    "days": {
+      "1": "Lunes",
+      "2": "Martes",
+      "3": "Miércoles",
+      "4": "Jueves",
+      "5": "Viernes"
+    }
+  },
+  "tareas": {
+    "countLabel": "tareas",
+    "createButton": "Crear tarea",
+    "empty": "No hay tareas en esta asignación"
+  },
+  "calendario": {
+    "title": "Calendario académico",
+    "subtitle": "Eventos y fechas importantes del centro",
+    "iframeTitle": "Calendario de Google"
+  },
+  "teacherClasses": {
+    "title": "Mis clases",
+    "loading": "Cargando tus clases...",
+    "empty": "No tienes asignaturas asignadas.",
+    "manageSyllabus": "Gestionar temario",
+    "classMenu": "Menú de clase",
+    "courseLabel": "Ciclo",
+    "groupLabel": "Grado/Grupo",
+    "noAssigned": "No tienes asignaturas asignadas.",
+    "errorConnection": "Error de conexión con el servidor.",
+    "errorUser": "Usuario no identificado. Por favor, inicia sesión.",
+    "labels": {
+      "course": "Curso",
+      "group": "Grado/Grupo"
+    },
+    "substitutingBadge": "Sustituyendo a {{name}}"
+  },
+  "teacherPages": {
+    "grades": {
+      "title": "Evaluaciones",
+      "subtitle": "Introduce las notas de tus alumnos como tutor",
+      "tutoredGroup": "Grupo tutorizado",
+      "period": "Periodo de Evaluación",
+      "average": "Media",
+      "subjects": "Asignaturas",
+      "loading": "Cargando datos del grupo...",
+      "emptyGroup": "No se ha encontrado ningún grupo del que seas tutor",
+      "saving": "Guardando...",
+      "save": "Guardar Evaluaciones"
+    },
+    "profile": {
+      "title": "Ficha de usuario",
+      "subtitle": "Consulta tus datos de profesor",
+      "loadError": "No se pudo cargar tu ficha de profesor."
+    },
+    "classMenu": {
+      "title": "Menú de Clase",
+      "tasksTitle": "Tareas",
+      "tasksSubtitle": "Gestiona las tareas de la clase",
+      "justificationsTitle": "Justificaciones",
+      "justificationsSubtitle": "Revisa justificantes de faltas"
+    },
+    "justifications": {
+      "title": "Justificaciones",
+      "subtitle": "Revisa y gestiona las faltas de tus alumnos",
+      "viewAbsencesByStudent": "Ver Faltas por Alumno",
+      "loading": "Cargando justificaciones...",
+      "viewFile": "Ver Archivo",
+      "accept": "Aceptar",
+      "reject": "Rechazar",
+      "allUpToDate": "Todo al día",
+      "noPending": "No hay nuevas justificaciones pendientes de revisar.",
+      "loadError": "Error al cargar las justificaciones pendientes.",
+      "successAccept": "Falta justificada correctamente.",
+      "errorAccept": "Hubo un error al intentar justificar la falta.",
+      "successReject": "Justificante rechazado.",
+      "errorReject": "Hubo un error al intentar rechazar el justificante."
+    },
+    "attendance": {
+      "noStudents": "No hay estudiantes cargados.",
+      "status": {
+        "present": "Presente",
+        "absent": "Ausente",
+        "late": "Retraso",
+        "excused": "Justificado"
+      }
+    },
+    "taskTypes": {
+      "homework": "Deberes",
+      "practice": "Práctica",
+      "theory": "Teoría/Material",
+      "project": "Proyecto",
+      "exam": "Examen"
+    },
+    "taskForm": {
+      "title": "Crear Nueva Tarea",
+      "taskTitle": "Título de la tarea",
+      "titlePlaceholder": "Ej: Entrega Práctica 1",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Añade instrucciones para los alumnos...",
+      "type": "Tipo",
+      "startDate": "Fecha de inicio",
+      "dueDate": "Fecha límite (Entrega)",
+      "attachment": "Fichero adjunto (opcional)",
+      "uploadFile": "Sube un archivo",
+      "dragDrop": "o arrástralo y suéltalo aquí",
+      "formats": "PDF, DOCX, ZIP, PNG, JPG hasta 10MB",
+      "selected": "Seleccionado",
+      "saving": "Guardando...",
+      "submit": "Crear Tarea",
+      "errorMaxSize": "El archivo supera el límite de 10 MB.",
+      "successCreated": "Tarea creada con éxito con su fichero adjunto.",
+      "errorCreate": "Error al crear la tarea."
+    },
+    "tasks": {
+      "delivery": "Entrega",
+      "students": "alumnos",
+      "ungrouped": "Sin agrupar"
+    },
+    "deliveries": {
+      "backToSyllabus": "Volver al Temario",
+      "loading": "Cargando entregas de los estudiantes...",
+      "deadline": "Fecha Límite",
+      "studentList": "Listado de Alumnos",
+      "empty": "No se encontraron entregas para esta tarea.",
+      "openAttachment": "Abrir archivo/enlace de la resolución",
+      "editScore": "Editar Nota",
+      "grade": "Calificar",
+      "errorInvalidTaskId": "No se proporcionó un ID de tarea válido.",
+      "errorLoad": "No se pudieron cargar las entregas",
+      "errorDownload": "Hubo un error al descargar el listado de entregas",
+      "columns": {
+        "student": "Alumno",
+        "status": "Estado",
+        "submissionDate": "Fecha Entrega",
+        "score": "Nota",
+        "actions": "Acciones"
+      }
+    },
+    "status": {
+      "submitted": "Entregada",
+      "late": "Retraso",
+      "lateLong": "Entregada tarde",
+      "notSubmitted": "No Entregado",
+      "pending": "Pendiente",
+      "graded": "Calificada"
+    },
+    "gradeDelivery": {
+      "title": "Calificar Entrega",
+      "loading": "Cargando detalles de la entrega...",
+      "backToDeliveries": "Volver a las entregas",
+      "student": "Alumno",
+      "taskToEvaluate": "Tarea a Evaluar",
+      "submissionMoment": "Momento de Entrega",
+      "noDate": "Sin fecha registrada",
+      "attachedFile": "Archivo Entregado",
+      "viewDownload": "Ver / Descargar Adjunto",
+      "notAttached": "Aún no adjuntado",
+      "correctionForm": "Formulario de Corrección",
+      "scoreLabel": "Calificación (0 - 10)",
+      "required": "Obligatorio",
+      "rangeError": "Debe estar entre 0 y 10",
+      "feedback": "Comentarios y Feedback",
+      "optional": "Opcional",
+      "feedbackPlaceholder": "Escribe aquí las correcciones o notas para el alumno...",
+      "saveScore": "Guardar Calificación",
+      "saving": "Guardando...",
+      "errorInvalidId": "No se ha proporcionado un ID de entrega válido",
+      "errorLoad": "No se pudo cargar la entrega",
+      "errorConnection": "Error de conexión al cargar la entrega",
+      "errorSubmit": "Error al calificar la entrega. Por favor, inténtalo de nuevo."
+    },
+    "taskDetail": {
+      "start": "Inicio",
+      "delivery": "Entrega",
+      "allowLate": "Permite entrega tardía",
+      "submittedAt": "Entregada",
+      "gradeSubmission": "Calificar entrega",
+      "score": "Nota (0-10)",
+      "scoreError": "Introduce una nota entre 0 y 10",
+      "feedback": "Feedback (opcional)",
+      "selectTask": "Selecciona una tarea para ver el detalle.",
+      "stats": {
+        "total": "Total",
+        "submitted": "Entregadas",
+        "graded": "Calificadas",
+        "notSubmitted": "No entregadas"
+      }
+    },
+    "syllabus": {
+      "title": "Programación",
+      "takeAttendance": "Pasar Lista",
+      "tasksLoadError": "No se pudieron cargar las tareas para esta asignatura.",
+      "empty": "Aún no has creado material para esta asignatura.",
+      "tasks": "Tareas",
+      "noDescription": "Sin descripción",
+      "viewBaseFile": "Ver Archivo Base",
+      "viewDeliveries": "Ver Entregas",
+      "attendanceHelp": "Selecciona el estado de cada alumno y guarda la asistencia.",
+      "loadingStudents": "Cargando alumnos...",
+      "noStudents": "No hay alumnos matriculados en esta asignatura.",
+      "savingAttendance": "Guardando...",
+      "saveAttendance": "Guardar asistencia",
+      "attendanceSaved": "Asistencia guardada correctamente",
+      "attendanceSaveError": "Error al guardar la asistencia",
+      "sessionError": "Error al obtener la sesión",
+      "blocks": {
+        "theory": "Material Teórico y Documentos",
+        "exam": "Exámenes y Pruebas",
+        "project": "Proyectos Evaluables",
+        "practice": "Ejercicios Prácticos",
+        "homework": "Deberes Generales"
+      }
+    },
+    "credentials": {
+      "title": "Credenciales de acceso",
+      "subtitle": "Consulta las credenciales de tus alumnos asignados",
+      "loading": "Cargando credenciales...",
+      "empty": "No hay credenciales asignadas a tu tutoría.",
+      "show": "Mostrar",
+      "hide": "Ocultar",
+      "showPasswordAria": "Mostrar contraseña de {{name}}",
+      "hidePasswordAria": "Ocultar contraseña de {{name}}",
+      "columns": {
+        "studentName": "Nombre del alumno",
+        "password": "Contraseña"
+      },
+      "errors": {
+        "load": "No se pudieron cargar las credenciales.",
+        "userNotFound": "No se ha podido identificar al tutor autenticado."
+      }
+    }
+  },
+  "adminPages": {
+    "tutors": {
+      "title": "Asignación de tutores",
+      "subtitle": "Define las clases (Ciclo + Grupo) y asigna un tutor a cada una",
+      "colCourse": "Ciclo",
+      "colGroup": "Grupo (turno)",
+      "colCurrentTutor": "Tutor actual",
+      "colAssign": "Asignar tutor",
+      "noTutor": "Sin tutor",
+      "save": "Guardar",
+      "saved": "Guardado",
+      "addClass": "Añadir clase",
+      "addClassBtn": "Añadir",
+      "colGrade": "Curso",
+      "selectCourse": "Seleccionar ciclo",
+      "selectGroup": "Seleccionar grupo",
+      "selectGrade": "Seleccionar curso",
+      "deleteClass": "Eliminar clase",
+      "empty": "No hay clases definidas aún. Añade una arriba.",
+      "activeTutorsTitle": "Tutores activos",
+      "activeTutorsEmpty": "No hay profesores marcados como tutor en el año actual.",
+      "openEditor": "Actualizar tutorías",
+      "hideEditor": "Ocultar edición",
+      "listTeacher": "Profesor tutor",
+      "listClass": "Clase",
+      "listYear": "Año escolar",
+      "errorLoading": "Error al cargar los datos",
+      "errorSaving": "Error al guardar",
+      "errorCreating": "Error al crear la clase",
+      "noEligibleTutors": "Ningún profesor imparte en esta clase"
+    },
+    "dashboard": {
+      "menu": "Menú"
+    },
+    "filters": {
+      "title": "Filtros:"
+    },
+    "forms": {
+      "common": {
+        "optional": "opcional",
+        "creating": "Creando...",
+        "dniNie": "DNI / NIE",
+        "dniNiePlaceholder": "12345678A o X1234567A",
+        "dniNieInvalid": "DNI/NIE inválido (ej: 12345678A o X1234567A)"
+      },
+      "teacher": {
+        "title": "Crear Nuevo Profesor",
+        "submit": "Crear Profesor",
+        "createError": "Error al crear el profesor"
+      },
+      "student": {
+        "alreadyExists": "Estudiante existente. Matricular desde estudiante existente.",
+        "createError": "Error al crear el estudiante"
+      },
+      "subject": {
+        "title": "Crear Nueva Asignatura",
+        "nameLabel": "Nombre de la asignatura",
+        "namePlaceholder": "Ej: Programación",
+        "gradeLabel": "Curso",
+        "gradePlaceholder": "Selecciona un curso",
+        "gradeRequired": "Debes seleccionar un curso",
+        "hoursLabel": "Horas semanales",
+        "hoursPlaceholder": "Ej: 6",
+        "hoursInvalid": "Las horas deben estar entre 1 y 30",
+        "descriptionPlaceholder": "Descripción breve de la asignatura",
+        "descriptionInvalid": "La descripción no puede superar los 255 caracteres",
+        "courseLabel": "Ciclo al que pertenece",
+        "loadingCourses": "Cargando ciclos...",
+        "coursePlaceholder": "Selecciona un ciclo",
+        "courseRequired": "Debes seleccionar un ciclo",
+        "submit": "Crear Asignatura",
+        "loadCoursesError": "No se pudieron cargar los ciclos",
+        "createError": "Error al crear la asignatura"
+      },
+      "group": {
+        "title": "Crear Nuevo Grupo",
+        "nameLabel": "Nombre del Grupo",
+        "namePlaceholder": "Ej: 2º DAM Mañana",
+        "submit": "Crear Grupo",
+        "createError": "Error al crear el grupo"
+      },
+      "course": {
+        "title": "Crear Nuevo Ciclo",
+        "nameLabel": "Nombre del ciclo",
+        "namePlaceholder": "Ej: Desarrollo de Aplicaciones Multiplataforma",
+        "submit": "Crear Ciclo",
+        "createError": "Error al crear el ciclo"
+      }
+    },
+    "errors": {
+      "taskCreate": "Error al crear la tarea",
+      "studentTaskCreate": "Error al crear la entrega",
+      "notificationCreate": "Error al crear la notificación",
+      "classSessionCreate": "Error al crear la sesión",
+      "assistanceCreate": "Error al crear la asistencia"
+    },
+    "classSessions": {
+      "scheduleOption": "Día {{day}} · {{start}}-{{end}} (#{{id}})"
+    },
+    "subjectDetail": {
+      "name": "Nombre de la Asignatura:",
+      "grade": "Curso en el que se imparte:",
+      "course": "Ciclo al que pertenece:",
+      "hours": "Horas semanales:",
+      "description": "Descripción:"
+    },
+    "assistance": {
+      "enrollmentFallback": "Matrícula {{id}}",
+      "enrollmentId": "Matrícula ID"
+    }
+  },
+  "sharedPages": {
+    "login": {
+      "platform": "Plataforma Educativa"
+    },
+    "cardGrid": {
+      "empty": "No hay elementos para mostrar."
+    },
+    "header": {
+      "defaultUser": "Usuario"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "markAllRead": "Marcar todas como leídas",
+      "empty": "Sin notificaciones"
+    },
+    "about": {
+      "connectionAlt": "Conexión",
+      "angularAlt": "Angular",
+      "nodeAlt": "Node",
+      "tailwindAlt": "Tailwind",
+      "sqlAlt": "SQL",
+      "firebaseAlt": "Firebase",
+      "stack": {
+        "angular": "Angular 19 + Standalone",
+        "node": "Node.js Express",
+        "tailwind": "Tailwind CSS",
+        "prisma": "Prisma & PostgreSQL",
+        "firebase": "Firebase (Auth/Storage)"
+      }
+    }
+  },
+  "studentPages": {
+    "common": {
+      "access": "Acceder"
+    },
+    "classes": {
+      "title": "Asignaturas",
+      "loading": "Cargando tus clases...",
+      "empty": "No estás matriculado en ninguna asignatura.",
+      "subjectFallback": "Asignatura",
+      "levelLabel": "Grado/Curso",
+      "generalGroup": "General",
+      "teacherLabel": "Profesor",
+      "loadingTeacher": "Consultando..."
+    },
+    "dashboard": {
+      "title": "Mi Espacio",
+      "subtitle": "¿Qué te gustaría hacer hoy?",
+      "cards": {
+        "classes": {
+          "title": "Clases",
+          "description": "Accede a tus asignaturas"
+        },
+        "management": {
+          "title": "Gestión",
+          "description": "Administra tu expediente"
+        }
+      }
+    },
+    "management": {
+      "title": "Gestión Académica",
+      "subtitle": "Administra tu perfil y actividades",
+      "cards": {
+        "record": {
+          "title": "Ficha Usuario",
+          "cta": "Ver Perfil"
+        },
+        "schedule": {
+          "title": "Horario",
+          "cta": "Consultar"
+        },
+        "calendar": {
+          "title": "Calendario",
+          "cta": "Ver Eventos"
+        },
+        "board": {
+          "title": "Tablón",
+          "cta": "Ver Avisos"
+        },
+        "passwords": {
+          "title": "Contraseñas"
+        }
+      }
+    },
+    "record": {
+      "title": "Ficha de Usuario",
+      "subtitle": "Aquí puedes consultar tu historial de faltas de asistencia.",
+      "empty": "No tienes faltas registradas en el servidor.",
+      "unknownSubject": "Desconocida",
+      "attendanceLabel": "Asistencia",
+      "justificationLabel": "Justificante",
+      "status": {
+        "absent": "FALTA",
+        "late": "RETRASO",
+        "excused": "JUSTIFICADA"
+      },
+      "justification": {
+        "pending": "PENDIENTE",
+        "rejected": "RECHAZADO",
+        "accepted": "ACEPTADO",
+        "notSent": "NO ENVIADO"
+      }
+    },
+    "justificationModal": {
+      "title": "Justificar Falta",
+      "selectDocument": "Seleccionar documento",
+      "allowedFormats": "PNG, JPG, PDF (Max. 1MB)",
+      "submit": "Subir Justificante",
+      "sending": "Enviando...",
+      "successTitle": "¡Justificante enviado!",
+      "successMessage": "El profesor revisará el documento para justificar tu falta."
+    },
+    "grades": {
+      "title": "Mis Evaluaciones",
+      "subtitle": "Consulta tus notas de cada trimestre",
+      "subjectColumn": "Asignatura",
+      "averageRow": "Nota Media",
+      "loading": "Cargando tus calificaciones...",
+      "empty": "Aún no tienes calificaciones registradas"
+    },
+    "tasks": {
+      "loading": "Cargando tareas...",
+      "empty": "No tienes tareas asignadas.",
+      "noGroup": "Sin grupo",
+      "item": {
+        "due": "Entrega",
+        "submitted": "Entregada",
+        "score": "Nota"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "submitted": "Entregada",
+        "late": "Entregada tarde",
+        "lateShort": "Retraso",
+        "graded": "Calificada",
+        "notSubmitted": "No entregada",
+        "pendingUpper": "PENDIENTE",
+        "submittedUpper": "ENTREGADA",
+        "gradedUpper": "CALIFICADA",
+        "expiredUpper": "VENCIDA"
+      }
+    },
+    "taskDetail": {
+      "errorTitle": "Problema detectado",
+      "deadline": "Fecha Límite",
+      "noDescription": "El profesor no ha proporcionado una descripción.",
+      "supportMaterial": "Material de Consulta",
+      "openDownload": "Ver / Descargar",
+      "teacherEvaluation": "Evaluación del Profesor",
+      "finalScore": "Nota Final",
+      "comments": "Comentarios Adjuntos",
+      "noComments": "Tu calificación ha sido procesada sin comentarios.",
+      "deliveryArea": "Área de Entrega",
+      "importantNotice": "Aviso Importante",
+      "deadlinePassed": "Has superado la fecha límite ({{date}}). Si haces una entrega quedará marcada como",
+      "lateTag": "Fuera de Plazo (LATE)",
+      "sentOk": "Enviado correctamente",
+      "savedAt": "Tu entrega ha sido guardada satisfactoriamente en nuestras bases de datos el",
+      "deleteDelivery": "Borrar Entrega",
+      "openOriginalLink": "Abrir Link Original",
+      "dropzone": "Dropzone",
+      "uploadLink": "Subir enlace",
+      "dragHint": "Haz click o arrastra aquí tu documento",
+      "zipHint": "Si tu entrega es una carpeta con varios archivos, no la aceptaremos directamente. Debes crear un .ZIP comprimido con la misma e insertarlo aquí.",
+      "maxSize": "Máximo de Capacidad de Peso: 50MB",
+      "localUploadOk": "Carga local asegurada",
+      "linkResourceLabel": "Vincular Recurso a la URL Web",
+      "linkPlaceholder": "Ej: https://docs.google.com/document/d/mI-trabajO1/",
+      "invalidUrl": "Por favor, introduce un enlace web válido que empiece por http:// o https://",
+      "processing": "Procesando Archivo/Enlace...",
+      "confirmSend": "Confirmar Envío al Servidor",
+      "confirmDeleteDelivery": "¿Estás seguro de que quieres borrar tu entrega actual? Tendrás que subirla de nuevo.",
+      "success": {
+        "deliveryRegistered": "La carga y entrega de tu tarea fue registrada con éxito."
+      },
+      "errors": {
+        "missingTaskId": "ID de tarea no proporcionado.",
+        "cannotLoadTask": "No se pudo cargar la tarea.",
+        "loadTaskDetail": "Error al cargar la tarea detallada.",
+        "foldersNotAllowedZip": "Las carpetas enteras no están permitidas. Por favor, comprímela a .ZIP haciendo \"Click Derecho -> Comprimir\".",
+        "folderBlockedSecurity": "Las carpetas enteras no están permitidas por seguridad. Por favor, comprímela a un solo archivo .ZIP",
+        "maxFileSize": "El archivo supera los 50 MB de peso máximo permitido.",
+        "urlRequired": "Debes proveer una URL.",
+        "fileRequired": "Debes seleccionar o arrastrar un archivo / ZIP.",
+        "serverNoLink": "El servidor procesó el archivo, pero no devolvió un enlace válido.",
+        "uploadServerError": "Hubo un error internamente al subir el archivo al servidor.",
+        "deliveryNotifyFailed": "Tu archivo fue subido pero falló la notificación de entrega a la BBDD.",
+        "deleteDeliveryError": "Error al borrar la entrega."
+      }
+    },
+    "subject": {
+      "idLabel": "ID"
+    },
+    "syllabus": {
+      "title": "Temario",
+      "subtitle": "Material de clase, documentos de la unidad, ejercicios y tareas.",
+      "items": "Ítems",
+      "due": "Vence",
+      "emptyTitle": "El temario está vacío",
+      "emptyDescription": "Tu profesor todavía no ha subido material ni ha activado tareas para este bloque.",
+      "blocks": {
+        "theory": "Material Teórico y Documentos",
+        "exam": "Exámenes y Pruebas",
+        "project": "Proyectos Evaluables",
+        "practice": "Ejercicios Prácticos",
+        "homework": "Deberes Generales"
+      },
+      "errors": {
+        "cannotFetchTasks": "No se pudieron obtener las tareas.",
+        "serverTasksError": "Error del servidor al obtener tareas."
+      }
+    }
+  },
+  "INITIAL": "Evaluación Inicial",
+  "FIRST_TRIMESTER": "1º Trimestre",
+  "SECOND_TRIMESTER": "2º Trimestre",
+  "THIRD_TRIMESTER": "3º Trimestre",
+  "FINAL": "Nota Final",
+  "evaluaciones": {
+    "title": "Evaluaciones",
+    "subtitle": "Ver notas",
+    "description": "Consulta y gestiona las calificaciones académicas"
+  },
+  "studentTaskDetail": {
+    "problemDetected": "Problema detectado",
+    "status": {
+      "SUBMITTED": "Entregada",
+      "LATE": "Retraso",
+      "NOT_SUBMITTED": "No entregado",
+      "PENDING": "Pendiente",
+      "GRADED": "Calificada"
+    },
+    "dueDate": "Fecha límite",
+    "noDescription": "El profesor no ha proporcionado una descripción.",
+    "consultMaterial": "Material de consulta",
+    "viewDownload": "Ver / descargar",
+    "teacherEvaluation": "Evaluación del profesor",
+    "finalGrade": "Nota final",
+    "attachedComments": "Comentarios adjuntos",
+    "noFeedback": "Tu calificación ha sido procesada sin comentarios.",
+    "submissionArea": "Área de entrega",
+    "deadlineClosed": "Plazo de entrega cerrado",
+    "deadlineClosedBody": "La fecha límite era el <strong>{{date}}</strong> y el profesor <strong>no permite entregas tardías</strong> en esta tarea. No puedes enviar archivos ni enlaces.",
+    "deadlineClosedHint": "Si crees que es un error, contacta con tu profesor para que amplíe el plazo o habilite entregas fuera de fecha.",
+    "lateWarning": "Fuera de plazo",
+    "lateWarningBody": "Has superado la fecha límite ({{date}}). Aún puedes entregar: quedará marcada como <span class=\"font-bold\">Fuera de plazo (LATE)</span>.",
+    "sentOk": "Enviado correctamente",
+    "savedOn": "Tu entrega ha sido guardada satisfactoriamente en nuestras bases de datos el <strong>{{date}}</strong>.",
+    "deleteSubmission": "Borrar entrega",
+    "openOriginalLink": "Abrir enlace original",
+    "tabDropzone": "Dropzone",
+    "tabUrl": "Subir enlace",
+    "dropHint": "Haz click o arrastra aquí tu documento",
+    "dropZipHint": "Si tu entrega es una carpeta con varios archivos, no la aceptaremos directamente. Debes crear un .ZIP comprimido con la misma e insertarlo aquí.",
+    "maxWeight": "Máximo de capacidad de peso: 50MB",
+    "localUploadOk": "Carga local asegurada",
+    "removeFileTitle": "Eliminar y seleccionar otro",
+    "urlLabel": "Vincular recurso a la URL web",
+    "urlPlaceholder": "Ej: https://docs.google.com/document/d/mI-trabajO1/",
+    "urlInvalid": "Por favor, introduce un enlace web válido que empiece por http:// o https://",
+    "processing": "Procesando archivo/enlace...",
+    "confirmSubmit": "Confirmar envío al servidor",
+    "submitSuccess": "La carga y entrega de tu tarea fue registrada con éxito.",
+    "unsubmitConfirm": "¿Estás seguro de que quieres borrar tu entrega actual? Tendrás que subirla de nuevo."
+  },
+  "fichaProfesor": {
+    "noPendingJustifications": "No tienes justificaciones pendientes de revisar.",
+    "justifySuccess": "Falta justificada correctamente.",
+    "justifyError": "Hubo un error al intentar justificar la falta.",
+    "rejectSuccess": "Justificante rechazado.",
+    "rejectError": "Hubo un error al intentar rechazar el justificante."
+  },
+  "taskForm": {
+    "createSuccessWithFile": "Tarea creada con éxito con su fichero adjunto."
+  },
+  "grades": {
+    "title": "Evaluaciones",
+    "subtitle": "Introduce las notas de tus alumnos como tutor",
+    "tutoredGroup": "Grupo tutorizado",
+    "evaluationPeriod": "Periodo de evaluación",
+    "average": "Media",
+    "subjectsCount": "{{count}} asignaturas",
+    "loadingGroup": "Cargando datos del grupo...",
+    "noTutorGroup": "No se ha encontrado ningún grupo del que seas tutor",
+    "saveEvaluations": "Guardar evaluaciones",
+    "saving": "Guardando...",
+    "savedSuccess": "Notas guardadas correctamente"
+  },
+  "misGrades": {
+    "title": "Mis evaluaciones",
+    "subtitle": "Consulta tus notas de cada trimestre",
+    "subjectColumn": "Asignatura",
+    "averageGrade": "Nota media",
+    "loading": "Cargando tus calificaciones...",
+    "empty": "Aún no tienes calificaciones registradas"
+  },
+  "studentDashboard": {
+    "title": "Mi espacio",
+    "subtitle": "¿Qué te gustaría hacer hoy?",
+    "classesCard": "Clases",
+    "classesDesc": "Accede a tus asignaturas",
+    "managementCard": "Gestión",
+    "managementDesc": "Administra tu expediente",
+    "access": "Acceder"
+  },
+  "studentManagement": {
+    "title": "Gestión académica",
+    "subtitle": "Administra tu perfil y actividades",
+    "profileCard": "Ficha usuario",
+    "scheduleCard": "Horario",
+    "calendarCard": "Calendario",
+    "boardCard": "Tablón",
+    "viewProfile": "Ver perfil",
+    "consult": "Consultar",
+    "viewEvents": "Ver eventos",
+    "viewNotices": "Ver avisos"
+  },
+  "studentProfile": {
+    "title": "Ficha de usuario",
+    "subtitle": "Aquí puedes consultar tu historial de faltas de asistencia.",
+    "noAbsences": "No tienes faltas registradas en el servidor.",
+    "attendance": "Asistencia",
+    "justification": "Justificante",
+    "statusAbsent": "FALTA",
+    "statusLate": "RETRASO",
+    "statusExcused": "JUSTIFICADA",
+    "justificationPending": "PENDIENTE",
+    "justificationRejected": "RECHAZADO",
+    "justificationAccepted": "ACEPTADO",
+    "justificationNotSent": "NO ENVIADO"
+  },
+  "justifyAbsence": {
+    "title": "Justificar falta",
+    "selectDocument": "Seleccionar documento",
+    "fileHint": "PNG, JPG, PDF (máx. 1 MB)",
+    "upload": "Subir justificante",
+    "uploading": "Enviando...",
+    "successTitle": "¡Justificante enviado!",
+    "successHint": "El profesor revisará el documento para justificar tu falta."
+  },
+  "teacherProfile": {
+    "title": "Justificaciones",
+    "subtitle": "Revisa y gestiona las faltas de tus alumnos",
+    "loading": "Cargando justificaciones...",
+    "allCaughtUp": "Todo al día",
+    "noPending": "No hay nuevas justificaciones pendientes de revisar.",
+    "viewAbsencesByStudent": "Ver faltas por alumno",
+    "viewFile": "Ver archivo",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "absencesSummary": {
+      "title": "Resumen de faltas por alumno",
+      "loading": "Cargando datos de alumnos...",
+      "loadError": "No se pudieron cargar los datos.",
+      "fetchError": "Ocurrió un error al cargar las faltas.",
+      "empty": "No tienes alumnos registrados o no hay datos disponibles.",
+      "student": "Alumno",
+      "subjects": "Asignaturas",
+      "absencesPerSubject": "Faltas por asignatura",
+      "totalAbsences": "Total faltas",
+      "close": "Cerrar"
+    }
+  },
+  "classMenu": {
+    "youAreIn": "Estás en",
+    "tasksTitle": "Tareas",
+    "tasksDesc": "Gestiona las tareas de la clase",
+    "justificationsTitle": "Justificaciones",
+    "justificationsDesc": "Revisa justificantes de faltas"
+  },
+  "syllabus": {
+    "titlePrefix": "Temario:",
+    "studentIntro": "Material de clase, documentos de la unidad, ejercicios y tareas.",
+    "loadTasksError": "No se pudieron cargar las tareas para esta asignatura.",
+    "emptyTeacher": "Aún no has creado material para esta asignatura.",
+    "tasksCount": "{{count}} tareas",
+    "itemsCount": "{{count}} ítems",
+    "dueLabel": "Vence:",
+    "viewBaseFile": "Ver archivo base",
+    "viewSubmissions": "Ver entregas",
+    "saveAttendance": "Guardar asistencia",
+    "emptyTitle": "El temario está vacío",
+    "emptyBody": "Tu profesor todavía no ha subido material ni ha activado tareas para este bloque.",
+    "noDescription": "Sin descripción",
+    "takeAttendance": "Pasar lista",
+    "attendanceHint": "Selecciona el estado de cada alumno y guarda la asistencia.",
+    "loadingStudents": "Cargando alumnos...",
+    "noStudents": "No hay alumnos matriculados en esta asignatura.",
+    "attendanceSaved": "Asistencia guardada correctamente",
+    "sections": {
+      "THEORY": "Material teórico y documentos",
+      "EXAM": "Exámenes y pruebas",
+      "PROJECT": "Proyectos evaluables",
+      "PRACTICE": "Ejercicios prácticos",
+      "HOMEWORK": "Deberes generales"
+    }
+  },
+  "taskTypes": {
+    "HOMEWORK": "Deberes",
+    "PRACTICE": "Práctica",
+    "THEORY": "Teoría / material",
+    "PROJECT": "Proyecto",
+    "EXAM": "Examen"
+  },
+  "taskFormPage": {
+    "title": "Crear nueva tarea",
+    "taskTitle": "Título de la tarea",
+    "description": "Descripción",
+    "type": "Tipo",
+    "startDate": "Fecha de inicio",
+    "dueDate": "Fecha límite (entrega)",
+    "attachmentOptional": "Fichero adjunto (opcional)",
+    "uploadFile": "Sube un archivo",
+    "orDragDrop": "o arrástralo y suéltalo aquí",
+    "createTask": "Crear tarea",
+    "titlePlaceholder": "Ej: Entrega práctica 1",
+    "descriptionPlaceholder": "Añade instrucciones para los alumnos...",
+    "fileTypesHint": "PDF, DOCX, ZIP, PNG, JPG hasta 10 MB",
+    "fileSelected": "Seleccionado: {{name}}"
+  },
+  "submissions": {
+    "loading": "Cargando entregas de los estudiantes...",
+    "dueDate": "Fecha límite",
+    "student": "Alumno",
+    "status": "Estado",
+    "submittedAt": "Fecha entrega",
+    "grade": "Nota",
+    "actions": "Acciones",
+    "loadingDetail": "Cargando detalles de la entrega...",
+    "studentLabel": "Alumno",
+    "taskLabel": "Tarea a evaluar",
+    "submittedAtLabel": "Momento de entrega",
+    "fileLabel": "Archivo entregado",
+    "gradeFormTitle": "Formulario de corrección",
+    "gradeLabel": "Nota (0-10)",
+    "feedbackOptional": "Feedback (opcional)",
+    "gradeTask": "Calificar entrega",
+    "submitted": "Entregadas",
+    "graded": "Calificadas",
+    "notSubmitted": "No entregadas",
+    "backToSyllabus": "Volver al temario",
+    "backToSubmissions": "Volver a las entregas",
+    "studentList": "Listado de alumnos ({{count}})",
+    "noSubmissions": "No se encontraron entregas para esta tarea.",
+    "editGrade": "Editar nota",
+    "gradeAction": "Calificar",
+    "openAttachmentTitle": "Abrir archivo/enlace de la resolución",
+    "gradeDeliveryTitle": "Calificar entrega",
+    "noDateRecorded": "Sin fecha registrada",
+    "notAttachedYet": "Aún no adjuntado",
+    "viewDownloadAttachment": "Ver / descargar adjunto",
+    "feedbackPlaceholder": "Escribe aquí las correcciones o notas para el alumno...",
+    "saveGrade": "Guardar calificación",
+    "gradeRangeLabel": "Calificación (0 - 10)",
+    "commentsFeedback": "Comentarios y feedback",
+    "submittedAtShort": "Entregada:",
+    "gradeError": "Error al calificar la entrega. Por favor, inténtalo de nuevo."
+  },
+  "taskDetail": {
+    "selectTask": "Selecciona una tarea para ver el detalle.",
+    "startLabel": "Inicio:",
+    "dueLabel": "Entrega:",
+    "allowLate": "Permite entrega tardía"
+  },
+  "studentTasks": {
+    "loading": "Cargando tareas...",
+    "empty": "No tienes tareas asignadas."
+  },
+  "adminDashboard": {
+    "menu": "Menú"
+  },
+  "filters": {
+    "label": "Filtros:"
+  },
+  "forms": {
+    "createTeacher": "Crear nuevo profesor",
+    "createGroup": "Crear nuevo grupo",
+    "createCourse": "Crear nuevo ciclo",
+    "createSubject": "Crear nueva asignatura",
+    "selectCourse": "Selecciona un curso",
+    "selectCourseRequired": "Debes seleccionar un curso",
+    "weeklyHours": "Horas semanales",
+    "weeklyHoursRange": "Las horas deben estar entre 1 y 30",
+    "descriptionMax": "La descripción no puede superar los 255 caracteres",
+    "selectCycle": "Selecciona un ciclo",
+    "creating": "Creando...",
+    "createTeacherBtn": "Crear profesor",
+    "createGroupBtn": "Crear grupo",
+    "createCourseBtn": "Crear ciclo",
+    "createSubjectBtn": "Crear asignatura",
+    "groupName": "Nombre del grupo",
+    "courseName": "Nombre del ciclo",
+    "subjectName": "Nombre de la asignatura",
+    "gradeLabel": "Curso",
+    "grade1": "1º",
+    "grade2": "2º",
+    "description": "Descripción",
+    "descriptionPlaceholder": "Descripción breve de la asignatura",
+    "hoursPlaceholder": "Ej: 6",
+    "courseNamePlaceholder": "Ej: Desarrollo de Aplicaciones Multiplataforma",
+    "groupNamePlaceholder": "Ej: 2º DAM Mañana",
+    "subjectNamePlaceholder": "Ej: Programación",
+    "belongsToCycle": "Ciclo al que pertenece",
+    "loadingCycles": "Cargando ciclos...",
+    "dniLabel": "DNI / NIE",
+    "dniPlaceholder": "12345678A o X1234567A",
+    "dniInvalidExtended": "DNI/NIE inválido (ej: 12345678A o X1234567A)"
+  },
+  "assistanceStatus": {
+    "PRESENT": "Presente",
+    "ABSENT": "Ausente",
+    "LATE": "Tarde",
+    "EXCUSED": "Justificado"
+  },
+  "aria": {
+    "openMenu": "Abrir menú",
+    "languageEs": "Español"
+  },
+  "studentClasses": {
+    "title": "Mis asignaturas",
+    "loading": "Cargando tus clases...",
+    "empty": "No estás matriculado en ninguna asignatura.",
+    "access": "Acceder",
+    "labels": {
+      "grade": "Grado/Curso",
+      "teacher": "Profesor"
+    }
+  }
+}

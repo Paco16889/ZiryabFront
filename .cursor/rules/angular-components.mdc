@@ -1,0 +1,77 @@
+---
+description: Convenciones para componentes Angular del proyecto Ziryab
+globs: **/*.component.ts
+alwaysApply: false
+---
+
+# Convenciones de componentes Angular
+
+Aplica a cualquier fichero `*.component.ts` del proyecto.
+
+## Decorator `@Component`
+
+Siempre debe incluir:
+
+- `selector` con prefijo `app-`
+- `standalone: true`
+- `imports: [...]` con todo lo que usa el template (CommonModule, RouterLink, pipes…)
+- `templateUrl` y `styleUrl` (o `styleUrls`) separados del TypeScript
+
+```typescript
+// GOOD — patrón del proyecto (ver app.component.ts)
+@Component({
+  selector: 'app-dashboard',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, HeaderComponent],
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
+})
+export class DashboardComponent {}
+```
+
+## Ubicación
+
+Los componentes se colocan según su ámbito:
+
+- `pages/shared/` — login, header, footer, about, perfil
+- `pages/alumno/` — vistas de estudiante
+- `pages/profesor/` — vistas de profesor
+- `pages/admin/` — vistas de administrador
+
+## Inputs y outputs
+
+Preferir la API moderna con signals (`input()`, `output()`) en componentes nuevos.
+Si el componente existente aún usa `@Input()`/`@Output()`, mantener consistencia
+con el resto del componente y migrar solo si se pide explícitamente.
+
+```typescript
+// GOOD (Angular 19 moderno)
+userName = input<string>('');
+userSelected = output<User>();
+modal = viewChild<ElementRef>('modal');
+
+// Aceptable (código legacy del proyecto)
+@Input() userName = '';
+@Output() userSelected = new EventEmitter<User>();
+```
+
+## Documentación JSDoc
+
+Los componentes del proyecto tienen JSDoc en español describiendo su propósito
+(ver `app.component.ts`). Al crear un componente nuevo, añadir bloque `/** … */`
+explicando:
+
+- Qué representa el componente
+- Servicios que inyecta y para qué
+- Inputs/outputs si aplica
+
+## Límites
+
+- Un componente no debería superar ~150 líneas. Si crece, extraer lógica a un servicio
+  en `core/services/` o dividir en subcomponentes.
+- Lógica compleja nunca en el template: moverla al `.ts` como método o `computed`.
+
+## Tests
+
+Cada componente nuevo debe llevar su `*.component.spec.ts` al lado (hay ejemplos
+en `core/services/*.spec.ts`). Mantener convención Jasmine + Karma (`ng test`).

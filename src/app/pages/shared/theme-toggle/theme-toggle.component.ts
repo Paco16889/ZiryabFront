@@ -1,0 +1,18 @@
+import { Component, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { ThemeService } from '../../../core/services/theme.service';
+
+@Component({
+  selector: 'app-theme-toggle',
+  standalone: true,
+  imports: [TranslateModule],
+  templateUrl: './theme-toggle.component.html',
+  styleUrl: './theme-toggle.component.scss',
+})
+export class ThemeToggleComponent {
+  protected readonly themeService = inject(ThemeService);
+
+  onToggle(): void {
+    this.themeService.toggle();
+  }
+}

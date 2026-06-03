@@ -1,0 +1,65 @@
+﻿<div class="max-w-2xl mx-auto">
+  <div class="flex items-center mb-6">
+    <button type="button" class="mr-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" (click)="onCancel()">
+      ← {{ 'common.buttons.back' | translate }}
+    </button>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100">{{ 'lists.notifications.createTitle' | translate }}</h1>
+  </div>
+  <div class="bg-white dark:bg-gray-900 dark:border dark:border-gray-800 p-6 rounded-lg shadow">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.notifications.fields.recipientRole' | translate }}</label>
+        <select
+          formControlName="recipientRole"
+          class="w-full border rounded-lg px-4 py-2"
+          (change)="onRecipientRoleChange()"
+        >
+          @for (role of recipientRoles; track role) {
+            <option [value]="role">
+              {{ role === 'STUDENT' ? ('lists.notifications.fields.roleStudent' | translate) : ('lists.notifications.fields.roleTeacher' | translate) }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.notifications.fields.recipient' | translate }}</label>
+        <select
+          formControlName="recipientFirebaseUID"
+          class="w-full border rounded-lg px-4 py-2"
+          [disabled]="loadingRecipients()"
+        >
+          <option value="">{{ 'lists.notifications.fields.recipientPlaceholder' | translate }}</option>
+          @for (opt of currentOptions(); track opt.firebaseUID) {
+            <option [value]="opt.firebaseUID">{{ opt.label }}</option>
+          }
+        </select>
+        @if (!loadingRecipients() && currentOptions().length === 0) {
+          <p class="text-amber-700 text-sm mt-2">{{ 'lists.notifications.fields.noRecipients' | translate }}</p>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.notifications.fields.title' | translate }}</label>
+        <input formControlName="title" type="text" class="w-full border rounded-lg px-4 py-2" />
+      </div>
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.notifications.fields.message' | translate }}</label>
+        <textarea formControlName="message" rows="3" class="w-full border rounded-lg px-4 py-2"></textarea>
+      </div>
+      <div class="mb-4">
+        <label class="block font-medium mb-2">{{ 'lists.notifications.fields.type' | translate }}</label>
+        <input formControlName="type" type="text" class="w-full border rounded-lg px-4 py-2" />
+      </div>
+      @if (errorMessage) {
+        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">{{ errorMessage }}</div>
+      }
+      <div class="flex justify-end gap-3">
+        <button type="button" (click)="onCancel()" class="px-6 py-2 bg-gray-300 rounded-lg">{{ 'common.buttons.cancel' | translate }}</button>
+        <button type="submit" [disabled]="createForm.invalid || isCreating" class="px-6 py-2 bg-purple-600 dark:bg-purple-700 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 disabled:bg-gray-300 dark:disabled:bg-gray-600">
+          {{ 'lists.notifications.createButton' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

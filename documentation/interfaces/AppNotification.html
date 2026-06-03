@@ -1,0 +1,842 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  AppNotification</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/notifications.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Notificación según modelo del backend (<code>Notification</code> en Prisma).
+Se recibe por SSE y en listados REST; las fechas en JSON vienen como cadena ISO.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#createdAt" 
+>
+                                            createdAt
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#isRead" 
+>
+                                            isRead
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#message" 
+>
+                                            message
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#readAt" 
+>
+                                            readAt
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#recipientFirebaseUID" 
+>
+                                            recipientFirebaseUID
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#title" 
+>
+                                            title
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#type" 
+>
+                                            type
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="createdAt"></a>
+                                        <span class="name "><b>createdAt</b>
+                                            <a href="#createdAt">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>createdAt:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Fecha de creación serializada.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Identificador único de la notificación.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="isRead"></a>
+                                        <span class="name "><b>isRead</b>
+                                            <a href="#isRead">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>isRead:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Indica si la notificación ya fue leída.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="message"></a>
+                                        <span class="name "><b>message</b>
+                                            <a href="#message">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>message:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Mensaje o clave i18n.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="readAt"></a>
+                                        <span class="name "><b>readAt</b>
+                                            <a href="#readAt">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>readAt:     <code>string | null</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string | null</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Fecha de lectura serializada o <code>null</code>.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="recipientFirebaseUID"></a>
+                                        <span class="name "><b>recipientFirebaseUID</b>
+                                            <a href="#recipientFirebaseUID">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>recipientFirebaseUID:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>UID de Firebase del destinatario.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="title"></a>
+                                        <span class="name "><b>title</b>
+                                            <a href="#title">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>title:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Título o clave i18n.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name "><b>type</b>
+                                            <a href="#type">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Categoría de la notificación.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, inject, OnDestroy } from &#x27;@angular/core&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { BehaviorSubject, Subject, Subscription, distinctUntilChanged, firstValueFrom, map } from &#x27;rxjs&#x27;;
+import { AuthService, type UserResponse } from &#x27;./auth.service&#x27;;
+import { environment } from &#x27;../../../environments/environment&#x27;;
+
+/**
+ * Notificación según modelo del backend (&#x60;Notification&#x60; en Prisma).
+ * Se recibe por SSE y en listados REST; las fechas en JSON vienen como cadena ISO.
+ */
+export interface AppNotification {
+  /** Identificador único de la notificación. */
+  id: number;
+
+  /** UID de Firebase del destinatario. */
+  recipientFirebaseUID: string;
+
+  /** Título o clave i18n. */
+  title: string;
+
+  /** Mensaje o clave i18n. */
+  message: string;
+
+  /** Categoría de la notificación. */
+  type: string;
+
+  /** Indica si la notificación ya fue leída. */
+  isRead: boolean;
+
+  /** Fecha de lectura serializada o &#x60;null&#x60;. */
+  readAt: string | null;
+
+  /** Fecha de creación serializada. */
+  createdAt: string;
+}
+
+/** Respuesta de &#x60;GET …/notifications&#x60; usada solo en este cliente. */
+interface NotificationsListResponse {
+  /** Mensaje informativo del backend. */
+  message: string;
+
+  /** Notificaciones de la página solicitada. */
+  data: AppNotification[];
+
+  /** Metadatos de paginación para el listado REST. */
+  pagination: {
+    /** Página solicitada. */
+    page: number;
+    /** Tamaño máximo de página. */
+    limit: number;
+    /** Total de notificaciones del usuario. */
+    total: number;
+    /** Número total de páginas. */
+    totalPages: number;
+  };
+}
+
+/**
+ * Servicio de notificaciones del cliente.
+ *
+ * Combina REST (&#x60;GET /notifications&#x60;) para el número de no leídas inicial y
+ * **Server-Sent Events** contra &#x60;/notifications/events&#x60; para recibir cada nueva
+ * &#x60;AppNotification&#x60; en tiempo real usando cookies (&#x60;withCredentials&#x60; en &#x60;EventSource&#x60;).
+ *
+ * Se suscribe a {@link AuthService.currentUser$} para conectar SSE al iniciar sesión
+ * y desconectar al cerrar sesión.
+ */
+@Injectable({ providedIn: &#x27;root&#x27; })
+export class NotificationsService implements OnDestroy {
+  /** Cliente HTTP usado para calcular el contador inicial de no leídas. */
+  private readonly http &#x3D; inject(HttpClient);
+
+  /** Servicio de sesión que indica cuándo abrir o cerrar SSE. */
+  private readonly authService &#x3D; inject(AuthService);
+
+  /** URL base del backend usada para REST y SSE. */
+  private readonly apiUrl &#x3D; environment.apiUrl;
+
+  /** Instancia &#x60;EventSource&#x60; abierta hacia la API, o &#x60;null&#x60; si no hay conexión. */
+  private eventSource: EventSource | null &#x3D; null;
+
+  /** Emisor de cada notificación parseada desde el stream SSE (&#x60;message&#x60;). */
+  private readonly notificationSubject &#x3D; new Subject&lt;AppNotification&gt;();
+
+  /**
+   * Flujo observable de nuevas notificaciones recibidas por SSE tras el login.
+   */
+  readonly notification$ &#x3D; this.notificationSubject.asObservable();
+
+  /** Estado del conteo de no leídas sincronizado con la API localmente. */
+  private readonly unreadCountSubject &#x3D; new BehaviorSubject&lt;number&gt;(0);
+
+  /**
+   * Flujo observable del número total de notificaciones no leídas.
+   */
+  readonly unreadCount$ &#x3D; this.unreadCountSubject.asObservable();
+
+  /** Suscripción al estado de sesión; se cancela en {@link NotificationsService.ngOnDestroy}. */
+  private readonly authSubscription: Subscription;
+
+  /**
+   * Al construir el servicio, escucha cambios de usuario y abre/cierra SSE según haya Firebase UID estable.
+   */
+  constructor() {
+    this.authSubscription &#x3D; this.authService.currentUser$
+      .pipe(
+        map((user: UserResponse | null) &#x3D;&gt; user?.firebaseUID ?? &#x27;&#x27;),
+        distinctUntilChanged()
+      )
+      .subscribe((firebaseUid: string) &#x3D;&gt; {
+        if (!firebaseUid) {
+          this.onLogout();
+          return;
+        }
+        void this.onSessionActive();
+      });
+  }
+
+  /**
+   * Cierra SSE y cancela la suscripción al {@link AuthService}.
+   */
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+    this.disconnect();
+  }
+
+  /**
+   * Tras autenticación: obtiene el contador de no leídas vía REST y abre el canal SSE.
+   */
+  private async onSessionActive(): Promise&lt;void&gt; {
+    await this.refreshUnreadCount();
+    this.connect();
+  }
+
+  /**
+   * Limpia conexiones y reinicia el contador de no leídas al cerrar sesión.
+   */
+  private onLogout(): void {
+    this.disconnect();
+    this.unreadCountSubject.next(0);
+  }
+
+  /**
+   * Establece conexión SSE con &#x60;GET …/notifications/events&#x60;.
+   *
+   * El navegador envía cookies de sesión gracias a &#x60;{ withCredentials: true }&#x60;,
+   * coherente con el interceptor HTTP de la aplicación.
+   */
+  connect(): void {
+    this.disconnect();
+
+    const token &#x3D; this.authService.getToken();
+    const baseUrl &#x3D; &#x60;${this.apiUrl}/notifications/events&#x60;;
+    const url &#x3D; token
+      ? &#x60;${baseUrl}?token&#x3D;${encodeURIComponent(token)}&#x60;
+      : baseUrl;
+
+    try {
+      const es &#x3D; new EventSource(url, { withCredentials: true });
+      this.eventSource &#x3D; es;
+
+      es.addEventListener(&#x27;message&#x27;, (ev: MessageEvent) &#x3D;&gt; {
+        try {
+          const raw &#x3D; ev.data as string;
+          const parsed &#x3D; JSON.parse(raw) as AppNotification;
+          this.notificationSubject.next(parsed);
+          const nextUnread &#x3D; Math.min(
+            this.unreadCountSubject.value + 1,
+            9999
+          );
+          this.unreadCountSubject.next(nextUnread);
+        } catch {
+          // payload no JSON válido
+        }
+      });
+
+      es.onerror &#x3D; (): void &#x3D;&gt; {
+        if (es.readyState &#x3D;&#x3D;&#x3D; EventSource.CLOSED) {
+          this.eventSource &#x3D; null;
+        }
+      };
+    } catch {
+      this.eventSource &#x3D; null;
+    }
+  }
+
+  /**
+   * Cierra el &#x60;EventSource&#x60; activo si existe.
+   */
+  disconnect(): void {
+    if (this.eventSource) {
+      this.eventSource.close();
+      this.eventSource &#x3D; null;
+    }
+  }
+
+  /**
+   * Recalcula el número de notificaciones no leídas desde la API (página 1, límite fijo).
+   */
+  async refreshUnreadCount(): Promise&lt;void&gt; {
+    try {
+      const res &#x3D; await firstValueFrom(
+        this.http.get&lt;NotificationsListResponse&gt;(
+          &#x60;${this.apiUrl}/notifications&#x60;,
+          {
+            params: { page: &#x27;1&#x27;, limit: &#x27;500&#x27; },
+          }
+        )
+      );
+      const unread &#x3D; res.data.filter((n: AppNotification) &#x3D;&gt; !n.isRead).length;
+      this.unreadCountSubject.next(unread);
+    } catch {
+      this.unreadCountSubject.next(0);
+    }
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppNotification.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

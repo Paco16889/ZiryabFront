@@ -1,0 +1,18 @@
+# Bloquear TODOS los bots
+
+# DESCOMENTAR EN DESARROLLO
+User-agent: *
+Disallow: /
+
+# Razón: Evitar indexación de entornos de prueba
+# No queremos que Google indexe localhost o staging
+
+# DESCOMENTAR EN PRODUCCIÓN
+
+# Allow: /*.js$
+# Allow: /*.css$
+# Allow: /*.jpg$
+# Allow: /*.png$
+# Allow: /*.svg$
+
+# Sitemap: https://tudominio.com/sitemap.xml

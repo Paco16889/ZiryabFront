@@ -1,0 +1,111 @@
+<main class="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4" aria-labelledby="about-page-title">
+    <header class="text-center mb-10 max-w-2xl">
+        <h1 id="about-page-title" class="text-2xl font-bold text-gray-900 mb-2">
+            {{ 'aboutPage.pageTitle' | translate }}
+        </h1>
+        <p class="text-lg text-gray-500 font-light">
+            {{ 'aboutPage.subtitle' | translate }}
+        </p>
+    </header>
+
+    <div class="w-full max-w-4xl space-y-6">
+        <section class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100" aria-labelledby="about-mission-title">
+            <div class="flex items-start gap-4">
+                <div class="p-3 bg-purple-50 rounded-xl shrink-0" aria-hidden="true">
+                    <img src="assets/about/icons/connection.svg" alt="" class="w-8 h-8" width="32" height="32" />
+                </div>
+                <div>
+                    <h2 id="about-mission-title" class="text-xl font-bold text-gray-800 mb-2">
+                        {{ 'aboutPage.section1.title' | translate }}
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        {{ 'aboutPage.section1.description' | translate }}
+                    </p>
+                </div>
+            </div>
+            <dl class="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-50">
+                <div class="text-center">
+                    <dt class="sr-only">{{ 'aboutPage.section1.stats.digital' | translate }}</dt>
+                    <dd class="text-purple-600 font-bold text-lg mb-1">100%</dd>
+                    <dd class="text-xs text-gray-500">{{ 'aboutPage.section1.stats.digital' | translate }}</dd>
+                </div>
+                <div class="text-center border-l border-gray-100">
+                    <dt class="sr-only">{{ 'aboutPage.section1.stats.access' | translate }}</dt>
+                    <dd class="text-purple-600 font-bold text-lg mb-1">24/7</dd>
+                    <dd class="text-xs text-gray-500">{{ 'aboutPage.section1.stats.access' | translate }}</dd>
+                </div>
+                <div class="text-center border-l border-gray-100">
+                    <dt class="sr-only">{{ 'aboutPage.section1.stats.secure' | translate }}</dt>
+                    <dd class="text-purple-600 font-bold text-lg mb-1">{{ 'aboutPage.section1.stats.secureLabel' | translate }}</dd>
+                    <dd class="text-xs text-gray-500">{{ 'aboutPage.section1.stats.secure' | translate }}</dd>
+                </div>
+            </dl>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition duration-300" aria-labelledby="about-tech-title">
+                <h2 id="about-tech-title" class="text-lg font-bold text-gray-800 mb-4">
+                    {{ 'aboutPage.techStack.title' | translate }}
+                </h2>
+                <ul class="space-y-3 list-none p-0 m-0">
+                    <li class="flex items-center gap-3">
+                        <img src="assets/about/icons/angular.svg" alt="" class="w-5 h-5 shrink-0" width="20" height="20" aria-hidden="true" />
+                        <span class="text-sm text-gray-600">{{ 'aboutPage.techStack.angular' | translate }}</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <img src="assets/about/icons/node.svg" alt="" class="w-5 h-5 shrink-0" width="20" height="20" aria-hidden="true" />
+                        <span class="text-sm text-gray-600">{{ 'aboutPage.techStack.node' | translate }}</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <img src="assets/about/icons/tailwind.svg" alt="" class="w-5 h-5 shrink-0" width="20" height="20" aria-hidden="true" />
+                        <span class="text-sm text-gray-600">{{ 'aboutPage.techStack.tailwind' | translate }}</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <img src="assets/about/icons/postgresql.svg" alt="" class="w-5 h-5 shrink-0" width="20" height="20" aria-hidden="true" />
+                        <span class="text-sm text-gray-600">{{ 'aboutPage.techStack.prisma' | translate }}</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <img src="assets/about/icons/firebase.svg" alt="" class="w-5 h-5 shrink-0" width="20" height="20" aria-hidden="true" />
+                        <span class="text-sm text-gray-600">{{ 'aboutPage.techStack.firebase' | translate }}</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition duration-300" aria-labelledby="about-team-title">
+                <h2 id="about-team-title" class="text-lg font-bold text-gray-800 mb-4">
+                    {{ 'aboutPage.team.title' | translate }}
+                </h2>
+                <ul class="space-y-5 list-none p-0 m-0">
+                    <li class="flex items-center gap-4">
+                        <img src="assets/about/team/angela.png" [attr.alt]="'aboutPage.team.angelaAlt' | translate" class="w-12 h-12 rounded-full border border-gray-200 object-cover shrink-0" width="48" height="48" />
+                        <div>
+                            <h3 class="text-base font-bold text-gray-900">{{ 'aboutPage.team.angelaName' | translate }}</h3>
+                            <p class="text-xs text-purple-600 font-semibold uppercase">{{ 'aboutPage.team.role' | translate }}</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <img src="assets/about/team/antonio.png" [attr.alt]="'aboutPage.team.antonioAlt' | translate" class="w-12 h-12 rounded-full border border-gray-200 object-cover shrink-0" width="48" height="48" />
+                        <div>
+                            <h3 class="text-base font-bold text-gray-900">{{ 'aboutPage.team.antonioName' | translate }}</h3>
+                            <p class="text-xs text-purple-600 font-semibold uppercase">{{ 'aboutPage.team.role' | translate }}</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <img src="assets/about/team/francisco.svg" [attr.alt]="'aboutPage.team.franciscoAlt' | translate" class="w-12 h-12 rounded-full border border-gray-200 p-1 shrink-0" width="48" height="48" />
+                        <div>
+                            <h3 class="text-base font-bold text-gray-900">{{ 'aboutPage.team.franciscoName' | translate }}</h3>
+                            <p class="text-xs text-purple-600 font-semibold uppercase">{{ 'aboutPage.team.role' | translate }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <nav class="text-center pt-6" [attr.aria-label]="'aboutPage.backToHome' | translate">
+            <a routerLink="/dashboard" class="inline-flex items-center gap-2 text-gray-600 hover:text-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 rounded transition-colors font-medium text-sm">
+                <span aria-hidden="true">←</span>
+                {{ 'aboutPage.backToHome' | translate }}
+            </a>
+        </nav>
+    </div>
+</main>

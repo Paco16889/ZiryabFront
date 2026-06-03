@@ -1,0 +1,75 @@
+﻿<!-- student-selector.component.html -->
+<div class="max-w-2xl mx-auto">
+  <!-- Input DNI -->
+  <div class="mb-4">
+    <form [formGroup]="dniForm">
+       <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+      Introduce DNI / NIE del alumno
+    </label>
+    <input
+    type="text"
+    formControlName = "dni"
+      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400"
+      placeholder="12345678A o X1234567A"
+    
+    />
+
+    @if(dniForm.get('dni')?.invalid && dniForm.get('dni')?.touched){
+            <span 
+              class="text-red-500 text-sm mt-1 block">
+          DNI/NIE inválido (ej: 12345678A o X1234567A)
+        </span>
+        }
+
+    <button
+      type="button"
+      class="mt-2 rounded-md border border-purple-700 bg-purple-600 px-4 py-2 text-white transition-colors hover:bg-purple-700 dark:border-purple-500 dark:bg-purple-700 dark:hover:bg-purple-600"
+      (click)="searchStudent()"
+    >
+      Buscar alumno
+    </button>
+    </form>
+   
+    
+  </div>
+
+  <!-- Mensaje de error -->
+  @if(errorMessage){
+    <div class="mb-4 p-3 bg-red-100 dark:bg-red-950/30 border border-red-400 dark:border-red-800 rounded text-red-700 dark:text-red-300">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Resultado de la búsqueda -->
+  @if(student){
+    <div class="border-t border-gray-200 dark:border-gray-700 pt-4 pb-2">
+      <label class="flex items-center gap-2 cursor-pointer p-1 text-gray-800 dark:text-gray-200">
+        <input
+          type="radio"
+          name="selectedStudent"
+          [value]="student.id"
+          checked
+          class="h-4 w-4 shrink-0 border-gray-300 text-purple-600 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-purple-400 dark:focus:ring-purple-400"
+        />
+        {{ student.name }} {{ student.surname }} {{ student.ndSurname }} - {{ student.dni }}
+      </label>
+
+      <!-- Aquí van tus botones, suerte jeje -->
+      <div class="flex justify-end gap-3">
+        <!-- Botones que vas a reutilizar del create form -->
+          <button 
+          type="button"
+          (click)="onCancel()"
+          class="px-6 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600">
+          Cancelar
+        </button>
+        
+        <app-boton-confirmar-student
+        [disabled]="!student.id"
+        (confirm)="confirmSelection()">
+
+        </app-boton-confirmar-student>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,66 @@
+<!-- generic-delete-modal.component.html -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="w-96 rounded-lg border border-purple-200 bg-white p-6 dark:border-purple-800 dark:bg-gray-900">
+    
+    <!-- Estado: Confirmación -->
+    @if(!showSuccess && !isDeleting){
+      <div>
+        <h3 class="mb-4 text-xl font-bold text-rose-600 dark:text-rose-300">{{ 'deleteModal.title' | translate }} </h3>
+        
+        <p class="mb-4">
+          {{ 'deleteModal.confirmMessage' | translate }} {{ entityType }} 
+          <strong class="text-rose-600 dark:text-rose-300">{{ entityName }}</strong>?
+        </p>
+        
+        <p class="mb-4 text-sm text-gray-600 dark:text-gray-300">
+          {{ 'deleteModal.warningMessage' | translate }}
+          
+        </p>
+
+        <!-- Mensaje de error -->
+        @if(errorMessage){
+          <div class="mb-4 rounded border border-rose-200 bg-rose-50 p-3 text-rose-700 dark:border-rose-800 dark:bg-rose-950/30 dark:text-rose-300">
+            {{ errorMessage }}
+          </div>
+        }
+
+        <div class="flex justify-end gap-2">
+          <button 
+            type="button"
+            (click)="onClose()"
+            class="rounded-md bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
+            {{ 'deleteModal.cancel' | translate }}
+      
+          </button>
+          <button 
+            type="button"
+            (click)="onConfirm()"
+            class="rounded-md border border-rose-300 bg-rose-400 px-4 py-2 text-white hover:bg-rose-500 dark:border-rose-700 dark:bg-rose-500 dark:hover:bg-rose-400">
+            {{ 'deleteModal.delete' | translate }}
+        
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Estado: Eliminando -->
+    @if(isDeleting){
+      <div class="text-center py-4">
+        <div class="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-rose-500 dark:border-rose-400"></div>
+        <p class="text-gray-600 dark:text-gray-300">{{ 'deleteModal.deleting' | translate }}{{ entityType }}...</p>
+      </div>
+    }
+
+    <!-- Estado: Éxito -->
+    @if(showSuccess){
+      <div class="text-center py-4">
+        <div class="mb-4 text-6xl text-purple-600 dark:text-purple-300">✓</div>
+        <h3 class="mb-2 text-xl font-bold text-purple-700 dark:text-purple-200">{{ entityType }} {{ 'deleteModal.deleted' | translate }}</h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          {{ entityType }} <strong>{{ entityName }}</strong> {{ 'deleteModal.successMessage' | translate }}
+        </p>
+      </div>
+    }
+
+  </div>
+</div>

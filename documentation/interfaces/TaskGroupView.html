@@ -1,0 +1,594 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  TaskGroupView</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/profesor/tareas/task-list/task-list.component.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Estructura interna que agrupa tareas bajo un mismo <code>TaskGroup</code>
+para renderizar la lista agrupada visualmente.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#color" 
+>
+                                            color
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#key" 
+>
+                                            key
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#name" 
+>
+                                            name
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#tasks" 
+>
+                                            tasks
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="color"></a>
+                                        <span class="name "><b>color</b>
+                                            <a href="#color">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>color:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Color asignado al grupo</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="key"></a>
+                                        <span class="name "><b>key</b>
+                                            <a href="#key">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>key:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Clave única del grupo — ID como string o <code>&#39;ungrouped&#39;</code></p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="name"></a>
+                                        <span class="name "><b>name</b>
+                                            <a href="#name">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Nombre visible del grupo</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="tasks"></a>
+                                        <span class="name "><b>tasks</b>
+                                            <a href="#tasks">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>tasks:     <code>Task[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>Task[]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Tareas que pertenecen a este grupo</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject, computed, signal } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { TaskService } from &#x27;../../../../core/services/profesor/task.service&#x27;;
+import { TaskGroupUiService } from &#x27;../../../../core/services/profesor/task-group-ui.service&#x27;;
+import { TaskGroupItemComponent } from &#x27;../task-group-item/task-group-item.component&#x27;;
+import { TaskFormComponent } from &#x27;../../task-form/task-form.component&#x27;;
+import { BotonAtrasComponent } from &#x27;../../../shared/boton-atras/boton-atras.component&#x27;;
+import { Task, TaskGroup } from &#x27;../../../../core/models/teacher/tasks&#x27;;
+
+/** Paleta estable de colores para diferenciar visualmente grupos de tareas. */
+const GROUP_PALETTE &#x3D; [
+  &#x27;#ff6b6b&#x27;, &#x27;#748ffc&#x27;, &#x27;#51cf66&#x27;, &#x27;#fcc419&#x27;,
+  &#x27;#cc5de8&#x27;, &#x27;#20c997&#x27;, &#x27;#f76707&#x27;, &#x27;#339af0&#x27;,
+];
+
+/** Clave especial para las tareas sin grupo */
+export const UNGROUPED_KEY &#x3D; &#x27;ungrouped&#x27;;
+
+/**
+ * Estructura interna que agrupa tareas bajo un mismo &#x60;TaskGroup&#x60;
+ * para renderizar la lista agrupada visualmente.
+ */
+export interface TaskGroupView {
+  /** Clave única del grupo — ID como string o &#x60;&#x27;ungrouped&#x27;&#x60; */
+  key: string;
+  /** Nombre visible del grupo */
+  name: string;
+  /** Color asignado al grupo */
+  color: string;
+  /** Tareas que pertenecen a este grupo */
+  tasks: Task[];
+}
+
+/**
+ * Componente contenedor de la lista de tareas de una asignación.
+ *
+ * Recibe el &#x60;idTeacherAssignment&#x60; como input, carga las tareas
+ * mediante &#x60;TaskService&#x60; y las agrupa por &#x60;TaskGroup&#x60; para
+ * renderizar un &#x60;TaskGroupItemComponent&#x60; por cada grupo.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;html
+ * &lt;app-task-list [idTeacherAssignment]&#x3D;&quot;assignment.id&quot; /&gt;
+ * &#x60;&#x60;&#x60;
+ */
+@Component({
+  selector: &#x27;app-task-list&#x27;,
+  standalone: true,
+  imports: [CommonModule, TranslateModule, TaskGroupItemComponent, TaskFormComponent, BotonAtrasComponent],
+  templateUrl: &#x27;./task-list.component.html&#x27;,
+})
+export class TaskListComponent implements OnInit, OnDestroy {
+
+  /** Servicio que carga tareas de la asignación docente. */
+  private readonly taskService    &#x3D; inject(TaskService);
+  /** Servicio UI que recuerda grupos plegados/desplegados. */
+  private readonly taskGroupUiSvc &#x3D; inject(TaskGroupUiService);
+
+  /** Nombre del grupo «sin agrupar» en la lista. */
+  private readonly translate &#x3D; inject(TranslateService);
+
+  /** Controla la visibilidad del formulario de nueva tarea. */
+  readonly showTaskForm &#x3D; signal(false);
+
+  /** Ruta con &#x60;idTeacherAssignment&#x60; para cargar tareas. */
+  private readonly route &#x3D; inject(ActivatedRoute);
+
+/** Identificador de asignación docente tomado de la ruta. */
+get idTeacherAssignment(): number {
+  return Number(this.route.snapshot.paramMap.get(&#x27;idTeacherAssignment&#x27;));
+}
+
+  /** Signal de tareas del servicio */
+  readonly tasks   &#x3D; this.taskService.tasks;
+  /** Estado de carga expuesto por el servicio de tareas. */
+  readonly loading &#x3D; this.taskService.loading;
+
+  /**
+   * Computed que agrupa las tareas por TaskGroup y asigna colores.
+   * Las tareas sin grupo se colocan al final bajo la clave &#x60;&#x27;ungrouped&#x27;&#x60;.
+   */
+  readonly groupedTasks &#x3D; computed&lt;TaskGroupView[]&gt;(() &#x3D;&gt; {
+    const tasks &#x3D; this.tasks();
+    const colorMap &#x3D; new Map&lt;string, string&gt;();
+    let colorIndex &#x3D; 0;
+
+    const groupMap &#x3D; new Map&lt;string, TaskGroupView&gt;();
+
+    // Primero procesamos las tareas con grupo
+    tasks.forEach((task) &#x3D;&gt; {
+      if (task.taskGroup) {
+        const key &#x3D; String(task.taskGroup.id);
+        if (!groupMap.has(key)) {
+          const color &#x3D; GROUP_PALETTE[colorIndex % GROUP_PALETTE.length];
+          colorIndex++;
+          groupMap.set(key, {
+            key,
+            name: task.taskGroup.name,
+            color,
+            tasks: [],
+          });
+        }
+        groupMap.get(key)!.tasks.push(task);
+      }
+    });
+
+    // Luego las tareas sin grupo
+    const ungrouped &#x3D; tasks.filter((t) &#x3D;&gt; !t.taskGroup);
+    if (ungrouped.length &gt; 0) {
+      groupMap.set(UNGROUPED_KEY, {
+        key: UNGROUPED_KEY,
+        name: this.translate.instant(&#x27;teacherPages.tasks.ungrouped&#x27;),
+        color: &#x27;#aaa&#x27;,
+        tasks: ungrouped,
+      });
+    }
+
+    return Array.from(groupMap.values());
+  });
+
+  /** Carga tareas de la asignación docente actual. */
+  ngOnInit(): void {
+    this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
+  }
+
+  /** Muestra el formulario de alta de tarea. */
+  openTaskForm(): void {
+    this.showTaskForm.set(true);
+  }
+
+  /** Oculta el formulario de alta de tarea. */
+  closeTaskForm(): void {
+    this.showTaskForm.set(false);
+  }
+
+  /** Recarga tareas tras crear una nueva. */
+  onTaskCreated(): void {
+    this.showTaskForm.set(false);
+    this.taskService.loadTasksByAssignment(this.idTeacherAssignment);
+  }
+
+  /** Limpia estado de tareas y colapsa grupos al salir de la pantalla. */
+  ngOnDestroy(): void {
+    this.taskService.clearTasks();
+    this.taskGroupUiSvc.collapseAll();
+  }
+}</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'TaskGroupView.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1394 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUDIENCE_LABELS" title="src/app/pages/admin/entities/issue/issue-list-item/issue-list-item.component.ts" ><b>AUDIENCE_LABELS</b>&nbsp;&nbsp;&nbsp;(src/.../issue-list-item.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUDIENCE_OPTIONS" title="src/app/pages/admin/entities/issue/issue-list-item/issue-list-item.component.ts" ><b>AUDIENCE_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../issue-list-item.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#authInterceptorFn" title="src/app/core/interceptors/auth.interceptor.ts" ><b>authInterceptorFn</b>&nbsp;&nbsp;&nbsp;(src/.../auth.interceptor.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CREATE_FORM_AUDIENCES" title="src/app/pages/admin/entities/issue/issue-create-form/issue-create-form.component.ts" ><b>CREATE_FORM_AUDIENCES</b>&nbsp;&nbsp;&nbsp;(src/.../issue-create-form.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DNI_NIE_PATTERN" title="src/app/core/configs/validators.ts" ><b>DNI_NIE_PATTERN</b>&nbsp;&nbsp;&nbsp;(src/.../validators.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.prod.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#firebaseConfig" title="src/app/app.config.ts" ><b>firebaseConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#firstCenterSlot" title="src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.util.ts" ><b>firstCenterSlot</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-create-slots.util.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GRADE_OPTIONS" title="src/app/pages/admin/entities/issue/issue-create-form/issue-create-form.component.ts" ><b>GRADE_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../issue-create-form.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GROUP_PALETTE" title="src/app/pages/profesor/tareas/task-list/task-list.component.ts" ><b>GROUP_PALETTE</b>&nbsp;&nbsp;&nbsp;(src/.../task-list.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#HH_MM_TIME_PATTERN" title="src/app/core/utils/time-range.ts" ><b>HH_MM_TIME_PATTERN</b>&nbsp;&nbsp;&nbsp;(src/.../time-range.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MOCK_NOTIFICATIONS" title="src/app/core/repository/notification-repository.ts" ><b>MOCK_NOTIFICATIONS</b>&nbsp;&nbsp;&nbsp;(src/.../notification-repository.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PRISMA_WEEK_DAY" title="src/app/core/models/week-schedule-flow/week-schedule.enums.ts" ><b>PRISMA_WEEK_DAY</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule.enums.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#routes" title="src/app/app.routes.ts" ><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#STATUS_LABELS" title="src/app/pages/admin/entities/assistance/assistance-list-item/assistance-list-item.component.ts" class="deprecated-name"><b>STATUS_LABELS</b>&nbsp;&nbsp;&nbsp;(src/.../assistance-list-item.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#STATUS_LABELS" title="src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts" ><b>STATUS_LABELS</b>&nbsp;&nbsp;&nbsp;(src/.../student-task-list-item.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UNGROUPED_KEY" title="src/app/pages/profesor/tareas/task-list/task-list.component.ts" ><b>UNGROUPED_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../task-list.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#URL_PATTERN" title="src/app/pages/admin/entities/issue/issue-create-form/issue-create-form.component.ts" ><b>URL_PATTERN</b>&nbsp;&nbsp;&nbsp;(src/.../issue-create-form.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#WEEK_SCHEDULE_CREATE_WEEKDAYS" title="src/app/pages/admin/entities/weekSchedule/week-schedule-create-weekdays/week-schedule-create-weekdays.component.ts" ><b>WEEK_SCHEDULE_CREATE_WEEKDAYS</b>&nbsp;&nbsp;&nbsp;(src/.../week-schedule-create-weekdays.component.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppAuth,
+      deps: [AuthService],
+      multi: true
+    },
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient(
+      withInterceptors([authInterceptorFn])
+    ),
+    provideFirebaseApp(() &#x3D;&gt; initializeApp(firebaseConfig)),
+    provideAuth(() &#x3D;&gt; getAuth()),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: &#x27;/assets/i18n/&#x27;, // Ruta de tus JSON
+        suffix: &#x27;.json&#x27;          // Extensión de los archivos
+      }),
+      fallbackLang: &#x27;es&#x27;,        // Idioma por defecto si no encuentra traducción
+      lang: &#x27;es&#x27;                 // Idioma inicial
+    }),
+  ],
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración de providers de la aplicación.</p>
+<ul>
+<li>ZoneChangeDetection con eventCoalescing para optimizar la detección de cambios</li>
+<li>Router con las rutas de la aplicación</li>
+<li>HttpClient con el interceptor de autenticación JWT</li>
+<li>Firebase con autenticación</li>
+<li>Sistema de traducciones con español como idioma por defecto,
+cargando los ficheros JSON desde /assets/i18n/</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firebaseConfig"></a>
+                    <span class="name">
+                        <span ><b>firebaseConfig</b></span>
+                        <a href="#firebaseConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  apiKey: &quot;AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA&quot;,
+  authDomain: &quot;ziryab-7006e.firebaseapp.com&quot;,
+  projectId: &quot;ziryab-7006e&quot;,
+  storageBucket: &quot;ziryab-7006e.firebasestorage.app&quot;,
+  messagingSenderId: &quot;708163806772&quot;,
+  appId: &quot;1:708163806772:web:274c85353970b612c14c61&quot;,
+  measurementId: &quot;G-WNWVENZL8X&quot;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuración principal de la aplicación.
+Registra los providers globales: router, cliente HTTP con interceptor de autenticación,
+Firebase Authentication y el sistema de traducciones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/entities/issue/issue-list-item/issue-list-item.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUDIENCE_LABELS"></a>
+                    <span class="name">
+                        <span ><b>AUDIENCE_LABELS</b></span>
+                        <a href="#AUDIENCE_LABELS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Issue.html" target="_self" >Record&lt;IssueAudience, string&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  CENTER: &#x27;Todo el centro&#x27;,
+  ALL_TEACHERS: &#x27;Todos los profesores&#x27;,
+  ALL_STUDENTS: &#x27;Todos los alumnos&#x27;,
+  GROUP: &#x27;Grupo (turno)&#x27;,
+  COURSE: &#x27;Ciclo y/o curso&#x27;,
+  SUBJECT_GROUP: &#x27;Ciclo, curso, grupo y/o asignatura&#x27;,
+  TEACHER: &#x27;Profesor&#x27;,
+  ASSIGNMENT: &#x27;Asignación docente concreta&#x27;,
+  TARGETED: &#x27;Audiencia acotada&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Etiquetas en castellano para tipos de audiencia del tablón.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUDIENCE_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>AUDIENCE_OPTIONS</b></span>
+                        <a href="#AUDIENCE_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(Object.keys(AUDIENCE_LABELS) as IssueAudience[]).map((value) &#x3D;&gt; ({
+  value,
+  label: AUDIENCE_LABELS[value],
+}))</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones del desplegable de audiencia en edición inline.
+Derivadas de <a href="../miscellaneous/variables.html#AUDIENCE_LABELS">AUDIENCE_LABELS</a>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/interceptors/auth.interceptor.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authInterceptorFn"></a>
+                    <span class="name">
+                        <span ><b>authInterceptorFn</b></span>
+                        <a href="#authInterceptorFn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HttpInterceptorFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(req, next) &#x3D;&gt; {
+  if (req.url.startsWith(&#x27;/assets/&#x27;) || req.url.endsWith(&#x27;.json&#x27;)) {
+    return next(req);
+  }
+
+  const authService &#x3D; inject(AuthService);
+  const token &#x3D; authService.getToken();
+
+  const headers: Record&lt;string, string&gt; &#x3D; {};
+  if (token) {
+    headers[&#x27;Authorization&#x27;] &#x3D; &#x60;Bearer ${token}&#x60;;
+  }
+
+  const clonedRequest &#x3D; req.clone({
+    withCredentials: true,
+    setHeaders: headers,
+  });
+
+  return next(clonedRequest);
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Añade <code>Authorization: Bearer</code> y <code>withCredentials</code> en peticiones al API.
+En producción (front y API en dominios distintos) el Bearer es imprescindible;
+las cookies httpOnly del API no siempre viajan en cross-site.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/entities/issue/issue-create-form/issue-create-form.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CREATE_FORM_AUDIENCES"></a>
+                    <span class="name">
+                        <span ><b>CREATE_FORM_AUDIENCES</b></span>
+                        <a href="#CREATE_FORM_AUDIENCES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Issue.html" target="_self" >IssueAudience[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  &#x27;CENTER&#x27;,
+  &#x27;ALL_TEACHERS&#x27;,
+  &#x27;ALL_STUDENTS&#x27;,
+  &#x27;TARGETED&#x27;,
+  &#x27;ASSIGNMENT&#x27;,
+  &#x27;TEACHER&#x27;,
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones del desplegable de audiencia en el formulario de alta.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GRADE_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>GRADE_OPTIONS</b></span>
+                        <a href="#GRADE_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;1&#x27;, labelKey: &#x27;lists.issues.form.gradeOption1&#x27; },
+  { value: &#x27;2&#x27;, labelKey: &#x27;lists.issues.form.gradeOption2&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opciones de curso dentro del ciclo para audiencia acotada.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="URL_PATTERN"></a>
+                    <span class="name">
+                        <span ><b>URL_PATTERN</b></span>
+                        <a href="#URL_PATTERN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>/^https?:\/\/.+/i</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Valida URLs de adjunto (<code>http</code> o <code>https</code>).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/configs/validators.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DNI_NIE_PATTERN"></a>
+                    <span class="name">
+                        <span ><b>DNI_NIE_PATTERN</b></span>
+                        <a href="#DNI_NIE_PATTERN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>/^([0-9]{8}[A-Z]|[XYZ][0-9]{7}[A-Z])$/</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Expresión regular unificada para la validación de DNI y NIE en España.</p>
+<ul>
+<li>DNI: 8 dígitos seguidos de una letra.</li>
+<li>NIE: Una letra inicial (X, Y, Z), 7 dígitos y una letra final.</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    production: true,
+    apiUrl: &#x27;https://ziryabback.onrender.com/api&#x27;,
+    currentSchoolYear: &#x27;2024-2025&#x27;,
+    timetableSlots: [
+        { startTime: &#x27;08:15&#x27;, finishTime: &#x27;09:15&#x27; },
+        { startTime: &#x27;09:15&#x27;, finishTime: &#x27;10:15&#x27; },
+        { startTime: &#x27;10:15&#x27;, finishTime: &#x27;11:15&#x27; },
+        { startTime: &#x27;11:45&#x27;, finishTime: &#x27;12:45&#x27; },
+        { startTime: &#x27;12:45&#x27;, finishTime: &#x27;13:45&#x27; },
+        { startTime: &#x27;13:45&#x27;, finishTime: &#x27;14:45&#x27; },
+    ] as const satisfies ReadonlyArray&lt;{ startTime: string; finishTime: string }&gt;,
+    useMockNotifications: false,
+    googleCalendar: {
+        embedUrl:
+            &#x27;https://calendar.google.com/calendar/embed?src&#x3D;c_fe406644d4d1e624a708877c623f8c603b0c0122c6dcea64582acea2522e40ad%40group.calendar.google.com&amp;ctz&#x3D;Europe%2FMadrid&amp;hl&#x3D;es&amp;mode&#x3D;MONTH&#x27;,
+    },
+    firebase: {
+        apiKey: &#x27;AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA&#x27;,
+        authDomain: &#x27;ziryab-7006e.firebaseapp.com&#x27;,
+        projectId: &#x27;ziryab-7006e&#x27;,
+        storageBucket: &#x27;ziryab-7006e.firebasestorage.app&#x27;,
+        messagingSenderId: &#x27;708163806772&#x27;,
+        appId: &#x27;1:708163806772:web:274c85353970b612c14c61&#x27;,
+        measurementId: &#x27;G-WNWVENZL8X&#x27;,
+    },
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Producción — API en Render (ZiryabBack).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    production: false,
+    apiUrl: &#x27;http://localhost:3000/api&#x27;,
+    /** Año académico por defecto para filtros admin (assignments, horarios). Ajustar por centro/curso. */
+    currentSchoolYear: &#x27;2024-2025&#x27;,
+    /**
+     * Franjas del centro para el builder en modo rejilla (L–V × filas).
+     * Deben ser coherentes con el calendario lectivo (no solapadas).
+     */
+    timetableSlots: [
+        { startTime: &#x27;08:15&#x27;, finishTime: &#x27;09:15&#x27; },
+        { startTime: &#x27;09:15&#x27;, finishTime: &#x27;10:15&#x27; },
+        { startTime: &#x27;10:15&#x27;, finishTime: &#x27;11:15&#x27; },
+        { startTime: &#x27;11:45&#x27;, finishTime: &#x27;12:45&#x27; },
+        { startTime: &#x27;12:45&#x27;, finishTime: &#x27;13:45&#x27; },
+        { startTime: &#x27;13:45&#x27;, finishTime: &#x27;14:45&#x27; },
+    ] as const satisfies ReadonlyArray&lt;{ startTime: string; finishTime: string }&gt;,
+    useMockNotifications: true,
+    /** Calendario de Google embebido (vista pública, sin login). */
+    googleCalendar: {
+        embedUrl:
+            &#x27;https://calendar.google.com/calendar/embed?src&#x3D;c_fe406644d4d1e624a708877c623f8c603b0c0122c6dcea64582acea2522e40ad%40group.calendar.google.com&amp;ctz&#x3D;Europe%2FMadrid&amp;hl&#x3D;es&amp;mode&#x3D;MONTH&#x27;,
+    },
+    firebase: {
+        apiKey: &#x27;AIzaSyADRm1ot81xIDrrW3iKu6ywdAd8NR1G0gA&#x27;,
+        authDomain: &#x27;ziryab-7006e.firebaseapp.com&#x27;,
+        projectId: &#x27;ziryab-7006e&#x27;,
+        storageBucket: &#x27;ziryab-7006e.firebasestorage.app&#x27;,
+        messagingSenderId: &#x27;708163806772&#x27;,
+        appId: &#x27;1:708163806772:web:274c85353970b612c14c61&#x27;,
+        measurementId: &#x27;G-WNWVENZL8X&#x27;,
+    },
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Variables de entorno</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/entities/weekSchedule/week-schedule-create-slots/week-schedule-create-slots.util.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstCenterSlot"></a>
+                    <span class="name">
+                        <span ><b>firstCenterSlot</b></span>
+                        <a href="#firstCenterSlot"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.timetableSlots[0]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Primera franja del horario del centro (<code>environment.timetableSlots</code>).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/profesor/tareas/task-list/task-list.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GROUP_PALETTE"></a>
+                    <span class="name">
+                        <span ><b>GROUP_PALETTE</b></span>
+                        <a href="#GROUP_PALETTE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  &#x27;#ff6b6b&#x27;, &#x27;#748ffc&#x27;, &#x27;#51cf66&#x27;, &#x27;#fcc419&#x27;,
+  &#x27;#cc5de8&#x27;, &#x27;#20c997&#x27;, &#x27;#f76707&#x27;, &#x27;#339af0&#x27;,
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Paleta estable de colores para diferenciar visualmente grupos de tareas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UNGROUPED_KEY"></a>
+                    <span class="name">
+                        <span ><b>UNGROUPED_KEY</b></span>
+                        <a href="#UNGROUPED_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;ungrouped&#x27;</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clave especial para las tareas sin grupo</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/utils/time-range.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HH_MM_TIME_PATTERN"></a>
+                    <span class="name">
+                        <span ><b>HH_MM_TIME_PATTERN</b></span>
+                        <a href="#HH_MM_TIME_PATTERN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>/^([01]\d|2[0-3]):[0-5]\d$/</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formato estricto <code>HH:mm</code>: dos dígitos en hora y dos en minutos (24 h).
+Válido: <code>07:00</code>, <code>08:15</code>, <code>14:45</code>. Inválido: <code>8:15</code>, <code>25:00</code>, <code>08:60</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/repository/notification-repository.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MOCK_NOTIFICATIONS"></a>
+                    <span class="name">
+                        <span ><b>MOCK_NOTIFICATIONS</b></span>
+                        <a href="#MOCK_NOTIFICATIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Notification.html" target="_self" >Notification[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    id: 1,
+    recipientFirebaseUID: &#x27;mock-student&#x27;,
+    title: &#x27;notifications.mock.taskAssigned.title&#x27;,
+    message: &#x27;notifications.mock.taskAssigned.message&#x27;,
+    type: &#x27;TASK&#x27;,
+    isRead: false,
+    readAt: null,
+    createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
+  },
+  {
+    id: 2,
+    recipientFirebaseUID: &#x27;mock-student&#x27;,
+    title: &#x27;notifications.mock.dueSoon.title&#x27;,
+    message: &#x27;notifications.mock.dueSoon.message&#x27;,
+    type: &#x27;TASK&#x27;,
+    isRead: false,
+    readAt: null,
+    createdAt: new Date(Date.now() - 1000 * 60 * 60).toISOString(),
+  },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Datos locales para validar la UI de notificaciones sin depender del backend.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/models/week-schedule-flow/week-schedule.enums.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PRISMA_WEEK_DAY"></a>
+                    <span class="name">
+                        <span ><b>PRISMA_WEEK_DAY</b></span>
+                        <a href="#PRISMA_WEEK_DAY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  &#x27;MONDAY&#x27;,
+  &#x27;TUESDAY&#x27;,
+  &#x27;WEDNESDAY&#x27;,
+  &#x27;THURSDAY&#x27;,
+  &#x27;FRIDAY&#x27;,
+  &#x27;SATURDAY&#x27;,
+  &#x27;SUNDAY&#x27;,
+] as const</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Literales de día de la semana que serializa Prisma / el backend en JSON
+(p. ej. campo <code>weekDay</code> en <code>WeekSchedule</code> antes de normalizar a 1–7 en el cliente).
+Alineado con <code>numberToPrismaDayOfWeek</code> / <code>prismaDayOfWeekToNumber</code> en <code>core/utils/week-day</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // RUTAS PÚBLICAS (sin autenticación)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+    {
+        path: &#x27;&#x27;,
+        redirectTo: &#x27;login&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
+
+    {
+        path: &#x27;login&#x27;,
+        component: LoginComponent,
+    },
+
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // RUTAS PROTEGIDAS PARA TODOS (autenticados)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+    {
+        path: &#x27;dashboard&#x27;,
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [&#x27;STUDENT&#x27;, &#x27;TEACHER&#x27;] },
+    },
+
+    {
+        path: &#x27;ficha-usuario&#x27;,
+        component: FichaUsuarioComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [&#x27;STUDENT&#x27;] },
+    },
+    {
+        path: &#x27;ficha-profesor&#x27;,
+        component: FichaProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+
+    {
+        path: &#x27;about&#x27;,
+        component: AboutComponent,
+        canActivate: [AuthGuard]
+
+    },
+
+    {
+        path: &#x27;issues&#x27;,
+        loadComponent: () &#x3D;&gt;
+            &quot;import(&#x27;./pages/admin/entities/issue/issue-list/issue-list.component&#x27;).then(\r\n\
+                (m) &#x3D;&gt; m.IssueListComponent,\r\n\
+            )&quot;,
+        canActivate: [AuthGuard],
+        data: { issueListVariant: &#x27;standalone&#x27; },
+    },
+
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // RUTAS DE PROFESOR (TEACHER)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    {
+        path: &#x27;clases-profesor&#x27;,
+        component: ClasesProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+
+    },
+    {
+        path: &#x27;horario-profesor&#x27;,
+        component: HorarioProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+    {
+        path: &#x27;menu-clase/:idTeacherAssignment&#x27;,
+        component: MenuClaseComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+    {
+        path: &#x27;tareas/:idTeacherAssignment&#x27;,
+        component: TaskListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+    {
+        path: &#x27;evaluaciones&#x27;,
+        component: GestionNotasComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // RUTAS DE PROFESOR Y ESTUDIANETE (TEACHER, STUDENT)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    {
+        path: &#x27;dashboard&#x27;,
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [&#x27;STUDENT&#x27;, &#x27;TEACHER&#x27;] }
+    },
+
+
+
+    {
+        path: &#x27;temario/:claseId&#x27;,
+        component: TemarioAlumnoComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;STUDENT&#x27;] },
+    },
+    {
+        path: &#x27;tarea/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;./pages/alumno/student-task-detail/student-task-detail.component&#x27;).then(c &#x3D;&gt; c.StudentTaskDetailComponent)&quot;,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;STUDENT&#x27;] },
+    },
+    {
+        path: &#x27;temario-profesor/:claseId&#x27;,
+        component: TemarioProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+    {
+        path: &#x27;calificar-tarea/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;./pages/profesor/calificar-tarea/calificar-tarea.component&#x27;).then(c &#x3D;&gt; c.CalificarTareaComponent)&quot;,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+    {
+        path: &#x27;tarea/:taskId/entregas&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;./pages/profesor/entregas-tarea/entregas-tarea.component&#x27;).then(c &#x3D;&gt; c.EntregasTareaComponent)&quot;,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;] },
+    },
+
+
+    {
+        path: &#x27;gestion&#x27;,
+        component: GestionComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;, &#x27;STUDENT&#x27;] },
+    },
+    {
+        path: &#x27;calendario&#x27;,
+        component: CalendarioComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;TEACHER&#x27;, &#x27;STUDENT&#x27;] },
+    },
+
+
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // RUTAS DE ESTUDIANTE (STUDENT)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+    {
+        path: &#x27;clases&#x27;,
+        component: ClasesComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;STUDENT&#x27;] },
+    },
+    {
+        path: &#x27;horario-alumno&#x27;,
+        component: HorarioAlumnoComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;STUDENT&#x27;] },
+    },
+    {
+        path: &#x27;mis-notas&#x27;,
+        redirectTo: &#x27;mis-evaluaciones&#x27;,
+        pathMatch: &#x27;full&#x27;
+    },
+    {
+        path: &#x27;mis-evaluaciones&#x27;,
+        component: MisNotasComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;STUDENT&#x27;] },
+    },
+
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // RUTAS DE ADMINISTRADOR (ADMIN)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+
+    {
+        path: &#x27;dashboard-admin&#x27;,
+        component: DashboardAdminComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: [&#x27;ADMIN&#x27;] },
+    },
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+    // CATCH-ALL (rutas no encontradas)
+    // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+    {
+        path: &#x27;**&#x27;,
+        redirectTo: &#x27;login&#x27;,
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Definición de rutas de la aplicación.
+Organizada en secciones: rutas públicas, rutas protegidas por autenticación,
+rutas por rol (estudiante, profesor, administrador) y catch-all.
+ATENCIÓN: dashboard y ficha-usuario están duplicados, pendiente de limpiar.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/entities/assistance/assistance-list-item/assistance-list-item.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STATUS_LABELS"></a>
+                    <span class="name">
+                        <span class="deprecated-name"><b>STATUS_LABELS</b></span>
+                        <a href="#STATUS_LABELS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    Preferir `getStatusLabel` con claves de traducción.
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Assistance.html" target="_self" >Record&lt;AssistanceStatus, string&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  [AssistanceStatus.PRESENT]: &#x27;Presente&#x27;,
+  [AssistanceStatus.ABSENT]: &#x27;Ausente&#x27;,
+  [AssistanceStatus.LATE]: &#x27;Tarde&#x27;,
+  [AssistanceStatus.EXCUSED]: &#x27;Justificado&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Etiquetas en castellano para estados de asistencia (fallback si falla i18n).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/entities/student-task/student-task-list-item/student-task-list-item.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STATUS_LABELS"></a>
+                    <span class="name">
+                        <span ><b>STATUS_LABELS</b></span>
+                        <a href="#STATUS_LABELS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#SubmissionStatus" target="_self" >Record&lt;SubmissionStatus, string&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  [SubmissionStatus.PENDING]: &#x27;Pendiente&#x27;,
+  [SubmissionStatus.SUBMITTED]: &#x27;Entregada&#x27;,
+  [SubmissionStatus.LATE]: &#x27;Tarde&#x27;,
+  [SubmissionStatus.GRADED]: &#x27;Calificada&#x27;,
+  [SubmissionStatus.NOT_SUBMITTED]: &#x27;No entregada&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Etiquetas en castellano para estados de entrega.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/entities/weekSchedule/week-schedule-create-weekdays/week-schedule-create-weekdays.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WEEK_SCHEDULE_CREATE_WEEKDAYS"></a>
+                    <span class="name">
+                        <span ><b>WEEK_SCHEDULE_CREATE_WEEKDAYS</b></span>
+                        <a href="#WEEK_SCHEDULE_CREATE_WEEKDAYS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[1, 2, 3, 4, 5] as const</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Días laborables L–V para la plantilla horaria (<code>weekDay</code> 1–5).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

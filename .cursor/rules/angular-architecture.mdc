@@ -1,0 +1,99 @@
+---
+description: Convenciones generales de arquitectura del proyecto Angular 19 (Ziryab)
+alwaysApply: true
+---
+
+# Arquitectura Angular — Proyecto TFG Ziryab
+
+Estas convenciones reflejan cómo está organizado el proyecto en `src/app/`.
+El agente debe respetarlas al crear o modificar código.
+
+## Estructura de carpetas
+
+El proyecto sigue esta organización (ver `src/app/`):
+
+```
+src/app/
+├── core/                    # Lógica compartida (singleton)
+│   ├── configs/             # Configuración (Firebase, environment)
+│   ├── guards/              # AuthGuard, RoleGuard
+│   ├── i18n/                # Traducciones ngx-translate
+│   ├── interceptors/        # auth.interceptor.ts
+│   ├── models/              # Interfaces TypeScript
+│   └── services/            # Servicios (providedIn: 'root')
+│       ├── admin/
+│       ├── alumno/
+│       ├── profesor/
+│       └── UI/              # Servicios de UI (modales, menús)
+├── pages/                   # Vistas organizadas por rol
+│   ├── admin/
+│   ├── alumno/
+│   ├── profesor/
+│   └── shared/              # login, header, footer, about, perfil
+└── app.{component,config,routes}.ts
+```
+
+**Regla**: todo componente nuevo debe ubicarse según rol en `pages/{rol}/` y los servicios
+compartidos en `core/services/` (o subcarpeta por rol).
+
+## Standalone components (obligatorio)
+
+El proyecto usa 100% standalone. NO usar `NgModule`.
+
+```typescript
+// BAD — NgModule tradicional
+@Component({ selector: 'app-user' })
+export class UserComponent {}
+@NgModule({ declarations: [UserComponent] })
+export class UserModule {}
+
+// GOOD — tal como está hecho en app.component.ts
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, HeaderComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
+})
+export class AppComponent {}
+```
+
+## Inyección con `inject()`
+
+Usar la función `inject()` en lugar de inyección por constructor cuando sea posible
+(ver `app.component.ts` donde se usa `inject(TranslateService)`).
+
+```typescript
+// BAD
+constructor(private http: HttpClient, private router: Router) {}
+
+// GOOD
+private http = inject(HttpClient);
+private router = inject(Router);
+```
+
+## Rutas protegidas por rol
+
+Las rutas se definen en `app.routes.ts` con guards. Toda ruta privada DEBE declarar
+`canActivate: [AuthGuard]` y, si es específica de rol, añadir `RoleGuard` + `data.roles`.
+
+```typescript
+{
+  path: 'clases-profesor',
+  component: ClasesProfesorComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { roles: ['TEACHER'] },
+}
+```
+
+Roles válidos: `'STUDENT' | 'TEACHER' | 'ADMIN'`.
+
+## Internacionalización (i18n)
+
+Todo texto visible en pantalla debe pasar por `TranslateService`/pipe `| translate`.
+Las claves se definen en `src/assets/i18n/{es,en,de}.json`. Idioma por defecto: `es`.
+
+## Estilos
+
+- Framework: **Tailwind CSS** (`tailwind.config.js`) + SCSS para estilos puntuales.
+- Usar clases utilitarias antes que CSS custom.

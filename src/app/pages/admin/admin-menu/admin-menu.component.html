@@ -1,0 +1,17 @@
+<div class="m-2 flex flex-col gap-2 rounded-lg border border-purple-200 bg-white p-2 shadow-sm dark:border-purple-800 dark:bg-gray-900">
+  <button [class]="menuButtonClass('students')" (click)="onClick('students')">{{ 'adminMenu.students' | translate }}</button>
+  <button [class]="menuButtonClass('teachers')" (click)="onClick('teachers')">{{ 'adminMenu.teachers' | translate }}</button>
+  <button [class]="menuButtonClass('subjects')" (click)="onClick('subjects')">{{ 'adminMenu.subjects' | translate }}</button>
+  <button [class]="menuButtonClass('groups')" (click)="onClick('groups')">{{ 'adminMenu.groups' | translate }}</button>
+  <button [class]="menuButtonClass('ciclos')" (click)="onClick('ciclos')">{{ 'adminMenu.courses' | translate }}</button>
+  <button [class]="menuButtonClass('schedules')" (click)="onClick('schedules')">{{ 'adminMenu.schedules' | translate }}</button>
+  <button [class]="menuButtonClass('tasks')" (click)="onClick('tasks')">{{ 'adminMenu.tasks' | translate }}</button>
+  <button [class]="menuButtonClass('classSessions')" (click)="onClick('classSessions')">{{ 'adminMenu.classSessions' | translate }}</button>
+  <button [class]="menuButtonClass('studentTasks')" (click)="onClick('studentTasks')">{{ 'adminMenu.studentTasks' | translate }}</button>
+  <button [class]="menuButtonClass('assistances')" (click)="onClick('assistances')">{{ 'adminMenu.assistances' | translate }}</button>
+  <button [class]="menuButtonClass('notifications')" (click)="onClick('notifications')">{{ 'adminMenu.notifications' | translate }}</button>
+  <button [class]="menuButtonClass('tutors')" (click)="onClick('tutors')">{{ 'adminMenu.tutors' | translate }}</button>
+  <button [class]="menuButtonClass('substitutions')" (click)="onClick('substitutions')">{{ 'adminMenu.substitutions' | translate }}</button>
+  <a routerLink="/informe" [class]="menuButtonClass('reports')" (click)="openedMenu = 'reports'; optionClicked.emit()">{{ 'adminMenu.reports' | translate }}</a>
+  <button [class]="menuButtonClass('issues')" (click)="onClick('issues')">{{ 'adminMenu.issues' | translate }}</button>
+</div>

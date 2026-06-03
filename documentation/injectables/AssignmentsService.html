@@ -1,0 +1,1576 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AssignmentsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/admin/entities/assignments.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio admin de asignaciones docentes desde Course (CURSO-93 / CURSO-99).</p>
+<p><code>getGradesByCourse</code> devuelve los valores <strong>distinct</strong> de <code>Subject.grade</code>
+del catálogo de asignaturas de ese ciclo (no confundir con grupos ni turnos).</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#assignmentsBaseUrl" >assignmentsBaseUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#coursesBaseUrl" >coursesBaseUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#courseService" >courseService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#http" >http</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createAssignment" >createAssignment</a>
+                            </li>
+                            <li>
+                                <a href="#createAssignmentsBulk" >createAssignmentsBulk</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createAssignmentsSequential" >createAssignmentsSequential</a>
+                            </li>
+                            <li>
+                                <a href="#getAssignmentsByCourseAndGrade" >getAssignmentsByCourseAndGrade</a>
+                            </li>
+                            <li>
+                                <a href="#getAssignmentsByCourseGradeAndYear" >getAssignmentsByCourseGradeAndYear</a>
+                            </li>
+                            <li>
+                                <a href="#getGradesByCourse" >getGradesByCourse</a>
+                            </li>
+                            <li>
+                                <a href="#getSubjectsByCourseAndGrade" >getSubjectsByCourseAndGrade</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#gradesFromCourseSubjects" >gradesFromCourseSubjects</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mapBulkApiResponse" >mapBulkApiResponse</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subjectsFromCourse" >subjectsFromCourse</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAssignment"></a>
+                    <span class="name">
+                        <span ><b>createAssignment</b></span>
+                        <a href="#createAssignment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createAssignment(payload: <a href="../interfaces/AssignmentCreateRequest.html" target="_self">AssignmentCreateRequest</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Crea una asignación docente individual.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="../interfaces/AssignmentCreateRequest.html" target="_self" >AssignmentCreateRequest</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;AssignmentCreateResponse&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAssignmentsBulk"></a>
+                    <span class="name">
+                        <span ><b>createAssignmentsBulk</b></span>
+                        <a href="#createAssignmentsBulk"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createAssignmentsBulk(items: AssignmentBulkCreateItem[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Alta masiva (<code>POST /api/assignments/bulk</code>). Si el back aún no expone la ruta, devuelve <code>success: false</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>items</td>
+                                            <td>
+                                                        <code>AssignmentBulkCreateItem[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Assignment.html" target="_self" >Observable&lt;AssignmentBulkCreateResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAssignmentsSequential"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>createAssignmentsSequential</b></span>
+                        <a href="#createAssignmentsSequential"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createAssignmentsSequential(items: AssignmentBulkCreateItem[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fallback cuando <code>POST /bulk</code> no existe: altas unitarias en paralelo.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>items</td>
+                                            <td>
+                                                        <code>AssignmentBulkCreateItem[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Assignment.html" target="_self" >Observable&lt;AssignmentBulkCreateResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAssignmentsByCourseAndGrade"></a>
+                    <span class="name">
+                        <span ><b>getAssignmentsByCourseAndGrade</b></span>
+                        <a href="#getAssignmentsByCourseAndGrade"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAssignmentsByCourseAndGrade(idCourse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, schoolYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Alias semántico usado por componentes del flujo ciclo+grade.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idCourse</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>schoolYear</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CourseAssignmentsByOfferResponse" target="_self" >Observable&lt;CourseAssignmentsByOfferResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAssignmentsByCourseGradeAndYear"></a>
+                    <span class="name">
+                        <span ><b>getAssignmentsByCourseGradeAndYear</b></span>
+                        <a href="#getAssignmentsByCourseGradeAndYear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAssignmentsByCourseGradeAndYear(idCourse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, schoolYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filtra asignaciones existentes por ciclo, grade y año escolar usando las relaciones incluidas.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idCourse</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>schoolYear</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CourseAssignmentsByOfferResponse" target="_self" >Observable&lt;CourseAssignmentsByOfferResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGradesByCourse"></a>
+                    <span class="name">
+                        <span ><b>getGradesByCourse</b></span>
+                        <a href="#getGradesByCourse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getGradesByCourse(idCourse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Grades disponibles de un ciclo (<code>GET /api/courses/:id/grades</code> o fallback desde subjects).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idCourse</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Ciclo del que se extraen los valores distintos de <code>Subject.grade</code></li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CourseGradesResponse" target="_self" >Observable&lt;CourseGradesResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSubjectsByCourseAndGrade"></a>
+                    <span class="name">
+                        <span ><b>getSubjectsByCourseAndGrade</b></span>
+                        <a href="#getSubjectsByCourseAndGrade"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSubjectsByCourseAndGrade(idCourse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Asignaturas de un ciclo y grade para alimentar una fila por asignatura en el grid.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idCourse</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CourseSubjectsByGradeResponse" target="_self" >Observable&lt;CourseSubjectsByGradeResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gradesFromCourseSubjects"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>gradesFromCourseSubjects</b></span>
+                        <a href="#gradesFromCourseSubjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>gradesFromCourseSubjects(idCourse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fallback para derivar los grades disponibles desde <code>course.subjects</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idCourse</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CourseGradesResponse" target="_self" >Observable&lt;CourseGradesResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapBulkApiResponse"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>mapBulkApiResponse</b></span>
+                        <a href="#mapBulkApiResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapBulkApiResponse(res: <a href="../miscellaneous/typealiases.html#AssignmentBulkApiResponse" target="_self">AssignmentBulkApiResponse</a>, items: AssignmentBulkCreateItem[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:165</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Respuesta cruda del back (<code>POST /assignments/bulk</code>).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>res</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AssignmentBulkApiResponse" target="_self" >AssignmentBulkApiResponse</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>items</td>
+                                            <td>
+                                                        <code>AssignmentBulkCreateItem[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#AssignmentBulkCreateResponse" target="_self" >AssignmentBulkCreateResponse</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subjectsFromCourse"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subjectsFromCourse</b></span>
+                        <a href="#subjectsFromCourse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>subjectsFromCourse(idCourse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, grade: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="238"
+                                    class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:238</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fallback para obtener asignaturas del curso cuando no existe endpoint por grade.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idCourse</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>grade</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#CourseSubjectsByGradeResponse" target="_self" >Observable&lt;CourseSubjectsByGradeResponse&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assignmentsBaseUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>assignmentsBaseUrl</b></span>
+                        <a href="#assignmentsBaseUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${environment.apiUrl}/assignments&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Endpoint base de asignaciones docentes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="coursesBaseUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>coursesBaseUrl</b></span>
+                        <a href="#coursesBaseUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${environment.apiUrl}/courses&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Endpoint base de cursos, usado para grades y subjects por ciclo.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="courseService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>courseService</b></span>
+                        <a href="#courseService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CourseService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fallback que permite derivar grades/asignaturas desde el detalle del curso.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="http"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>http</b></span>
+                        <a href="#http"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(HttpClient)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/core/services/admin/entities/assignments.service.ts:32</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cliente HTTP para endpoints de cursos y asignaciones.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { inject, Injectable } from &#x27;@angular/core&#x27;;
+import { catchError, forkJoin, map, Observable, of, switchMap } from &#x27;rxjs&#x27;;
+import {
+  AssignmentBulkApiResponse,
+  AssignmentBulkCreateItem,
+  AssignmentBulkCreateResponse,
+  CourseAssignmentsByOfferResponse,
+  CourseGradesResponse,
+  CourseSubjectsByGradeResponse,
+} from &#x27;../../../models/course-assignments/course-assignments-api.model&#x27;;
+import {
+  AssignmentCreateRequest,
+  AssignmentCreateResponse,
+  AssignmentWithIncludes,
+} from &#x27;../../../models/assingment&#x27;;
+import { environment } from &#x27;../../../../../environments/environment&#x27;;
+import { normalizeGradeValue } from &#x27;../../../utils/week-schedule-assignment-filters&#x27;;
+import { CourseService } from &#x27;./course.service&#x27;;
+
+/**
+ * Servicio admin de asignaciones docentes desde Course (CURSO-93 / CURSO-99).
+ *
+ * &#x60;getGradesByCourse&#x60; devuelve los valores **distinct** de &#x60;Subject.grade&#x60;
+ * del catálogo de asignaturas de ese ciclo (no confundir con grupos ni turnos).
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class AssignmentsService {
+  /** Cliente HTTP para endpoints de cursos y asignaciones. */
+  private readonly http &#x3D; inject(HttpClient);
+
+  /** Fallback que permite derivar grades/asignaturas desde el detalle del curso. */
+  private readonly courseService &#x3D; inject(CourseService);
+
+  /** Endpoint base de cursos, usado para grades y subjects por ciclo. */
+  private readonly coursesBaseUrl &#x3D; &#x60;${environment.apiUrl}/courses&#x60;;
+
+  /** Endpoint base de asignaciones docentes. */
+  private readonly assignmentsBaseUrl &#x3D; &#x60;${environment.apiUrl}/assignments&#x60;;
+
+  /**
+   * Grades disponibles de un ciclo (&#x60;GET /api/courses/:id/grades&#x60; o fallback desde subjects).
+   *
+   * @param idCourse - Ciclo del que se extraen los valores distintos de &#x60;Subject.grade&#x60;
+   */
+  getGradesByCourse(idCourse: number): Observable&lt;CourseGradesResponse&gt; {
+    return this.http
+      .get&lt;CourseGradesResponse&gt;(&#x60;${this.coursesBaseUrl}/${idCourse}/grades&#x60;)
+      .pipe(
+        catchError(() &#x3D;&gt; this.gradesFromCourseSubjects(idCourse)),
+        switchMap((apiRes) &#x3D;&gt; {
+          if (apiRes.success &amp;&amp; apiRes.data.length &gt; 0) {
+            return of(apiRes);
+          }
+          return this.gradesFromCourseSubjects(idCourse);
+        }),
+      );
+  }
+
+  /**
+   * Asignaturas de un ciclo y grade para alimentar una fila por asignatura en el grid.
+   */
+  getSubjectsByCourseAndGrade(
+    idCourse: number,
+    grade: string,
+  ): Observable&lt;CourseSubjectsByGradeResponse&gt; {
+    return this.http
+      .get&lt;CourseSubjectsByGradeResponse&gt;(&#x60;${this.coursesBaseUrl}/${idCourse}/subjects&#x60;, {
+        params: { grade },
+      })
+      .pipe(
+        catchError(() &#x3D;&gt; this.subjectsFromCourse(idCourse, grade)),
+        switchMap((apiRes) &#x3D;&gt; {
+          if (apiRes.success &amp;&amp; apiRes.data.length &gt; 0) {
+            return of(apiRes);
+          }
+          return this.subjectsFromCourse(idCourse, grade);
+        }),
+      );
+  }
+
+  /** Alias semántico usado por componentes del flujo ciclo+grade. */
+  getAssignmentsByCourseAndGrade(
+    idCourse: number,
+    grade: string,
+    schoolYear: string,
+  ): Observable&lt;CourseAssignmentsByOfferResponse&gt; {
+    return this.getAssignmentsByCourseGradeAndYear(idCourse, grade, schoolYear);
+  }
+
+  /**
+   * Filtra asignaciones existentes por ciclo, grade y año escolar usando las relaciones incluidas.
+   */
+  getAssignmentsByCourseGradeAndYear(
+    idCourse: number,
+    grade: string,
+    schoolYear: string,
+  ): Observable&lt;CourseAssignmentsByOfferResponse&gt; {
+    return this.http.get&lt;CourseAssignmentsByOfferResponse&gt;(this.assignmentsBaseUrl).pipe(
+      map((res) &#x3D;&gt; {
+        if (!res.success) {
+          return { success: false, data: [] as AssignmentWithIncludes[] };
+        }
+        const gradeNorm &#x3D; normalizeGradeValue(grade);
+        const filtered &#x3D; res.data.filter((a) &#x3D;&gt; {
+          const sub &#x3D; a.subject;
+          if (!sub) {
+            return false;
+          }
+          const courseId &#x3D; sub.course?.id ?? (sub as { idCourse?: number }).idCourse;
+          return (
+            courseId &#x3D;&#x3D;&#x3D; idCourse &amp;&amp;
+            normalizeGradeValue(sub.grade ?? &#x27;&#x27;) &#x3D;&#x3D;&#x3D; gradeNorm &amp;&amp;
+            a.schoolYear &#x3D;&#x3D;&#x3D; schoolYear
+          );
+        });
+        return { success: true, data: filtered, count: filtered.length };
+      }),
+      catchError(() &#x3D;&gt; of({ success: false, data: [] as AssignmentWithIncludes[] })),
+    );
+  }
+
+  /** Crea una asignación docente individual. */
+  createAssignment(payload: AssignmentCreateRequest): Observable&lt;AssignmentCreateResponse&gt; {
+    return this.http.post&lt;AssignmentCreateResponse&gt;(this.assignmentsBaseUrl, payload).pipe(
+      catchError((error) &#x3D;&gt; {
+        console.error(&#x27;AssignmentsService.createAssignment&#x27;, error);
+        throw error;
+      }),
+    );
+  }
+
+  /**
+   * Alta masiva (&#x60;POST /api/assignments/bulk&#x60;). Si el back aún no expone la ruta, devuelve &#x60;success: false&#x60;.
+   */
+  createAssignmentsBulk(
+    items: AssignmentBulkCreateItem[],
+  ): Observable&lt;AssignmentBulkCreateResponse&gt; {
+    if (items.length &#x3D;&#x3D;&#x3D; 0) {
+      return of({
+        success: true,
+        data: { created: 0, duplicates: 0, skipped: 0, errors: [] },
+      });
+    }
+
+    return this.http
+      .post&lt;AssignmentBulkApiResponse&gt;(&#x60;${this.assignmentsBaseUrl}/bulk&#x60;, {
+        assignments: items,
+      })
+      .pipe(
+        map((res) &#x3D;&gt; this.mapBulkApiResponse(res, items)),
+        switchMap((mapped) &#x3D;&gt; {
+          if (mapped.success &amp;&amp; mapped.data &amp;&amp; mapped.data.created + mapped.data.duplicates &gt; 0) {
+            return of(mapped);
+          }
+          return this.createAssignmentsSequential(items);
+        }),
+        catchError(() &#x3D;&gt; this.createAssignmentsSequential(items)),
+      );
+  }
+
+  /** Respuesta cruda del back (&#x60;POST /assignments/bulk&#x60;). */
+  private mapBulkApiResponse(
+    res: AssignmentBulkApiResponse,
+    items: AssignmentBulkCreateItem[],
+  ): AssignmentBulkCreateResponse {
+    if (!res.success || !res.data) {
+      return {
+        success: false,
+        data: { created: 0, duplicates: 0, skipped: 0, errors: [] },
+        message: res.message,
+      };
+    }
+
+    const created &#x3D; Array.isArray(res.data.created) ? res.data.created.length : 0;
+    const duplicates &#x3D; Array.isArray(res.data.duplicates) ? res.data.duplicates.length : 0;
+    const errors &#x3D; (res.data.errors ?? []).map((e) &#x3D;&gt; ({
+      idSubject: e.input?.idSubject ?? items[e.index]?.idSubject ?? 0,
+      message: e.message,
+    }));
+
+    return {
+      success: created &gt; 0 || duplicates &gt; 0,
+      message: res.message,
+      data: { created, duplicates, skipped: 0, errors },
+    };
+  }
+
+  /** Fallback cuando &#x60;POST /bulk&#x60; no existe: altas unitarias en paralelo. */
+  private createAssignmentsSequential(
+    items: AssignmentBulkCreateItem[],
+  ): Observable&lt;AssignmentBulkCreateResponse&gt; {
+    return forkJoin(
+      items.map((item) &#x3D;&gt;
+        this.createAssignment({
+          idTeacher: item.idTeacher,
+          idSubject: item.idSubject,
+          idGroup: item.idGroup,
+          schoolYear: item.schoolYear,
+        }).pipe(
+          map(() &#x3D;&gt; ({ ok: true as const, idSubject: item.idSubject })),
+          catchError((err: { status?: number }) &#x3D;&gt;
+            of({
+              ok: false as const,
+              idSubject: item.idSubject,
+              duplicate: err?.status &#x3D;&#x3D;&#x3D; 409,
+            }),
+          ),
+        ),
+      ),
+    ).pipe(
+      map((results) &#x3D;&gt; {
+        let created &#x3D; 0;
+        let duplicates &#x3D; 0;
+        const errors: Array&lt;{ idSubject: number; message: string }&gt; &#x3D; [];
+
+        for (const r of results) {
+          if (r.ok) {
+            created++;
+          } else if (r.duplicate) {
+            duplicates++;
+          } else {
+            errors.push({ idSubject: r.idSubject, message: &#x27;Error al crear&#x27; });
+          }
+        }
+
+        return {
+          success: created &gt; 0 || duplicates &gt; 0,
+          data: { created, duplicates, skipped: 0, errors },
+        };
+      }),
+    );
+  }
+
+  /** Fallback para obtener asignaturas del curso cuando no existe endpoint por grade. */
+  private subjectsFromCourse(
+    idCourse: number,
+    grade: string,
+  ): Observable&lt;CourseSubjectsByGradeResponse&gt; {
+    const gradeNorm &#x3D; String(grade).trim();
+    return this.courseService.getCourseById(idCourse).pipe(
+      map((res) &#x3D;&gt; {
+        if (!res.success || !res.data?.subjects?.length) {
+          return { success: false, data: [] };
+        }
+        const data &#x3D; res.data.subjects
+          .filter((s) &#x3D;&gt; String(s.grade ?? &#x27;&#x27;).trim() &#x3D;&#x3D;&#x3D; gradeNorm)
+          .map((s) &#x3D;&gt; ({
+            id: s.id,
+            name: s.name,
+            grade: String(s.grade),
+            hours: s.hours,
+            description: s.description,
+            idCourse: s.idCourse,
+          }))
+          .sort((a, b) &#x3D;&gt; a.name.localeCompare(b.name));
+        return { success: data.length &gt; 0, data, count: data.length };
+      }),
+      catchError(() &#x3D;&gt; of({ success: false, data: [] })),
+    );
+  }
+
+  /** Fallback para derivar los grades disponibles desde &#x60;course.subjects&#x60;. */
+  private gradesFromCourseSubjects(idCourse: number): Observable&lt;CourseGradesResponse&gt; {
+    return this.courseService.getCourseById(idCourse).pipe(
+      map((res) &#x3D;&gt; {
+        if (!res.success || !res.data?.subjects?.length) {
+          return { success: false, data: [] as string[] };
+        }
+        const grades &#x3D; [
+          ...new Set(
+            res.data.subjects
+              .map((s) &#x3D;&gt; String(s.grade ?? &#x27;&#x27;).trim())
+              .filter((g) &#x3D;&gt; g.length &gt; 0),
+          ),
+        ].sort((a, b) &#x3D;&gt; a.localeCompare(b, undefined, { numeric: true }));
+        return { success: grades.length &gt; 0, data: grades, count: grades.length };
+      }),
+      catchError(() &#x3D;&gt; of({ success: false, data: [] as string[] })),
+    );
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AssignmentsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

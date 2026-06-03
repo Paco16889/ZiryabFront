@@ -1,0 +1,102 @@
+﻿@if (enrollmentTargetLabel) {
+  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+    {{ 'studentEnrollment.setRegistration.studentLabel' | translate }}:
+    <span class="font-medium text-gray-900 dark:text-purple-100">{{ enrollmentTargetLabel }}</span>
+    @if (studentSelectedService.pendingStudentDraft()) {
+      <span class="text-amber-700">
+        {{ 'studentEnrollment.setRegistration.studentPending' | translate }}
+      </span>
+    }
+  </p>
+}
+
+<div class="mb-4">
+  <label class="block font-medium mb-2 text-gray-800 dark:text-gray-200">
+    {{ 'studentEnrollment.courseSelection.label' | translate }}
+  </label>
+
+  <select
+    [(ngModel)]="selectedCicloId"
+    (ngModelChange)="eligeCiclo()"
+    class="border border-gray-300 dark:border-gray-600 rounded p-2 w-full bg-white dark:bg-gray-800 dark:text-gray-100"
+    [disabled]="isSaving()"
+  >
+    @for (ciclo of courses(); track ciclo.id) {
+      <option [ngValue]="ciclo.id">{{ ciclo.name }}</option>
+    }
+  </select>
+</div>
+
+@if (selectedCicloId != null) {
+  <div class="mb-4">
+    <label class="block font-medium mb-2 text-gray-800 dark:text-gray-200">
+      {{ 'studentEnrollment.groupSelection.label' | translate }}
+    </label>
+
+    <select
+      [(ngModel)]="selectedGroupId"
+      (ngModelChange)="eligeGrupo()"
+      class="border border-gray-300 dark:border-gray-600 rounded p-2 w-full bg-white dark:bg-gray-800 dark:text-gray-100"
+      [disabled]="isSaving()"
+    >
+      <option [ngValue]="null" disabled>
+        {{ 'studentEnrollment.groupSelection.placeholder' | translate }}
+      </option>
+      @for (group of groups(); track group.id) {
+        <option [ngValue]="group.id">{{ group.name }}</option>
+      }
+    </select>
+  </div>
+}
+
+@if (asignaturasPorCiclo?.length) {
+  <div class="mb-4">
+    <label class="block font-medium mb-2 text-gray-800 dark:text-gray-200">
+      {{ 'studentEnrollment.subjectSelection.label' | translate }}
+    </label>
+
+    <div class="flex flex-col gap-2">
+      @for (grade of availableFullOfferGrades(); track grade) {
+        <label class="flex items-center gap-2 cursor-pointer font-medium text-gray-800 dark:text-gray-200">
+          <input
+            type="checkbox"
+            [checked]="isFullOfferSelected(grade)"
+            (change)="toggleFullOffer(grade, $event)"
+            [disabled]="isSaving()"
+            class="h-4 w-4 shrink-0 rounded border-gray-300 text-purple-600 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-purple-400 dark:focus:ring-purple-400"
+          />
+          {{ 'studentEnrollment.subjectSelection.fullOfferGrade' | translate: { grade: grade } }}
+        </label>
+      }
+
+      @for (subject of asignaturasPorCiclo; track subject.id) {
+        <label class="flex items-center gap-2 cursor-pointer text-gray-800 dark:text-gray-200">
+          <input
+            type="checkbox"
+            [checked]="isSubjectSelected(subject)"
+            (change)="onToggleSubject(subject, $event)"
+            [disabled]="isSaving()"
+            class="h-4 w-4 shrink-0 rounded border-gray-300 text-purple-600 focus:ring-purple-500 dark:border-gray-600 dark:bg-gray-800 dark:text-purple-400 dark:focus:ring-purple-400"
+          />
+          {{ subject.name }}
+        </label>
+      }
+    </div>
+
+    @if (saveError(); as err) {
+      <p class="text-sm text-red-700 mt-4" role="alert">{{ err }}</p>
+    }
+
+    <div class="mt-6 flex justify-end items-center gap-3">
+      @if (isSaving()) {
+        <span class="text-sm text-gray-500 dark:text-gray-400" aria-live="polite">
+          {{ 'studentEnrollment.setRegistration.saving' | translate }}
+        </span>
+      }
+      <app-boton-confirmar-student
+        [disabled]="selectedSubjects.length === 0 || isSaving() || selectedGroupId == null"
+        (confirm)="onConfirmRegistration()"
+      ></app-boton-confirmar-student>
+    </div>
+  </div>
+}

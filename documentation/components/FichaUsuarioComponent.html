@@ -1,0 +1,1218 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>login-en-angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">login-en-angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FichaUsuarioComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente que muestra la ficha de asistencia del estudiante.
+Carga las faltas desde el backend y permite enviar justificantes mediante el modal.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-ficha-usuario</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/NgClass" target="_blank" >NgClass</a></code>
+                                <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
+                                <code><a href="../components/BotonAtrasComponent.html" target="_self" >BotonAtrasComponent</a></code>
+                                <code><a href="../components/JustificarFaltaModalComponent.html" target="_self" >JustificarFaltaModalComponent</a></code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ficha-usuario.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ficha-usuario.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#assistanceService" >assistanceService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#faltas" >faltas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#faltaSeleccionada" >faltaSeleccionada</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isJustificarModalOpen" >isJustificarModalOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#translate" >translate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cargarFaltas" >cargarFaltas</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onFaltaClick" >onFaltaClick</a>
+                            </li>
+                            <li>
+                                <a href="#onJustifySuccess" >onJustifySuccess</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarFaltas"></a>
+                    <span class="name">
+                        <span ><b>cargarFaltas</b></span>
+                        <a href="#cargarFaltas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarFaltas()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene las faltas del estudiante identificado mediante el servicio de asistencia.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Ciclo de vida: Inicializa el componente cargando el historial de faltas.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFaltaClick"></a>
+                    <span class="name">
+                        <span ><b>onFaltaClick</b></span>
+                        <a href="#onFaltaClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFaltaClick(falta: <a href="../interfaces/AssistanceItem.html" target="_self">AssistanceItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Gestiona el clic en una falta específica del listado.
+Si la falta no está ya justificada, abre el modal de justificación.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>falta</td>
+                                            <td>
+                                                            <code><a href="../interfaces/AssistanceItem.html" target="_self" >AssistanceItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Objeto de asistencia pulsado.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onJustifySuccess"></a>
+                    <span class="name">
+                        <span ><b>onJustifySuccess</b></span>
+                        <a href="#onJustifySuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onJustifySuccess(_assistanceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Callback ejecutado cuando un justificante se envía con éxito desde el modal.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_assistanceId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assistanceService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>assistanceService</b></span>
+                        <a href="#assistanceService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AssistanceService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio para gestionar las operaciones de asistencia</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio para gestionar la autenticación y obtener el usuario actual</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal para almacenar mensajes de error durante la carga</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faltas"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>faltas</b></span>
+                        <a href="#faltas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;AssistanceItem[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que contiene el listado de faltas de asistencia del alumno</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faltaSeleccionada"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>faltaSeleccionada</b></span>
+                        <a href="#faltaSeleccionada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;AssistanceItem | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que almacena la falta seleccionada para justificar</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isJustificarModalOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isJustificarModalOpen</b></span>
+                        <a href="#isJustificarModalOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que controla la visibilidad del modal de justificación</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(true)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Signal que indica si los datos están cargándose</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="translate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>translate</b></span>
+                        <a href="#translate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TranslateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/alumno/ficha-usuario/ficha-usuario.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Traducciones de errores al cargar faltas o identificar al alumno.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, inject, signal } from &#x27;@angular/core&#x27;;
+import { NgClass, DatePipe } from &#x27;@angular/common&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { BotonAtrasComponent } from &#x27;../../shared/boton-atras/boton-atras.component&#x27;;
+import { JustificarFaltaModalComponent } from &#x27;./justificar-falta-modal/justificar-falta-modal.component&#x27;;
+import { AssistanceService } from &#x27;../../../core/services/alumno/assistance.service&#x27;;
+import { AuthService } from &#x27;../../../core/services/auth.service&#x27;;
+import { AssistanceItem } from &#x27;../../../core/models/assistance&#x27;;
+
+/**
+ * Componente que muestra la ficha de asistencia del estudiante.
+ * Carga las faltas desde el backend y permite enviar justificantes mediante el modal.
+ */
+@Component({
+  selector: &#x27;app-ficha-usuario&#x27;,
+  standalone: true,
+  imports: [NgClass, DatePipe, BotonAtrasComponent, JustificarFaltaModalComponent, TranslateModule],
+  templateUrl: &#x27;./ficha-usuario.component.html&#x27;,
+  styleUrl: &#x27;./ficha-usuario.component.scss&#x27;
+})
+export class FichaUsuarioComponent implements OnInit {
+
+  /** Servicio para gestionar las operaciones de asistencia */
+  private assistanceService &#x3D; inject(AssistanceService);
+  /** Servicio para gestionar la autenticación y obtener el usuario actual */
+  private authService &#x3D; inject(AuthService);
+  /** Traducciones de errores al cargar faltas o identificar al alumno. */
+  private translate &#x3D; inject(TranslateService);
+
+  /** Signal que indica si los datos están cargándose */
+  public loading &#x3D; signal&lt;boolean&gt;(true);
+  /** Signal para almacenar mensajes de error durante la carga */
+  public errorMessage &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
+
+  /** Signal que controla la visibilidad del modal de justificación */
+  public isJustificarModalOpen &#x3D; signal&lt;boolean&gt;(false);
+  /** Signal que almacena la falta seleccionada para justificar */
+  public faltaSeleccionada &#x3D; signal&lt;AssistanceItem | null&gt;(null);
+
+  /** Signal que contiene el listado de faltas de asistencia del alumno */
+  public faltas &#x3D; signal&lt;AssistanceItem[]&gt;([]);
+
+  /**
+   * Ciclo de vida: Inicializa el componente cargando el historial de faltas.
+   */
+  ngOnInit(): void {
+    this.cargarFaltas();
+  }
+
+  /**
+   * Obtiene las faltas del estudiante identificado mediante el servicio de asistencia.
+   */
+  cargarFaltas(): void {
+    const user &#x3D; this.authService.getCurrentUser();
+    if (user &amp;&amp; user.id) {
+      this.loading.set(true);
+      this.assistanceService.getAssistancesByStudentId(user.id).subscribe({
+        next: (res) &#x3D;&gt; {
+          if (res.success &amp;&amp; res.data) {
+            this.faltas.set(res.data);
+          }
+          this.loading.set(false);
+        },
+        error: (err) &#x3D;&gt; {
+          console.error(&#x27;Error al cargar faltas&#x27;, err);
+          this.errorMessage.set(this.translate.instant(&#x27;common.errors.loadAbsences&#x27;));
+          this.loading.set(false);
+        }
+      });
+    } else {
+      this.errorMessage.set(this.translate.instant(&#x27;common.errors.userNotIdentified&#x27;));
+      this.loading.set(false);
+    }
+  }
+
+  /**
+   * Gestiona el clic en una falta específica del listado.
+   * Si la falta no está ya justificada, abre el modal de justificación.
+   * @param falta Objeto de asistencia pulsado.
+   */
+  onFaltaClick(falta: AssistanceItem): void {
+    if (falta.status !&#x3D;&#x3D; &#x27;EXCUSED&#x27;) {
+      this.faltaSeleccionada.set(falta);
+      this.isJustificarModalOpen.set(true);
+    }
+  }
+
+  /**
+   * Callback ejecutado cuando un justificante se envía con éxito desde el modal.
+   * @param assistanceId Identificador de la falta justificada.
+   */
+  onJustifySuccess(_assistanceId: number): void {
+    this.isJustificarModalOpen.set(false);
+    this.faltaSeleccionada.set(null);
+    this.cargarFaltas();
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;w-full bg-gray-50 flex flex-col items-center p-4 sm:p-6 lg:p-8 pt-8 sm:pt-12 pb-16&quot;&gt;
+
+&lt;div class&#x3D;&quot;mb-8 text-center w-full max-w-4xl&quot;&gt;
+        &lt;h1 class&#x3D;&quot;text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3&quot;&gt;
+            {{ &#x27;studentPages.record.title&#x27; | translate }}
+        &lt;/h1&gt;
+        &lt;p class&#x3D;&quot;text-gray-500 text-lg font-medium&quot;&gt;{{ &#x27;studentPages.record.subtitle&#x27; | translate }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;w-full max-w-4xl&quot;&gt;
+
+        @if (loading()) {
+            &lt;div class&#x3D;&quot;flex justify-center py-12&quot;&gt;
+                &lt;div class&#x3D;&quot;animate-spin rounded-full h-12 w-12 border-b-4 border-indigo-600&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        }
+
+        @if (errorMessage()) {
+            &lt;div class&#x3D;&quot;text-center py-6 bg-red-50 rounded-2xl border border-red-200 shadow-sm&quot;&gt;
+                &lt;span class&#x3D;&quot;text-red-700 font-bold text-lg flex items-center justify-center gap-2&quot;&gt;
+                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-6 w-6 flex-shrink-0&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                        &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot; /&gt;
+                    &lt;/svg&gt;
+                    {{ errorMessage() }}
+                &lt;/span&gt;
+            &lt;/div&gt;
+        }
+
+        @if (!loading() &amp;&amp; !errorMessage()) {
+            &lt;div class&#x3D;&quot;space-y-4&quot;&gt;
+
+                @if (faltas().length &#x3D;&#x3D;&#x3D; 0) {
+                    &lt;div class&#x3D;&quot;p-10 text-center bg-white rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center&quot;&gt;
+                        &lt;div class&#x3D;&quot;w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-4&quot;&gt;
+                            &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-10 w-10 text-green-500&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z&quot; /&gt;
+                            &lt;/svg&gt;
+                        &lt;/div&gt;
+&lt;span class&#x3D;&quot;text-gray-500 text-lg mt-2&quot;&gt;{{ &#x27;studentPages.record.empty&#x27; | translate }}&lt;/span&gt;
+                    &lt;/div&gt;
+                }
+
+                @for (falta of faltas(); track falta.id) {
+                    &lt;div (click)&#x3D;&quot;onFaltaClick(falta)&quot;
+                        [ngClass]&#x3D;&quot;{&#x27;cursor-pointer hover:-translate-y-1 hover:shadow-xl&#x27;: falta.status !&#x3D;&#x3D; &#x27;EXCUSED&#x27;}&quot;
+                        class&#x3D;&quot;group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6 bg-white rounded-3xl shadow-md transition-all duration-300 ease-in-out border border-transparent hover:border-indigo-100 overflow-hidden&quot;&gt;
+
+                        &lt;!-- Izquierda: icono + asignatura + fecha --&gt;
+                        &lt;div class&#x3D;&quot;flex items-center gap-4&quot;&gt;
+                            &lt;div class&#x3D;&quot;w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm border border-indigo-100 group-hover:scale-110 transition-transform duration-300&quot;&gt;
+                                &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-6 w-6 sm:h-7 sm:w-7&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                    &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot;
+                                        d&#x3D;&quot;M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253&quot; /&gt;
+                                &lt;/svg&gt;
+                            &lt;/div&gt;
+
+&lt;div class&#x3D;&quot;flex flex-col min-w-0&quot;&gt;
+                                &lt;h2 class&#x3D;&quot;text-base sm:text-xl font-bold text-gray-800 group-hover:text-indigo-700 transition-colors truncate&quot;&gt;
+                                    {{ falta.session.schedule.teacherAssignment.subject.name || (&#x27;studentPages.record.unknownSubject&#x27; | translate) }}
+                                &lt;/h2&gt;
+                                &lt;div class&#x3D;&quot;flex flex-wrap items-center gap-2 mt-1 text-sm font-medium text-gray-500&quot;&gt;
+                                    &lt;span class&#x3D;&quot;flex items-center gap-1 bg-gray-50 px-2 py-0.5 rounded-md border border-gray-100 text-xs sm:text-sm&quot;&gt;
+                                        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-3.5 w-3.5 text-gray-400 flex-shrink-0&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                            &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z&quot; /&gt;
+                                        &lt;/svg&gt;
+                                        {{ falta.session.date | date:&#x27;dd MMM yyyy&#x27;:&#x27;UTC&#x27; }}
+                                    &lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;flex items-center gap-1 bg-gray-50 px-2 py-0.5 rounded-md border border-gray-100 text-xs sm:text-sm&quot;&gt;
+                                        &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-3.5 w-3.5 text-gray-400 flex-shrink-0&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                            &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z&quot; /&gt;
+                                        &lt;/svg&gt;
+                                        {{ falta.session.schedule.startTime }}
+                                    &lt;/span&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+&lt;!-- Derecha: estado + justificación + flecha --&gt;
+                        &lt;div class&#x3D;&quot;flex items-center gap-3 sm:gap-0 z-10 relative pl-16 sm:pl-0&quot;&gt;
+
+                            &lt;!-- Estado asistencia --&gt;
+                            &lt;div class&#x3D;&quot;flex flex-col items-start sm:items-end gap-1 sm:mr-6&quot;&gt;
+                                &lt;span class&#x3D;&quot;text-[10px] uppercase text-gray-400 font-semibold tracking-wider&quot;&gt;{{ &#x27;studentPages.record.attendanceLabel&#x27; | translate }}&lt;/span&gt;
+                                &lt;span class&#x3D;&quot;px-3 sm:px-5 py-1 sm:py-2 rounded-full font-bold text-xs sm:text-sm tracking-widest shadow-sm border&quot;
+                                    [ngClass]&#x3D;&quot;{
+                                        &#x27;bg-red-100 text-red-700 border-red-300&#x27;: falta.status &#x3D;&#x3D;&#x3D; &#x27;ABSENT&#x27;,
+                                        &#x27;bg-yellow-100 text-yellow-700 border-yellow-300&#x27;: falta.status &#x3D;&#x3D;&#x3D; &#x27;LATE&#x27;,
+                                        &#x27;bg-green-100 text-green-700 border-green-300&#x27;: falta.status &#x3D;&#x3D;&#x3D; &#x27;EXCUSED&#x27;
+                                    }&quot;&gt;
+{{ falta.status &#x3D;&#x3D;&#x3D; &#x27;ABSENT&#x27; ? (&#x27;studentPages.record.status.absent&#x27; | translate) : (falta.status &#x3D;&#x3D;&#x3D; &#x27;LATE&#x27; ? (&#x27;studentPages.record.status.late&#x27; | translate) : (falta.status &#x3D;&#x3D;&#x3D; &#x27;EXCUSED&#x27; ? (&#x27;studentPages.record.status.excused&#x27; | translate) : falta.status)) }}
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+
+                            &lt;!-- Justificación --&gt;
+                            &lt;div class&#x3D;&quot;flex flex-col items-start sm:items-center gap-1 sm:border-l sm:pl-6 border-gray-100&quot;&gt;
+                                &lt;span class&#x3D;&quot;text-[10px] uppercase text-gray-400 font-semibold tracking-wider hidden sm:block&quot;&gt;{{ &#x27;studentPages.record.justificationLabel&#x27; | translate }}&lt;/span&gt;
+
+                                @if (falta.justificationStatus &#x3D;&#x3D;&#x3D; &#x27;PENDING&#x27;) {
+                                    &lt;span class&#x3D;&quot;px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest shadow-sm border bg-yellow-50 text-yellow-600 border-yellow-200&quot;&gt;
+                                        {{ &#x27;studentPages.record.justification.pending&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+
+                                @if (falta.justificationStatus &#x3D;&#x3D;&#x3D; &#x27;REJECTED&#x27;) {
+&lt;span class&#x3D;&quot;px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest shadow-sm border bg-red-50 text-red-600 border-red-200&quot;&gt;
+                                        {{ &#x27;studentPages.record.justification.rejected&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+
+                                @if (falta.status &#x3D;&#x3D;&#x3D; &#x27;EXCUSED&#x27;) {
+&lt;span class&#x3D;&quot;px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest shadow-sm border bg-green-50 text-green-600 border-green-200&quot;&gt;
+                                        {{ &#x27;studentPages.record.justification.accepted&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+
+                                @if (!falta.justificationStatus &amp;&amp; !falta.justificationUri &amp;&amp; falta.status !&#x3D;&#x3D; &#x27;EXCUSED&#x27;) {
+&lt;span class&#x3D;&quot;px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest text-gray-400 bg-gray-50 border border-gray-100&quot;&gt;
+                                        {{ &#x27;studentPages.record.justification.notSent&#x27; | translate }}
+                                    &lt;/span&gt;
+                                }
+                            &lt;/div&gt;
+
+                            @if (falta.status !&#x3D;&#x3D; &#x27;EXCUSED&#x27;) {
+                                &lt;div class&#x3D;&quot;ml-2 sm:ml-4 text-gray-300 group-hover:text-indigo-500 transition-colors flex-shrink-0&quot;&gt;
+                                    &lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; class&#x3D;&quot;h-5 w-5 sm:h-6 sm:w-6&quot; fill&#x3D;&quot;none&quot; viewBox&#x3D;&quot;0 0 24 24&quot; stroke&#x3D;&quot;currentColor&quot;&gt;
+                                        &lt;path stroke-linecap&#x3D;&quot;round&quot; stroke-linejoin&#x3D;&quot;round&quot; stroke-width&#x3D;&quot;2&quot; d&#x3D;&quot;M9 5l7 7-7 7&quot; /&gt;
+                                    &lt;/svg&gt;
+                                &lt;/div&gt;
+                            }
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;absolute inset-0 bg-gradient-to-r from-transparent via-indigo-50/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500&quot;&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                }
+
+            &lt;/div&gt;
+        }
+    &lt;/div&gt;
+
+    &lt;app-boton-atras&gt;&lt;/app-boton-atras&gt;
+&lt;/div&gt;
+
+@if (isJustificarModalOpen()) {
+    &lt;app-justificar-falta-modal
+        [falta]&#x3D;&quot;faltaSeleccionada()&quot;
+        (closeModal)&#x3D;&quot;isJustificarModalOpen.set(false)&quot;
+        (justifySuccess)&#x3D;&quot;onJustifySuccess($event)&quot;&gt;
+    &lt;/app-justificar-falta-modal&gt;
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="w-full bg-gray-50 flex flex-col items-center p-4 sm:p-6 lg:p-8 pt-8 sm:pt-12 pb-16"><div class="mb-8 text-center w-full max-w-4xl">        <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 tracking-tight mb-3">            {{ \'studentPages.record.title\' | translate }}        </h1>        <p class="text-gray-500 text-lg font-medium">{{ \'studentPages.record.subtitle\' | translate }}</p>    </div>    <div class="w-full max-w-4xl">        @if (loading()) {            <div class="flex justify-center py-12">                <div class="animate-spin rounded-full h-12 w-12 border-b-4 border-indigo-600"></div>            </div>        }        @if (errorMessage()) {            <div class="text-center py-6 bg-red-50 rounded-2xl border border-red-200 shadow-sm">                <span class="text-red-700 font-bold text-lg flex items-center justify-center gap-2">                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />                    </svg>                    {{ errorMessage() }}                </span>            </div>        }        @if (!loading() && !errorMessage()) {            <div class="space-y-4">                @if (faltas().length === 0) {                    <div class="p-10 text-center bg-white rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center">                        <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-4">                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />                            </svg>                        </div><span class="text-gray-500 text-lg mt-2">{{ \'studentPages.record.empty\' | translate }}</span>                    </div>                }                @for (falta of faltas(); track falta.id) {                    <div (click)="onFaltaClick(falta)"                        [ngClass]="{\'cursor-pointer hover:-translate-y-1 hover:shadow-xl\': falta.status !== \'EXCUSED\'}"                        class="group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6 bg-white rounded-3xl shadow-md transition-all duration-300 ease-in-out border border-transparent hover:border-indigo-100 overflow-hidden">                        <!-- Izquierda: icono + asignatura + fecha -->                        <div class="flex items-center gap-4">                            <div class="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm border border-indigo-100 group-hover:scale-110 transition-transform duration-300">                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />                                </svg>                            </div><div class="flex flex-col min-w-0">                                <h2 class="text-base sm:text-xl font-bold text-gray-800 group-hover:text-indigo-700 transition-colors truncate">                                    {{ falta.session.schedule.teacherAssignment.subject.name || (\'studentPages.record.unknownSubject\' | translate) }}                                </h2>                                <div class="flex flex-wrap items-center gap-2 mt-1 text-sm font-medium text-gray-500">                                    <span class="flex items-center gap-1 bg-gray-50 px-2 py-0.5 rounded-md border border-gray-100 text-xs sm:text-sm">                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />                                        </svg>                                        {{ falta.session.date | date:\'dd MMM yyyy\':\'UTC\' }}                                    </span>                                    <span class="flex items-center gap-1 bg-gray-50 px-2 py-0.5 rounded-md border border-gray-100 text-xs sm:text-sm">                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />                                        </svg>                                        {{ falta.session.schedule.startTime }}                                    </span>                                </div>                            </div>                        </div><!-- Derecha: estado + justificación + flecha -->                        <div class="flex items-center gap-3 sm:gap-0 z-10 relative pl-16 sm:pl-0">                            <!-- Estado asistencia -->                            <div class="flex flex-col items-start sm:items-end gap-1 sm:mr-6">                                <span class="text-[10px] uppercase text-gray-400 font-semibold tracking-wider">{{ \'studentPages.record.attendanceLabel\' | translate }}</span>                                <span class="px-3 sm:px-5 py-1 sm:py-2 rounded-full font-bold text-xs sm:text-sm tracking-widest shadow-sm border"                                    [ngClass]="{                                        \'bg-red-100 text-red-700 border-red-300\': falta.status === \'ABSENT\',                                        \'bg-yellow-100 text-yellow-700 border-yellow-300\': falta.status === \'LATE\',                                        \'bg-green-100 text-green-700 border-green-300\': falta.status === \'EXCUSED\'                                    }">{{ falta.status === \'ABSENT\' ? (\'studentPages.record.status.absent\' | translate) : (falta.status === \'LATE\' ? (\'studentPages.record.status.late\' | translate) : (falta.status === \'EXCUSED\' ? (\'studentPages.record.status.excused\' | translate) : falta.status)) }}                                </span>                            </div>                            <!-- Justificación -->                            <div class="flex flex-col items-start sm:items-center gap-1 sm:border-l sm:pl-6 border-gray-100">                                <span class="text-[10px] uppercase text-gray-400 font-semibold tracking-wider hidden sm:block">{{ \'studentPages.record.justificationLabel\' | translate }}</span>                                @if (falta.justificationStatus === \'PENDING\') {                                    <span class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest shadow-sm border bg-yellow-50 text-yellow-600 border-yellow-200">                                        {{ \'studentPages.record.justification.pending\' | translate }}                                    </span>                                }                                @if (falta.justificationStatus === \'REJECTED\') {<span class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest shadow-sm border bg-red-50 text-red-600 border-red-200">                                        {{ \'studentPages.record.justification.rejected\' | translate }}                                    </span>                                }                                @if (falta.status === \'EXCUSED\') {<span class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest shadow-sm border bg-green-50 text-green-600 border-green-200">                                        {{ \'studentPages.record.justification.accepted\' | translate }}                                    </span>                                }                                @if (!falta.justificationStatus && !falta.justificationUri && falta.status !== \'EXCUSED\') {<span class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-md font-bold text-xs tracking-widest text-gray-400 bg-gray-50 border border-gray-100">                                        {{ \'studentPages.record.justification.notSent\' | translate }}                                    </span>                                }                            </div>                            @if (falta.status !== \'EXCUSED\') {                                <div class="ml-2 sm:ml-4 text-gray-300 group-hover:text-indigo-500 transition-colors flex-shrink-0">                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />                                    </svg>                                </div>                            }                        </div>                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-50/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>                    </div>                }            </div>        }    </div>    <app-boton-atras></app-boton-atras></div>@if (isJustificarModalOpen()) {    <app-justificar-falta-modal        [falta]="faltaSeleccionada()"        (closeModal)="isJustificarModalOpen.set(false)"        (justifySuccess)="onJustifySuccess($event)">    </app-justificar-falta-modal>}</div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsignaturaListComponent', 'selector': 'app-asignatura-list'},{'name': 'AsignaturaListItemComponent', 'selector': 'app-asignatura-list-item'},{'name': 'AssistanceCreateFormComponent', 'selector': 'app-assistance-create-form'},{'name': 'AssistanceListComponent', 'selector': 'app-assistance-list'},{'name': 'AssistanceListItemComponent', 'selector': 'app-assistance-list-item'},{'name': 'BotonAtrasComponent', 'selector': 'app-boton-atras'},{'name': 'BotonConfirmarStudentComponent', 'selector': 'app-boton-confirmar-student'},{'name': 'BotonCreateComponent', 'selector': 'app-boton-create'},{'name': 'BotonDeleteComponent', 'selector': 'app-boton-delete'},{'name': 'BotonEditComponent', 'selector': 'app-boton-edit'},{'name': 'BotonfaltaComponent', 'selector': 'app-botonfalta'},{'name': 'BotonHamburguesaComponent', 'selector': 'app-boton-hamburguesa'},{'name': 'BotonViewdetailComponent', 'selector': 'app-boton-viewdetail'},{'name': 'CalendarioComponent', 'selector': 'app-calendario'},{'name': 'CalificarTareaComponent', 'selector': 'app-calificar-tarea'},{'name': 'CardGridComponent', 'selector': 'app-card-grid'},{'name': 'ClasesComponent', 'selector': 'app-clases'},{'name': 'ClasesProfesorComponent', 'selector': 'app-clases-profesor'},{'name': 'ClassSessionCancelDialogComponent', 'selector': 'app-class-session-cancel-dialog'},{'name': 'ClassSessionCreateFormComponent', 'selector': 'app-class-session-create-form'},{'name': 'ClassSessionListComponent', 'selector': 'app-class-session-list'},{'name': 'ClassSessionListItemComponent', 'selector': 'app-class-session-list-item'},{'name': 'CourseAssignmentsGridComponent', 'selector': 'app-course-assignments-grid'},{'name': 'CourseAssignmentsWizardComponent', 'selector': 'app-course-assignments-wizard'},{'name': 'CourseCreateFormComponent', 'selector': 'app-course-create-form'},{'name': 'CourseListComponent', 'selector': 'app-course-list'},{'name': 'CourseListItemComponent', 'selector': 'app-course-list-item'},{'name': 'DashboardAdminComponent', 'selector': 'app-dashboard-admin'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DesplegableAdminComponent', 'selector': 'app-desplegable-admin'},{'name': 'EntregasTareaComponent', 'selector': 'app-entregas-tarea'},{'name': 'FichaProfesorComponent', 'selector': 'app-ficha-profesor'},{'name': 'FichaUsuarioComponent', 'selector': 'app-ficha-usuario'},{'name': 'FilterSectionComponent', 'selector': 'app-filter-section'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GenericDeleteModalComponent', 'selector': 'app-generic-delete-modal'},{'name': 'GenericEditModalComponent', 'selector': 'app-generic-edit-modal'},{'name': 'GenericListItemComponent', 'selector': 'app-generic-list-item'},{'name': 'GenericViewDetailComponent', 'selector': 'app-generic-view-detail'},{'name': 'GestionComponent', 'selector': 'app-gestion'},{'name': 'GestionNotasComponent', 'selector': 'app-gestion-notas'},{'name': 'GroupCreateFormComponent', 'selector': 'app-group-create-form'},{'name': 'GroupListComponent', 'selector': 'app-group-list'},{'name': 'GroupListItemComponent', 'selector': 'app-group-list-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarioAlumnoComponent', 'selector': 'app-horario-alumno'},{'name': 'HorarioProfesorComponent', 'selector': 'app-horario-profesor'},{'name': 'IssueCreateFormComponent', 'selector': 'app-issue-create-form'},{'name': 'IssueListComponent', 'selector': 'app-issue-list'},{'name': 'IssueListItemComponent', 'selector': 'app-issue-list-item'},{'name': 'JustificarFaltaModalComponent', 'selector': 'app-justificar-falta-modal'},{'name': 'ListaasistenciaComponent', 'selector': 'app-listaasistencia'},{'name': 'ListComponent', 'selector': 'app-list'},{'name': 'ListItemComponent', 'selector': 'app-list-item'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuClaseComponent', 'selector': 'app-menu-clase'},{'name': 'MisNotasComponent', 'selector': 'app-mis-evaluaciones'},{'name': 'NotificationBadgeComponent', 'selector': 'app-notification-badge'},{'name': 'NotificationCreateFormComponent', 'selector': 'app-notification-create-form'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListComponent', 'selector': 'app-notification-list'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'NotificationListItemComponent', 'selector': 'app-notification-list-item'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'SelectorIdiomaComponent', 'selector': 'app-selector-idioma'},{'name': 'SetRegistrationComponent', 'selector': 'app-set-registration'},{'name': 'StudentAbsencesModalComponent', 'selector': 'app-student-absences-modal'},{'name': 'StudentCreateFormComponent', 'selector': 'app-student-create-form'},{'name': 'StudentEnrollmentComponent', 'selector': 'app-student-enrollment'},{'name': 'StudentModeSelectorComponent', 'selector': 'app-student-mode-selector'},{'name': 'StudentSelectorComponent', 'selector': 'app-student-selector'},{'name': 'StudentTaskCreateFormComponent', 'selector': 'app-student-task-create-form'},{'name': 'StudentTaskDetailComponent', 'selector': 'app-student-task-detail'},{'name': 'StudentTaskGroupComponent', 'selector': 'app-student-task-group'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListComponent', 'selector': 'app-student-task-list'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'StudentTaskListItemComponent', 'selector': 'app-student-task-list-item'},{'name': 'SubjectComponent', 'selector': 'app-subject'},{'name': 'SubjectCreateFormComponent', 'selector': 'app-subject-create-form'},{'name': 'TarjetaasistenciaComponent', 'selector': 'app-tarjetaasistencia'},{'name': 'TaskCreateFormComponent', 'selector': 'app-task-create-form'},{'name': 'TaskDetailComponent', 'selector': 'app-task-detail'},{'name': 'TaskFormComponent', 'selector': 'app-task-form'},{'name': 'TaskGroupItemComponent', 'selector': 'app-task-group-item'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListComponent', 'selector': 'app-task-list'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TaskListItemComponent', 'selector': 'app-task-list-item'},{'name': 'TeacherCreateFormComponent', 'selector': 'app-teacher-create-form'},{'name': 'TeacherListComponent', 'selector': 'app-teacher-list'},{'name': 'TeacherListItemComponent', 'selector': 'app-teacher-list-item'},{'name': 'TemarioAlumnoComponent', 'selector': 'app-temario-alumno'},{'name': 'TemarioProfesorComponent', 'selector': 'app-temario-profesor'},{'name': 'TutorAssignmentComponent', 'selector': 'app-tutor-assignment'},{'name': 'UnauthorizedComponent', 'selector': 'app-unauthorized'},{'name': 'WeekScheduleAssignmentPickerComponent', 'selector': 'app-week-schedule-assignment-picker'},{'name': 'WeekScheduleBuilderComponent', 'selector': 'app-week-schedule-builder'},{'name': 'WeekScheduleCreateClassSelectComponent', 'selector': 'app-week-schedule-create-class-select'},{'name': 'WeekScheduleCreateSlotsComponent', 'selector': 'app-week-schedule-create-slots'},{'name': 'WeekScheduleCreateTemplateComponent', 'selector': 'app-week-schedule-create-template'},{'name': 'WeekScheduleCreateWeekdaysComponent', 'selector': 'app-week-schedule-create-weekdays'},{'name': 'WeekScheduleDayCardComponent', 'selector': 'app-week-schedule-day-card'},{'name': 'WeekScheduleGridBuilderComponent', 'selector': 'app-week-schedule-grid-builder'},{'name': 'WeekScheduleHourCardComponent', 'selector': 'app-week-schedule-hour-card'},{'name': 'WeekScheduleListComponent', 'selector': 'app-week-schedule-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FichaUsuarioComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FichaUsuarioComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

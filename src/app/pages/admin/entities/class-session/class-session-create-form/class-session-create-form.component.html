@@ -1,0 +1,45 @@
+﻿<div class="max-w-2xl mx-auto">
+  <div class="flex items-center mb-6">
+    <button type="button" class="mr-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" (click)="onCancel()">
+      ← {{ 'common.buttons.back' | translate }}
+    </button>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100">{{ 'lists.classSessions.createTitle' | translate }}</h1>
+  </div>
+
+  <div class="bg-white dark:bg-gray-900 dark:border dark:border-gray-800 p-6 rounded-lg shadow">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{{ 'lists.classSessions.fields.schedule' | translate }}</label>
+        <select formControlName="idSchedule" class="w-full px-4 py-2 border rounded-lg" [disabled]="loadingSchedules()">
+          <option [ngValue]="null">{{ 'lists.classSessions.fields.schedulePlaceholder' | translate }}</option>
+          @for (opt of scheduleOptions(); track opt.value) {
+            <option [ngValue]="opt.value">{{ opt.label }}</option>
+          }
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{{ 'lists.classSessions.fields.date' | translate }}</label>
+        <input formControlName="date" type="date" class="w-full px-4 py-2 border rounded-lg" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{{ 'lists.classSessions.fields.status' | translate }}</label>
+        <input formControlName="status" type="text" class="w-full px-4 py-2 border rounded-lg" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{{ 'lists.classSessions.fields.appointments' | translate }}</label>
+        <textarea formControlName="appointments" rows="2" class="w-full px-4 py-2 border rounded-lg"></textarea>
+      </div>
+      @if (errorMessage) {
+        <div class="mb-4 p-3 bg-red-100 dark:bg-red-950/30 border border-red-400 dark:border-red-800 rounded text-red-700 dark:text-red-300">{{ errorMessage }}</div>
+      }
+      <div class="flex justify-end gap-3">
+        <button type="button" (click)="onCancel()" [disabled]="isCreating" class="px-6 py-2 bg-gray-300 rounded-lg">
+          {{ 'common.buttons.cancel' | translate }}
+        </button>
+        <button type="submit" [disabled]="createForm.invalid || isCreating" class="px-6 py-2 bg-purple-600 dark:bg-purple-700 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 disabled:bg-gray-300 dark:disabled:bg-gray-600">
+          {{ isCreating ? ('lists.classSessions.creating' | translate) : ('lists.classSessions.createButton' | translate) }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

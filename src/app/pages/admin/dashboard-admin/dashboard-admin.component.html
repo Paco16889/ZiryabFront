@@ -1,0 +1,40 @@
+
+    
+  <div class="flex bg-gray-50 dark:bg-gray-950">
+    <div class="hidden md:block border-r border-purple-200 bg-purple-50 dark:border-purple-800 dark:bg-gray-900">
+      <app-admin-menu></app-admin-menu>
+    </div>
+    
+    <div class="flex flex-col w-full">
+      <app-filter-section class="hidden"></app-filter-section>
+      <app-desplegable-admin></app-desplegable-admin>
+      
+    </div>
+    
+    
+    <div  class="fixed bottom-44 left-6 z-50 md:hidden">
+    <app-boton-hamburguesa (menuToggled)="abrirMenuMobile()"></app-boton-hamburguesa>
+  </div>
+  @if(menuMobileOpen){
+  <div class="fixed inset-0 z-50 flex flex-col bg-white dark:bg-gray-900">
+  <!-- Header con botón volver -->
+    <div class="flex items-center border-b border-purple-200 bg-purple-50 p-4 shadow-sm dark:border-purple-800 dark:bg-gray-900">
+      <app-boton-atras></app-boton-atras>
+      
+<h2 class="ml-4 text-xl font-bold text-purple-800 dark:text-purple-200">{{ 'adminPages.dashboard.menu' | translate }}</h2>
+    </div>
+
+  <!-- Contenido del menú reutilizado -->
+    <div class="flex-1 overflow-auto p-4">
+      <app-admin-menu
+      (optionClicked)="cerrarMenuMobile()"></app-admin-menu>
+    </div>
+</div>
+  }
+  
+</div>
+
+
+
+ 
+  
