@@ -85,12 +85,9 @@ export class ClasesComponent implements OnInit {
    */
   ngOnInit(): void {
     const user = this.authService.getCurrentUser(); 
-    console.log('Alumno detectado:', user);
-    
     if (user && user.id) {
       this.clasesService.getAsignaturasAlumno(user.id).subscribe({
         next: (response) => {
-          console.log('Asignaturas recibidas (Alumno):', response.data);
           if (response.data.length === 0) {
             this.errorMessage.set(this.translate.instant('common.errors.noSubjectsEnrolled'));
           }
@@ -136,7 +133,6 @@ export class ClasesComponent implements OnInit {
         }
       });
     } else {
-      console.warn('No se encontró usuario logueado.');
       this.errorMessage.set(this.translate.instant('common.errors.userNotIdentified'));
       this.loading.set(false);
       this.navegador.toComponent('login');

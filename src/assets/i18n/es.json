@@ -646,6 +646,7 @@
     "aboutUs": "Sobre nosotros"
   },
   "aboutPage": {
+    "pageTitle": "Sobre Ziryab",
     "subtitle": "Innovación y simplicidad para la gestión educativa.",
     "section1": {
       "title": "Tu centro, conectado.",
@@ -667,9 +668,15 @@
     },
     "team": {
       "title": "Equipo Ziryab",
-      "role": "Full Stack"
+      "role": "Full Stack",
+      "angelaName": "Ángela Mora Mata",
+      "antonioName": "Antonio Salces Alcaraz",
+      "franciscoName": "Francisco de Asís Cobo Sánchez",
+      "angelaAlt": "Retrato de Ángela Mora Mata",
+      "antonioAlt": "Retrato de Antonio Salces Alcaraz",
+      "franciscoAlt": "Retrato de Francisco de Asís Cobo Sánchez"
     },
-    "backToHome": "Volver al inicio"
+    "backToHome": "Volver al panel"
   },
   "login": {
     "title": "Iniciar Sesión",
