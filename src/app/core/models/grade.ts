@@ -1,9 +1,9 @@
 import { Teacher } from './teacher';
 import { Enrollment } from './enrollment';
 
-/** Clase tutorada que devuelve `GET /api/grades/tutored-groups`. */
+/** Clase tutorada para evaluaciones (`GET /api/subject-evaluations/tutored-groups`). */
 export interface TutoredCourseGroup {
-  /** Identificador de la relación ciclo–grupo. */
+  /** Id de asignación tutor (`teacherOnSubjectOnGroup`). */
   id: number;
 
   /** Curso dentro del ciclo (`"1"` o `"2"`). */
@@ -14,6 +14,9 @@ export interface TutoredCourseGroup {
 
   /** Grupo académico tutorizado. */
   group: { id: number; name: string };
+
+  /** Año académico de la tutoría, si el endpoint lo incluye. */
+  schoolYear?: string;
 
   /** Matrículas de alumnos del grupo para el tutor. */
   studentEnrollments: Enrollment[];

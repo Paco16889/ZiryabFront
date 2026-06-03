@@ -9,6 +9,7 @@ import { TemarioAlumnoComponent } from './pages/alumno/temario-alumno/temario-al
 import { TemarioProfesorComponent } from './pages/profesor/temario-profesor/temario-profesor.component';
 import { FichaUsuarioComponent } from './pages/alumno/ficha-usuario/ficha-usuario.component';
 import { FichaProfesorComponent } from './pages/profesor/ficha-profesor/ficha-profesor.component';
+import { FichaUsuarioProfesorComponent } from './pages/profesor/ficha-usuario-profesor/ficha-usuario-profesor.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { DashboardAdminComponent } from './pages/admin/dashboard-admin/dashboard-admin.component';
@@ -58,8 +59,14 @@ export const routes: Routes = [
     {
         path: 'ficha-usuario',
         component: FichaUsuarioComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['STUDENT'] },
+    },
+    {
+        path: 'ficha-usuario-profesor',
+        component: FichaUsuarioProfesorComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['TEACHER'] },
     },
     {
         path: 'ficha-profesor',

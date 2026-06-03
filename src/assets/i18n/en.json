@@ -833,6 +833,11 @@
       "saving": "Saving...",
       "save": "Save Evaluations"
     },
+    "profile": {
+      "title": "User profile",
+      "subtitle": "View your teacher details",
+      "loadError": "Could not load your teacher profile."
+    },
     "classMenu": {
       "title": "Class Menu",
       "tasksTitle": "Tasks",
@@ -991,6 +996,24 @@
         "practice": "Practical Exercises",
         "homework": "General Homework"
       }
+    },
+    "credentials": {
+      "title": "Access credentials",
+      "subtitle": "Review credentials for your assigned students",
+      "loading": "Loading credentials...",
+      "empty": "There are no credentials assigned to your tutoring group.",
+      "show": "Show",
+      "hide": "Hide",
+      "showPasswordAria": "Show password for {{name}}",
+      "hidePasswordAria": "Hide password for {{name}}",
+      "columns": {
+        "studentName": "Student name",
+        "password": "Password"
+      },
+      "errors": {
+        "load": "Credentials could not be loaded.",
+        "userNotFound": "Authenticated tutor could not be identified."
+      }
     }
   },
   "adminPages": {
@@ -1102,24 +1125,6 @@
     "assistance": {
       "enrollmentFallback": "Enrollment {{id}}",
       "enrollmentId": "Enrollment ID"
-    },
-    "credentials": {
-      "title": "Access credentials",
-      "subtitle": "Review credentials for your assigned students",
-      "loading": "Loading credentials...",
-      "empty": "There are no credentials assigned to your tutoring group.",
-      "show": "Show",
-      "hide": "Hide",
-      "columns": {
-        "student": "Student",
-        "email": "Email",
-        "password": "Password",
-        "actions": "Actions"
-      },
-      "errors": {
-        "load": "Credentials could not be loaded.",
-        "userNotFound": "Authenticated tutor could not be identified."
-      }
     }
   },
   "sharedPages": {

@@ -18,7 +18,7 @@ import { WeekSchedule, WeekSchedulesAllResponse } from '../../models/week-schedu
 import { AssignmentSubstitutionsService } from '../admin/entities/assignment-substitutions.service';
 import { WeekScheduleService } from '../admin/entities/services-for-week-schedule/week-schedule.service';
 import { EnrollmentHttpService } from '../admin/entities/services-for-week-schedule/enrollment-http.service';
-import { GradeService } from './grade.service';
+import { SubjectEvaluationService } from './subject-evaluation.service';
 import { ClasesService } from '../clases.service';
 
 /**
@@ -33,7 +33,7 @@ export class TeacherTeachingContextService {
   private readonly substitutionsService = inject(AssignmentSubstitutionsService);
   private readonly weekScheduleService = inject(WeekScheduleService);
   private readonly enrollments = inject(EnrollmentHttpService);
-  private readonly gradeService = inject(GradeService);
+  private readonly subjectEvaluationService = inject(SubjectEvaluationService);
 
   private readonly rows = signal<TeacherAssignmentContextRow[]>([]);
   private readonly substitutingAssignmentIds = signal<Set<number>>(new Set());
@@ -147,7 +147,7 @@ export class TeacherTeachingContextService {
     return this.ensureLoaded(loggedInTeacherId).pipe(
       switchMap((rows) => {
         const tutorSubRows = rows.filter((r) => r.isSubstituting && r.isTutor);
-        return this.gradeService.getTutoredGroups().pipe(
+        return this.subjectEvaluationService.getTutoredGroups().pipe(
           switchMap((res) => {
             const own = res.data ?? [];
             if (tutorSubRows.length === 0) {
@@ -269,7 +269,8 @@ export class TeacherTeachingContextService {
               }) as Enrollment,
           );
           return {
-            id: row.idGroup,
+            id: row.id,
+            schoolYear: row.schoolYear,
             grade: row.subject.grade ?? '',
             course: row.subject.course ?? { id: 0, name: '' },
             group: row.group ?? { id: row.idGroup, name: '' },

@@ -12,7 +12,10 @@ import {
   TutoredCourseGroup,
 } from '../../models/grade';
 
-/** Servicio de calificaciones para profesor y alumno autenticados. */
+/**
+ * @deprecated Usar {@link SubjectEvaluationService} (`/api/subject-evaluations`).
+ * Se mantiene solo por referencia; ya no lo usa la app.
+ */
 @Injectable({
   providedIn: 'root',
 })

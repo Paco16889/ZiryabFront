@@ -831,6 +831,11 @@
       "saving": "Speichern...",
       "save": "Bewertungen speichern"
     },
+    "profile": {
+      "title": "Benutzerprofil",
+      "subtitle": "Deine Lehrerdaten einsehen",
+      "loadError": "Lehrerprofil konnte nicht geladen werden."
+    },
     "classMenu": {
       "title": "Klassenmenue",
       "tasksTitle": "Aufgaben",
@@ -989,6 +994,24 @@
         "practice": "Praktische Uebungen",
         "homework": "Allgemeine Hausaufgaben"
       }
+    },
+    "credentials": {
+      "title": "Zugangsdaten",
+      "subtitle": "Pruefe die Zugangsdaten deiner zugewiesenen Schueler",
+      "loading": "Zugangsdaten werden geladen...",
+      "empty": "Deiner Tutorengruppe sind keine Zugangsdaten zugewiesen.",
+      "show": "Anzeigen",
+      "hide": "Ausblenden",
+      "showPasswordAria": "Passwort von {{name}} anzeigen",
+      "hidePasswordAria": "Passwort von {{name}} ausblenden",
+      "columns": {
+        "studentName": "Name des Schuelers",
+        "password": "Passwort"
+      },
+      "errors": {
+        "load": "Die Zugangsdaten konnten nicht geladen werden.",
+        "userNotFound": "Der angemeldete Tutor konnte nicht identifiziert werden."
+      }
     }
   },
   "adminPages": {
@@ -1099,24 +1122,6 @@
     "assistance": {
       "enrollmentFallback": "Einschreibung {{id}}",
       "enrollmentId": "Einschreibungs-ID"
-    },
-    "credentials": {
-      "title": "Zugangsdaten",
-      "subtitle": "Pruefe die Zugangsdaten deiner zugewiesenen Schueler",
-      "loading": "Zugangsdaten werden geladen...",
-      "empty": "Deiner Tutorengruppe sind keine Zugangsdaten zugewiesen.",
-      "show": "Anzeigen",
-      "hide": "Ausblenden",
-      "columns": {
-        "student": "Schueler",
-        "email": "E-Mail",
-        "password": "Passwort",
-        "actions": "Aktionen"
-      },
-      "errors": {
-        "load": "Die Zugangsdaten konnten nicht geladen werden.",
-        "userNotFound": "Der angemeldete Tutor konnte nicht identifiziert werden."
-      }
     }
   },
   "sharedPages": {

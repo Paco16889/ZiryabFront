@@ -831,6 +831,11 @@
       "saving": "Guardando...",
       "save": "Guardar Evaluaciones"
     },
+    "profile": {
+      "title": "Ficha de usuario",
+      "subtitle": "Consulta tus datos de profesor",
+      "loadError": "No se pudo cargar tu ficha de profesor."
+    },
     "classMenu": {
       "title": "Menú de Clase",
       "tasksTitle": "Tareas",
@@ -989,6 +994,24 @@
         "practice": "Ejercicios Prácticos",
         "homework": "Deberes Generales"
       }
+    },
+    "credentials": {
+      "title": "Credenciales de acceso",
+      "subtitle": "Consulta las credenciales de tus alumnos asignados",
+      "loading": "Cargando credenciales...",
+      "empty": "No hay credenciales asignadas a tu tutoría.",
+      "show": "Mostrar",
+      "hide": "Ocultar",
+      "showPasswordAria": "Mostrar contraseña de {{name}}",
+      "hidePasswordAria": "Ocultar contraseña de {{name}}",
+      "columns": {
+        "studentName": "Nombre del alumno",
+        "password": "Contraseña"
+      },
+      "errors": {
+        "load": "No se pudieron cargar las credenciales.",
+        "userNotFound": "No se ha podido identificar al tutor autenticado."
+      }
     }
   },
   "adminPages": {
@@ -1100,24 +1123,6 @@
     "assistance": {
       "enrollmentFallback": "Matrícula {{id}}",
       "enrollmentId": "Matrícula ID"
-    },
-    "credentials": {
-      "title": "Credenciales de acceso",
-      "subtitle": "Consulta las credenciales de tus alumnos asignados",
-      "loading": "Cargando credenciales...",
-      "empty": "No hay credenciales asignadas a tu tutoría.",
-      "show": "Mostrar",
-      "hide": "Ocultar",
-      "columns": {
-        "student": "Alumno",
-        "email": "Email",
-        "password": "Contraseña",
-        "actions": "Acciones"
-      },
-      "errors": {
-        "load": "No se pudieron cargar las credenciales.",
-        "userNotFound": "No se ha podido identificar al tutor autenticado."
-      }
     }
   },
   "sharedPages": {

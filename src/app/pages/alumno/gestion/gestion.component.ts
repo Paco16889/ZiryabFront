@@ -52,7 +52,9 @@ export class GestionComponent implements OnInit {
    */
   goToComponent(route: string) {
     if (route === 'ficha-usuario') {
-      this.router.navigate(['/ficha-usuario']);
+      const userRole = this.authService.getUserRole();
+      const targetRoute = userRole === 'TEACHER' ? '/ficha-usuario-profesor' : '/ficha-usuario';
+      this.router.navigate([targetRoute]);
     } else if (route === 'horario') {
       const userRole = this.authService.getUserRole();
       const targetRoute = userRole === 'TEACHER' ? '/horario-profesor' : '/horario-alumno';

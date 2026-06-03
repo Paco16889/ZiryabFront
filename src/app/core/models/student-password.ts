@@ -5,8 +5,7 @@ export interface StudentPasswordByTutor {
   idStudent: number;
   studentName: string;
   password: string;
-  idTutor?: number;
-  studentEmail?: string;
+  idTutor: number;
 }
 
 /**

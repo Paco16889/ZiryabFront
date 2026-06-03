@@ -49,10 +49,10 @@ export class CredencialesAlumnosComponent implements OnInit {
               const merged: StudentPasswordByTutor[] = [];
               const seen = new Set<number>();
               for (const res of responses) {
-                if (!res.success) {
+                if (res.success === false) {
                   continue;
                 }
-                for (const item of res.data) {
+                for (const item of res.data ?? []) {
                   if (!seen.has(item.idStudent)) {
                     seen.add(item.idStudent);
                     merged.push(item);
@@ -76,7 +76,7 @@ export class CredencialesAlumnosComponent implements OnInit {
       error: () => {
         this.studentPasswordService.getByTutor(teacherId).subscribe({
           next: (response) => {
-            this.credentials = response.success ? response.data : [];
+            this.credentials = response.success === false ? [] : (response.data ?? []);
             this.isLoading = false;
           },
           error: () => {
@@ -102,5 +102,12 @@ export class CredencialesAlumnosComponent implements OnInit {
 
   getPasswordLabel(item: StudentPasswordByTutor): string {
     return this.isPasswordVisible(item.idStudent) ? item.password : '••••••••';
+  }
+
+  getToggleAriaLabel(item: StudentPasswordByTutor): string {
+    const key = this.isPasswordVisible(item.idStudent)
+      ? 'teacherPages.credentials.hidePasswordAria'
+      : 'teacherPages.credentials.showPasswordAria';
+    return this.translate.instant(key, { name: item.studentName });
   }
 }
