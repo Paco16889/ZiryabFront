@@ -86,6 +86,16 @@
         <label class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300" for="sub-substitute">
           {{ 'lists.substitutions.selectSubstitute' | translate }}
         </label>
+        <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
+          {{
+            'lists.substitutions.substituteEligibilityHint'
+              | translate
+                : {
+                    maxHours: substituteEligibility.maxWeeklyHours,
+                    maxAssignments: substituteEligibility.maxActiveAssignments,
+                  }
+          }}
+        </p>
         <select
           id="sub-substitute"
           formControlName="idSubstitute"
@@ -97,6 +107,11 @@
             <option [ngValue]="t.id">{{ t.label }}</option>
           }
         </select>
+        @if (selectedTitularId() != null && titularAssignments().length > 0 && substituteTeacherOptions().length === 0) {
+          <p class="mt-1 text-xs text-amber-600 dark:text-amber-300">
+            {{ 'lists.substitutions.noEligibleSubstitutes' | translate }}
+          </p>
+        }
       </div>
 
       <div>

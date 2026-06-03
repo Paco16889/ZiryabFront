@@ -1,20 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { catchError, Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { AppNotification } from '../../notifications.service';
-
-/** Respuesta paginada del endpoint admin de notificaciones. */
-interface NotificationsListResponse {
-  /** Mensaje informativo del backend. */
-  message: string;
-
-  /** Notificaciones devueltas para la página solicitada. */
-  data: AppNotification[];
-
-  /** Total disponible cuando el backend añade paginación. */
-  pagination?: { total: number };
-}
 
 /** Contrato `POST /api/notifications` (CURSO-108 / API actual). */
 export interface NotificationCreateRequest {
@@ -63,31 +51,11 @@ export interface NotificationDeleteResponse {
  */
 @Injectable({ providedIn: 'root' })
 export class AdminNotificationService {
-  /** Cliente HTTP para el CRUD administrativo de notificaciones. */
+  /** Cliente HTTP para POST/PATCH/DELETE admin. */
   private readonly http = inject(HttpClient);
 
   /** Endpoint base del módulo de notificaciones. */
   private readonly apiUrl = `${environment.apiUrl}/notifications`;
-
-  /** Cache reactiva del listado que consume la pantalla admin. */
-  readonly notifications = signal<AppNotification[]>([]);
-
-  /** Carga el listado y actualiza la cache local. */
-  loadNotifications(): void {
-    this.getAll().subscribe((list) => this.notifications.set(list));
-  }
-
-  /** Obtiene una página amplia de notificaciones para administración. */
-  getAll(): Observable<AppNotification[]> {
-    return this.http
-      .get<NotificationsListResponse>(this.apiUrl, {
-        params: { page: '1', limit: '500' },
-      })
-      .pipe(
-        map((res) => res.data ?? []),
-        catchError(() => of([])),
-      );
-  }
 
   /** Recupera una notificación por id para alimentar el modal genérico. */
   getById(id: number): Observable<{ success: boolean; data: AppNotification }> {

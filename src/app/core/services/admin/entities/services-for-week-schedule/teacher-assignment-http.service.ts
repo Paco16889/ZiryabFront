@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from '../../../../../../environments/environment';
 import { AssignmentsWithIncludesResponse } from '../../../../models/assingment';
+import { parseAssignmentsApiResponse } from '../../../../utils/substitute-eligibility.util';
 import { GetAsignaturasProfesorResponse } from '../../../../models/teacher/subjectforteacher';
 
 /**
@@ -28,7 +29,8 @@ export class AssignmentHttpService {
    * Lo usa el builder de horarios para componer las opciones de cada celda.
    */
   getAll(): Observable<AssignmentsWithIncludesResponse> {
-    return this.http.get<AssignmentsWithIncludesResponse>(this.apiUrl).pipe(
+    return this.http.get<unknown>(this.apiUrl).pipe(
+      map((body) => parseAssignmentsApiResponse(body)),
       catchError(() => of({ success: false, data: [], count: 0 })),
     );
   }

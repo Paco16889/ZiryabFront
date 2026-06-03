@@ -1,6 +1,18 @@
-import { Injectable, inject, OnDestroy } from '@angular/core';
+import { computed, DestroyRef, inject, Injectable, OnDestroy, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject, Subscription, distinctUntilChanged, firstValueFrom, map } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  forkJoin,
+  Observable,
+  of,
+  Subject,
+  Subscription,
+  distinctUntilChanged,
+  firstValueFrom,
+  map,
+} from 'rxjs';
 import { AuthService, type UserResponse } from './auth.service';
 import { environment } from '../../../environments/environment';
 
@@ -34,78 +46,52 @@ export interface AppNotification {
   createdAt: string;
 }
 
-/** Respuesta de `GET …/notifications` usada solo en este cliente. */
-interface NotificationsListResponse {
-  /** Mensaje informativo del backend. */
+/** Respuesta de `GET /api/notifications` y `GET /api/notifications/all`. */
+export interface NotificationsListResponse {
   message: string;
-
-  /** Notificaciones de la página solicitada. */
   data: AppNotification[];
-
-  /** Metadatos de paginación para el listado REST. */
-  pagination: {
-    /** Página solicitada. */
+  pagination?: {
     page: number;
-    /** Tamaño máximo de página. */
     limit: number;
-    /** Total de notificaciones del usuario. */
     total: number;
-    /** Número total de páginas. */
     totalPages: number;
   };
 }
 
 /**
- * Servicio de notificaciones del cliente.
- *
- * Combina REST (`GET /notifications`) para el número de no leídas inicial y
- * **Server-Sent Events** contra `/notifications/events` para recibir cada nueva
- * `AppNotification` en tiempo real usando cookies (`withCredentials` en `EventSource`).
- *
- * Se suscribe a {@link AuthService.currentUser$} para conectar SSE al iniciar sesión
- * y desconectar al cerrar sesión.
+ * Cliente único de notificaciones: REST (`/api/notifications`), SSE (`/events`)
+ * y estado de la bandeja de la cabecera.
  */
 @Injectable({ providedIn: 'root' })
 export class NotificationsService implements OnDestroy {
-  /** Cliente HTTP usado para calcular el contador inicial de no leídas. */
   private readonly http = inject(HttpClient);
-
-  /** Servicio de sesión que indica cuándo abrir o cerrar SSE. */
   private readonly authService = inject(AuthService);
-
-  /** URL base del backend usada para REST y SSE. */
+  private readonly destroyRef = inject(DestroyRef);
   private readonly apiUrl = environment.apiUrl;
 
-  /** Instancia `EventSource` abierta hacia la API, o `null` si no hay conexión. */
   private eventSource: EventSource | null = null;
-
-  /** Emisor de cada notificación parseada desde el stream SSE (`message`). */
   private readonly notificationSubject = new Subject<AppNotification>();
-
-  /**
-   * Flujo observable de nuevas notificaciones recibidas por SSE tras el login.
-   */
   readonly notification$ = this.notificationSubject.asObservable();
 
-  /** Estado del conteo de no leídas sincronizado con la API localmente. */
   private readonly unreadCountSubject = new BehaviorSubject<number>(0);
-
-  /**
-   * Flujo observable del número total de notificaciones no leídas.
-   */
   readonly unreadCount$ = this.unreadCountSubject.asObservable();
 
-  /** Suscripción al estado de sesión; se cancela en {@link NotificationsService.ngOnDestroy}. */
   private readonly authSubscription: Subscription;
 
-  /**
-   * Al construir el servicio, escucha cambios de usuario y abre/cierra SSE según haya Firebase UID estable.
-   */
+  private readonly _notifications = signal<AppNotification[]>([]);
+  readonly notifications = this._notifications.asReadonly();
+
+  readonly unreadCount = computed(
+    () => this._notifications().filter((n) => !n.isRead).length,
+  );
+
+  readonly hasUnread = computed(() => this.unreadCount() > 0);
+
   constructor() {
     this.authSubscription = this.authService.currentUser$
       .pipe(
         map((user: UserResponse | null) => user?.firebaseUID ?? ''),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe((firebaseUid: string) => {
         if (!firebaseUid) {
@@ -114,38 +100,105 @@ export class NotificationsService implements OnDestroy {
         }
         void this.onSessionActive();
       });
+
+    this.authService.currentUser$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((user) => {
+        if (user) {
+          this.load();
+        } else {
+          this._notifications.set([]);
+        }
+      });
+
+    this.notification$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.load());
   }
 
-  /**
-   * Cierra SSE y cancela la suscripción al {@link AuthService}.
-   */
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
     this.disconnect();
   }
 
-  /**
-   * Tras autenticación: obtiene el contador de no leídas vía REST y abre el canal SSE.
-   */
+  /** `GET /api/notifications/all` — listado admin. */
+  getNotificationsList(): Observable<NotificationsListResponse> {
+    return this.http
+      .get<NotificationsListResponse>(`${this.apiUrl}/notifications/all`)
+      .pipe(catchError(() => of({ message: '', data: [] })));
+  }
+
+  /** `GET /api/notifications` — bandeja del usuario autenticado. */
+  getAll(): Observable<AppNotification[]> {
+    return this.http
+      .get<NotificationsListResponse>(`${this.apiUrl}/notifications`, {
+        params: { page: '1', limit: '500' },
+      })
+      .pipe(
+        map((res) => res.data ?? []),
+        catchError(() => of([])),
+      );
+  }
+
+  /** Recarga la bandeja de la cabecera desde el backend. */
+  load(): void {
+    this.getAll().subscribe({
+      next: (data) => {
+        this._notifications.set(data);
+        this.unreadCountSubject.next(data.filter((n) => !n.isRead).length);
+      },
+      error: (err) => console.error('Error al cargar notificaciones', err),
+    });
+  }
+
+  /** `PATCH /api/notifications/:id/read` */
+  markAsRead(id: number): void {
+    this._notifications.update((list) =>
+      list.map((n) => (n.id === id ? { ...n, isRead: true } : n)),
+    );
+    this.syncUnreadCountFromList();
+
+    this.http.patch(`${this.apiUrl}/notifications/${id}/read`, {}).pipe(
+      map(() => undefined),
+      catchError(() => of(undefined)),
+    ).subscribe({
+      next: () => void this.refreshUnreadCount(),
+    });
+  }
+
+  /** Marca todas las visibles como leídas (una petición por id; no hay bulk en API). */
+  markAllAsRead(): void {
+    const unreadIds = this._notifications().filter((n) => !n.isRead).map((n) => n.id);
+    this._notifications.update((list) => list.map((n) => ({ ...n, isRead: true })));
+    this.syncUnreadCountFromList();
+
+    if (unreadIds.length === 0) {
+      return;
+    }
+
+    forkJoin(
+      unreadIds.map((id) =>
+        this.http.patch(`${this.apiUrl}/notifications/${id}/read`, {}).pipe(
+          map(() => undefined),
+          catchError(() => of(undefined)),
+        ),
+      ),
+    ).subscribe({
+      next: () => void this.refreshUnreadCount(),
+    });
+  }
+
   private async onSessionActive(): Promise<void> {
     await this.refreshUnreadCount();
     this.connect();
   }
 
-  /**
-   * Limpia conexiones y reinicia el contador de no leídas al cerrar sesión.
-   */
   private onLogout(): void {
     this.disconnect();
     this.unreadCountSubject.next(0);
+    this._notifications.set([]);
   }
 
-  /**
-   * Establece conexión SSE con `GET …/notifications/events`.
-   *
-   * El navegador envía cookies de sesión gracias a `{ withCredentials: true }`,
-   * coherente con el interceptor HTTP de la aplicación.
-   */
   connect(): void {
     this.disconnect();
 
@@ -161,14 +214,8 @@ export class NotificationsService implements OnDestroy {
 
       es.addEventListener('message', (ev: MessageEvent) => {
         try {
-          const raw = ev.data as string;
-          const parsed = JSON.parse(raw) as AppNotification;
+          const parsed = JSON.parse(ev.data as string) as AppNotification;
           this.notificationSubject.next(parsed);
-          const nextUnread = Math.min(
-            this.unreadCountSubject.value + 1,
-            9999
-          );
-          this.unreadCountSubject.next(nextUnread);
         } catch {
           // payload no JSON válido
         }
@@ -184,9 +231,6 @@ export class NotificationsService implements OnDestroy {
     }
   }
 
-  /**
-   * Cierra el `EventSource` activo si existe.
-   */
   disconnect(): void {
     if (this.eventSource) {
       this.eventSource.close();
@@ -194,23 +238,23 @@ export class NotificationsService implements OnDestroy {
     }
   }
 
-  /**
-   * Recalcula el número de notificaciones no leídas desde la API (página 1, límite fijo).
-   */
   async refreshUnreadCount(): Promise<void> {
     try {
       const res = await firstValueFrom(
-        this.http.get<NotificationsListResponse>(
-          `${this.apiUrl}/notifications`,
-          {
-            params: { page: '1', limit: '500' },
-          }
-        )
+        this.http.get<NotificationsListResponse>(`${this.apiUrl}/notifications`, {
+          params: { page: '1', limit: '500' },
+        }),
       );
-      const unread = res.data.filter((n: AppNotification) => !n.isRead).length;
+      const unread = (res.data ?? []).filter((n) => !n.isRead).length;
       this.unreadCountSubject.next(unread);
     } catch {
       this.unreadCountSubject.next(0);
     }
+  }
+
+  private syncUnreadCountFromList(): void {
+    this.unreadCountSubject.next(
+      this._notifications().filter((n) => !n.isRead).length,
+    );
   }
 }

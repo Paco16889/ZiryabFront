@@ -1,0 +1,36 @@
+﻿npx : [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, 
+please update: `npm i baseline-browser-mapping@latest -D`
+En C:\Users\Paco\AppData\Local\Temp\ps-script-e5cfb820-2d25-4625-af12-21a8b1e3933e.ps1: 78 Carácter: 82
++ ... royectoIntermodularAngular\loginEnAngular"; npx ng build 2>&1 | Out-F ...
++                                                 ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([baseline-brows...ping@latest -D`:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+> Building...
+ÔêÜ Building...
+Initial chunk files   | Names                         |  Raw size | Estimated transfer size
+main-Q4JJUA5A.js      | main                          | 495.07 kB |                78.52 kB
+chunk-3DYPNYYW.js     | -                             | 296.70 kB |                80.42 kB
+chunk-XWMQPGBV.js     | -                             | 173.11 kB |                42.67 kB
+styles-VZKYUJVE.css   | styles                        |  82.19 kB |                 9.59 kB
+chunk-YF5Z6LKD.js     | -                             |  43.89 kB |                 8.91 kB
+polyfills-B6TNHZQ6.js | polyfills                     |  34.58 kB |                11.32 kB
+chunk-O2EWVYU4.js     | -                             |   2.64 kB |               715 bytes
+chunk-4WAEQ3JT.js     | -                             |   1.15 kB |               613 bytes
+chunk-RB7F6VGJ.js     | -                             | 146 bytes |               146 bytes
+
+                      | Initial total                 |   1.13 MB |               232.91 kB
+
+Lazy chunk files      | Names                         |  Raw size | Estimated transfer size
+chunk-ZGZMHHUA.js     | student-task-detail-component |  25.88 kB |                 6.14 kB
+chunk-SY3OMBIZ.js     | calificar-tarea-component     |  15.57 kB |                 4.40 kB
+chunk-XW6LWCCP.js     | entregas-tarea-component      |  11.60 kB |                 3.58 kB
+chunk-E6KLOWBJ.js     | issue-list-component          | 157 bytes |               157 bytes
+
+Application bundle generation complete. [5.654 seconds]
+
+Ôû▓ [WARNING] bundle initial exceeded maximum budget. Budget 1.00 MB was not met by 129.47 kB with a total of 1.13 MB.
+
+
+Output location: C:\Users\Paco\Desktop\proyectoIntermodularAngular\loginEnAngular\dist\login-en-angular
+

@@ -8,6 +8,16 @@ export const environment = {
     /** Año académico por defecto para filtros admin (assignments, horarios). Ajustar por centro/curso. */
     currentSchoolYear: '2024-2025',
     /**
+     * Umbrales para el selector de sustituto (carga desde assignments ACTIVE + subject.hours).
+     * Afinar por centro; el horario real puede validarse después en backend.
+     */
+    substituteEligibility: {
+        maxWeeklyHours: 10,
+        maxActiveAssignments: 2,
+    },
+    /** Grid asignaciones ciclo: solo filtra por horas semanales totales (no por nº de imparticiones). */
+    courseAssignmentTeacherMaxWeeklyHours: 10,
+    /**
      * Franjas del centro para el builder en modo rejilla (L–V × filas).
      * Deben ser coherentes con el calendario lectivo (no solapadas).
      */
@@ -19,7 +29,6 @@ export const environment = {
         { startTime: '12:45', finishTime: '13:45' },
         { startTime: '13:45', finishTime: '14:45' },
     ] as const satisfies ReadonlyArray<{ startTime: string; finishTime: string }>,
-    useMockNotifications: true,
     /** Calendario de Google embebido (vista pública, sin login). */
     googleCalendar: {
         embedUrl:

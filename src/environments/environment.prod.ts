@@ -6,6 +6,11 @@ export const environment = {
     production: true,
     apiUrl: 'https://ziryabback.onrender.com/api',
     currentSchoolYear: '2024-2025',
+    substituteEligibility: {
+        maxWeeklyHours: 10,
+        maxActiveAssignments: 2,
+    },
+    courseAssignmentTeacherMaxWeeklyHours: 10,
     timetableSlots: [
         { startTime: '08:15', finishTime: '09:15' },
         { startTime: '09:15', finishTime: '10:15' },
@@ -14,7 +19,6 @@ export const environment = {
         { startTime: '12:45', finishTime: '13:45' },
         { startTime: '13:45', finishTime: '14:45' },
     ] as const satisfies ReadonlyArray<{ startTime: string; finishTime: string }>,
-    useMockNotifications: false,
     googleCalendar: {
         embedUrl:
             'https://calendar.google.com/calendar/embed?src=c_fe406644d4d1e624a708877c623f8c603b0c0122c6dcea64582acea2522e40ad%40group.calendar.google.com&ctz=Europe%2FMadrid&hl=es&mode=MONTH',

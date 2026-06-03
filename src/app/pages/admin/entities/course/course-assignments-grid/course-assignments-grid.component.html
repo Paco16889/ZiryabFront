@@ -124,6 +124,27 @@
     @if (rows().length === 0) {
       <p class="text-sm text-gray-500 dark:text-gray-400">{{ 'courseAssignments.grid.rowsEmpty' | translate }}</p>
     } @else {
+      <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
+        {{
+          'lists.substitutions.substituteEligibilityHint'
+            | translate
+              : {
+                  maxHours: substituteEligibility.maxWeeklyHours,
+                  maxAssignments: substituteEligibility.maxActiveAssignments,
+                }
+        }}
+        —
+        {{
+          'courseAssignments.grid.teacherFilterStats'
+            | translate
+              : {
+                  eligible: teacherSelectOptions().length,
+                  total: allTeacherOptions().length,
+                  withoutAssignments: eligibleWithNoLoadCount(),
+                  assignments: allAssignments().length,
+                }
+        }}
+      </p>
       <div class="overflow-x-auto border border-gray-200 dark:border-gray-700 rounded-lg">
         <table class="min-w-full text-sm text-gray-800 dark:text-gray-200">
           <thead class="bg-purple-50 dark:bg-purple-950/40 text-left">
@@ -153,8 +174,8 @@
                     (change)="onTeacherChange(row, $any($event.target).value)"
                   >
                     <option value="">{{ 'courseAssignments.grid.selectTeacher' | translate }}</option>
-                    @for (t of teachers(); track t.id) {
-                      <option [value]="t.id">{{ teacherLabel(t) }}</option>
+                    @for (t of teacherSelectOptions(); track t.id) {
+                      <option [value]="t.id">{{ t.label }}</option>
                     }
                   </select>
                 </td>

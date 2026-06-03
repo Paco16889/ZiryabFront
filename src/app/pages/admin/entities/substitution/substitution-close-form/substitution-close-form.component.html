@@ -11,7 +11,7 @@
     {{ 'lists.substitutions.closeTitle' | translate }}
   </h2>
 
-  @if (activeSubstitutions().length === 0) {
+  @if (titularCloseOptions().length === 0) {
     <p class="text-sm text-gray-500 dark:text-gray-400">
       {{ 'lists.substitutions.closeEmpty' | translate }}
     </p>
@@ -30,12 +30,12 @@
         </label>
         <select
           id="sub-close-select"
-          formControlName="idSubstitution"
+          formControlName="idTitular"
           class="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
         >
           <option [ngValue]="null" disabled>{{ 'common.placeholders.selectOption' | translate }}</option>
-          @for (item of activeSubstitutions(); track item.id) {
-            <option [ngValue]="item.id">{{ substitutionLabel(item) }}</option>
+          @for (t of titularCloseOptions(); track t.id) {
+            <option [ngValue]="t.id">{{ t.label }}</option>
           }
         </select>
       </div>

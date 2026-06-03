@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotificationListItemComponent } from '../notification-list-item/notification-list-item.component';
-import { NotificationService } from '../../../../core/services/notification/notification.service';
+import { NotificationsService } from '../../../../core/services/notifications.service';
 import { NotificationToggleService } from '../../../../core/services/notification/notification-toggle.service';
 
 /** Panel desplegable de notificaciones de la cabecera. */
@@ -14,7 +14,7 @@ import { NotificationToggleService } from '../../../../core/services/notificatio
 })
 export class NotificationListComponent {
   /** Estado y acciones de la bandeja de notificaciones. */
-  protected readonly service = inject(NotificationService);
+  protected readonly service = inject(NotificationsService);
 
   /** Controla el cierre del panel desde la propia lista. */
   protected readonly panelService = inject(NotificationToggleService);
