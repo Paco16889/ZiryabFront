@@ -532,6 +532,7 @@
           "idTeacher": "Selecciona un profesor",
           "idTeacherAssignment": "Selecciona una asignación docente",
           "targeted": "Indica al menos un filtro: ciclo, curso, grupo o asignatura",
+          "targetedSubjectGroup": "Para asignatura + grupo debes elegir turno y asignatura (no hace falta ciclo ni curso 1º/2º)",
           "attachmentUrl": "La URL debe comenzar por http:// o https://"
         },
         "errors": {

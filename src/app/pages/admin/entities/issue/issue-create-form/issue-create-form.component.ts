@@ -10,8 +10,12 @@ import { GroupService } from '../../../../../core/services/admin/entities/group.
 import { SubjectService } from '../../../../../core/services/admin/entities/subject.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 import { AssignmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/teacher-assignment-http.service';
+import { AuthService } from '../../../../../core/services/auth.service';
 import { normalizeGradeValue } from '../../../../../core/utils/week-schedule-assignment-filters';
 import { environment } from '../../../../../../environments/environment';
+
+/** Audiencias que el API no permite a profesores. */
+const TEACHER_FORBIDDEN_AUDIENCES: IssueAudience[] = ['CENTER', 'ALL_TEACHERS', 'ALL_STUDENTS'];
 
 /** Opciones del desplegable de audiencia en el formulario de alta. */
 const CREATE_FORM_AUDIENCES: IssueAudience[] = [
@@ -45,6 +49,9 @@ export class IssueCreateFormComponent implements OnInit {
   /** POST de anuncios en el tablón. */
   private readonly issueService = inject(AdminIssueService);
 
+  /** Rol del usuario para filtrar audiencias del desplegable. */
+  private readonly authService = inject(AuthService);
+
   /** Desplegable de grupos para audiencia TARGETED. */
   private readonly groupService = inject(GroupService);
 
@@ -69,8 +76,13 @@ export class IssueCreateFormComponent implements OnInit {
   /** Anuncio creado correctamente. */
   readonly issueCreated = output<void>();
 
-  /** Valores de audiencia mostrados en el desplegable. */
-  readonly audiences = CREATE_FORM_AUDIENCES;
+  /** Valores de audiencia mostrados en el desplegable (sin globales si es profesor). */
+  get audiences(): IssueAudience[] {
+    if (this.authService.getUserRole() === 'TEACHER') {
+      return CREATE_FORM_AUDIENCES.filter((a) => !TEACHER_FORBIDDEN_AUDIENCES.includes(a));
+    }
+    return CREATE_FORM_AUDIENCES;
+  }
 
   /** Grades para filtro de audiencia acotada. */
   readonly gradeOptions = GRADE_OPTIONS;
@@ -153,6 +165,13 @@ export class IssueCreateFormComponent implements OnInit {
         }
       }
     });
+    const initialAudience = this.audiences[0] ?? 'TARGETED';
+    if (
+      this.authService.getUserRole() === 'TEACHER' &&
+      TEACHER_FORBIDDEN_AUDIENCES.includes(this.createForm.get('audience')!.value as IssueAudience)
+    ) {
+      this.createForm.patchValue({ audience: initialAudience });
+    }
     this.applyAudienceValidators(this.createForm.get('audience')!.value as IssueAudience);
   }
 
@@ -209,11 +228,16 @@ export class IssueCreateFormComponent implements OnInit {
       return;
     }
 
-    if (this.needsTargeted() && !this.hasAtLeastOneTargetedFilter()) {
-      this.targetedFilterError = true;
-      return;
+    if (this.needsTargeted()) {
+      const targetedError = this.validateTargetedFilters();
+      if (targetedError) {
+        this.targetedFilterError = true;
+        this.errorMessage = targetedError;
+        return;
+      }
     }
     this.targetedFilterError = false;
+    this.errorMessage = '';
 
     this.isCreating = true;
     this.errorMessage = '';
@@ -232,10 +256,24 @@ export class IssueCreateFormComponent implements OnInit {
     });
   }
 
-  /** Comprueba que TARGETED tenga al menos un filtro. */
-  private hasAtLeastOneTargetedFilter(): boolean {
+  /** Valida filtros TARGETED según el `audience` que enviará el API. */
+  private validateTargetedFilters(): string | null {
     const raw = this.createForm.getRawValue();
-    return !!(raw.idCourse || raw.grade || raw.idGroup || raw.idSubject);
+    if (!raw.idCourse && !raw.grade && !raw.idGroup && !raw.idSubject) {
+      return this.translate.instant('lists.issues.form.validation.targeted');
+    }
+
+    const apiAudience = this.resolveTargetedApiAudience(raw);
+    if (apiAudience === 'SUBJECT_GROUP' && (raw.idGroup == null || raw.idSubject == null)) {
+      return this.translate.instant('lists.issues.form.validation.targetedSubjectGroup');
+    }
+    if (apiAudience === 'GROUP' && raw.idGroup == null) {
+      return this.translate.instant('lists.issues.form.validation.targeted');
+    }
+    if (apiAudience === 'COURSE' && raw.idCourse == null) {
+      return this.translate.instant('lists.issues.form.validation.targeted');
+    }
+    return null;
   }
 
   /** Carga grupos, ciclos, asignaturas, profesores y asignaciones. */
@@ -436,26 +474,33 @@ export class IssueCreateFormComponent implements OnInit {
     return 'SUBJECT_GROUP';
   }
 
-  /** Copia filtros TARGETED al payload del API. */
+  /** Copia solo los FK que admite cada audiencia del API. */
   private attachTargetedFields(
     payload: IssueCreateRequest,
     raw: ReturnType<typeof this.createForm.getRawValue>,
   ): void {
-    if (raw.idCourse != null) {
-      payload.idCourse = raw.idCourse;
+    const apiAudience = payload.audience;
+
+    if (apiAudience === 'SUBJECT_GROUP') {
+      payload.idGroup = raw.idGroup ?? undefined;
+      payload.idSubject = raw.idSubject ?? undefined;
+      return;
     }
-    if (raw.grade) {
-      payload.grade = raw.grade;
+
+    if (apiAudience === 'GROUP') {
+      payload.idGroup = raw.idGroup ?? undefined;
+      return;
     }
-    if (raw.idGroup != null) {
-      payload.idGroup = raw.idGroup;
-    }
-    if (raw.idSubject != null) {
-      payload.idSubject = raw.idSubject;
+
+    if (apiAudience === 'COURSE') {
+      payload.idCourse = raw.idCourse ?? undefined;
+      if (raw.grade) {
+        payload.grade = raw.grade;
+      }
     }
   }
 
-  /** Copia asignación docente y datos derivados al payload. */
+  /** ASSIGNMENT del formulario → SUBJECT_GROUP en el API (idGroup + idSubject). */
   private attachAssignmentFields(
     payload: IssueCreateRequest,
     raw: ReturnType<typeof this.createForm.getRawValue>,
@@ -463,21 +508,13 @@ export class IssueCreateFormComponent implements OnInit {
     if (raw.idTeacherAssignment == null) {
       return;
     }
-    payload.idTeacherAssignment = raw.idTeacherAssignment;
     const selected = this.allAssignments().find((a) => a.id === raw.idTeacherAssignment);
-    if (selected) {
-      payload.idTeacher = selected.idTeacher;
-      payload.idGroup = selected.idGroup;
-      payload.idSubject = selected.idSubject;
-      if (selected.subject?.course?.id) {
-        payload.idCourse = selected.subject.course.id;
-      }
-      if (selected.subject?.grade) {
-        payload.grade = selected.subject.grade;
-      }
-    } else if (raw.idTeacher != null) {
-      payload.idTeacher = raw.idTeacher;
+    if (!selected) {
+      return;
     }
+    payload.audience = 'SUBJECT_GROUP';
+    payload.idGroup = selected.idGroup;
+    payload.idSubject = selected.idSubject;
   }
 
   /** Construye el cuerpo de `POST /api/issues`. */
@@ -503,6 +540,7 @@ export class IssueCreateFormComponent implements OnInit {
     } else if (formAudience === 'ASSIGNMENT') {
       this.attachAssignmentFields(payload, raw);
     } else if (formAudience === 'TEACHER') {
+      payload.audience = 'TEACHER';
       payload.idTeacher = raw.idTeacher ?? undefined;
     }
 

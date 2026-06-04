@@ -534,6 +534,7 @@
           "idTeacher": "Select a teacher",
           "idTeacherAssignment": "Select a teacher assignment",
           "targeted": "Select at least one filter: cycle, year, group or subject",
+          "targetedSubjectGroup": "For subject + group you must select shift and subject (cycle and year are not required)",
           "attachmentUrl": "URL must start with http:// or https://"
         },
         "errors": {

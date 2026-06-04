@@ -532,6 +532,7 @@
           "idTeacher": "Lehrer auswählen",
           "idTeacherAssignment": "Lehrerzuweisung auswählen",
           "targeted": "Mindestens einen Filter wählen: Bildungsgang, Jahrgang, Gruppe oder Fach",
+          "targetedSubjectGroup": "Für Fach + Gruppe Turnus und Fach wählen (Bildungsgang und Jahrgang sind nicht nötig)",
           "attachmentUrl": "URL muss mit http:// oder https:// beginnen"
         },
         "errors": {
