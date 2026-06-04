@@ -165,7 +165,7 @@
                          [ngClass]="isDragging() ? 'border-indigo-500 bg-indigo-50/70 scale-[1.01]' : 'border-slate-300 hover:border-indigo-400 hover:bg-slate-100/50'"
                          (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
 
-                      <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" title="" (change)="onFileSelected($event)">
+                      <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" title="" [accept]="taskAttachmentAccept" (change)="onFileSelected($event)">
 
                       <div class="p-5 bg-indigo-100 text-indigo-600 rounded-full mb-5 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 ease-out shadow-sm origin-center">
                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>

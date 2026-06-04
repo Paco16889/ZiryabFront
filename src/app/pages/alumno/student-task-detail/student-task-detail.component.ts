@@ -7,6 +7,10 @@ import { StudentTask, SubmissionStatus } from '../../../core/models/studentTask'
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
+import {
+  isTaskAttachmentFile,
+  TASK_ATTACHMENT_FILE_ACCEPT,
+} from '../../../core/configs/allowed-upload-mime';
 
 /**
  * Componente StudentTaskDetail
@@ -22,6 +26,8 @@ import { resolveApiError } from '../../../core/i18n/api-error.util';
   styleUrls: ['./student-task-detail.component.scss']
 })
 export class StudentTaskDetailComponent implements OnInit {
+  protected readonly taskAttachmentAccept = TASK_ATTACHMENT_FILE_ACCEPT;
+
   /** Ruta activa para leer el id de la StudentTask. */
   private route = inject(ActivatedRoute);
   /** Router usado para futuras navegaciones del detalle. */
@@ -225,6 +231,12 @@ export class StudentTaskDetailComponent implements OnInit {
       return;
     }
     
+    if (!isTaskAttachmentFile(file)) {
+      this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.invalidFileFormat'));
+      this.selectedFile.set(null);
+      return;
+    }
+
     if (file.size > 50 * 1024 * 1024) {
       this.errorMessage.set(this.translate.instant('studentPages.taskDetail.errors.maxFileSize'));
       this.selectedFile.set(null);

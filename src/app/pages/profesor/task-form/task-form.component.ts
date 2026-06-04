@@ -6,6 +6,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { CreateTaskResponse, Task } from '../../../core/models/teacher/tasks';
 import { TaskType } from '../../../core/models/task';
+import {
+  isTaskAttachmentFile,
+  TASK_ATTACHMENT_FILE_ACCEPT,
+} from '../../../core/configs/allowed-upload-mime';
 
 /** Formulario de profesor para crear tareas con adjunto opcional. */
 @Component({
@@ -16,6 +20,7 @@ import { TaskType } from '../../../core/models/task';
   styleUrl: './task-form.component.scss'
 })
 export class TaskFormComponent implements OnInit {
+  protected readonly taskAttachmentAccept = TASK_ATTACHMENT_FILE_ACCEPT;
 
   /** Asignación docente donde se creará la tarea. */
   @Input() idTeacherAssignment!: number;
@@ -68,6 +73,12 @@ export class TaskFormComponent implements OnInit {
     if (!input.files || input.files.length === 0) return;
     const file: File = input.files[0];
     if (file) {
+      if (!isTaskAttachmentFile(file)) {
+        this.errorMessage = this.translate.instant('teacherPages.taskForm.errorInvalidFormat');
+        this.selectedFile = null;
+        input.value = '';
+        return;
+      }
       if (file.size > 10 * 1024 * 1024) {
         this.errorMessage = this.translate.instant('teacherPages.taskForm.errorMaxSize');
         this.selectedFile = null;

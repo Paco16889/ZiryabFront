@@ -4,6 +4,10 @@ import { AssistanceItem } from '../../../../core/models/assistance';
 import { AssistanceService } from '../../../../core/services/alumno/assistance.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../../core/i18n/api-error.util';
+import {
+  isJustificationFile,
+  JUSTIFICATION_FILE_ACCEPT,
+} from '../../../../core/configs/allowed-upload-mime';
 
 /**
  * Componente de modal para que el alumno pueda justificar una falta de asistencia.
@@ -37,6 +41,9 @@ export class JustificarFaltaModalComponent {
   /** Signal para almacenar mensajes de error durante el proceso */
   public errorMessage = signal<string>('');
 
+  /** Valor `accept` del input de fichero (PDF e imágenes habituales). */
+  protected readonly justificationAccept = JUSTIFICATION_FILE_ACCEPT;
+
   /**
    * Gestiona la selección de un archivo desde el input de tipo file.
    * Valida que el archivo no supere 1MB y que sea de un formato permitido (PDF, JPG, PNG).
@@ -54,9 +61,8 @@ export class JustificarFaltaModalComponent {
         return;
       }
 
-      // 2. Validar formato (PDF o imagenes)
-      const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
-      if (!allowedTypes.includes(file.type)) {
+      // 2. Validar formato (PDF o imágenes habituales)
+      if (!isJustificationFile(file)) {
         this.errorMessage.set(this.translate.instant('common.errors.invalidFileFormat'));
         this.selectedFile.set(null);
         return;
