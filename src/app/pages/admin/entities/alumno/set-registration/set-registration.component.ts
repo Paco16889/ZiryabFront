@@ -209,6 +209,9 @@ export class SetRegistrationComponent {
     if (code === 'STUDENT_CREATE_FAILED') {
       return this.translate.instant('studentEnrollment.setRegistration.saveErrorStudent');
     }
+    if (code === 'TUTOR_PATCH_FAILED') {
+      return this.translate.instant('studentEnrollment.setRegistration.saveErrorTutor');
+    }
     if (code === 'NO_SUBJECTS' || code === 'NO_STUDENT') {
       return this.translate.instant('studentEnrollment.setRegistration.saveErrorGeneric');
     }

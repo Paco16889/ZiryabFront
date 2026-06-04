@@ -42,4 +42,14 @@ export class StudentPasswordService {
         }),
       );
   }
+
+  /** Asigna el tutor tras matricular (credencial visible en tablón del tutor). */
+  patchTutor(idStudent: number, idTutor: number): Observable<unknown> {
+    return this.http.patch(`${this.apiUrl}/${idStudent}`, { idTutor }).pipe(
+      catchError((error) => {
+        console.error('StudentPasswordService.patchTutor', error);
+        throw error;
+      }),
+    );
+  }
 }

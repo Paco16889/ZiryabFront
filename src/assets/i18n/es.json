@@ -232,6 +232,7 @@
       "saving": "Guardando matrículas…",
       "saveErrorRegistration": "No se pudieron guardar las matrículas. Inténtalo de nuevo.",
       "saveErrorStudent": "No se pudo crear el alumno. Revisa los datos e inténtalo de nuevo.",
+      "saveErrorTutor": "Las matrículas se guardaron, pero no se pudo asignar el tutor a la credencial del alumno.",
       "saveErrorGeneric": "No se pudo completar la matriculación. Inténtalo de nuevo."
     }
   },
