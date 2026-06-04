@@ -13,14 +13,17 @@ import { PasswordService } from '../password.service';
 import { StudentsService } from './entities/students.service';
 import { SubjectService } from './entities/subject.service';
 import { StudentPasswordService } from './entities/student-password.service';
+import { AssignmentHttpService } from './entities/services-for-week-schedule/teacher-assignment-http.service';
 import { SelectedStudentService } from './selected-student.service';
+import { resolveTutorIdForEnrollment } from '../../utils/enrollment-tutor.util';
 
 /** Códigos de error lanzados por `confirmEnrollment` cuando falla la validación o el API. */
 export type EnrollmentConfirmErrorCode =
   | 'NO_SUBJECTS'
   | 'NO_STUDENT'
   | 'STUDENT_CREATE_FAILED'
-  | 'REGISTRATION_FAILED';
+  | 'REGISTRATION_FAILED'
+  | 'TUTOR_PATCH_FAILED';
 
 /**
  * Orquesta matriculación (EQ-311-A): persistir solo al confirmar paso 3.
@@ -42,6 +45,9 @@ export class StudentRegistrationService {
   /** Alta de alumno en BD tras crear usuario Firebase. */
   private readonly studentsService = inject(StudentsService);
   private readonly studentPasswordService = inject(StudentPasswordService);
+
+  /** Asignaciones docente para resolver el tutor del grupo matriculado. */
+  private readonly assignmentHttp = inject(AssignmentHttpService);
 
   /** Firebase Auth para registro de email/contraseña. */
   private readonly auth = inject(Auth);
@@ -135,6 +141,8 @@ export class StudentRegistrationService {
         schoolYear: environment.currentSchoolYear,
       })),
     };
+    const idSubjectIds = subjects.map((s) => s.id);
+
     return this.createRegistrations(request).pipe(
       switchMap((response) => {
         if (!response.success) {
@@ -142,7 +150,51 @@ export class StudentRegistrationService {
             () => new Error('REGISTRATION_FAILED' satisfies EnrollmentConfirmErrorCode),
           );
         }
-        return of(response);
+        return this.linkStudentPasswordTutor(idStudent, idGroup, idSubjectIds).pipe(
+          map(() => response),
+        );
+      }),
+    );
+  }
+
+  /**
+   * Tras matricular: busca assignment tutor (grupo + asignaturas + año) y PATCH credencial.
+   */
+  private linkStudentPasswordTutor(
+    idStudent: number,
+    idGroup: number,
+    idSubjectIds: number[],
+  ): Observable<void> {
+    const schoolYear = environment.currentSchoolYear;
+
+    return this.assignmentHttp.getAll().pipe(
+      switchMap((res) => {
+        const tutorId = resolveTutorIdForEnrollment(
+          res.success ? res.data : [],
+          idGroup,
+          idSubjectIds,
+          schoolYear,
+        );
+
+        if (tutorId == null) {
+          console.warn(
+            '[matriculación] No se encontró tutor en assignments para grupo',
+            idGroup,
+            'asignaturas',
+            idSubjectIds,
+          );
+          return of(undefined);
+        }
+
+        return this.studentPasswordService.patchTutor(idStudent, tutorId).pipe(
+          map(() => undefined),
+          catchError((error) => {
+            console.error('[matriculación] PATCH student-passwords tutor falló:', error);
+            return throwError(
+              () => new Error('TUTOR_PATCH_FAILED' satisfies EnrollmentConfirmErrorCode),
+            );
+          }),
+        );
       }),
     );
   }

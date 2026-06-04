@@ -232,6 +232,7 @@
       "saving": "Saving enrollments…",
       "saveErrorRegistration": "Enrollments could not be saved. Please try again.",
       "saveErrorStudent": "The student could not be created. Check the data and try again.",
+      "saveErrorTutor": "Enrollments were saved, but the tutor could not be linked to the student credentials.",
       "saveErrorGeneric": "Enrollment could not be completed. Please try again."
     }
   },

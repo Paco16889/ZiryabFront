@@ -232,6 +232,7 @@
       "saving": "Einschreibungen werden gespeichert…",
       "saveErrorRegistration": "Die Einschreibungen konnten nicht gespeichert werden. Bitte erneut versuchen.",
       "saveErrorStudent": "Der Schüler konnte nicht angelegt werden. Daten prüfen und erneut versuchen.",
+      "saveErrorTutor": "Die Einschreibungen wurden gespeichert, aber der Tutor konnte den Zugangsdaten nicht zugeordnet werden.",
       "saveErrorGeneric": "Die Einschreibung konnte nicht abgeschlossen werden. Bitte erneut versuchen."
     }
   },
