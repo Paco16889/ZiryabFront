@@ -9,14 +9,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { resolveApiError } from '../../../core/i18n/api-error.util';
 import { GetSubjectDetailResponse } from '../../../core/models/teacher/subjectforteacher';
 import { StudentSubjectEnrollmentRow } from '../../../core/models/teacher/subjectforteacher';
-
-/** Datos mínimos de matrícula que se transforman en tarjetas de asignatura del alumno. */
-interface StudentSubjectCardSource {
-  /** Asignatura matriculada que se mostrará como tarjeta. */
-  subject: { id: number; name: string };
-  /** Grupo del alumno para mostrarlo como subtítulo. */
-  group?: { name: string } | null;
-}
+import { formatStudentClassLevelSubtitle } from '../../../core/utils/class-card-subtitle.util';
 
 /**
  * Componente que muestra las asignaturas matriculadas del estudiante autenticado.
@@ -145,7 +138,7 @@ export class ClasesComponent implements OnInit {
       id: item.subject?.id || 0,
       title: item.subject?.name || this.translate.instant('studentPages.classes.subjectFallback'),
       subtitleTopLabel: 'studentPages.classes.levelLabel',
-      subtitleTopValue: item.group?.name || '-',
+      subtitleTopValue: formatStudentClassLevelSubtitle(item.subject),
       subtitleBottomLabel: 'studentPages.classes.teacherLabel',
       subtitleBottomValue: this.profesoresMap()[item.subject?.id || 0] || this.translate.instant('studentPages.classes.loadingTeacher'),
       actionLabel: this.translate.instant('studentPages.common.access')

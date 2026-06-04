@@ -825,8 +825,8 @@
     "errorConnection": "Error de conexión con el servidor.",
     "errorUser": "Usuario no identificado. Por favor, inicia sesión.",
     "labels": {
-      "course": "Curso",
-      "group": "Grado/Grupo"
+      "course": "Ciclo",
+      "group": "Grado / Grupo"
     },
     "substitutingBadge": "Sustituyendo a {{name}}"
   },

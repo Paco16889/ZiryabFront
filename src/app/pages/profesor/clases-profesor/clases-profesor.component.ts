@@ -7,6 +7,10 @@ import { TeacherTeachingContextService } from '../../../core/services/profesor/t
 import { BotonAtrasComponent } from '../../shared/boton-atras/boton-atras.component';
 import { CardGridComponent, CardItem } from '../../shared/card-grid/card-grid.component';
 import { TeacherAssignmentContextRow } from '../../../core/models/teacher/teacher-assignment-context';
+import {
+  formatTeacherClassCourseSubtitle,
+  formatTeacherClassGroupSubtitle,
+} from '../../../core/utils/class-card-subtitle.util';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 /**
@@ -74,9 +78,9 @@ export class ClasesProfesorComponent implements OnInit {
       assignmentId: item.id,
       title: item.subject.name,
       subtitleTopLabel: 'teacherClasses.labels.course',
-      subtitleTopValue: item.subject?.course?.name || 'General',
+      subtitleTopValue: formatTeacherClassCourseSubtitle(item.subject),
       subtitleBottomLabel: 'teacherClasses.labels.group',
-      subtitleBottomValue: item.group?.name || 'Varios',
+      subtitleBottomValue: formatTeacherClassGroupSubtitle(item.subject, item.group),
       actionLabel: 'teacherClasses.manageSyllabus',
       secondaryActionLabel: 'teacherClasses.classMenu',
       badgeKey: item.isSubstituting ? 'teacherClasses.substitutingBadge' : undefined,
