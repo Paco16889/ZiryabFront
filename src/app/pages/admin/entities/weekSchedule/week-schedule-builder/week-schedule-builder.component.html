@@ -1,6 +1,15 @@
 <div class="max-w-7xl mx-auto">
   <h1 class="text-2xl font-bold text-gray-900 dark:text-purple-100 mb-6">{{ 'weekScheduleBuilder.title' | translate }}</h1>
 
+  @if (gridSaveMessage()) {
+    <div
+      class="mb-4 rounded-lg border border-green-300 bg-green-50 px-4 py-3 text-sm text-green-800 dark:border-green-800 dark:bg-green-950/30 dark:text-green-200"
+      role="status"
+    >
+      {{ gridSaveMessage() }}
+    </div>
+  }
+
   <div
     class="flex flex-wrap gap-2 mb-6"
     role="tablist"
@@ -44,16 +53,19 @@
     </button>
   </div>
 
-  @if (builderMode() === 'create') {
+  <div [class.hidden]="builderMode() !== 'create'">
     <app-week-schedule-create-template
       [preselectClassKey]="createPreselectClassKey()"
       (templateCreated)="onTemplateCreated($event)"
     />
-  } @else {
+  </div>
+  <div [class.hidden]="builderMode() !== 'grid'">
     <app-week-schedule-grid-builder
       [embedded]="true"
       [preselectClassKey]="gridPreselectClassKey()"
+      [preselectClass]="gridPreselectClass()"
+      [listRefreshToken]="gridListRefreshToken()"
       (scheduleSaved)="onGridScheduleSaved()"
     />
-  }
+  </div>
 </div>

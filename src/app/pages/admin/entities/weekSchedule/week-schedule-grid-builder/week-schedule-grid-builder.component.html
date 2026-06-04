@@ -22,14 +22,19 @@
     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
       {{ 'weekScheduleBuilder.grid.selectClass' | translate }}
     </label>
+    @if (selectedClass(); as cls) {
+      <p class="mb-2 rounded-md border border-purple-200 bg-purple-50 px-3 py-2 text-sm font-semibold text-purple-900 dark:border-purple-800 dark:bg-purple-950/40 dark:text-purple-100">
+        {{ 'weekScheduleBuilder.grid.selectedClass' | translate }}: {{ cls.label }}
+      </p>
+    }
     <select
       class="w-full max-w-lg border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-gray-800 dark:text-gray-100"
-      [value]="selectedClassKey()"
-      (change)="onClassSelected($any($event.target).value)"
+      [ngModel]="selectedClassKey()"
+      (ngModelChange)="onClassSelected($event)"
     >
       <option value="">{{ 'weekScheduleBuilder.grid.classPlaceholder' | translate }}</option>
       @for (c of classes(); track classKey(c)) {
-        <option [value]="classKey(c)">{{ c.label }}</option>
+        <option [ngValue]="classKey(c)">{{ c.label }}</option>
       }
     </select>
     @if (classesLoadError()) {

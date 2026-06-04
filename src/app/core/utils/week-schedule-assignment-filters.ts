@@ -1,3 +1,4 @@
+import type { WeekSchedule } from '../models/week-schedule';
 import { AssignmentStatus } from '../models/assingment';
 import { TeacherSubjectAssignmentRow } from '../models/teacher/subjectforteacher';
 import { hoursBetween } from './time-range';
@@ -234,4 +235,57 @@ export function wouldExceedSubjectHoursInCell(
     }
   }
   return used + hoursBetween(slotStart, slotFinish) > declared + 1e-6;
+}
+
+/** Horas ya colocadas en la rejilla por `idSubject` (solo franjas con assignment). */
+export function assignedHoursPerSubjectFromSchedules(
+  classSchedules: WeekSchedule[],
+  assignmentRowsBySubject: TeacherSubjectAssignmentRow[] = [],
+): Map<number, number> {
+  const subjectByAssignmentId = new Map<number, number>();
+  for (const row of assignmentRowsBySubject) {
+    subjectByAssignmentId.set(row.id, row.idSubject);
+  }
+  const bySubject = new Map<number, number>();
+  for (const ws of classSchedules) {
+    const ta = ws.teacherAssignment;
+    if (ta == null || ta.id == null) {
+      continue;
+    }
+    const subjectId = ta.idSubject ?? subjectByAssignmentId.get(ta.id);
+    if (subjectId == null) {
+      continue;
+    }
+    const slotHours = hoursBetween(ws.startTime, ws.finishTime);
+    bySubject.set(subjectId, (bySubject.get(subjectId) ?? 0) + slotHours);
+  }
+  return bySubject;
+}
+
+/**
+ * Quedan horas semanales por cubrir en alguna asignatura de la clase.
+ * Franjas vacías con el cupo de horas agotado no cuentan como pendiente.
+ */
+export function classHasRemainingSubjectHours(
+  classSchedules: WeekSchedule[],
+  assignmentRowsBySubject: TeacherSubjectAssignmentRow[],
+): boolean {
+  if (classSchedules.length === 0 || assignmentRowsBySubject.length === 0) {
+    return false;
+  }
+  const assigned = assignedHoursPerSubjectFromSchedules(
+    classSchedules,
+    assignmentRowsBySubject,
+  );
+  for (const row of assignmentRowsBySubject) {
+    const declared = row.subject?.hours;
+    if (declared == null || declared <= 0) {
+      continue;
+    }
+    const used = assigned.get(row.idSubject) ?? 0;
+    if (used < declared - 1e-6) {
+      return true;
+    }
+  }
+  return false;
 }

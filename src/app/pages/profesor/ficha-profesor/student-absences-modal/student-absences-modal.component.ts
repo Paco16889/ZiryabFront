@@ -25,10 +25,10 @@ interface StudentAbsencesData {
         <!-- Overlay -->
         <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" aria-hidden="true" (click)="onClose()"></div>
 
-        <div class="relative flex w-full max-h-[92dvh] max-w-3xl flex-col overflow-hidden bg-white text-left align-middle shadow-2xl sm:max-h-[85vh] sm:rounded-2xl rounded-t-2xl">
+        <div class="relative flex w-full max-h-[92dvh] max-w-3xl flex-col bg-white text-left align-middle shadow-2xl sm:max-h-[85vh] sm:rounded-2xl rounded-t-2xl">
           <!-- Modal Header -->
-          <div class="flex shrink-0 items-start justify-between gap-3 border-b border-gray-100 bg-slate-50/50 px-4 py-3 sm:items-center sm:px-6 sm:py-4">
-            <h3 class="min-w-0 flex-1 text-lg font-semibold leading-snug text-slate-800 sm:text-xl" id="modal-title">
+          <div class="flex shrink-0 items-center justify-between gap-3 rounded-t-2xl border-b border-gray-100 bg-slate-50/50 px-4 py-4 sm:px-6">
+            <h3 class="min-w-0 flex-1 text-lg font-semibold leading-normal text-slate-800 sm:text-xl" id="modal-title">
               {{ 'teacherProfile.absencesSummary.title' | translate }}
             </h3>
             <button (click)="onClose()" class="shrink-0 rounded-xl p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600">
@@ -40,7 +40,7 @@ interface StudentAbsencesData {
           </div>
 
           <!-- Modal Body -->
-          <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6">
+          <div class="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain p-4 sm:p-6">
             @if (loading()) {
               <div class="flex flex-col items-center justify-center py-10 sm:py-12">
                 <div class="mb-4 h-10 w-10 animate-spin rounded-full border-4 border-indigo-100 border-t-indigo-600"></div>

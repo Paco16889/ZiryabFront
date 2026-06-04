@@ -52,6 +52,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userRoleKey = 'roles.user';
   /** Toggle de tema solo visible para administradores (modo oscuro limitado al panel admin). */
   showThemeToggle = false;
+  /** El título no navega en admin (usa dashboard-admin, no /dashboard). */
+  isAdmin = false;
   /** Notificación mostrada temporalmente como toast. */
   toastNotification: AppNotification | null = null;
 
@@ -70,10 +72,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.userName = user.name;
           this.userRoleKey = this.getRoleKey(user.role);
           this.showThemeToggle = user.role === 'ADMIN';
+          this.isAdmin = user.role === 'ADMIN';
         } else {
           this.userName = '';
           this.userRoleKey = 'roles.user';
           this.showThemeToggle = false;
+          this.isAdmin = false;
           this.dismissToast();
           this.notificationPanel.close();
         }
@@ -102,6 +106,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userName = currentUser.name;
       this.userRoleKey = this.getRoleKey(currentUser.role);
       this.showThemeToggle = currentUser.role === 'ADMIN';
+      this.isAdmin = currentUser.role === 'ADMIN';
       this.notificationsService.load();
     }
   }
@@ -116,8 +121,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return map[role] ?? 'roles.user';
   }
 
-  /** Navega al dashboard del usuario autenticado. */
+  /** Navega al dashboard del usuario autenticado (alumno/profesor). */
   navigateToDashboard(): void {
+    if (this.isAdmin) {
+      return;
+    }
     this.router.navigate(['/dashboard']);
   }
 

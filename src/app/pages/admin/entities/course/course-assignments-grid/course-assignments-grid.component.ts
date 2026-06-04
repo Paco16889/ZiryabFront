@@ -17,6 +17,11 @@ import { AssignmentHttpService } from '../../../../../core/services/admin/entiti
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
 import { assignmentsForCurrentSchoolYear } from '../../../../../core/utils/assignment-filter-options.util';
 import { buildSubstituteTeacherSelectOptions } from '../../../../../core/utils/substitute-eligibility.util';
+import {
+  canTeacherBeTutorForGroup,
+  groupIdFromAssignment,
+  teacherIdFromAssignment,
+} from '../../../../../core/utils/tutor-assignment-rules.util';
 import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
 import { environment } from '../../../../../../environments/environment';
 /** Resumen mostrado tras guardar asignaciones docentes en lote. */
@@ -96,6 +101,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
   readonly existingAssignments = signal<AssignmentWithIncludes[]>([]);
   readonly updatingTutorAssignments = signal(false);
   readonly tutorUpdateError = signal<string | null>(null);
+  readonly tutorBusinessError = signal<string | null>(null);
   readonly tutorUpdateSuccess = signal(false);
   private readonly initialTutorAssignmentByGroup = signal<Record<number, number | null>>({});
   readonly assignedGroupIds = computed(() => {
@@ -119,7 +125,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
   readonly currentTutorAssignmentByGroup = computed(() => {
     const byGroup: Record<number, number | null> = {};
     for (const a of this.existingAssignments()) {
-      const groupId = this.getAssignmentGroupId(a);
+      const groupId = groupIdFromAssignment(a);
       if (groupId == null) continue;
       if (!(groupId in byGroup)) {
         byGroup[groupId] = null;
@@ -221,6 +227,14 @@ export class CourseAssignmentsGridComponent implements OnInit {
     this.updateRow(row.idSubject, { idTeacher: id });
     if (id == null) {
       this.updateRow(row.idSubject, { isTutor: false });
+    } else {
+      const groupId = this.rows().find((r) => r.idSubject === row.idSubject)?.idGroup ?? row.idGroup;
+      if (groupId != null) {
+        const current = this.rows().find((r) => r.idSubject === row.idSubject);
+        if (current?.isTutor && !this.canTeacherBeTutor(id, groupId)) {
+          this.updateRow(row.idSubject, { isTutor: false });
+        }
+      }
     }
     this.clearSaveMessages();
   }
@@ -242,14 +256,62 @@ export class CourseAssignmentsGridComponent implements OnInit {
     this.clearSaveMessages();
   }
 
+  /** El profesor de la fila puede marcarse tutor (no es tutor de otro grupo). */
+  canSelectTutorForRow(row: CourseAssignmentGridRow): boolean {
+    if (row.idTeacher == null || row.idGroup == null) {
+      return false;
+    }
+    if (row.isTutor) {
+      return true;
+    }
+    return this.canTeacherBeTutor(row.idTeacher, row.idGroup);
+  }
+
+  /** El checkbox de tutor en asignaciones existentes está permitido. */
+  canMarkExistingAssignmentAsTutor(a: AssignmentWithIncludes): boolean {
+    const teacherId = teacherIdFromAssignment(a);
+    const groupId = groupIdFromAssignment(a);
+    if (teacherId == null || groupId == null) {
+      return false;
+    }
+    if (a.isTutor) {
+      return true;
+    }
+    return this.canTeacherBeTutor(teacherId, groupId);
+  }
+
+  private canTeacherBeTutor(teacherId: number, groupId: number): boolean {
+    return canTeacherBeTutorForGroup(
+      teacherId,
+      groupId,
+      this.assignmentsForTutorRules(),
+      this.rows(),
+    );
+  }
+
+  /** Asignaciones del año con tutorías pendientes de guardar en la tabla existente. */
+  private assignmentsForTutorRules(): AssignmentWithIncludes[] {
+    const pendingTutorById = new Map(
+      this.existingAssignments().map((a) => [a.id, a.isTutor]),
+    );
+    return this.allAssignments().map((a) =>
+      pendingTutorById.has(a.id) ? { ...a, isTutor: pendingTutorById.get(a.id) } : a,
+    );
+  }
+
   onTutorChange(row: CourseAssignmentGridRow, checked: boolean): void {
     this.tutorUpdateError.set(null);
+    this.tutorBusinessError.set(null);
     this.tutorUpdateSuccess.set(false);
     if (!checked) {
       this.updateRow(row.idSubject, { isTutor: false });
       return;
     }
     if (row.idGroup == null || row.idTeacher == null) {
+      return;
+    }
+    if (!this.canTeacherBeTutor(row.idTeacher, row.idGroup)) {
+      this.tutorBusinessError.set('courseAssignments.grid.tutorAlreadyAssigned');
       return;
     }
     this.rows.update((list) =>
@@ -265,18 +327,24 @@ export class CourseAssignmentsGridComponent implements OnInit {
 
   onExistingTutorToggle(assignmentId: number, checked: boolean): void {
     this.tutorUpdateError.set(null);
+    this.tutorBusinessError.set(null);
     this.tutorUpdateSuccess.set(false);
     const target = this.existingAssignments().find((a) => a.id === assignmentId);
     if (!target) {
       return;
     }
-    const groupId = this.getAssignmentGroupId(target);
-    if (groupId == null) {
+    const groupId = groupIdFromAssignment(target);
+    const teacherId = teacherIdFromAssignment(target);
+    if (groupId == null || teacherId == null) {
+      return;
+    }
+    if (checked && !this.canTeacherBeTutor(teacherId, groupId)) {
+      this.tutorBusinessError.set('courseAssignments.grid.tutorAlreadyAssigned');
       return;
     }
     this.existingAssignments.update((list) =>
       list.map((a) => {
-        const gid = this.getAssignmentGroupId(a);
+        const gid = groupIdFromAssignment(a);
         if (gid !== groupId) {
           return a;
         }
@@ -292,8 +360,20 @@ export class CourseAssignmentsGridComponent implements OnInit {
     if (!this.hasPendingTutorUpdates()) {
       return;
     }
+    const invalid = this.existingAssignments().find(
+      (a) =>
+        a.isTutor &&
+        teacherIdFromAssignment(a) != null &&
+        groupIdFromAssignment(a) != null &&
+        !this.canTeacherBeTutor(teacherIdFromAssignment(a)!, groupIdFromAssignment(a)!),
+    );
+    if (invalid) {
+      this.tutorBusinessError.set('courseAssignments.grid.tutorAlreadyAssigned');
+      return;
+    }
     this.updatingTutorAssignments.set(true);
     this.tutorUpdateError.set(null);
+    this.tutorBusinessError.set(null);
     this.tutorUpdateSuccess.set(false);
 
     const current = this.currentTutorAssignmentByGroup();
@@ -305,7 +385,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
     const updates = changedGroupIds.flatMap((groupId) => {
       const selectedTutorAssignmentId = current[groupId] ?? null;
       return this.existingAssignments()
-        .filter((a) => this.getAssignmentGroupId(a) === groupId)
+        .filter((a) => groupIdFromAssignment(a) === groupId)
         .map((a) => ({
           id: a.id,
           isTutor: selectedTutorAssignmentId != null && a.id === selectedTutorAssignmentId,
@@ -362,6 +442,18 @@ export class CourseAssignmentsGridComponent implements OnInit {
           hasErrors: false,
         });
       }
+      return;
+    }
+
+    const tutorConflict = completeRows.find(
+      (r) =>
+        r.isTutor &&
+        r.idTeacher != null &&
+        r.idGroup != null &&
+        !this.canTeacherBeTutor(r.idTeacher, r.idGroup),
+    );
+    if (tutorConflict) {
+      this.tutorBusinessError.set('courseAssignments.grid.tutorAlreadyAssigned');
       return;
     }
 
@@ -548,6 +640,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
     this.showSchedulePrompt.set(false);
     this.tutorUpdateSuccess.set(false);
     this.tutorUpdateError.set(null);
+    this.tutorBusinessError.set(null);
   }
 
   /** Aplica un parche a una fila por `idSubject`. */
@@ -585,7 +678,7 @@ export class CourseAssignmentsGridComponent implements OnInit {
   ): Record<number, number | null> {
     const byGroup: Record<number, number | null> = {};
     for (const a of list) {
-      const groupId = this.getAssignmentGroupId(a);
+      const groupId = groupIdFromAssignment(a);
       if (groupId == null) continue;
       if (!(groupId in byGroup)) {
         byGroup[groupId] = null;
@@ -595,13 +688,6 @@ export class CourseAssignmentsGridComponent implements OnInit {
       }
     }
     return byGroup;
-  }
-
-  private getAssignmentGroupId(a: AssignmentWithIncludes): number | null {
-    if (a.group?.id != null) {
-      return a.group.id;
-    }
-    return (a as { idGroup?: number }).idGroup ?? null;
   }
 
   /** Emite evento de retroceso al contenedor. */

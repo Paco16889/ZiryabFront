@@ -2,15 +2,13 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   computed,
+  effect,
   inject,
   input,
-  Input,
-  OnChanges,
-  OnInit,
   output,
   signal,
-  SimpleChanges,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { concat, forkJoin, Observable, of, last, map, catchError, mergeMap } from 'rxjs';
 import { environment } from '../../../../../../environments/environment';
@@ -19,11 +17,14 @@ import { TimetableSlot } from '../../../../../core/models/timetable-slot';
 import { gridLayoutFromWeekSchedules } from '../../../../../core/utils/week-schedule-grid-layout';
 import {
   isWeekScheduleClassEligibleForGridSelector,
+  schedulesForClass,
   WeekScheduleClassItem,
   weekScheduleClassKey,
 } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
-import { WeekSchedule } from '../../../../../core/models/week-schedule';
 import { TeacherSubjectAssignmentRow } from '../../../../../core/models/teacher/subjectforteacher';
+import { assignmentWithIncludesToTeacherRow } from '../../../../../core/utils/week-schedule-assignment-mapper';
+import { AssignmentHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/teacher-assignment-http.service';
+import { WeekSchedule } from '../../../../../core/models/week-schedule';
 import { WeekScheduleAssignmentDataService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-assignment-data.service';
 import { WeekScheduleClassesHttpService } from '../../../../../core/services/admin/entities/services-for-week-schedule/week-schedule-classes-http.service';
 import { TeachersService } from '../../../../../core/services/admin/entities/teachers.service';
@@ -86,6 +87,7 @@ export interface GridCellState {
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     TranslateModule,
     WeekScheduleAssignmentPickerComponent,
     WeekScheduleDayCardComponent,
@@ -94,12 +96,15 @@ export interface GridCellState {
   templateUrl: './week-schedule-grid-builder.component.html',
   styleUrl: './week-schedule-grid-builder.component.scss',
 })
-export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
+export class WeekScheduleGridBuilderComponent {
   /** Asignaciones y horarios existentes de la clase seleccionada. */
   private readonly assignmentData = inject(WeekScheduleAssignmentDataService);
 
   /** Listado de clases con plantilla para el selector. */
   private readonly classesApi = inject(WeekScheduleClassesHttpService);
+
+  /** Asignaciones globales para calcular horas pendientes por asignatura. */
+  private readonly assignmentHttp = inject(AssignmentHttpService);
 
   /** Nombres de profesores para etiquetas de celdas. */
   private readonly teachersApi = inject(TeachersService);
@@ -120,7 +125,19 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
   readonly embedded = input(false);
 
   /** Tras materializar en pestaña create: preseleccionar esta clase (CURSO-145). */
-  @Input() preselectClassKey: string | null = null;
+  readonly preselectClassKey = input<string | null>(null);
+
+  /** Clase recién creada; se incluye en el selector aunque el filtro aún no la liste. */
+  readonly preselectClass = input<WeekScheduleClassItem | null>(null);
+
+  /** El padre incrementa al abrir la pestaña rejilla para recargar el selector. */
+  readonly listRefreshToken = input(0);
+
+  /** Ignora respuestas HTTP obsoletas de `loadClasses`. */
+  private classesLoadSeq = 0;
+
+  /** Ignora respuestas HTTP obsoletas de `loadClassContext`. */
+  private contextLoadSeq = 0;
 
   /** Días y franjas de la plantilla de la clase seleccionada (no fijos del environment). */
   /** Días de la semana presentes en la plantilla de la clase. */
@@ -162,6 +179,9 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
   /** Caché de `GET /horarios-semanales` de `loadClasses` (evita repetir al elegir clase). */
   private allSchedulesCache = signal<WeekSchedule[]>([]);
 
+  /** Caché de assignments del año para el filtro del selector. */
+  private allAssignmentsCache = signal<TeacherSubjectAssignmentRow[]>([]);
+
   /** Carga de clase, asignaciones y rejilla en curso. */
   readonly loading = signal(false);
 
@@ -202,59 +222,135 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
   /** Referencia a `weekScheduleClassKey` para el template. */
   readonly classKey = weekScheduleClassKey;
 
-  /** Carga clases al iniciar el componente. */
-  ngOnInit(): void {
-    this.loadClasses();
-  }
-
-  /** Reaplica preselección si cambia `preselectClassKey` tras cargar clases. */
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['preselectClassKey'] && this.classes().length > 0) {
-      this.tryPreselectClass();
-    }
+  constructor() {
+    effect(() => {
+      this.listRefreshToken();
+      this.preselectClassKey();
+      this.loadClasses();
+    });
   }
 
   /** Obtiene clases elegibles y caché global de horarios semanales. */
-  loadClasses(): void {
+  loadClasses(onComplete?: () => void): void {
+    const seq = ++this.classesLoadSeq;
     this.classesLoadError.set(false);
     forkJoin({
       classes: this.classesApi.getAllClasses(this.schoolYear()),
       schedules: this.schedules.getAllSchedules(),
+      assignments: this.assignmentHttp.getAll(),
     }).subscribe({
-      next: ({ classes, schedules }) => {
+      next: ({ classes, schedules, assignments }) => {
+        if (seq !== this.classesLoadSeq) {
+          return;
+        }
         const allSchedules = schedules.success ? schedules.data : [];
-        this.allSchedulesCache.set(allSchedules);
-        const list = classes.success
-          ? [...classes.data]
-              .filter((c) => isWeekScheduleClassEligibleForGridSelector(c, allSchedules))
-              .sort((a, b) => a.label.localeCompare(b.label))
+        const allAssignments = assignments.success
+          ? assignments.data.map((a) => assignmentWithIncludesToTeacherRow(a))
           : [];
-        this.classes.set(list);
-        this.tryPreselectClass();
+        this.allSchedulesCache.set(allSchedules);
+        this.allAssignmentsCache.set(allAssignments);
+        const list = classes.success
+          ? this.mergePreselectClass(
+              [...classes.data]
+                .filter((c) =>
+                  isWeekScheduleClassEligibleForGridSelector(c, allSchedules, allAssignments),
+                )
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            )
+          : [];
+        this.applyClassListAfterLoad(list);
+        onComplete?.();
       },
-      error: () => this.classesLoadError.set(true),
+      error: () => {
+        if (seq === this.classesLoadSeq) {
+          this.classesLoadError.set(true);
+        }
+      },
     });
   }
 
-  /** Selecciona la clase indicada en `preselectClassKey` si existe en el listado. */
-  private tryPreselectClass(): void {
-    const key = this.preselectClassKey;
-    if (!key || this.selectedClassKey() === key) {
+  /** Tras actualizar el desplegable: preselección, recarga de rejilla o limpieza. */
+  private applyClassListAfterLoad(list: WeekScheduleClassItem[]): void {
+    this.classes.set(list);
+    const preselectKey = this.preselectClassKey();
+    if (preselectKey) {
+      this.selectClassAndLoadGrid(preselectKey);
       return;
     }
-    const cls = this.classes().find((c) => weekScheduleClassKey(c) === key);
-    if (cls) {
-      this.onClassSelected(key);
+    const currentKey = this.selectedClassKey();
+    if (!currentKey) {
+      return;
     }
+    if (!list.some((c) => weekScheduleClassKey(c) === currentKey)) {
+      this.clearGridSelection();
+      return;
+    }
+    this.selectClassAndLoadGrid(currentKey);
   }
 
-  /** Carga asignaciones, layout y celdas al elegir una clase del desplegable. */
-  onClassSelected(key: string): void {
+  /** Incluye la clase recién materializada solo si aún tiene franjas por asignar. */
+  private mergePreselectClass(list: WeekScheduleClassItem[]): WeekScheduleClassItem[] {
+    const pending = this.preselectClass();
+    const key = this.preselectClassKey();
+    if (pending == null || key == null || weekScheduleClassKey(pending) !== key) {
+      return list;
+    }
+    if (list.some((c) => weekScheduleClassKey(c) === key)) {
+      return list;
+    }
+    const schedules = this.allSchedulesCache();
+    const assignments = this.allAssignmentsCache();
+    if (
+      schedulesForClass(pending, schedules).length > 0 &&
+      !isWeekScheduleClassEligibleForGridSelector(pending, schedules, assignments)
+    ) {
+      return list;
+    }
+    return [...list, { ...pending, hasWeekSchedule: true }].sort((a, b) =>
+      a.label.localeCompare(b.label),
+    );
+  }
+
+  /** Resuelve la clase por clave, con fallback a la preselección del padre. */
+  private resolveClassByKey(key: string): WeekScheduleClassItem | null {
+    const fromList = this.classes().find((c) => weekScheduleClassKey(c) === key);
+    if (fromList) {
+      return fromList;
+    }
+    const pending = this.preselectClass();
+    if (pending != null && weekScheduleClassKey(pending) === key) {
+      return pending;
+    }
+    return null;
+  }
+
+  /** Selecciona una clase y carga su rejilla (siempre tras tener listado y cachés listos). */
+  private selectClassAndLoadGrid(key: string): void {
+    const merged = this.mergePreselectClass(this.classes());
+    if (merged.length !== this.classes().length) {
+      this.classes.set(merged);
+    }
+    const cls = this.resolveClassByKey(key);
+    if (cls == null) {
+      return;
+    }
     this.selectedClassKey.set(key);
-    const cls = key
-      ? (this.classes().find((c) => weekScheduleClassKey(c) === key) ?? null)
-      : null;
     this.selectedClass.set(cls);
+    this.resetGridEditorState();
+    this.loadClassContext(cls);
+  }
+
+  /** Vacía selección y estado de la rejilla. */
+  private clearGridSelection(): void {
+    this.selectedClassKey.set('');
+    this.selectedClass.set(null);
+    this.resetGridEditorState();
+    this.loading.set(false);
+    this.loadError.set(false);
+  }
+
+  /** Limpia celdas y layout antes de cargar otra clase. */
+  private resetGridEditorState(): void {
     this.assignments.set([]);
     this.cells.set(new Map());
     this.initialServerSchedules.set([]);
@@ -262,9 +358,20 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
     this.gridSlots.set([]);
     this.validationMessages.set([]);
     this.teacherNameById.set(new Map());
-    if (cls == null) {
+  }
+
+  /** Carga asignaciones, layout y celdas al elegir una clase del desplegable. */
+  onClassSelected(key: string): void {
+    if (!key) {
+      this.clearGridSelection();
       return;
     }
+    this.selectClassAndLoadGrid(key);
+  }
+
+  /** Carga oferta docente y rejilla de la clase indicada. */
+  private loadClassContext(cls: WeekScheduleClassItem): void {
+    const seq = ++this.contextLoadSeq;
     this.loading.set(true);
     this.loadError.set(false);
     forkJoin({
@@ -279,6 +386,9 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
       teachers: this.teachersApi.getAllTeachers(),
     }).subscribe({
       next: ({ ctx, teachers }) => {
+        if (seq !== this.contextLoadSeq) {
+          return;
+        }
         const nameMap = new Map<number, string>();
         if (teachers.success) {
           for (const t of teachers.data) {
@@ -296,6 +406,9 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
         this.loading.set(false);
       },
       error: () => {
+        if (seq !== this.contextLoadSeq) {
+          return;
+        }
         this.loadError.set(true);
         this.loading.set(false);
       },
@@ -597,7 +710,7 @@ export class WeekScheduleGridBuilderComponent implements OnInit, OnChanges {
           next: () => {
             this.saving.set(false);
             this.schedules.loadSchedules();
-            this.scheduleSaved.emit();
+            this.loadClasses(() => this.scheduleSaved.emit());
           },
           error: () => {
             this.saving.set(false);
