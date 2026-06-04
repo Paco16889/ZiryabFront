@@ -1,4 +1,10 @@
 import type { WeekSchedule } from '../week-schedule';
+import type { TeacherSubjectAssignmentRow } from '../teacher/subjectforteacher';
+import {
+  classHasRemainingSubjectHours,
+  dedupeAssignmentRowsBySubject,
+  filterTeacherAssignmentsForClass,
+} from '../../utils/week-schedule-assignment-filters';
 
 /** Referencia mínima a ciclo formativo en listado de clases para horarios. */
 export interface WeekScheduleClassCourseRef {
@@ -67,20 +73,61 @@ export function isWeekScheduleClassEligibleForCreateTemplate(c: WeekScheduleClas
   return c.subjectCount > 0 && c.hasWeekSchedule === false;
 }
 
-/** Plantilla con al menos una franja sin `teacherAssignment` (rejilla: celdas libres). */
-export function classHasVacantScheduleSlots(
+/** Franja horaria que pertenece a la clase (por `label` de plantilla o grupo). */
+export function scheduleBelongsToClass(
+  schedule: WeekSchedule,
+  cls: WeekScheduleClassItem,
+): boolean {
+  const label = schedule.label?.trim();
+  if (label && label === cls.label.trim()) {
+    return true;
+  }
+  return schedule.teacherAssignment?.idGroup === cls.group.id;
+}
+
+/** Celda de plantilla aún sin docente–asignatura asignado. */
+export function isVacantScheduleSlot(schedule: WeekSchedule): boolean {
+  const ta = schedule.teacherAssignment;
+  return ta == null || ta.id == null;
+}
+
+/** Horarios de la clase que siguen en el listado global. */
+export function schedulesForClass(
   cls: WeekScheduleClassItem,
   schedules: WeekSchedule[],
-): boolean {
-  return schedules.some(
-    (s) => s.label === cls.label && s.teacherAssignment == null,
+): WeekSchedule[] {
+  return schedules.filter((s) => scheduleBelongsToClass(s, cls));
+}
+
+/** Asignaciones docente de la clase (ciclo + grade + grupo + año). */
+export function assignmentRowsForClass(
+  cls: WeekScheduleClassItem,
+  allAssignments: TeacherSubjectAssignmentRow[],
+): TeacherSubjectAssignmentRow[] {
+  return dedupeAssignmentRowsBySubject(
+    filterTeacherAssignmentsForClass(
+      allAssignments,
+      cls.course.id,
+      cls.grade,
+      cls.group.id,
+      cls.schoolYear,
+    ),
   );
 }
 
-/** Rejilla: clases con plantilla y franjas vacías por asignar. */
+/** Rejilla: plantilla creada y alguna asignatura con horas semanales sin cubrir. */
 export function isWeekScheduleClassEligibleForGridSelector(
   c: WeekScheduleClassItem,
   schedules: WeekSchedule[],
+  allAssignments: TeacherSubjectAssignmentRow[],
 ): boolean {
-  return c.subjectCount > 0 && classHasVacantScheduleSlots(c, schedules);
+  if (c.subjectCount <= 0) {
+    return false;
+  }
+  const classSchedules = schedulesForClass(c, schedules);
+  if (classSchedules.length === 0) {
+    return false;
+  }
+  const rows = assignmentRowsForClass(c, allAssignments);
+  return classHasRemainingSubjectHours(classSchedules, rows);
 }

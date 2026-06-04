@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../../../environments/environment';
 import { WeekScheduleClassItem, weekScheduleClassKey } from '../../../../../core/models/week-schedule-flow/week-schedule-class.model';
 import { WeekScheduleNavigationService } from '../../../../../core/services/UI/week-schedule-navigation.service';
@@ -29,6 +29,9 @@ export class WeekScheduleBuilderComponent implements OnInit {
   /** Contexto pendiente al llegar desde asignaciones docentes (EQ-309). */
   private readonly scheduleNav = inject(WeekScheduleNavigationService);
 
+  /** Mensajes de confirmación i18n. */
+  private readonly translate = inject(TranslateService);
+
   /** Notifica al menú admin que el horario quedó guardado o materializado. */
   readonly scheduleCreated = output<void>();
 
@@ -37,6 +40,15 @@ export class WeekScheduleBuilderComponent implements OnInit {
 
   /** Clase a preseleccionar en rejilla tras materializar (CURSO-145). */
   readonly gridPreselectClassKey = signal<string | null>(null);
+
+  /** Datos de la clase recién creada para el selector de rejilla. */
+  readonly gridPreselectClass = signal<WeekScheduleClassItem | null>(null);
+
+  /** Mensaje breve tras guardar la rejilla (antes de volver a crear plantilla). */
+  readonly gridSaveMessage = signal<string | null>(null);
+
+  /** Fuerza recarga del selector de clases al entrar en la pestaña rejilla. */
+  readonly gridListRefreshToken = signal(0);
 
   /** Clase a preseleccionar en crear plantilla (EQ-309). */
   readonly createPreselectClassKey = signal('');
@@ -61,16 +73,28 @@ export class WeekScheduleBuilderComponent implements OnInit {
   /** Cambia entre pestaña de plantilla y rejilla. */
   setBuilderMode(mode: WeekScheduleBuilderMode): void {
     this.builderMode.set(mode);
+    if (mode === 'grid') {
+      this.gridListRefreshToken.update((v) => v + 1);
+    }
   }
 
-  /** La rejilla guardó cambios; propaga evento al contenedor. */
+  /** La rejilla guardó cambios: mensaje y vuelta a «Crear plantilla». */
   onGridScheduleSaved(): void {
+    this.gridSaveMessage.set(
+      this.translate.instant('weekScheduleBuilder.grid.saveSuccess'),
+    );
+    this.gridPreselectClassKey.set(null);
+    this.gridPreselectClass.set(null);
+    this.setBuilderMode('create');
     this.scheduleCreated.emit();
   }
 
   /** Tras materializar: ir a rejilla y preseleccionar la clase creada (CURSO-145). */
   onTemplateCreated(cls: WeekScheduleClassItem): void {
-    this.gridPreselectClassKey.set(weekScheduleClassKey(cls));
+    this.gridSaveMessage.set(null);
+    const key = weekScheduleClassKey(cls);
+    this.gridPreselectClassKey.set(key);
+    this.gridPreselectClass.set(cls);
     this.setBuilderMode('grid');
     this.scheduleCreated.emit();
   }

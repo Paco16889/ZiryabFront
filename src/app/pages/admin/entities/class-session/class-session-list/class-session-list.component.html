@@ -16,13 +16,103 @@
         />
       </div>
     </div>
+
+    @if (allSessions().length > 0) {
+      <div class="mb-6 rounded-2xl border border-purple-100 bg-purple-50 p-4 sm:p-5 dark:border-purple-800 dark:bg-purple-950/30">
+        <p class="mb-3 text-sm font-semibold text-purple-800 dark:text-purple-200">
+          {{ 'lists.classSessions.filterTitle' | translate }}
+        </p>
+        <p class="mb-3 text-xs text-gray-600 dark:text-gray-400">
+          {{ 'lists.classSessions.filterHint' | translate }}
+        </p>
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-gray-600 dark:text-gray-400">
+              {{ 'lists.classSessions.filterDateFrom' | translate }}
+            </label>
+            <input
+              type="date"
+              class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+              [ngModel]="filterDateFrom()"
+              (ngModelChange)="filterDateFrom.set($event)"
+            />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-gray-600 dark:text-gray-400">
+              {{ 'lists.classSessions.filterDateTo' | translate }}
+            </label>
+            <input
+              type="date"
+              class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+              [ngModel]="filterDateTo()"
+              (ngModelChange)="filterDateTo.set($event)"
+            />
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-medium text-gray-600 dark:text-gray-400">
+              {{ 'lists.classSessions.filterWeekDay' | translate }}
+            </label>
+            <select
+              class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+              [ngModel]="filterWeekDay()"
+              (ngModelChange)="filterWeekDay.set($event)"
+            >
+              <option [ngValue]="null">{{ 'lists.classSessions.cancelDialog.filterAll' | translate }}</option>
+              @for (day of weekDayOptions(); track day) {
+                <option [ngValue]="day">{{ weekDayLabel(day) | translate }}</option>
+              }
+            </select>
+          </div>
+          @if (statusOptions().length > 0) {
+            <div class="flex flex-col gap-1">
+              <label class="text-xs font-medium text-gray-600 dark:text-gray-400">
+                {{ 'lists.classSessions.filterStatus' | translate }}
+              </label>
+              <select
+                class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                [ngModel]="filterStatus()"
+                (ngModelChange)="filterStatus.set($event)"
+              >
+                <option [ngValue]="null">{{ 'lists.classSessions.cancelDialog.filterAll' | translate }}</option>
+                @for (st of statusOptions(); track st) {
+                  <option [ngValue]="st">{{ st }}</option>
+                }
+              </select>
+            </div>
+          }
+        </div>
+        <button
+          type="button"
+          class="mt-3 inline-flex rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-700"
+          (click)="clearFilters()"
+        >
+          {{ 'adminFilters.clear' | translate }}
+        </button>
+      </div>
+
+      <p class="mb-3 text-sm text-gray-600 dark:text-gray-400">
+        {{ 'lists.classSessions.filteredCount' | translate: { shown: filteredSessions().length, total: allSessions().length } }}
+      </p>
+    }
+
     @if (suspendSuccessCount !== null) {
       <div class="mb-4 p-3 bg-green-100 border border-green-400 rounded text-green-800 text-sm">
         {{ 'lists.classSessions.cancelDialog.success' | translate: { count: suspendSuccessCount } }}
       </div>
     }
-    @for (session of classSessions; track session.id) {
-      <app-class-session-list-item [classSession]="session" />
+
+    @if (allSessions().length === 0) {
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        {{ 'lists.classSessions.empty' | translate }}
+      </p>
+    } @else if (filteredSessions().length === 0) {
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        {{ 'lists.classSessions.filterEmpty' | translate }}
+      </p>
+    } @else {
+      @for (session of filteredSessions(); track session.id) {
+        <app-class-session-list-item [classSession]="session" />
+      }
     }
   }
   @if (showCancelDialog) {

@@ -1,6 +1,8 @@
 import { AssignmentStatus } from '../models/assingment';
 import { TeacherSubjectAssignmentRow } from '../models/teacher/subjectforteacher';
 import {
+  assignedHoursPerSubjectFromSchedules,
+  classHasRemainingSubjectHours,
   dedupeAssignmentRowsBySubject,
   filterAssignmentOptionsForCellBySubjectHours,
   filterTeacherAssignmentsForClass,
@@ -162,5 +164,77 @@ describe('week-schedule-assignment-filters', () => {
     ];
     const out = filterTeacherAssignmentsForSchoolYear(rows, '2024-2025');
     expect(out.map((r) => r.id)).toEqual([1, 3]);
+  });
+
+  it('classHasRemainingSubjectHours is false when weekly hours are fully scheduled', () => {
+    const rows = [
+      base({
+        idSubject: 20,
+        subject: { id: 20, name: 'Prog', hours: 2 },
+      }),
+    ];
+    const schedules = [
+      {
+        id: 1,
+        weekDay: 1,
+        startTime: '08:00',
+        finishTime: '10:00',
+        teacherAssignment: { id: 1, idTeacher: 10, idSubject: 20, idGroup: 30, schoolYear: '2024-2025', status: AssignmentStatus.ACTIVE },
+      },
+      {
+        id: 2,
+        weekDay: 2,
+        startTime: '10:00',
+        finishTime: '11:00',
+        label: '1 DAM — Mañana',
+        teacherAssignment: null,
+      },
+    ];
+    expect(classHasRemainingSubjectHours(schedules, rows)).toBeFalse();
+  });
+
+  it('counts assigned hours when schedule assignment lacks idSubject but has assignment id', () => {
+    const rows = [
+      base({
+        id: 99,
+        idSubject: 20,
+        subject: { id: 20, name: 'Prog', hours: 2 },
+      }),
+    ];
+    const schedules = [
+      {
+        id: 1,
+        weekDay: 1,
+        startTime: '08:00',
+        finishTime: '10:00',
+        teacherAssignment: {
+          id: 99,
+          idTeacher: 10,
+          idGroup: 30,
+          schoolYear: '2024-2025',
+          status: AssignmentStatus.ACTIVE,
+        },
+      },
+    ];
+    expect(classHasRemainingSubjectHours(schedules, rows)).toBeFalse();
+  });
+
+  it('classHasRemainingSubjectHours is true when a subject still has free hours', () => {
+    const rows = [
+      base({
+        idSubject: 20,
+        subject: { id: 20, name: 'Prog', hours: 4 },
+      }),
+    ];
+    const schedules = [
+      {
+        id: 1,
+        weekDay: 1,
+        startTime: '08:00',
+        finishTime: '10:00',
+        teacherAssignment: { id: 1, idTeacher: 10, idSubject: 20, idGroup: 30, schoolYear: '2024-2025', status: AssignmentStatus.ACTIVE },
+      },
+    ];
+    expect(classHasRemainingSubjectHours(schedules, rows)).toBeTrue();
   });
 });

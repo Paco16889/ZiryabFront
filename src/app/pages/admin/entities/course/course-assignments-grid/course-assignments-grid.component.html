@@ -71,8 +71,10 @@
                   <div class="flex items-center gap-3">
                     <input
                       type="checkbox"
-                      class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                      class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
                       [checked]="!!a.isTutor"
+                      [disabled]="!canMarkExistingAssignmentAsTutor(a)"
+                      [title]="!canMarkExistingAssignmentAsTutor(a) ? ('courseAssignments.grid.tutorAlreadyAssigned' | translate) : ''"
                       (change)="onExistingTutorToggle(a.id, $any($event.target).checked)"
                     />
                     @if (a.isTutor) {
@@ -106,6 +108,11 @@
           @if (tutorUpdateError()) {
             <p class="text-sm text-red-600">
               {{ tutorUpdateError()!.startsWith('courseAssignments.') ? (tutorUpdateError()! | translate) : tutorUpdateError() }}
+            </p>
+          }
+          @if (tutorBusinessError()) {
+            <p class="text-sm text-amber-700" role="alert">
+              {{ tutorBusinessError()! | translate }}
             </p>
           }
         </div>
@@ -195,9 +202,10 @@
                   <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200">
                     <input
                       type="checkbox"
-                      class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500 disabled:opacity-50"
+                      class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
                       [checked]="row.isTutor"
-                      [disabled]="row.idTeacher == null || row.idGroup == null"
+                      [disabled]="!canSelectTutorForRow(row)"
+                      [title]="!canSelectTutorForRow(row) && row.idTeacher != null && row.idGroup != null ? ('courseAssignments.grid.tutorAlreadyAssigned' | translate) : ''"
                       (change)="onTutorChange(row, $any($event.target).checked)"
                     />
                     {{ 'courseAssignments.grid.tutorCheckbox' | translate }}
@@ -208,6 +216,12 @@
           </tbody>
         </table>
       </div>
+      @if (tutorBusinessError()) {
+        <p class="text-sm text-amber-700 mt-4" role="alert">
+          {{ tutorBusinessError()! | translate }}
+        </p>
+      }
+
       @if (saveValidation() === 'noneToSave') {
         <p class="text-sm text-amber-700 mt-4" role="alert">
           {{ 'courseAssignments.grid.saveNone' | translate }}
