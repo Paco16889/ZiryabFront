@@ -162,19 +162,6 @@
         <p class="text-sm text-gray-400 dark:text-gray-500 mb-4">{{ 'common.messages.loadingOptions' | translate }}</p>
       }
 
-      <div class="mb-4">
-        <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{{ 'lists.issues.form.attachmentUrl' | translate }}</label>
-        <input
-          formControlName="attachmentUrl"
-          type="url"
-          class="w-full px-4 py-2 border rounded-lg"
-          [placeholder]="'lists.issues.form.attachmentPlaceholder' | translate"
-        />
-        @if (createForm.get('attachmentUrl')?.invalid && createForm.get('attachmentUrl')?.touched) {
-          <span class="text-red-500 text-sm mt-1">{{ 'lists.issues.form.validation.attachmentUrl' | translate }}</span>
-        }
-      </div>
-
       <div class="mb-4 flex items-center gap-2">
         <input
           id="issue-create-isPublished"

@@ -23,9 +23,6 @@ const CREATE_FORM_AUDIENCES: IssueAudience[] = [
   'TEACHER',
 ];
 
-/** Valida URLs de adjunto (`http` o `https`). */
-const URL_PATTERN = /^https?:\/\/.+/i;
-
 /** Opciones de curso dentro del ciclo para audiencia acotada. */
 const GRADE_OPTIONS = [
   { value: '1', labelKey: 'lists.issues.form.gradeOption1' },
@@ -116,7 +113,6 @@ export class IssueCreateFormComponent implements OnInit {
     idSubject: [null as number | null],
     idTeacher: [null as number | null],
     idTeacherAssignment: [null as number | null],
-    attachmentUrl: [''],
     isPublished: [true],
     publishAt: [''],
     expiresAt: [''],
@@ -218,13 +214,6 @@ export class IssueCreateFormComponent implements OnInit {
       return;
     }
     this.targetedFilterError = false;
-
-    const attachment = this.createForm.get('attachmentUrl')?.value?.trim();
-    if (attachment && !URL_PATTERN.test(attachment)) {
-      this.createForm.get('attachmentUrl')?.setErrors({ pattern: true });
-      this.createForm.markAllAsTouched();
-      return;
-    }
 
     this.isCreating = true;
     this.errorMessage = '';
@@ -495,14 +484,12 @@ export class IssueCreateFormComponent implements OnInit {
   private buildPayload(): IssueCreateRequest {
     const raw = this.createForm.getRawValue();
     const formAudience = raw.audience as IssueAudience;
-    const attachmentUrl = raw.attachmentUrl?.trim();
 
     const payload: IssueCreateRequest = {
       title: (raw.title as string).trim(),
       body: (raw.body as string).trim(),
       audience: formAudience,
       isPublished: !!raw.isPublished,
-      attachmentUrl: attachmentUrl || undefined,
       expiresAt: raw.expiresAt || undefined,
     };
 
